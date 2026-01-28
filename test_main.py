@@ -104,13 +104,16 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test successful CLOB connection"""
         # Mock the client
         mock_client = Mock()
-        mock_client.get_simplified_markets.return_value = {
+        mock_client.get_markets.return_value = {
             'data': [
                 {
                     'question': 'Test Market',
                     'active': True,
                     'volume': '50000',
-                    'outcome_prices': ['0.65', '0.35'],
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-1'},
+                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-2'}
+                    ],
                     'condition_id': 'test-123',
                     'description': 'Test description',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -125,21 +128,24 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertTrue(result)
         # Verify the client was initialized with correct parameters
         mock_client_class.assert_called_once_with(host='https://clob.polymarket.com', chain_id=137)
-        # Verify get_simplified_markets was called
-        mock_client.get_simplified_markets.assert_called_once()
+        # Verify get_markets was called
+        mock_client.get_markets.assert_called_once()
     
     @patch('main.ClobClient')
     def test_fetch_markets_with_filtering(self, mock_client_class):
         """Test market fetching with volume filtering"""
         # Mock the client
         mock_client = Mock()
-        mock_client.get_simplified_markets.return_value = {
+        mock_client.get_markets.return_value = {
             'data': [
                 {
                     'question': 'High Volume Market',
                     'active': True,
                     'volume': '50000',  # Above MIN_VOLUME (15000)
-                    'outcome_prices': ['0.65', '0.35'],
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-1'},
+                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-2'}
+                    ],
                     'condition_id': 'test-123',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -148,7 +154,10 @@ class TestCLOBIntegration(unittest.TestCase):
                     'question': 'Low Volume Market',
                     'active': True,
                     'volume': '100',  # Below MIN_VOLUME (15000)
-                    'outcome_prices': ['0.50', '0.50'],
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.50, 'token_id': 'token-3'},
+                        {'outcome': 'NO', 'price': 0.50, 'token_id': 'token-4'}
+                    ],
                     'condition_id': 'test-456',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -157,7 +166,10 @@ class TestCLOBIntegration(unittest.TestCase):
                     'question': 'Inactive Market',
                     'active': False,  # Should be filtered out
                     'volume': '50000',
-                    'outcome_prices': ['0.65', '0.35'],
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-5'},
+                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-6'}
+                    ],
                     'condition_id': 'test-789',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -178,13 +190,16 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test market fetching when volume data is not available"""
         # Mock the client with markets that don't have volume field
         mock_client = Mock()
-        mock_client.get_simplified_markets.return_value = {
+        mock_client.get_markets.return_value = {
             'data': [
                 {
                     'question': 'Market Without Volume',
                     'active': True,
-                    # No volume field - mimics real CLOB API response
-                    'outcome_prices': ['0.65', '0.35'],
+                    # No volume field - mimics potential API response
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-1'},
+                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-2'}
+                    ],
                     'condition_id': 'test-123',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -192,7 +207,10 @@ class TestCLOBIntegration(unittest.TestCase):
                 {
                     'question': 'Another Market',
                     'active': True,
-                    'outcome_prices': ['0.50', '0.50'],
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.50, 'token_id': 'token-3'},
+                        {'outcome': 'NO', 'price': 0.50, 'token_id': 'token-4'}
+                    ],
                     'condition_id': 'test-456',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -214,13 +232,16 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test that markets with actual zero volume are filtered out"""
         # Mock the client with a market that has volume field set to 0
         mock_client = Mock()
-        mock_client.get_simplified_markets.return_value = {
+        mock_client.get_markets.return_value = {
             'data': [
                 {
                     'question': 'Zero Volume Market',
                     'active': True,
                     'volume': '0',  # Volume is 0 - should be filtered
-                    'outcome_prices': ['0.65', '0.35'],
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-1'},
+                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-2'}
+                    ],
                     'condition_id': 'test-123',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -229,7 +250,10 @@ class TestCLOBIntegration(unittest.TestCase):
                     'question': 'Good Volume Market',
                     'active': True,
                     'volume': '50000',  # Above MIN_VOLUME (15000)
-                    'outcome_prices': ['0.50', '0.50'],
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.50, 'token_id': 'token-3'},
+                        {'outcome': 'NO', 'price': 0.50, 'token_id': 'token-4'}
+                    ],
                     'condition_id': 'test-456',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -250,13 +274,16 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test that markets with extreme prices (outside 0.15-0.85) are filtered out"""
         # Mock the client with markets having extreme prices
         mock_client = Mock()
-        mock_client.get_simplified_markets.return_value = {
+        mock_client.get_markets.return_value = {
             'data': [
                 {
                     'question': 'Extreme High Price Market',
                     'active': True,
                     'volume': '50000',
-                    'outcome_prices': ['0.95', '0.05'],  # Too high, should be filtered
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.95, 'token_id': 'token-1'},
+                        {'outcome': 'NO', 'price': 0.05, 'token_id': 'token-2'}
+                    ],
                     'condition_id': 'test-123',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -265,7 +292,10 @@ class TestCLOBIntegration(unittest.TestCase):
                     'question': 'Extreme Low Price Market',
                     'active': True,
                     'volume': '50000',
-                    'outcome_prices': ['0.05', '0.95'],  # Too low, should be filtered
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.05, 'token_id': 'token-3'},
+                        {'outcome': 'NO', 'price': 0.95, 'token_id': 'token-4'}
+                    ],
                     'condition_id': 'test-456',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -274,7 +304,10 @@ class TestCLOBIntegration(unittest.TestCase):
                     'question': 'Good Price Market',
                     'active': True,
                     'volume': '50000',
-                    'outcome_prices': ['0.50', '0.50'],  # Within range
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.50, 'token_id': 'token-5'},
+                        {'outcome': 'NO', 'price': 0.50, 'token_id': 'token-6'}
+                    ],
                     'condition_id': 'test-789',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -283,7 +316,10 @@ class TestCLOBIntegration(unittest.TestCase):
                     'question': 'Edge Case High Market',
                     'active': True,
                     'volume': '50000',
-                    'outcome_prices': ['0.85', '0.15'],  # Exactly at edge, should pass
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.85, 'token_id': 'token-7'},
+                        {'outcome': 'NO', 'price': 0.15, 'token_id': 'token-8'}
+                    ],
                     'condition_id': 'test-101',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -292,7 +328,10 @@ class TestCLOBIntegration(unittest.TestCase):
                     'question': 'Edge Case Low Market',
                     'active': True,
                     'volume': '50000',
-                    'outcome_prices': ['0.15', '0.85'],  # Exactly at edge, should pass
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.15, 'token_id': 'token-9'},
+                        {'outcome': 'NO', 'price': 0.85, 'token_id': 'token-10'}
+                    ],
                     'condition_id': 'test-102',
                     'description': 'Test',
                     'end_date_iso': '2030-12-31T23:59:59Z'
@@ -313,38 +352,47 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertNotIn('Extreme Low Price Market', questions)
 
     @patch('main.ClobClient')
-    def test_simplified_markets_with_volume(self, mock_client_class):
-        """Test that get_simplified_markets properly retrieves volume data"""
+    def test_markets_with_volume(self, mock_client_class):
+        """Test that get_markets properly retrieves volume data"""
         # Mock the client with markets that have volume data
         mock_client = Mock()
-        mock_client.get_simplified_markets.return_value = {
+        mock_client.get_markets.return_value = {
             'data': [
                 {
                     'question': 'High Volume Market 1',
                     'active': True,
                     'volume': '75000.50',  # High volume
-                    'outcome_prices': ['0.65', '0.35'],
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-1'},
+                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-2'}
+                    ],
                     'condition_id': 'test-123',
                     'description': 'Test market 1',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 },
                 {
                     'question': 'High Volume Market 2',
                     'active': True,
                     'volume': '100000',  # High volume
-                    'outcome_prices': ['0.50', '0.50'],
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.50, 'token_id': 'token-3'},
+                        {'outcome': 'NO', 'price': 0.50, 'token_id': 'token-4'}
+                    ],
                     'condition_id': 'test-456',
                     'description': 'Test market 2',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Medium Volume Market',
                     'active': True,
                     'volume': '20000',  # Above MIN_VOLUME (15000)
-                    'outcome_prices': ['0.40', '0.60'],
+                    'tokens': [
+                        {'outcome': 'YES', 'price': 0.40, 'token_id': 'token-5'},
+                        {'outcome': 'NO', 'price': 0.60, 'token_id': 'token-6'}
+                    ],
                     'condition_id': 'test-789',
                     'description': 'Test market 3',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 }
             ]
         }
@@ -361,8 +409,8 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertEqual(volumes['High Volume Market 2'], 100000.0)
         self.assertEqual(volumes['Medium Volume Market'], 20000.0)
         
-        # Verify get_simplified_markets was called
-        mock_client.get_simplified_markets.assert_called_once()
+        # Verify get_markets was called
+        mock_client.get_markets.assert_called_once()
 
 
 if __name__ == '__main__':
