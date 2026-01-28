@@ -94,8 +94,8 @@ def test_clob_connection():
         # Public Client (kein Key nötig für Marktdaten)
         client = ClobClient(host=POLYMARKET_CLOB_URL, chain_id=137)
         
-        # Hole Märkte
-        resp = client.get_markets()
+        # Hole Märkte (use simplified markets for volume data)
+        resp = client.get_simplified_markets()
         
         # Analysiere Antwort-Struktur
         if isinstance(resp, dict):
@@ -157,8 +157,8 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         # Initialize the CLOB client with chain_id
         client = ClobClient(host=POLYMARKET_CLOB_URL, chain_id=137)
         
-        # Fetch markets
-        response = client.get_markets()
+        # Fetch markets (use simplified markets for volume data)
+        response = client.get_simplified_markets()
         
         markets = []
         

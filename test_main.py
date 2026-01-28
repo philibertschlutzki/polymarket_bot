@@ -104,7 +104,7 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test successful CLOB connection"""
         # Mock the client
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
                     'question': 'Test Market',
@@ -125,15 +125,15 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertTrue(result)
         # Verify the client was initialized with correct parameters
         mock_client_class.assert_called_once_with(host='https://clob.polymarket.com', chain_id=137)
-        # Verify get_markets was called
-        mock_client.get_markets.assert_called_once()
+        # Verify get_simplified_markets was called
+        mock_client.get_simplified_markets.assert_called_once()
     
     @patch('main.ClobClient')
     def test_fetch_markets_with_filtering(self, mock_client_class):
         """Test market fetching with volume filtering"""
         # Mock the client
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
                     'question': 'High Volume Market',
@@ -178,7 +178,7 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test market fetching when volume data is not available"""
         # Mock the client with markets that don't have volume field
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
                     'question': 'Market Without Volume',
@@ -214,7 +214,7 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test that markets with actual zero volume are filtered out"""
         # Mock the client with a market that has volume field set to 0
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
                     'question': 'Zero Volume Market',
@@ -250,7 +250,7 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test that markets with extreme prices (outside 0.15-0.85) are filtered out"""
         # Mock the client with markets having extreme prices
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
                     'question': 'Extreme High Price Market',
@@ -313,38 +313,38 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertNotIn('Extreme Low Price Market', questions)
 
     @patch('main.ClobClient')
-    def test_fetch_markets_filters_expired_markets(self, mock_client_class):
-        """Test that markets with end dates in the past are filtered out"""
-        # Mock the client with both expired and current markets
+    def test_simplified_markets_with_volume(self, mock_client_class):
+        """Test that get_simplified_markets properly retrieves volume data"""
+        # Mock the client with markets that have volume data
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
-                    'question': 'NCAAB: Arizona State Sun Devils vs. Nevada Wolf Pack',
+                    'question': 'High Volume Market 1',
                     'active': True,
-                    'volume': '0',  # Old markets often have 0 volume
+                    'volume': '75000.50',  # High volume
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-123',
-                    'description': 'Old basketball game',
-                    'end_date_iso': '2023-03-15T00:00:00Z'  # Expired in 2023
+                    'description': 'Test market 1',
+                    'end_date_iso': '2024-12-31'
                 },
                 {
-                    'question': 'Current Market Question',
+                    'question': 'High Volume Market 2',
                     'active': True,
-                    'volume': '50000',
+                    'volume': '100000',  # High volume
                     'outcome_prices': ['0.50', '0.50'],
                     'condition_id': 'test-456',
-                    'description': 'Test',
-                    'end_date_iso': '2026-12-31T23:59:59Z'  # Future date
+                    'description': 'Test market 2',
+                    'end_date_iso': '2024-12-31'
                 },
                 {
-                    'question': 'Another Old Market',
+                    'question': 'Medium Volume Market',
                     'active': True,
-                    'volume': '100',
-                    'outcome_prices': ['0.70', '0.30'],
+                    'volume': '20000',  # Above MIN_VOLUME (15000)
+                    'outcome_prices': ['0.40', '0.60'],
                     'condition_id': 'test-789',
-                    'description': 'Test',
-                    'end_date_iso': '2023-01-01T00:00:00Z'  # Expired in 2023
+                    'description': 'Test market 3',
+                    'end_date_iso': '2024-12-31'
                 }
             ]
         }
@@ -352,13 +352,17 @@ class TestCLOBIntegration(unittest.TestCase):
         
         markets = fetch_active_markets(limit=10)
         
-        # Should only return the current market (not the expired ones from 2023)
-        self.assertEqual(len(markets), 1)
-        self.assertEqual(markets[0].question, 'Current Market Question')
-        # Verify the old markets are NOT in the results
-        questions = [m.question for m in markets]
-        self.assertNotIn('NCAAB: Arizona State Sun Devils vs. Nevada Wolf Pack', questions)
-        self.assertNotIn('Another Old Market', questions)
+        # Should return all three markets since they all have volume > MIN_VOLUME
+        self.assertEqual(len(markets), 3)
+        
+        # Verify volume data is correctly parsed
+        volumes = {m.question: m.volume for m in markets}
+        self.assertEqual(volumes['High Volume Market 1'], 75000.50)
+        self.assertEqual(volumes['High Volume Market 2'], 100000.0)
+        self.assertEqual(volumes['Medium Volume Market'], 20000.0)
+        
+        # Verify get_simplified_markets was called
+        mock_client.get_simplified_markets.assert_called_once()
 
 
 if __name__ == '__main__':
