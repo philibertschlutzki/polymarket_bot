@@ -16,7 +16,8 @@ from datetime import datetime
 import requests
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 
 # ============================================================================
@@ -156,14 +157,8 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         AIAnalysis-Objekt oder None bei Fehler
     """
     try:
-        # Konfiguriere Gemini
-        genai.configure(api_key=GEMINI_API_KEY)
-        
-        # Nutze Gemini 2.0 Flash mit Google Search
-        model = genai.GenerativeModel(
-            'gemini-2.0-flash-exp',
-            tools='google_search_retrieval'
-        )
+        # Konfiguriere Gemini Client
+        client = genai.Client(api_key=GEMINI_API_KEY)
         
         # Erstelle den Prompt
         prompt = f"""
@@ -190,7 +185,15 @@ Wichtig:
         
         print(f"🤖 Analysiere mit Gemini: {market.question[:60]}...")
         
-        response = model.generate_content(prompt)
+        # Nutze Gemini 2.0 Flash mit Google Search
+        response = client.models.generate_content(
+            model='gemini-2.0-flash-exp',
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                tools=[types.Tool(google_search=types.GoogleSearch())]
+            )
+        )
+        
         text = response.text
         
         # Parse die Antwort
