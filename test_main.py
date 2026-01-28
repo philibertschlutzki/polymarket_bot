@@ -352,7 +352,7 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertNotIn('Extreme Low Price Market', questions)
 
     @patch('main.ClobClient')
-    def test_simplified_markets_with_volume(self, mock_client_class):
+    def test_markets_with_volume(self, mock_client_class):
         """Test that get_markets properly retrieves volume data"""
         # Mock the client with markets that have volume data
         mock_client = Mock()
