@@ -244,7 +244,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                 continue
             
             # Check: Spread (price extremes) - filter out markets with low liquidity
-            # Prices too close to 0 or 1 indicate low liquidity risk
+            # Prices too close to 0 or 1 indicate liquidity risk
             if not (0.15 <= yes_price <= 0.85):
                 extreme_price_count += 1
                 question_str = str(question) if question else 'N/A'
