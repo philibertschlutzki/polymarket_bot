@@ -138,7 +138,7 @@ class TestCLOBIntegration(unittest.TestCase):
                 {
                     'question': 'High Volume Market',
                     'active': True,
-                    'volume': '50000',  # Above MIN_VOLUME
+                    'volume': '50000',  # Above MIN_VOLUME (15000)
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-123',
                     'description': 'Test',
@@ -147,7 +147,7 @@ class TestCLOBIntegration(unittest.TestCase):
                 {
                     'question': 'Low Volume Market',
                     'active': True,
-                    'volume': '100',  # Below MIN_VOLUME
+                    'volume': '100',  # Below MIN_VOLUME (15000)
                     'outcome_prices': ['0.50', '0.50'],
                     'condition_id': 'test-456',
                     'description': 'Test',
@@ -228,7 +228,7 @@ class TestCLOBIntegration(unittest.TestCase):
                 {
                     'question': 'Good Volume Market',
                     'active': True,
-                    'volume': '50000',  # Above MIN_VOLUME
+                    'volume': '50000',  # Above MIN_VOLUME (15000)
                     'outcome_prices': ['0.50', '0.50'],
                     'condition_id': 'test-456',
                     'description': 'Test',
@@ -244,6 +244,73 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertEqual(len(markets), 1)
         self.assertEqual(markets[0].question, 'Good Volume Market')
         self.assertEqual(markets[0].volume, 50000.0)
+
+    @patch('main.ClobClient')
+    def test_fetch_markets_with_extreme_prices(self, mock_client_class):
+        """Test that markets with extreme prices (outside 0.15-0.85) are filtered out"""
+        # Mock the client with markets having extreme prices
+        mock_client = Mock()
+        mock_client.get_markets.return_value = {
+            'data': [
+                {
+                    'question': 'Extreme High Price Market',
+                    'active': True,
+                    'volume': '50000',
+                    'outcome_prices': ['0.95', '0.05'],  # Too high, should be filtered
+                    'condition_id': 'test-123',
+                    'description': 'Test',
+                    'end_date_iso': '2024-12-31'
+                },
+                {
+                    'question': 'Extreme Low Price Market',
+                    'active': True,
+                    'volume': '50000',
+                    'outcome_prices': ['0.05', '0.95'],  # Too low, should be filtered
+                    'condition_id': 'test-456',
+                    'description': 'Test',
+                    'end_date_iso': '2024-12-31'
+                },
+                {
+                    'question': 'Good Price Market',
+                    'active': True,
+                    'volume': '50000',
+                    'outcome_prices': ['0.50', '0.50'],  # Within range
+                    'condition_id': 'test-789',
+                    'description': 'Test',
+                    'end_date_iso': '2024-12-31'
+                },
+                {
+                    'question': 'Edge Case High Market',
+                    'active': True,
+                    'volume': '50000',
+                    'outcome_prices': ['0.85', '0.15'],  # Exactly at edge, should pass
+                    'condition_id': 'test-101',
+                    'description': 'Test',
+                    'end_date_iso': '2024-12-31'
+                },
+                {
+                    'question': 'Edge Case Low Market',
+                    'active': True,
+                    'volume': '50000',
+                    'outcome_prices': ['0.15', '0.85'],  # Exactly at edge, should pass
+                    'condition_id': 'test-102',
+                    'description': 'Test',
+                    'end_date_iso': '2024-12-31'
+                }
+            ]
+        }
+        mock_client_class.return_value = mock_client
+        
+        markets = fetch_active_markets(limit=10)
+        
+        # Should return only markets with prices in range (0.15-0.85)
+        self.assertEqual(len(markets), 3)
+        questions = [m.question for m in markets]
+        self.assertIn('Good Price Market', questions)
+        self.assertIn('Edge Case High Market', questions)
+        self.assertIn('Edge Case Low Market', questions)
+        self.assertNotIn('Extreme High Price Market', questions)
+        self.assertNotIn('Extreme Low Price Market', questions)
 
 
 if __name__ == '__main__':
