@@ -37,7 +37,13 @@ Ein KI-gestütztes Tool, das Polymarket-Märkte analysiert, Wahrscheinlichkeiten
     pip install -r requirements.txt
     ```
 
-4.  **Konfiguration:**
+4.  **Installation überprüfen (optional):**
+    ```bash
+    python verify_install.py
+    ```
+    Dieser Befehl überprüft, ob alle erforderlichen Pakete korrekt installiert sind.
+
+5.  **Konfiguration:**
     Erstelle eine `.env` Datei im Hauptverzeichnis:
     ```env
     GEMINI_API_KEY=Dein_Google_Gemini_Key_Hier
@@ -53,6 +59,38 @@ python main.py
 ```
 
 ## 🔧 Troubleshooting
+
+### ModuleNotFoundError (z.B. 'dateutil', 'dotenv', etc.)
+
+Wenn Sie die Fehlermeldung `ModuleNotFoundError: No module named 'dateutil'` oder ähnliche Fehler erhalten:
+
+1. **Stellen Sie sicher, dass Ihre virtuelle Umgebung aktiviert ist:**
+   ```bash
+   source venv/bin/activate  # Mac/Linux
+   # oder
+   venv\Scripts\activate     # Windows
+   ```
+
+2. **Installieren Sie alle Abhängigkeiten:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Überprüfen Sie, ob die Installation erfolgreich war:**
+   ```bash
+   pip list | grep -i dateutil
+   ```
+   Sie sollten `python-dateutil` in der Liste sehen.
+
+4. **Bei persistierenden Problemen, erstellen Sie eine neue virtuelle Umgebung:**
+   ```bash
+   # Löschen Sie die alte venv
+   rm -rf venv
+   # Erstellen Sie eine neue
+   python -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
 
 ### Polymarket API nicht erreichbar
 
