@@ -95,8 +95,8 @@ def test_clob_connection():
         # Public Client (kein Key nötig für Marktdaten)
         client = ClobClient(host=POLYMARKET_CLOB_URL, chain_id=137)
         
-        # Hole Märkte (use simplified markets for volume data)
-        resp = client.get_simplified_markets()
+        # Hole Märkte (use get_markets for full market data including question, volume, prices)
+        resp = client.get_markets()
         
         # Analysiere Antwort-Struktur
         if isinstance(resp, dict):
@@ -114,9 +114,17 @@ def test_clob_connection():
                 print(f"   - question: {question_str[:60]}...")
                 print(f"   - active: {first_market.get('active', 'N/A')}")
                 print(f"   - volume: {first_market.get('volume', 'N/A')}")
+                
+                # Show tokens structure (used in get_markets)
+                tokens = first_market.get('tokens', 'N/A')
+                if tokens != 'N/A' and isinstance(tokens, list) and len(tokens) > 0:
+                    print(f"   - tokens[0]: {tokens[0]}")
+                else:
+                    print(f"   - tokens: {tokens}")
+                    
+                # Show legacy price fields (for backward compatibility)
                 print(f"   - outcome_prices: {first_market.get('outcome_prices', 'N/A')}")
                 print(f"   - outcomePrices: {first_market.get('outcomePrices', 'N/A')}")
-                print(f"   - prices: {first_market.get('prices', 'N/A')}")
         elif isinstance(resp, list):
             print(f"✅ CLOB Antwort: Liste mit {len(resp)} Elementen")
             if resp:
@@ -158,8 +166,8 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         # Initialize the CLOB client with chain_id
         client = ClobClient(host=POLYMARKET_CLOB_URL, chain_id=137)
         
-        # Fetch markets (use simplified markets for volume data)
-        response = client.get_simplified_markets()
+        # Fetch markets (use get_markets for full market data including question, volume, prices)
+        response = client.get_markets()
         
         markets = []
         
@@ -246,31 +254,33 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             question = market.get('question', '')
             description = market.get('description', '')
             
-            # Get outcome prices - field name may vary
-            # Try common field names: outcome_prices, outcomePrices, prices
+            # Get outcome prices from tokens array
+            # In get_markets(), prices are in tokens array: [{"outcome": "YES", "price": 0.34}, ...]
             try:
-                # Check each field explicitly to handle empty lists correctly
-                outcome_prices = market.get('outcome_prices')
-                if outcome_prices is None or (isinstance(outcome_prices, list) and len(outcome_prices) == 0):
-                    outcome_prices = market.get('outcomePrices')
-                if outcome_prices is None or (isinstance(outcome_prices, list) and len(outcome_prices) == 0):
-                    outcome_prices = market.get('prices')
-                if outcome_prices is None or (isinstance(outcome_prices, list) and len(outcome_prices) == 0):
-                    outcome_prices = ['0.5', '0.5']
+                tokens = market.get('tokens', [])
                 
-                # Handle different price formats
-                if isinstance(outcome_prices, list) and len(outcome_prices) > 0:
-                    yes_price = float(outcome_prices[0])
+                if not tokens or len(tokens) == 0:
+                    # Fallback: try legacy field names for backward compatibility
+                    outcome_prices = market.get('outcome_prices') or market.get('outcomePrices') or market.get('prices')
+                    if outcome_prices and isinstance(outcome_prices, list) and len(outcome_prices) > 0:
+                        yes_price = float(outcome_prices[0])
+                    else:
+                        yes_price = 0.5
                 else:
-                    yes_price = 0.5
+                    # Extract price from first token (typically YES outcome)
+                    first_token = tokens[0]
+                    if isinstance(first_token, dict) and 'price' in first_token:
+                        yes_price = float(first_token['price'])
+                    else:
+                        # Fallback if token structure is unexpected
+                        yes_price = 0.5
                     
             except (ValueError, TypeError, IndexError) as e:
                 parse_error_count += 1
                 question_str = str(question) if question else 'N/A'
                 print(f"⚠️  Konnte Preis nicht parsen für Markt: {question_str[:50]} - Fehler: {e}")
+                print(f"    tokens Wert: {market.get('tokens')}")
                 print(f"    outcome_prices Wert: {market.get('outcome_prices')}")
-                print(f"    outcomePrices Wert: {market.get('outcomePrices')}")
-                print(f"    prices Wert: {market.get('prices')}")
                 continue
             
             # Check: Spread (price extremes) - filter out markets with low liquidity
