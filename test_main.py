@@ -209,6 +209,42 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertEqual(markets[0].volume, 0.0)
         self.assertEqual(markets[1].volume, 0.0)
 
+    @patch('main.ClobClient')
+    def test_fetch_markets_with_zero_volume(self, mock_client_class):
+        """Test that markets with actual zero volume are filtered out"""
+        # Mock the client with a market that has volume field set to 0
+        mock_client = Mock()
+        mock_client.get_markets.return_value = {
+            'data': [
+                {
+                    'question': 'Zero Volume Market',
+                    'active': True,
+                    'volume': '0',  # Volume is 0 - should be filtered
+                    'outcome_prices': ['0.65', '0.35'],
+                    'condition_id': 'test-123',
+                    'description': 'Test',
+                    'end_date_iso': '2024-12-31'
+                },
+                {
+                    'question': 'Good Volume Market',
+                    'active': True,
+                    'volume': '50000',  # Above MIN_VOLUME
+                    'outcome_prices': ['0.50', '0.50'],
+                    'condition_id': 'test-456',
+                    'description': 'Test',
+                    'end_date_iso': '2024-12-31'
+                }
+            ]
+        }
+        mock_client_class.return_value = mock_client
+        
+        markets = fetch_active_markets(limit=10)
+        
+        # Should only return the market with good volume
+        self.assertEqual(len(markets), 1)
+        self.assertEqual(markets[0].question, 'Good Volume Market')
+        self.assertEqual(markets[0].volume, 50000.0)
+
 
 if __name__ == '__main__':
     unittest.main()

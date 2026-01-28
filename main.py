@@ -192,21 +192,24 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                 continue
             
             # Filter by volume (skip filter if volume data not available)
-            try:
-                volume_raw = market.get('volume')
-                if volume_raw is None or volume_raw == '':
-                    # Volume data not available in API response, set to 0 and skip filter
-                    volume = 0.0
-                else:
+            volume_raw = market.get('volume')
+            if volume_raw is None or volume_raw == '':
+                # Volume data not available in API response, set to 0 and skip filter
+                volume = 0.0
+            else:
+                try:
                     volume = float(volume_raw)
                     volume_data_available = True  # Mark that we found volume data
-                    # Only apply volume filter if we have actual volume data
-                    if volume > 0 and volume < MIN_VOLUME:
+                    # Apply volume filter when we have actual volume data
+                    if volume < MIN_VOLUME:
                         low_volume_count += 1
                         continue
-            except (ValueError, TypeError) as e:
-                # If volume parsing fails, treat as missing data and continue
-                volume = 0.0
+                except (ValueError, TypeError) as e:
+                    # Volume field exists but can't be parsed - log and skip this market
+                    parse_error_count += 1
+                    question_str = str(market.get('question', 'N/A'))
+                    print(f"⚠️  Konnte Volumen nicht parsen für Markt: {question_str[:50]} - Wert: {volume_raw}, Fehler: {e}")
+                    continue
             
             # Get the question/description
             question = market.get('question', '')
