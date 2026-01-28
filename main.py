@@ -30,10 +30,6 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 TOTAL_CAPITAL = float(os.getenv("TOTAL_CAPITAL", "1000"))
 
-if not GEMINI_API_KEY:
-    print("❌ Fehler: GEMINI_API_KEY nicht in .env gefunden!")
-    sys.exit(1)
-
 POLYMARKET_CLOB_URL = "https://clob.polymarket.com"  # CLOB API Endpoint
 MIN_VOLUME = 15000  # Mindestvolumen in USD für Markt-Selektion
 KELLY_FRACTION = 0.25  # Fractional Kelly (25% der Full Kelly)
@@ -182,6 +178,8 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         low_volume_count = 0
         parse_error_count = 0
         extreme_price_count = 0
+        expired_count = 0
+        zero_volume_count = 0
         volume_data_available = False  # Track if any market has volume data
         
         for market in market_data_list:
@@ -192,6 +190,27 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                 inactive_count += 1
                 continue
             
+            # Filter by end_date - skip markets that have already ended
+            end_date_iso = market.get('end_date_iso')
+            if end_date_iso:
+                try:
+                    # Parse the end date (ISO format: YYYY-MM-DDTHH:MM:SS)
+                    from dateutil import parser as date_parser
+                    end_date = date_parser.parse(end_date_iso)
+                    now = datetime.now(end_date.tzinfo) if end_date.tzinfo else datetime.now()
+                    
+                    # Skip markets that have already ended
+                    if end_date < now:
+                        expired_count += 1
+                        question_str = str(market.get('question', 'N/A'))
+                        # Only log if it's significantly old (more than 1 day)
+                        if (now - end_date).days > 1:
+                            print(f"⏭️  Skipping expired market: {question_str[:60]}... (ended {end_date.date()})")
+                        continue
+                except Exception as e:
+                    # If we can't parse the date, log but don't skip the market
+                    pass
+            
             # Filter by volume (skip filter if volume data not available)
             volume_raw = market.get('volume')
             if volume_raw is None or volume_raw == '':
@@ -201,6 +220,14 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                 try:
                     volume = float(volume_raw)
                     volume_data_available = True  # Mark that we found volume data
+                    
+                    # Filter out markets with exactly zero volume (old/inactive markets)
+                    if volume == 0:
+                        zero_volume_count += 1
+                        question_str = str(market.get('question', 'N/A'))
+                        print(f"⏭️  Skipping zero-volume market: {question_str[:60]}...")
+                        continue
+                    
                     # Apply volume filter when we have actual volume data
                     if volume < MIN_VOLUME:
                         low_volume_count += 1
@@ -273,6 +300,8 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         print(f"\n📊 Markt-Filter Statistik:")
         print(f"   - Gesamt empfangen: {total_count}")
         print(f"   - Inaktiv: {inactive_count}")
+        print(f"   - Abgelaufen (end_date überschritten): {expired_count}")
+        print(f"   - Null Volumen (alte/inaktive Märkte): {zero_volume_count}")
         if volume_data_available:
             print(f"   - Zu wenig Volumen (<${MIN_VOLUME:,.0f}): {low_volume_count}")
         else:
@@ -557,6 +586,11 @@ def analyze_and_recommend(market: MarketData) -> None:
 
 def main():
     """Hauptfunktion des Bots."""
+    # Check for API key when running as main
+    if not GEMINI_API_KEY:
+        print("❌ Fehler: GEMINI_API_KEY nicht in .env gefunden!")
+        sys.exit(1)
+    
     print("\n" + "=" * 80)
     print("🤖 POLYMARKET AI VALUE BET BOT")
     print("=" * 80)

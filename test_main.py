@@ -113,7 +113,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-123',
                     'description': 'Test description',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 }
             ]
         }
@@ -142,7 +142,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-123',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Low Volume Market',
@@ -151,7 +151,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.50', '0.50'],
                     'condition_id': 'test-456',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Inactive Market',
@@ -160,7 +160,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-789',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 }
             ]
         }
@@ -187,7 +187,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-123',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Another Market',
@@ -195,7 +195,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.50', '0.50'],
                     'condition_id': 'test-456',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 }
             ]
         }
@@ -223,7 +223,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-123',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Good Volume Market',
@@ -232,7 +232,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.50', '0.50'],
                     'condition_id': 'test-456',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 }
             ]
         }
@@ -259,7 +259,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.95', '0.05'],  # Too high, should be filtered
                     'condition_id': 'test-123',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Extreme Low Price Market',
@@ -268,7 +268,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.05', '0.95'],  # Too low, should be filtered
                     'condition_id': 'test-456',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Good Price Market',
@@ -277,7 +277,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.50', '0.50'],  # Within range
                     'condition_id': 'test-789',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Edge Case High Market',
@@ -286,7 +286,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.85', '0.15'],  # Exactly at edge, should pass
                     'condition_id': 'test-101',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Edge Case Low Market',
@@ -295,7 +295,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.15', '0.85'],  # Exactly at edge, should pass
                     'condition_id': 'test-102',
                     'description': 'Test',
-                    'end_date_iso': '2024-12-31'
+                    'end_date_iso': '2027-12-31T23:59:59Z'
                 }
             ]
         }
@@ -311,6 +311,54 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertIn('Edge Case Low Market', questions)
         self.assertNotIn('Extreme High Price Market', questions)
         self.assertNotIn('Extreme Low Price Market', questions)
+
+    @patch('main.ClobClient')
+    def test_fetch_markets_filters_expired_markets(self, mock_client_class):
+        """Test that markets with end dates in the past are filtered out"""
+        # Mock the client with both expired and current markets
+        mock_client = Mock()
+        mock_client.get_markets.return_value = {
+            'data': [
+                {
+                    'question': 'NCAAB: Arizona State Sun Devils vs. Nevada Wolf Pack',
+                    'active': True,
+                    'volume': '0',  # Old markets often have 0 volume
+                    'outcome_prices': ['0.65', '0.35'],
+                    'condition_id': 'test-123',
+                    'description': 'Old basketball game',
+                    'end_date_iso': '2023-03-15T00:00:00Z'  # Expired in 2023
+                },
+                {
+                    'question': 'Current Market Question',
+                    'active': True,
+                    'volume': '50000',
+                    'outcome_prices': ['0.50', '0.50'],
+                    'condition_id': 'test-456',
+                    'description': 'Test',
+                    'end_date_iso': '2026-12-31T23:59:59Z'  # Future date
+                },
+                {
+                    'question': 'Another Old Market',
+                    'active': True,
+                    'volume': '100',
+                    'outcome_prices': ['0.70', '0.30'],
+                    'condition_id': 'test-789',
+                    'description': 'Test',
+                    'end_date_iso': '2023-01-01T00:00:00Z'  # Expired in 2023
+                }
+            ]
+        }
+        mock_client_class.return_value = mock_client
+        
+        markets = fetch_active_markets(limit=10)
+        
+        # Should only return the current market (not the expired ones from 2023)
+        self.assertEqual(len(markets), 1)
+        self.assertEqual(markets[0].question, 'Current Market Question')
+        # Verify the old markets are NOT in the results
+        questions = [m.question for m in markets]
+        self.assertNotIn('NCAAB: Arizona State Sun Devils vs. Nevada Wolf Pack', questions)
+        self.assertNotIn('Another Old Market', questions)
 
 
 if __name__ == '__main__':
