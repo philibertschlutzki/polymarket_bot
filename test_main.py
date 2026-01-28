@@ -312,6 +312,58 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertNotIn('Extreme High Price Market', questions)
         self.assertNotIn('Extreme Low Price Market', questions)
 
+    @patch('main.ClobClient')
+    def test_simplified_markets_with_volume(self, mock_client_class):
+        """Test that get_simplified_markets properly retrieves volume data"""
+        # Mock the client with markets that have volume data
+        mock_client = Mock()
+        mock_client.get_simplified_markets.return_value = {
+            'data': [
+                {
+                    'question': 'High Volume Market 1',
+                    'active': True,
+                    'volume': '75000.50',  # High volume
+                    'outcome_prices': ['0.65', '0.35'],
+                    'condition_id': 'test-123',
+                    'description': 'Test market 1',
+                    'end_date_iso': '2024-12-31'
+                },
+                {
+                    'question': 'High Volume Market 2',
+                    'active': True,
+                    'volume': '100000',  # High volume
+                    'outcome_prices': ['0.50', '0.50'],
+                    'condition_id': 'test-456',
+                    'description': 'Test market 2',
+                    'end_date_iso': '2024-12-31'
+                },
+                {
+                    'question': 'Medium Volume Market',
+                    'active': True,
+                    'volume': '20000',  # Above MIN_VOLUME (15000)
+                    'outcome_prices': ['0.40', '0.60'],
+                    'condition_id': 'test-789',
+                    'description': 'Test market 3',
+                    'end_date_iso': '2024-12-31'
+                }
+            ]
+        }
+        mock_client_class.return_value = mock_client
+        
+        markets = fetch_active_markets(limit=10)
+        
+        # Should return all three markets since they all have volume > MIN_VOLUME
+        self.assertEqual(len(markets), 3)
+        
+        # Verify volume data is correctly parsed
+        volumes = {m.question: m.volume for m in markets}
+        self.assertEqual(volumes['High Volume Market 1'], 75000.50)
+        self.assertEqual(volumes['High Volume Market 2'], 100000.0)
+        self.assertEqual(volumes['Medium Volume Market'], 20000.0)
+        
+        # Verify get_simplified_markets was called
+        mock_client.get_simplified_markets.assert_called_once()
+
 
 if __name__ == '__main__':
     unittest.main()
