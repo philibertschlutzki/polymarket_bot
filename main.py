@@ -10,6 +10,7 @@ Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
 
 import os
 import sys
+import time
 from typing import Optional, List
 from datetime import datetime
 
@@ -619,6 +620,12 @@ def main():
     
     for i, market in enumerate(markets, 1):
         print(f"\n[{i}/{len(markets)}]")
+        
+        # --- FIX: Warten vor der Anfrage um Rate-Limit zu vermeiden ---
+        print("⏳ Warte 5 Sekunden (Rate Limit Schutz)...")
+        time.sleep(5)
+        # -------------------------------------------------------------
+        
         analyze_and_recommend(market)
     
     print("\n" + "=" * 80)
