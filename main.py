@@ -35,7 +35,7 @@ if not GEMINI_API_KEY:
     sys.exit(1)
 
 POLYMARKET_CLOB_URL = "https://clob.polymarket.com"  # CLOB API Endpoint
-MIN_VOLUME = 10000  # Mindestvolumen in USD für Markt-Selektion
+MIN_VOLUME = 15000  # Mindestvolumen in USD für Markt-Selektion
 KELLY_FRACTION = 0.25  # Fractional Kelly (25% der Full Kelly)
 MAX_CAPITAL_FRACTION = 0.5  # Maximum 50% des Kapitals pro Wette
 
@@ -181,6 +181,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         inactive_count = 0
         low_volume_count = 0
         parse_error_count = 0
+        extreme_price_count = 0
         volume_data_available = False  # Track if any market has volume data
         
         for market in market_data_list:
@@ -242,6 +243,14 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                 print(f"    prices Wert: {market.get('prices')}")
                 continue
             
+            # Check: Spread (price extremes) - filter out markets with low liquidity
+            # Prices too close to 0 or 1 indicate low liquidity risk
+            if not (0.15 <= yes_price <= 0.85):
+                extreme_price_count += 1
+                question_str = str(question) if question else 'N/A'
+                print(f"⏭️  Skipping {question_str[:60]}: Preis zu extrem ({yes_price:.2f}), Liquiditätsrisiko.")
+                continue
+            
             try:
                 markets.append(MarketData(
                     question=question,
@@ -268,6 +277,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             print(f"   - Zu wenig Volumen (<${MIN_VOLUME:,.0f}): {low_volume_count}")
         else:
             print(f"   - ℹ️  Volumendaten nicht verfügbar (Filter übersprungen)")
+        print(f"   - Preis zu extrem (außerhalb 0.15-0.85): {extreme_price_count}")
         print(f"   - Parse-Fehler: {parse_error_count}")
         print(f"   - ✅ Qualifiziert: {len(markets)}\n")
         return markets
