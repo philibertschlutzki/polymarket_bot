@@ -104,7 +104,7 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test successful CLOB connection"""
         # Mock the client
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
                     'question': 'Test Market',
@@ -125,15 +125,15 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertTrue(result)
         # Verify the client was initialized with correct parameters
         mock_client_class.assert_called_once_with(host='https://clob.polymarket.com', chain_id=137)
-        # Verify get_markets was called
-        mock_client.get_markets.assert_called_once()
+        # Verify get_simplified_markets was called
+        mock_client.get_simplified_markets.assert_called_once()
     
     @patch('main.ClobClient')
     def test_fetch_markets_with_filtering(self, mock_client_class):
         """Test market fetching with volume filtering"""
         # Mock the client
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
                     'question': 'High Volume Market',
@@ -178,7 +178,7 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test market fetching when volume data is not available"""
         # Mock the client with markets that don't have volume field
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
                     'question': 'Market Without Volume',
@@ -214,7 +214,7 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test that markets with actual zero volume are filtered out"""
         # Mock the client with a market that has volume field set to 0
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
                     'question': 'Zero Volume Market',
@@ -250,7 +250,7 @@ class TestCLOBIntegration(unittest.TestCase):
         """Test that markets with extreme prices (outside 0.15-0.85) are filtered out"""
         # Mock the client with markets having extreme prices
         mock_client = Mock()
-        mock_client.get_markets.return_value = {
+        mock_client.get_simplified_markets.return_value = {
             'data': [
                 {
                     'question': 'Extreme High Price Market',
