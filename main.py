@@ -3,7 +3,7 @@
 Polymarket AI Value Bet Bot
 
 Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
-- Marktdaten aus der Polymarket Gamma API
+- Marktdaten aus der Polymarket CLOB API (py-clob-client)
 - KI-gestützte Wahrscheinlichkeitsschätzung via Google Gemini mit Search Grounding
 - Kelly-Kriterium zur Positionsgrößenbestimmung (max. 50% des Kapitals)
 """
@@ -34,7 +34,7 @@ if not GEMINI_API_KEY:
     print("❌ Fehler: GEMINI_API_KEY nicht in .env gefunden!")
     sys.exit(1)
 
-POLYMARKET_API_URL = "https://gamma-api.polymarket.com/events"
+POLYMARKET_CLOB_URL = "https://clob.polymarket.com"  # CLOB API Endpoint
 MIN_VOLUME = 10000  # Mindestvolumen in USD für Markt-Selektion
 KELLY_FRACTION = 0.25  # Fractional Kelly (25% der Full Kelly)
 MAX_CAPITAL_FRACTION = 0.5  # Maximum 50% des Kapitals pro Wette
@@ -102,7 +102,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         print(f"📡 Verbinde mit Polymarket API...")
         
         # Initialize the CLOB client
-        client = ClobClient(host="https://clob.polymarket.com")
+        client = ClobClient(host=POLYMARKET_CLOB_URL)
         
         # Fetch markets
         response = client.get_markets()
