@@ -78,9 +78,9 @@ Wenn Sie die Fehlermeldung `ModuleNotFoundError: No module named 'dateutil'` ode
 
 3. **Überprüfen Sie, ob die Installation erfolgreich war:**
    ```bash
-   pip list | grep -i dateutil
+   pip show python-dateutil
    ```
-   Sie sollten `python-dateutil` in der Liste sehen.
+   Dies sollte Informationen über das installierte Paket anzeigen.
 
 4. **Bei persistierenden Problemen, erstellen Sie eine neue virtuelle Umgebung:**
    ```bash
