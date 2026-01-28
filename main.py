@@ -13,12 +13,12 @@ import sys
 from typing import Optional, List
 from datetime import datetime
 
-import requests
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from google import genai
 from google.genai import types
 from py_clob_client.client import ClobClient
+from py_clob_client.exceptions import PolyApiException
 
 
 # ============================================================================
@@ -90,13 +90,12 @@ class TradingRecommendation(BaseModel):
 def fetch_active_markets(limit: int = 20) -> List[MarketData]:
     """
     Holt aktive Märkte von der Polymarket CLOB API.
-    Falls die API nicht erreichbar ist, werden Mock-Daten zurückgegeben.
     
     Args:
         limit: Maximale Anzahl der zurückzugebenden Märkte
         
     Returns:
-        Liste von MarketData-Objekten
+        Liste von MarketData-Objekten (leer bei Fehler)
     """
     try:
         print(f"📡 Verbinde mit Polymarket API...")
@@ -109,11 +108,14 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         
         markets = []
         
-        if not response or 'data' not in response:
-            print(f"⚠️  Keine Marktdaten erhalten")
+        # The response can be a dict with 'data' key or a list directly
+        if isinstance(response, dict):
+            market_data_list = response.get('data', [])
+        elif isinstance(response, list):
+            market_data_list = response
+        else:
+            print(f"⚠️  Unerwartetes Antwortformat von der API")
             return markets
-        
-        market_data_list = response['data']
         
         for market in market_data_list:
             # Skip if not active
@@ -129,8 +131,14 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             question = market.get('question', '')
             description = market.get('description', '')
             
-            # Get outcome prices - typically [Yes, No]
-            outcome_prices = market.get('outcome_prices', ['0.5', '0.5'])
+            # Get outcome prices - field name may vary
+            # Try common field names: outcome_prices, outcomePrices, prices
+            outcome_prices = (
+                market.get('outcome_prices') or 
+                market.get('outcomePrices') or 
+                market.get('prices') or 
+                ['0.5', '0.5']
+            )
             yes_price = float(outcome_prices[0]) if outcome_prices else 0.5
             
             markets.append(MarketData(
@@ -149,12 +157,22 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         print(f"✅ {len(markets)} Märkte mit Volumen >${MIN_VOLUME:,.0f} gefunden\n")
         return markets
         
+    except PolyApiException as e:
+        print(f"⚠️  Polymarket API Fehler: {e}")
+        print(f"ℹ️  Die Polymarket API ist in dieser Umgebung nicht erreichbar.")
+        print(f"ℹ️  Dies kann aufgrund von Netzwerkbeschränkungen auftreten.")
+        print(f"ℹ️  Bitte stellen Sie sicher, dass:")
+        print(f"   1. Sie eine Internetverbindung haben")
+        print(f"   2. Die Domain 'clob.polymarket.com' erreichbar ist")
+        print(f"   3. Keine Firewall die Verbindung blockiert")
+        print(f"\n💡 Tipp: Führen Sie 'curl https://clob.polymarket.com/markets' aus, um die Erreichbarkeit zu testen.\n")
+        return []
     except Exception as e:
         error_msg = str(e)
-        print(f"⚠️  Fehler beim Abrufen der Märkte: {error_msg}")
+        print(f"⚠️  Unerwarteter Fehler: {error_msg}")
         
         # Check if it's a network/DNS error
-        if "No address associated with hostname" in error_msg or "ConnectError" in error_msg or "PolyApiException" in error_msg:
+        if "No address associated with hostname" in error_msg or "ConnectError" in error_msg:
             print(f"ℹ️  Die Polymarket API ist in dieser Umgebung nicht erreichbar.")
             print(f"ℹ️  Dies kann aufgrund von Netzwerkbeschränkungen auftreten.")
             print(f"ℹ️  Bitte stellen Sie sicher, dass:")
