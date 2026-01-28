@@ -358,7 +358,7 @@ Wichtig:
         
         # Nutze Gemini 2.0 Flash mit Google Search
         response = client.models.generate_content(
-            model='gemini-2.0-flash-exp',
+            model='gemini-2.0-flash',
             contents=prompt,
             config=types.GenerateContentConfig(
                 tools=[types.Tool(google_search=types.GoogleSearch())]
