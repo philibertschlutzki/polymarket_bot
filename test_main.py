@@ -5,7 +5,8 @@ Tests the core functionality with mock data
 """
 
 import unittest
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock, patch
+from pydantic import ValidationError
 from main import (
     MarketData, 
     AIAnalysis, 
@@ -43,7 +44,7 @@ class TestMarketDataModels(unittest.TestCase):
         self.assertEqual(analysis.estimated_probability, 0.75)
         
         # Invalid probability should be caught by Pydantic
-        with self.assertRaises(Exception):
+        with self.assertRaises(ValidationError):
             AIAnalysis(
                 estimated_probability=1.5,  # Invalid: > 1.0
                 confidence_score=0.8,
@@ -119,7 +120,13 @@ class TestCLOBIntegration(unittest.TestCase):
         mock_client_class.return_value = mock_client
         
         result = test_clob_connection()
+        
+        # Verify the result
         self.assertTrue(result)
+        # Verify the client was initialized with correct parameters
+        mock_client_class.assert_called_once_with(host='https://clob.polymarket.com', chain_id=137)
+        # Verify get_markets was called
+        mock_client.get_markets.assert_called_once()
     
     @patch('main.ClobClient')
     def test_fetch_markets_with_filtering(self, mock_client_class):

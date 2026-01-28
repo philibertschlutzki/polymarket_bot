@@ -111,7 +111,9 @@ def test_clob_connection():
                 first_market = market_data[0]
                 print(f"\n📋 Struktur des ersten Marktes:")
                 print(f"   - Keys: {list(first_market.keys())}")
-                print(f"   - question: {first_market.get('question', 'N/A')[:60]}...")
+                question = first_market.get('question', 'N/A')
+                question_str = str(question) if question else 'N/A'
+                print(f"   - question: {question_str[:60]}...")
                 print(f"   - active: {first_market.get('active', 'N/A')}")
                 print(f"   - volume: {first_market.get('volume', 'N/A')}")
                 print(f"   - outcome_prices: {first_market.get('outcome_prices', 'N/A')}")
@@ -193,7 +195,8 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                 volume = float(market.get('volume', 0))
             except (ValueError, TypeError) as e:
                 parse_error_count += 1
-                print(f"⚠️  Konnte Volumen nicht parsen für Markt: {market.get('question', 'N/A')[:50]} - Fehler: {e}")
+                question_str = str(market.get('question', 'N/A'))
+                print(f"⚠️  Konnte Volumen nicht parsen für Markt: {question_str[:50]} - Fehler: {e}")
                 continue
                 
             if volume < MIN_VOLUME:
@@ -207,12 +210,14 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             # Get outcome prices - field name may vary
             # Try common field names: outcome_prices, outcomePrices, prices
             try:
-                outcome_prices = (
-                    market.get('outcome_prices') or 
-                    market.get('outcomePrices') or 
-                    market.get('prices') or 
-                    ['0.5', '0.5']
-                )
+                # Check each field explicitly to handle empty lists correctly
+                outcome_prices = market.get('outcome_prices')
+                if outcome_prices is None or (isinstance(outcome_prices, list) and len(outcome_prices) == 0):
+                    outcome_prices = market.get('outcomePrices')
+                if outcome_prices is None or (isinstance(outcome_prices, list) and len(outcome_prices) == 0):
+                    outcome_prices = market.get('prices')
+                if outcome_prices is None or (isinstance(outcome_prices, list) and len(outcome_prices) == 0):
+                    outcome_prices = ['0.5', '0.5']
                 
                 # Handle different price formats
                 if isinstance(outcome_prices, list) and len(outcome_prices) > 0:
@@ -222,7 +227,8 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                     
             except (ValueError, TypeError, IndexError) as e:
                 parse_error_count += 1
-                print(f"⚠️  Konnte Preis nicht parsen für Markt: {question[:50]} - Fehler: {e}")
+                question_str = str(question) if question else 'N/A'
+                print(f"⚠️  Konnte Preis nicht parsen für Markt: {question_str[:50]} - Fehler: {e}")
                 print(f"    outcome_prices Wert: {market.get('outcome_prices')}")
                 print(f"    outcomePrices Wert: {market.get('outcomePrices')}")
                 print(f"    prices Wert: {market.get('prices')}")
@@ -252,9 +258,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         print(f"   - Inaktiv: {inactive_count}")
         print(f"   - Zu wenig Volumen (<${MIN_VOLUME:,.0f}): {low_volume_count}")
         print(f"   - Parse-Fehler: {parse_error_count}")
-        print(f"   - ✅ Qualifiziert: {len(markets)}")
-        
-        print(f"\n✅ {len(markets)} Märkte mit Volumen >${MIN_VOLUME:,.0f} gefunden\n")
+        print(f"   - ✅ Qualifiziert: {len(markets)}\n")
         return markets
         
     except PolyApiException as e:
