@@ -173,6 +173,42 @@ class TestCLOBIntegration(unittest.TestCase):
         self.assertEqual(markets[0].question, 'High Volume Market')
         self.assertEqual(markets[0].volume, 50000.0)
 
+    @patch('main.ClobClient')
+    def test_fetch_markets_without_volume_data(self, mock_client_class):
+        """Test market fetching when volume data is not available"""
+        # Mock the client with markets that don't have volume field
+        mock_client = Mock()
+        mock_client.get_markets.return_value = {
+            'data': [
+                {
+                    'question': 'Market Without Volume',
+                    'active': True,
+                    # No volume field - mimics real CLOB API response
+                    'outcome_prices': ['0.65', '0.35'],
+                    'condition_id': 'test-123',
+                    'description': 'Test',
+                    'end_date_iso': '2024-12-31'
+                },
+                {
+                    'question': 'Another Market',
+                    'active': True,
+                    'outcome_prices': ['0.50', '0.50'],
+                    'condition_id': 'test-456',
+                    'description': 'Test',
+                    'end_date_iso': '2024-12-31'
+                }
+            ]
+        }
+        mock_client_class.return_value = mock_client
+        
+        markets = fetch_active_markets(limit=10)
+        
+        # Should return both markets since volume filter is skipped when data unavailable
+        self.assertEqual(len(markets), 2)
+        # Volume should be set to 0 when not available
+        self.assertEqual(markets[0].volume, 0.0)
+        self.assertEqual(markets[1].volume, 0.0)
+
 
 if __name__ == '__main__':
     unittest.main()
