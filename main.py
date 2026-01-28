@@ -3,7 +3,7 @@
 Polymarket AI Value Bet Bot
 
 Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
-- Marktdaten aus der Polymarket Gamma API
+- Marktdaten aus der Polymarket CLOB API (py-clob-client)
 - KI-gestützte Wahrscheinlichkeitsschätzung via Google Gemini mit Search Grounding
 - Kelly-Kriterium zur Positionsgrößenbestimmung (max. 50% des Kapitals)
 """
@@ -13,11 +13,12 @@ import sys
 from typing import Optional, List
 from datetime import datetime
 
-import requests
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from google import genai
 from google.genai import types
+from py_clob_client.client import ClobClient
+from py_clob_client.exceptions import PolyApiException
 
 
 # ============================================================================
@@ -33,7 +34,7 @@ if not GEMINI_API_KEY:
     print("❌ Fehler: GEMINI_API_KEY nicht in .env gefunden!")
     sys.exit(1)
 
-POLYMARKET_API_URL = "https://gamma-api.polymarket.com/events"
+POLYMARKET_CLOB_URL = "https://clob.polymarket.com"  # CLOB API Endpoint
 MIN_VOLUME = 10000  # Mindestvolumen in USD für Markt-Selektion
 KELLY_FRACTION = 0.25  # Fractional Kelly (25% der Full Kelly)
 MAX_CAPITAL_FRACTION = 0.5  # Maximum 50% des Kapitals pro Wette
@@ -88,57 +89,102 @@ class TradingRecommendation(BaseModel):
 
 def fetch_active_markets(limit: int = 20) -> List[MarketData]:
     """
-    Holt aktive Märkte von der Polymarket Gamma API.
+    Holt aktive Märkte von der Polymarket CLOB API.
     
     Args:
         limit: Maximale Anzahl der zurückzugebenden Märkte
         
     Returns:
-        Liste von MarketData-Objekten
+        Liste von MarketData-Objekten (leer bei Fehler)
     """
     try:
         print(f"📡 Verbinde mit Polymarket API...")
-        response = requests.get(
-            POLYMARKET_API_URL,
-            params={"limit": limit, "active": "true"},
-            timeout=10
-        )
-        response.raise_for_status()
         
-        events = response.json()
+        # Initialize the CLOB client
+        client = ClobClient(host=POLYMARKET_CLOB_URL)
+        
+        # Fetch markets
+        response = client.get_markets()
+        
         markets = []
         
-        for event in events:
-            # Nur Märkte mit binären Optionen (Yes/No)
-            if "markets" not in event or len(event["markets"]) == 0:
+        # The response can be a dict with 'data' key or a list directly
+        if isinstance(response, dict):
+            market_data_list = response.get('data', [])
+        elif isinstance(response, list):
+            market_data_list = response
+        else:
+            print(f"⚠️  Unerwartetes Antwortformat von der API")
+            return markets
+        
+        for market in market_data_list:
+            # Skip if not active
+            if not market.get('active', False):
                 continue
-                
-            # Nehme den ersten Markt des Events
-            market = event["markets"][0]
             
-            # Filtere nach Volumen
-            volume = float(market.get("volume", 0))
+            # Filter by volume
+            volume = float(market.get('volume', 0))
             if volume < MIN_VOLUME:
                 continue
             
-            # Extrahiere Yes-Preis (outcomePrices[0] ist typischerweise "Yes")
-            outcome_prices = market.get("outcomePrices", ["0.5"])
-            yes_price = float(outcome_prices[0])
+            # Get the question/description
+            question = market.get('question', '')
+            description = market.get('description', '')
+            
+            # Get outcome prices - field name may vary
+            # Try common field names: outcome_prices, outcomePrices, prices
+            outcome_prices = (
+                market.get('outcome_prices') or 
+                market.get('outcomePrices') or 
+                market.get('prices') or 
+                ['0.5', '0.5']
+            )
+            yes_price = float(outcome_prices[0]) if outcome_prices else 0.5
             
             markets.append(MarketData(
-                question=event.get("title", ""),
-                description=event.get("description", ""),
-                market_slug=market.get("slug", event.get("slug", "")),
+                question=question,
+                description=description,
+                market_slug=market.get('condition_id', ''),
                 yes_price=yes_price,
                 volume=volume,
-                end_date=market.get("endDate")
+                end_date=market.get('end_date_iso')
             ))
+            
+            # Stop when we have enough markets
+            if len(markets) >= limit:
+                break
         
         print(f"✅ {len(markets)} Märkte mit Volumen >${MIN_VOLUME:,.0f} gefunden\n")
         return markets
         
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Fehler beim Abrufen der Märkte: {e}")
+    except PolyApiException as e:
+        print(f"⚠️  Polymarket API Fehler: {e}")
+        print(f"ℹ️  Die Polymarket API ist in dieser Umgebung nicht erreichbar.")
+        print(f"ℹ️  Dies kann aufgrund von Netzwerkbeschränkungen auftreten.")
+        print(f"ℹ️  Bitte stellen Sie sicher, dass:")
+        print(f"   1. Sie eine Internetverbindung haben")
+        print(f"   2. Die Domain 'clob.polymarket.com' erreichbar ist")
+        print(f"   3. Keine Firewall die Verbindung blockiert")
+        print(f"\n💡 Tipp: Führen Sie 'curl https://clob.polymarket.com/markets' aus, um die Erreichbarkeit zu testen.\n")
+        return []
+    except Exception as e:
+        error_msg = str(e)
+        print(f"⚠️  Unerwarteter Fehler: {error_msg}")
+        
+        # Check if it's a network/DNS error
+        if "No address associated with hostname" in error_msg or "ConnectError" in error_msg:
+            print(f"ℹ️  Die Polymarket API ist in dieser Umgebung nicht erreichbar.")
+            print(f"ℹ️  Dies kann aufgrund von Netzwerkbeschränkungen auftreten.")
+            print(f"ℹ️  Bitte stellen Sie sicher, dass:")
+            print(f"   1. Sie eine Internetverbindung haben")
+            print(f"   2. Die Domain 'clob.polymarket.com' erreichbar ist")
+            print(f"   3. Keine Firewall die Verbindung blockiert")
+            print(f"\n💡 Tipp: Führen Sie 'curl https://clob.polymarket.com/markets' aus, um die Erreichbarkeit zu testen.\n")
+        else:
+            # For other errors, print traceback
+            import traceback
+            traceback.print_exc()
+        
         return []
 
 
