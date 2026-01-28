@@ -113,7 +113,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-123',
                     'description': 'Test description',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 }
             ]
         }
@@ -142,7 +142,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-123',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Low Volume Market',
@@ -151,7 +151,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.50', '0.50'],
                     'condition_id': 'test-456',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Inactive Market',
@@ -160,7 +160,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-789',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 }
             ]
         }
@@ -187,7 +187,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-123',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Another Market',
@@ -195,7 +195,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.50', '0.50'],
                     'condition_id': 'test-456',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 }
             ]
         }
@@ -223,7 +223,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.65', '0.35'],
                     'condition_id': 'test-123',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Good Volume Market',
@@ -232,7 +232,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.50', '0.50'],
                     'condition_id': 'test-456',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 }
             ]
         }
@@ -259,7 +259,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.95', '0.05'],  # Too high, should be filtered
                     'condition_id': 'test-123',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Extreme Low Price Market',
@@ -268,7 +268,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.05', '0.95'],  # Too low, should be filtered
                     'condition_id': 'test-456',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Good Price Market',
@@ -277,7 +277,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.50', '0.50'],  # Within range
                     'condition_id': 'test-789',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Edge Case High Market',
@@ -286,7 +286,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.85', '0.15'],  # Exactly at edge, should pass
                     'condition_id': 'test-101',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 },
                 {
                     'question': 'Edge Case Low Market',
@@ -295,7 +295,7 @@ class TestCLOBIntegration(unittest.TestCase):
                     'outcome_prices': ['0.15', '0.85'],  # Exactly at edge, should pass
                     'condition_id': 'test-102',
                     'description': 'Test',
-                    'end_date_iso': '2027-12-31T23:59:59Z'
+                    'end_date_iso': '2030-12-31T23:59:59Z'
                 }
             ]
         }

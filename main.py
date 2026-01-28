@@ -19,6 +19,7 @@ from google import genai
 from google.genai import types
 from py_clob_client.client import ClobClient
 from py_clob_client.exceptions import PolyApiException
+from dateutil import parser as date_parser
 
 
 # ============================================================================
@@ -194,8 +195,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             end_date_iso = market.get('end_date_iso')
             if end_date_iso:
                 try:
-                    # Parse the end date (ISO format: YYYY-MM-DDTHH:MM:SS)
-                    from dateutil import parser as date_parser
+                    # Parse the end date (ISO 8601 format, e.g., "YYYY-MM-DDTHH:MM:SSZ")
                     end_date = date_parser.parse(end_date_iso)
                     now = datetime.now(end_date.tzinfo) if end_date.tzinfo else datetime.now()
                     
@@ -208,8 +208,10 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                             print(f"⏭️  Skipping expired market: {question_str[:60]}... (ended {end_date.date()})")
                         continue
                 except Exception as e:
-                    # If we can't parse the date, log but don't skip the market
-                    pass
+                    # If we can't parse the date, log the error but don't skip the market
+                    # This allows the market to proceed even if date parsing fails
+                    question_str = str(market.get('question', 'N/A'))
+                    print(f"⚠️  Could not parse end_date for market: {question_str[:50]} - Value: {end_date_iso}, Error: {e}")
             
             # Filter by volume (skip filter if volume data not available)
             volume_raw = market.get('volume')
