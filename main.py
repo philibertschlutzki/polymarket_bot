@@ -87,6 +87,63 @@ class TradingRecommendation(BaseModel):
 # POLYMARKET API INTEGRATION
 # ============================================================================
 
+def test_clob_connection():
+    """
+    Testet die CLOB API Verbindung und gibt Debug-Informationen aus.
+    """
+    print("\n🔍 Teste CLOB Verbindung...")
+    print("-" * 80)
+    try:
+        # Public Client (kein Key nötig für Marktdaten)
+        client = ClobClient(host=POLYMARKET_CLOB_URL, chain_id=137)
+        
+        # Hole Märkte
+        resp = client.get_markets()
+        
+        # Analysiere Antwort-Struktur
+        if isinstance(resp, dict):
+            print(f"✅ CLOB Antwort: Dictionary mit Keys: {list(resp.keys())}")
+            market_data = resp.get('data', [])
+            print(f"✅ Anzahl Märkte in 'data': {len(market_data)}")
+            
+            if market_data:
+                # Zeige ersten Markt zur Struktur-Analyse
+                first_market = market_data[0]
+                print(f"\n📋 Struktur des ersten Marktes:")
+                print(f"   - Keys: {list(first_market.keys())}")
+                question = first_market.get('question', 'N/A')
+                question_str = str(question) if question else 'N/A'
+                print(f"   - question: {question_str[:60]}...")
+                print(f"   - active: {first_market.get('active', 'N/A')}")
+                print(f"   - volume: {first_market.get('volume', 'N/A')}")
+                print(f"   - outcome_prices: {first_market.get('outcome_prices', 'N/A')}")
+                print(f"   - outcomePrices: {first_market.get('outcomePrices', 'N/A')}")
+                print(f"   - prices: {first_market.get('prices', 'N/A')}")
+        elif isinstance(resp, list):
+            print(f"✅ CLOB Antwort: Liste mit {len(resp)} Elementen")
+            if resp:
+                first_market = resp[0]
+                print(f"\n📋 Struktur des ersten Marktes:")
+                print(f"   - Keys: {list(first_market.keys())}")
+        else:
+            print(f"⚠️  Unerwartetes Antwortformat: {type(resp)}")
+        
+        print("-" * 80)
+        print("✅ CLOB Verbindung erfolgreich!\n")
+        return True
+        
+    except PolyApiException as e:
+        print(f"❌ CLOB API Fehler: {e}")
+        print("-" * 80)
+        return False
+    except Exception as e:
+        print(f"❌ CLOB Fehler: {e}")
+        import traceback
+        traceback.print_exc()
+        print("-" * 80)
+        return False
+
+
 def fetch_active_markets(limit: int = 20) -> List[MarketData]:
     """
     Holt aktive Märkte von der Polymarket CLOB API.
@@ -100,8 +157,8 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
     try:
         print(f"📡 Verbinde mit Polymarket API...")
         
-        # Initialize the CLOB client
-        client = ClobClient(host=POLYMARKET_CLOB_URL)
+        # Initialize the CLOB client with chain_id
+        client = ClobClient(host=POLYMARKET_CLOB_URL, chain_id=137)
         
         # Fetch markets
         response = client.get_markets()
@@ -117,14 +174,33 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             print(f"⚠️  Unerwartetes Antwortformat von der API")
             return markets
         
+        print(f"📥 {len(market_data_list)} Märkte von API empfangen")
+        
+        # Debug-Zähler
+        total_count = 0
+        inactive_count = 0
+        low_volume_count = 0
+        parse_error_count = 0
+        
         for market in market_data_list:
+            total_count += 1
+            
             # Skip if not active
             if not market.get('active', False):
+                inactive_count += 1
                 continue
             
             # Filter by volume
-            volume = float(market.get('volume', 0))
+            try:
+                volume = float(market.get('volume', 0))
+            except (ValueError, TypeError) as e:
+                parse_error_count += 1
+                question_str = str(market.get('question', 'N/A'))
+                print(f"⚠️  Konnte Volumen nicht parsen für Markt: {question_str[:50]} - Fehler: {e}")
+                continue
+                
             if volume < MIN_VOLUME:
+                low_volume_count += 1
                 continue
             
             # Get the question/description
@@ -133,28 +209,56 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             
             # Get outcome prices - field name may vary
             # Try common field names: outcome_prices, outcomePrices, prices
-            outcome_prices = (
-                market.get('outcome_prices') or 
-                market.get('outcomePrices') or 
-                market.get('prices') or 
-                ['0.5', '0.5']
-            )
-            yes_price = float(outcome_prices[0]) if outcome_prices else 0.5
+            try:
+                # Check each field explicitly to handle empty lists correctly
+                outcome_prices = market.get('outcome_prices')
+                if outcome_prices is None or (isinstance(outcome_prices, list) and len(outcome_prices) == 0):
+                    outcome_prices = market.get('outcomePrices')
+                if outcome_prices is None or (isinstance(outcome_prices, list) and len(outcome_prices) == 0):
+                    outcome_prices = market.get('prices')
+                if outcome_prices is None or (isinstance(outcome_prices, list) and len(outcome_prices) == 0):
+                    outcome_prices = ['0.5', '0.5']
+                
+                # Handle different price formats
+                if isinstance(outcome_prices, list) and len(outcome_prices) > 0:
+                    yes_price = float(outcome_prices[0])
+                else:
+                    yes_price = 0.5
+                    
+            except (ValueError, TypeError, IndexError) as e:
+                parse_error_count += 1
+                question_str = str(question) if question else 'N/A'
+                print(f"⚠️  Konnte Preis nicht parsen für Markt: {question_str[:50]} - Fehler: {e}")
+                print(f"    outcome_prices Wert: {market.get('outcome_prices')}")
+                print(f"    outcomePrices Wert: {market.get('outcomePrices')}")
+                print(f"    prices Wert: {market.get('prices')}")
+                continue
             
-            markets.append(MarketData(
-                question=question,
-                description=description,
-                market_slug=market.get('condition_id', ''),
-                yes_price=yes_price,
-                volume=volume,
-                end_date=market.get('end_date_iso')
-            ))
+            try:
+                markets.append(MarketData(
+                    question=question,
+                    description=description,
+                    market_slug=market.get('condition_id', ''),
+                    yes_price=yes_price,
+                    volume=volume,
+                    end_date=market.get('end_date_iso')
+                ))
+            except Exception as e:
+                parse_error_count += 1
+                print(f"⚠️  Konnte MarketData nicht erstellen: {e}")
+                continue
             
             # Stop when we have enough markets
             if len(markets) >= limit:
                 break
         
-        print(f"✅ {len(markets)} Märkte mit Volumen >${MIN_VOLUME:,.0f} gefunden\n")
+        # Debug-Ausgabe
+        print(f"\n📊 Markt-Filter Statistik:")
+        print(f"   - Gesamt empfangen: {total_count}")
+        print(f"   - Inaktiv: {inactive_count}")
+        print(f"   - Zu wenig Volumen (<${MIN_VOLUME:,.0f}): {low_volume_count}")
+        print(f"   - Parse-Fehler: {parse_error_count}")
+        print(f"   - ✅ Qualifiziert: {len(markets)}\n")
         return markets
         
     except PolyApiException as e:
@@ -440,6 +544,11 @@ def main():
     print(f"🛡️  Max. Kapitaleinsatz pro Trade: {MAX_CAPITAL_FRACTION:.0%}")
     print("=" * 80)
     print()
+    
+    # Teste CLOB Verbindung zuerst
+    if not test_clob_connection():
+        print("❌ CLOB Verbindung fehlgeschlagen - Abbruch")
+        return
     
     # Hole Märkte
     markets = fetch_active_markets(limit=10)
