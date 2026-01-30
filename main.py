@@ -12,6 +12,9 @@ import os
 import sys
 import json
 import logging
+import time
+import math
+import re
 from typing import Optional, List
 from datetime import datetime
 
@@ -42,18 +45,18 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 TOTAL_CAPITAL = float(os.getenv("TOTAL_CAPITAL", "1000"))
 
 POLYMARKET_GAMMA_API_URL = "https://gamma-api.polymarket.com/markets"  # Gamma REST API
-MIN_VOLUME = 15000  # Mindestvolumen in USD für Markt-Selektion
+MIN_VOLUME = float(os.getenv("MIN_VOLUME", "10000"))  # Mindestvolumen in USD für Markt-Selektion
 KELLY_FRACTION = 0.25  # Fractional Kelly (25% der Full Kelly)
 MAX_CAPITAL_FRACTION = 0.5  # Maximum 50% des Kapitals pro Wette
 
 # NEU: Flexible Preisfilter
 MIN_PRICE = float(os.getenv("MIN_PRICE", "0.05"))  # Vorher hardcoded 0.15
 MAX_PRICE = float(os.getenv("MAX_PRICE", "0.95"))  # Vorher hardcoded 0.85
-HIGH_VOLUME_THRESHOLD = float(os.getenv("HIGH_VOLUME_THRESHOLD", "100000"))  # Bei >100k USDC extreme Preise erlauben
+HIGH_VOLUME_THRESHOLD = float(os.getenv("HIGH_VOLUME_THRESHOLD", "50000"))  # Bei >100k USDC extreme Preise erlauben
 
 # NEU: Vorselektion
-FETCH_MARKET_LIMIT = int(os.getenv("FETCH_MARKET_LIMIT", "50"))  # Von 10 auf 50 erhöhen
-TOP_MARKETS_TO_ANALYZE = int(os.getenv("TOP_MARKETS_TO_ANALYZE", "10"))  # Nur Top 10 detailliert analysieren
+FETCH_MARKET_LIMIT = int(os.getenv("FETCH_MARKET_LIMIT", "100"))  # Von 10 auf 50 erhöhen
+TOP_MARKETS_TO_ANALYZE = int(os.getenv("TOP_MARKETS_TO_ANALYZE", "15"))  # Nur Top 10 detailliert analysieren
 
 
 # ============================================================================
@@ -383,7 +386,7 @@ def pre_filter_markets(markets: List[MarketData], top_n: int = 10) -> List[Marke
 @retry(
     retry=retry_if_exception_type(Exception),
     stop=stop_after_attempt(3),
-    wait=wait_exponential(multiplier=1, min=4, max=10),
+    wait=wait_exponential(multiplier=2, min=8, max=30),
     reraise=True
 )
 def _generate_gemini_response(client: genai.Client, prompt: str, response_schema: type[BaseModel]) -> dict:
@@ -421,7 +424,14 @@ def _generate_gemini_response(client: genai.Client, prompt: str, response_schema
     elif "```" in text_response:
         text_response = text_response.split("```")[1].split("```")[0]
 
-    return json.loads(text_response.strip())
+    # NEU: Sanitize control characters
+    text_response = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', text_response)
+
+    try:
+        return json.loads(text_response.strip())
+    except json.JSONDecodeError:
+        logger.warning(f"⚠️  Standard JSON-Parse fehlgeschlagen, versuche lenient mode...")
+        return json.loads(text_response.strip(), strict=False)
 
 
 def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
@@ -498,8 +508,20 @@ def calculate_kelly_stake(
     Returns:
         TradingRecommendation-Objekt
     """
-    # Berechne Netto-Odds: b = (1 / Marktpreis) - 1
-    if market_price <= 0 or market_price >= 1:
+    if market_price <= 0.001 or market_price >= 0.999:
+        return TradingRecommendation(
+            action="PASS",
+            stake_usdc=0.0,
+            kelly_fraction=0.0,
+            expected_value=0.0,
+            market_question=""
+        )
+
+    # Edge berechnen
+    edge = ai_probability - market_price
+    
+    # Frühzeitiger PASS wenn Edge zu klein
+    if abs(edge) < 0.10:  # Mindestens 10% Edge
         return TradingRecommendation(
             action="PASS",
             stake_usdc=0.0,
@@ -508,35 +530,49 @@ def calculate_kelly_stake(
             market_question=""
         )
     
-    net_odds = (1.0 / market_price) - 1.0
-    
-    # Kelly Formel: f = (p * (b + 1) - 1) / b
-    # wobei p = ai_probability, b = net_odds
-    kelly_f = (ai_probability * (net_odds + 1.0) - 1.0) / net_odds
-    
-    # Fractional Kelly anwenden (konservativer)
-    fractional_kelly = kelly_f * KELLY_FRACTION
-    
-    # Anpassen basierend auf Confidence
-    adjusted_kelly = fractional_kelly * confidence
-    
-    # Hard-Cap bei 50% des Kapitals
-    capped_kelly = min(adjusted_kelly, MAX_CAPITAL_FRACTION)
-    
-    # Berechne Einsatz
-    stake = max(0.0, capped_kelly * capital)
-    
-    # Erwarteter Gewinn: E[X] = p * gewinn - (1-p) * verlust
-    expected_value = ai_probability * (stake * net_odds) - (1 - ai_probability) * stake
-    
-    # Entscheidung
-    if capped_kelly > 0.01 and ai_probability > market_price * 1.1:  # Mindestens 10% Edge
+    # YES oder NO Position?
+    if edge > 0:
+        # YES Position
+        net_odds = (1.0 / market_price) - 1.0
+        kelly_f = (ai_probability * (net_odds + 1.0) - 1.0) / net_odds
         action = "YES"
-    elif capped_kelly < -0.01:
-        action = "NO"
     else:
-        action = "PASS"
-        stake = 0.0
+        # NO Position (Short)
+        no_market_price = 1.0 - market_price
+        ai_no_prob = 1.0 - ai_probability
+        net_odds = (1.0 / no_market_price) - 1.0
+        kelly_f = (ai_no_prob * (net_odds + 1.0) - 1.0) / net_odds
+        action = "NO"
+    
+    # Fractional Kelly + Confidence Adjustment
+    confidence_multiplier = math.sqrt(confidence)
+    adjusted_kelly = kelly_f * KELLY_FRACTION * confidence_multiplier
+    
+    # Cap bei 50% Kapital
+    capped_kelly = min(max(adjusted_kelly, 0.0), MAX_CAPITAL_FRACTION)
+    
+    stake = capped_kelly * capital
+    
+    # Expected Value
+    if action == "YES":
+        net_odds_yes = (1.0 / market_price) - 1.0
+        expected_value = ai_probability * (stake * net_odds_yes) - (1 - ai_probability) * stake
+    else:
+        # NO Position
+        no_market_price = 1.0 - market_price
+        net_odds_no = (1.0 / no_market_price) - 1.0
+        ai_no_prob = 1.0 - ai_probability
+        expected_value = ai_no_prob * (stake * net_odds_no) - ai_probability * stake
+
+    # PASS wenn kein positiver EV
+    if expected_value <= 0:
+        return TradingRecommendation(
+            action="PASS",
+            stake_usdc=0.0,
+            kelly_fraction=0.0,
+            expected_value=0.0,
+            market_question=""
+        )
     
     return TradingRecommendation(
         action=action,
@@ -661,6 +697,10 @@ def main():
         rec = analyze_and_recommend(market)
         if rec and rec.action != "PASS":
             recommendations.append(rec)
+
+        # NEU: Delay zwischen Märkten
+        if i < len(top_markets):
+            time.sleep(3)  # 3 Sekunden Pause
 
     # ========================================================================
     # STUFE 4: Zusammenfassung und Ranking
