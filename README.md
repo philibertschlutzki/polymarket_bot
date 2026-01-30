@@ -125,7 +125,6 @@ Wenn Sie "GEMINI_API_KEY nicht in .env gefunden!" erhalten:
 ## 📚 Technische Details
 
 Der Bot verwendet:
-- **py-clob-client**: Offizielle Python-Bibliothek für die Polymarket CLOB API
 - **google-genai**: Google Gemini SDK für KI-Analysen mit Web-Suche
 - **pydantic**: Datenvalidierung und -modellierung
 
