@@ -160,19 +160,29 @@ class TestGammaAPIIntegration(unittest.TestCase):
                 'close_time': '2030-12-31T23:59:59Z',
                 'outcome_prices': '["0.95", "0.05"]',  # Price too extreme
                 'outcomes': '["Yes", "No"]'
+            },
+            {
+                'question': 'Low Volume Market',
+                'description': 'Test',
+                'id': 'test-789',
+                'slug': 'low-volume',
+                'volume': '10000',  # Below MIN_VOLUME (15000)
+                'close_time': '2030-12-31T23:59:59Z',
+                'outcome_prices': '["0.50", "0.50"]',
+                'outcomes': '["Yes", "No"]'
             }
         ]
         mock_get.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
-        # Should only return the market with acceptable price
+        # Should only return the market with acceptable price and volume
         self.assertEqual(len(markets), 1)
         self.assertEqual(markets[0].question, 'High Volume Market')
     
     @patch('main.requests.get')
-    def test_fetch_markets_graphql_error(self, mock_get):
-        """Test handling of API errors"""
+    def test_fetch_markets_error_response(self, mock_get):
+        """Test handling of error responses with errors field"""
         # Mock an error response
         mock_response = Mock()
         mock_response.status_code = 200

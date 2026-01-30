@@ -3,7 +3,7 @@
 Polymarket AI Value Bet Bot
 
 Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
-- Marktdaten aus der Polymarket Gamma API (GraphQL)
+- Marktdaten aus der Polymarket Gamma API (REST)
 - KI-gestützte Wahrscheinlichkeitsschätzung via Google Gemini mit Search Grounding
 - Kelly-Kriterium zur Positionsgrößenbestimmung (max. 50% des Kapitals)
 """
@@ -253,16 +253,6 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             # Get the question/description
             question = market.get('question', '')
             description = market.get('description', '')
-            
-            # Get volume (already validated above, but re-parse for safety)
-            try:
-                volume_raw = market.get('volume')
-                volume = float(volume_raw) if volume_raw is not None else 0.0
-            except (ValueError, TypeError) as e:
-                parse_error_count += 1
-                question_str = str(question) if question else 'N/A'
-                print(f"⚠️  Konnte Volumen nicht parsen für Markt: {question_str[:50]} - Wert: {volume_raw}, Fehler: {e}")
-                continue
             
             # Parse outcome prices
             # REST API uses 'outcome_prices', GraphQL uses 'outcomePrices'
