@@ -3,7 +3,7 @@
 Polymarket AI Value Bet Bot
 
 Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
-- Marktdaten aus der Polymarket CLOB API (py-clob-client)
+- Marktdaten aus der Polymarket Gamma API (GraphQL)
 - KI-gestützte Wahrscheinlichkeitsschätzung via Google Gemini mit Search Grounding
 - Kelly-Kriterium zur Positionsgrößenbestimmung (max. 50% des Kapitals)
 """
@@ -11,6 +11,7 @@ Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
 import os
 import sys
 import time
+import json
 from typing import Optional, List
 from datetime import datetime
 
@@ -18,6 +19,7 @@ from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from google import genai
 from google.genai import types
+import requests
 from py_clob_client.client import ClobClient
 from py_clob_client.exceptions import PolyApiException
 from dateutil import parser as date_parser
@@ -32,7 +34,8 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 TOTAL_CAPITAL = float(os.getenv("TOTAL_CAPITAL", "1000"))
 
-POLYMARKET_CLOB_URL = "https://clob.polymarket.com"  # CLOB API Endpoint
+POLYMARKET_CLOB_URL = "https://clob.polymarket.com"  # CLOB API Endpoint (kept for potential order execution)
+POLYMARKET_GAMMA_API_URL = "https://gamma-api.polymarket.com/query"  # Gamma GraphQL API
 MIN_VOLUME = 15000  # Mindestvolumen in USD für Markt-Selektion
 KELLY_FRACTION = 0.25  # Fractional Kelly (25% der Full Kelly)
 MAX_CAPITAL_FRACTION = 0.5  # Maximum 50% des Kapitals pro Wette
@@ -152,7 +155,7 @@ def test_clob_connection():
 
 def fetch_active_markets(limit: int = 20) -> List[MarketData]:
     """
-    Holt aktive Märkte von der Polymarket CLOB API.
+    Holt aktive Märkte von der Polymarket Gamma API (GraphQL).
     
     Args:
         limit: Maximale Anzahl der zurückzugebenden Märkte
@@ -161,51 +164,87 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         Liste von MarketData-Objekten (leer bei Fehler)
     """
     try:
-        print(f"📡 Verbinde mit Polymarket API...")
+        print(f"📡 Verbinde mit Polymarket Gamma API...")
         
-        # Initialize the CLOB client with chain_id
-        client = ClobClient(host=POLYMARKET_CLOB_URL, chain_id=137)
+        # GraphQL Query für aktive Märkte
+        graphql_query = """
+        query GetActiveMarkets($minVolume: String!, $limit: Int!) {
+          markets(
+            where: {
+              active: { _eq: true }, 
+              closed: { _eq: false }, 
+              volume: { _gte: $minVolume }
+            }, 
+            order_by: { volume: desc }, 
+            limit: $limit
+          ) {
+            question
+            conditionId
+            slug
+            volume
+            endDate
+            outcomePrices
+            description
+            outcomes
+          }
+        }
+        """
         
-        # Fetch markets (use get_markets for full market data including question, volume, prices)
-        response = client.get_markets()
+        # Variablen für die Query
+        variables = {
+            "minVolume": str(MIN_VOLUME),
+            "limit": limit
+        }
+        
+        # POST Request an Gamma API
+        response = requests.post(
+            POLYMARKET_GAMMA_API_URL,
+            json={
+                "query": graphql_query,
+                "variables": variables
+            },
+            headers={
+                "Content-Type": "application/json"
+            },
+            timeout=10
+        )
+        
+        # Prüfe HTTP Status
+        if response.status_code != 200:
+            print(f"⚠️  Gamma API HTTP Fehler: {response.status_code}")
+            return []
+        
+        # Parse JSON Response
+        data = response.json()
+        
+        # Prüfe auf GraphQL Errors
+        if "errors" in data:
+            print(f"⚠️  Gamma API GraphQL Fehler: {data['errors']}")
+            return []
+        
+        # Extrahiere Märkte
+        market_data_list = data.get("data", {}).get("markets", [])
+        
+        if not market_data_list:
+            print(f"⚠️  Keine Märkte von Gamma API empfangen")
+            return []
+        
+        print(f"📥 {len(market_data_list)} Märkte von Gamma API empfangen")
         
         markets = []
         
-        # The response can be a dict with 'data' key or a list directly
-        if isinstance(response, dict):
-            market_data_list = response.get('data', [])
-        elif isinstance(response, list):
-            market_data_list = response
-        else:
-            print(f"⚠️  Unerwartetes Antwortformat von der API")
-            return markets
-        
-        print(f"📥 {len(market_data_list)} Märkte von API empfangen")
-        
         # Debug-Zähler
-        total_count = 0
-        inactive_count = 0
-        low_volume_count = 0
         parse_error_count = 0
         extreme_price_count = 0
         expired_count = 0
-        zero_volume_count = 0
-        volume_data_available = False  # Track if any market has volume data
         
         for market in market_data_list:
-            total_count += 1
-            
-            # Skip if not active
-            if not market.get('active', False):
-                inactive_count += 1
-                continue
-            
             # Filter by end_date - skip markets that have already ended
-            end_date_iso = market.get('end_date_iso')
-            if end_date_iso:
+            end_date_str = market.get('endDate')
+            if end_date_str:
                 try:
-                    # Parse the end date (ISO 8601 format, e.g., "YYYY-MM-DDTHH:MM:SSZ")
-                    end_date = date_parser.parse(end_date_iso)
+                    # Parse the end date (ISO 8601 format)
+                    end_date = date_parser.parse(end_date_str)
                     now = datetime.now(end_date.tzinfo) if end_date.tzinfo else datetime.now()
                     
                     # Skip markets that have already ended
@@ -218,69 +257,49 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                         continue
                 except Exception as e:
                     # If we can't parse the date, log the error but don't skip the market
-                    # This allows the market to proceed even if date parsing fails
                     question_str = str(market.get('question', 'N/A'))
-                    print(f"⚠️  Could not parse end_date for market: {question_str[:50]} - Value: {end_date_iso}, Error: {e}")
-            
-            # Filter by volume (skip filter if volume data not available)
-            volume_raw = market.get('volume')
-            if volume_raw is None or volume_raw == '':
-                # Volume data not available in API response, set to 0 and skip filter
-                volume = 0.0
-            else:
-                try:
-                    volume = float(volume_raw)
-                    volume_data_available = True  # Mark that we found volume data
-                    
-                    # Filter out markets with exactly zero volume (old/inactive markets)
-                    if volume == 0:
-                        zero_volume_count += 1
-                        question_str = str(market.get('question', 'N/A'))
-                        print(f"⏭️  Skipping zero-volume market: {question_str[:60]}...")
-                        continue
-                    
-                    # Apply volume filter when we have actual volume data
-                    if volume < MIN_VOLUME:
-                        low_volume_count += 1
-                        continue
-                except (ValueError, TypeError) as e:
-                    # Volume field exists but can't be parsed - log and skip this market
-                    parse_error_count += 1
-                    question_str = str(market.get('question', 'N/A'))
-                    print(f"⚠️  Konnte Volumen nicht parsen für Markt: {question_str[:50]} - Wert: {volume_raw}, Fehler: {e}")
-                    continue
+                    print(f"⚠️  Could not parse end_date for market: {question_str[:50]} - Value: {end_date_str}, Error: {e}")
             
             # Get the question/description
             question = market.get('question', '')
             description = market.get('description', '')
             
-            # Get outcome prices from tokens array
-            # In get_markets(), prices are in tokens array: [{"outcome": "YES", "price": 0.34}, ...]
+            # Get volume
             try:
-                tokens = market.get('tokens', [])
+                volume_raw = market.get('volume')
+                volume = float(volume_raw) if volume_raw is not None else 0.0
+            except (ValueError, TypeError) as e:
+                parse_error_count += 1
+                question_str = str(question) if question else 'N/A'
+                print(f"⚠️  Konnte Volumen nicht parsen für Markt: {question_str[:50]} - Wert: {volume_raw}, Fehler: {e}")
+                continue
+            
+            # Parse outcomePrices - this is typically a JSON string in the format: '["0.65", "0.35"]'
+            try:
+                outcome_prices_raw = market.get('outcomePrices')
                 
-                if not tokens or len(tokens) == 0:
-                    # Fallback: try legacy field names for backward compatibility
-                    outcome_prices = market.get('outcome_prices') or market.get('outcomePrices') or market.get('prices')
-                    if outcome_prices and isinstance(outcome_prices, list) and len(outcome_prices) > 0:
+                # Parse the JSON string if it exists
+                if outcome_prices_raw:
+                    if isinstance(outcome_prices_raw, str):
+                        outcome_prices = json.loads(outcome_prices_raw)
+                    elif isinstance(outcome_prices_raw, list):
+                        outcome_prices = outcome_prices_raw
+                    else:
+                        outcome_prices = [0.5, 0.5]
+                    
+                    # Get the first outcome price (typically YES)
+                    if len(outcome_prices) > 0:
                         yes_price = float(outcome_prices[0])
                     else:
                         yes_price = 0.5
                 else:
-                    # Extract price from first token (typically YES outcome)
-                    first_token = tokens[0]
-                    if isinstance(first_token, dict) and 'price' in first_token:
-                        yes_price = float(first_token['price'])
-                    else:
-                        # Fallback if token structure is unexpected
-                        yes_price = 0.5
+                    yes_price = 0.5
                     
-            except (ValueError, TypeError, IndexError) as e:
+            except (ValueError, TypeError, json.JSONDecodeError, IndexError) as e:
                 parse_error_count += 1
                 question_str = str(question) if question else 'N/A'
                 print(f"⚠️  Konnte Preis nicht parsen für Markt: {question_str[:50]} - Fehler: {e}")
-                print(f"    tokens Wert: {market.get('tokens')}")
-                print(f"    outcome_prices Wert: {market.get('outcome_prices')}")
+                print(f"    outcomePrices Wert: {market.get('outcomePrices')}")
                 continue
             
             # Check: Spread (price extremes) - filter out markets with low liquidity
@@ -291,66 +310,54 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                 print(f"⏭️  Skipping {question_str[:60]}: Preis zu extrem ({yes_price:.2f}), Liquiditätsrisiko.")
                 continue
             
+            # Get market identifier (prefer conditionId over slug)
+            market_slug = market.get('conditionId') or market.get('slug') or ''
+            
             try:
                 markets.append(MarketData(
                     question=question,
                     description=description,
-                    market_slug=market.get('condition_id', ''),
+                    market_slug=market_slug,
                     yes_price=yes_price,
                     volume=volume,
-                    end_date=market.get('end_date_iso')
+                    end_date=market.get('endDate')
                 ))
             except Exception as e:
                 parse_error_count += 1
                 print(f"⚠️  Konnte MarketData nicht erstellen: {e}")
                 continue
-            
-            # Stop when we have enough markets
-            if len(markets) >= limit:
-                break
         
         # Debug-Ausgabe
         print(f"\n📊 Markt-Filter Statistik:")
-        print(f"   - Gesamt empfangen: {total_count}")
-        print(f"   - Inaktiv: {inactive_count}")
-        print(f"   - Abgelaufen (end_date überschritten): {expired_count}")
-        print(f"   - Null Volumen (alte/inaktive Märkte): {zero_volume_count}")
-        if volume_data_available:
-            print(f"   - Zu wenig Volumen (<${MIN_VOLUME:,.0f}): {low_volume_count}")
-        else:
-            print(f"   - ℹ️  Volumendaten nicht verfügbar (Filter übersprungen)")
+        print(f"   - Gesamt empfangen: {len(market_data_list)}")
+        print(f"   - Abgelaufen (endDate überschritten): {expired_count}")
         print(f"   - Preis zu extrem (außerhalb 0.15-0.85): {extreme_price_count}")
         print(f"   - Parse-Fehler: {parse_error_count}")
         print(f"   - ✅ Qualifiziert: {len(markets)}\n")
+        
         return markets
         
-    except PolyApiException as e:
-        print(f"⚠️  Polymarket API Fehler: {e}")
-        print(f"ℹ️  Die Polymarket API ist in dieser Umgebung nicht erreichbar.")
+    except requests.exceptions.ConnectionError as e:
+        error_msg = str(e)
+        print(f"⚠️  Gamma API Verbindungsfehler: {error_msg}")
+        print(f"ℹ️  Die Polymarket Gamma API ist in dieser Umgebung nicht erreichbar.")
         print(f"ℹ️  Dies kann aufgrund von Netzwerkbeschränkungen auftreten.")
         print(f"ℹ️  Bitte stellen Sie sicher, dass:")
         print(f"   1. Sie eine Internetverbindung haben")
-        print(f"   2. Die Domain 'clob.polymarket.com' erreichbar ist")
+        print(f"   2. Die Domain 'gamma-api.polymarket.com' erreichbar ist")
         print(f"   3. Keine Firewall die Verbindung blockiert")
-        print(f"\n💡 Tipp: Führen Sie 'curl https://clob.polymarket.com/markets' aus, um die Erreichbarkeit zu testen.\n")
+        print(f"\n💡 Tipp: Führen Sie 'curl https://gamma-api.polymarket.com/query' aus, um die Erreichbarkeit zu testen.\n")
+        return []
+    except requests.exceptions.Timeout:
+        print(f"⚠️  Gamma API Timeout - keine Antwort innerhalb von 10 Sekunden")
         return []
     except Exception as e:
         error_msg = str(e)
         print(f"⚠️  Unerwarteter Fehler: {error_msg}")
         
-        # Check if it's a network/DNS error
-        if "No address associated with hostname" in error_msg or "ConnectError" in error_msg:
-            print(f"ℹ️  Die Polymarket API ist in dieser Umgebung nicht erreichbar.")
-            print(f"ℹ️  Dies kann aufgrund von Netzwerkbeschränkungen auftreten.")
-            print(f"ℹ️  Bitte stellen Sie sicher, dass:")
-            print(f"   1. Sie eine Internetverbindung haben")
-            print(f"   2. Die Domain 'clob.polymarket.com' erreichbar ist")
-            print(f"   3. Keine Firewall die Verbindung blockiert")
-            print(f"\n💡 Tipp: Führen Sie 'curl https://clob.polymarket.com/markets' aus, um die Erreichbarkeit zu testen.\n")
-        else:
-            # For other errors, print traceback
-            import traceback
-            traceback.print_exc()
+        # For other errors, print traceback
+        import traceback
+        traceback.print_exc()
         
         return []
 
@@ -612,11 +619,6 @@ def main():
     print(f"🛡️  Max. Kapitaleinsatz pro Trade: {MAX_CAPITAL_FRACTION:.0%}")
     print("=" * 80)
     print()
-    
-    # Teste CLOB Verbindung zuerst
-    if not test_clob_connection():
-        print("❌ CLOB Verbindung fehlgeschlagen - Abbruch")
-        return
     
     # Hole Märkte
     markets = fetch_active_markets(limit=10)
