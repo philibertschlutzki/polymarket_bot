@@ -98,29 +98,25 @@ class TestKellyCriterion(unittest.TestCase):
 class TestGammaAPIIntegration(unittest.TestCase):
     """Test Gamma API integration"""
     
-    @patch('main.requests.post')
-    def test_fetch_markets_success(self, mock_post):
+    @patch('main.requests.get')
+    def test_fetch_markets_success(self, mock_get):
         """Test successful market fetching from Gamma API"""
         # Mock the response
         mock_response = Mock()
         mock_response.status_code = 200
-        mock_response.json.return_value = {
-            'data': {
-                'markets': [
-                    {
-                        'question': 'Test Market',
-                        'description': 'Test description',
-                        'conditionId': 'test-123',
-                        'slug': 'test-market',
-                        'volume': '50000',
-                        'endDate': '2030-12-31T23:59:59Z',
-                        'outcomePrices': '["0.65", "0.35"]',
-                        'outcomes': '["Yes", "No"]'
-                    }
-                ]
+        mock_response.json.return_value = [
+            {
+                'question': 'Test Market',
+                'description': 'Test description',
+                'id': 'test-123',
+                'slug': 'test-market',
+                'volume': '50000',
+                'close_time': '2030-12-31T23:59:59Z',
+                'outcome_prices': '["0.65", "0.35"]',
+                'outcomes': '["Yes", "No"]'
             }
-        }
-        mock_post.return_value = mock_response
+        ]
+        mock_get.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
@@ -132,45 +128,41 @@ class TestGammaAPIIntegration(unittest.TestCase):
         self.assertEqual(markets[0].market_slug, 'test-123')
         
         # Verify the API was called correctly
-        mock_post.assert_called_once()
-        call_args = mock_post.call_args
-        self.assertEqual(call_args[0][0], 'https://gamma-api.polymarket.com/query')
-        self.assertIn('query', call_args[1]['json'])
-        self.assertIn('variables', call_args[1]['json'])
+        mock_get.assert_called_once()
+        call_args = mock_get.call_args
+        self.assertEqual(call_args[0][0], 'https://gamma-api.polymarket.com/markets')
+        self.assertIn('params', call_args[1])
+        self.assertEqual(call_args[1]['params']['closed'], 'false')
     
-    @patch('main.requests.post')
-    def test_fetch_markets_with_filtering(self, mock_post):
+    @patch('main.requests.get')
+    def test_fetch_markets_with_filtering(self, mock_get):
         """Test market fetching with volume and price filtering"""
         # Mock the response
         mock_response = Mock()
         mock_response.status_code = 200
-        mock_response.json.return_value = {
-            'data': {
-                'markets': [
-                    {
-                        'question': 'High Volume Market',
-                        'description': 'Test',
-                        'conditionId': 'test-123',
-                        'slug': 'high-volume',
-                        'volume': '50000',
-                        'endDate': '2030-12-31T23:59:59Z',
-                        'outcomePrices': '["0.65", "0.35"]',
-                        'outcomes': '["Yes", "No"]'
-                    },
-                    {
-                        'question': 'Extreme Price Market',
-                        'description': 'Test',
-                        'conditionId': 'test-456',
-                        'slug': 'extreme-price',
-                        'volume': '50000',
-                        'endDate': '2030-12-31T23:59:59Z',
-                        'outcomePrices': '["0.95", "0.05"]',  # Price too extreme
-                        'outcomes': '["Yes", "No"]'
-                    }
-                ]
+        mock_response.json.return_value = [
+            {
+                'question': 'High Volume Market',
+                'description': 'Test',
+                'id': 'test-123',
+                'slug': 'high-volume',
+                'volume': '50000',
+                'close_time': '2030-12-31T23:59:59Z',
+                'outcome_prices': '["0.65", "0.35"]',
+                'outcomes': '["Yes", "No"]'
+            },
+            {
+                'question': 'Extreme Price Market',
+                'description': 'Test',
+                'id': 'test-456',
+                'slug': 'extreme-price',
+                'volume': '50000',
+                'close_time': '2030-12-31T23:59:59Z',
+                'outcome_prices': '["0.95", "0.05"]',  # Price too extreme
+                'outcomes': '["Yes", "No"]'
             }
-        }
-        mock_post.return_value = mock_response
+        ]
+        mock_get.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
@@ -178,70 +170,67 @@ class TestGammaAPIIntegration(unittest.TestCase):
         self.assertEqual(len(markets), 1)
         self.assertEqual(markets[0].question, 'High Volume Market')
     
-    @patch('main.requests.post')
-    def test_fetch_markets_graphql_error(self, mock_post):
-        """Test handling of GraphQL errors"""
+    @patch('main.requests.get')
+    def test_fetch_markets_graphql_error(self, mock_get):
+        """Test handling of API errors"""
         # Mock an error response
         mock_response = Mock()
         mock_response.status_code = 200
         mock_response.json.return_value = {
-            'errors': [{'message': 'GraphQL error'}]
+            'errors': [{'message': 'API error'}]
         }
-        mock_post.return_value = mock_response
+        mock_get.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
-        # Should return empty list on error
+        # Should return empty list on error (no markets in response)
         self.assertEqual(len(markets), 0)
     
-    @patch('main.requests.post')
-    def test_fetch_markets_http_error(self, mock_post):
+    @patch('main.requests.get')
+    def test_fetch_markets_http_error(self, mock_get):
         """Test handling of HTTP errors"""
         # Mock an HTTP error
         mock_response = Mock()
         mock_response.status_code = 500
-        mock_post.return_value = mock_response
+        mock_response.text = "Internal Server Error"
+        mock_get.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
         # Should return empty list on error
         self.assertEqual(len(markets), 0)
     
-    @patch('main.requests.post')
-    def test_fetch_markets_connection_error(self, mock_post):
+    @patch('main.requests.get')
+    def test_fetch_markets_connection_error(self, mock_get):
         """Test handling of connection errors"""
         # Mock a connection error
         import requests
-        mock_post.side_effect = requests.exceptions.ConnectionError("Network error")
+        mock_get.side_effect = requests.exceptions.ConnectionError("Network error")
         
         markets = fetch_active_markets(limit=10)
         
         # Should return empty list on error
         self.assertEqual(len(markets), 0)
     
-    @patch('main.requests.post')
-    def test_fetch_markets_with_list_outcome_prices(self, mock_post):
-        """Test market fetching when outcomePrices is already a list"""
-        # Mock the response with outcomePrices as list instead of string
+    @patch('main.requests.get')
+    def test_fetch_markets_with_list_outcome_prices(self, mock_get):
+        """Test market fetching when outcome_prices is already a list"""
+        # Mock the response with outcome_prices as list instead of string
         mock_response = Mock()
         mock_response.status_code = 200
-        mock_response.json.return_value = {
-            'data': {
-                'markets': [
-                    {
-                        'question': 'Test Market',
-                        'description': 'Test',
-                        'conditionId': 'test-123',
-                        'slug': 'test',
-                        'volume': '50000',
-                        'endDate': '2030-12-31T23:59:59Z',
-                        'outcomePrices': [0.65, 0.35],  # List instead of JSON string
-                        'outcomes': '["Yes", "No"]'
-                    }
-                ]
+        mock_response.json.return_value = [
+            {
+                'question': 'Test Market',
+                'description': 'Test',
+                'id': 'test-123',
+                'slug': 'test',
+                'volume': '50000',
+                'close_time': '2030-12-31T23:59:59Z',
+                'outcome_prices': [0.65, 0.35],  # List instead of JSON string
+                'outcomes': '["Yes", "No"]'
             }
-        }
-        mock_post.return_value = mock_response
+        ]
+        mock_get.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
@@ -249,39 +238,35 @@ class TestGammaAPIIntegration(unittest.TestCase):
         self.assertEqual(len(markets), 1)
         self.assertEqual(markets[0].yes_price, 0.65)
     
-    @patch('main.requests.post')
-    def test_fetch_markets_expired(self, mock_post):
+    @patch('main.requests.get')
+    def test_fetch_markets_expired(self, mock_get):
         """Test that expired markets are filtered out"""
         # Mock the response with an expired market
         mock_response = Mock()
         mock_response.status_code = 200
-        mock_response.json.return_value = {
-            'data': {
-                'markets': [
-                    {
-                        'question': 'Expired Market',
-                        'description': 'Test',
-                        'conditionId': 'test-123',
-                        'slug': 'expired',
-                        'volume': '50000',
-                        'endDate': '2020-01-01T00:00:00Z',  # Expired
-                        'outcomePrices': '["0.65", "0.35"]',
-                        'outcomes': '["Yes", "No"]'
-                    },
-                    {
-                        'question': 'Active Market',
-                        'description': 'Test',
-                        'conditionId': 'test-456',
-                        'slug': 'active',
-                        'volume': '50000',
-                        'endDate': '2030-12-31T23:59:59Z',  # Future
-                        'outcomePrices': '["0.50", "0.50"]',
-                        'outcomes': '["Yes", "No"]'
-                    }
-                ]
+        mock_response.json.return_value = [
+            {
+                'question': 'Expired Market',
+                'description': 'Test',
+                'id': 'test-123',
+                'slug': 'expired',
+                'volume': '50000',
+                'close_time': '2020-01-01T00:00:00Z',  # Expired
+                'outcome_prices': '["0.65", "0.35"]',
+                'outcomes': '["Yes", "No"]'
+            },
+            {
+                'question': 'Active Market',
+                'description': 'Test',
+                'id': 'test-456',
+                'slug': 'active',
+                'volume': '50000',
+                'close_time': '2030-12-31T23:59:59Z',  # Future
+                'outcome_prices': '["0.50", "0.50"]',
+                'outcomes': '["Yes", "No"]'
             }
-        }
-        mock_post.return_value = mock_response
+        ]
+        mock_get.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
