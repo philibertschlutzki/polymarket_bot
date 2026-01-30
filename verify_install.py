@@ -14,7 +14,6 @@ def check_imports():
         ('dotenv', 'python-dotenv'),
         ('pydantic', 'pydantic'),
         ('google.genai', 'google-genai'),
-        ('py_clob_client', 'py-clob-client'),
         ('dateutil', 'python-dateutil'),
         ('requests', 'requests'),
     ]
