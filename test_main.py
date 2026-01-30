@@ -156,9 +156,9 @@ class TestGammaAPIIntegration(unittest.TestCase):
                 'description': 'Test',
                 'id': 'test-456',
                 'slug': 'extreme-price',
-                'volume': '50000',
+                'volume': '40000',  # Less than HIGH_VOLUME_THRESHOLD (50000) so price filter applies
                 'close_time': '2030-12-31T23:59:59Z',
-                'outcome_prices': '["0.95", "0.05"]',  # Price too extreme
+                'outcome_prices': '["0.99", "0.01"]',  # Price too extreme (>0.95)
                 'outcomes': '["Yes", "No"]'
             },
             {
@@ -166,7 +166,7 @@ class TestGammaAPIIntegration(unittest.TestCase):
                 'description': 'Test',
                 'id': 'test-789',
                 'slug': 'low-volume',
-                'volume': '10000',  # Below MIN_VOLUME (15000)
+                'volume': '5000',  # Below MIN_VOLUME (10000)
                 'close_time': '2030-12-31T23:59:59Z',
                 'outcome_prices': '["0.50", "0.50"]',
                 'outcomes': '["Yes", "No"]'
