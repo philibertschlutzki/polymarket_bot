@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-Polymarket AI Value Bet Bot
+Polymarket AI Value Bet Bot - Automated 24/7 System
 
 Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
-- Marktdaten aus der Polymarket Gamma API (REST)
+- Marktdaten aus der Polymarket Gamma API (REST/GraphQL)
 - KI-gestützte Wahrscheinlichkeitsschätzung via Google Gemini mit Search Grounding
-- Kelly-Kriterium zur Positionsgrößenbestimmung (max. 50% des Kapitals)
+- Kelly-Kriterium zur Positionsgrößenbestimmung
+- Automatisches Portfolio-Tracking und Reporting
 """
 
 import os
@@ -15,8 +16,8 @@ import logging
 import time
 import math
 import re
-from typing import Optional, List
-from datetime import datetime
+from typing import Optional, List, Dict, Any
+from datetime import datetime, timezone
 
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
@@ -26,6 +27,10 @@ import requests
 from dateutil import parser as date_parser
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
+# Internal modules
+import database
+import dashboard
+import git_integration
 
 # ============================================================================
 # KONFIGURATION
@@ -42,21 +47,22 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-TOTAL_CAPITAL = float(os.getenv("TOTAL_CAPITAL", "1000"))
 
-POLYMARKET_GAMMA_API_URL = "https://gamma-api.polymarket.com/markets"  # Gamma REST API
-MIN_VOLUME = float(os.getenv("MIN_VOLUME", "10000"))  # Mindestvolumen in USD für Markt-Selektion
-KELLY_FRACTION = 0.25  # Fractional Kelly (25% der Full Kelly)
-MAX_CAPITAL_FRACTION = 0.5  # Maximum 50% des Kapitals pro Wette
+# API URLs
+POLYMARKET_GAMMA_API_URL = "https://gamma-api.polymarket.com/markets"
+GRAPHQL_URL = "https://gamma-api.polymarket.com/query"
 
-# NEU: Flexible Preisfilter
-MIN_PRICE = float(os.getenv("MIN_PRICE", "0.05"))  # Vorher hardcoded 0.15
-MAX_PRICE = float(os.getenv("MAX_PRICE", "0.95"))  # Vorher hardcoded 0.85
-HIGH_VOLUME_THRESHOLD = float(os.getenv("HIGH_VOLUME_THRESHOLD", "50000"))  # Bei >100k USDC extreme Preise erlauben
+# Trading Strategy Params
+MIN_VOLUME = float(os.getenv("MIN_VOLUME", "10000"))
+KELLY_FRACTION = 0.25
+MAX_CAPITAL_FRACTION = 0.5
+MIN_PRICE = float(os.getenv("MIN_PRICE", "0.05"))
+MAX_PRICE = float(os.getenv("MAX_PRICE", "0.95"))
+HIGH_VOLUME_THRESHOLD = float(os.getenv("HIGH_VOLUME_THRESHOLD", "50000"))
 
-# NEU: Vorselektion
-FETCH_MARKET_LIMIT = int(os.getenv("FETCH_MARKET_LIMIT", "100"))  # Von 10 auf 50 erhöhen
-TOP_MARKETS_TO_ANALYZE = int(os.getenv("TOP_MARKETS_TO_ANALYZE", "15"))  # Nur Top 10 detailliert analysieren
+# Execution Params
+FETCH_MARKET_LIMIT = int(os.getenv("FETCH_MARKET_LIMIT", "100"))
+TOP_MARKETS_TO_ANALYZE = int(os.getenv("TOP_MARKETS_TO_ANALYZE", "15"))
 
 
 # ============================================================================
@@ -65,7 +71,6 @@ TOP_MARKETS_TO_ANALYZE = int(os.getenv("TOP_MARKETS_TO_ANALYZE", "15"))  # Nur T
 
 class MarketData(BaseModel):
     """Datenmodell für einen Polymarket-Markt."""
-    
     question: str = Field(..., description="Die Marktfrage")
     description: str = Field(default="", description="Detaillierte Marktbeschreibung")
     market_slug: str = Field(..., description="Eindeutige ID des Marktes")
@@ -73,147 +78,179 @@ class MarketData(BaseModel):
     volume: float = Field(..., description="Handelsvolumen in USD")
     end_date: Optional[str] = Field(None, description="Enddatum des Marktes")
 
-
 class AIAnalysis(BaseModel):
     """Datenmodell für die KI-Analyse."""
-    
-    estimated_probability: float = Field(
-        ..., 
-        ge=0.0, 
-        le=1.0,
-        description="Von der KI geschätzte Wahrscheinlichkeit (0.0-1.0)"
-    )
-    confidence_score: float = Field(
-        ..., 
-        ge=0.0, 
-        le=1.0,
-        description="Confidence-Score der KI (0.0-1.0)"
-    )
+    estimated_probability: float = Field(..., ge=0.0, le=1.0)
+    confidence_score: float = Field(..., ge=0.0, le=1.0)
     reasoning: str = Field(..., description="Begründung der KI")
-
 
 class TradingRecommendation(BaseModel):
     """Datenmodell für eine Handelsempfehlung."""
-    
     action: str = Field(..., description="Empfehlung: YES, NO oder PASS")
     stake_usdc: float = Field(..., description="Empfohlener Einsatz in USDC")
     kelly_fraction: float = Field(..., description="Kelly-Fraction des Kapitals")
     expected_value: float = Field(..., description="Erwarteter Gewinn")
     market_question: str = Field(..., description="Die Marktfrage")
+    # Optional fields for DB storage
+    ai_probability: Optional[float] = None
+    confidence_score: Optional[float] = None
 
 
 # ============================================================================
-# POLYMARKET API INTEGRATION
+# RESOLUTION LOGIC
+# ============================================================================
+
+def check_and_resolve_bets():
+    """Prüft abgelaufene Wetten auf Resolution und aktualisiert Resultate."""
+    try:
+        active_bets = database.get_active_bets()
+        if not active_bets:
+            return
+
+        logger.info(f"🔍 Prüfe {len(active_bets)} aktive Wetten auf Resolution...")
+        
+        for bet in active_bets:
+            # Check date logic
+            end_date_val = bet['end_date']
+            is_expired = False
+
+            if end_date_val:
+                if isinstance(end_date_val, str):
+                    try:
+                        end_date_obj = date_parser.parse(end_date_val)
+                    except:
+                        end_date_obj = datetime.now() # Fallback
+                else:
+                    end_date_obj = end_date_val
+
+                # Compare with now (timezone aware if possible)
+                now = datetime.now(end_date_obj.tzinfo) if end_date_obj.tzinfo else datetime.now()
+                if end_date_obj < now:
+                    is_expired = True
+
+            # Nur abgelaufene prüfen (oder wenn kein Datum vorhanden)
+            if not is_expired and end_date_val is not None:
+                continue
+
+            # GraphQL Query
+            query = """
+            query GetMarketResolution($id: ID!) {
+              market(id: $id) {
+                closed
+                resolvedBy
+                outcomePrices
+              }
+            }
+            """
+
+            response = requests.post(
+                GRAPHQL_URL,
+                json={'query': query, 'variables': {'id': bet['market_slug']}},
+                headers={"Content-Type": "application/json"},
+                timeout=10
+            )
+
+            if response.status_code != 200:
+                logger.warning(f"⚠️  GraphQL Fehler für Bet {bet['bet_id']}: {response.status_code}")
+                continue
+
+            data = response.json()
+            market_data = data.get('data', {}).get('market', {})
+
+            if not market_data:
+                continue
+
+            resolved_by = market_data.get('resolvedBy')
+
+            if resolved_by:
+                # Market is resolved. Check prices.
+                prices = market_data.get('outcomePrices', [])
+
+                actual_outcome = None
+                if prices and len(prices) >= 2:
+                    try:
+                        p_yes = float(prices[0])
+                        if p_yes > 0.9:
+                            actual_outcome = "YES"
+                        elif p_yes < 0.1:
+                            actual_outcome = "NO"
+                    except:
+                        pass
+
+                if actual_outcome:
+                    # Calculate Profit/Loss
+                    stake = bet['stake_usdc']
+                    entry = bet['entry_price']
+
+                    if bet['action'] == actual_outcome:
+                        # WIN
+                        if entry > 0:
+                            profit = stake * ((1.0 / entry) - 1.0)
+                        else:
+                            profit = 0.0
+                    else:
+                        # LOSS
+                        profit = -stake
+
+                    # Close bet
+                    database.close_bet(bet['bet_id'], actual_outcome, profit)
+                    logger.info(f"✅ Bet {bet['bet_id']} resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})")
+                else:
+                    logger.warning(f"⚠️  Market resolved but outcome unclear: {prices}")
+
+    except Exception as e:
+        logger.error(f"❌ Error during resolution check: {e}")
+
+# ============================================================================
+# API HELPERS
 # ============================================================================
 
 def fetch_active_markets(limit: int = 20) -> List[MarketData]:
-    """
-    Holt aktive Märkte von der Polymarket Gamma API (REST).
-    
-    Args:
-        limit: Maximale Anzahl der zurückzugebenden Märkte
-        
-    Returns:
-        Liste von MarketData-Objekten (leer bei Fehler)
-    """
+    """Holt aktive Märkte von der Polymarket Gamma API."""
     try:
         logger.info(f"📡 Verbinde mit Polymarket Gamma API...")
-        
-        # REST API Query parameters
         params = {
-            "closed": "false",  # Only active markets
+            "closed": "false",
             "limit": limit,
             "offset": 0,
-            "order": "volume",  # Sort by volume
-            "ascending": "false"  # Descending order
+            "order": "volume",
+            "ascending": "false"
         }
         
-        # GET Request to Gamma REST API
-        response = requests.get(
-            POLYMARKET_GAMMA_API_URL,
-            params=params,
-            headers={
-                "Content-Type": "application/json"
-            },
-            timeout=10
-        )
+        response = requests.get(POLYMARKET_GAMMA_API_URL, params=params, timeout=10)
         
-        # Prüfe HTTP Status
         if response.status_code != 200:
             logger.warning(f"⚠️  Gamma API HTTP Fehler: {response.status_code}")
-            logger.warning(f"⚠️  Response: {response.text[:200]}")
             return []
         
-        # Parse JSON Response
         data = response.json()
-        
-        # Extrahiere Märkte - REST API returns list directly or in 'data' field
-        if isinstance(data, list):
-            market_data_list = data
-        elif isinstance(data, dict):
-            market_data_list = data.get("data", data.get("markets", []))
-        else:
-            logger.warning(f"⚠️  Unerwartetes Response-Format: {type(data)}")
-            return []
-        
-        if not market_data_list:
-            logger.warning(f"⚠️  Keine Märkte von Gamma API empfangen")
-            return []
-        
-        logger.info(f"📥 {len(market_data_list)} Märkte von Gamma API empfangen")
+        market_data_list = data if isinstance(data, list) else data.get("data", data.get("markets", []))
         
         markets = []
         
-        # Debug-Zähler
-        parse_error_count = 0
-        extreme_price_count = 0
-        expired_count = 0
-        
         for market in market_data_list:
-            # Filter by volume - skip markets with low volume
             volume_raw = market.get('volume')
             try:
                 volume = float(volume_raw) if volume_raw is not None else 0.0
-            except (ValueError, TypeError):
+            except:
                 continue
             
-            # Skip markets below minimum volume threshold
             if volume < MIN_VOLUME:
                 continue
             
-            # Filter by end_date - skip markets that have already ended
-            # REST API uses 'close_time', GraphQL uses 'endDate'
             end_date_str = market.get('close_time') or market.get('endDate')
             if end_date_str:
                 try:
-                    # Parse the end date (ISO 8601 format)
                     end_date = date_parser.parse(end_date_str)
                     now = datetime.now(end_date.tzinfo) if end_date.tzinfo else datetime.now()
-                    
-                    # Skip markets that have already ended
                     if end_date < now:
-                        expired_count += 1
-                        question_str = str(market.get('question', 'N/A'))
-                        # Only log if it's significantly old (more than 1 day)
-                        if (now - end_date).days > 1:
-                            logger.info(f"⏭️  Skipping expired market: {question_str[:60]}... (ended {end_date.date()})")
                         continue
-                except Exception as e:
-                    # If we can't parse the date, log the error but don't skip the market
-                    question_str = str(market.get('question', 'N/A'))
-                    logger.warning(f"⚠️  Could not parse end_date for market: {question_str[:50]} - Value: {end_date_str}, Error: {e}")
+                except:
+                    pass
             
-            # Get the question/description
-            question = market.get('question', '')
-            description = market.get('description', '')
-            
-            # Parse outcome prices
-            # REST API uses 'outcome_prices', GraphQL uses 'outcomePrices'
-            # Both can be either a JSON string '["0.65", "0.35"]' or a list [0.65, 0.35]
+            # Price parsing
             try:
                 outcome_prices_raw = market.get('outcome_prices') or market.get('outcomePrices')
-                
-                # Parse the JSON string if it exists
                 if outcome_prices_raw:
                     if isinstance(outcome_prices_raw, str):
                         outcome_prices = json.loads(outcome_prices_raw)
@@ -222,111 +259,38 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                     else:
                         outcome_prices = [0.5, 0.5]
                     
-                    # Get the first outcome price (typically YES)
-                    if len(outcome_prices) > 0:
-                        yes_price = float(outcome_prices[0])
-                    else:
-                        yes_price = 0.5
+                    yes_price = float(outcome_prices[0]) if len(outcome_prices) > 0 else 0.5
                 else:
                     yes_price = 0.5
-                    
-            except (ValueError, TypeError, json.JSONDecodeError, IndexError) as e:
-                parse_error_count += 1
-                question_str = str(question) if question else 'N/A'
-                logger.warning(f"⚠️  Konnte Preis nicht parsen für Markt: {question_str[:50]} - Fehler: {e}")
-                logger.warning(f"    outcome_prices Wert: {market.get('outcome_prices') or market.get('outcomePrices')}")
+            except:
                 continue
             
-            # Check: Spread (price extremes) - filter out markets with low liquidity
-            # Prices too close to 0 or 1 indicate liquidity risk
-            # NEU: Dynamischer Filter mit Volumen-Ausnahme
+            # Filter Logic
             if not (MIN_PRICE <= yes_price <= MAX_PRICE):
-                # Hohe Liquidität erlaubt extreme Preise
                 if volume < HIGH_VOLUME_THRESHOLD:
-                    extreme_price_count += 1
-                    question_str = str(question) if question else 'N/A'
-                    logger.info(f"⏭️  Skipping {question_str[:60]}: Preis zu extrem ({yes_price:.2f}), zu wenig Volumen (${volume:,.0f}).")
                     continue
-                else:
-                    logger.info(f"✅ Inkludiere trotz extremem Preis ({yes_price:.2f}): Hohes Volumen (${volume:,.0f})")
             
-            # Get market identifier
-            # REST API uses 'id', GraphQL uses 'conditionId', fallback to 'slug'
-            market_slug = market.get('id') or market.get('conditionId') or market.get('slug') or ''
+            markets.append(MarketData(
+                question=market.get('question', ''),
+                description=market.get('description', ''),
+                market_slug=market.get('id') or market.get('conditionId') or market.get('slug') or '',
+                yes_price=yes_price,
+                volume=volume,
+                end_date=end_date_str
+            ))
             
-            try:
-                markets.append(MarketData(
-                    question=question,
-                    description=description,
-                    market_slug=market_slug,
-                    yes_price=yes_price,
-                    volume=volume,
-                    end_date=market.get('close_time') or market.get('endDate')
-                ))
-            except Exception as e:
-                parse_error_count += 1
-                logger.warning(f"⚠️  Konnte MarketData nicht erstellen: {e}")
-                continue
-        
-        # Debug-Ausgabe
-        logger.info(f"\n📊 Markt-Filter Statistik:")
-        logger.info(f"   - Gesamt empfangen: {len(market_data_list)}")
-        logger.info(f"   - Abgelaufen (endDate überschritten): {expired_count}")
-        logger.info(f"   - Preis zu extrem (außerhalb 0.15-0.85): {extreme_price_count}")
-        logger.info(f"   - Parse-Fehler: {parse_error_count}")
-        logger.info(f"   - ✅ Qualifiziert: {len(markets)}\n")
-        
         return markets
         
-    except requests.exceptions.ConnectionError as e:
-        error_msg = str(e)
-        logger.error(f"⚠️  Gamma API Verbindungsfehler: {error_msg}")
-        logger.info(f"ℹ️  Die Polymarket Gamma API ist in dieser Umgebung nicht erreichbar.")
-        logger.info(f"ℹ️  Dies kann aufgrund von Netzwerkbeschränkungen auftreten.")
-        logger.info(f"ℹ️  Bitte stellen Sie sicher, dass:")
-        logger.info(f"   1. Sie eine Internetverbindung haben")
-        logger.info(f"   2. Die Domain 'gamma-api.polymarket.com' erreichbar ist")
-        logger.info(f"   3. Keine Firewall die Verbindung blockiert")
-        logger.info(f"\n💡 Tipp: Führen Sie 'curl https://gamma-api.polymarket.com/markets' aus, um die Erreichbarkeit zu testen.\n")
-        return []
-    except requests.exceptions.Timeout:
-        logger.warning(f"⚠️  Gamma API Timeout - keine Antwort innerhalb von 10 Sekunden")
-        return []
     except Exception as e:
-        error_msg = str(e)
-        logger.error(f"⚠️  Unerwarteter Fehler: {error_msg}")
-        
-        # For other errors, print traceback
-        import traceback
-        traceback.print_exc()
-        
+        logger.error(f"⚠️  Fehler beim Abrufen der Märkte: {e}")
         return []
-
 
 def calculate_quick_edge(market: MarketData) -> float:
-    """
-    Schnelle Edge-Schätzung ohne KI-Analyse.
-
-    Berechnet einen Score basierend auf:
-    - Preisvolatilität (Abstand von 50%)
-    - Volumen/Liquidität
-    - Extrempreisrisiko
-
-    Args:
-        market: MarketData-Objekt
-
-    Returns:
-        Edge-Score zwischen 0.0 und 1.0 (höher = besseres Potenzial)
-    """
-    # 1. Volatilitäts-Score: Preise nahe 50% haben mehr Edge-Potenzial
+    """Schnelle Edge-Schätzung."""
     price_deviation = abs(market.yes_price - 0.5)
-    volatility_score = 1.0 - (2 * price_deviation)  # 0.0 bei Preisen von 0/1, 1.0 bei 0.5
-
-    # 2. Volumen-Score: Höheres Volumen = bessere Liquidität
-    # Normalisiert auf 0-1 Scale, 100k Volume = Score 1.0
+    volatility_score = 1.0 - (2 * price_deviation)
     volume_score = min(market.volume / 100000.0, 1.0)
 
-    # 3. Extrempreis-Penalty: Bestraft Preise außerhalb 0.2-0.8
     if 0.2 <= market.yes_price <= 0.8:
         extreme_penalty = 1.0
     elif 0.1 <= market.yes_price <= 0.9:
@@ -334,409 +298,201 @@ def calculate_quick_edge(market: MarketData) -> float:
     else:
         extreme_penalty = 0.3
 
-    # Kombinierter Score (gewichtet)
-    edge_score = (
-        volatility_score * 0.4 +      # 40% Volatilität
-        volume_score * 0.4 +           # 40% Volumen
-        extreme_penalty * 0.2          # 20% Extrempreis-Vermeidung
-    )
-
-    return edge_score
-
+    return (volatility_score * 0.4 + volume_score * 0.4 + extreme_penalty * 0.2)
 
 def pre_filter_markets(markets: List[MarketData], top_n: int = 10) -> List[MarketData]:
-    """
-    Filtert die Top-N Märkte mit höchstem Edge-Potenzial.
-
-    Verwendet Quick-Edge-Berechnung für schnelle Vorselektion ohne teure KI-Calls.
-
-    Args:
-        markets: Liste aller verfügbaren Märkte
-        top_n: Anzahl der zurückzugebenden Top-Märkte
-
-    Returns:
-        Liste der Top-N Märkte sortiert nach Edge-Potenzial
-    """
+    """Vorselektion der Märkte."""
     if not markets:
         return []
 
-    # Berechne Quick-Edge für alle Märkte
     market_scores = []
     for market in markets:
         score = calculate_quick_edge(market)
         market_scores.append((market, score))
 
-    # Sortiere nach Edge-Score (absteigend)
     market_scores.sort(key=lambda x: x[1], reverse=True)
-
-    # Logging der Top-Märkte
-    logger.info(f"\n🎯 Edge-basierte Vorselektion (Top {min(top_n, len(market_scores))}):")
-    for i, (market, score) in enumerate(market_scores[:top_n], 1):
-        logger.info(f"   {i}. {market.question[:55]}... | Score: {score:.3f} | Preis: {market.yes_price:.2f} | Vol: ${market.volume:,.0f}")
-    logger.info("")
-
-    # Returniere Top-N Märkte
-    return [market for market, _ in market_scores[:top_n]]
-
+    return [m for m, _ in market_scores[:top_n]]
 
 # ============================================================================
-# GOOGLE GEMINI AI INTEGRATION
+# AI & ANALYSIS
 # ============================================================================
 
-@retry(
-    retry=retry_if_exception_type(Exception),
-    stop=stop_after_attempt(3),
-    wait=wait_exponential(multiplier=2, min=8, max=30),
-    reraise=True
-)
-def _generate_gemini_response(client: genai.Client, prompt: str, response_schema: type[BaseModel]) -> dict:
-    """
-    Helper function to generate Gemini response with automatic retry on rate limits.
-    
-    Args:
-        client: Configured Gemini client
-        prompt: The prompt to send to Gemini
-        response_schema: Pydantic model class to use as schema (used for validation only now)
-        
-    Returns:
-        Parsed JSON response as dictionary
-        
-    Raises:
-        Exception: On API errors (will be retried automatically)
-    """
-    # Note: Controlled generation (response_schema) is not supported with Search tool.
-    # We must parse the JSON manually.
+@retry(retry=retry_if_exception_type(Exception), stop=stop_after_attempt(3), wait=wait_exponential(multiplier=2, min=8, max=30))
+def _generate_gemini_response(client: genai.Client, prompt: str) -> dict:
     response = client.models.generate_content(
         model='gemini-2.0-flash',
         contents=prompt,
         config=types.GenerateContentConfig(
-            tools=[types.Tool(google_search=types.GoogleSearch())],
-            # response_mime_type='application/json',  # Not supported with Search tool
-            # response_schema=response_schema         # Not supported with Search tool
+            tools=[types.Tool(google_search=types.GoogleSearch())]
         )
     )
-
     text_response = response.text
-
-    # Clean up markdown code blocks if present
     if "```json" in text_response:
         text_response = text_response.split("```json")[1].split("```")[0]
     elif "```" in text_response:
         text_response = text_response.split("```")[1].split("```")[0]
 
-    # NEU: Sanitize control characters
     text_response = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', text_response)
-
     try:
         return json.loads(text_response.strip())
-    except json.JSONDecodeError:
-        logger.warning(f"⚠️  Standard JSON-Parse fehlgeschlagen, versuche lenient mode...")
+    except:
         return json.loads(text_response.strip(), strict=False)
 
-
 def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
-    """
-    Analysiert einen Markt mit Google Gemini und Google Search Grounding.
-    
-    Args:
-        market: Das zu analysierende MarketData-Objekt
-        
-    Returns:
-        AIAnalysis-Objekt oder None bei Fehler
-    """
+    """Analysiert einen Markt mit Gemini."""
     try:
-        # Konfiguriere Gemini Client
         client = genai.Client(api_key=GEMINI_API_KEY)
-        
-        # Erstelle den Prompt
         prompt = f"""
-Analysiere folgende Wettfrage von Polymarket und schätze die Wahrscheinlichkeit ein:
-
-FRAGE: {market.question}
-
-BESCHREIBUNG: {market.description}
-
-AKTUELLER MARKTPREIS (Yes): {market.yes_price:.2%}
-
-Nutze aktuelle Fakten aus dem Internet (Google Search), um eine fundierte Einschätzung zu geben.
-
-Gib deine Analyse als reines JSON mit folgenden Feldern zurück (kein Markdown, nur JSON):
-{{
-  "estimated_probability": 0.0-1.0,
-  "confidence_score": 0.0-1.0,
-  "reasoning": "Ausführliche Begründung mit Quellen"
-}}
-
-Wichtig: 
-- Sei objektiv und faktenbezogen
-- Berücksichtige aktuelle Entwicklungen
-- Gib einen realistischen Confidence-Score an
-"""
-        
-        logger.info(f"🤖 Analysiere mit Gemini: {market.question[:60]}...")
-        
-        # Use structured output with retry logic
-        result = _generate_gemini_response(client, prompt, AIAnalysis)
-        
-        # Create AIAnalysis object from parsed JSON
+        Analysiere folgende Wettfrage von Polymarket und schätze die Wahrscheinlichkeit ein:
+        FRAGE: {market.question}
+        BESCHREIBUNG: {market.description}
+        AKTUELLER MARKTPREIS (Yes): {market.yes_price:.2%}
+        Nutze Google Search für Fakten.
+        Output JSON: {{ "estimated_probability": 0.0-1.0, "confidence_score": 0.0-1.0, "reasoning": "..." }}
+        """
+        result = _generate_gemini_response(client, prompt)
         return AIAnalysis(**result)
-        
     except Exception as e:
         logger.error(f"❌ Fehler bei KI-Analyse: {e}")
         return None
 
-
-# ============================================================================
-# KELLY CRITERION & RISK MANAGEMENT
-# ============================================================================
-
-def calculate_kelly_stake(
-    ai_probability: float,
-    market_price: float,
-    confidence: float,
-    capital: float
-) -> TradingRecommendation:
-    """
-    Berechnet die optimale Einsatzhöhe nach dem Kelly-Kriterium.
-    
-    Args:
-        ai_probability: Von der KI geschätzte Wahrscheinlichkeit (0.0-1.0)
-        market_price: Aktueller Marktpreis (0.0-1.0)
-        confidence: Confidence-Score der KI (0.0-1.0)
-        capital: Verfügbares Gesamtkapital in USDC
+def calculate_kelly_stake(ai_prob: float, price: float, conf: float, capital: float) -> TradingRecommendation:
+    """Berechnet Kelly-Einsatz."""
+    if price <= 0.001 or price >= 0.999:
+        return TradingRecommendation(action="PASS", stake_usdc=0.0, kelly_fraction=0.0, expected_value=0.0, market_question="")
         
-    Returns:
-        TradingRecommendation-Objekt
-    """
-    if market_price <= 0.001 or market_price >= 0.999:
-        return TradingRecommendation(
-            action="PASS",
-            stake_usdc=0.0,
-            kelly_fraction=0.0,
-            expected_value=0.0,
-            market_question=""
-        )
+    edge = ai_prob - price
+    if abs(edge) < 0.10:
+        return TradingRecommendation(action="PASS", stake_usdc=0.0, kelly_fraction=0.0, expected_value=0.0, market_question="")
 
-    # Edge berechnen
-    edge = ai_probability - market_price
-    
-    # Frühzeitiger PASS wenn Edge zu klein
-    if abs(edge) < 0.10:  # Mindestens 10% Edge
-        return TradingRecommendation(
-            action="PASS",
-            stake_usdc=0.0,
-            kelly_fraction=0.0,
-            expected_value=0.0,
-            market_question=""
-        )
-    
-    # YES oder NO Position?
-    if edge > 0:
-        # YES Position
-        net_odds = (1.0 / market_price) - 1.0
-        kelly_f = (ai_probability * (net_odds + 1.0) - 1.0) / net_odds
+    if edge > 0: # Long
+        net_odds = (1.0 / price) - 1.0
+        kelly_f = (ai_prob * (net_odds + 1.0) - 1.0) / net_odds
         action = "YES"
-    else:
-        # NO Position (Short)
-        no_market_price = 1.0 - market_price
-        ai_no_prob = 1.0 - ai_probability
-        net_odds = (1.0 / no_market_price) - 1.0
+    else: # Short
+        no_price = 1.0 - price
+        ai_no_prob = 1.0 - ai_prob
+        net_odds = (1.0 / no_price) - 1.0
         kelly_f = (ai_no_prob * (net_odds + 1.0) - 1.0) / net_odds
         action = "NO"
-    
-    # Fractional Kelly + Confidence Adjustment
-    confidence_multiplier = math.sqrt(confidence)
-    adjusted_kelly = kelly_f * KELLY_FRACTION * confidence_multiplier
-    
-    # Cap bei 50% Kapital
-    capped_kelly = min(max(adjusted_kelly, 0.0), MAX_CAPITAL_FRACTION)
-    
+
+    capped_kelly = min(max(kelly_f * KELLY_FRACTION * math.sqrt(conf), 0.0), MAX_CAPITAL_FRACTION)
     stake = capped_kelly * capital
     
     # Expected Value
     if action == "YES":
-        net_odds_yes = (1.0 / market_price) - 1.0
-        expected_value = ai_probability * (stake * net_odds_yes) - (1 - ai_probability) * stake
+        ev = ai_prob * (stake * ((1.0/price)-1.0)) - (1-ai_prob)*stake
     else:
-        # NO Position
-        no_market_price = 1.0 - market_price
-        net_odds_no = (1.0 / no_market_price) - 1.0
-        ai_no_prob = 1.0 - ai_probability
-        expected_value = ai_no_prob * (stake * net_odds_no) - ai_probability * stake
+        ev = (1-ai_prob) * (stake * ((1.0/(1-price))-1.0)) - ai_prob*stake
 
-    # PASS wenn kein positiver EV
-    if expected_value <= 0:
-        return TradingRecommendation(
-            action="PASS",
-            stake_usdc=0.0,
-            kelly_fraction=0.0,
-            expected_value=0.0,
-            market_question=""
-        )
-    
+    if ev <= 0:
+        return TradingRecommendation(action="PASS", stake_usdc=0.0, kelly_fraction=0.0, expected_value=0.0, market_question="")
+
     return TradingRecommendation(
-        action=action,
-        stake_usdc=round(stake, 2),
-        kelly_fraction=round(capped_kelly, 4),
-        expected_value=round(expected_value, 2),
-        market_question=""
+        action=action, stake_usdc=round(stake, 2), kelly_fraction=round(capped_kelly, 4),
+        expected_value=round(ev, 2), market_question=""
     )
 
-
-# ============================================================================
-# MAIN ANALYSIS LOGIC
-# ============================================================================
-
-def analyze_and_recommend(market: MarketData) -> Optional[TradingRecommendation]:
-    """
-    Führt die komplette Analyse für einen Markt durch und gibt eine Empfehlung aus.
+def analyze_and_recommend(market: MarketData, capital: float) -> Optional[TradingRecommendation]:
+    """Single Market Analysis Pipeline."""
+    logger.info(f"📊 Analysiere: {market.question} (Vol: ${market.volume:,.0f}, Price: {market.yes_price:.2f})")
     
-    Args:
-        market: Das zu analysierende MarketData-Objekt
-
-    Returns:
-        TradingRecommendation-Objekt oder None bei Fehler/PASS
-    """
-    logger.info("=" * 80)
-    logger.info(f"📊 MARKT: {market.question}")
-    logger.info(f"💰 Volumen: ${market.volume:,.0f}")
-    logger.info(f"💲 Aktueller Yes-Preis: {market.yes_price:.2%}")
-    logger.info("-" * 80)
-    
-    # KI-Analyse
     ai_analysis = analyze_market_with_ai(market)
-    
     if not ai_analysis:
-        logger.warning("⚠️  KI-Analyse fehlgeschlagen - SKIP\n")
         return None
-    
-    logger.info(f"🧠 KI-Wahrscheinlichkeit: {ai_analysis.estimated_probability:.2%}")
-    logger.info(f"🎯 Confidence: {ai_analysis.confidence_score:.2%}")
-    logger.info(f"💭 Begründung: {ai_analysis.reasoning[:200]}...")
-    logger.info("-" * 80)
-    
-    # Kelly-Berechnung
-    recommendation = calculate_kelly_stake(
-        ai_probability=ai_analysis.estimated_probability,
-        market_price=market.yes_price,
-        confidence=ai_analysis.confidence_score,
-        capital=TOTAL_CAPITAL
+
+    rec = calculate_kelly_stake(
+        ai_analysis.estimated_probability,
+        market.yes_price,
+        ai_analysis.confidence_score,
+        capital
     )
-    recommendation.market_question = market.question
+    rec.market_question = market.question
     
-    # Ausgabe der Empfehlung
-    logger.info(f"🎲 EMPFEHLUNG: {recommendation.action}")
-    logger.info(f"💵 Einsatz: {recommendation.stake_usdc:.2f} USDC ({recommendation.kelly_fraction:.2%} des Kapitals)")
-    logger.info(f"📈 Erwarteter Gewinn: {recommendation.expected_value:+.2f} USDC")
+    # Attach AI stats for DB storage
+    rec.ai_probability = ai_analysis.estimated_probability
+    rec.confidence_score = ai_analysis.confidence_score
     
-    # Edge-Berechnung
-    edge = ai_analysis.estimated_probability - market.yes_price
-    logger.info(f"⚡ Edge: {edge:+.2%}")
+    if rec.action != "PASS":
+        logger.info(f"🎲 RECOMMENDATION: {rec.action} | Stake: ${rec.stake_usdc} | EV: ${rec.expected_value}")
     
-    if recommendation.action == "YES":
-        logger.info("✅ VALUE BET GEFUNDEN! Kaufe YES-Shares")
-    elif recommendation.action == "NO":
-        logger.info("🔴 Kaufe NO-Shares")
-    else:
-        logger.info("⏭️  Kein ausreichender Edge - PASS")
-    
-    logger.info("=" * 80)
-    logger.info("")
-
-    return recommendation
+    return rec
 
 
-def main():
-    """Hauptfunktion des Bots - OPTIMIERTE VERSION."""
-    # Check for API key when running as main
-    if not GEMINI_API_KEY:
-        logger.error("❌ Fehler: GEMINI_API_KEY nicht in .env gefunden!")
-        sys.exit(1)
+# ============================================================================
+# MAIN LOOPS
+# ============================================================================
+
+def single_run():
+    """Einzelner 15-Minuten-Cycle"""
+    logger.info("🎬 Start Single Run...")
     
-    logger.info("\n" + "=" * 80)
-    logger.info("🤖 POLYMARKET AI VALUE BET BOT (MULTI-STAGE)")
-    logger.info("=" * 80)
-    logger.info(f"💰 Gesamtkapital: ${TOTAL_CAPITAL:,.2f} USDC")
-    logger.info(f"📊 Kelly Fraction: {KELLY_FRACTION:.0%}")
-    logger.info(f"🛡️  Max. Kapitaleinsatz pro Trade: {MAX_CAPITAL_FRACTION:.0%}")
-    logger.info(f"🔍 Markt-Fetch-Limit: {FETCH_MARKET_LIMIT}")
-    logger.info(f"🎯 Top-Märkte zur Analyse: {TOP_MARKETS_TO_ANALYZE}")
-    logger.info("=" * 80)
-    logger.info("")
+    # 1. Load current capital from DB
+    capital = database.get_current_capital()
+    logger.info(f"💰 Verfügbares Kapital: ${capital:.2f}")
     
-    # ========================================================================
-    # STUFE 1: Hole breite Marktauswahl
-    # ========================================================================
-    logger.info(f"📡 STUFE 1: Lade {FETCH_MARKET_LIMIT} Märkte von Gamma API...\n")
+    # 2. Check and resolve pending bets
+    check_and_resolve_bets()
+    
+    # 3. Fetch and analyze markets
     raw_markets = fetch_active_markets(limit=FETCH_MARKET_LIMIT)
-    
-    if not raw_markets:
-        logger.error("❌ Keine Märkte gefunden!")
-        return
-    
-    logger.info(f"✅ {len(raw_markets)} Märkte qualifiziert nach Basis-Filtern\n")
-    
-    # ========================================================================
-    # STUFE 2: Intelligente Vorselektion (Quick-Edge)
-    # ========================================================================
-    logger.info(f"🎯 STUFE 2: Vorselektion der Top-{TOP_MARKETS_TO_ANALYZE} Märkte...")
     top_markets = pre_filter_markets(raw_markets, top_n=TOP_MARKETS_TO_ANALYZE)
 
-    if not top_markets:
-        logger.error("❌ Keine qualifizierten Märkte nach Vorselektion!")
-        return
+    # 4. Analyze and save new bets
+    for i, market in enumerate(top_markets):
+        # Prevent Gemini Rate Limits
+        time.sleep(3)
 
-    # ========================================================================
-    # STUFE 3: Detaillierte KI-Analyse der Top-Märkte
-    # ========================================================================
-    logger.info(f"🤖 STUFE 3: Detaillierte KI-Analyse...\n")
+        # Check if we already have an active bet on this market?
+        active_slugs = [b['market_slug'] for b in database.get_active_bets()]
+        if market.market_slug in active_slugs:
+            logger.info(f"⏭️  Bereits aktive Wette für: {market.market_slug}. Skipping.")
+            continue
 
-    recommendations = []
-    for i, market in enumerate(top_markets, 1):
-        logger.info(f"\n[{i}/{len(top_markets)}]")
-        rec = analyze_and_recommend(market)
+        rec = analyze_and_recommend(market, capital)
+
         if rec and rec.action != "PASS":
-            recommendations.append(rec)
-
-        # NEU: Delay zwischen Märkten
-        if i < len(top_markets):
-            time.sleep(3)  # 3 Sekunden Pause
-
-    # ========================================================================
-    # STUFE 4: Zusammenfassung und Ranking
-    # ========================================================================
-    logger.info("\n" + "=" * 80)
-    logger.info("📊 HANDELSEMPFEHLUNGEN (Sortiert nach Expected Value)")
-    logger.info("=" * 80)
-
-    if recommendations:
-        # Sortiere nach Expected Value (absteigend)
-        recommendations.sort(key=lambda x: x.expected_value, reverse=True)
-
-        total_stake = sum(rec.stake_usdc for rec in recommendations)
-        total_expected_value = sum(rec.expected_value for rec in recommendations)
-
-        for i, rec in enumerate(recommendations, 1):
-            logger.info(f"\n#{i} - {rec.market_question[:65]}...")
-            logger.info(f"    🎲 Action: {rec.action}")
-            logger.info(f"    💵 Einsatz: ${rec.stake_usdc:.2f} USDC ({rec.kelly_fraction:.2%} des Kapitals)")
-            logger.info(f"    📈 Erwarteter Gewinn: ${rec.expected_value:+.2f} USDC")
-
-        logger.info("\n" + "-" * 80)
-        logger.info(f"💼 Portfolio-Zusammenfassung:")
-        logger.info(f"   - Anzahl Trades: {len(recommendations)}")
-        logger.info(f"   - Gesamt-Einsatz: ${total_stake:.2f} USDC ({total_stake/TOTAL_CAPITAL:.1%} des Kapitals)")
-        logger.info(f"   - Gesamt-Expected Value: ${total_expected_value:+.2f} USDC")
-        logger.info(f"   - Durchschnitt pro Trade: ${total_expected_value/len(recommendations):+.2f} USDC")
-
-    else:
-        logger.info("\n⚠️  Keine profitablen Wetten gefunden.")
-        logger.info("💡 Tipp: Erwäge MIN_PRICE/MAX_PRICE anzupassen oder mehr Märkte zu laden.")
+            database.insert_active_bet({
+                'market_slug': market.market_slug,
+                'question': market.question,
+                'action': rec.action,
+                'stake_usdc': rec.stake_usdc,
+                'entry_price': market.yes_price,
+                'ai_probability': rec.ai_probability,
+                'confidence_score': rec.confidence_score,
+                'expected_value': rec.expected_value,
+                'end_date': market.end_date
+            })
     
-    logger.info("\n" + "=" * 80)
-    logger.info("✅ Analyse abgeschlossen!")
-    logger.info("=" * 80 + "\n")
+    # 5. Update dashboard if needed
+    if dashboard.should_update_dashboard():
+        logger.info("📝 Updating dashboard...")
+        dashboard.generate_dashboard()
+        git_integration.push_dashboard_update()
+    else:
+        logger.info("✅ Dashboard up-to-date.")
 
+def main_loop():
+    """Infinite loop for 24/7 operation"""
+    if not GEMINI_API_KEY:
+        logger.error("❌ GEMINI_API_KEY nicht gesetzt!")
+        sys.exit(1)
+
+    database.init_database()
+
+    logger.info("🚀 Starting Polymarket Bot Main Loop (15min Interval)")
+
+    while True:
+        try:
+            single_run()
+            logger.info("✅ Run completed. Sleeping 15 minutes...")
+            time.sleep(900)
+        except KeyboardInterrupt:
+            logger.info("🛑 Shutdown requested")
+            break
+        except Exception as e:
+            logger.error(f"❌ Run failed: {e}", exc_info=True)
+            time.sleep(60)
 
 if __name__ == "__main__":
-    main()
+    main_loop()
