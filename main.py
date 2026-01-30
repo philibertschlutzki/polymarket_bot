@@ -303,7 +303,7 @@ def _generate_gemini_response(client: genai.Client, prompt: str, response_schema
     Args:
         client: Configured Gemini client
         prompt: The prompt to send to Gemini
-        response_schema: Pydantic model class to use as schema
+        response_schema: Pydantic model class to use as schema (used for validation only now)
         
     Returns:
         Parsed JSON response as dictionary
@@ -311,16 +311,27 @@ def _generate_gemini_response(client: genai.Client, prompt: str, response_schema
     Raises:
         Exception: On API errors (will be retried automatically)
     """
+    # Note: Controlled generation (response_schema) is not supported with Search tool.
+    # We must parse the JSON manually.
     response = client.models.generate_content(
         model='gemini-2.0-flash',
         contents=prompt,
         config=types.GenerateContentConfig(
             tools=[types.Tool(google_search=types.GoogleSearch())],
-            response_mime_type='application/json',
-            response_schema=response_schema
+            # response_mime_type='application/json',  # Not supported with Search tool
+            # response_schema=response_schema         # Not supported with Search tool
         )
     )
-    return json.loads(response.text)
+
+    text_response = response.text
+
+    # Clean up markdown code blocks if present
+    if "```json" in text_response:
+        text_response = text_response.split("```json")[1].split("```")[0]
+    elif "```" in text_response:
+        text_response = text_response.split("```")[1].split("```")[0]
+
+    return json.loads(text_response.strip())
 
 
 def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
@@ -349,10 +360,12 @@ AKTUELLER MARKTPREIS (Yes): {market.yes_price:.2%}
 
 Nutze aktuelle Fakten aus dem Internet (Google Search), um eine fundierte Einschätzung zu geben.
 
-Gib deine Analyse als JSON mit folgenden Feldern zurück:
-- estimated_probability: Zahl zwischen 0.0 und 1.0
-- confidence_score: Dein Confidence-Level zwischen 0.0 und 1.0
-- reasoning: Deine ausführliche Begründung mit Quellen
+Gib deine Analyse als reines JSON mit folgenden Feldern zurück (kein Markdown, nur JSON):
+{{
+  "estimated_probability": 0.0-1.0,
+  "confidence_score": 0.0-1.0,
+  "reasoning": "Ausführliche Begründung mit Quellen"
+}}
 
 Wichtig: 
 - Sei objektiv und faktenbezogen
