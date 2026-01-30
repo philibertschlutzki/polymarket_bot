@@ -1,6 +1,17 @@
+# HTTP requests for Polymarket Gamma API
 requests>=2.31.0
+
+# Environment variable management
 python-dotenv>=1.0.0
+
+# Google Gemini AI with structured outputs
 google-genai>=0.2.0
+
+# Data validation and serialization
 pydantic>=2.0.0
-py-clob-client>=0.24.0
+
+# Date and time parsing utilities
 python-dateutil>=2.8.0
+
+# Retry logic with exponential backoff for rate limiting
+tenacity>=8.0.0

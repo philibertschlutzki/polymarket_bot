@@ -10,8 +10,8 @@ Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
 
 import os
 import sys
-import time
 import json
+import logging
 from typing import Optional, List
 from datetime import datetime
 
@@ -20,21 +20,27 @@ from pydantic import BaseModel, Field
 from google import genai
 from google.genai import types
 import requests
-from py_clob_client.client import ClobClient
-from py_clob_client.exceptions import PolyApiException
 from dateutil import parser as date_parser
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 
 # ============================================================================
 # KONFIGURATION
 # ============================================================================
 
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logger = logging.getLogger(__name__)
+
 load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 TOTAL_CAPITAL = float(os.getenv("TOTAL_CAPITAL", "1000"))
 
-POLYMARKET_CLOB_URL = "https://clob.polymarket.com"  # CLOB API Endpoint (kept for potential order execution)
 POLYMARKET_GAMMA_API_URL = "https://gamma-api.polymarket.com/markets"  # Gamma REST API
 MIN_VOLUME = 15000  # Mindestvolumen in USD für Markt-Selektion
 KELLY_FRACTION = 0.25  # Fractional Kelly (25% der Full Kelly)
@@ -88,71 +94,6 @@ class TradingRecommendation(BaseModel):
 # POLYMARKET API INTEGRATION
 # ============================================================================
 
-def test_clob_connection():
-    """
-    Testet die CLOB API Verbindung und gibt Debug-Informationen aus.
-    """
-    print("\n🔍 Teste CLOB Verbindung...")
-    print("-" * 80)
-    try:
-        # Public Client (kein Key nötig für Marktdaten)
-        client = ClobClient(host=POLYMARKET_CLOB_URL, chain_id=137)
-        
-        # Hole Märkte (use get_markets for full market data including question, volume, prices)
-        resp = client.get_markets()
-        
-        # Analysiere Antwort-Struktur
-        if isinstance(resp, dict):
-            print(f"✅ CLOB Antwort: Dictionary mit Keys: {list(resp.keys())}")
-            market_data = resp.get('data', [])
-            print(f"✅ Anzahl Märkte in 'data': {len(market_data)}")
-            
-            if market_data:
-                # Zeige ersten Markt zur Struktur-Analyse
-                first_market = market_data[0]
-                print(f"\n📋 Struktur des ersten Marktes:")
-                print(f"   - Keys: {list(first_market.keys())}")
-                question = first_market.get('question', 'N/A')
-                question_str = str(question) if question else 'N/A'
-                print(f"   - question: {question_str[:60]}...")
-                print(f"   - active: {first_market.get('active', 'N/A')}")
-                print(f"   - volume: {first_market.get('volume', 'N/A')}")
-                
-                # Show tokens structure (used in get_markets)
-                tokens = first_market.get('tokens', 'N/A')
-                if tokens != 'N/A' and isinstance(tokens, list) and len(tokens) > 0:
-                    print(f"   - tokens[0]: {tokens[0]}")
-                else:
-                    print(f"   - tokens: {tokens}")
-                    
-                # Show legacy price fields (for backward compatibility)
-                print(f"   - outcome_prices: {first_market.get('outcome_prices', 'N/A')}")
-                print(f"   - outcomePrices: {first_market.get('outcomePrices', 'N/A')}")
-        elif isinstance(resp, list):
-            print(f"✅ CLOB Antwort: Liste mit {len(resp)} Elementen")
-            if resp:
-                first_market = resp[0]
-                print(f"\n📋 Struktur des ersten Marktes:")
-                print(f"   - Keys: {list(first_market.keys())}")
-        else:
-            print(f"⚠️  Unerwartetes Antwortformat: {type(resp)}")
-        
-        print("-" * 80)
-        print("✅ CLOB Verbindung erfolgreich!\n")
-        return True
-        
-    except PolyApiException as e:
-        print(f"❌ CLOB API Fehler: {e}")
-        print("-" * 80)
-        return False
-    except Exception as e:
-        print(f"❌ CLOB Fehler: {e}")
-        import traceback
-        traceback.print_exc()
-        print("-" * 80)
-        return False
-
-
 def fetch_active_markets(limit: int = 20) -> List[MarketData]:
     """
     Holt aktive Märkte von der Polymarket Gamma API (REST).
@@ -164,7 +105,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         Liste von MarketData-Objekten (leer bei Fehler)
     """
     try:
-        print(f"📡 Verbinde mit Polymarket Gamma API...")
+        logger.info(f"📡 Verbinde mit Polymarket Gamma API...")
         
         # REST API Query parameters
         params = {
@@ -187,8 +128,8 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         
         # Prüfe HTTP Status
         if response.status_code != 200:
-            print(f"⚠️  Gamma API HTTP Fehler: {response.status_code}")
-            print(f"⚠️  Response: {response.text[:200]}")
+            logger.warning(f"⚠️  Gamma API HTTP Fehler: {response.status_code}")
+            logger.warning(f"⚠️  Response: {response.text[:200]}")
             return []
         
         # Parse JSON Response
@@ -200,14 +141,14 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         elif isinstance(data, dict):
             market_data_list = data.get("data", data.get("markets", []))
         else:
-            print(f"⚠️  Unerwartetes Response-Format: {type(data)}")
+            logger.warning(f"⚠️  Unerwartetes Response-Format: {type(data)}")
             return []
         
         if not market_data_list:
-            print(f"⚠️  Keine Märkte von Gamma API empfangen")
+            logger.warning(f"⚠️  Keine Märkte von Gamma API empfangen")
             return []
         
-        print(f"📥 {len(market_data_list)} Märkte von Gamma API empfangen")
+        logger.info(f"📥 {len(market_data_list)} Märkte von Gamma API empfangen")
         
         markets = []
         
@@ -243,12 +184,12 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                         question_str = str(market.get('question', 'N/A'))
                         # Only log if it's significantly old (more than 1 day)
                         if (now - end_date).days > 1:
-                            print(f"⏭️  Skipping expired market: {question_str[:60]}... (ended {end_date.date()})")
+                            logger.info(f"⏭️  Skipping expired market: {question_str[:60]}... (ended {end_date.date()})")
                         continue
                 except Exception as e:
                     # If we can't parse the date, log the error but don't skip the market
                     question_str = str(market.get('question', 'N/A'))
-                    print(f"⚠️  Could not parse end_date for market: {question_str[:50]} - Value: {end_date_str}, Error: {e}")
+                    logger.warning(f"⚠️  Could not parse end_date for market: {question_str[:50]} - Value: {end_date_str}, Error: {e}")
             
             # Get the question/description
             question = market.get('question', '')
@@ -280,8 +221,8 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             except (ValueError, TypeError, json.JSONDecodeError, IndexError) as e:
                 parse_error_count += 1
                 question_str = str(question) if question else 'N/A'
-                print(f"⚠️  Konnte Preis nicht parsen für Markt: {question_str[:50]} - Fehler: {e}")
-                print(f"    outcome_prices Wert: {market.get('outcome_prices') or market.get('outcomePrices')}")
+                logger.warning(f"⚠️  Konnte Preis nicht parsen für Markt: {question_str[:50]} - Fehler: {e}")
+                logger.warning(f"    outcome_prices Wert: {market.get('outcome_prices') or market.get('outcomePrices')}")
                 continue
             
             # Check: Spread (price extremes) - filter out markets with low liquidity
@@ -289,7 +230,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             if not (0.15 <= yes_price <= 0.85):
                 extreme_price_count += 1
                 question_str = str(question) if question else 'N/A'
-                print(f"⏭️  Skipping {question_str[:60]}: Preis zu extrem ({yes_price:.2f}), Liquiditätsrisiko.")
+                logger.info(f"⏭️  Skipping {question_str[:60]}: Preis zu extrem ({yes_price:.2f}), Liquiditätsrisiko.")
                 continue
             
             # Get market identifier
@@ -307,36 +248,36 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                 ))
             except Exception as e:
                 parse_error_count += 1
-                print(f"⚠️  Konnte MarketData nicht erstellen: {e}")
+                logger.warning(f"⚠️  Konnte MarketData nicht erstellen: {e}")
                 continue
         
         # Debug-Ausgabe
-        print(f"\n📊 Markt-Filter Statistik:")
-        print(f"   - Gesamt empfangen: {len(market_data_list)}")
-        print(f"   - Abgelaufen (endDate überschritten): {expired_count}")
-        print(f"   - Preis zu extrem (außerhalb 0.15-0.85): {extreme_price_count}")
-        print(f"   - Parse-Fehler: {parse_error_count}")
-        print(f"   - ✅ Qualifiziert: {len(markets)}\n")
+        logger.info(f"\n📊 Markt-Filter Statistik:")
+        logger.info(f"   - Gesamt empfangen: {len(market_data_list)}")
+        logger.info(f"   - Abgelaufen (endDate überschritten): {expired_count}")
+        logger.info(f"   - Preis zu extrem (außerhalb 0.15-0.85): {extreme_price_count}")
+        logger.info(f"   - Parse-Fehler: {parse_error_count}")
+        logger.info(f"   - ✅ Qualifiziert: {len(markets)}\n")
         
         return markets
         
     except requests.exceptions.ConnectionError as e:
         error_msg = str(e)
-        print(f"⚠️  Gamma API Verbindungsfehler: {error_msg}")
-        print(f"ℹ️  Die Polymarket Gamma API ist in dieser Umgebung nicht erreichbar.")
-        print(f"ℹ️  Dies kann aufgrund von Netzwerkbeschränkungen auftreten.")
-        print(f"ℹ️  Bitte stellen Sie sicher, dass:")
-        print(f"   1. Sie eine Internetverbindung haben")
-        print(f"   2. Die Domain 'gamma-api.polymarket.com' erreichbar ist")
-        print(f"   3. Keine Firewall die Verbindung blockiert")
-        print(f"\n💡 Tipp: Führen Sie 'curl https://gamma-api.polymarket.com/markets' aus, um die Erreichbarkeit zu testen.\n")
+        logger.error(f"⚠️  Gamma API Verbindungsfehler: {error_msg}")
+        logger.info(f"ℹ️  Die Polymarket Gamma API ist in dieser Umgebung nicht erreichbar.")
+        logger.info(f"ℹ️  Dies kann aufgrund von Netzwerkbeschränkungen auftreten.")
+        logger.info(f"ℹ️  Bitte stellen Sie sicher, dass:")
+        logger.info(f"   1. Sie eine Internetverbindung haben")
+        logger.info(f"   2. Die Domain 'gamma-api.polymarket.com' erreichbar ist")
+        logger.info(f"   3. Keine Firewall die Verbindung blockiert")
+        logger.info(f"\n💡 Tipp: Führen Sie 'curl https://gamma-api.polymarket.com/markets' aus, um die Erreichbarkeit zu testen.\n")
         return []
     except requests.exceptions.Timeout:
-        print(f"⚠️  Gamma API Timeout - keine Antwort innerhalb von 10 Sekunden")
+        logger.warning(f"⚠️  Gamma API Timeout - keine Antwort innerhalb von 10 Sekunden")
         return []
     except Exception as e:
         error_msg = str(e)
-        print(f"⚠️  Unerwarteter Fehler: {error_msg}")
+        logger.error(f"⚠️  Unerwarteter Fehler: {error_msg}")
         
         # For other errors, print traceback
         import traceback
@@ -348,6 +289,39 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
 # ============================================================================
 # GOOGLE GEMINI AI INTEGRATION
 # ============================================================================
+
+@retry(
+    retry=retry_if_exception_type(Exception),
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=1, min=4, max=10),
+    reraise=True
+)
+def _generate_gemini_response(client: genai.Client, prompt: str, response_schema: type[BaseModel]) -> dict:
+    """
+    Helper function to generate Gemini response with automatic retry on rate limits.
+    
+    Args:
+        client: Configured Gemini client
+        prompt: The prompt to send to Gemini
+        response_schema: Pydantic model class to use as schema
+        
+    Returns:
+        Parsed JSON response as dictionary
+        
+    Raises:
+        Exception: On API errors (will be retried automatically)
+    """
+    response = client.models.generate_content(
+        model='gemini-2.0-flash',
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            tools=[types.Tool(google_search=types.GoogleSearch())],
+            response_mime_type='application/json',
+            response_schema=response_schema
+        )
+    )
+    return json.loads(response.text)
+
 
 def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
     """
@@ -375,10 +349,10 @@ AKTUELLER MARKTPREIS (Yes): {market.yes_price:.2%}
 
 Nutze aktuelle Fakten aus dem Internet (Google Search), um eine fundierte Einschätzung zu geben.
 
-Antworte im folgenden Format:
-WAHRSCHEINLICHKEIT: [Zahl zwischen 0.0 und 1.0]
-CONFIDENCE: [Dein Confidence-Level zwischen 0.0 und 1.0]
-BEGRÜNDUNG: [Deine ausführliche Begründung mit Quellen]
+Gib deine Analyse als JSON mit folgenden Feldern zurück:
+- estimated_probability: Zahl zwischen 0.0 und 1.0
+- confidence_score: Dein Confidence-Level zwischen 0.0 und 1.0
+- reasoning: Deine ausführliche Begründung mit Quellen
 
 Wichtig: 
 - Sei objektiv und faktenbezogen
@@ -386,75 +360,16 @@ Wichtig:
 - Gib einen realistischen Confidence-Score an
 """
         
-        print(f"🤖 Analysiere mit Gemini: {market.question[:60]}...")
+        logger.info(f"🤖 Analysiere mit Gemini: {market.question[:60]}...")
         
-        # Nutze Gemini 2.0 Flash mit Google Search
-        response = client.models.generate_content(
-            model='gemini-2.0-flash',
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search=types.GoogleSearch())]
-            )
-        )
+        # Use structured output with retry logic
+        result = _generate_gemini_response(client, prompt, AIAnalysis)
         
-        text = response.text
-        
-        # Parse die Antwort
-        lines = text.strip().split('\n')
-        probability = None
-        confidence = None
-        reasoning_parts = []
-        
-        in_reasoning = False
-        for line in lines:
-            line = line.strip()
-            if line.startswith('WAHRSCHEINLICHKEIT:'):
-                prob_str = line.split(':', 1)[1].strip()
-                try:
-                    probability = float(prob_str)
-                except ValueError:
-                    # Versuche Prozent-Format zu parsen
-                    prob_str = prob_str.replace('%', '').strip()
-                    probability = float(prob_str) / 100 if float(prob_str) > 1 else float(prob_str)
-            elif line.startswith('CONFIDENCE:'):
-                conf_str = line.split(':', 1)[1].strip()
-                try:
-                    confidence = float(conf_str)
-                except ValueError:
-                    conf_str = conf_str.replace('%', '').strip()
-                    confidence = float(conf_str) / 100 if float(conf_str) > 1 else float(conf_str)
-            elif line.startswith('BEGRÜNDUNG:'):
-                reasoning_parts.append(line.split(':', 1)[1].strip())
-                in_reasoning = True
-            elif in_reasoning and line:
-                reasoning_parts.append(line)
-        
-        reasoning = ' '.join(reasoning_parts) if reasoning_parts else text
-        
-        # Validierung
-        if probability is None or confidence is None:
-            print("⚠️  Konnte Wahrscheinlichkeit nicht parsen, nutze Standardwerte")
-            # Fallback: Versuche Zahlen aus dem Text zu extrahieren
-            import re
-            numbers = re.findall(r'0\.\d+', text)
-            if len(numbers) >= 2:
-                probability = float(numbers[0])
-                confidence = float(numbers[1])
-            else:
-                return None
-        
-        # Stelle sicher, dass Werte im gültigen Bereich sind
-        probability = max(0.0, min(1.0, probability))
-        confidence = max(0.0, min(1.0, confidence))
-        
-        return AIAnalysis(
-            estimated_probability=probability,
-            confidence_score=confidence,
-            reasoning=reasoning
-        )
+        # Create AIAnalysis object from parsed JSON
+        return AIAnalysis(**result)
         
     except Exception as e:
-        print(f"❌ Fehler bei KI-Analyse: {e}")
+        logger.error(f"❌ Fehler bei KI-Analyse: {e}")
         return None
 
 
@@ -540,23 +455,23 @@ def analyze_and_recommend(market: MarketData) -> None:
     Args:
         market: Das zu analysierende MarketData-Objekt
     """
-    print("=" * 80)
-    print(f"📊 MARKT: {market.question}")
-    print(f"💰 Volumen: ${market.volume:,.0f}")
-    print(f"💲 Aktueller Yes-Preis: {market.yes_price:.2%}")
-    print("-" * 80)
+    logger.info("=" * 80)
+    logger.info(f"📊 MARKT: {market.question}")
+    logger.info(f"💰 Volumen: ${market.volume:,.0f}")
+    logger.info(f"💲 Aktueller Yes-Preis: {market.yes_price:.2%}")
+    logger.info("-" * 80)
     
     # KI-Analyse
     ai_analysis = analyze_market_with_ai(market)
     
     if not ai_analysis:
-        print("⚠️  KI-Analyse fehlgeschlagen - SKIP\n")
+        logger.warning("⚠️  KI-Analyse fehlgeschlagen - SKIP\n")
         return
     
-    print(f"🧠 KI-Wahrscheinlichkeit: {ai_analysis.estimated_probability:.2%}")
-    print(f"🎯 Confidence: {ai_analysis.confidence_score:.2%}")
-    print(f"💭 Begründung: {ai_analysis.reasoning[:200]}...")
-    print("-" * 80)
+    logger.info(f"🧠 KI-Wahrscheinlichkeit: {ai_analysis.estimated_probability:.2%}")
+    logger.info(f"🎯 Confidence: {ai_analysis.confidence_score:.2%}")
+    logger.info(f"💭 Begründung: {ai_analysis.reasoning[:200]}...")
+    logger.info("-" * 80)
     
     # Kelly-Berechnung
     recommendation = calculate_kelly_stake(
@@ -568,64 +483,58 @@ def analyze_and_recommend(market: MarketData) -> None:
     recommendation.market_question = market.question
     
     # Ausgabe der Empfehlung
-    print(f"🎲 EMPFEHLUNG: {recommendation.action}")
-    print(f"💵 Einsatz: {recommendation.stake_usdc:.2f} USDC ({recommendation.kelly_fraction:.2%} des Kapitals)")
-    print(f"📈 Erwarteter Gewinn: {recommendation.expected_value:+.2f} USDC")
+    logger.info(f"🎲 EMPFEHLUNG: {recommendation.action}")
+    logger.info(f"💵 Einsatz: {recommendation.stake_usdc:.2f} USDC ({recommendation.kelly_fraction:.2%} des Kapitals)")
+    logger.info(f"📈 Erwarteter Gewinn: {recommendation.expected_value:+.2f} USDC")
     
     # Edge-Berechnung
     edge = ai_analysis.estimated_probability - market.yes_price
-    print(f"⚡ Edge: {edge:+.2%}")
+    logger.info(f"⚡ Edge: {edge:+.2%}")
     
     if recommendation.action == "YES":
-        print("✅ VALUE BET GEFUNDEN! Kaufe YES-Shares")
+        logger.info("✅ VALUE BET GEFUNDEN! Kaufe YES-Shares")
     elif recommendation.action == "NO":
-        print("🔴 Kaufe NO-Shares")
+        logger.info("🔴 Kaufe NO-Shares")
     else:
-        print("⏭️  Kein ausreichender Edge - PASS")
+        logger.info("⏭️  Kein ausreichender Edge - PASS")
     
-    print("=" * 80)
-    print()
+    logger.info("=" * 80)
+    logger.info("")
 
 
 def main():
     """Hauptfunktion des Bots."""
     # Check for API key when running as main
     if not GEMINI_API_KEY:
-        print("❌ Fehler: GEMINI_API_KEY nicht in .env gefunden!")
+        logger.error("❌ Fehler: GEMINI_API_KEY nicht in .env gefunden!")
         sys.exit(1)
     
-    print("\n" + "=" * 80)
-    print("🤖 POLYMARKET AI VALUE BET BOT")
-    print("=" * 80)
-    print(f"💰 Gesamtkapital: ${TOTAL_CAPITAL:,.2f} USDC")
-    print(f"📊 Kelly Fraction: {KELLY_FRACTION:.0%}")
-    print(f"🛡️  Max. Kapitaleinsatz pro Trade: {MAX_CAPITAL_FRACTION:.0%}")
-    print("=" * 80)
-    print()
+    logger.info("\n" + "=" * 80)
+    logger.info("🤖 POLYMARKET AI VALUE BET BOT")
+    logger.info("=" * 80)
+    logger.info(f"💰 Gesamtkapital: ${TOTAL_CAPITAL:,.2f} USDC")
+    logger.info(f"📊 Kelly Fraction: {KELLY_FRACTION:.0%}")
+    logger.info(f"🛡️  Max. Kapitaleinsatz pro Trade: {MAX_CAPITAL_FRACTION:.0%}")
+    logger.info("=" * 80)
+    logger.info("")
     
     # Hole Märkte
     markets = fetch_active_markets(limit=10)
     
     if not markets:
-        print("❌ Keine Märkte gefunden!")
+        logger.error("❌ Keine Märkte gefunden!")
         return
     
     # Analysiere Top-Märkte
-    print(f"🔍 Analysiere {len(markets)} Märkte...\n")
+    logger.info(f"🔍 Analysiere {len(markets)} Märkte...\n")
     
     for i, market in enumerate(markets, 1):
-        print(f"\n[{i}/{len(markets)}]")
-        
-        # --- FIX: Warten vor der Anfrage um Rate-Limit zu vermeiden ---
-        print("⏳ Warte 5 Sekunden (Rate Limit Schutz)...")
-        time.sleep(5)
-        # -------------------------------------------------------------
-        
+        logger.info(f"\n[{i}/{len(markets)}]")
         analyze_and_recommend(market)
     
-    print("\n" + "=" * 80)
-    print("✅ Analyse abgeschlossen!")
-    print("=" * 80 + "\n")
+    logger.info("\n" + "=" * 80)
+    logger.info("✅ Analyse abgeschlossen!")
+    logger.info("=" * 80 + "\n")
 
 
 if __name__ == "__main__":
