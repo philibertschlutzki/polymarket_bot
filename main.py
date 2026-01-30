@@ -46,6 +46,15 @@ MIN_VOLUME = 15000  # Mindestvolumen in USD für Markt-Selektion
 KELLY_FRACTION = 0.25  # Fractional Kelly (25% der Full Kelly)
 MAX_CAPITAL_FRACTION = 0.5  # Maximum 50% des Kapitals pro Wette
 
+# NEU: Flexible Preisfilter
+MIN_PRICE = float(os.getenv("MIN_PRICE", "0.05"))  # Vorher hardcoded 0.15
+MAX_PRICE = float(os.getenv("MAX_PRICE", "0.95"))  # Vorher hardcoded 0.85
+HIGH_VOLUME_THRESHOLD = float(os.getenv("HIGH_VOLUME_THRESHOLD", "100000"))  # Bei >100k USDC extreme Preise erlauben
+
+# NEU: Vorselektion
+FETCH_MARKET_LIMIT = int(os.getenv("FETCH_MARKET_LIMIT", "50"))  # Von 10 auf 50 erhöhen
+TOP_MARKETS_TO_ANALYZE = int(os.getenv("TOP_MARKETS_TO_ANALYZE", "10"))  # Nur Top 10 detailliert analysieren
+
 
 # ============================================================================
 # DATENMODELLE
@@ -227,11 +236,16 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             
             # Check: Spread (price extremes) - filter out markets with low liquidity
             # Prices too close to 0 or 1 indicate liquidity risk
-            if not (0.15 <= yes_price <= 0.85):
-                extreme_price_count += 1
-                question_str = str(question) if question else 'N/A'
-                logger.info(f"⏭️  Skipping {question_str[:60]}: Preis zu extrem ({yes_price:.2f}), Liquiditätsrisiko.")
-                continue
+            # NEU: Dynamischer Filter mit Volumen-Ausnahme
+            if not (MIN_PRICE <= yes_price <= MAX_PRICE):
+                # Hohe Liquidität erlaubt extreme Preise
+                if volume < HIGH_VOLUME_THRESHOLD:
+                    extreme_price_count += 1
+                    question_str = str(question) if question else 'N/A'
+                    logger.info(f"⏭️  Skipping {question_str[:60]}: Preis zu extrem ({yes_price:.2f}), zu wenig Volumen (${volume:,.0f}).")
+                    continue
+                else:
+                    logger.info(f"✅ Inkludiere trotz extremem Preis ({yes_price:.2f}): Hohes Volumen (${volume:,.0f})")
             
             # Get market identifier
             # REST API uses 'id', GraphQL uses 'conditionId', fallback to 'slug'
@@ -284,6 +298,82 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         traceback.print_exc()
         
         return []
+
+
+def calculate_quick_edge(market: MarketData) -> float:
+    """
+    Schnelle Edge-Schätzung ohne KI-Analyse.
+
+    Berechnet einen Score basierend auf:
+    - Preisvolatilität (Abstand von 50%)
+    - Volumen/Liquidität
+    - Extrempreisrisiko
+
+    Args:
+        market: MarketData-Objekt
+
+    Returns:
+        Edge-Score zwischen 0.0 und 1.0 (höher = besseres Potenzial)
+    """
+    # 1. Volatilitäts-Score: Preise nahe 50% haben mehr Edge-Potenzial
+    price_deviation = abs(market.yes_price - 0.5)
+    volatility_score = 1.0 - (2 * price_deviation)  # 0.0 bei Preisen von 0/1, 1.0 bei 0.5
+
+    # 2. Volumen-Score: Höheres Volumen = bessere Liquidität
+    # Normalisiert auf 0-1 Scale, 100k Volume = Score 1.0
+    volume_score = min(market.volume / 100000.0, 1.0)
+
+    # 3. Extrempreis-Penalty: Bestraft Preise außerhalb 0.2-0.8
+    if 0.2 <= market.yes_price <= 0.8:
+        extreme_penalty = 1.0
+    elif 0.1 <= market.yes_price <= 0.9:
+        extreme_penalty = 0.7
+    else:
+        extreme_penalty = 0.3
+
+    # Kombinierter Score (gewichtet)
+    edge_score = (
+        volatility_score * 0.4 +      # 40% Volatilität
+        volume_score * 0.4 +           # 40% Volumen
+        extreme_penalty * 0.2          # 20% Extrempreis-Vermeidung
+    )
+
+    return edge_score
+
+
+def pre_filter_markets(markets: List[MarketData], top_n: int = 10) -> List[MarketData]:
+    """
+    Filtert die Top-N Märkte mit höchstem Edge-Potenzial.
+
+    Verwendet Quick-Edge-Berechnung für schnelle Vorselektion ohne teure KI-Calls.
+
+    Args:
+        markets: Liste aller verfügbaren Märkte
+        top_n: Anzahl der zurückzugebenden Top-Märkte
+
+    Returns:
+        Liste der Top-N Märkte sortiert nach Edge-Potenzial
+    """
+    if not markets:
+        return []
+
+    # Berechne Quick-Edge für alle Märkte
+    market_scores = []
+    for market in markets:
+        score = calculate_quick_edge(market)
+        market_scores.append((market, score))
+
+    # Sortiere nach Edge-Score (absteigend)
+    market_scores.sort(key=lambda x: x[1], reverse=True)
+
+    # Logging der Top-Märkte
+    logger.info(f"\n🎯 Edge-basierte Vorselektion (Top {min(top_n, len(market_scores))}):")
+    for i, (market, score) in enumerate(market_scores[:top_n], 1):
+        logger.info(f"   {i}. {market.question[:55]}... | Score: {score:.3f} | Preis: {market.yes_price:.2f} | Vol: ${market.volume:,.0f}")
+    logger.info("")
+
+    # Returniere Top-N Märkte
+    return [market for market, _ in market_scores[:top_n]]
 
 
 # ============================================================================
@@ -461,12 +551,15 @@ def calculate_kelly_stake(
 # MAIN ANALYSIS LOGIC
 # ============================================================================
 
-def analyze_and_recommend(market: MarketData) -> None:
+def analyze_and_recommend(market: MarketData) -> Optional[TradingRecommendation]:
     """
     Führt die komplette Analyse für einen Markt durch und gibt eine Empfehlung aus.
     
     Args:
         market: Das zu analysierende MarketData-Objekt
+
+    Returns:
+        TradingRecommendation-Objekt oder None bei Fehler/PASS
     """
     logger.info("=" * 80)
     logger.info(f"📊 MARKT: {market.question}")
@@ -479,7 +572,7 @@ def analyze_and_recommend(market: MarketData) -> None:
     
     if not ai_analysis:
         logger.warning("⚠️  KI-Analyse fehlgeschlagen - SKIP\n")
-        return
+        return None
     
     logger.info(f"🧠 KI-Wahrscheinlichkeit: {ai_analysis.estimated_probability:.2%}")
     logger.info(f"🎯 Confidence: {ai_analysis.confidence_score:.2%}")
@@ -514,36 +607,91 @@ def analyze_and_recommend(market: MarketData) -> None:
     logger.info("=" * 80)
     logger.info("")
 
+    return recommendation
+
 
 def main():
-    """Hauptfunktion des Bots."""
+    """Hauptfunktion des Bots - OPTIMIERTE VERSION."""
     # Check for API key when running as main
     if not GEMINI_API_KEY:
         logger.error("❌ Fehler: GEMINI_API_KEY nicht in .env gefunden!")
         sys.exit(1)
     
     logger.info("\n" + "=" * 80)
-    logger.info("🤖 POLYMARKET AI VALUE BET BOT")
+    logger.info("🤖 POLYMARKET AI VALUE BET BOT (MULTI-STAGE)")
     logger.info("=" * 80)
     logger.info(f"💰 Gesamtkapital: ${TOTAL_CAPITAL:,.2f} USDC")
     logger.info(f"📊 Kelly Fraction: {KELLY_FRACTION:.0%}")
     logger.info(f"🛡️  Max. Kapitaleinsatz pro Trade: {MAX_CAPITAL_FRACTION:.0%}")
+    logger.info(f"🔍 Markt-Fetch-Limit: {FETCH_MARKET_LIMIT}")
+    logger.info(f"🎯 Top-Märkte zur Analyse: {TOP_MARKETS_TO_ANALYZE}")
     logger.info("=" * 80)
     logger.info("")
     
-    # Hole Märkte
-    markets = fetch_active_markets(limit=10)
+    # ========================================================================
+    # STUFE 1: Hole breite Marktauswahl
+    # ========================================================================
+    logger.info(f"📡 STUFE 1: Lade {FETCH_MARKET_LIMIT} Märkte von Gamma API...\n")
+    raw_markets = fetch_active_markets(limit=FETCH_MARKET_LIMIT)
     
-    if not markets:
+    if not raw_markets:
         logger.error("❌ Keine Märkte gefunden!")
         return
     
-    # Analysiere Top-Märkte
-    logger.info(f"🔍 Analysiere {len(markets)} Märkte...\n")
+    logger.info(f"✅ {len(raw_markets)} Märkte qualifiziert nach Basis-Filtern\n")
     
-    for i, market in enumerate(markets, 1):
-        logger.info(f"\n[{i}/{len(markets)}]")
-        analyze_and_recommend(market)
+    # ========================================================================
+    # STUFE 2: Intelligente Vorselektion (Quick-Edge)
+    # ========================================================================
+    logger.info(f"🎯 STUFE 2: Vorselektion der Top-{TOP_MARKETS_TO_ANALYZE} Märkte...")
+    top_markets = pre_filter_markets(raw_markets, top_n=TOP_MARKETS_TO_ANALYZE)
+
+    if not top_markets:
+        logger.error("❌ Keine qualifizierten Märkte nach Vorselektion!")
+        return
+
+    # ========================================================================
+    # STUFE 3: Detaillierte KI-Analyse der Top-Märkte
+    # ========================================================================
+    logger.info(f"🤖 STUFE 3: Detaillierte KI-Analyse...\n")
+
+    recommendations = []
+    for i, market in enumerate(top_markets, 1):
+        logger.info(f"\n[{i}/{len(top_markets)}]")
+        rec = analyze_and_recommend(market)
+        if rec and rec.action != "PASS":
+            recommendations.append(rec)
+
+    # ========================================================================
+    # STUFE 4: Zusammenfassung und Ranking
+    # ========================================================================
+    logger.info("\n" + "=" * 80)
+    logger.info("📊 HANDELSEMPFEHLUNGEN (Sortiert nach Expected Value)")
+    logger.info("=" * 80)
+
+    if recommendations:
+        # Sortiere nach Expected Value (absteigend)
+        recommendations.sort(key=lambda x: x.expected_value, reverse=True)
+
+        total_stake = sum(rec.stake_usdc for rec in recommendations)
+        total_expected_value = sum(rec.expected_value for rec in recommendations)
+
+        for i, rec in enumerate(recommendations, 1):
+            logger.info(f"\n#{i} - {rec.market_question[:65]}...")
+            logger.info(f"    🎲 Action: {rec.action}")
+            logger.info(f"    💵 Einsatz: ${rec.stake_usdc:.2f} USDC ({rec.kelly_fraction:.2%} des Kapitals)")
+            logger.info(f"    📈 Erwarteter Gewinn: ${rec.expected_value:+.2f} USDC")
+
+        logger.info("\n" + "-" * 80)
+        logger.info(f"💼 Portfolio-Zusammenfassung:")
+        logger.info(f"   - Anzahl Trades: {len(recommendations)}")
+        logger.info(f"   - Gesamt-Einsatz: ${total_stake:.2f} USDC ({total_stake/TOTAL_CAPITAL:.1%} des Kapitals)")
+        logger.info(f"   - Gesamt-Expected Value: ${total_expected_value:+.2f} USDC")
+        logger.info(f"   - Durchschnitt pro Trade: ${total_expected_value/len(recommendations):+.2f} USDC")
+
+    else:
+        logger.info("\n⚠️  Keine profitablen Wetten gefunden.")
+        logger.info("💡 Tipp: Erwäge MIN_PRICE/MAX_PRICE anzupassen oder mehr Märkte zu laden.")
     
     logger.info("\n" + "=" * 80)
     logger.info("✅ Analyse abgeschlossen!")
