@@ -1,130 +1,150 @@
-# Polymarket AI Value Bettor 🤖📈
+# Polymarket AI Autonomous Trading Bot 🤖📈
 
-Ein KI-gestütztes Tool, das Polymarket-Märkte analysiert, Wahrscheinlichkeiten mittels Google Gemini (inkl. Live-Websuche) berechnet und Value-Bets basierend auf dem Kelly-Kriterium identifiziert.
+Ein vollautomatisches, KI-gestütztes System, das 24/7 Polymarket-Märkte analysiert, Value-Bets identifiziert und die Performance in einem Live-Dashboard trackt.
 
-## 🚀 Features
+Konzipiert für den Betrieb auf einem **Raspberry Pi** oder Linux-Server.
 
-* **Markt-Scanner:** Findet automatisch die liquidesten Märkte auf Polymarket via CLOB API.
-* **KI-Analyse:** Nutzt Gemini 2.0 Flash mit Google Search Grounding für aktuelle Faktenanalysen.
-* **Value-Erkennung:** Vergleicht KI-Wahrscheinlichkeit mit Marktpreisen.
-* **Risikomanagement:** Berechnet die optimale Positionsgröße mittels Kelly-Kriterium (Hard-Cap bei 50% des Portfolios).
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%20%7C%20Linux-green)
+![Status](https://img.shields.io/badge/Status-Production-brightgreen)
+
+---
+
+## 🚀 Features (v2.0)
+
+### 🧠 Intelligente Analyse
+*   **Gemini 2.0 Flash Integration:** Nutzt Google Search Grounding für Echtzeit-Faktenanalyse.
+*   **Edge-Erkennung:** Berechnet Wahrscheinlichkeiten und vergleicht diese mit Marktpreisen.
+*   **Kelly-Kriterium:** Dynamisches Risikomanagement zur Berechnung der optimalen Positionsgröße (max. 50% Portfolio-Cap).
+
+### ⚙️ Autonomie & Persistenz
+*   **SQLite Datenbank:** Speichert Portfolio-Status (`portfolio_state`), aktive Wetten (`active_bets`) und Resultate (`results`) lokal und sicher.
+*   **Auto-Settlement:** Überwacht Wetten via GraphQL API und verbucht Gewinne/Verluste automatisch nach Marktschluss.
+*   **Quota-Management:** Intelligenter 15-Minuten-Zyklus zur Einhaltung der kostenlosen Gemini API-Limits (95% Auslastung).
+*   **Systemd Service:** Selbstheilender Prozess mit Auto-Restart bei Fehlern.
+
+### 📊 Reporting
+*   **Live-Dashboard:** Generiert automatisch ein `PERFORMANCE_DASHBOARD.md` mit ASCII-Charts, Win-Rate, Sharpe-Ratio und ROI.
+*   **Git Auto-Push:** Pusht Dashboard-Updates automatisch zurück in dieses Repository (via PAT).
+
+---
 
 ## 🛠 Voraussetzungen
 
-* Python 3.10 oder höher
-* Google AI Studio API Key (kostenlos verfügbar)
-* Internetverbindung zur Polymarket CLOB API (clob.polymarket.com)
-* Polymarket Account (für spätere Ausführung)
+*   **Hardware:** Raspberry Pi (3B+ oder neuer empfohlen) oder Linux VM.
+*   **Software:** Python 3.10+, Git.
+*   **Accounts:**
+    *   GitHub Account (für Auto-Push)
+    *   Google AI Studio API Key (kostenlos)
+    *   *(Optional)* Polymarket Account (aktuell Paper-Trading Modus)
 
-## 📦 Installation
+---
 
-1.  **Repository klonen/erstellen:**
-    ```bash
-    git clone [https://github.com/ihr-username/polymarket-ai.git](https://github.com/ihr-username/polymarket-ai.git)
-    cd polymarket-ai
-    ```
+## 📦 Installation & Deployment
 
-2.  **Virtuelle Umgebung erstellen:**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # Mac/Linux
-    # oder
-    venv\Scripts\activate     # Windows
-    ```
+Das System verfügt über ein automatisiertes Deployment-Script für Raspberry Pi / Debian-basierte Systeme.
 
-3.  **Abhängigkeiten installieren:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4.  **Installation überprüfen (optional):**
-    ```bash
-    python verify_install.py
-    ```
-    Dieser Befehl überprüft, ob alle erforderlichen Pakete korrekt installiert sind.
-
-5.  **Konfiguration:**
-    Erstelle eine `.env` Datei im Hauptverzeichnis:
-    ```env
-    GEMINI_API_KEY=Dein_Google_Gemini_Key_Hier
-    TOTAL_CAPITAL=1000  # Dein Startkapital in USDC
-    ```
-
-##  ▶️ Nutzung
-
-Starte den Analyse-Bot:
-
+### 1. Repository klonen
 ```bash
-python main.py
+git clone https://github.com/philibertschlutzki/polymarket_bot.git
+cd polymarket_bot
 ```
 
-## 🔧 Troubleshooting
+### 2. Deployment starten
+Das Script installiert Abhängigkeiten, richtet die Datenbank ein, konfiguriert den Systemdienst und hilft beim Erstellen der `.env` Datei.
 
-### ModuleNotFoundError (z.B. 'dateutil', 'dotenv', etc.)
+```bash
+chmod +x deploy_raspberry_pi.sh
+./deploy_raspberry_pi.sh
+```
 
-Wenn Sie die Fehlermeldung `ModuleNotFoundError: No module named 'dateutil'` oder ähnliche Fehler erhalten:
+**Während der Installation wirst du aufgefordert:**
+1.  Einen **GitHub Personal Access Token (PAT)** einzugeben (Scope: `repo`).
+2.  Deinen **Google Gemini API Key** zu bestätigen.
 
-1. **Stellen Sie sicher, dass Ihre virtuelle Umgebung aktiviert ist:**
-   ```bash
-   source venv/bin/activate  # Mac/Linux
-   # oder
-   venv\Scripts\activate     # Windows
-   ```
+### 3. Log-Rotation (Optional)
+Damit die Logfiles den Speicher nicht füllen:
+```bash
+chmod +x setup_logrotate.sh
+./setup_logrotate.sh
+```
 
-2. **Installieren Sie alle Abhängigkeiten:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+---
 
-3. **Überprüfen Sie, ob die Installation erfolgreich war:**
-   ```bash
-   pip show python-dateutil
-   ```
-   Dies sollte Informationen über das installierte Paket anzeigen.
+## 🖥️ Monitoring & Steuerung
 
-4. **Bei persistierenden Problemen, erstellen Sie eine neue virtuelle Umgebung:**
-   ```bash
-   # Löschen Sie die alte venv
-   rm -rf venv
-   # Erstellen Sie eine neue
-   python -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   ```
+Da der Bot als Hintergrunddienst läuft, nutzen Sie folgende Befehle zur Steuerung:
 
-### Polymarket API nicht erreichbar
+**Status prüfen:**
+```bash
+sudo systemctl status polymarket-bot
+```
 
-Wenn Sie die Fehlermeldung "Die Polymarket API ist in dieser Umgebung nicht erreichbar" erhalten:
+**Live-Logs ansehen:**
+```bash
+tail -f logs/bot.log
+```
 
-1. **Überprüfen Sie Ihre Internetverbindung:**
-   ```bash
-   curl https://clob.polymarket.com/markets
-   ```
+**Bot stoppen/starten:**
+```bash
+sudo systemctl stop polymarket-bot
+sudo systemctl start polymarket-bot
+```
 
-2. **Stellen Sie sicher, dass keine Firewall die Verbindung blockiert:**
-   - Einige Unternehmens- oder Schul-Netzwerke blockieren möglicherweise den Zugriff auf Polymarket
-   - Versuchen Sie es mit einem anderen Netzwerk oder VPN
+---
 
-3. **Überprüfen Sie DNS-Auflösung:**
-   ```bash
-   nslookup clob.polymarket.com
-   ```
+## 📂 Projektstruktur
 
-4. **Verwenden Sie die neueste Version der Abhängigkeiten:**
-   ```bash
-   pip install --upgrade -r requirements.txt
-   ```
+```
+polymarket_bot/
+├── main.py                 # Hauptlogik (Scheduler, API-Calls)
+├── database.py             # SQLite Datenbank-Layer
+├── dashboard.py            # Generierung des Markdown-Dashboards
+├── git_integration.py      # Auto-Push Logik
+├── deploy_raspberry_pi.sh  # Setup-Script
+├── requirements.txt        # Python Abhängigkeiten
+├── polymarket.db           # Datenbank (lokal, nicht in Git)
+├── logs/                   # Logfiles (rotiert)
+└── PERFORMANCE_DASHBOARD.md # Automatisch aktualisierter Report
+```
 
-### API Key Fehler
+---
 
-Wenn Sie "GEMINI_API_KEY nicht in .env gefunden!" erhalten:
-- Stellen Sie sicher, dass die `.env` Datei im selben Verzeichnis wie `main.py` liegt
-- Überprüfen Sie, dass der API Key korrekt eingefügt wurde (ohne Anführungszeichen)
-- Erstellen Sie einen neuen API Key unter https://aistudio.google.com/app/apikey
+## ⚙️ Konfiguration (.env)
 
-## 📚 Technische Details
+Die Konfiguration erfolgt über die `.env` Datei. Das Deployment-Script erstellt diese automatisch, aber hier sind die Details:
 
-Der Bot verwendet:
-- **google-genai**: Google Gemini SDK für KI-Analysen mit Web-Suche
-- **pydantic**: Datenvalidierung und -modellierung
+```env
+# Credentials
+GEMINI_API_KEY=Dein_Google_Key
+GITHUB_PAT=Dein_Github_Token
 
+# Trading Strategie
+MIN_VOLUME=10000          # Min. Volumen für Analyse ($)
+MIN_PRICE=0.05            # Min. Preis (5 Cent)
+MAX_PRICE=0.95            # Max. Preis (95 Cent)
+HIGH_VOLUME_THRESHOLD=50000 # Ausnahme für hohe Liquidität
+
+# System
+FETCH_MARKET_LIMIT=100    # Anzahl Märkte pro API-Call
+TOP_MARKETS_TO_ANALYZE=15 # Max. KI-Analysen pro 15min (Quota-Schutz)
+```
+
+---
+
+## 📈 Dashboard
+
+Das Dashboard [PERFORMANCE_DASHBOARD.md](./PERFORMANCE_DASHBOARD.md) wird automatisch aktualisiert, wenn:
+1.  Eine neue Wette platziert wurde.
+2.  Eine Wette abgeschlossen (resolved) wurde.
+
+Es enthält keine Live-Preise, sondern den Snapshot zum Zeitpunkt der Generierung.
+
+---
+
+## ⚠️ Disclaimer
+
+Dieses Tool dient ausschließlich zu Bildungs- und Forschungszwecken. 
+*   Die "Wetten" sind aktuell fiktiv (Paper Trading) und werden gegen ein virtuelles Portfolio in der SQLite-Datenbank verrechnet.
+*   Es erfolgt keine Interaktion mit Smart Contracts oder echten Funds auf der Polygon Blockchain.
+*   Nutzung auf eigene Gefahr.
