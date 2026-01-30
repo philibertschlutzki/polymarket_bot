@@ -5,14 +5,13 @@ Tests the core functionality with mock data
 """
 
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, patch, MagicMock
 from pydantic import ValidationError
 from main import (
     MarketData, 
     AIAnalysis, 
     TradingRecommendation,
     calculate_kelly_stake,
-    test_clob_connection,
     fetch_active_markets
 )
 
@@ -96,321 +95,199 @@ class TestKellyCriterion(unittest.TestCase):
         self.assertLessEqual(recommendation.stake_usdc, 500.0)
 
 
-class TestCLOBIntegration(unittest.TestCase):
-    """Test CLOB API integration"""
+class TestGammaAPIIntegration(unittest.TestCase):
+    """Test Gamma API integration"""
     
-    @patch('main.ClobClient')
-    def test_clob_connection_success(self, mock_client_class):
-        """Test successful CLOB connection"""
-        # Mock the client
-        mock_client = Mock()
-        mock_client.get_markets.return_value = {
-            'data': [
-                {
-                    'question': 'Test Market',
-                    'active': True,
-                    'volume': '50000',
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-1'},
-                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-2'}
-                    ],
-                    'condition_id': 'test-123',
-                    'description': 'Test description',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                }
-            ]
+    @patch('main.requests.post')
+    def test_fetch_markets_success(self, mock_post):
+        """Test successful market fetching from Gamma API"""
+        # Mock the response
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            'data': {
+                'markets': [
+                    {
+                        'question': 'Test Market',
+                        'description': 'Test description',
+                        'conditionId': 'test-123',
+                        'slug': 'test-market',
+                        'volume': '50000',
+                        'endDate': '2030-12-31T23:59:59Z',
+                        'outcomePrices': '["0.65", "0.35"]',
+                        'outcomes': '["Yes", "No"]'
+                    }
+                ]
+            }
         }
-        mock_client_class.return_value = mock_client
+        mock_post.return_value = mock_response
         
-        result = test_clob_connection()
+        markets = fetch_active_markets(limit=10)
         
         # Verify the result
-        self.assertTrue(result)
-        # Verify the client was initialized with correct parameters
-        mock_client_class.assert_called_once_with(host='https://clob.polymarket.com', chain_id=137)
-        # Verify get_markets was called
-        mock_client.get_markets.assert_called_once()
+        self.assertEqual(len(markets), 1)
+        self.assertEqual(markets[0].question, 'Test Market')
+        self.assertEqual(markets[0].yes_price, 0.65)
+        self.assertEqual(markets[0].volume, 50000.0)
+        self.assertEqual(markets[0].market_slug, 'test-123')
+        
+        # Verify the API was called correctly
+        mock_post.assert_called_once()
+        call_args = mock_post.call_args
+        self.assertEqual(call_args[0][0], 'https://gamma-api.polymarket.com/query')
+        self.assertIn('query', call_args[1]['json'])
+        self.assertIn('variables', call_args[1]['json'])
     
-    @patch('main.ClobClient')
-    def test_fetch_markets_with_filtering(self, mock_client_class):
-        """Test market fetching with volume filtering"""
-        # Mock the client
-        mock_client = Mock()
-        mock_client.get_markets.return_value = {
-            'data': [
-                {
-                    'question': 'High Volume Market',
-                    'active': True,
-                    'volume': '50000',  # Above MIN_VOLUME (15000)
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-1'},
-                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-2'}
-                    ],
-                    'condition_id': 'test-123',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                },
-                {
-                    'question': 'Low Volume Market',
-                    'active': True,
-                    'volume': '100',  # Below MIN_VOLUME (15000)
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.50, 'token_id': 'token-3'},
-                        {'outcome': 'NO', 'price': 0.50, 'token_id': 'token-4'}
-                    ],
-                    'condition_id': 'test-456',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                },
-                {
-                    'question': 'Inactive Market',
-                    'active': False,  # Should be filtered out
-                    'volume': '50000',
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-5'},
-                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-6'}
-                    ],
-                    'condition_id': 'test-789',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                }
-            ]
+    @patch('main.requests.post')
+    def test_fetch_markets_with_filtering(self, mock_post):
+        """Test market fetching with volume and price filtering"""
+        # Mock the response
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            'data': {
+                'markets': [
+                    {
+                        'question': 'High Volume Market',
+                        'description': 'Test',
+                        'conditionId': 'test-123',
+                        'slug': 'high-volume',
+                        'volume': '50000',
+                        'endDate': '2030-12-31T23:59:59Z',
+                        'outcomePrices': '["0.65", "0.35"]',
+                        'outcomes': '["Yes", "No"]'
+                    },
+                    {
+                        'question': 'Extreme Price Market',
+                        'description': 'Test',
+                        'conditionId': 'test-456',
+                        'slug': 'extreme-price',
+                        'volume': '50000',
+                        'endDate': '2030-12-31T23:59:59Z',
+                        'outcomePrices': '["0.95", "0.05"]',  # Price too extreme
+                        'outcomes': '["Yes", "No"]'
+                    }
+                ]
+            }
         }
-        mock_client_class.return_value = mock_client
+        mock_post.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
-        # Should only return the high volume, active market
+        # Should only return the market with acceptable price
         self.assertEqual(len(markets), 1)
         self.assertEqual(markets[0].question, 'High Volume Market')
-        self.assertEqual(markets[0].volume, 50000.0)
-
-    @patch('main.ClobClient')
-    def test_fetch_markets_without_volume_data(self, mock_client_class):
-        """Test market fetching when volume data is not available"""
-        # Mock the client with markets that don't have volume field
-        mock_client = Mock()
-        mock_client.get_markets.return_value = {
-            'data': [
-                {
-                    'question': 'Market Without Volume',
-                    'active': True,
-                    # No volume field - mimics potential API response
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-1'},
-                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-2'}
-                    ],
-                    'condition_id': 'test-123',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                },
-                {
-                    'question': 'Another Market',
-                    'active': True,
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.50, 'token_id': 'token-3'},
-                        {'outcome': 'NO', 'price': 0.50, 'token_id': 'token-4'}
-                    ],
-                    'condition_id': 'test-456',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                }
-            ]
+    
+    @patch('main.requests.post')
+    def test_fetch_markets_graphql_error(self, mock_post):
+        """Test handling of GraphQL errors"""
+        # Mock an error response
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            'errors': [{'message': 'GraphQL error'}]
         }
-        mock_client_class.return_value = mock_client
+        mock_post.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
-        # Should return both markets since volume filter is skipped when data unavailable
-        self.assertEqual(len(markets), 2)
-        # Volume should be set to 0 when not available
-        self.assertEqual(markets[0].volume, 0.0)
-        self.assertEqual(markets[1].volume, 0.0)
-
-    @patch('main.ClobClient')
-    def test_fetch_markets_with_zero_volume(self, mock_client_class):
-        """Test that markets with actual zero volume are filtered out"""
-        # Mock the client with a market that has volume field set to 0
-        mock_client = Mock()
-        mock_client.get_markets.return_value = {
-            'data': [
-                {
-                    'question': 'Zero Volume Market',
-                    'active': True,
-                    'volume': '0',  # Volume is 0 - should be filtered
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-1'},
-                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-2'}
-                    ],
-                    'condition_id': 'test-123',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                },
-                {
-                    'question': 'Good Volume Market',
-                    'active': True,
-                    'volume': '50000',  # Above MIN_VOLUME (15000)
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.50, 'token_id': 'token-3'},
-                        {'outcome': 'NO', 'price': 0.50, 'token_id': 'token-4'}
-                    ],
-                    'condition_id': 'test-456',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                }
-            ]
-        }
-        mock_client_class.return_value = mock_client
+        # Should return empty list on error
+        self.assertEqual(len(markets), 0)
+    
+    @patch('main.requests.post')
+    def test_fetch_markets_http_error(self, mock_post):
+        """Test handling of HTTP errors"""
+        # Mock an HTTP error
+        mock_response = Mock()
+        mock_response.status_code = 500
+        mock_post.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
-        # Should only return the market with good volume
+        # Should return empty list on error
+        self.assertEqual(len(markets), 0)
+    
+    @patch('main.requests.post')
+    def test_fetch_markets_connection_error(self, mock_post):
+        """Test handling of connection errors"""
+        # Mock a connection error
+        import requests
+        mock_post.side_effect = requests.exceptions.ConnectionError("Network error")
+        
+        markets = fetch_active_markets(limit=10)
+        
+        # Should return empty list on error
+        self.assertEqual(len(markets), 0)
+    
+    @patch('main.requests.post')
+    def test_fetch_markets_with_list_outcome_prices(self, mock_post):
+        """Test market fetching when outcomePrices is already a list"""
+        # Mock the response with outcomePrices as list instead of string
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            'data': {
+                'markets': [
+                    {
+                        'question': 'Test Market',
+                        'description': 'Test',
+                        'conditionId': 'test-123',
+                        'slug': 'test',
+                        'volume': '50000',
+                        'endDate': '2030-12-31T23:59:59Z',
+                        'outcomePrices': [0.65, 0.35],  # List instead of JSON string
+                        'outcomes': '["Yes", "No"]'
+                    }
+                ]
+            }
+        }
+        mock_post.return_value = mock_response
+        
+        markets = fetch_active_markets(limit=10)
+        
+        # Should successfully parse list format
         self.assertEqual(len(markets), 1)
-        self.assertEqual(markets[0].question, 'Good Volume Market')
-        self.assertEqual(markets[0].volume, 50000.0)
-
-    @patch('main.ClobClient')
-    def test_fetch_markets_with_extreme_prices(self, mock_client_class):
-        """Test that markets with extreme prices (outside 0.15-0.85) are filtered out"""
-        # Mock the client with markets having extreme prices
-        mock_client = Mock()
-        mock_client.get_markets.return_value = {
-            'data': [
-                {
-                    'question': 'Extreme High Price Market',
-                    'active': True,
-                    'volume': '50000',
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.95, 'token_id': 'token-1'},
-                        {'outcome': 'NO', 'price': 0.05, 'token_id': 'token-2'}
-                    ],
-                    'condition_id': 'test-123',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                },
-                {
-                    'question': 'Extreme Low Price Market',
-                    'active': True,
-                    'volume': '50000',
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.05, 'token_id': 'token-3'},
-                        {'outcome': 'NO', 'price': 0.95, 'token_id': 'token-4'}
-                    ],
-                    'condition_id': 'test-456',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                },
-                {
-                    'question': 'Good Price Market',
-                    'active': True,
-                    'volume': '50000',
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.50, 'token_id': 'token-5'},
-                        {'outcome': 'NO', 'price': 0.50, 'token_id': 'token-6'}
-                    ],
-                    'condition_id': 'test-789',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                },
-                {
-                    'question': 'Edge Case High Market',
-                    'active': True,
-                    'volume': '50000',
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.85, 'token_id': 'token-7'},
-                        {'outcome': 'NO', 'price': 0.15, 'token_id': 'token-8'}
-                    ],
-                    'condition_id': 'test-101',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                },
-                {
-                    'question': 'Edge Case Low Market',
-                    'active': True,
-                    'volume': '50000',
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.15, 'token_id': 'token-9'},
-                        {'outcome': 'NO', 'price': 0.85, 'token_id': 'token-10'}
-                    ],
-                    'condition_id': 'test-102',
-                    'description': 'Test',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                }
-            ]
+        self.assertEqual(markets[0].yes_price, 0.65)
+    
+    @patch('main.requests.post')
+    def test_fetch_markets_expired(self, mock_post):
+        """Test that expired markets are filtered out"""
+        # Mock the response with an expired market
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            'data': {
+                'markets': [
+                    {
+                        'question': 'Expired Market',
+                        'description': 'Test',
+                        'conditionId': 'test-123',
+                        'slug': 'expired',
+                        'volume': '50000',
+                        'endDate': '2020-01-01T00:00:00Z',  # Expired
+                        'outcomePrices': '["0.65", "0.35"]',
+                        'outcomes': '["Yes", "No"]'
+                    },
+                    {
+                        'question': 'Active Market',
+                        'description': 'Test',
+                        'conditionId': 'test-456',
+                        'slug': 'active',
+                        'volume': '50000',
+                        'endDate': '2030-12-31T23:59:59Z',  # Future
+                        'outcomePrices': '["0.50", "0.50"]',
+                        'outcomes': '["Yes", "No"]'
+                    }
+                ]
+            }
         }
-        mock_client_class.return_value = mock_client
+        mock_post.return_value = mock_response
         
         markets = fetch_active_markets(limit=10)
         
-        # Should return only markets with prices in range (0.15-0.85)
-        self.assertEqual(len(markets), 3)
-        questions = [m.question for m in markets]
-        self.assertIn('Good Price Market', questions)
-        self.assertIn('Edge Case High Market', questions)
-        self.assertIn('Edge Case Low Market', questions)
-        self.assertNotIn('Extreme High Price Market', questions)
-        self.assertNotIn('Extreme Low Price Market', questions)
-
-    @patch('main.ClobClient')
-    def test_markets_with_volume(self, mock_client_class):
-        """Test that get_markets properly retrieves volume data"""
-        # Mock the client with markets that have volume data
-        mock_client = Mock()
-        mock_client.get_markets.return_value = {
-            'data': [
-                {
-                    'question': 'High Volume Market 1',
-                    'active': True,
-                    'volume': '75000.50',  # High volume
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.65, 'token_id': 'token-1'},
-                        {'outcome': 'NO', 'price': 0.35, 'token_id': 'token-2'}
-                    ],
-                    'condition_id': 'test-123',
-                    'description': 'Test market 1',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                },
-                {
-                    'question': 'High Volume Market 2',
-                    'active': True,
-                    'volume': '100000',  # High volume
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.50, 'token_id': 'token-3'},
-                        {'outcome': 'NO', 'price': 0.50, 'token_id': 'token-4'}
-                    ],
-                    'condition_id': 'test-456',
-                    'description': 'Test market 2',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                },
-                {
-                    'question': 'Medium Volume Market',
-                    'active': True,
-                    'volume': '20000',  # Above MIN_VOLUME (15000)
-                    'tokens': [
-                        {'outcome': 'YES', 'price': 0.40, 'token_id': 'token-5'},
-                        {'outcome': 'NO', 'price': 0.60, 'token_id': 'token-6'}
-                    ],
-                    'condition_id': 'test-789',
-                    'description': 'Test market 3',
-                    'end_date_iso': '2030-12-31T23:59:59Z'
-                }
-            ]
-        }
-        mock_client_class.return_value = mock_client
-        
-        markets = fetch_active_markets(limit=10)
-        
-        # Should return all three markets since they all have volume > MIN_VOLUME
-        self.assertEqual(len(markets), 3)
-        
-        # Verify volume data is correctly parsed
-        volumes = {m.question: m.volume for m in markets}
-        self.assertEqual(volumes['High Volume Market 1'], 75000.50)
-        self.assertEqual(volumes['High Volume Market 2'], 100000.0)
-        self.assertEqual(volumes['Medium Volume Market'], 20000.0)
-        
-        # Verify get_markets was called
-        mock_client.get_markets.assert_called_once()
+        # Should only return the active market
+        self.assertEqual(len(markets), 1)
+        self.assertEqual(markets[0].question, 'Active Market')
 
 
 if __name__ == '__main__':
