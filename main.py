@@ -3,7 +3,7 @@
 Polymarket AI Value Bet Bot
 
 Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
-- Marktdaten aus der Polymarket Gamma API (GraphQL)
+- Marktdaten aus der Polymarket Gamma API (REST)
 - KI-gestützte Wahrscheinlichkeitsschätzung via Google Gemini mit Search Grounding
 - Kelly-Kriterium zur Positionsgrößenbestimmung (max. 50% des Kapitals)
 """
@@ -35,7 +35,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 TOTAL_CAPITAL = float(os.getenv("TOTAL_CAPITAL", "1000"))
 
 POLYMARKET_CLOB_URL = "https://clob.polymarket.com"  # CLOB API Endpoint (kept for potential order execution)
-POLYMARKET_GAMMA_API_URL = "https://gamma-api.polymarket.com/query"  # Gamma GraphQL API
+POLYMARKET_GAMMA_API_URL = "https://gamma-api.polymarket.com/markets"  # Gamma REST API
 MIN_VOLUME = 15000  # Mindestvolumen in USD für Markt-Selektion
 KELLY_FRACTION = 0.25  # Fractional Kelly (25% der Full Kelly)
 MAX_CAPITAL_FRACTION = 0.5  # Maximum 50% des Kapitals pro Wette
@@ -155,7 +155,7 @@ def test_clob_connection():
 
 def fetch_active_markets(limit: int = 20) -> List[MarketData]:
     """
-    Holt aktive Märkte von der Polymarket Gamma API (GraphQL).
+    Holt aktive Märkte von der Polymarket Gamma API (REST).
     
     Args:
         limit: Maximale Anzahl der zurückzugebenden Märkte
@@ -166,43 +166,19 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
     try:
         print(f"📡 Verbinde mit Polymarket Gamma API...")
         
-        # GraphQL Query für aktive Märkte
-        graphql_query = """
-        query GetActiveMarkets($minVolume: String!, $limit: Int!) {
-          markets(
-            where: {
-              active: { _eq: true }, 
-              closed: { _eq: false }, 
-              volume: { _gte: $minVolume }
-            }, 
-            order_by: { volume: desc }, 
-            limit: $limit
-          ) {
-            question
-            conditionId
-            slug
-            volume
-            endDate
-            outcomePrices
-            description
-            outcomes
-          }
-        }
-        """
-        
-        # Variablen für die Query
-        variables = {
-            "minVolume": str(MIN_VOLUME),
-            "limit": limit
+        # REST API Query parameters
+        params = {
+            "closed": "false",  # Only active markets
+            "limit": limit,
+            "offset": 0,
+            "order": "volume",  # Sort by volume
+            "ascending": "false"  # Descending order
         }
         
-        # POST Request an Gamma API
-        response = requests.post(
+        # GET Request to Gamma REST API
+        response = requests.get(
             POLYMARKET_GAMMA_API_URL,
-            json={
-                "query": graphql_query,
-                "variables": variables
-            },
+            params=params,
             headers={
                 "Content-Type": "application/json"
             },
@@ -212,18 +188,20 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         # Prüfe HTTP Status
         if response.status_code != 200:
             print(f"⚠️  Gamma API HTTP Fehler: {response.status_code}")
+            print(f"⚠️  Response: {response.text[:200]}")
             return []
         
         # Parse JSON Response
         data = response.json()
         
-        # Prüfe auf GraphQL Errors
-        if "errors" in data:
-            print(f"⚠️  Gamma API GraphQL Fehler: {data['errors']}")
+        # Extrahiere Märkte - REST API returns list directly or in 'data' field
+        if isinstance(data, list):
+            market_data_list = data
+        elif isinstance(data, dict):
+            market_data_list = data.get("data", data.get("markets", []))
+        else:
+            print(f"⚠️  Unerwartetes Response-Format: {type(data)}")
             return []
-        
-        # Extrahiere Märkte
-        market_data_list = data.get("data", {}).get("markets", [])
         
         if not market_data_list:
             print(f"⚠️  Keine Märkte von Gamma API empfangen")
@@ -239,8 +217,20 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         expired_count = 0
         
         for market in market_data_list:
+            # Filter by volume - skip markets with low volume
+            volume_raw = market.get('volume')
+            try:
+                volume = float(volume_raw) if volume_raw is not None else 0.0
+            except (ValueError, TypeError):
+                continue
+            
+            # Skip markets below minimum volume threshold
+            if volume < MIN_VOLUME:
+                continue
+            
             # Filter by end_date - skip markets that have already ended
-            end_date_str = market.get('endDate')
+            # REST API uses 'close_time', GraphQL uses 'endDate'
+            end_date_str = market.get('close_time') or market.get('endDate')
             if end_date_str:
                 try:
                     # Parse the end date (ISO 8601 format)
@@ -264,19 +254,11 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             question = market.get('question', '')
             description = market.get('description', '')
             
-            # Get volume
+            # Parse outcome prices
+            # REST API uses 'outcome_prices', GraphQL uses 'outcomePrices'
+            # Both can be either a JSON string '["0.65", "0.35"]' or a list [0.65, 0.35]
             try:
-                volume_raw = market.get('volume')
-                volume = float(volume_raw) if volume_raw is not None else 0.0
-            except (ValueError, TypeError) as e:
-                parse_error_count += 1
-                question_str = str(question) if question else 'N/A'
-                print(f"⚠️  Konnte Volumen nicht parsen für Markt: {question_str[:50]} - Wert: {volume_raw}, Fehler: {e}")
-                continue
-            
-            # Parse outcomePrices - this is typically a JSON string in the format: '["0.65", "0.35"]'
-            try:
-                outcome_prices_raw = market.get('outcomePrices')
+                outcome_prices_raw = market.get('outcome_prices') or market.get('outcomePrices')
                 
                 # Parse the JSON string if it exists
                 if outcome_prices_raw:
@@ -299,7 +281,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                 parse_error_count += 1
                 question_str = str(question) if question else 'N/A'
                 print(f"⚠️  Konnte Preis nicht parsen für Markt: {question_str[:50]} - Fehler: {e}")
-                print(f"    outcomePrices Wert: {market.get('outcomePrices')}")
+                print(f"    outcome_prices Wert: {market.get('outcome_prices') or market.get('outcomePrices')}")
                 continue
             
             # Check: Spread (price extremes) - filter out markets with low liquidity
@@ -310,8 +292,9 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                 print(f"⏭️  Skipping {question_str[:60]}: Preis zu extrem ({yes_price:.2f}), Liquiditätsrisiko.")
                 continue
             
-            # Get market identifier (prefer conditionId over slug)
-            market_slug = market.get('conditionId') or market.get('slug') or ''
+            # Get market identifier
+            # REST API uses 'id', GraphQL uses 'conditionId', fallback to 'slug'
+            market_slug = market.get('id') or market.get('conditionId') or market.get('slug') or ''
             
             try:
                 markets.append(MarketData(
@@ -320,7 +303,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                     market_slug=market_slug,
                     yes_price=yes_price,
                     volume=volume,
-                    end_date=market.get('endDate')
+                    end_date=market.get('close_time') or market.get('endDate')
                 ))
             except Exception as e:
                 parse_error_count += 1
@@ -346,7 +329,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         print(f"   1. Sie eine Internetverbindung haben")
         print(f"   2. Die Domain 'gamma-api.polymarket.com' erreichbar ist")
         print(f"   3. Keine Firewall die Verbindung blockiert")
-        print(f"\n💡 Tipp: Führen Sie 'curl https://gamma-api.polymarket.com/query' aus, um die Erreichbarkeit zu testen.\n")
+        print(f"\n💡 Tipp: Führen Sie 'curl https://gamma-api.polymarket.com/markets' aus, um die Erreichbarkeit zu testen.\n")
         return []
     except requests.exceptions.Timeout:
         print(f"⚠️  Gamma API Timeout - keine Antwort innerhalb von 10 Sekunden")
