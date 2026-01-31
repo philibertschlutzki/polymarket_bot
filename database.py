@@ -18,6 +18,41 @@ logger = logging.getLogger(__name__)
 # Thread-local storage for database connections
 _local = threading.local()
 
+def flexible_timestamp_converter(val):
+    """
+    Custom SQLite converter to handle various timestamp formats.
+    Handles 'YYYY-MM-DD', 'YYYY-MM-DD HH:MM:SS', etc.
+    """
+    if not val:
+        return None
+    try:
+        # SQLite passes bytes
+        s = val.decode('utf-8')
+        return parser.parse(s)
+    except Exception as e:
+        logger.warning(f"Error parsing timestamp '{val}': {e}")
+        return None
+
+# Register the converter
+sqlite3.register_converter("TIMESTAMP", flexible_timestamp_converter)
+
+def safe_timestamp(val):
+    """
+    Ensures timestamp is converted to a standard string format before insertion.
+    Returns 'YYYY-MM-DD HH:MM:SS' string.
+    """
+    if val is None:
+        return None
+    if isinstance(val, datetime):
+        return val.strftime('%Y-%m-%d %H:%M:%S')
+    if isinstance(val, str):
+        try:
+            dt = parser.parse(val)
+            return dt.strftime('%Y-%m-%d %H:%M:%S')
+        except:
+            return val
+    return val
+
 @contextmanager
 def get_db_connection():
     """
@@ -58,6 +93,67 @@ def close_db_connection():
         finally:
             _local.connection = None
             _local.depth = 0
+
+def repair_timestamps():
+    """
+    Scans active_bets and results tables for invalid timestamps and fixes them.
+    """
+    logger.info("Checking for malformed timestamps in database...")
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+
+        # Check active_bets
+        try:
+            cursor.execute("SELECT bet_id, timestamp_created, end_date FROM active_bets")
+            rows = cursor.fetchall()
+            for row in rows:
+                updates = {}
+                # Check timestamp_created
+                ts_created = row['timestamp_created']
+                # If it's already a datetime object, it was parsed correctly by our new converter.
+                # If it's None, it might be missing or failed parsing (but our converter returns None on fail).
+                # We want to ensure it is stored as standard string format.
+
+                # However, since we are selecting it, we get the converted value (datetime).
+                # To see the raw string, we would need to cast or disable converter.
+                # But here we just want to ensure that if we write it back, it's correct.
+                # Actually, simpler approach: Update ALL rows to safe_timestamp format
+
+                if ts_created:
+                    updates['timestamp_created'] = safe_timestamp(ts_created)
+
+                end_date = row['end_date']
+                if end_date:
+                    updates['end_date'] = safe_timestamp(end_date)
+
+                if updates:
+                    set_clause = ", ".join([f"{k} = ?" for k in updates.keys()])
+                    values = list(updates.values()) + [row['bet_id']]
+                    cursor.execute(f"UPDATE active_bets SET {set_clause} WHERE bet_id = ?", values)
+
+            # Check results
+            cursor.execute("SELECT result_id, timestamp_created, timestamp_closed FROM results")
+            rows = cursor.fetchall()
+            for row in rows:
+                updates = {}
+                ts_created = row['timestamp_created']
+                if ts_created:
+                    updates['timestamp_created'] = safe_timestamp(ts_created)
+
+                ts_closed = row['timestamp_closed']
+                if ts_closed:
+                    updates['timestamp_closed'] = safe_timestamp(ts_closed)
+
+                if updates:
+                    set_clause = ", ".join([f"{k} = ?" for k in updates.keys()])
+                    values = list(updates.values()) + [row['result_id']]
+                    cursor.execute(f"UPDATE results SET {set_clause} WHERE result_id = ?", values)
+
+            conn.commit()
+            logger.info("Timestamp repair completed.")
+
+        except Exception as e:
+            logger.error(f"Error during timestamp repair: {e}")
 
 def init_database():
     """Initializes the database with required tables and default values."""
@@ -116,12 +212,15 @@ def init_database():
         if cursor.fetchone()[0] == 0:
             cursor.execute(
                 'INSERT INTO portfolio_state (id, total_capital, last_updated) VALUES (?, ?, ?)',
-                (1, INITIAL_CAPITAL, datetime.now())
+                (1, INITIAL_CAPITAL, safe_timestamp(datetime.now()))
             )
             logger.info(f"Initialized portfolio with ${INITIAL_CAPITAL} USDC")
 
         conn.commit()
         logger.info("Database initialized successfully.")
+
+    # Run repair after initialization to fix any existing issues
+    repair_timestamps()
 
 def get_current_capital() -> float:
     """Reads current capital from portfolio_state."""
@@ -139,7 +238,7 @@ def update_capital(new_capital: float):
         cursor = conn.cursor()
         cursor.execute(
             'UPDATE portfolio_state SET total_capital = ?, last_updated = ? WHERE id = 1',
-            (new_capital, datetime.now())
+            (new_capital, safe_timestamp(datetime.now()))
         )
         conn.commit()
         logger.info(f"Capital updated to ${new_capital:.2f}")
@@ -164,8 +263,8 @@ def insert_active_bet(bet_data: Dict[str, Any]):
             bet_data['ai_probability'],
             bet_data['confidence_score'],
             bet_data['expected_value'],
-            bet_data.get('end_date'),
-            datetime.now()
+            safe_timestamp(bet_data.get('end_date')),
+            safe_timestamp(datetime.now())
         ))
         conn.commit()
         logger.info(f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']})")
@@ -197,6 +296,7 @@ def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[sqli
         roi = (profit_loss / bet['stake_usdc']) if bet['stake_usdc'] > 0 else 0.0
 
         # Insert into results
+        # Note: We use the original timestamp_created from the bet, but ensure it's safe
         cursor.execute('''
         INSERT INTO results (
             bet_id, market_slug, question, action, stake_usdc, entry_price,
@@ -205,7 +305,7 @@ def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[sqli
         ''', (
             bet['bet_id'], bet['market_slug'], bet['question'], bet['action'],
             bet['stake_usdc'], bet['entry_price'], outcome, profit_loss, roi,
-            bet['timestamp_created'], datetime.now()
+            safe_timestamp(bet['timestamp_created']), safe_timestamp(datetime.now())
         ))
 
         # Update active_bet status
@@ -219,7 +319,7 @@ def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[sqli
 
         cursor.execute(
             'UPDATE portfolio_state SET total_capital = ?, last_updated = ? WHERE id = 1',
-            (new_capital, datetime.now())
+            (new_capital, safe_timestamp(datetime.now()))
         )
 
         if should_commit:
@@ -325,7 +425,7 @@ def update_last_dashboard_update():
         cursor = conn.cursor()
         cursor.execute(
             'UPDATE portfolio_state SET last_dashboard_update = ? WHERE id = 1',
-            (datetime.now(),)
+            (safe_timestamp(datetime.now()),)
         )
         conn.commit()
 
