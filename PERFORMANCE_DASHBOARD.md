@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 19:59:12 CET
+**Last Updated:** 2026-01-31 20:16:49 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-01-31 19:36:25 CET |
-| Next Run | 2026-01-31 19:51:25 CET |
+| Last Run | 2026-01-31 19:54:43 CET |
+| Next Run | 2026-01-31 20:09:43 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 4 | 15 | 27% | 🟢 |
-| Today (RPD) | 45 | 1,500 | 3.0% | 🟢 |
-| Current Minute (TPM) | 3,034 | 1,000,000 | 0.30% | 🟢 |
+| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
+| Today (RPD) | 56 | 1,500 | 3.7% | 🟢 |
+| Current Minute (TPM) | 4,398 | 1,000,000 | 0.44% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $560.26 (56.0% of capital) |
-| Avg Position Size | $62.25 |
+| Total Exposure | $678.64 (67.9% of capital) |
+| Avg Position Size | $61.69 |
 | Largest Position | $112.47 (11.2%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.146) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.119) |
 
 ---
-## 🎯 Active Bets (9)
+## 🎯 Active Bets (11)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -60,6 +60,8 @@
 | Will the price of Bitcoin be less than $... | NO | $109.58 | 0.69 | 0.30 | -39% 🔴 | 60% | $+138.65 | 2026-02-01 | 0d | 🔴 |
 | Will the price of Bitcoin be above $86,0... | YES | $28.58 | 0.02 | 0.15 | +13% 🟡 | 70% | $+247.96 | 2026-02-01 | 0d | 🔴 |
 | US strikes Iran by February 3, 2026? | YES | $26.71 | 0.13 | 0.25 | +12% 🟡 | 60% | $+24.66 | 2026-02-03 | 2d | 🔴 |
+| Kraken vs. Golden Knights | YES | $90.35 | 0.38 | 0.62 | +24% 🟢 | 85% | $+59.03 | 2026-02-01 | 0d | 🔴 |
+| Ethereum all time high by December 31, 2... | YES | $28.03 | 0.24 | 0.35 | +10% 🟡 | 65% | $+12.01 | 2027-01-01 | 334d | 🟢 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -68,7 +70,7 @@
 
 - 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 11.2% of capital
 - 🔴 **High Exposure**: "Will the price of Bitcoin be l..." is 11.0% of capital
-- 🟡 **Expiring Soon**: 6 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 7 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -76,7 +78,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 9 |
+| Markets with Active Bets | 11 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
