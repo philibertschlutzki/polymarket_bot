@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 20:16:49 CET
+**Last Updated:** 2026-01-31 22:50:18 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-01-31 19:54:43 CET |
-| Next Run | 2026-01-31 20:09:43 CET |
+| Last Run | 2026-01-31 22:32:42 CET |
+| Next Run | 2026-01-31 22:47:42 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
-| Today (RPD) | 56 | 1,500 | 3.7% | 🟢 |
-| Current Minute (TPM) | 4,398 | 1,000,000 | 0.44% | 🟢 |
+| Current Minute (RPM) | 3 | 15 | 20% | 🟢 |
+| Today (RPD) | 43 | 1,500 | 2.9% | 🟢 |
+| Current Minute (TPM) | 3,573 | 1,000,000 | 0.36% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,36 +41,33 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $678.64 (67.9% of capital) |
-| Avg Position Size | $61.69 |
-| Largest Position | $112.47 (11.2%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.119) |
+| Total Exposure | $694.39 (69.4% of capital) |
+| Avg Position Size | $86.80 |
+| Largest Position | $250.00 (25.0%) |
+| Portfolio Concentration | Medium 🟡 (HHI: 0.203) |
 
 ---
-## 🎯 Active Bets (11)
+## 🎯 Active Bets (8)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Nothing Ever Happens: US Strike Edition | YES | $91.00 | 0.31 | 0.60 | +29% 🟢 | 75% | $+85.12 | 2026-03-31 | 58d | 🟢 |
-| Will Russia capture Kostyantynivka by De... | NO | $30.90 | 0.88 | 0.75 | -13% 🔴 | 70% | $+33.47 | 2026-12-31 | 333d | 🟢 |
-| Will the price of Bitcoin be above $84,0... | YES | $112.47 | 0.10 | 0.60 | +50% 🟢 | 65% | $+597.87 | 2026-02-02 | 1d | 🔴 |
-| Will any presidential candidate win outr... | NO | $42.77 | 0.81 | 0.65 | -16% 🔴 | 75% | $+36.01 | 2026-02-01 | 0d | 🔴 |
-| Will Laura Virginia Fernández Delgado wi... | NO | $87.77 | 0.93 | 0.55 | -38% 🔴 | 75% | $+438.86 | 2026-02-01 | 0d | 🔴 |
-| Will Pierre-Yves Bournazel win the Paris... | YES | $30.48 | 0.01 | 0.15 | +14% 🟡 | 70% | $+883.96 | Unknown | N/A | 🔵 |
-| Will the price of Bitcoin be less than $... | NO | $109.58 | 0.69 | 0.30 | -39% 🔴 | 60% | $+138.65 | 2026-02-01 | 0d | 🔴 |
-| Will the price of Bitcoin be above $86,0... | YES | $28.58 | 0.02 | 0.15 | +13% 🟡 | 70% | $+247.96 | 2026-02-01 | 0d | 🔴 |
-| US strikes Iran by February 3, 2026? | YES | $26.71 | 0.13 | 0.25 | +12% 🟡 | 60% | $+24.66 | 2026-02-03 | 2d | 🔴 |
-| Kraken vs. Golden Knights | YES | $90.35 | 0.38 | 0.62 | +24% 🟢 | 85% | $+59.03 | 2026-02-01 | 0d | 🔴 |
-| Ethereum all time high by December 31, 2... | YES | $28.03 | 0.24 | 0.35 | +10% 🟡 | 65% | $+12.01 | 2027-01-01 | 334d | 🟢 |
+| Will Ja Morant be traded this season? | NO | $86.60 | 0.25 | 0.15 | -10% 🔴 | 75% | $+11.55 | 2026-02-05 | 4d | 🟡 |
+| Based FDV above $300M one day after laun... | YES | $110.24 | 0.26 | 0.65 | +39% 🟢 | 70% | $+165.35 | 2027-01-01 | 334d | 🟢 |
+| Will Mike Vrabel win NFL Coach of the Ye... | YES | $250.00 | 0.84 | 1.00 | +16% 🟡 | 100% | $+47.62 | 2026-02-11 | 10d | 🟢 |
+| Will Solana dip to $90 in January? | YES | $21.11 | 0.05 | 0.15 | +10% 🟡 | 60% | $+47.73 | 2026-02-01 | 0d | 🔴 |
+| Will Pierre-Yves Bournazel win the Paris... | YES | $40.99 | 0.01 | 0.20 | +20% 🟡 | 70% | $+1598.69 | Unknown | N/A | 🔵 |
+| Will John Cornyn win the 2026 Texas Repu... | YES | $54.75 | 0.26 | 0.45 | +20% 🟡 | 70% | $+41.87 | 2026-03-03 | 30d | 🟢 |
+| Will Paramount close Warner Bros acquisi... | YES | $32.60 | 0.23 | 0.35 | +12% 🟡 | 70% | $+17.01 | Unknown | N/A | 🔵 |
+| U.S. forces seize another oil tanker by ... | YES | $98.10 | 0.36 | 0.65 | +29% 🟢 | 75% | $+79.03 | Unknown | N/A | 🔵 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
 ---
 ## ⚠️ Alerts & Warnings
 
-- 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 11.2% of capital
-- 🔴 **High Exposure**: "Will the price of Bitcoin be l..." is 11.0% of capital
-- 🟡 **Expiring Soon**: 7 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Based FDV above $300M one day ..." is 11.0% of capital
+- 🔴 **High Exposure**: "Will Mike Vrabel win NFL Coach..." is 25.0% of capital
+- 🟡 **Expiring Soon**: 2 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -78,7 +75,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 11 |
+| Markets with Active Bets | 8 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
