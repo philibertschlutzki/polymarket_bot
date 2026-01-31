@@ -11,6 +11,7 @@ Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
 
 import os
 import sys
+import pathlib
 import json
 import logging
 import logging.handlers
@@ -37,18 +38,43 @@ import git_integration
 # KONFIGURATION
 # ============================================================================
 
-# Configure logging
-# Ensure logs directory exists
-os.makedirs('logs', exist_ok=True)
+# Configure logging with robust error handling
+
+# Ensure logs directory exists with correct permissions
+log_dir = pathlib.Path('logs')
+log_dir.mkdir(exist_ok=True)
+
+# Try to fix permissions if we can
+try:
+    os.chmod(log_dir, 0o755)
+except Exception:
+    pass
+
+log_file = log_dir / 'bot.log'
+
+# Remove existing log file if it has permission issues
+if log_file.exists():
+    try:
+        with open(log_file, 'a') as test_file:
+            pass
+    except PermissionError:
+        print(f"⚠️ Warning: Removing log file with permission issues: {log_file}")
+        try:
+            log_file.unlink()
+        except Exception as e:
+            print(f"❌ Cannot remove log file. Please run: sudo rm {log_file}")
+            print(f"   Then restart the service.")
+            sys.exit(1)
 
 # Configure logging with both console and file output
 log_handlers = [
     logging.StreamHandler(),  # Console output
     logging.handlers.RotatingFileHandler(
-        'logs/bot.log',
+        str(log_file),
         maxBytes=10 * 1024 * 1024,  # 10 MB per file
         backupCount=5,
-        encoding='utf-8'
+        encoding='utf-8',
+        delay=True  # Lazy file creation to avoid permission issues
     )
 ]
 
