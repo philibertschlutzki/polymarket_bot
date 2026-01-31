@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 16:52:42 CET
+**Last Updated:** 2026-01-31 17:09:58 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 
 ---
 
-## 🎯 Active Bets (4)
+## 🎯 Active Bets (6)
 
 | Question | Action | Stake | Entry Price | Expected Value | Days Open |
 |---|---|---|---|---|---|
@@ -28,6 +28,8 @@
 | Will John Cornyn win the 2026 Texas Republican Primary? | YES | $54.75 | 0.26 | $+41.87 | 0 |
 | Will Russia capture Kostyantynivka by December 31, 2026? | NO | $55.54 | 0.89 | $+113.50 | 0 |
 | Will Pierre-Yves Bournazel win the Paris mayor election? | YES | $30.30 | 0.01 | $+727.24 | 0 |
+| Will Paramount close Warner Bros acquisition? | YES | $38.37 | 0.21 | $+25.58 | 0 |
+| Will Mike Vrabel win NFL Coach of the Year? | NO | $34.44 | 0.87 | $+34.44 | 0 |
 
 
 ---
