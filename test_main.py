@@ -57,9 +57,9 @@ class TestKellyCriterion(unittest.TestCase):
     def test_kelly_with_positive_edge(self):
         """Test Kelly calculation with positive edge"""
         recommendation = calculate_kelly_stake(
-            ai_probability=0.7,
-            market_price=0.5,
-            confidence=0.9,
+            ai_prob=0.7,
+            price=0.5,
+            conf=0.9,
             capital=1000.0
         )
         
@@ -71,9 +71,9 @@ class TestKellyCriterion(unittest.TestCase):
     def test_kelly_with_negative_edge(self):
         """Test Kelly calculation with negative edge (should recommend NO or PASS)"""
         recommendation = calculate_kelly_stake(
-            ai_probability=0.3,
-            market_price=0.5,
-            confidence=0.9,
+            ai_prob=0.3,
+            price=0.5,
+            conf=0.9,
             capital=1000.0
         )
         
@@ -86,9 +86,9 @@ class TestKellyCriterion(unittest.TestCase):
     def test_kelly_caps_at_50_percent(self):
         """Test Kelly is capped at 50% of capital"""
         recommendation = calculate_kelly_stake(
-            ai_probability=0.99,
-            market_price=0.1,
-            confidence=1.0,
+            ai_prob=0.99,
+            price=0.1,
+            conf=1.0,
             capital=1000.0
         )
         
