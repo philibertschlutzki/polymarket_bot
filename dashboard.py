@@ -1,204 +1,145 @@
 import logging
-from datetime import datetime
+import os
+from datetime import datetime, timezone, timedelta
 import asciichartpy
+from dateutil import parser
 import database
+import math
 
 logger = logging.getLogger(__name__)
+
+# Try to get CET timezone
+try:
+    from zoneinfo import ZoneInfo
+    CET_TZ = ZoneInfo("Europe/Berlin")
+except ImportError:
+    # Fallback to fixed offset (UTC+1) if zoneinfo is not available
+    # Note: This does not handle DST automatically, but is a reasonable fallback
+    CET_TZ = timezone(timedelta(hours=1))
+
+def to_cet(dt):
+    """Converts a datetime to CET/CEST."""
+    if dt is None:
+        return None
+    if isinstance(dt, str):
+        try:
+            dt = parser.parse(dt)
+        except:
+            return None
+
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+
+    return dt.astimezone(CET_TZ)
 
 def should_update_dashboard() -> bool:
     """
     Checks if the dashboard needs an update.
-    Returns True if there are new bets or results since the last update.
+    Legacy function, kept for compatibility if needed,
+    but main.py now calls generate_dashboard directly.
     """
-    last_update = database.get_last_dashboard_update()
-
-    if not last_update:
-        return True
-
-    # Get latest activity timestamps
-    with database.get_db_connection() as conn:
-        cursor = conn.cursor()
-
-        try:
-            # Check latest bet creation
-            cursor.execute("SELECT MAX(timestamp_created) as last_bet FROM active_bets")
-            row_bet = cursor.fetchone()
-            last_bet = row_bet['last_bet'] if row_bet else None
-
-            # Check latest result
-            cursor.execute("SELECT MAX(timestamp_closed) as last_result FROM results")
-            row_res = cursor.fetchone()
-            last_result = row_res['last_result'] if row_res else None
-        except Exception as e:
-            logger.warning(f"Error checking dashboard update status: {e}")
-            return True # Force update if we can't check
-
-        # Parse timestamps if they are strings (depends on sqlite adapter)
-        # Using database.get_last_dashboard_update logic (adapter might handle it, or we use parser)
-        from dateutil import parser
-
-        try:
-            if isinstance(last_bet, str):
-                last_bet = parser.parse(last_bet)
-            if isinstance(last_result, str):
-                last_result = parser.parse(last_result)
-        except Exception:
-             pass
-
-        if last_bet and isinstance(last_bet, datetime) and last_bet > last_update:
-            return True
-        if last_result and isinstance(last_result, datetime) and last_result > last_update:
-            return True
-
-    return False
+    return True
 
 def generate_dashboard():
-    """Generates the PERFORMANCE_DASHBOARD.md file."""
-    try:
-        metrics = database.calculate_metrics()
-        current_capital = database.get_current_capital()
+    """Generates the complete Performance Dashboard."""
+    logger.info("Generating dashboard...")
 
-        try:
-            active_bets = database.get_active_bets()
-        except ValueError as e:
-            logger.error(f"Timestamp parsing error in active_bets: {e}")
-            active_bets = []
-        except Exception as e:
-            logger.error(f"Error fetching active bets: {e}")
-            active_bets = []
+    # 1. Load Data
+    capital = database.get_current_capital()
+    metrics = database.calculate_metrics()
+    active_bets = database.get_active_bets()
+    results = database.get_all_results()
+    last_run = database.get_last_run_timestamp()
 
-        try:
-            results = database.get_all_results()
-        except ValueError as e:
-            logger.error(f"Timestamp parsing error in results: {e}")
-            results = []
-        except Exception as e:
-            logger.error(f"Error fetching results: {e}")
-            results = []
+    # Current time
+    now_cet = datetime.now(CET_TZ)
 
-        # Formatting
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S CET")
-        total_return_pct = f"{metrics['total_return_percent']*100:+.2f}%"
-        total_return_usd = f"${metrics['total_return_usd']:+.2f}"
+    # === HEADER ===
+    total_return_usd = metrics['total_return_usd']
+    total_return_pct = metrics['total_return_percent'] * 100
 
-        win_rate_str = f"{metrics['win_rate']*100:.2f}%"
-        wins = sum(1 for r in results if r['profit_loss'] > 0)
-        losses = len(results) - wins
-        win_rate_detail = f"({wins}W / {losses}L)"
+    header = f"""# 📊 Polymarket AI Bot - Performance Dashboard
 
-        # Chart Data
-        # Reconstruct capital history from results
-        capital_history = [database.INITIAL_CAPITAL]
-        running_cap = database.INITIAL_CAPITAL
-        # Sort results by closed time
-        try:
-            sorted_results = sorted(results, key=lambda x: x['timestamp_closed'])
-        except Exception:
-            sorted_results = results # fallback
-
-        for res in sorted_results:
-            running_cap += res['profit_loss']
-            capital_history.append(running_cap)
-
-        # Limit to last 30 points for chart readability
-        chart_data = capital_history[-30:]
-
-        chart_str = ""
-        if len(chart_data) >= 2:
-            try:
-                chart_str = asciichartpy.plot(chart_data, {'height': 10})
-            except Exception as e:
-                chart_str = f"Error generating chart: {e}"
-        else:
-            chart_str = "Insufficient data for chart (need at least 2 data points)."
-
-        # Active Bets Table
-        active_bets_md = ""
-        if active_bets:
-            active_bets_md = "| Question | Action | Stake | Entry Price | Expected Value | Days Open |\n"
-            active_bets_md += "|---|---|---|---|---|---|\n"
-            for bet in active_bets:
-                # Calculate days open
-                created = bet['timestamp_created']
-                if isinstance(created, str):
-                    try:
-                        from dateutil import parser
-                        created = parser.parse(created)
-                    except:
-                        created = datetime.now()
-
-                days_open = 0
-                if isinstance(created, datetime):
-                    days_open = (datetime.now() - created).days
-
-                active_bets_md += f"| {bet['question']} | {bet['action']} | ${bet['stake_usdc']:.2f} | {bet['entry_price']:.2f} | ${bet['expected_value']:+.2f} | {days_open} |\n"
-        else:
-            active_bets_md = "*No active bets.*"
-
-        # Top 5 Best Bets
-        sorted_by_profit = sorted(results, key=lambda x: x['profit_loss'], reverse=True)
-        top_5_best = sorted_by_profit[:5]
-        best_bets_md = ""
-        if top_5_best:
-            best_bets_md = "| Question | Action | ROI | Profit |\n|---|---|---|---|\n"
-            for bet in top_5_best:
-                best_bets_md += f"| {bet['question']} | {bet['action']} | {bet['roi']*100:+.1f}% | ${bet['profit_loss']:+.2f} |\n"
-        else:
-            best_bets_md = "*No closed bets yet.*"
-
-        # Top 5 Worst Bets
-        sorted_by_loss = sorted(results, key=lambda x: x['profit_loss']) # Ascending (negatives first)
-        top_5_worst = sorted_by_loss[:5]
-        worst_bets_md = ""
-        if top_5_worst:
-            worst_bets_md = "| Question | Action | ROI | Loss |\n|---|---|---|---|\n"
-            for bet in top_5_worst:
-                # Check if it's actually a loss or just least profit
-                if bet['profit_loss'] < 0:
-                     worst_bets_md += f"| {bet['question']} | {bet['action']} | {bet['roi']*100:+.1f}% | ${bet['profit_loss']:+.2f} |\n"
-
-        if not worst_bets_md:
-             worst_bets_md = "*No losing bets yet.*"
-
-        # Recent Results (Last 10)
-        recent_results = sorted_results[-10:][::-1] # Reverse to have newest first
-        recent_md = ""
-        if recent_results:
-            recent_md = "| Date | Question | Action | Outcome | P&L |\n|---|---|---|---|---|\n"
-            for bet in recent_results:
-                closed_date = bet['timestamp_closed']
-                if isinstance(closed_date, str):
-                    try:
-                        from dateutil import parser
-                        closed_date = parser.parse(closed_date)
-                    except:
-                        closed_date = datetime.now()
-
-                if isinstance(closed_date, datetime):
-                    date_str = closed_date.strftime("%Y-%m-%d")
-                else:
-                    date_str = "N/A"
-
-                outcome_icon = "✅ WIN" if bet['profit_loss'] > 0 else "❌ LOSS"
-                recent_md += f"| {date_str} | {bet['question']} | {bet['action']} | {outcome_icon} | ${bet['profit_loss']:+.2f} |\n"
-        else:
-            recent_md = "*No results yet.*"
-
-        # Markdown Assembly
-        md_content = f"""# 📊 Polymarket AI Bot - Performance Dashboard
-
-**Last Updated:** {timestamp}
-**Current Capital:** ${current_capital:,.2f} USDC
-**Total Return:** {total_return_pct} ({total_return_usd})
+**Last Updated:** {now_cet.strftime('%Y-%m-%d %H:%M:%S %Z')}
+**Current Capital:** ${capital:,.2f} USDC
+**Total Return:** {total_return_pct:+.2f}% (${total_return_usd:+.2f})
 
 ---
+"""
 
-## 📈 Performance Metrics
+    # === SYSTEM STATUS ===
+    # Next run is last_run + 15 mins
+    if last_run:
+        last_run_cet = to_cet(last_run)
+        next_run_cet = last_run_cet + timedelta(minutes=15)
+        time_until_next = (next_run_cet - now_cet).total_seconds()
+
+        if time_until_next > 0:
+            bot_status = "🟢 Active"
+        elif time_until_next > -60:
+            bot_status = "🟡 Running"
+        else:
+            bot_status = "🔴 Delayed"
+
+        last_run_str = last_run_cet.strftime('%Y-%m-%d %H:%M:%S %Z')
+        next_run_str = next_run_cet.strftime('%Y-%m-%d %H:%M:%S %Z')
+    else:
+        bot_status = "⚪ Unknown"
+        last_run_str = "N/A"
+        next_run_str = "N/A"
+
+    system_status = f"""## ⏰ System Status
 
 | Metric | Value |
 |--------|-------|
-| Total Bets | {metrics['total_bets']} |
-| Win Rate | {win_rate_str} {win_rate_detail} |
+| Last Run | {last_run_str} |
+| Next Run | {next_run_str} |
+| Run Interval | 15 minutes |
+| Bot Status | {bot_status} |
+
+---
+"""
+
+    # === GEMINI API USAGE ===
+    rpm = database.get_api_usage_rpm("gemini")
+    rpd = database.get_api_usage_rpd("gemini")
+    tpm = database.get_api_usage_tpm("gemini")
+
+    # Limits (Free Tier)
+    LIMIT_RPM = 15
+    LIMIT_RPD = 1500
+    LIMIT_TPM = 1000000
+
+    rpm_pct = (rpm / LIMIT_RPM) * 100
+    rpd_pct = (rpd / LIMIT_RPD) * 100
+    tpm_pct = (tpm / LIMIT_TPM) * 100
+
+    def usage_indicator(pct):
+        if pct >= 90: return "🔴"
+        elif pct >= 70: return "🟡"
+        else: return "🟢"
+
+    gemini_usage = f"""## 🤖 Gemini API Usage
+
+| Period | Calls/Tokens | Limit | Usage | Status |
+|--------|--------------|-------|-------|--------|
+| Current Minute (RPM) | {rpm} | {LIMIT_RPM} | {rpm_pct:.0f}% | {usage_indicator(rpm_pct)} |
+| Today (RPD) | {rpd} | {LIMIT_RPD:,} | {rpd_pct:.1f}% | {usage_indicator(rpd_pct)} |
+| Current Minute (TPM) | {tpm:,} | {LIMIT_TPM:,} | {tpm_pct:.2f}% | {usage_indicator(tpm_pct)} |
+
+---
+"""
+
+    # === PERFORMANCE METRICS ===
+    wins = sum(1 for r in results if r['profit_loss'] > 0)
+    losses = len(results) - wins
+
+    performance_metrics = f"""## 📈 Performance Metrics
+
+| Metric | Value |
+|--------|-------|
+| Total Bets | {len(results)} |
+| Win Rate | {metrics['win_rate']*100:.2f}% ({wins}W / {losses}L) |
 | Avg ROI per Bet | {metrics['avg_roi']*100:+.1f}% |
 | Sharpe Ratio | {metrics['sharpe_ratio']:.2f} |
 | Max Drawdown | {metrics['max_drawdown']*100:.1f}% |
@@ -206,50 +147,207 @@ def generate_dashboard():
 | Worst Bet | ${metrics['worst_bet_usd']:+.2f} |
 
 ---
-
-## 🎯 Active Bets ({len(active_bets)})
-
-{active_bets_md}
-
----
-
-## 📊 Capital Performance (ASCII Chart)
-
-```
-{chart_str}
-```
-
----
-
-## 🏆 Top 5 Best Bets
-
-{best_bets_md}
-
----
-
-## 💀 Top 5 Worst Bets
-
-{worst_bets_md}
-
----
-
-## 📜 Recent Results (Last 10)
-
-{recent_md}
-
----
-
-*Generated by Polymarket AI Bot v2.0*
 """
 
-        with open('PERFORMANCE_DASHBOARD.md', 'w') as f:
-            f.write(md_content)
+    # === PORTFOLIO RISK METRICS ===
+    total_exposure = sum(b['stake_usdc'] for b in active_bets)
+    exposure_pct = (total_exposure / capital * 100) if capital > 0 else 0
+    avg_position = total_exposure / len(active_bets) if active_bets else 0
 
-        database.update_last_dashboard_update()
-        logger.info("✅ Dashboard generated successfully.")
+    largest_stake = max((b['stake_usdc'] for b in active_bets), default=0)
+    largest_pct = (largest_stake / capital * 100) if capital > 0 else 0
 
-    except Exception as e:
-        logger.error(f"❌ Error generating dashboard: {e}", exc_info=True)
+    # Concentration (HHI)
+    if total_exposure > 0:
+        stakes = [b['stake_usdc'] for b in active_bets]
+        hhi = sum((s/total_exposure)**2 for s in stakes)
+    else:
+        hhi = 0
+
+    if hhi < 0.15: concentration = "Low 🟢"
+    elif hhi < 0.25: concentration = "Medium 🟡"
+    else: concentration = "High 🔴"
+
+    risk_metrics = f"""## ⚖️ Portfolio Risk Metrics
+
+| Metric | Value |
+|--------|-------|
+| Total Exposure | ${total_exposure:.2f} ({exposure_pct:.1f}% of capital) |
+| Avg Position Size | ${avg_position:.2f} |
+| Largest Position | ${largest_stake:.2f} ({largest_pct:.1f}%) |
+| Portfolio Concentration | {concentration} (HHI: {hhi:.3f}) |
+
+---
+"""
+
+    # === ACTIVE BETS ===
+    active_rows = []
+
+    for bet in active_bets:
+        q = bet['question']
+        if len(q) > 50: q = q[:50] + "..."
+
+        stake = bet['stake_usdc']
+        price = bet['entry_price']
+        ev = bet['expected_value']
+
+        # End Date
+        # Use .get() or check keys to be safe against schema mismatches if migration failed
+        end_date_raw = bet['end_date'] if 'end_date' in bet.keys() else None
+        end_date_display = "Unknown"
+        days_display = "N/A"
+        status = "🔵"
+
+        if end_date_raw:
+            try:
+                ed_cet = to_cet(end_date_raw)
+                if ed_cet:
+                    days_left = (ed_cet - now_cet).days
+
+                    end_date_display = ed_cet.strftime('%Y-%m-%d')
+                    days_display = f"{days_left}d"
+
+                    if days_left < 0: status = "⏰ Expired"
+                    elif days_left < 3: status = "🔴"
+                    elif days_left < 7: status = "🟡"
+                    else: status = "🟢"
+            except:
+                pass
+
+        active_rows.append(
+            f"| {q} | {bet['action']} | ${stake:.2f} | {price:.2f} | ${ev:+.2f} | {end_date_display} | {days_display} | {status} |"
+        )
+
+    active_table = "\n".join(active_rows) if active_rows else "| *No active bets* | - | - | - | - | - | - | - |"
+
+    active_bets_section = f"""## 🎯 Active Bets ({len(active_bets)})
+
+| Question | Action | Stake | Entry Price | Expected Value | End Date | Days Left | Status |
+|---|---|---|---|---|---|---|---|
+{active_table}
+
+---
+"""
+
+    # === ALERTS / WARNINGS ===
+    alerts = []
+    if rpm_pct >= 90: alerts.append(f"🔴 **API Limit Warning**: Gemini RPM at {rpm_pct:.0f}% capacity")
+    if rpd_pct >= 90: alerts.append(f"🔴 **API Limit Warning**: Gemini RPD at {rpd_pct:.0f}% capacity")
+    if tpm_pct >= 90: alerts.append(f"🔴 **API Limit Warning**: Gemini TPM at {tpm_pct:.0f}% capacity")
+
+    # High Exposure Alerts
+    for bet in active_bets:
+        pos_pct = (bet['stake_usdc'] / capital * 100) if capital > 0 else 0
+        if pos_pct > 10:
+             alerts.append(f"🔴 **High Exposure**: \"{bet['question'][:30]}...\" is {pos_pct:.1f}% of capital")
+
+    # Expiring Soon Alerts
+    expiring_soon = 0
+    for bet in active_bets:
+        if 'end_date' in bet.keys() and bet['end_date']:
+            try:
+                ed_cet = to_cet(bet['end_date'])
+                if ed_cet:
+                    days = (ed_cet - now_cet).days
+                    if 0 <= days <= 7:
+                        expiring_soon += 1
+            except: pass
+
+    if expiring_soon > 0:
+        alerts.append(f"🟡 **Expiring Soon**: {expiring_soon} bet(s) expire within 7 days")
+
+    if not alerts:
+        alerts.append("🟢 **No critical issues detected**")
+
+    alerts_section = f"""## ⚠️ Alerts & Warnings
+
+{chr(10).join(f"- {a}" for a in alerts)}
+
+---
+"""
+
+    # === MARKET INSIGHTS ===
+    markets_analyzed = os.getenv("TOP_MARKETS_TO_ANALYZE", "15") # config
+
+    markets_with_bets = len(active_bets)
+
+    market_insights = f"""## 📊 Market Insights
+
+| Metric | Value |
+|--------|-------|
+| Markets Analyzed per Run | {markets_analyzed} |
+| Markets with Active Bets | {markets_with_bets} |
+
+---
+"""
+
+    # === CAPITAL CHART & RESULTS ===
+    chart_section = generate_chart_section(results)
+    recent_section = generate_recent_results_section(results)
+
+    # Assembly
+    content = header + system_status + gemini_usage + performance_metrics + risk_metrics + active_bets_section + alerts_section + market_insights + chart_section + recent_section
+
+    content += "\n*Generated by Polymarket AI Bot v2.0*\n"
+
+    with open('PERFORMANCE_DASHBOARD.md', 'w', encoding='utf-8') as f:
+        f.write(content)
+
+    database.update_last_dashboard_update()
+    logger.info("✅ Dashboard generated successfully.")
+
+def generate_chart_section(results):
+    capital_history = [database.INITIAL_CAPITAL]
+    running = database.INITIAL_CAPITAL
+    sorted_res = sorted(results, key=lambda x: x['timestamp_closed'])
+    for r in sorted_res:
+        running += r['profit_loss']
+        capital_history.append(running)
+
+    chart_data = capital_history[-30:]
+    if len(chart_data) >= 2:
+        try:
+            chart = asciichartpy.plot(chart_data, {'height': 10})
+        except:
+            chart = "Error generating chart."
+    else:
+        chart = "Insufficient data for chart (need at least 2 data points)."
+
+    return f"""## 📊 Capital Performance (ASCII Chart)
+
+```
+{chart}
+```
+
+---
+"""
+
+def generate_recent_results_section(results):
+    recent = sorted(results, key=lambda x: x['timestamp_closed'], reverse=True)[:10]
+    if not recent:
+        return """## 📜 Recent Results (Last 10)
+
+*No results yet.*
+
+---
+"""
+
+    rows = []
+    for r in recent:
+        ts = r['timestamp_closed']
+        ts_cet = to_cet(ts)
+        date_str = ts_cet.strftime('%Y-%m-%d') if ts_cet else "N/A"
+        icon = "✅ WIN" if r['profit_loss'] > 0 else "❌ LOSS"
+        rows.append(f"| {date_str} | {r['question']} | {r['action']} | {icon} | ${r['profit_loss']:+.2f} |")
+
+    return f"""## 📜 Recent Results (Last 10)
+
+| Date | Question | Action | Outcome | P&L |
+|---|---|---|---|---|
+{chr(10).join(rows)}
+
+---
+"""
 
 if __name__ == "__main__":
     generate_dashboard()
