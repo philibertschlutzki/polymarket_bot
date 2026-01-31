@@ -489,18 +489,31 @@ def single_run():
     top_markets = pre_filter_markets(raw_markets, top_n=TOP_MARKETS_TO_ANALYZE)
 
     # 4. Analyze and save new bets
-    active_slugs = {b['market_slug'] for b in database.get_active_bets()}
+    # Optimization: Fetch active bets once and use a set for O(1) lookup
+    active_bets = database.get_active_bets()
+    active_slugs = {b['market_slug'] for b in active_bets}
+
+    last_api_call_time = 0
+    min_interval = 3.0
 
     for i, market in enumerate(top_markets):
-        # Check if we already have an active bet on this market?
+        # Optimization: Check BEFORE sleep
         if market.market_slug in active_slugs:
             logger.info(f"⏭️  Bereits aktive Wette für: {market.market_slug}. Skipping.")
             continue
 
-        # Prevent Gemini Rate Limits
-        time.sleep(3)
+        # Prevent Gemini Rate Limits (Smart Sleep)
+        now = time.time()
+        time_since_last = now - last_api_call_time
+        if time_since_last < min_interval:
+            sleep_time = min_interval - time_since_last
+            # Only log if sleep is significant
+            if sleep_time > 0.1:
+                logger.debug(f"Sleeping {sleep_time:.2f}s for rate limit...")
+            time.sleep(sleep_time)
 
         rec = analyze_and_recommend(market, capital)
+        last_api_call_time = time.time()
 
         if rec and rec.action != "PASS":
             database.insert_active_bet({
