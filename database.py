@@ -73,6 +73,9 @@ def get_db_connection():
     Handles nested usage by tracking recursion depth.
     """
     if not hasattr(_local, "connection") or _local.connection is None:
+        # Ensure adapters are registered for this thread/connection
+        register_adapters()
+
         conn = sqlite3.connect(
             DB_NAME,
             detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES,
