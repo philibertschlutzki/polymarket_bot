@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 18:45:26 CET
+**Last Updated:** 2026-01-31 19:04:04 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,19 +9,19 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | N/A |
-| Next Run | N/A |
+| Last Run | 2026-01-31 18:41:17 CET |
+| Next Run | 2026-01-31 18:56:17 CET |
 | Run Interval | 15 minutes |
-| Bot Status | ⚪ Unknown |
+| Bot Status | 🔴 Delayed |
 
 ---
 ## 🤖 Gemini API Usage
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
-| Today (RPD) | 12 | 1,500 | 0.8% | 🟢 |
-| Current Minute (TPM) | 5,407 | 1,000,000 | 0.54% | 🟢 |
+| Current Minute (RPM) | 4 | 15 | 27% | 🟢 |
+| Today (RPD) | 25 | 1,500 | 1.7% | 🟢 |
+| Current Minute (TPM) | 3,819 | 1,000,000 | 0.38% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,19 +41,22 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $234.37 (23.4% of capital) |
-| Avg Position Size | $78.12 |
+| Total Exposure | $395.39 (39.5% of capital) |
+| Avg Position Size | $65.90 |
 | Largest Position | $112.47 (11.2%) |
-| Portfolio Concentration | High 🔴 (HHI: 0.398) |
+| Portfolio Concentration | Medium 🟡 (HHI: 0.207) |
 
 ---
-## 🎯 Active Bets (3)
+## 🎯 Active Bets (6)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Nothing Ever Happens: US Strike Edition | YES | $91.00 | 0.31 | 0.60 | +29% 🟢 | 75% | $+85.12 | 2026-03-31 | 58d | 🟢 |
 | Will Russia capture Kostyantynivka by De... | NO | $30.90 | 0.88 | 0.75 | -13% 🔴 | 70% | $+33.47 | 2026-12-31 | 333d | 🟢 |
 | Will the price of Bitcoin be above $84,0... | YES | $112.47 | 0.10 | 0.60 | +50% 🟢 | 65% | $+597.87 | 2026-02-02 | 1d | 🔴 |
+| Will any presidential candidate win outr... | NO | $42.77 | 0.81 | 0.65 | -16% 🔴 | 75% | $+36.01 | 2026-02-01 | 0d | 🔴 |
+| Will Laura Virginia Fernández Delgado wi... | NO | $87.77 | 0.93 | 0.55 | -38% 🔴 | 75% | $+438.86 | 2026-02-01 | 0d | 🔴 |
+| Will Pierre-Yves Bournazel win the Paris... | YES | $30.48 | 0.01 | 0.15 | +14% 🟡 | 70% | $+883.96 | Unknown | N/A | 🔵 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -61,7 +64,7 @@
 ## ⚠️ Alerts & Warnings
 
 - 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 11.2% of capital
-- 🟡 **Expiring Soon**: 1 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 3 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -69,8 +72,8 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 3 |
-| Markets Rejected (Last Run) | 12 |
+| Markets with Active Bets | 6 |
+| Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
 📋 **[View All Rejected Markets →](AI_DECISIONS.md#rejected-markets)**
