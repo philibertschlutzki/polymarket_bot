@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 19:04:04 CET
+**Last Updated:** 2026-01-31 19:21:23 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-01-31 18:41:17 CET |
-| Next Run | 2026-01-31 18:56:17 CET |
+| Last Run | 2026-01-31 19:00:28 CET |
+| Next Run | 2026-01-31 19:15:28 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 4 | 15 | 27% | 🟢 |
-| Today (RPD) | 25 | 1,500 | 1.7% | 🟢 |
-| Current Minute (TPM) | 3,819 | 1,000,000 | 0.38% | 🟢 |
+| Current Minute (RPM) | 7 | 15 | 47% | 🟢 |
+| Today (RPD) | 35 | 1,500 | 2.3% | 🟢 |
+| Current Minute (TPM) | 5,947 | 1,000,000 | 0.59% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $395.39 (39.5% of capital) |
-| Avg Position Size | $65.90 |
+| Total Exposure | $533.55 (53.4% of capital) |
+| Avg Position Size | $66.69 |
 | Largest Position | $112.47 (11.2%) |
-| Portfolio Concentration | Medium 🟡 (HHI: 0.207) |
+| Portfolio Concentration | Medium 🟡 (HHI: 0.159) |
 
 ---
-## 🎯 Active Bets (6)
+## 🎯 Active Bets (8)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -57,6 +57,8 @@
 | Will any presidential candidate win outr... | NO | $42.77 | 0.81 | 0.65 | -16% 🔴 | 75% | $+36.01 | 2026-02-01 | 0d | 🔴 |
 | Will Laura Virginia Fernández Delgado wi... | NO | $87.77 | 0.93 | 0.55 | -38% 🔴 | 75% | $+438.86 | 2026-02-01 | 0d | 🔴 |
 | Will Pierre-Yves Bournazel win the Paris... | YES | $30.48 | 0.01 | 0.15 | +14% 🟡 | 70% | $+883.96 | Unknown | N/A | 🔵 |
+| Will the price of Bitcoin be less than $... | NO | $109.58 | 0.69 | 0.30 | -39% 🔴 | 60% | $+138.65 | 2026-02-01 | 0d | 🔴 |
+| Will the price of Bitcoin be above $86,0... | YES | $28.58 | 0.02 | 0.15 | +13% 🟡 | 70% | $+247.96 | 2026-02-01 | 0d | 🔴 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -64,7 +66,8 @@
 ## ⚠️ Alerts & Warnings
 
 - 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 11.2% of capital
-- 🟡 **Expiring Soon**: 3 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the price of Bitcoin be l..." is 11.0% of capital
+- 🟡 **Expiring Soon**: 5 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -72,7 +75,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 6 |
+| Markets with Active Bets | 8 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
