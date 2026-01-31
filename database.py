@@ -313,6 +313,26 @@ def init_database():
         cursor.execute('CREATE INDEX IF NOT EXISTS idx_api_timestamp ON api_usage(timestamp)')
         cursor.execute('CREATE INDEX IF NOT EXISTS idx_api_name ON api_usage(api_name, timestamp)')
 
+        # Git Sync State (Single Row)
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS git_sync_state (
+            id INTEGER PRIMARY KEY CHECK (id = 1),
+            last_git_push TIMESTAMP,
+            pending_changes_count INTEGER DEFAULT 0,
+            has_new_bets BOOLEAN DEFAULT 0,
+            has_new_rejections BOOLEAN DEFAULT 0,
+            has_bet_resolutions BOOLEAN DEFAULT 0
+        )
+        ''')
+
+        # Initialize git_sync_state if empty
+        cursor.execute('SELECT count(*) FROM git_sync_state')
+        if cursor.fetchone()[0] == 0:
+            cursor.execute(
+                'INSERT INTO git_sync_state (id, last_git_push, pending_changes_count) VALUES (?, ?, ?)',
+                (1, safe_timestamp(datetime.now()), 0)
+            )
+
         # Initialize capital if empty
         cursor.execute('SELECT count(*) FROM portfolio_state')
         if cursor.fetchone()[0] == 0:
@@ -375,6 +395,10 @@ def insert_active_bet(bet_data: Dict[str, Any]):
             safe_timestamp(datetime.now())
         ))
         conn.commit()
+
+        # Mark for git sync
+        mark_git_change('bet')
+
         logger.info(f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {bet_data.get('edge', 0)*100:+.1f}%)")
 
 def get_active_bets() -> List[sqlite3.Row]:
@@ -438,6 +462,9 @@ def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[sqli
 
         if should_commit:
             db_conn.commit()
+
+        # Mark for git sync
+        mark_git_change('resolution')
 
         # Post-mortem Log
         was_correct = (bet['action'] == outcome)
@@ -518,6 +545,10 @@ def insert_rejected_market(market_data: Dict[str, Any]):
             safe_timestamp(market_data.get('end_date'))
         ))
         conn.commit()
+
+        # Mark for git sync
+        mark_git_change('rejection')
+
         logger.info(f"Rejected market logged: {market_data['question'][:40]}... (Reason: {market_data['rejection_reason']})")
 
 def get_rejected_markets(limit: int = 50) -> List[sqlite3.Row]:
@@ -728,4 +759,89 @@ def set_last_run_timestamp(timestamp: datetime):
             'UPDATE portfolio_state SET last_run_timestamp = ? WHERE id = 1',
             (safe_timestamp(timestamp),)
         )
+        conn.commit()
+
+# ============================================================================
+# GIT SYNC HELPERS
+# ============================================================================
+
+def mark_git_change(change_type: str):
+    """
+    Markiert eine Änderung für Git-Push.
+    change_type: 'bet', 'rejection', 'resolution'
+    """
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+
+        field_map = {
+            'bet': 'has_new_bets',
+            'rejection': 'has_new_rejections',
+            'resolution': 'has_bet_resolutions'
+        }
+
+        field = field_map.get(change_type)
+        if field:
+            cursor.execute(f'''
+                UPDATE git_sync_state
+                SET {field} = 1, pending_changes_count = pending_changes_count + 1
+                WHERE id = 1
+            ''')
+            conn.commit()
+
+def should_push_to_git() -> bool:
+    """
+    Prüft ob Git-Push nötig ist (mind. 1h seit letztem Push UND Änderungen vorhanden).
+    """
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT last_git_push, pending_changes_count FROM git_sync_state WHERE id = 1')
+        row = cursor.fetchone()
+
+        if not row:
+            return False
+
+        last_push = row['last_git_push']
+        changes = row['pending_changes_count']
+
+        if changes == 0:
+            return False
+
+        # Parse timestamp
+        if isinstance(last_push, str):
+            last_push = parser.parse(last_push)
+        elif isinstance(last_push, bytes):
+            last_push = parser.parse(last_push.decode('utf-8'))
+
+        # Mind. 1 Stunde seit letztem Push
+        if datetime.now() - last_push >= timedelta(hours=1):
+            return True
+
+        return False
+
+def has_ai_decisions_changes() -> bool:
+    """Prüft ob AI_DECISIONS.md relevante Änderungen hat."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+            SELECT has_new_bets, has_new_rejections, has_bet_resolutions
+            FROM git_sync_state WHERE id = 1
+        ''')
+        row = cursor.fetchone()
+        if not row:
+            return False
+        return any([row['has_new_bets'], row['has_new_rejections'], row['has_bet_resolutions']])
+
+def reset_git_sync_flags():
+    """Setzt Flags nach erfolgreichem Push zurück."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+            UPDATE git_sync_state
+            SET last_git_push = ?,
+                pending_changes_count = 0,
+                has_new_bets = 0,
+                has_new_rejections = 0,
+                has_bet_resolutions = 0
+            WHERE id = 1
+        ''', (safe_timestamp(datetime.now()),))
         conn.commit()
