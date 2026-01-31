@@ -26,15 +26,24 @@ def flexible_timestamp_converter(val):
     if not val:
         return None
     try:
-        # SQLite passes bytes
-        s = val.decode('utf-8')
+        # Handle bytes (SQLite default) or string (if manual)
+        s = val.decode('utf-8') if isinstance(val, bytes) else str(val)
+
+        # Explicitly handle date-only strings to ensure time is attached
+        if len(s) == 10 and s.count('-') == 2:
+             s = f"{s} 00:00:00"
+
         return parser.parse(s)
     except Exception as e:
         logger.warning(f"Error parsing timestamp '{val}': {e}")
         return None
 
+def register_adapters():
+    """Registers SQLite adapters and converters."""
+    sqlite3.register_converter("TIMESTAMP", flexible_timestamp_converter)
+
 # Register the converter
-sqlite3.register_converter("TIMESTAMP", flexible_timestamp_converter)
+register_adapters()
 
 def safe_timestamp(val):
     """
@@ -50,6 +59,9 @@ def safe_timestamp(val):
             dt = parser.parse(val)
             return dt.strftime('%Y-%m-%d %H:%M:%S')
         except:
+            # Fallback for date only strings if parse fails (unlikely if valid)
+            if len(val) == 10 and val.count('-') == 2:
+                return f"{val} 00:00:00"
             return val
     return val
 
@@ -61,7 +73,12 @@ def get_db_connection():
     Handles nested usage by tracking recursion depth.
     """
     if not hasattr(_local, "connection") or _local.connection is None:
-        conn = sqlite3.connect(DB_NAME, detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES)
+        conn = sqlite3.connect(
+            DB_NAME,
+            detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES,
+            check_same_thread=False,
+            timeout=30.0
+        )
         conn.row_factory = sqlite3.Row  # Access columns by name
         _local.connection = conn
         _local.depth = 0
@@ -110,15 +127,13 @@ def repair_timestamps():
                 updates = {}
                 # Check timestamp_created
                 ts_created = row['timestamp_created']
-                # If it's already a datetime object, it was parsed correctly by our new converter.
-                # If it's None, it might be missing or failed parsing (but our converter returns None on fail).
-                # We want to ensure it is stored as standard string format.
 
-                # However, since we are selecting it, we get the converted value (datetime).
-                # To see the raw string, we would need to cast or disable converter.
-                # But here we just want to ensure that if we write it back, it's correct.
-                # Actually, simpler approach: Update ALL rows to safe_timestamp format
+                # If we get a valid object, safe_timestamp will format it correctly.
+                # If we got None because converter failed (but logger warned), we might want to check raw?
+                # But we can't easily check raw without casting.
+                # Assuming safe_timestamp handles the object returned by converter.
 
+                # Logic: Always re-write using safe_timestamp to ensure standard format in DB
                 if ts_created:
                     updates['timestamp_created'] = safe_timestamp(ts_created)
 
@@ -157,6 +172,8 @@ def repair_timestamps():
 
 def init_database():
     """Initializes the database with required tables and default values."""
+    register_adapters() # Ensure registered
+
     with get_db_connection() as conn:
         cursor = conn.cursor()
 
