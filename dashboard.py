@@ -19,26 +19,35 @@ def should_update_dashboard() -> bool:
     with database.get_db_connection() as conn:
         cursor = conn.cursor()
 
-        # Check latest bet creation
-        cursor.execute("SELECT MAX(timestamp_created) as last_bet FROM active_bets")
-        last_bet = cursor.fetchone()['last_bet']
+        try:
+            # Check latest bet creation
+            cursor.execute("SELECT MAX(timestamp_created) as last_bet FROM active_bets")
+            row_bet = cursor.fetchone()
+            last_bet = row_bet['last_bet'] if row_bet else None
 
-        # Check latest result
-        cursor.execute("SELECT MAX(timestamp_closed) as last_result FROM results")
-        last_result = cursor.fetchone()['last_result']
+            # Check latest result
+            cursor.execute("SELECT MAX(timestamp_closed) as last_result FROM results")
+            row_res = cursor.fetchone()
+            last_result = row_res['last_result'] if row_res else None
+        except Exception as e:
+            logger.warning(f"Error checking dashboard update status: {e}")
+            return True # Force update if we can't check
 
         # Parse timestamps if they are strings (depends on sqlite adapter)
         # Using database.get_last_dashboard_update logic (adapter might handle it, or we use parser)
         from dateutil import parser
 
-        if isinstance(last_bet, str):
-            last_bet = parser.parse(last_bet)
-        if isinstance(last_result, str):
-            last_result = parser.parse(last_result)
+        try:
+            if isinstance(last_bet, str):
+                last_bet = parser.parse(last_bet)
+            if isinstance(last_result, str):
+                last_result = parser.parse(last_result)
+        except Exception:
+             pass
 
-        if last_bet and last_bet > last_update:
+        if last_bet and isinstance(last_bet, datetime) and last_bet > last_update:
             return True
-        if last_result and last_result > last_update:
+        if last_result and isinstance(last_result, datetime) and last_result > last_update:
             return True
 
     return False
@@ -48,8 +57,24 @@ def generate_dashboard():
     try:
         metrics = database.calculate_metrics()
         current_capital = database.get_current_capital()
-        active_bets = database.get_active_bets()
-        results = database.get_all_results()
+
+        try:
+            active_bets = database.get_active_bets()
+        except ValueError as e:
+            logger.error(f"Timestamp parsing error in active_bets: {e}")
+            active_bets = []
+        except Exception as e:
+            logger.error(f"Error fetching active bets: {e}")
+            active_bets = []
+
+        try:
+            results = database.get_all_results()
+        except ValueError as e:
+            logger.error(f"Timestamp parsing error in results: {e}")
+            results = []
+        except Exception as e:
+            logger.error(f"Error fetching results: {e}")
+            results = []
 
         # Formatting
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S CET")
@@ -66,7 +91,11 @@ def generate_dashboard():
         capital_history = [database.INITIAL_CAPITAL]
         running_cap = database.INITIAL_CAPITAL
         # Sort results by closed time
-        sorted_results = sorted(results, key=lambda x: x['timestamp_closed'])
+        try:
+            sorted_results = sorted(results, key=lambda x: x['timestamp_closed'])
+        except Exception:
+            sorted_results = results # fallback
+
         for res in sorted_results:
             running_cap += res['profit_loss']
             capital_history.append(running_cap)
@@ -92,9 +121,15 @@ def generate_dashboard():
                 # Calculate days open
                 created = bet['timestamp_created']
                 if isinstance(created, str):
-                    from dateutil import parser
-                    created = parser.parse(created)
-                days_open = (datetime.now() - created).days
+                    try:
+                        from dateutil import parser
+                        created = parser.parse(created)
+                    except:
+                        created = datetime.now()
+
+                days_open = 0
+                if isinstance(created, datetime):
+                    days_open = (datetime.now() - created).days
 
                 active_bets_md += f"| {bet['question']} | {bet['action']} | ${bet['stake_usdc']:.2f} | {bet['entry_price']:.2f} | ${bet['expected_value']:+.2f} | {days_open} |\n"
         else:
@@ -133,9 +168,16 @@ def generate_dashboard():
             for bet in recent_results:
                 closed_date = bet['timestamp_closed']
                 if isinstance(closed_date, str):
-                    from dateutil import parser
-                    closed_date = parser.parse(closed_date)
-                date_str = closed_date.strftime("%Y-%m-%d")
+                    try:
+                        from dateutil import parser
+                        closed_date = parser.parse(closed_date)
+                    except:
+                        closed_date = datetime.now()
+
+                if isinstance(closed_date, datetime):
+                    date_str = closed_date.strftime("%Y-%m-%d")
+                else:
+                    date_str = "N/A"
 
                 outcome_icon = "✅ WIN" if bet['profit_loss'] > 0 else "❌ LOSS"
                 recent_md += f"| {date_str} | {bet['question']} | {bet['action']} | {outcome_icon} | ${bet['profit_loss']:+.2f} |\n"

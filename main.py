@@ -19,7 +19,7 @@ import time
 import math
 import re
 from typing import Optional, List, Dict, Any
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
@@ -106,6 +106,8 @@ HIGH_VOLUME_THRESHOLD = float(os.getenv("HIGH_VOLUME_THRESHOLD", "50000"))
 FETCH_MARKET_LIMIT = int(os.getenv("FETCH_MARKET_LIMIT", "100"))
 TOP_MARKETS_TO_ANALYZE = int(os.getenv("TOP_MARKETS_TO_ANALYZE", "15"))
 
+# API Rate Limit (Gemini Free Tier is often 15 RPM)
+API_RATE_LIMIT = int(os.getenv("API_RATE_LIMIT", "15"))
 
 # ============================================================================
 # DATENMODELLE
@@ -137,6 +139,37 @@ class TradingRecommendation(BaseModel):
     ai_probability: Optional[float] = None
     confidence_score: Optional[float] = None
 
+# ============================================================================
+# UTILS
+# ============================================================================
+
+class RateLimiter:
+    """Manages API rate limits using a sliding window."""
+    def __init__(self, max_requests_per_minute=15):
+        self.max_requests = max_requests_per_minute
+        self.requests = []
+
+    def wait_if_needed(self):
+        now = datetime.now()
+        # Remove requests older than 1 minute
+        self.requests = [r for r in self.requests if r > now - timedelta(minutes=1)]
+
+        if len(self.requests) >= self.max_requests:
+            # Sort requests just in case
+            self.requests.sort()
+            oldest = self.requests[0]
+            # Time passed since oldest request
+            elapsed = (now - oldest).total_seconds()
+            sleep_time = 60 - elapsed
+
+            if sleep_time > 0:
+                logger.info(f"⏳ Rate limit reached ({len(self.requests)}/{self.max_requests}). Sleeping for {sleep_time:.2f}s...")
+                time.sleep(sleep_time + 0.5) # Add small buffer
+
+        self.requests.append(datetime.now())
+
+# Global Rate Limiter instance
+rate_limiter = RateLimiter(max_requests_per_minute=API_RATE_LIMIT)
 
 # ============================================================================
 # RESOLUTION LOGIC
@@ -158,18 +191,23 @@ def check_and_resolve_bets():
             is_expired = False
 
             if end_date_val:
-                if isinstance(end_date_val, str):
+                # Use robust parsing or if it's already datetime (from new DB fix)
+                end_date_obj = None
+                if isinstance(end_date_val, datetime):
+                    end_date_obj = end_date_val
+                elif isinstance(end_date_val, str):
                     try:
                         end_date_obj = date_parser.parse(end_date_val)
                     except:
                         end_date_obj = datetime.now() # Fallback
                 else:
-                    end_date_obj = end_date_val
+                    end_date_obj = end_date_val # Could be None
 
-                # Compare with now (timezone aware if possible)
-                now = datetime.now(end_date_obj.tzinfo) if end_date_obj.tzinfo else datetime.now()
-                if end_date_obj < now:
-                    is_expired = True
+                if end_date_obj:
+                    # Compare with now (timezone aware if possible)
+                    now = datetime.now(end_date_obj.tzinfo) if end_date_obj.tzinfo else datetime.now()
+                    if end_date_obj < now:
+                        is_expired = True
 
             # Nur abgelaufene prüfen (oder wenn kein Datum vorhanden)
             if is_expired or end_date_val is None:
@@ -235,6 +273,7 @@ def check_and_resolve_bets():
                 logger.error(f"❌ Error during batch resolution check: {e}")
 
         # 3. Process Bets using fetched data
+        bets_to_resolve = []
         for bet in bets_to_check:
             market_data = resolved_markets.get(bet['market_slug'])
             if not market_data:
@@ -529,27 +568,16 @@ def single_run():
     active_bets = database.get_active_bets()
     active_slugs = {b['market_slug'] for b in active_bets}
 
-    last_api_call_time = 0
-    min_interval = 3.0
-
     for i, market in enumerate(top_markets):
-        # Optimization: Check BEFORE sleep
+        # Optimization: Check BEFORE sleep/ratelimit
         if market.market_slug in active_slugs:
             logger.info(f"⏭️  Bereits aktive Wette für: {market.market_slug}. Skipping.")
             continue
 
-        # Prevent Gemini Rate Limits (Smart Sleep)
-        now = time.time()
-        time_since_last = now - last_api_call_time
-        if time_since_last < min_interval:
-            sleep_time = min_interval - time_since_last
-            # Only log if sleep is significant
-            if sleep_time > 0.1:
-                logger.debug(f"Sleeping {sleep_time:.2f}s for rate limit...")
-            time.sleep(sleep_time)
+        # Prevent Gemini Rate Limits using robust RateLimiter
+        rate_limiter.wait_if_needed()
 
         rec = analyze_and_recommend(market, capital)
-        last_api_call_time = time.time()
 
         if rec and rec.action != "PASS":
             database.insert_active_bet({
