@@ -1,11 +1,29 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 17:26:35 CET
+**Last Updated:** 2026-01-31 17:48:02 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
 ---
+## ⏰ System Status
 
+| Metric | Value |
+|--------|-------|
+| Last Run | 2026-01-31 17:39:06 CET |
+| Next Run | 2026-01-31 17:54:06 CET |
+| Run Interval | 15 minutes |
+| Bot Status | 🟢 Active |
+
+---
+## 🤖 Gemini API Usage
+
+| Period | Calls/Tokens | Limit | Usage | Status |
+|--------|--------------|-------|-------|--------|
+| Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
+| Today (RPD) | 1 | 1,500 | 0.1% | 🟢 |
+| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
+
+---
 ## 📈 Performance Metrics
 
 | Metric | Value |
@@ -19,22 +37,36 @@
 | Worst Bet | $+0.00 |
 
 ---
+## ⚖️ Portfolio Risk Metrics
 
-## 🎯 Active Bets (7)
-
-| Question | Action | Stake | Entry Price | Expected Value | Days Open |
-|---|---|---|---|---|---|
-| Nothing Ever Happens: US Strike Edition | YES | $105.88 | 0.32 | $+112.61 | 0 |
-| Will John Cornyn win the 2026 Texas Republican Primary? | YES | $54.75 | 0.26 | $+41.87 | 0 |
-| Will Russia capture Kostyantynivka by December 31, 2026? | NO | $55.54 | 0.89 | $+113.50 | 0 |
-| Will Pierre-Yves Bournazel win the Paris mayor election? | YES | $30.30 | 0.01 | $+727.24 | 0 |
-| Will Paramount close Warner Bros acquisition? | YES | $38.37 | 0.21 | $+25.58 | 0 |
-| Will Mike Vrabel win NFL Coach of the Year? | NO | $34.44 | 0.87 | $+34.44 | 0 |
-| Bitcoin Up or Down on January 31? | YES | $77.29 | 0.00 | $+20532.08 | 0 |
-
+| Metric | Value |
+|--------|-------|
+| Total Exposure | $0.00 (0.0% of capital) |
+| Avg Position Size | $0.00 |
+| Largest Position | $0.00 (0.0%) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.000) |
 
 ---
+## 🎯 Active Bets (0)
 
+| Question | Action | Stake | Entry Price | Expected Value | End Date | Days Left | Status |
+|---|---|---|---|---|---|---|---|
+| *No active bets* | - | - | - | - | - | - | - |
+
+---
+## ⚠️ Alerts & Warnings
+
+- 🟢 **No critical issues detected**
+
+---
+## 📊 Market Insights
+
+| Metric | Value |
+|--------|-------|
+| Markets Analyzed per Run | 15 |
+| Markets with Active Bets | 0 |
+
+---
 ## 📊 Capital Performance (ASCII Chart)
 
 ```
@@ -42,19 +74,6 @@ Insufficient data for chart (need at least 2 data points).
 ```
 
 ---
-
-## 🏆 Top 5 Best Bets
-
-*No closed bets yet.*
-
----
-
-## 💀 Top 5 Worst Bets
-
-*No losing bets yet.*
-
----
-
 ## 📜 Recent Results (Last 10)
 
 *No results yet.*

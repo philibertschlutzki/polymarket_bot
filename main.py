@@ -18,7 +18,7 @@ import logging.handlers
 import time
 import math
 import re
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Tuple
 from datetime import datetime, timezone, timedelta
 
 from dotenv import load_dotenv
@@ -410,6 +410,51 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         logger.error(f"⚠️  Fehler beim Abrufen der Märkte: {e}")
         return []
 
+def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
+    """
+    Lädt fehlende End Dates via GraphQL nach.
+    Verwendet Batch-Query wie in check_and_resolve_bets().
+    """
+    markets_missing_date = [m for m in markets if not m.end_date]
+
+    if not markets_missing_date:
+        return markets
+
+    logger.info(f"📅 Fetching missing end dates for {len(markets_missing_date)} markets...")
+
+    # GraphQL Batch Query
+    query_parts = []
+    slug_map = {}
+
+    for idx, market in enumerate(markets_missing_date):
+        alias = f"m_{idx}"
+        slug_map[alias] = market.market_slug
+        safe_id = json.dumps(market.market_slug)
+        query_parts.append(f'{alias}: market(id: {safe_id}) {{ endDate }}')
+
+    if not query_parts:
+        return markets
+
+    query = "query FetchEndDates { " + " ".join(query_parts) + " }"
+
+    try:
+        response = requests.post(GRAPHQL_URL, json={'query': query}, timeout=10)
+        data = response.json().get('data', {})
+
+        # Update market objects
+        for alias, market_data in data.items():
+            if market_data and 'endDate' in market_data:
+                original_slug = slug_map.get(alias)
+                if original_slug:
+                    for market in markets:
+                        if market.market_slug == original_slug:
+                            market.end_date = market_data['endDate']
+                            break
+    except Exception as e:
+        logger.warning(f"⚠️  Fehler beim Nachladen von End Dates: {e}")
+
+    return markets
+
 def calculate_quick_edge(market: MarketData) -> float:
     """Schnelle Edge-Schätzung."""
     price_deviation = abs(market.yes_price - 0.5)
@@ -443,7 +488,18 @@ def pre_filter_markets(markets: List[MarketData], top_n: int = 10) -> List[Marke
 # ============================================================================
 
 @retry(retry=retry_if_exception_type(Exception), stop=stop_after_attempt(3), wait=wait_exponential(multiplier=2, min=8, max=30))
-def _generate_gemini_response(client: genai.Client, prompt: str) -> dict:
+def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, dict]:
+    """
+    Gibt zurück: (parsed_json_response, usage_metadata)
+    usage_metadata = {
+        'prompt_token_count': int,
+        'candidates_token_count': int,
+        'total_token_count': int,
+        'response_time_ms': int
+    }
+    """
+    start_time = time.time()
+
     response = client.models.generate_content(
         model='gemini-2.0-flash',
         contents=prompt,
@@ -451,6 +507,17 @@ def _generate_gemini_response(client: genai.Client, prompt: str) -> dict:
             tools=[types.Tool(google_search=types.GoogleSearch())]
         )
     )
+
+    response_time_ms = int((time.time() - start_time) * 1000)
+
+    # Extrahiere Token-Metadaten
+    usage_meta = {
+        'prompt_token_count': response.usage_metadata.prompt_token_count if hasattr(response, 'usage_metadata') and response.usage_metadata else 0,
+        'candidates_token_count': response.usage_metadata.candidates_token_count if hasattr(response, 'usage_metadata') and response.usage_metadata else 0,
+        'total_token_count': response.usage_metadata.total_token_count if hasattr(response, 'usage_metadata') and response.usage_metadata else 0,
+        'response_time_ms': response_time_ms
+    }
+
     text_response = response.text
     if "```json" in text_response:
         text_response = text_response.split("```json")[1].split("```")[0]
@@ -459,9 +526,11 @@ def _generate_gemini_response(client: genai.Client, prompt: str) -> dict:
 
     text_response = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', text_response)
     try:
-        return json.loads(text_response.strip())
+        parsed_data = json.loads(text_response.strip())
     except:
-        return json.loads(text_response.strip(), strict=False)
+        parsed_data = json.loads(text_response.strip(), strict=False)
+
+    return parsed_data, usage_meta
 
 def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
     """Analysiert einen Markt mit Gemini."""
@@ -475,7 +544,17 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         Nutze Google Search für Fakten.
         Output JSON: {{ "estimated_probability": 0.0-1.0, "confidence_score": 0.0-1.0, "reasoning": "..." }}
         """
-        result = _generate_gemini_response(client, prompt)
+        result, usage_meta = _generate_gemini_response(client, prompt)
+
+        # Log API Usage in DB
+        database.log_api_usage(
+            api_name="gemini",
+            endpoint="generate_content",
+            tokens_prompt=usage_meta['prompt_token_count'],
+            tokens_response=usage_meta['candidates_token_count'],
+            response_time_ms=usage_meta['response_time_ms']
+        )
+
         return AIAnalysis(**result)
     except Exception as e:
         logger.error(f"❌ Fehler bei KI-Analyse: {e}")
@@ -557,6 +636,9 @@ def single_run():
     """Einzelner 15-Minuten-Cycle"""
     logger.info("🎬 Start Single Run...")
     
+    # Timestamp zu Beginn speichern (UTC)
+    run_start_time = datetime.now(timezone.utc)
+
     # 1. Load current capital from DB
     capital = database.get_current_capital()
     logger.info(f"💰 Verfügbares Kapital: ${capital:.2f}")
@@ -566,6 +648,10 @@ def single_run():
     
     # 3. Fetch and analyze markets
     raw_markets = fetch_active_markets(limit=FETCH_MARKET_LIMIT)
+
+    # Fetch missing end dates
+    raw_markets = fetch_missing_end_dates(raw_markets)
+
     top_markets = pre_filter_markets(raw_markets, top_n=TOP_MARKETS_TO_ANALYZE)
 
     # 4. Analyze and save new bets
@@ -598,13 +684,15 @@ def single_run():
             })
             active_slugs.add(market.market_slug)
     
-    # 5. Update dashboard if needed
-    if dashboard.should_update_dashboard():
-        logger.info("📝 Updating dashboard...")
-        dashboard.generate_dashboard()
-        git_integration.push_dashboard_update()
-    else:
-        logger.info("✅ Dashboard up-to-date.")
+    # 5. Dashboard IMMER aktualisieren
+    logger.info("📝 Updating dashboard...")
+    dashboard.generate_dashboard()
+    git_integration.push_dashboard_update()
+
+    # Timestamp nach erfolgreichem Run speichern
+    database.set_last_run_timestamp(run_start_time)
+
+    logger.info("✅ Run completed. Sleeping 15 minutes...")
 
 def main_loop():
     """Infinite loop for 24/7 operation"""
@@ -627,7 +715,6 @@ def main_loop():
     while True:
         try:
             single_run()
-            logger.info("✅ Run completed. Sleeping 15 minutes...")
             time.sleep(900)
         except KeyboardInterrupt:
             logger.info("🛑 Shutdown requested")

@@ -3,7 +3,7 @@ import os
 import logging
 import math
 import threading
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from contextlib import contextmanager, nullcontext
 from typing import List, Optional, Dict, Any, Tuple
 from dateutil import parser
@@ -131,12 +131,6 @@ def repair_timestamps():
                 # Check timestamp_created
                 ts_created = row['timestamp_created']
 
-                # If we get a valid object, safe_timestamp will format it correctly.
-                # If we got None because converter failed (but logger warned), we might want to check raw?
-                # But we can't easily check raw without casting.
-                # Assuming safe_timestamp handles the object returned by converter.
-
-                # Logic: Always re-write using safe_timestamp to ensure standard format in DB
                 if ts_created:
                     updates['timestamp_created'] = safe_timestamp(ts_created)
 
@@ -186,9 +180,17 @@ def init_database():
             id INTEGER PRIMARY KEY CHECK (id = 1),
             total_capital REAL NOT NULL,
             last_updated TIMESTAMP NOT NULL,
-            last_dashboard_update TIMESTAMP
+            last_dashboard_update TIMESTAMP,
+            last_run_timestamp TIMESTAMP
         )
         ''')
+
+        # Check if last_run_timestamp exists (migration)
+        try:
+            cursor.execute("SELECT last_run_timestamp FROM portfolio_state LIMIT 1")
+        except sqlite3.OperationalError:
+            logger.info("Migrating database: Adding last_run_timestamp to portfolio_state")
+            cursor.execute("ALTER TABLE portfolio_state ADD COLUMN last_run_timestamp TIMESTAMP")
 
         # Active Bets
         cursor.execute('''
@@ -208,6 +210,13 @@ def init_database():
         )
         ''')
 
+        # Check if end_date exists (migration)
+        try:
+            cursor.execute("SELECT end_date FROM active_bets LIMIT 1")
+        except sqlite3.OperationalError:
+            logger.info("Migrating database: Adding end_date to active_bets")
+            cursor.execute("ALTER TABLE active_bets ADD COLUMN end_date TIMESTAMP")
+
         # Results (Closed Bets)
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS results (
@@ -226,6 +235,24 @@ def init_database():
             FOREIGN KEY (bet_id) REFERENCES active_bets(bet_id)
         )
         ''')
+
+        # API Usage Tracking
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS api_usage (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            timestamp TIMESTAMP NOT NULL,
+            api_name TEXT NOT NULL,
+            endpoint TEXT,
+            calls INTEGER DEFAULT 1,
+            tokens_prompt INTEGER DEFAULT 0,
+            tokens_response INTEGER DEFAULT 0,
+            tokens_total INTEGER DEFAULT 0,
+            response_time_ms INTEGER DEFAULT 0
+        )
+        ''')
+
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_api_timestamp ON api_usage(timestamp)')
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_api_name ON api_usage(api_name, timestamp)')
 
         # Initialize capital if empty
         cursor.execute('SELECT count(*) FROM portfolio_state')
@@ -461,3 +488,94 @@ def get_last_dashboard_update() -> Optional[datetime]:
                  return parser.parse(val)
             return val
         return None
+
+# ============================================================================
+# NEW API TRACKING FUNCTIONS
+# ============================================================================
+
+def log_api_usage(api_name: str, endpoint: str, tokens_prompt: int, tokens_response: int, response_time_ms: int):
+    """Log API usage to the database."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+        INSERT INTO api_usage (
+            timestamp, api_name, endpoint, tokens_prompt, tokens_response, tokens_total, response_time_ms
+        ) VALUES (?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            safe_timestamp(datetime.now(timezone.utc)), # Store as UTC
+            api_name,
+            endpoint,
+            tokens_prompt,
+            tokens_response,
+            tokens_prompt + tokens_response,
+            response_time_ms
+        ))
+        conn.commit()
+
+def get_api_usage_rpm(api_name: str = "gemini") -> int:
+    """Returns number of API calls in the last minute."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        one_min_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
+        cursor.execute(
+            "SELECT COUNT(*) FROM api_usage WHERE api_name = ? AND timestamp >= ?",
+            (api_name, safe_timestamp(one_min_ago))
+        )
+        return cursor.fetchone()[0]
+
+def get_api_usage_rpd(api_name: str = "gemini") -> int:
+    """Returns number of API calls today (UTC based, effectively)."""
+    # Note: Requirement says "CET", but prompt implementation in step 5 assumes UTC storage and display conversion.
+    # To strictly follow "today (CET)", we need to calculate start of day in CET.
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        now_utc = datetime.now(timezone.utc)
+        # Approximate CET (UTC+1) for simple day boundary if timezone lib not fully utilized for queries
+        # Or better, just count last 24h or day since midnight UTC.
+        # Requirement: "today (CET)".
+        # Let's try to get start of day CET in UTC.
+        cet_offset = timedelta(hours=1) # Simplified, ignoring DST
+        now_cet = now_utc + cet_offset
+        start_of_day_cet = now_cet.replace(hour=0, minute=0, second=0, microsecond=0)
+        start_of_day_utc = start_of_day_cet - cet_offset
+
+        cursor.execute(
+            "SELECT COUNT(*) FROM api_usage WHERE api_name = ? AND timestamp >= ?",
+            (api_name, safe_timestamp(start_of_day_utc))
+        )
+        return cursor.fetchone()[0]
+
+def get_api_usage_tpm(api_name: str = "gemini") -> int:
+    """Returns sum of tokens in the last minute."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        one_min_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
+        cursor.execute(
+            "SELECT SUM(tokens_total) FROM api_usage WHERE api_name = ? AND timestamp >= ?",
+            (api_name, safe_timestamp(one_min_ago))
+        )
+        result = cursor.fetchone()[0]
+        return result if result else 0
+
+def get_last_run_timestamp() -> Optional[datetime]:
+    """Reads last run timestamp from DB."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT last_run_timestamp FROM portfolio_state WHERE id = 1')
+        row = cursor.fetchone()
+        if row and row['last_run_timestamp']:
+            val = row['last_run_timestamp']
+            if isinstance(val, (bytes, str)):
+                 return parser.parse(val)
+            return val
+        return None
+
+def set_last_run_timestamp(timestamp: datetime):
+    """Saves last run timestamp."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            'UPDATE portfolio_state SET last_run_timestamp = ? WHERE id = 1',
+            (safe_timestamp(timestamp),)
+        )
+        conn.commit()
