@@ -93,8 +93,11 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # API URLs
+# REST API für Market Discovery (unverändert)
 POLYMARKET_GAMMA_API_URL = "https://gamma-api.polymarket.com/markets"
-GRAPHQL_URL = "https://gamma-api.polymarket.com/query"
+
+# NEU: Goldsky Markets Subgraph für GraphQL (ersetzt deprecated Gamma GraphQL)
+GRAPHQL_URL = "https://api.goldsky.com/api/public/project_clrb8pu7r0abk01w14w7o5rkl/subgraphs/polymarket-markets/latest/gn"
 
 # Trading Strategy Params
 MIN_VOLUME = float(os.getenv("MIN_VOLUME", "10000"))
@@ -240,7 +243,7 @@ def check_and_resolve_bets():
                 # Safe JSON encoding for the ID string to prevent injection
                 # json.dumps adds surrounding quotes
                 safe_id_str = json.dumps(slug)
-                query_parts.append(f'{alias}: market(id: {safe_id_str}) {{ closed resolvedBy outcomePrices }}')
+                query_parts.append(f'{alias}: market(id: {safe_id_str}) {{ closed resolvedBy outcomes {{ price }} }}')
 
             if not query_parts:
                 continue
@@ -280,7 +283,8 @@ def check_and_resolve_bets():
 
             if resolved_by:
                 # Market is resolved. Check prices.
-                prices = market_data.get('outcomePrices', [])
+                outcomes = market_data.get('outcomes', [])
+                prices = [float(o.get('price', 0)) for o in outcomes] if outcomes else []
 
                 actual_outcome = None
                 if prices and len(prices) >= 2:
@@ -329,14 +333,8 @@ def check_and_resolve_bets():
 
 def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dict]:
     """
-    Führt GraphQL-Request mit exponentiellem Backoff bei 401-Fehlern aus.
-
-    Args:
-        query: GraphQL Query String
-        max_retries: Maximale Anzahl Retries (Standard: 3)
-
-    Returns:
-        Response-Daten oder None bei Fehler
+    Führt GraphQL-Request mit exponentiellem Backoff bei Fehlern aus.
+    Nutzt Goldsky Subgraph (keine Authentifizierung erforderlich).
     """
     for attempt in range(max_retries):
         try:
@@ -350,22 +348,13 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
             if response.status_code == 200:
                 return response.json()
 
-            elif response.status_code == 401:
-                wait_time = 2 ** (attempt + 1)  # 2s, 4s, 8s
-                logger.warning(f"GraphQL 401 Unauthorized (Attempt {attempt+1}/{max_retries}). Retrying in {wait_time}s...")
-
+            # Bei Goldsky sollten keine 401 mehr auftreten
+            elif response.status_code in [429, 500, 502, 503, 504]:
+                # Rate limiting oder temporäre Fehler
+                wait_time = 2 ** (attempt + 1)
+                logger.warning(f"GraphQL {response.status_code} (Attempt {attempt+1}/{max_retries}). Retrying in {wait_time}s...")
                 if attempt < max_retries - 1:
                     time.sleep(wait_time)
-                else:
-                    # Nach allen Retries: Error-Log
-                    error_logger.log_api_error(
-                        api_name="polymarket_graphql",
-                        endpoint=GRAPHQL_URL,
-                        error=Exception("401 Unauthorized after retries"),
-                        response_code=401,
-                        context={"query": query[:100], "retries": max_retries}
-                    )
-                    return None
             else:
                 logger.warning(f"GraphQL HTTP {response.status_code}")
                 return None
@@ -374,7 +363,7 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
             logger.error(f"GraphQL request failed: {e}")
             if attempt == max_retries - 1:
                 error_logger.log_api_error(
-                    api_name="polymarket_graphql",
+                    api_name="goldsky_graphql",
                     endpoint=GRAPHQL_URL,
                     error=e,
                     context={"query": query[:100]}
@@ -483,7 +472,7 @@ def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
         alias = f"m_{idx}"
         slug_map[alias] = market.market_slug
         safe_id = json.dumps(market.market_slug)
-        query_parts.append(f'{alias}: market(id: {safe_id}) {{ endDate }}')
+        query_parts.append(f'{alias}: market(id: {safe_id}) {{ end_date_iso }}')
 
     if not query_parts:
         return markets
@@ -497,12 +486,12 @@ def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
 
             # Update market objects
             for alias, market_data in data.items():
-                if market_data and 'endDate' in market_data:
+                if market_data and 'end_date_iso' in market_data:
                     original_slug = slug_map.get(alias)
                     if original_slug:
                         for market in markets:
                             if market.market_slug == original_slug:
-                                market.end_date = market_data['endDate']
+                                market.end_date = market_data['end_date_iso']
                                 break
     except Exception as e:
         logger.warning(f"⚠️  Fehler beim Nachladen von End Dates: {e}")
