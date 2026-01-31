@@ -481,15 +481,16 @@ def single_run():
     top_markets = pre_filter_markets(raw_markets, top_n=TOP_MARKETS_TO_ANALYZE)
 
     # 4. Analyze and save new bets
-    for i, market in enumerate(top_markets):
-        # Prevent Gemini Rate Limits
-        time.sleep(3)
+    active_slugs = {b['market_slug'] for b in database.get_active_bets()}
 
+    for i, market in enumerate(top_markets):
         # Check if we already have an active bet on this market?
-        active_slugs = [b['market_slug'] for b in database.get_active_bets()]
         if market.market_slug in active_slugs:
             logger.info(f"⏭️  Bereits aktive Wette für: {market.market_slug}. Skipping.")
             continue
+
+        # Prevent Gemini Rate Limits
+        time.sleep(3)
 
         rec = analyze_and_recommend(market, capital)
 
@@ -505,6 +506,7 @@ def single_run():
                 'expected_value': rec.expected_value,
                 'end_date': market.end_date
             })
+            active_slugs.add(market.market_slug)
     
     # 5. Update dashboard if needed
     if dashboard.should_update_dashboard():
