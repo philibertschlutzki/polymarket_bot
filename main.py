@@ -490,9 +490,9 @@ def single_run():
 
 def main_loop():
     """Infinite loop for 24/7 operation"""
-    if not GEMINI_API_KEY:
+    if not GEMINI_API_KEY or GEMINI_API_KEY == "your_gemini_api_key_here":
         error_msg = (
-            "❌ GEMINI_API_KEY nicht gesetzt!\n"
+            "❌ GEMINI_API_KEY nicht gesetzt (oder Placeholder gefunden)!\n"
             "   Bitte führe das Deployment-Skript erneut aus:\n"
             "   ./deploy_raspberry_pi.sh\n"
             "   Oder setze den Key manuell in der .env Datei:\n"

@@ -35,10 +35,11 @@ echo "------------------------------"
 
 if [ ! -f .env ]; then
     cp .env.example .env
+    echo "ℹ️  Created .env file (hidden)"
 fi
 
 # Check if PAT already exists in .env
-if grep -q "GITHUB_PAT=" .env && [ -n "$(grep GITHUB_PAT= .env | cut -d '=' -f2)" ]; then
+if grep -q "^GITHUB_PAT=" .env && [ -n "$(grep "^GITHUB_PAT=" .env | cut -d '=' -f2)" ]; then
     echo "✅ GitHub PAT already configured in .env"
 else
     echo "Please create a GitHub Personal Access Token:"
@@ -69,7 +70,8 @@ echo ""
 echo "🔑 Gemini API Configuration"
 echo "----------------------------"
 
-if grep -q "GEMINI_API_KEY=" .env && [ -n "$(grep GEMINI_API_KEY= .env | cut -d '=' -f2)" ]; then
+GEMINI_KEY_VAL=$(grep "^GEMINI_API_KEY=" .env | cut -d '=' -f2)
+if grep -q "^GEMINI_API_KEY=" .env && [ -n "$GEMINI_KEY_VAL" ] && [ "$GEMINI_KEY_VAL" != "your_gemini_api_key_here" ]; then
     echo "✅ Gemini API Key already configured in .env"
 else
     echo "Please create a Gemini API Key:"
@@ -86,14 +88,18 @@ else
         exit 1
     fi
 
-    echo "GEMINI_API_KEY=$GEMINI_API_KEY" >> .env
+    if grep -q "^GEMINI_API_KEY=your_gemini_api_key_here" .env; then
+         sed -i "s|^GEMINI_API_KEY=.*|GEMINI_API_KEY=$GEMINI_API_KEY|" .env
+    else
+         echo "GEMINI_API_KEY=$GEMINI_API_KEY" >> .env
+    fi
     echo "✅ Gemini API Key configured!"
 fi
 
 # 6. Git Remote Configuration
 echo ""
 echo "🔧 Configuring Git remote with PAT..."
-GITHUB_PAT=$(grep GITHUB_PAT= .env | cut -d '=' -f2)
+GITHUB_PAT=$(grep "^GITHUB_PAT=" .env | cut -d '=' -f2)
 REPO_URL=$(git config --get remote.origin.url)
 
 # Extract owner/repo from current URL
@@ -184,3 +190,4 @@ fi
 
 echo ""
 echo "🎉 Deployment complete!"
+echo "ℹ️  Note: Configuration is stored in .env (hidden file). Use 'ls -a' to view."
