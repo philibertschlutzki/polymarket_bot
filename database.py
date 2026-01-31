@@ -2,6 +2,7 @@ import sqlite3
 import os
 import logging
 import math
+import threading
 from datetime import datetime
 from contextlib import contextmanager
 from typing import List, Optional, Dict, Any, Tuple
@@ -14,15 +15,49 @@ INITIAL_CAPITAL = 1000.0
 # Logging
 logger = logging.getLogger(__name__)
 
+# Thread-local storage for database connections
+_local = threading.local()
+
 @contextmanager
 def get_db_connection():
-    """Context manager for SQLite database connection."""
-    conn = sqlite3.connect(DB_NAME, detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES)
-    conn.row_factory = sqlite3.Row  # Access columns by name
+    """
+    Context manager for SQLite database connection.
+    Uses thread-local storage to reuse connections.
+    Handles nested usage by tracking recursion depth.
+    """
+    if not hasattr(_local, "connection") or _local.connection is None:
+        conn = sqlite3.connect(DB_NAME, detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES)
+        conn.row_factory = sqlite3.Row  # Access columns by name
+        _local.connection = conn
+        _local.depth = 0
+
+    conn = _local.connection
+    # Ensure depth is initialized (in case _local.connection existed but depth didn't for some reason)
+    if not hasattr(_local, "depth"):
+        _local.depth = 0
+
+    _local.depth += 1
+
     try:
         yield conn
     finally:
-        conn.close()
+        _local.depth -= 1
+        if _local.depth == 0:
+            # Instead of closing, we rollback any uncommitted changes to ensure clean state
+            # for the next usage. This mimics conn.close() behavior regarding transactions
+            # but keeps the connection open.
+            conn.rollback()
+
+def close_db_connection():
+    """Manually closes the thread-local database connection if it exists."""
+    if hasattr(_local, "connection") and _local.connection is not None:
+        try:
+            _local.connection.close()
+        except Exception as e:
+            logger.error(f"Error closing database connection: {e}")
+        finally:
+            _local.connection = None
+            _local.depth = 0
 
 def init_database():
     """Initializes the database with required tables and default values."""
