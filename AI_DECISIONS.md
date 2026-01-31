@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-01-31 23:54:12 CET
+**Last Updated:** 2026-02-01 00:57:17 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -177,62 +177,72 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## ❌ Rejected Markets
 
-*Showing last 56 rejected analyses*
+*Showing last 72 rejected analyses*
 
-### Insufficient Edge (52)
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 00:54*
-Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
-Reasoning: Juan Branco hat aufgrund der gegen ihn erhobenen Vorwürfe, seiner umstrittenen politischen Positionen und des starken Wettbewerbs durch etabliertere K...
-
-**Will Josh Hawley win the 2028 Republican presidential nomina...**
-*Analyzed: 2026-02-01 00:53*
-Market: 0.01 | AI: 0.01 | Edge: +0.3% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis von 0.75 % deutet auf eine sehr geringe Wahrscheinlichkeit hin, dass Josh Hawley die republikanische Nominierung für 2028 gewi...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 00:53*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
-Reasoning: Brasilien ist eine traditionell starke Fussballnation mit viel Talent und hat sich für die WM 2026 qualifiziert. Ihre jüngsten Leistungen waren jedoch...
-
-**Timberwolves vs. Grizzlies...**
-*Analyzed: 2026-02-01 00:52*
-Market: 0.81 | AI: 0.75 | Edge: -5.5% | Conf: 85%
-Reasoning: Die Minnesota Timberwolves sind mit einer Bilanz von 30-19 klarer Favorit gegen die Memphis Grizzlies, die eine Bilanz von 18-28 haben. Die Timberwolv...
-
-**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
-*Analyzed: 2026-02-01 00:37*
-Market: 1.00 | AI: 0.95 | Edge: -5.0% | Conf: 75%
-Reasoning: Obwohl 3DMAX FaZe kürzlich geschlagen hat, ist FaZe Clan im Allgemeinen das stärkere Team mit einer besseren Head-to-Head-Bilanz. Der aktuelle Marktwe...
+### Insufficient Edge (66)
 
 **Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 00:37*
+*Analyzed: 2026-02-01 01:57*
 Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 60%
-Reasoning: Juan Branco ist ein umstrittener französischer Anwalt und politischer Aktivist. Er hat sich als Kritiker der französischen Elite und des Präsidenten E...
+Reasoning: Juan Branco ist ein umstrittener Anwalt und Aktivist mit einer starken Anhängerschaft außerhalb des Mainstreams. Er hat sich als Kritiker des französi...
 
-**No change in Bank of England's interest rates after February...**
-*Analyzed: 2026-02-01 00:37*
-Market: 0.99 | AI: 0.99 | Edge: -0.3% | Conf: 95%
-Reasoning: Der aktuelle Marktpreis deutet auf eine sehr hohe Wahrscheinlichkeit hin, dass die Bank of England die Zinsen bei ihrer Sitzung im Februar 2026 nicht ...
-
-**Will Josh Hawley win the 2028 Republican presidential nomina...**
-*Analyzed: 2026-02-01 00:37*
-Market: 0.01 | AI: 0.01 | Edge: +0.3% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis von 0,75 % spiegelt eine sehr geringe Wahrscheinlichkeit wider, dass Josh Hawley die republikanische Nominierung im Jahr 2028 ...
+**Will the price of Ethereum be above $2,600 on February 1?...**
+*Analyzed: 2026-02-01 01:56*
+Market: 0.06 | AI: 0.15 | Edge: +8.9% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis (Yes) auf Polymarket liegt bei 6,05%, was eine sehr geringe Wahrscheinlichkeit widerspiegelt. Die aktuellen Ethereum Preise li...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 00:37*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
-Reasoning: Brazil has the potential and history to win the World Cup, reflected in betting odds. However, recent inconsistent form and strong competition from ot...
+*Analyzed: 2026-02-01 01:56*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
+Reasoning: Obwohl Brasilien eine Fussballnation mit grosser Tradition ist, zeigen die jüngsten Leistungen eine gewisse Instabilität. Der aktuelle Marktpreis von ...
 
-**Timberwolves vs. Grizzlies...**
-*Analyzed: 2026-02-01 00:37*
-Market: 0.81 | AI: 0.85 | Edge: +4.5% | Conf: 75%
-Reasoning: Die Timberwolves haben eine deutlich bessere Bilanz (30-19 vs. 18-28), sind 7.5-Punkte-Favorit und haben die letzten drei Spiele gewonnen, während die...
+**Kings vs. Wizards...**
+*Analyzed: 2026-02-01 01:56*
+Market: 0.57 | AI: 0.55 | Edge: -2.5% | Conf: 70%
+Reasoning: Die aktuelle Markteinschätzung liegt bei 57,50 % für einen Sieg der Kings. Die Suchergebnisse zeigen, dass beide Teams ähnliche Bilanzen haben (Wizard...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 01:41*
+Market: 0.01 | AI: 0.00 | Edge: -1.0% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis von 1.05% spiegelt eine extrem geringe Wahrscheinlichkeit wider, dass Juan Branco die Wahl gewinnt.  Mehrere Faktoren tragen z...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 01:40*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
+Reasoning: Basierend auf dem aktuellen Marktpreis von 9,50% scheint der Markt Brasilien eine geringe Chance einzuräumen.  Laut der FIFA-Weltrangliste vom 19. Jan...
+
+**Kings vs. Wizards...**
+*Analyzed: 2026-02-01 01:40*
+Market: 0.56 | AI: 0.53 | Edge: -3.5% | Conf: 70%
+Reasoning: Die Kings haben im direkten Vergleich die Nase vorn und die Wizards haben mit erheblichen Verletzungsproblemen zu kämpfen, insbesondere dem Ausfall vo...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 01:25*
+Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 75%
+Reasoning: Juan Branco is a political activist and writer with a background in law and philosophy. He has been involved with various political movements and has ...
+
+**Will Josh Hawley win the 2028 Republican presidential nomina...**
+*Analyzed: 2026-02-01 01:25*
+Market: 0.01 | AI: 0.01 | Edge: +0.3% | Conf: 60%
+Reasoning: Josh Hawley ist ein konservativer Senator aus Missouri. Er wurde 2018 in den Senat gewählt und 2024 wiedergewählt. Hawley hat sich als Verfechter kons...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 01:25*
+Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
+Reasoning: Basierend auf den aktuellen Wettquoten und FIFA-Ranglisten hat Brasilien eine etwa 10%ige Chance, die FIFA Fussball-Weltmeisterschaft 2026 zu gewinnen...
 
 
-### Ai Analysis Failed (1)
+### Ai Analysis Failed (3)
+
+**Will Josh Hawley win the 2028 Republican presidential nomina...**
+*Analyzed: 2026-02-01 01:57*
+Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Josh Hawley win the 2028 Republican presidential nomina...**
+*Analyzed: 2026-02-01 01:41*
+Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **No change in Bank of England's interest rates after February...**
 *Analyzed: 2026-02-01 00:54*
