@@ -127,6 +127,8 @@ fi
 
 # 9. Log Directory Setup
 mkdir -p logs
+# Fix permissions in case logs directory was previously created by root
+sudo chown -R $(whoami): logs
 
 # 10. systemd Service Installation
 echo ""
@@ -154,7 +156,7 @@ StartLimitBurst=5
 StartLimitIntervalSec=600
 
 # Logging
-StandardOutput=append:$WORKING_DIR/logs/bot.log
+# StandardOutput removed to avoid permission conflict with application logging
 StandardError=append:$WORKING_DIR/logs/bot.error.log
 
 [Install]
