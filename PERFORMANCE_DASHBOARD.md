@@ -1,8 +1,8 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 18:12:46 CET
-**Current Capital:** $1,005.00 USDC
-**Total Return:** +0.50% ($+5.00)
+**Last Updated:** 2026-01-31 18:31:18 CET
+**Current Capital:** $1,000.00 USDC
+**Total Return:** +0.00% ($+0.00)
 
 ---
 ## ⏰ System Status
@@ -28,30 +28,30 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Bets | 1 |
-| Win Rate | 100.00% (1W / 0L) |
-| Avg ROI per Bet | +50.0% |
+| Total Bets | 0 |
+| Win Rate | 0.00% (0W / 0L) |
+| Avg ROI per Bet | +0.0% |
 | Sharpe Ratio | 0.00 |
 | Max Drawdown | 0.0% |
-| Best Bet | $+5.00 |
-| Worst Bet | $+5.00 |
+| Best Bet | $+0.00 |
+| Worst Bet | $+0.00 |
 
 ---
 ## ⚖️ Portfolio Risk Metrics
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $10.00 (1.0% of capital) |
-| Avg Position Size | $10.00 |
-| Largest Position | $10.00 (1.0%) |
-| Portfolio Concentration | High 🔴 (HHI: 1.000) |
+| Total Exposure | $0.00 (0.0% of capital) |
+| Avg Position Size | $0.00 |
+| Largest Position | $0.00 (0.0%) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.000) |
 
 ---
-## 🎯 Active Bets (1)
+## 🎯 Active Bets (0)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Test Active Question | YES | $10.00 | 0.50 | 0.60 | +10% 🟡 | 90% | $+1.00 | 2026-01-31 | -1d | ⏰ Expired |
+| *No active bets* | - | - | - | - | - | - | - | - | - | - |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -66,35 +66,28 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 1 |
-| Markets Rejected (Last Run) | 2 |
-| Top Rejection Reason | NEGATIVE_EDGE |
+| Markets with Active Bets | 0 |
+| Markets Rejected (Last Run) | 0 |
+| Top Rejection Reason | N/A |
 
 📋 **[View All Rejected Markets →](AI_DECISIONS.md#rejected-markets)**
+
+---
+## 📊 Advanced Analytics
+
+*Insufficient data (need at least 5 closed bets)*
 
 ---
 ## 📊 Capital Performance (ASCII Chart)
 
 ```
- 1005.00  ┤╭
- 1004.50  ┤│
- 1004.00  ┤│
- 1003.50  ┤│
- 1003.00  ┤│
- 1002.50  ┤│
- 1002.00  ┤│
- 1001.50  ┤│
- 1001.00  ┤│
- 1000.50  ┤│
- 1000.00  ┼╯
+Insufficient data for chart (need at least 2 data points).
 ```
 
 ---
 ## 📜 Recent Results (Last 10)
 
-| Date | Question | Action | Outcome | P&L |
-|---|---|---|---|---|
-| 2026-01-31 | Test Active Question | YES | ✅ WIN | $+5.00 |
+*No results yet.*
 
 ---
 

@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-01-31 18:11:23 CET
+**Last Updated:** 2026-01-31 18:29:09 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,56 +15,15 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets
 
-### Bet #1: Test Active Question
-
-**Decision:** YES @ 0.50 (Stake: $10.00)
-
-**AI Analysis:**
-- **Estimated Probability:** 60.0% (vs Market: 50.0%)
-- **Confidence Score:** 90.0%
-- **Edge:** +10.0%
-- **Expected Value:** $+1.00
-- **End Date:** 2026-01-31 18:10 CET
-
-**AI Reasoning:**
-> Test active reasoning
-
----
+*No active bets.*
 
 ## ❌ Rejected Markets
 
-*Showing last 2 rejected analyses*
-
-### Negative Edge (2)
-
-**Test Rejected Question...**
-*Analyzed: 2026-01-31 18:10*
-Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 80%
-Reasoning: This is a test reasoning for rejection....
-
-**Test Rejected Question...**
-*Analyzed: 2026-01-31 18:10*
-Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 80%
-Reasoning: This is a test reasoning for rejection....
-
+*Showing last 0 rejected analyses*
 
 ## 📊 Historical Analysis
 
-### Post-Mortem: AI Predictions vs Actual Outcomes
-
-#### Accuracy by Confidence Level
-
-| Confidence | Bets | Accuracy | Notes |
-|------------|------|----------|-------|
-| High (>80%) | 1 | 100.0% | ✅ Good calibration |
-| Medium (60-80%) | 0 | N/A | - |
-| Low (<60%) | 0 | N/A | - |
-
-#### Recent Closed Bets (Last 20)
-
-**2026-01-31 - Test Active Question...**
-✅ Predicted: YES (60%) | Actual: YES | Confidence: 90% | P/L: $+5.00
-AI Reasoning: Test active reasoning...
+*No closed bets yet for analysis.*
 
 
 ---

@@ -109,41 +109,71 @@ Reasoning: {reasoning[:150]}...
 
         rejected_section += "\n"
 
-    # === HISTORICAL ANALYSIS ===
+    # === HISTORICAL ANALYSIS (ERWEITERT) ===
     history_section = "## 📊 Historical Analysis\n\n"
-    history_section += "### Post-Mortem: AI Predictions vs Actual Outcomes\n\n"
 
     if not closed_bets:
         history_section += "*No closed bets yet for analysis.*\n\n"
     else:
-        # Calculate accuracy by confidence level
-        conf_buckets = {
-            'High (>80%)': [],
-            'Medium (60-80%)': [],
-            'Low (<60%)': []
-        }
+        import analytics_advanced
 
-        for bet in closed_bets:
-            conf = bet['confidence_score'] if bet['confidence_score'] is not None else 0.0
-            was_correct = (bet['action'] == bet['actual_outcome'])
+        # Confidence Calibration
+        calibration = analytics_advanced.calculate_confidence_calibration(closed_bets)
 
-            if conf >= 0.80:
-                conf_buckets['High (>80%)'].append(was_correct)
-            elif conf >= 0.60:
-                conf_buckets['Medium (60-80%)'].append(was_correct)
-            else:
-                conf_buckets['Low (<60%)'].append(was_correct)
+        history_section += "### AI Confidence Calibration\n\n"
+        history_section += "Measures how well AI confidence scores match actual outcomes:\n\n"
+        history_section += "| Confidence | Predicted | Actual | Bets | Calibration |\n"
+        history_section += "|------------|-----------|--------|------|-------------|\n"
 
-        history_section += "#### Accuracy by Confidence Level\n\n"
-        history_section += "| Confidence | Bets | Accuracy | Notes |\n"
-        history_section += "|------------|------|----------|-------|\n"
+        for bucket in calibration['buckets']:
+            if bucket['num_bets'] > 0:
+                status_map = {
+                    'well_calibrated': '✅ Well calibrated',
+                    'acceptable': '⚠️ Acceptable',
+                    'overconfident': '🔴 Overconfident',
+                    'underconfident': '🔵 Underconfident'
+                }
 
-        for level, results in conf_buckets.items():
-            if results:
-                accuracy = sum(results) / len(results) * 100
-                history_section += f"| {level} | {len(results)} | {accuracy:.1f}% | {'✅ Good calibration' if accuracy >= 70 else '⚠️ Needs improvement'} |\n"
-            else:
-                history_section += f"| {level} | 0 | N/A | - |\n"
+                history_section += (
+                    f"| {bucket['range']} | "
+                    f"{bucket['predicted_win_rate']:.1%} | "
+                    f"{bucket['actual_win_rate']:.1%} | "
+                    f"{bucket['num_bets']} | "
+                    f"{status_map.get(bucket['status'], 'Unknown')} |\n"
+                )
+
+        # Edge Validation
+        edge_val = analytics_advanced.calculate_edge_validation(closed_bets, min_bets=10)
+
+        history_section += "\n### Edge Validation\n\n"
+        history_section += "Compares predicted market edge vs actual realized edge:\n\n"
+        history_section += "| Edge Range | Predicted | Realized | Accuracy |\n"
+        history_section += "|------------|-----------|----------|----------|\n"
+
+        for bucket in edge_val['buckets']:
+            if bucket['status'] == 'sufficient_data':
+                history_section += (
+                    f"| {bucket['range']} | "
+                    f"{bucket['avg_predicted_edge']:+.1%} | "
+                    f"{bucket['avg_realized_edge']:+.1%} | "
+                    f"{bucket['accuracy']:.0%} |\n"
+                )
+
+        # Model Trends
+        trends = analytics_advanced.calculate_model_trends(closed_bets)
+
+        history_section += "\n### Performance Evolution\n\n"
+        history_section += "30-day rolling window analysis:\n\n"
+        history_section += "| Period | Win Rate | Confidence | Calibration |\n"
+        history_section += "|--------|----------|------------|-------------|\n"
+
+        for period in trends['periods'][-4:]:  # Last 4 weeks
+            history_section += (
+                f"| {period['period_label']} | "
+                f"{period['win_rate']:.1%} | "
+                f"{period['avg_confidence']:.0%} | "
+                f"{period['calibration_score']:.0%} |\n"
+            )
 
         history_section += "\n#### Recent Closed Bets (Last 20)\n\n"
 
