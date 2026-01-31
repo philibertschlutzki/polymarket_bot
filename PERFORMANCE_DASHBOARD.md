@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 16:26:38 CET
+**Last Updated:** 2026-01-31 16:52:42 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -24,10 +24,10 @@
 
 | Question | Action | Stake | Entry Price | Expected Value | Days Open |
 |---|---|---|---|---|---|
-| Nothing Ever Happens: US Strike Edition | YES | $106.68 | 0.31 | $+117.01 | 0 |
+| Nothing Ever Happens: US Strike Edition | YES | $105.88 | 0.32 | $+112.61 | 0 |
 | Will John Cornyn win the 2026 Texas Republican Primary? | YES | $54.75 | 0.26 | $+41.87 | 0 |
-| Will Russia capture Kostyantynivka by December 31, 2026? | NO | $57.49 | 0.89 | $+117.48 | 0 |
-| Will Pierre-Yves Bournazel win the Paris mayor election? | YES | $29.20 | 0.01 | $+700.78 | 0 |
+| Will Russia capture Kostyantynivka by December 31, 2026? | NO | $55.54 | 0.89 | $+113.50 | 0 |
+| Will Pierre-Yves Bournazel win the Paris mayor election? | YES | $30.30 | 0.01 | $+727.24 | 0 |
 
 
 ---
