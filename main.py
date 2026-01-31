@@ -526,12 +526,17 @@ def analyze_and_recommend(market: MarketData, capital: float) -> Optional[Tradin
     if not ai_analysis:
         return None
 
-    rec = calculate_kelly_stake(
-        ai_analysis.estimated_probability,
-        market.yes_price,
-        ai_analysis.confidence_score,
-        capital
-    )
+    try:
+        rec = calculate_kelly_stake(
+            ai_analysis.estimated_probability,
+            market.yes_price,
+            ai_analysis.confidence_score,
+            capital
+        )
+    except Exception as e:
+        logger.error(f"Kelly calculation failed: {e}")
+        return None
+
     rec.market_question = market.question
     
     # Attach AI stats for DB storage
