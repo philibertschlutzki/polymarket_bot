@@ -43,7 +43,10 @@ Konzipiert für den Betrieb auf einem **Raspberry Pi** oder Linux-Server.
 ## 📦 Installation & Deployment
 
 Das System verfügt über ein automatisiertes Deployment-Script für Raspberry Pi / Debian-basierte Systeme.
-
+### Oneliner
+```bash
+git clone https://github.com/philibertschlutzki/polymarket_bot.git && cd polymarket_bot && chmod +x deploy_raspberry_pi.sh && ./deploy_raspberry_pi.sh && chmod +x setup_logrotate.sh && ./setup_logrotate.sh
+```
 ### 1. Repository klonen
 ```bash
 git clone https://github.com/philibertschlutzki/polymarket_bot.git
