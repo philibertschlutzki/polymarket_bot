@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 18:31:18 CET
+**Last Updated:** 2026-01-31 18:45:26 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 0 | 1,500 | 0.0% | 🟢 |
-| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
+| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
+| Today (RPD) | 12 | 1,500 | 0.8% | 🟢 |
+| Current Minute (TPM) | 5,407 | 1,000,000 | 0.54% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,24 +41,27 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $0.00 (0.0% of capital) |
-| Avg Position Size | $0.00 |
-| Largest Position | $0.00 (0.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.000) |
+| Total Exposure | $234.37 (23.4% of capital) |
+| Avg Position Size | $78.12 |
+| Largest Position | $112.47 (11.2%) |
+| Portfolio Concentration | High 🔴 (HHI: 0.398) |
 
 ---
-## 🎯 Active Bets (0)
+## 🎯 Active Bets (3)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
-| *No active bets* | - | - | - | - | - | - | - | - | - | - |
+| Nothing Ever Happens: US Strike Edition | YES | $91.00 | 0.31 | 0.60 | +29% 🟢 | 75% | $+85.12 | 2026-03-31 | 58d | 🟢 |
+| Will Russia capture Kostyantynivka by De... | NO | $30.90 | 0.88 | 0.75 | -13% 🔴 | 70% | $+33.47 | 2026-12-31 | 333d | 🟢 |
+| Will the price of Bitcoin be above $84,0... | YES | $112.47 | 0.10 | 0.60 | +50% 🟢 | 65% | $+597.87 | 2026-02-02 | 1d | 🔴 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
 ---
 ## ⚠️ Alerts & Warnings
 
-- 🟢 **No critical issues detected**
+- 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 11.2% of capital
+- 🟡 **Expiring Soon**: 1 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -66,9 +69,9 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 0 |
-| Markets Rejected (Last Run) | 0 |
-| Top Rejection Reason | N/A |
+| Markets with Active Bets | 3 |
+| Markets Rejected (Last Run) | 12 |
+| Top Rejection Reason | INSUFFICIENT_EDGE |
 
 📋 **[View All Rejected Markets →](AI_DECISIONS.md#rejected-markets)**
 
