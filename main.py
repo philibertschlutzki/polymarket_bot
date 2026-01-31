@@ -13,6 +13,7 @@ import os
 import sys
 import json
 import logging
+import logging.handlers
 import time
 import math
 import re
@@ -37,10 +38,25 @@ import git_integration
 # ============================================================================
 
 # Configure logging
+# Ensure logs directory exists
+os.makedirs('logs', exist_ok=True)
+
+# Configure logging with both console and file output
+log_handlers = [
+    logging.StreamHandler(),  # Console output
+    logging.handlers.RotatingFileHandler(
+        'logs/bot.log',
+        maxBytes=10 * 1024 * 1024,  # 10 MB per file
+        backupCount=5,
+        encoding='utf-8'
+    )
+]
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
+    datefmt='%Y-%m-%d %H:%M:%S',
+    handlers=log_handlers
 )
 logger = logging.getLogger(__name__)
 
@@ -475,7 +491,15 @@ def single_run():
 def main_loop():
     """Infinite loop for 24/7 operation"""
     if not GEMINI_API_KEY:
-        logger.error("❌ GEMINI_API_KEY nicht gesetzt!")
+        error_msg = (
+            "❌ GEMINI_API_KEY nicht gesetzt!\n"
+            "   Bitte führe das Deployment-Skript erneut aus:\n"
+            "   ./deploy_raspberry_pi.sh\n"
+            "   Oder setze den Key manuell in der .env Datei:\n"
+            "   https://aistudio.google.com/app/apikey"
+        )
+        logger.error(error_msg)
+        print(error_msg, file=sys.stderr)  # Zusätzlicher stderr-Output für systemd
         sys.exit(1)
 
     database.init_database()

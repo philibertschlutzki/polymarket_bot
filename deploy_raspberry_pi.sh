@@ -64,12 +64,30 @@ else
     fi
 fi
 
-# 5. Gemini API Key Check
-if ! grep -q "GEMINI_API_KEY=" .env || [ -z "$(grep GEMINI_API_KEY= .env | cut -d '=' -f2)" ]; then
+# 5. Gemini API Key Configuration
+echo ""
+echo "🔑 Gemini API Configuration"
+echo "----------------------------"
+
+if grep -q "GEMINI_API_KEY=" .env && [ -n "$(grep GEMINI_API_KEY= .env | cut -d '=' -f2)" ]; then
+    echo "✅ Gemini API Key already configured in .env"
+else
+    echo "Please create a Gemini API Key:"
+    echo "1. Go to: https://aistudio.google.com/app/apikey"
+    echo "2. Create a new API key"
+    echo "3. Paste it below"
     echo ""
-    echo "⚠️  GEMINI_API_KEY not found in .env"
-    echo "Please add it manually: https://aistudio.google.com/app/apikey"
-    exit 1
+    read -sp "Enter your Gemini API Key: " GEMINI_API_KEY
+    echo ""
+
+    # Basic validation (non-empty, reasonable length)
+    if [ -z "$GEMINI_API_KEY" ] || [ ${#GEMINI_API_KEY} -lt 20 ]; then
+        echo "❌ Invalid API key. Please check and try again."
+        exit 1
+    fi
+
+    echo "GEMINI_API_KEY=$GEMINI_API_KEY" >> .env
+    echo "✅ Gemini API Key configured!"
 fi
 
 # 6. Git Remote Configuration
