@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-01-31 22:50:18 CET
+**Last Updated:** 2026-01-31 23:54:12 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -143,64 +143,114 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
+### Bet #9: Will Aston Villa FC win on 2026-02-01?
+
+**Decision:** YES @ 0.46 (Stake: $77.47)
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 45.5%)
+- **Confidence Score:** 75.0%
+- **Edge:** +19.5%
+- **Expected Value:** $+33.20
+- **End Date:** 2026-02-01 15:00 CET
+
+**AI Reasoning:**
+> Aston Villa is in excellent form, especially at home. They are playing Brentford, who they have lost to twice this season already, suggesting a revenge factor. Current Polymarket price seems to undervalue Aston Villa's chances. Recent form, home advantage, and the desire for revenge suggest a higher probability than the market implies. However, Brentford's previous successes against Villa temper the confidence score.
+
+---
+
+### Bet #10: Will Bitcoin dip to $80,000 in February?
+
+**Decision:** NO @ 0.98 (Stake: $198.54)
+
+**AI Analysis:**
+- **Estimated Probability:** 5.0% (vs Market: 98.4%)
+- **Confidence Score:** 70.0%
+- **Edge:** -93.4%
+- **Expected Value:** $+11589.58
+- **End Date:** 2026-03-01 06:00 CET
+
+**AI Reasoning:**
+> Der aktuelle Marktpreis (Yes) liegt bei 98,40 %, was impliziert, dass der Markt es für sehr wahrscheinlich hält, dass Bitcoin im Februar unter 80.000 $ fallen wird. Allerdings deuten viele Prognosen darauf hin, dass der Preis von Bitcoin im Februar 2026 eher steigen als fallen wird. Es gibt auch Analysten, die davon ausgehen, dass der Bitcoin Preis im Jahr 2026 auf bis zu 225.000 $ steigen kann. Bitcoin ist zwar volatil, aber die Mehrheit der Prognosen deutet nicht auf einen so starken Rückgang hin. Daher schätze ich die Wahrscheinlichkeit, dass Bitcoin im Februar unter 80.000 $ fällt, auf 5 %. Ich habe ein mittleres Vertrauen in diese Schätzung, da der Kryptomarkt sehr unvorhersehbar ist.
+
+---
+
 ## ❌ Rejected Markets
 
-*Showing last 35 rejected analyses*
+*Showing last 56 rejected analyses*
 
-### Insufficient Edge (34)
-
-**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
-*Analyzed: 2026-01-31 23:50*
-Market: 1.00 | AI: 0.95 | Edge: -5.0% | Conf: 85%
-Reasoning: Der aktuelle Marktpreis von 99,95% deutet darauf hin, dass die überwiegende Mehrheit der Wettenden erwartet, dass 3DMAX Map 2 gewinnt. 3DMAX hat berei...
+### Insufficient Edge (52)
 
 **Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-01-31 23:50*
+*Analyzed: 2026-02-01 00:54*
 Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
-Reasoning: Juan Branco ist ein umstrittener politischer Aktivist und Anwalt ohne große politische Unterstützung. Aktuelle Umfragen sehen andere Kandidaten als Fa...
-
-**No change in Bank of England's interest rates after February...**
-*Analyzed: 2026-01-31 23:49*
-Market: 0.99 | AI: 0.99 | Edge: -0.3% | Conf: 95%
-Reasoning: Der aktuelle Marktpreis von 99,30% deutet stark darauf hin, dass die Bank of England die Zinssätze nach der Sitzung im Februar 2026 nicht ändern wird....
+Reasoning: Juan Branco hat aufgrund der gegen ihn erhobenen Vorwürfe, seiner umstrittenen politischen Positionen und des starken Wettbewerbs durch etabliertere K...
 
 **Will Josh Hawley win the 2028 Republican presidential nomina...**
-*Analyzed: 2026-01-31 23:49*
-Market: 0.01 | AI: 0.02 | Edge: +1.2% | Conf: 60%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit von 0,75 % scheint sehr niedrig. Josh Hawley ist ein relativ bekannter republikanischer Senator. Allerdings gibt ...
+*Analyzed: 2026-02-01 00:53*
+Market: 0.01 | AI: 0.01 | Edge: +0.3% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis von 0.75 % deutet auf eine sehr geringe Wahrscheinlichkeit hin, dass Josh Hawley die republikanische Nominierung für 2028 gewi...
 
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-01-31 23:33*
-Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
-Reasoning: Juan Branco ist eine sehr umstrittene Figur mit einer begrenzten Basis politischer Unterstützung. Er steht derzeit im Schatten von Vergewaltigungsvorw...
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 00:53*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
+Reasoning: Brasilien ist eine traditionell starke Fussballnation mit viel Talent und hat sich für die WM 2026 qualifiziert. Ihre jüngsten Leistungen waren jedoch...
 
-**No change in Bank of England's interest rates after February...**
-*Analyzed: 2026-01-31 23:33*
-Market: 0.99 | AI: 0.97 | Edge: -2.3% | Conf: 90%
-Reasoning: Der Marktpreis von 99,30 % scheint die aktuelle Stimmung widerzuspiegeln. Die Inflation ist höher als erwartet, und die Mehrheit der Ökonomen erwartet...
-
-**Will Josh Hawley win the 2028 Republican presidential nomina...**
-*Analyzed: 2026-01-31 23:32*
-Market: 0.01 | AI: 0.08 | Edge: +7.3% | Conf: 65%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit liegt bei 0,75 %. Angesichts von Josh Hawleys politischem Profil, der Konkurrenz innerhalb der Republikanischen P...
-
-**U.S. forces seize another oil tanker by February 14, 2026?...**
-*Analyzed: 2026-01-31 23:32*
-Market: 0.36 | AI: 0.45 | Edge: +8.5% | Conf: 70%
-Reasoning: Die USA haben in den letzten Wochen eine Reihe von Tankern beschlagnahmt, die mit Venezuela in Verbindung stehen, was auf eine erhöhte Wahrscheinlichk...
+**Timberwolves vs. Grizzlies...**
+*Analyzed: 2026-02-01 00:52*
+Market: 0.81 | AI: 0.75 | Edge: -5.5% | Conf: 85%
+Reasoning: Die Minnesota Timberwolves sind mit einer Bilanz von 30-19 klarer Favorit gegen die Memphis Grizzlies, die eine Bilanz von 18-28 haben. Die Timberwolv...
 
 **Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
-*Analyzed: 2026-01-31 23:17*
+*Analyzed: 2026-02-01 00:37*
 Market: 1.00 | AI: 0.95 | Edge: -5.0% | Conf: 75%
-Reasoning: Obwohl FaZe in der Vergangenheit stärker war, hat 3DMAX das letzte Spiel gewonnen und zeigt insgesamt eine gute Form. Der sehr hohe Marktpreis deutet ...
+Reasoning: Obwohl 3DMAX FaZe kürzlich geschlagen hat, ist FaZe Clan im Allgemeinen das stärkere Team mit einer besseren Head-to-Head-Bilanz. Der aktuelle Marktwe...
 
 **Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-01-31 23:17*
-Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 70%
-Reasoning: Juan Branco is a controversial figure with limited political experience and faces strong competition in a fragmented political landscape.  The current...
+*Analyzed: 2026-02-01 00:37*
+Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 60%
+Reasoning: Juan Branco ist ein umstrittener französischer Anwalt und politischer Aktivist. Er hat sich als Kritiker der französischen Elite und des Präsidenten E...
+
+**No change in Bank of England's interest rates after February...**
+*Analyzed: 2026-02-01 00:37*
+Market: 0.99 | AI: 0.99 | Edge: -0.3% | Conf: 95%
+Reasoning: Der aktuelle Marktpreis deutet auf eine sehr hohe Wahrscheinlichkeit hin, dass die Bank of England die Zinsen bei ihrer Sitzung im Februar 2026 nicht ...
+
+**Will Josh Hawley win the 2028 Republican presidential nomina...**
+*Analyzed: 2026-02-01 00:37*
+Market: 0.01 | AI: 0.01 | Edge: +0.3% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis von 0,75 % spiegelt eine sehr geringe Wahrscheinlichkeit wider, dass Josh Hawley die republikanische Nominierung im Jahr 2028 ...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 00:37*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
+Reasoning: Brazil has the potential and history to win the World Cup, reflected in betting odds. However, recent inconsistent form and strong competition from ot...
+
+**Timberwolves vs. Grizzlies...**
+*Analyzed: 2026-02-01 00:37*
+Market: 0.81 | AI: 0.85 | Edge: +4.5% | Conf: 75%
+Reasoning: Die Timberwolves haben eine deutlich bessere Bilanz (30-19 vs. 18-28), sind 7.5-Punkte-Favorit und haben die letzten drei Spiele gewonnen, während die...
 
 
-### Negative Expected Value (1)
+### Ai Analysis Failed (1)
+
+**No change in Bank of England's interest rates after February...**
+*Analyzed: 2026-02-01 00:54*
+Market: 0.99 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+
+### Negative Expected Value (3)
+
+**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
+*Analyzed: 2026-02-01 00:22*
+Market: 1.00 | AI: 0.85 | Edge: -15.0% | Conf: 75%
+Reasoning: Obwohl FaZe in der Weltrangliste höher steht, hat 3DMAX sie kürzlich besiegt. Der Marktpreis deutet auf eine extrem hohe Wahrscheinlichkeit für 3DMAX ...
+
+**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
+*Analyzed: 2026-02-01 00:06*
+Market: 1.00 | AI: 0.65 | Edge: -35.0% | Conf: 70%
+Reasoning: Obwohl FaZe im Allgemeinen höher eingestuft ist, hat 3DMAX sie kürzlich geschlagen und zeigt eine starke Spielerleistung. Der aktuelle Marktpreis von ...
 
 **Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
 *Analyzed: 2026-01-31 23:33*
