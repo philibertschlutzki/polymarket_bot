@@ -34,6 +34,7 @@ import database
 import dashboard
 import git_integration
 import ai_decisions_generator
+import error_logger
 
 # ============================================================================
 # KONFIGURATION
@@ -247,18 +248,11 @@ def check_and_resolve_bets():
             query = "query BatchResolution { " + " ".join(query_parts) + " }"
 
             try:
-                response = requests.post(
-                    GRAPHQL_URL,
-                    json={'query': query},
-                    headers={"Content-Type": "application/json"},
-                    timeout=20
-                )
+                data = graphql_request_with_retry(query)
 
-                if response.status_code != 200:
-                    logger.warning(f"⚠️  GraphQL Batch Fehler: {response.status_code}")
+                if not data:
                     continue
 
-                data = response.json()
                 data_content = data.get('data', {})
 
                 if not data_content:
@@ -332,6 +326,62 @@ def check_and_resolve_bets():
 # ============================================================================
 # API HELPERS
 # ============================================================================
+
+def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dict]:
+    """
+    Führt GraphQL-Request mit exponentiellem Backoff bei 401-Fehlern aus.
+
+    Args:
+        query: GraphQL Query String
+        max_retries: Maximale Anzahl Retries (Standard: 3)
+
+    Returns:
+        Response-Daten oder None bei Fehler
+    """
+    for attempt in range(max_retries):
+        try:
+            response = requests.post(
+                GRAPHQL_URL,
+                json={'query': query},
+                headers={"Content-Type": "application/json"},
+                timeout=20
+            )
+
+            if response.status_code == 200:
+                return response.json()
+
+            elif response.status_code == 401:
+                wait_time = 2 ** (attempt + 1)  # 2s, 4s, 8s
+                logger.warning(f"GraphQL 401 Unauthorized (Attempt {attempt+1}/{max_retries}). Retrying in {wait_time}s...")
+
+                if attempt < max_retries - 1:
+                    time.sleep(wait_time)
+                else:
+                    # Nach allen Retries: Error-Log
+                    error_logger.log_api_error(
+                        api_name="polymarket_graphql",
+                        endpoint=GRAPHQL_URL,
+                        error=Exception("401 Unauthorized after retries"),
+                        response_code=401,
+                        context={"query": query[:100], "retries": max_retries}
+                    )
+                    return None
+            else:
+                logger.warning(f"GraphQL HTTP {response.status_code}")
+                return None
+
+        except Exception as e:
+            logger.error(f"GraphQL request failed: {e}")
+            if attempt == max_retries - 1:
+                error_logger.log_api_error(
+                    api_name="polymarket_graphql",
+                    endpoint=GRAPHQL_URL,
+                    error=e,
+                    context={"query": query[:100]}
+                )
+            return None
+
+    return None
 
 def fetch_active_markets(limit: int = 20) -> List[MarketData]:
     """Holt aktive Märkte von der Polymarket Gamma API."""
@@ -441,18 +491,19 @@ def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
     query = "query FetchEndDates { " + " ".join(query_parts) + " }"
 
     try:
-        response = requests.post(GRAPHQL_URL, json={'query': query}, timeout=10)
-        data = response.json().get('data', {})
+        response_json = graphql_request_with_retry(query)
+        if response_json:
+            data = response_json.get('data', {})
 
-        # Update market objects
-        for alias, market_data in data.items():
-            if market_data and 'endDate' in market_data:
-                original_slug = slug_map.get(alias)
-                if original_slug:
-                    for market in markets:
-                        if market.market_slug == original_slug:
-                            market.end_date = market_data['endDate']
-                            break
+            # Update market objects
+            for alias, market_data in data.items():
+                if market_data and 'endDate' in market_data:
+                    original_slug = slug_map.get(alias)
+                    if original_slug:
+                        for market in markets:
+                            if market.market_slug == original_slug:
+                                market.end_date = market_data['endDate']
+                                break
     except Exception as e:
         logger.warning(f"⚠️  Fehler beim Nachladen von End Dates: {e}")
 
@@ -559,7 +610,35 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         )
 
         return AIAnalysis(**result)
+    except json.JSONDecodeError as e:
+        error_logger.log_error(
+            level="ERROR",
+            category="ai",
+            component="gemini_analysis",
+            message="JSON parsing failed for Gemini response",
+            error=e,
+            context={
+                "market_slug": market.market_slug,
+                "market_question": market.question[:60]
+            }
+        )
+        logger.error(f"❌ JSON Decode Error bei KI-Analyse: {e}")
+        return None
+
     except Exception as e:
+        error_type = type(e).__name__
+        error_logger.log_error(
+            level="ERROR",
+            category="ai",
+            component="gemini_analysis",
+            message=f"AI analysis failed: {error_type}",
+            error=e,
+            context={
+                "market_slug": market.market_slug,
+                "market_question": market.question[:60],
+                "market_price": market.yes_price
+            }
+        )
         logger.error(f"❌ Fehler bei KI-Analyse: {e}")
         return None
 
