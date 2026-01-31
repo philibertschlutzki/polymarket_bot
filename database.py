@@ -3,7 +3,7 @@ import os
 import logging
 import math
 from datetime import datetime
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 from typing import List, Optional, Dict, Any, Tuple
 from dateutil import parser
 
@@ -142,10 +142,14 @@ def get_active_bets() -> List[sqlite3.Row]:
         cursor.execute("SELECT * FROM active_bets WHERE status = 'OPEN'")
         return cursor.fetchall()
 
-def close_bet(bet_id: int, outcome: str, profit_loss: float):
+def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[sqlite3.Connection] = None):
     """Moves a bet from active_bets to results and updates capital."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
+
+    should_commit = conn is None
+    ctx = get_db_connection() if conn is None else nullcontext(conn)
+
+    with ctx as db_conn:
+        cursor = db_conn.cursor()
 
         # Get bet details
         cursor.execute("SELECT * FROM active_bets WHERE bet_id = ?", (bet_id,))
@@ -183,7 +187,8 @@ def close_bet(bet_id: int, outcome: str, profit_loss: float):
             (new_capital, datetime.now())
         )
 
-        conn.commit()
+        if should_commit:
+            db_conn.commit()
         logger.info(f"Bet {bet_id} closed. Outcome: {outcome}. P/L: ${profit_loss:.2f}. New Capital: ${new_capital:.2f}")
 
 def get_all_results() -> List[sqlite3.Row]:

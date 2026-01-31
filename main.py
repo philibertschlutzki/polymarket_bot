@@ -151,6 +151,8 @@ def check_and_resolve_bets():
 
         logger.info(f"🔍 Prüfe {len(active_bets)} aktive Wetten auf Resolution...")
         
+        bets_to_resolve = []
+
         for bet in active_bets:
             # Check date logic
             end_date_val = bet['end_date']
@@ -234,11 +236,17 @@ def check_and_resolve_bets():
                         # LOSS
                         profit = -stake
 
-                    # Close bet
-                    database.close_bet(bet['bet_id'], actual_outcome, profit)
-                    logger.info(f"✅ Bet {bet['bet_id']} resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})")
+                    bets_to_resolve.append((bet, actual_outcome, profit))
                 else:
                     logger.warning(f"⚠️  Market resolved but outcome unclear: {prices}")
+
+        # Batch resolve bets
+        if bets_to_resolve:
+            with database.get_db_connection() as conn:
+                for bet, actual_outcome, profit in bets_to_resolve:
+                    database.close_bet(bet['bet_id'], actual_outcome, profit, conn=conn)
+                    logger.info(f"✅ Bet {bet['bet_id']} resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})")
+                conn.commit()
 
     except Exception as e:
         logger.error(f"❌ Error during resolution check: {e}")
