@@ -185,11 +185,22 @@ def generate_dashboard():
 
     for bet in active_bets:
         q = bet['question']
-        if len(q) > 50: q = q[:50] + "..."
+        if len(q) > 40: q = q[:40] + "..."
 
         stake = bet['stake_usdc']
         price = bet['entry_price']
+        ai_prob = bet['ai_probability'] if bet['ai_probability'] is not None else 0.0
+        edge = bet['edge'] if bet['edge'] is not None else 0.0
+        conf = bet['confidence_score'] if bet['confidence_score'] is not None else 0.0
         ev = bet['expected_value']
+
+        # Edge Indicator
+        if edge >= 0.20:
+            edge_ind = "🟢"
+        elif edge >= 0.10:
+            edge_ind = "🟡"
+        else:
+            edge_ind = "🔴"
 
         # End Date
         # Use .get() or check keys to be safe against schema mismatches if migration failed
@@ -215,16 +226,18 @@ def generate_dashboard():
                 pass
 
         active_rows.append(
-            f"| {q} | {bet['action']} | ${stake:.2f} | {price:.2f} | ${ev:+.2f} | {end_date_display} | {days_display} | {status} |"
+            f"| {q} | {bet['action']} | ${stake:.2f} | {price:.2f} | {ai_prob:.2f} | {edge:+.0%} {edge_ind} | {conf:.0%} | ${ev:+.2f} | {end_date_display} | {days_display} | {status} |"
         )
 
-    active_table = "\n".join(active_rows) if active_rows else "| *No active bets* | - | - | - | - | - | - | - |"
+    active_table = "\n".join(active_rows) if active_rows else "| *No active bets* | - | - | - | - | - | - | - | - | - | - |"
 
     active_bets_section = f"""## 🎯 Active Bets ({len(active_bets)})
 
-| Question | Action | Stake | Entry Price | Expected Value | End Date | Days Left | Status |
-|---|---|---|---|---|---|---|---|
+| Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
+|---|---|---|---|---|---|---|---|---|---|---|
 {active_table}
+
+📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
 ---
 """
@@ -271,12 +284,25 @@ def generate_dashboard():
 
     markets_with_bets = len(active_bets)
 
+    # Count recent rejections (last run)
+    recent_rejections = database.get_rejected_markets(limit=20)  # Last run could be ~15 markets
+    rejection_counts = {}
+    for rej in recent_rejections:
+        reason = rej['rejection_reason']
+        rejection_counts[reason] = rejection_counts.get(reason, 0) + 1
+
+    top_rejection = max(rejection_counts.items(), key=lambda x: x[1])[0] if rejection_counts else "N/A"
+
     market_insights = f"""## 📊 Market Insights
 
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | {markets_analyzed} |
 | Markets with Active Bets | {markets_with_bets} |
+| Markets Rejected (Last Run) | {len(recent_rejections)} |
+| Top Rejection Reason | {top_rejection} |
+
+📋 **[View All Rejected Markets →](AI_DECISIONS.md#rejected-markets)**
 
 ---
 """

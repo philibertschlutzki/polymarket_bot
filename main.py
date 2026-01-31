@@ -33,6 +33,7 @@ from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_excep
 import database
 import dashboard
 import git_integration
+import ai_decisions_generator
 
 # ============================================================================
 # KONFIGURATION
@@ -138,6 +139,8 @@ class TradingRecommendation(BaseModel):
     # Optional fields for DB storage
     ai_probability: Optional[float] = None
     confidence_score: Optional[float] = None
+    ai_reasoning: Optional[str] = None
+    edge: Optional[float] = None
 
 # ============================================================================
 # UTILS
@@ -598,11 +601,24 @@ def calculate_kelly_stake(ai_prob: float, price: float, conf: float, capital: fl
     )
 
 def analyze_and_recommend(market: MarketData, capital: float) -> Optional[TradingRecommendation]:
-    """Single Market Analysis Pipeline."""
+    """Single Market Analysis Pipeline mit vollständigem Logging."""
     logger.info(f"📊 Analysiere: {market.question} (Vol: ${market.volume:,.0f}, Price: {market.yes_price:.2f})")
     
     ai_analysis = analyze_market_with_ai(market)
     if not ai_analysis:
+        # Log als rejected - AI Analysis failed
+        database.insert_rejected_market({
+            'market_slug': market.market_slug,
+            'question': market.question,
+            'market_price': market.yes_price,
+            'volume': market.volume,
+            'ai_probability': 0.0,
+            'confidence_score': 0.0,
+            'edge': 0.0,
+            'rejection_reason': 'AI_ANALYSIS_FAILED',
+            'ai_reasoning': 'Gemini API error or timeout',
+            'end_date': market.end_date
+        })
         return None
 
     try:
@@ -614,16 +630,57 @@ def analyze_and_recommend(market: MarketData, capital: float) -> Optional[Tradin
         )
     except Exception as e:
         logger.error(f"Kelly calculation failed: {e}")
+        database.insert_rejected_market({
+            'market_slug': market.market_slug,
+            'question': market.question,
+            'market_price': market.yes_price,
+            'volume': market.volume,
+            'ai_probability': ai_analysis.estimated_probability,
+            'confidence_score': ai_analysis.confidence_score,
+            'edge': ai_analysis.estimated_probability - market.yes_price,
+            'rejection_reason': 'KELLY_CALCULATION_ERROR',
+            'ai_reasoning': ai_analysis.reasoning,
+            'end_date': market.end_date
+        })
         return None
 
     rec.market_question = market.question
-    
-    # Attach AI stats for DB storage
     rec.ai_probability = ai_analysis.estimated_probability
     rec.confidence_score = ai_analysis.confidence_score
+    rec.ai_reasoning = ai_analysis.reasoning
     
-    if rec.action != "PASS":
-        logger.info(f"🎲 RECOMMENDATION: {rec.action} | Stake: ${rec.stake_usdc} | EV: ${rec.expected_value}")
+    # Calculate Edge
+    edge = ai_analysis.estimated_probability - market.yes_price
+    rec.edge = edge
+
+    if rec.action == "PASS":
+        # Determine rejection reason
+        if abs(edge) < 0.10:
+            reason = "INSUFFICIENT_EDGE"
+        elif rec.expected_value <= 0:
+            reason = "NEGATIVE_EXPECTED_VALUE"
+        elif market.yes_price <= 0.001 or market.yes_price >= 0.999:
+            reason = "EXTREME_PRICE"
+        else:
+            reason = "KELLY_TOO_SMALL"
+
+        # Log rejected market
+        database.insert_rejected_market({
+            'market_slug': market.market_slug,
+            'question': market.question,
+            'market_price': market.yes_price,
+            'volume': market.volume,
+            'ai_probability': ai_analysis.estimated_probability,
+            'confidence_score': ai_analysis.confidence_score,
+            'edge': edge,
+            'rejection_reason': reason,
+            'ai_reasoning': ai_analysis.reasoning,
+            'end_date': market.end_date
+        })
+
+        logger.info(f"⏭️  PASS: {market.question[:40]}... (Reason: {reason})")
+    else:
+        logger.info(f"🎲 RECOMMENDATION: {rec.action} | Stake: ${rec.stake_usdc} | Edge: {edge:+.2%} | EV: ${rec.expected_value}")
     
     return rec
 
@@ -680,6 +737,8 @@ def single_run():
                 'ai_probability': rec.ai_probability,
                 'confidence_score': rec.confidence_score,
                 'expected_value': rec.expected_value,
+                'edge': rec.edge,
+                'ai_reasoning': rec.ai_reasoning,
                 'end_date': market.end_date
             })
             active_slugs.add(market.market_slug)
@@ -687,6 +746,10 @@ def single_run():
     # 5. Dashboard IMMER aktualisieren
     logger.info("📝 Updating dashboard...")
     dashboard.generate_dashboard()
+
+    # NEU: AI Decisions File generieren
+    ai_decisions_generator.generate_ai_decisions_file()
+
     git_integration.push_dashboard_update()
 
     # Timestamp nach erfolgreichem Run speichern

@@ -217,6 +217,18 @@ def init_database():
             logger.info("Migrating database: Adding end_date to active_bets")
             cursor.execute("ALTER TABLE active_bets ADD COLUMN end_date TIMESTAMP")
 
+        # Check for new columns in active_bets
+        cursor.execute("PRAGMA table_info(active_bets)")
+        columns = [row['name'] for row in cursor.fetchall()]
+
+        if 'ai_reasoning' not in columns:
+            cursor.execute('ALTER TABLE active_bets ADD COLUMN ai_reasoning TEXT')
+            logger.info("Added ai_reasoning column to active_bets")
+
+        if 'edge' not in columns:
+            cursor.execute('ALTER TABLE active_bets ADD COLUMN edge REAL')
+            logger.info("Added edge column to active_bets")
+
         # Results (Closed Bets)
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS results (
@@ -235,6 +247,45 @@ def init_database():
             FOREIGN KEY (bet_id) REFERENCES active_bets(bet_id)
         )
         ''')
+
+        # Check for new columns in results
+        cursor.execute("PRAGMA table_info(results)")
+        columns = [row['name'] for row in cursor.fetchall()]
+
+        if 'ai_reasoning' not in columns:
+            cursor.execute('ALTER TABLE results ADD COLUMN ai_reasoning TEXT')
+            logger.info("Added ai_reasoning column to results")
+
+        if 'ai_probability' not in columns:
+            cursor.execute('ALTER TABLE results ADD COLUMN ai_probability REAL')
+            logger.info("Added ai_probability column to results")
+
+        if 'confidence_score' not in columns:
+            cursor.execute('ALTER TABLE results ADD COLUMN confidence_score REAL')
+            logger.info("Added confidence_score column to results")
+
+        if 'edge' not in columns:
+            cursor.execute('ALTER TABLE results ADD COLUMN edge REAL')
+            logger.info("Added edge column to results")
+
+        # Rejected Markets (New Table)
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS rejected_markets (
+            rejection_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            market_slug TEXT NOT NULL,
+            question TEXT NOT NULL,
+            market_price REAL NOT NULL,
+            volume REAL NOT NULL,
+            ai_probability REAL NOT NULL,
+            confidence_score REAL NOT NULL,
+            edge REAL NOT NULL,
+            rejection_reason TEXT NOT NULL,
+            ai_reasoning TEXT,
+            timestamp_analyzed TIMESTAMP NOT NULL,
+            end_date TIMESTAMP
+        )
+        ''')
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_rejected_timestamp ON rejected_markets(timestamp_analyzed)')
 
         # API Usage Tracking
         cursor.execute('''
@@ -298,9 +349,9 @@ def insert_active_bet(bet_data: Dict[str, Any]):
         cursor.execute('''
         INSERT INTO active_bets (
             market_slug, question, action, stake_usdc, entry_price,
-            ai_probability, confidence_score, expected_value, end_date,
-            timestamp_created, status
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'OPEN')
+            ai_probability, confidence_score, expected_value, edge,
+            ai_reasoning, end_date, timestamp_created, status
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'OPEN')
         ''', (
             bet_data['market_slug'],
             bet_data['question'],
@@ -310,11 +361,13 @@ def insert_active_bet(bet_data: Dict[str, Any]):
             bet_data['ai_probability'],
             bet_data['confidence_score'],
             bet_data['expected_value'],
+            bet_data.get('edge', 0.0),
+            bet_data.get('ai_reasoning', ''),
             safe_timestamp(bet_data.get('end_date')),
             safe_timestamp(datetime.now())
         ))
         conn.commit()
-        logger.info(f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']})")
+        logger.info(f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {bet_data.get('edge', 0)*100:+.1f}%)")
 
 def get_active_bets() -> List[sqlite3.Row]:
     """Retrieves all OPEN bets."""
@@ -347,11 +400,17 @@ def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[sqli
         cursor.execute('''
         INSERT INTO results (
             bet_id, market_slug, question, action, stake_usdc, entry_price,
-            actual_outcome, profit_loss, roi, timestamp_created, timestamp_closed
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            actual_outcome, profit_loss, roi,
+            ai_probability, confidence_score, edge, ai_reasoning,
+            timestamp_created, timestamp_closed
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             bet['bet_id'], bet['market_slug'], bet['question'], bet['action'],
             bet['stake_usdc'], bet['entry_price'], outcome, profit_loss, roi,
+            bet['ai_probability'] if bet['ai_probability'] is not None else 0.0,
+            bet['confidence_score'] if bet['confidence_score'] is not None else 0.0,
+            bet['edge'] if bet['edge'] is not None else 0.0,
+            bet['ai_reasoning'] if bet['ai_reasoning'] is not None else '',
             safe_timestamp(bet['timestamp_created']), safe_timestamp(datetime.now())
         ))
 
@@ -371,13 +430,58 @@ def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[sqli
 
         if should_commit:
             db_conn.commit()
-        logger.info(f"Bet {bet_id} closed. Outcome: {outcome}. P/L: ${profit_loss:.2f}. New Capital: ${new_capital:.2f}")
+
+        # Post-mortem Log
+        was_correct = (bet['action'] == outcome)
+        ai_prob = bet['ai_probability'] if bet['ai_probability'] is not None else 0.0
+        logger.info(
+            f"Bet {bet_id} closed. AI predicted {bet['action']} ({ai_prob*100:.0f}%), "
+            f"Actual: {outcome}. {'✅ CORRECT' if was_correct else '❌ WRONG'}. "
+            f"P/L: ${profit_loss:.2f}. New Capital: ${new_capital:.2f}"
+        )
 
 def get_all_results() -> List[sqlite3.Row]:
     """Retrieves all closed bets (results)."""
     with get_db_connection() as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM results ORDER BY timestamp_closed DESC")
+        return cursor.fetchall()
+
+def insert_rejected_market(market_data: Dict[str, Any]):
+    """Loggt abgelehnte Märkte (PASS decisions)."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+        INSERT INTO rejected_markets (
+            market_slug, question, market_price, volume,
+            ai_probability, confidence_score, edge,
+            rejection_reason, ai_reasoning,
+            timestamp_analyzed, end_date
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            market_data['market_slug'],
+            market_data['question'],
+            market_data['market_price'],
+            market_data['volume'],
+            market_data['ai_probability'],
+            market_data['confidence_score'],
+            market_data['edge'],
+            market_data['rejection_reason'],
+            market_data.get('ai_reasoning', ''),
+            safe_timestamp(datetime.now()),
+            safe_timestamp(market_data.get('end_date'))
+        ))
+        conn.commit()
+        logger.info(f"Rejected market logged: {market_data['question'][:40]}... (Reason: {market_data['rejection_reason']})")
+
+def get_rejected_markets(limit: int = 50) -> List[sqlite3.Row]:
+    """Holt letzte abgelehnte Märkte."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT * FROM rejected_markets ORDER BY timestamp_analyzed DESC LIMIT ?",
+            (limit,)
+        )
         return cursor.fetchall()
 
 def calculate_metrics() -> Dict[str, Any]:

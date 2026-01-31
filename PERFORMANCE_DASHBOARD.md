@@ -1,18 +1,18 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 17:48:02 CET
-**Current Capital:** $1,000.00 USDC
-**Total Return:** +0.00% ($+0.00)
+**Last Updated:** 2026-01-31 18:12:46 CET
+**Current Capital:** $1,005.00 USDC
+**Total Return:** +0.50% ($+5.00)
 
 ---
 ## ⏰ System Status
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-01-31 17:39:06 CET |
-| Next Run | 2026-01-31 17:54:06 CET |
+| Last Run | N/A |
+| Next Run | N/A |
 | Run Interval | 15 minutes |
-| Bot Status | 🟢 Active |
+| Bot Status | ⚪ Unknown |
 
 ---
 ## 🤖 Gemini API Usage
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 1 | 1,500 | 0.1% | 🟢 |
+| Today (RPD) | 0 | 1,500 | 0.0% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -28,30 +28,32 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Bets | 0 |
-| Win Rate | 0.00% (0W / 0L) |
-| Avg ROI per Bet | +0.0% |
+| Total Bets | 1 |
+| Win Rate | 100.00% (1W / 0L) |
+| Avg ROI per Bet | +50.0% |
 | Sharpe Ratio | 0.00 |
 | Max Drawdown | 0.0% |
-| Best Bet | $+0.00 |
-| Worst Bet | $+0.00 |
+| Best Bet | $+5.00 |
+| Worst Bet | $+5.00 |
 
 ---
 ## ⚖️ Portfolio Risk Metrics
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $0.00 (0.0% of capital) |
-| Avg Position Size | $0.00 |
-| Largest Position | $0.00 (0.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.000) |
+| Total Exposure | $10.00 (1.0% of capital) |
+| Avg Position Size | $10.00 |
+| Largest Position | $10.00 (1.0%) |
+| Portfolio Concentration | High 🔴 (HHI: 1.000) |
 
 ---
-## 🎯 Active Bets (0)
+## 🎯 Active Bets (1)
 
-| Question | Action | Stake | Entry Price | Expected Value | End Date | Days Left | Status |
-|---|---|---|---|---|---|---|---|
-| *No active bets* | - | - | - | - | - | - | - |
+| Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Test Active Question | YES | $10.00 | 0.50 | 0.60 | +10% 🟡 | 90% | $+1.00 | 2026-01-31 | -1d | ⏰ Expired |
+
+📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
 ---
 ## ⚠️ Alerts & Warnings
@@ -64,19 +66,35 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 0 |
+| Markets with Active Bets | 1 |
+| Markets Rejected (Last Run) | 2 |
+| Top Rejection Reason | NEGATIVE_EDGE |
+
+📋 **[View All Rejected Markets →](AI_DECISIONS.md#rejected-markets)**
 
 ---
 ## 📊 Capital Performance (ASCII Chart)
 
 ```
-Insufficient data for chart (need at least 2 data points).
+ 1005.00  ┤╭
+ 1004.50  ┤│
+ 1004.00  ┤│
+ 1003.50  ┤│
+ 1003.00  ┤│
+ 1002.50  ┤│
+ 1002.00  ┤│
+ 1001.50  ┤│
+ 1001.00  ┤│
+ 1000.50  ┤│
+ 1000.00  ┼╯
 ```
 
 ---
 ## 📜 Recent Results (Last 10)
 
-*No results yet.*
+| Date | Question | Action | Outcome | P&L |
+|---|---|---|---|---|
+| 2026-01-31 | Test Active Question | YES | ✅ WIN | $+5.00 |
 
 ---
 
