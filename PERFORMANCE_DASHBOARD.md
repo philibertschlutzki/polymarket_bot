@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 17:09:58 CET
+**Last Updated:** 2026-01-31 17:26:35 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 
 ---
 
-## 🎯 Active Bets (6)
+## 🎯 Active Bets (7)
 
 | Question | Action | Stake | Entry Price | Expected Value | Days Open |
 |---|---|---|---|---|---|
@@ -30,6 +30,7 @@
 | Will Pierre-Yves Bournazel win the Paris mayor election? | YES | $30.30 | 0.01 | $+727.24 | 0 |
 | Will Paramount close Warner Bros acquisition? | YES | $38.37 | 0.21 | $+25.58 | 0 |
 | Will Mike Vrabel win NFL Coach of the Year? | NO | $34.44 | 0.87 | $+34.44 | 0 |
+| Bitcoin Up or Down on January 31? | YES | $77.29 | 0.00 | $+20532.08 | 0 |
 
 
 ---
