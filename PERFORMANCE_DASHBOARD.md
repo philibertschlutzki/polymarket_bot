@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-31 19:39:41 CET
+**Last Updated:** 2026-01-31 19:59:12 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-01-31 19:19:05 CET |
-| Next Run | 2026-01-31 19:34:05 CET |
+| Last Run | 2026-01-31 19:36:25 CET |
+| Next Run | 2026-01-31 19:51:25 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 2 | 15 | 13% | 🟢 |
-| Today (RPD) | 40 | 1,500 | 2.7% | 🟢 |
-| Current Minute (TPM) | 1,846 | 1,000,000 | 0.18% | 🟢 |
+| Current Minute (RPM) | 4 | 15 | 27% | 🟢 |
+| Today (RPD) | 45 | 1,500 | 3.0% | 🟢 |
+| Current Minute (TPM) | 3,034 | 1,000,000 | 0.30% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
