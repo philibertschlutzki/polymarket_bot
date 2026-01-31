@@ -125,6 +125,7 @@ def check_and_resolve_bets():
 
         logger.info(f"🔍 Prüfe {len(active_bets)} aktive Wetten auf Resolution...")
         
+        bets_to_check = []
         for bet in active_bets:
             # Check date logic
             end_date_val = bet['end_date']
@@ -145,34 +146,71 @@ def check_and_resolve_bets():
                     is_expired = True
 
             # Nur abgelaufene prüfen (oder wenn kein Datum vorhanden)
-            if not is_expired and end_date_val is not None:
+            if is_expired or end_date_val is None:
+                bets_to_check.append(bet)
+
+        if not bets_to_check:
+            return
+
+        # 1. Collect unique markets to query
+        unique_slugs = list(set(b['market_slug'] for b in bets_to_check))
+        resolved_markets = {}
+
+        # 2. Batch Query Markets
+        CHUNK_SIZE = 50
+        for i in range(0, len(unique_slugs), CHUNK_SIZE):
+            slug_batch = unique_slugs[i:i + CHUNK_SIZE]
+
+            query_parts = []
+            slug_map = {} # alias -> original_slug
+
+            for idx, slug in enumerate(slug_batch):
+                # Use index-based alias to avoid collision and sanitization issues
+                alias = f"m_{idx}"
+                slug_map[alias] = slug
+
+                # Safe JSON encoding for the ID string to prevent injection
+                # json.dumps adds surrounding quotes
+                safe_id_str = json.dumps(slug)
+                query_parts.append(f'{alias}: market(id: {safe_id_str}) {{ closed resolvedBy outcomePrices }}')
+
+            if not query_parts:
                 continue
 
-            # GraphQL Query
-            query = """
-            query GetMarketResolution($id: ID!) {
-              market(id: $id) {
-                closed
-                resolvedBy
-                outcomePrices
-              }
-            }
-            """
+            query = "query BatchResolution { " + " ".join(query_parts) + " }"
 
-            response = requests.post(
-                GRAPHQL_URL,
-                json={'query': query, 'variables': {'id': bet['market_slug']}},
-                headers={"Content-Type": "application/json"},
-                timeout=10
-            )
+            try:
+                response = requests.post(
+                    GRAPHQL_URL,
+                    json={'query': query},
+                    headers={"Content-Type": "application/json"},
+                    timeout=20
+                )
 
-            if response.status_code != 200:
-                logger.warning(f"⚠️  GraphQL Fehler für Bet {bet['bet_id']}: {response.status_code}")
-                continue
+                if response.status_code != 200:
+                    logger.warning(f"⚠️  GraphQL Batch Fehler: {response.status_code}")
+                    continue
 
-            data = response.json()
-            market_data = data.get('data', {}).get('market', {})
+                data = response.json()
+                data_content = data.get('data', {})
 
+                if not data_content:
+                    continue
+
+                for alias, market_data in data_content.items():
+                    if not market_data:
+                        continue
+
+                    original_slug = slug_map.get(alias)
+                    if original_slug:
+                        resolved_markets[original_slug] = market_data
+
+            except Exception as e:
+                logger.error(f"❌ Error during batch resolution check: {e}")
+
+        # 3. Process Bets using fetched data
+        for bet in bets_to_check:
+            market_data = resolved_markets.get(bet['market_slug'])
             if not market_data:
                 continue
 
