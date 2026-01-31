@@ -268,6 +268,14 @@ def init_database():
             cursor.execute('ALTER TABLE results ADD COLUMN edge REAL')
             logger.info("Added edge column to results")
 
+        if 'days_held' not in columns:
+            cursor.execute('ALTER TABLE results ADD COLUMN days_held INTEGER')
+            logger.info("Added days_held column to results")
+
+        if 'market_volume' not in columns:
+            cursor.execute('ALTER TABLE results ADD COLUMN market_volume REAL')
+            logger.info("Added market_volume column to results")
+
         # Rejected Markets (New Table)
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS rejected_markets (
@@ -446,6 +454,44 @@ def get_all_results() -> List[sqlite3.Row]:
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM results ORDER BY timestamp_closed DESC")
         return cursor.fetchall()
+
+def get_results_with_metrics() -> List[sqlite3.Row]:
+    """
+    Holt alle Results mit berechneten Metriken.
+    Berechnet days_held on-the-fly wenn nicht gespeichert.
+    """
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT
+                *,
+                CAST((julianday(timestamp_closed) - julianday(timestamp_created)) AS INTEGER) as computed_days_held
+            FROM results
+            ORDER BY timestamp_closed DESC
+        """)
+        return cursor.fetchall()
+
+def get_capital_history() -> List[Tuple[datetime, float]]:
+    """
+    Gibt Zeitreihe von (timestamp, capital) zurück.
+    """
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT timestamp_closed, profit_loss
+            FROM results
+            ORDER BY timestamp_closed ASC
+        """)
+
+        results = cursor.fetchall()
+        history = [(datetime.now() - timedelta(days=365), INITIAL_CAPITAL)]  # Start point
+
+        running_capital = INITIAL_CAPITAL
+        for row in results:
+            running_capital += row['profit_loss']
+            history.append((row['timestamp_closed'], running_capital))
+
+        return history
 
 def insert_rejected_market(market_data: Dict[str, Any]):
     """Loggt abgelehnte Märkte (PASS decisions)."""
