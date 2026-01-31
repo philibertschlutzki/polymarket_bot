@@ -11,6 +11,7 @@ Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
 
 import os
 import sys
+import pathlib
 import json
 import logging
 import logging.handlers
@@ -37,18 +38,43 @@ import git_integration
 # KONFIGURATION
 # ============================================================================
 
-# Configure logging
-# Ensure logs directory exists
-os.makedirs('logs', exist_ok=True)
+# Configure logging with robust error handling
+
+# Ensure logs directory exists with correct permissions
+log_dir = pathlib.Path('logs')
+log_dir.mkdir(exist_ok=True)
+
+# Try to fix permissions if we can
+try:
+    os.chmod(log_dir, 0o755)
+except Exception:
+    pass
+
+log_file = log_dir / 'bot.log'
+
+# Remove existing log file if it has permission issues
+if log_file.exists():
+    try:
+        with open(log_file, 'a') as test_file:
+            pass
+    except PermissionError:
+        print(f"⚠️ Warning: Removing log file with permission issues: {log_file}")
+        try:
+            log_file.unlink()
+        except Exception as e:
+            print(f"❌ Cannot remove log file. Please run: sudo rm {log_file}")
+            print(f"   Then restart the service.")
+            sys.exit(1)
 
 # Configure logging with both console and file output
 log_handlers = [
     logging.StreamHandler(),  # Console output
     logging.handlers.RotatingFileHandler(
-        'logs/bot.log',
+        str(log_file),
         maxBytes=10 * 1024 * 1024,  # 10 MB per file
         backupCount=5,
-        encoding='utf-8'
+        encoding='utf-8',
+        delay=True  # Lazy file creation to avoid permission issues
     )
 ]
 
@@ -246,11 +272,17 @@ def check_and_resolve_bets():
                         # LOSS
                         profit = -stake
 
-                    # Close bet
-                    database.close_bet(bet['bet_id'], actual_outcome, profit)
-                    logger.info(f"✅ Bet {bet['bet_id']} resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})")
+                    bets_to_resolve.append((bet, actual_outcome, profit))
                 else:
                     logger.warning(f"⚠️  Market resolved but outcome unclear: {prices}")
+
+        # Batch resolve bets
+        if bets_to_resolve:
+            with database.get_db_connection() as conn:
+                for bet, actual_outcome, profit in bets_to_resolve:
+                    database.close_bet(bet['bet_id'], actual_outcome, profit, conn=conn)
+                    logger.info(f"✅ Bet {bet['bet_id']} resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})")
+                conn.commit()
 
     except Exception as e:
         logger.error(f"❌ Error during resolution check: {e}")
@@ -493,17 +525,31 @@ def single_run():
     top_markets = pre_filter_markets(raw_markets, top_n=TOP_MARKETS_TO_ANALYZE)
 
     # 4. Analyze and save new bets
-    for i, market in enumerate(top_markets):
-        # Prevent Gemini Rate Limits
-        time.sleep(3)
+    # Optimization: Fetch active bets once and use a set for O(1) lookup
+    active_bets = database.get_active_bets()
+    active_slugs = {b['market_slug'] for b in active_bets}
 
-        # Check if we already have an active bet on this market?
-        active_slugs = [b['market_slug'] for b in database.get_active_bets()]
+    last_api_call_time = 0
+    min_interval = 3.0
+
+    for i, market in enumerate(top_markets):
+        # Optimization: Check BEFORE sleep
         if market.market_slug in active_slugs:
             logger.info(f"⏭️  Bereits aktive Wette für: {market.market_slug}. Skipping.")
             continue
 
+        # Prevent Gemini Rate Limits (Smart Sleep)
+        now = time.time()
+        time_since_last = now - last_api_call_time
+        if time_since_last < min_interval:
+            sleep_time = min_interval - time_since_last
+            # Only log if sleep is significant
+            if sleep_time > 0.1:
+                logger.debug(f"Sleeping {sleep_time:.2f}s for rate limit...")
+            time.sleep(sleep_time)
+
         rec = analyze_and_recommend(market, capital)
+        last_api_call_time = time.time()
 
         if rec and rec.action != "PASS":
             database.insert_active_bet({
@@ -517,6 +563,7 @@ def single_run():
                 'expected_value': rec.expected_value,
                 'end_date': market.end_date
             })
+            active_slugs.add(market.market_slug)
     
     # 5. Update dashboard if needed
     if dashboard.should_update_dashboard():

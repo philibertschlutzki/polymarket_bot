@@ -133,8 +133,11 @@ fi
 
 # 9. Log Directory Setup
 mkdir -p logs
-# Fix permissions in case logs directory was previously created by root
-sudo chown -R $(whoami): logs
+# Fix permissions for logs directory AND all existing files
+sudo chown -R $(whoami):$(whoami) logs
+chmod -R u+rw logs
+# Remove any existing log files that might have wrong permissions
+rm -f logs/bot.log logs/bot.error.log logs/bot.log.*
 
 # 10. systemd Service Installation
 echo ""
@@ -155,15 +158,16 @@ Type=simple
 User=$USER
 WorkingDirectory=$WORKING_DIR
 Environment="PATH=$WORKING_DIR/venv/bin:/usr/bin"
+ExecStartPre=/bin/bash -c 'mkdir -p $WORKING_DIR/logs && chown -R $USER:$USER $WORKING_DIR/logs && chmod -R u+rw $WORKING_DIR/logs'
 ExecStart=$WORKING_DIR/venv/bin/python3 $WORKING_DIR/main.py
 Restart=on-failure
 RestartSec=10
 StartLimitBurst=5
 StartLimitIntervalSec=600
 
-# Logging
-# StandardOutput removed to avoid permission conflict with application logging
-StandardError=append:$WORKING_DIR/logs/bot.error.log
+# Logging - systemd redirects stderr only, application handles its own log files
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
