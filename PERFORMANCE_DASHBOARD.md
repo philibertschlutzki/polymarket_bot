@@ -1,8 +1,8 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-01-30 21:30:39 CET
-**Current Capital:** $1,050.00 USDC
-**Total Return:** +5.00% ($+50.00)
+**Last Updated:** 2026-01-31 16:26:38 CET
+**Current Capital:** $1,000.00 USDC
+**Total Return:** +0.00% ($+0.00)
 
 ---
 
@@ -10,63 +10,51 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Bets | 1 |
-| Win Rate | 100.00% (1W / 0L) |
-| Avg ROI per Bet | +100.0% |
+| Total Bets | 0 |
+| Win Rate | 0.00% (0W / 0L) |
+| Avg ROI per Bet | +0.0% |
 | Sharpe Ratio | 0.00 |
 | Max Drawdown | 0.0% |
-| Best Bet | $+50.00 |
-| Worst Bet | $+50.00 |
+| Best Bet | $+0.00 |
+| Worst Bet | $+0.00 |
 
 ---
 
-## 🎯 Active Bets (0)
+## 🎯 Active Bets (4)
 
-*No active bets.*
+| Question | Action | Stake | Entry Price | Expected Value | Days Open |
+|---|---|---|---|---|---|
+| Nothing Ever Happens: US Strike Edition | YES | $106.68 | 0.31 | $+117.01 | 0 |
+| Will John Cornyn win the 2026 Texas Republican Primary? | YES | $54.75 | 0.26 | $+41.87 | 0 |
+| Will Russia capture Kostyantynivka by December 31, 2026? | NO | $57.49 | 0.89 | $+117.48 | 0 |
+| Will Pierre-Yves Bournazel win the Paris mayor election? | YES | $29.20 | 0.01 | $+700.78 | 0 |
+
 
 ---
 
 ## 📊 Capital Performance (ASCII Chart)
 
 ```
- 1050.00  ┤╭
- 1045.00  ┤│
- 1040.00  ┤│
- 1035.00  ┤│
- 1030.00  ┤│
- 1025.00  ┤│
- 1020.00  ┤│
- 1015.00  ┤│
- 1010.00  ┤│
- 1005.00  ┤│
- 1000.00  ┼╯
+Insufficient data for chart (need at least 2 data points).
 ```
 
 ---
 
 ## 🏆 Top 5 Best Bets
 
-| Question | Action | ROI | Profit |
-|---|---|---|---|
-| Will Bitcoin hit 100k? | YES | +100.0% | $+50.00 |
-
+*No closed bets yet.*
 
 ---
 
 ## 💀 Top 5 Worst Bets
 
-| Question | Action | ROI | Loss |
-|---|---|---|---|
-
+*No losing bets yet.*
 
 ---
 
 ## 📜 Recent Results (Last 10)
 
-| Date | Question | Action | Outcome | P&L |
-|---|---|---|---|---|
-| 2026-01-30 | Will Bitcoin hit 100k? | YES | ✅ WIN | $+50.00 |
-
+*No results yet.*
 
 ---
 
