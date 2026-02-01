@@ -14,7 +14,6 @@ try:
     CET_TZ = ZoneInfo("Europe/Berlin")
 except ImportError:
     # Fallback to fixed offset (UTC+1) if zoneinfo is not available
-    # Note: This does not handle DST automatically, but is a reasonable fallback
     CET_TZ = timezone(timedelta(hours=1))
 
 def to_cet(dt):
@@ -32,14 +31,6 @@ def to_cet(dt):
 
     return dt.astimezone(CET_TZ)
 
-def should_update_dashboard() -> bool:
-    """
-    Checks if the dashboard needs an update.
-    Legacy function, kept for compatibility if needed,
-    but main.py now calls generate_dashboard directly.
-    """
-    return True
-
 def generate_dashboard():
     """Generates the complete Performance Dashboard."""
     logger.info("Generating dashboard...")
@@ -47,7 +38,22 @@ def generate_dashboard():
     # 1. Load Data
     capital = database.get_current_capital()
     metrics = database.calculate_metrics()
+
+    # Active Bets
     active_bets = database.get_active_bets()
+
+    # Pending Resolution Bets (from archive)
+    pending_bets = database.get_all_unresolved_bets()
+    # Normalize pending bets to match active bets structure for display
+    for b in pending_bets:
+        b['status'] = 'PENDING_RESOLUTION'
+        # Archive doesn't store expected_value, set to 0 or N/A
+        if 'expected_value' not in b:
+            b['expected_value'] = 0.0
+
+    # Combine lists
+    all_active_display = active_bets + pending_bets
+
     results = database.get_all_results()
     last_run = database.get_last_run_timestamp()
 
@@ -150,6 +156,7 @@ def generate_dashboard():
 """
 
     # === PORTFOLIO RISK METRICS ===
+    # Risk metrics calculated on ACTIVE bets only (exposure)
     total_exposure = sum(b['stake_usdc'] for b in active_bets)
     exposure_pct = (total_exposure / capital * 100) if capital > 0 else 0
     avg_position = total_exposure / len(active_bets) if active_bets else 0
@@ -183,16 +190,21 @@ def generate_dashboard():
     # === ACTIVE BETS ===
     active_rows = []
 
-    for bet in active_bets:
-        q = bet['question']
-        if len(q) > 40: q = q[:40] + "..."
+    for bet in all_active_display:
+        q_text = bet['question']
+        if len(q_text) > 40: q_text = q_text[:40] + "..."
 
-        stake = bet['stake_usdc']
-        price = bet['entry_price']
-        ai_prob = bet['ai_probability'] if bet['ai_probability'] is not None else 0.0
-        edge = bet['edge'] if bet['edge'] is not None else 0.0
-        conf = bet['confidence_score'] if bet['confidence_score'] is not None else 0.0
-        ev = bet['expected_value']
+        # Link
+        url_slug = bet.get('url_slug') or bet.get('market_slug')
+        url = f"https://polymarket.com/event/{url_slug}"
+        q_display = f"[{q_text}]({url})"
+
+        stake = float(bet['stake_usdc'])
+        price = float(bet['entry_price'])
+        ai_prob = float(bet['ai_probability']) if bet['ai_probability'] is not None else 0.0
+        edge = float(bet['edge']) if bet['edge'] is not None else 0.0
+        conf = float(bet['confidence_score']) if bet['confidence_score'] is not None else 0.0
+        ev = float(bet['expected_value'])
 
         # Edge Indicator
         if edge >= 0.20:
@@ -203,35 +215,41 @@ def generate_dashboard():
             edge_ind = "🔴"
 
         # End Date
-        # Use .get() or check keys to be safe against schema mismatches if migration failed
-        end_date_raw = bet['end_date'] if 'end_date' in bet.keys() else None
+        end_date_val = bet.get('end_date')
         end_date_display = "Unknown"
         days_display = "N/A"
         status = "🔵"
 
-        if end_date_raw:
+        if end_date_val:
             try:
-                ed_cet = to_cet(end_date_raw)
+                ed_cet = to_cet(end_date_val)
                 if ed_cet:
                     days_left = (ed_cet - now_cet).days
-
                     end_date_display = ed_cet.strftime('%Y-%m-%d')
                     days_display = f"{days_left}d"
 
-                    if days_left < 0: status = "⏰ Expired"
+                    if days_left < 0:
+                        if bet.get('status') == 'PENDING_RESOLUTION':
+                            status = "⏳ Pending Resolution"
+                        else:
+                            status = "⏰ Expired"
                     elif days_left < 3: status = "🔴"
                     elif days_left < 7: status = "🟡"
                     else: status = "🟢"
             except:
                 pass
 
+        # Override status indicator if pending
+        if bet.get('status') == 'PENDING_RESOLUTION' and "Pending Resolution" not in status:
+             status = "⏳ Pending Resolution"
+
         active_rows.append(
-            f"| {q} | {bet['action']} | ${stake:.2f} | {price:.2f} | {ai_prob:.2f} | {edge:+.0%} {edge_ind} | {conf:.0%} | ${ev:+.2f} | {end_date_display} | {days_display} | {status} |"
+            f"| {q_display} | {bet['action']} | ${stake:.2f} | {price:.2f} | {ai_prob:.2f} | {edge:+.0%} {edge_ind} | {conf:.0%} | ${ev:+.2f} | {end_date_display} | {days_display} | {status} |"
         )
 
     active_table = "\n".join(active_rows) if active_rows else "| *No active bets* | - | - | - | - | - | - | - | - | - | - |"
 
-    active_bets_section = f"""## 🎯 Active Bets ({len(active_bets)})
+    active_bets_section = f"""## 🎯 Active Bets ({len(all_active_display)})
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -250,14 +268,14 @@ def generate_dashboard():
 
     # High Exposure Alerts
     for bet in active_bets:
-        pos_pct = (bet['stake_usdc'] / capital * 100) if capital > 0 else 0
+        pos_pct = (float(bet['stake_usdc']) / capital * 100) if capital > 0 else 0
         if pos_pct > 10:
              alerts.append(f"🔴 **High Exposure**: \"{bet['question'][:30]}...\" is {pos_pct:.1f}% of capital")
 
     # Expiring Soon Alerts
     expiring_soon = 0
     for bet in active_bets:
-        if 'end_date' in bet.keys() and bet['end_date']:
+        if bet.get('end_date'):
             try:
                 ed_cet = to_cet(bet['end_date'])
                 if ed_cet:
@@ -280,12 +298,11 @@ def generate_dashboard():
 """
 
     # === MARKET INSIGHTS ===
-    markets_analyzed = os.getenv("TOP_MARKETS_TO_ANALYZE", "15") # config
+    markets_analyzed = os.getenv("TOP_MARKETS_TO_ANALYZE", "15")
+    markets_with_bets = len(all_active_display)
 
-    markets_with_bets = len(active_bets)
-
-    # Count recent rejections (last run)
-    recent_rejections = database.get_rejected_markets(limit=20)  # Last run could be ~15 markets
+    # Count recent rejections
+    recent_rejections = database.get_rejected_markets(limit=20)
     rejection_counts = {}
     for rej in recent_rejections:
         reason = rej['rejection_reason']
@@ -324,7 +341,7 @@ def generate_dashboard():
         active_bets_section +
         alerts_section +
         market_insights +
-        advanced_analytics_section +  # NEU
+        advanced_analytics_section +
         chart_section +
         recent_section
     )
@@ -347,126 +364,104 @@ def generate_advanced_analytics_section(results: list) -> str:
 
 ---
 """
+    try:
+        import analytics_advanced
 
-    import analytics_advanced
+        # 1. Confidence Calibration
+        calibration = analytics_advanced.calculate_confidence_calibration(results)
 
-    # 1. Confidence Calibration
-    calibration = analytics_advanced.calculate_confidence_calibration(results)
-
-    calibration_section = """## 🎯 AI Confidence Calibration
+        calibration_section = """## 🎯 AI Confidence Calibration
 
 | Confidence Range | Predicted | Actual | Bets | Error | Status |
 |------------------|-----------|--------|------|-------|--------|
 """
 
-    for bucket in calibration['buckets']:
-        if bucket['num_bets'] == 0:
-            calibration_section += f"| {bucket['range']} | - | - | 0 | - | Insufficient data |\n"
-        else:
-            pred = f"{bucket['predicted_win_rate']:.1%}"
-            actual = f"{bucket['actual_win_rate']:.1%}" if bucket['actual_win_rate'] else "N/A"
-            error = f"{bucket['calibration_error']:+.1%}" if bucket['calibration_error'] else "N/A"
-
-            # Status icon
-            if bucket['status'] == 'well_calibrated':
-                icon = "✅"
-            elif bucket['status'] == 'acceptable':
-                icon = "⚠️"
-            elif bucket['status'] == 'overconfident':
-                icon = "🔴"
-            elif bucket['status'] == 'underconfident':
-                icon = "🔵"
+        for bucket in calibration['buckets']:
+            if bucket['num_bets'] == 0:
+                calibration_section += f"| {bucket['range']} | - | - | 0 | - | Insufficient data |\n"
             else:
-                icon = "⚪"
+                pred = f"{bucket['predicted_win_rate']:.1%}"
+                actual = f"{bucket['actual_win_rate']:.1%}" if bucket['actual_win_rate'] else "N/A"
+                error = f"{bucket['calibration_error']:+.1%}" if bucket['calibration_error'] else "N/A"
 
-            calibration_section += f"| {bucket['range']} | {pred} | {actual} | {bucket['num_bets']} | {error} | {icon} {bucket['status'].replace('_', ' ').title()} |\n"
+                if bucket['status'] == 'well_calibrated': icon = "✅"
+                elif bucket['status'] == 'acceptable': icon = "⚠️"
+                elif bucket['status'] == 'overconfident': icon = "🔴"
+                elif bucket['status'] == 'underconfident': icon = "🔵"
+                else: icon = "⚪"
 
-    overall = calibration['overall_calibration']
-    calibration_section += f"\n**Overall Calibration Score:** {overall:.1%} "
+                calibration_section += f"| {bucket['range']} | {pred} | {actual} | {bucket['num_bets']} | {error} | {icon} {bucket['status'].replace('_', ' ').title()} |\n"
 
-    if overall >= 0.90:
-        calibration_section += "🟢 Excellent\n"
-    elif overall >= 0.80:
-        calibration_section += "🟡 Good\n"
-    else:
-        calibration_section += "🔴 Needs improvement\n"
+        overall = calibration['overall_calibration']
+        calibration_section += f"\n**Overall Calibration Score:** {overall:.1%} "
 
-    # 2. Edge Validation
-    edge_val = analytics_advanced.calculate_edge_validation(results, min_bets=10)
+        if overall >= 0.90: calibration_section += "🟢 Excellent\n"
+        elif overall >= 0.80: calibration_section += "🟡 Good\n"
+        else: calibration_section += "🔴 Needs improvement\n"
 
-    edge_section = """\n## 📐 Edge Validation Analysis
+        # 2. Edge Validation
+        edge_val = analytics_advanced.calculate_edge_validation(results, min_bets=10)
+
+        edge_section = """\n## 📐 Edge Validation Analysis
 
 | Predicted Edge | Avg Pred | Avg Real | Delta | Accuracy | Bets |
 |----------------|----------|----------|-------|----------|------|
 """
 
-    for bucket in edge_val['buckets']:
-        if bucket['status'] == 'insufficient_data':
-            edge_section += f"| {bucket['range']} | - | - | - | - | {bucket['num_bets']} (need 10+) |\n"
-        else:
-            pred = f"{bucket['avg_predicted_edge']:+.1%}"
-            real = f"{bucket['avg_realized_edge']:+.1%}"
-            delta = f"{bucket['delta']:+.1%}"
-            acc = f"{bucket['accuracy']:.0%}"
-
-            # Accuracy icon
-            if bucket['accuracy'] >= 0.90:
-                acc_icon = "✅"
-            elif bucket['accuracy'] >= 0.80:
-                acc_icon = "⚠️"
+        for bucket in edge_val['buckets']:
+            if bucket['status'] == 'insufficient_data':
+                edge_section += f"| {bucket['range']} | - | - | - | - | {bucket['num_bets']} (need 10+) |\n"
             else:
-                acc_icon = "🔴"
+                pred = f"{bucket['avg_predicted_edge']:+.1%}"
+                real = f"{bucket['avg_realized_edge']:+.1%}"
+                delta = f"{bucket['delta']:+.1%}"
+                acc = f"{bucket['accuracy']:.0%}"
 
-            edge_section += f"| {bucket['range']} | {pred} | {real} | {delta} | {acc} {acc_icon} | {bucket['num_bets']} |\n"
+                if bucket['accuracy'] >= 0.90: acc_icon = "✅"
+                elif bucket['accuracy'] >= 0.80: acc_icon = "⚠️"
+                else: acc_icon = "🔴"
 
-    edge_section += f"\n**Overall Edge Accuracy:** {edge_val['overall_accuracy']:.0%}\n"
+                edge_section += f"| {bucket['range']} | {pred} | {real} | {delta} | {acc} {acc_icon} | {bucket['num_bets']} |\n"
 
-    # 3. AI Model Trends
-    trends = analytics_advanced.calculate_model_trends(results, window_days=30, num_periods=8)
+        edge_section += f"\n**Overall Edge Accuracy:** {edge_val['overall_accuracy']:.0%}\n"
 
-    trends_section = """\n## 📈 AI Model Performance Trends (30-day Rolling)
+        # 3. AI Model Trends
+        trends = analytics_advanced.calculate_model_trends(results, window_days=30, num_periods=8)
+
+        trends_section = """\n## 📈 AI Model Performance Trends (30-day Rolling)
 
 | Period | Win Rate | Avg Conf | Calibration | Bets |
 |--------|----------|----------|-------------|------|
 """
 
-    for period in trends['periods']:
-        trends_section += (
-            f"| {period['period_label']} | "
-            f"{period['win_rate']:.1%} | "
-            f"{period['avg_confidence']:.0%} | "
-            f"{period['calibration_score']:.0%} | "
-            f"{period['num_bets']} |\n"
-        )
+        for period in trends['periods']:
+            trends_section += (
+                f"| {period['period_label']} | "
+                f"{period['win_rate']:.1%} | "
+                f"{period['avg_confidence']:.0%} | "
+                f"{period['calibration_score']:.0%} | "
+                f"{period['num_bets']} |\n"
+            )
 
-    # Trend indicator
-    trend_icons = {
-        'improving': '📈 Improving',
-        'declining': '📉 Declining',
-        'stable': '➡️ Stable',
-        'insufficient_data': '⚪ Insufficient data'
-    }
-
-    trends_section += f"\n**Trend:** {trend_icons.get(trends['trend_direction'], 'Unknown')}\n"
-
-    # 4. Drawdown Analysis
-    capital_history = database.get_capital_history()
-    dd_metrics = analytics_advanced.calculate_drawdown_metrics(capital_history)
-
-    if dd_metrics.get('status') == 'insufficient_data':
-        dd_section = "\n## 📉 Drawdown Analysis\n\n*Insufficient data*\n"
-    else:
-        # Status emoji
-        status_icons = {
-            'normal': '🟢',
-            'warning': '🟡',
-            'alert': '🟠',
-            'critical': '🔴'
+        trend_icons = {
+            'improving': '📈 Improving',
+            'declining': '📉 Declining',
+            'stable': '➡️ Stable',
+            'insufficient_data': '⚪ Insufficient data'
         }
+        trends_section += f"\n**Trend:** {trend_icons.get(trends['trend_direction'], 'Unknown')}\n"
 
-        status_icon = status_icons.get(dd_metrics['status'], '⚪')
+        # 4. Drawdown Analysis
+        capital_history = database.get_capital_history()
+        dd_metrics = analytics_advanced.calculate_drawdown_metrics(capital_history)
 
-        dd_section = f"""
+        if dd_metrics.get('status') == 'insufficient_data':
+            dd_section = "\n## 📉 Drawdown Analysis\n\n*Insufficient data*\n"
+        else:
+            status_icons = {'normal': '🟢', 'warning': '🟡', 'alert': '🟠', 'critical': '🔴'}
+            status_icon = status_icons.get(dd_metrics['status'], '⚪')
+
+            dd_section = f"""
 ## 📉 Drawdown Analysis
 
 ### Current Status: {status_icon} {dd_metrics['status'].upper()}
@@ -481,38 +476,31 @@ def generate_advanced_analytics_section(results: list) -> str:
 | Max DD Recovery Time | {dd_metrics['max_dd_recovery_days']} days |
 
 **Recommendation:** {dd_metrics['recommendation']}
-
 """
+            if dd_metrics['drawdown_periods']:
+                dd_section += "### Historical Drawdown Periods\n\n"
+                dd_section += "| Start | End | Duration | Max DD | Recovery |\n"
+                dd_section += "|-------|-----|----------|--------|----------|\n"
+                for period in dd_metrics['drawdown_periods'][:3]:
+                    dd_section += (
+                        f"| {period['start_date']} | "
+                        f"{period['end_date']} | "
+                        f"{period['duration_days']}d | "
+                        f"{period['max_dd']:.2%} | "
+                        f"{period['recovery_days']}d |\n"
+                    )
 
-        if dd_metrics['drawdown_periods']:
-            dd_section += "### Historical Drawdown Periods\n\n"
-            dd_section += "| Start | End | Duration | Max DD | Recovery |\n"
-            dd_section += "|-------|-----|----------|--------|----------|\n"
-
-            for period in dd_metrics['drawdown_periods'][:3]:  # Top 3
-                dd_section += (
-                    f"| {period['start_date']} | "
-                    f"{period['end_date']} | "
-                    f"{period['duration_days']}d | "
-                    f"{period['max_dd']:.2%} | "
-                    f"{period['recovery_days']}d |\n"
-                )
-
-    # Combine all sections
-    return (
-        calibration_section +
-        edge_section +
-        trends_section +
-        dd_section +
-        "\n---\n"
-    )
+        return calibration_section + edge_section + trends_section + dd_section + "\n---\n"
+    except Exception as e:
+        logger.error(f"Error generating advanced analytics: {e}")
+        return "\n*Advanced analytics unavailable*\n\n---\n"
 
 def generate_chart_section(results):
     capital_history = [database.INITIAL_CAPITAL]
     running = database.INITIAL_CAPITAL
-    sorted_res = sorted(results, key=lambda x: x['timestamp_closed'])
+    sorted_res = sorted(results, key=lambda x: x['timestamp_closed'] or datetime.min.replace(tzinfo=timezone.utc))
     for r in sorted_res:
-        running += r['profit_loss']
+        running += float(r['profit_loss'])
         capital_history.append(running)
 
     chart_data = capital_history[-30:]
@@ -534,7 +522,7 @@ def generate_chart_section(results):
 """
 
 def generate_recent_results_section(results):
-    recent = sorted(results, key=lambda x: x['timestamp_closed'], reverse=True)[:10]
+    recent = sorted(results, key=lambda x: x['timestamp_closed'] or datetime.min.replace(tzinfo=timezone.utc), reverse=True)[:10]
     if not recent:
         return """## 📜 Recent Results (Last 10)
 
@@ -548,8 +536,8 @@ def generate_recent_results_section(results):
         ts = r['timestamp_closed']
         ts_cet = to_cet(ts)
         date_str = ts_cet.strftime('%Y-%m-%d') if ts_cet else "N/A"
-        icon = "✅ WIN" if r['profit_loss'] > 0 else "❌ LOSS"
-        rows.append(f"| {date_str} | {r['question']} | {r['action']} | {icon} | ${r['profit_loss']:+.2f} |")
+        icon = "✅ WIN" if float(r['profit_loss']) > 0 else "❌ LOSS"
+        rows.append(f"| {date_str} | {r['question']} | {r['action']} | {icon} | ${float(r['profit_loss']):+.2f} |")
 
     return f"""## 📜 Recent Results (Last 10)
 
