@@ -1,0 +1,34 @@
+db_models.py:19: error: Dict entry 0 has incompatible type "str": "int"; expected "str": "bool"  [dict-item]
+db_models.py:20: error: Dict entry 1 has incompatible type "str": "int"; expected "str": "bool"  [dict-item]
+db_models.py:41: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:41: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:41: error: Invalid base class "Base"  [misc]
+db_models.py:69: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:69: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:69: error: Invalid base class "Base"  [misc]
+db_models.py:101: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:101: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:101: error: Invalid base class "Base"  [misc]
+db_models.py:123: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:123: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:123: error: Invalid base class "Base"  [misc]
+db_models.py:135: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:135: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:135: error: Invalid base class "Base"  [misc]
+db_models.py:148: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:148: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:148: error: Invalid base class "Base"  [misc]
+db_models.py:161: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:161: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:161: error: Invalid base class "Base"  [misc]
+db_models.py:182: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:182: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:182: error: Invalid base class "Base"  [misc]
+db_models.py:189: error: Need type annotation for "models_used"  [var-annotated]
+main.py:26: error: Skipping analyzing "google": module is installed, but missing library stubs or py.typed marker  [import-untyped]
+main.py:27: error: Skipping analyzing "google.genai": module is installed, but missing library stubs or py.typed marker  [import-untyped]
+main.py:27: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports
+main.py:87: error: Argument "handlers" to "basicConfig" has incompatible type "list[object]"; expected "Iterable[Handler] | None"  [arg-type]
+main.py:291: error: Item "None" of "Any | None" has no attribute "get"  [union-attr]
+main.py:384: error: Argument "params" to "get" has incompatible type "dict[str, object]"; expected "SupportsItems[str | bytes | int | float, str | bytes | int | float | Iterable[str | bytes | int | float] | None] | tuple[str | bytes | int | float, str | bytes | int | float | Iterable[str | bytes | int | float] | None] | Iterable[tuple[str | bytes | int | float, str | bytes | int | float | Iterable[str | bytes | int | float] | None]] | str | bytes | None"  [arg-type]
+Found 24 errors in 2 files (checked 2 source files)

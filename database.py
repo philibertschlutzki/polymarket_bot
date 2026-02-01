@@ -1,568 +1,364 @@
-import sqlite3
-import os
 import logging
 import math
 import threading
 from datetime import datetime, timedelta, timezone
-from contextlib import contextmanager, nullcontext
 from typing import List, Optional, Dict, Any, Tuple
-from dateutil import parser
+from sqlalchemy import select, func, text, update
+from sqlalchemy.orm import Session
+from sqlalchemy.exc import SQLAlchemyError
+
+from db_models import (
+    engine, Base, session_scope,
+    ActiveBet, ArchivedBet, RejectedMarket, ApiUsage,
+    PortfolioState, GitSyncState,
+    ActiveBet
+)
 
 # Configuration
-DB_NAME = 'polymarket.db'
 INITIAL_CAPITAL = 1000.0
 
 # Logging
 logger = logging.getLogger(__name__)
 
-# Thread-local storage for database connections
-_local = threading.local()
-
-def flexible_timestamp_converter(val):
-    """
-    Custom SQLite converter to handle various timestamp formats.
-    Handles 'YYYY-MM-DD', 'YYYY-MM-DD HH:MM:SS', etc.
-    """
-    if not val:
-        return None
-    try:
-        # Handle bytes (SQLite default) or string (if manual)
-        s = val.decode('utf-8') if isinstance(val, bytes) else str(val)
-
-        # Explicitly handle date-only strings to ensure time is attached
-        if len(s) == 10 and s.count('-') == 2:
-             s = f"{s} 00:00:00"
-
-        return parser.parse(s)
-    except Exception as e:
-        logger.warning(f"Error parsing timestamp '{val}': {e}")
-        return None
-
-def register_adapters():
-    """Registers SQLite adapters and converters."""
-    sqlite3.register_converter("TIMESTAMP", flexible_timestamp_converter)
-
-# Register the converter
-register_adapters()
-
-def safe_timestamp(val):
-    """
-    Ensures timestamp is converted to a standard string format before insertion.
-    Returns 'YYYY-MM-DD HH:MM:SS' string.
-    """
-    if val is None:
-        return None
-    if isinstance(val, datetime):
-        return val.strftime('%Y-%m-%d %H:%M:%S')
-    if isinstance(val, str):
-        try:
-            dt = parser.parse(val)
-            return dt.strftime('%Y-%m-%d %H:%M:%S')
-        except:
-            # Fallback for date only strings if parse fails (unlikely if valid)
-            if len(val) == 10 and val.count('-') == 2:
-                return f"{val} 00:00:00"
-            return val
-    return val
-
-@contextmanager
-def get_db_connection():
-    """
-    Context manager for SQLite database connection.
-    Uses thread-local storage to reuse connections.
-    Handles nested usage by tracking recursion depth.
-    """
-    if not hasattr(_local, "connection") or _local.connection is None:
-        # Ensure adapters are registered for this thread/connection
-        register_adapters()
-
-        conn = sqlite3.connect(
-            DB_NAME,
-            detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES,
-            check_same_thread=False,
-            timeout=30.0
-        )
-        conn.row_factory = sqlite3.Row  # Access columns by name
-        _local.connection = conn
-        _local.depth = 0
-
-    conn = _local.connection
-    # Ensure depth is initialized (in case _local.connection existed but depth didn't for some reason)
-    if not hasattr(_local, "depth"):
-        _local.depth = 0
-
-    _local.depth += 1
-
-    try:
-        yield conn
-    finally:
-        _local.depth -= 1
-        if _local.depth == 0:
-            # Instead of closing, we rollback any uncommitted changes to ensure clean state
-            # for the next usage. This mimics conn.close() behavior regarding transactions
-            # but keeps the connection open.
-            conn.rollback()
-
-def close_db_connection():
-    """Manually closes the thread-local database connection if it exists."""
-    if hasattr(_local, "connection") and _local.connection is not None:
-        try:
-            _local.connection.close()
-        except Exception as e:
-            logger.error(f"Error closing database connection: {e}")
-        finally:
-            _local.connection = None
-            _local.depth = 0
-
-def repair_timestamps():
-    """
-    Scans active_bets and results tables for invalid timestamps and fixes them.
-    """
-    logger.info("Checking for malformed timestamps in database...")
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-
-        # Check active_bets
-        try:
-            cursor.execute("SELECT bet_id, timestamp_created, end_date FROM active_bets")
-            rows = cursor.fetchall()
-            for row in rows:
-                updates = {}
-                # Check timestamp_created
-                ts_created = row['timestamp_created']
-
-                if ts_created:
-                    updates['timestamp_created'] = safe_timestamp(ts_created)
-
-                end_date = row['end_date']
-                if end_date:
-                    updates['end_date'] = safe_timestamp(end_date)
-
-                if updates:
-                    set_clause = ", ".join([f"{k} = ?" for k in updates.keys()])
-                    values = list(updates.values()) + [row['bet_id']]
-                    cursor.execute(f"UPDATE active_bets SET {set_clause} WHERE bet_id = ?", values)
-
-            # Check results
-            cursor.execute("SELECT result_id, timestamp_created, timestamp_closed FROM results")
-            rows = cursor.fetchall()
-            for row in rows:
-                updates = {}
-                ts_created = row['timestamp_created']
-                if ts_created:
-                    updates['timestamp_created'] = safe_timestamp(ts_created)
-
-                ts_closed = row['timestamp_closed']
-                if ts_closed:
-                    updates['timestamp_closed'] = safe_timestamp(ts_closed)
-
-                if updates:
-                    set_clause = ", ".join([f"{k} = ?" for k in updates.keys()])
-                    values = list(updates.values()) + [row['result_id']]
-                    cursor.execute(f"UPDATE results SET {set_clause} WHERE result_id = ?", values)
-
-            conn.commit()
-            logger.info("Timestamp repair completed.")
-
-        except Exception as e:
-            logger.error(f"Error during timestamp repair: {e}")
-
 def init_database():
     """Initializes the database with required tables and default values."""
-    register_adapters() # Ensure registered
+    try:
+        # Create tables
+        Base.metadata.create_all(engine)
 
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
+        with session_scope() as session:
+            # Initialize Portfolio State
+            if session.query(PortfolioState).count() == 0:
+                init_portfolio = PortfolioState(
+                    id=1,
+                    total_capital=INITIAL_CAPITAL,
+                    last_updated=datetime.now(timezone.utc)
+                )
+                session.add(init_portfolio)
+                logger.info(f"Initialized portfolio with ${INITIAL_CAPITAL} USDC")
 
-        # Portfolio State (Single Row)
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS portfolio_state (
-            id INTEGER PRIMARY KEY CHECK (id = 1),
-            total_capital REAL NOT NULL,
-            last_updated TIMESTAMP NOT NULL,
-            last_dashboard_update TIMESTAMP,
-            last_run_timestamp TIMESTAMP
-        )
-        ''')
+            # Initialize Git Sync State
+            if session.query(GitSyncState).count() == 0:
+                init_git = GitSyncState(
+                    id=1,
+                    last_git_push=datetime.now(timezone.utc),
+                    pending_changes_count=0
+                )
+                session.add(init_git)
 
-        # Check if last_run_timestamp exists (migration)
-        try:
-            cursor.execute("SELECT last_run_timestamp FROM portfolio_state LIMIT 1")
-        except sqlite3.OperationalError:
-            logger.info("Migrating database: Adding last_run_timestamp to portfolio_state")
-            cursor.execute("ALTER TABLE portfolio_state ADD COLUMN last_run_timestamp TIMESTAMP")
-
-        # Active Bets
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS active_bets (
-            bet_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            market_slug TEXT NOT NULL,
-            question TEXT NOT NULL,
-            action TEXT NOT NULL CHECK (action IN ('YES', 'NO')),
-            stake_usdc REAL NOT NULL,
-            entry_price REAL NOT NULL,
-            ai_probability REAL NOT NULL,
-            confidence_score REAL NOT NULL,
-            expected_value REAL NOT NULL,
-            end_date TIMESTAMP,
-            timestamp_created TIMESTAMP NOT NULL,
-            status TEXT DEFAULT 'OPEN' CHECK (status IN ('OPEN', 'CLOSED'))
-        )
-        ''')
-
-        # Check if end_date exists (migration)
-        try:
-            cursor.execute("SELECT end_date FROM active_bets LIMIT 1")
-        except sqlite3.OperationalError:
-            logger.info("Migrating database: Adding end_date to active_bets")
-            cursor.execute("ALTER TABLE active_bets ADD COLUMN end_date TIMESTAMP")
-
-        # Check for new columns in active_bets
-        cursor.execute("PRAGMA table_info(active_bets)")
-        columns = [row['name'] for row in cursor.fetchall()]
-
-        if 'ai_reasoning' not in columns:
-            cursor.execute('ALTER TABLE active_bets ADD COLUMN ai_reasoning TEXT')
-            logger.info("Added ai_reasoning column to active_bets")
-
-        if 'edge' not in columns:
-            cursor.execute('ALTER TABLE active_bets ADD COLUMN edge REAL')
-            logger.info("Added edge column to active_bets")
-
-        # Results (Closed Bets)
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS results (
-            result_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            bet_id INTEGER NOT NULL,
-            market_slug TEXT NOT NULL,
-            question TEXT NOT NULL,
-            action TEXT NOT NULL,
-            stake_usdc REAL NOT NULL,
-            entry_price REAL NOT NULL,
-            actual_outcome TEXT CHECK (actual_outcome IN ('YES', 'NO')),
-            profit_loss REAL NOT NULL,
-            roi REAL NOT NULL,
-            timestamp_created TIMESTAMP NOT NULL,
-            timestamp_closed TIMESTAMP NOT NULL,
-            FOREIGN KEY (bet_id) REFERENCES active_bets(bet_id)
-        )
-        ''')
-
-        # Check for new columns in results
-        cursor.execute("PRAGMA table_info(results)")
-        columns = [row['name'] for row in cursor.fetchall()]
-
-        if 'ai_reasoning' not in columns:
-            cursor.execute('ALTER TABLE results ADD COLUMN ai_reasoning TEXT')
-            logger.info("Added ai_reasoning column to results")
-
-        if 'ai_probability' not in columns:
-            cursor.execute('ALTER TABLE results ADD COLUMN ai_probability REAL')
-            logger.info("Added ai_probability column to results")
-
-        if 'confidence_score' not in columns:
-            cursor.execute('ALTER TABLE results ADD COLUMN confidence_score REAL')
-            logger.info("Added confidence_score column to results")
-
-        if 'edge' not in columns:
-            cursor.execute('ALTER TABLE results ADD COLUMN edge REAL')
-            logger.info("Added edge column to results")
-
-        if 'days_held' not in columns:
-            cursor.execute('ALTER TABLE results ADD COLUMN days_held INTEGER')
-            logger.info("Added days_held column to results")
-
-        if 'market_volume' not in columns:
-            cursor.execute('ALTER TABLE results ADD COLUMN market_volume REAL')
-            logger.info("Added market_volume column to results")
-
-        # Rejected Markets (New Table)
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS rejected_markets (
-            rejection_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            market_slug TEXT NOT NULL,
-            question TEXT NOT NULL,
-            market_price REAL NOT NULL,
-            volume REAL NOT NULL,
-            ai_probability REAL NOT NULL,
-            confidence_score REAL NOT NULL,
-            edge REAL NOT NULL,
-            rejection_reason TEXT NOT NULL,
-            ai_reasoning TEXT,
-            timestamp_analyzed TIMESTAMP NOT NULL,
-            end_date TIMESTAMP
-        )
-        ''')
-        cursor.execute('CREATE INDEX IF NOT EXISTS idx_rejected_timestamp ON rejected_markets(timestamp_analyzed)')
-
-        # API Usage Tracking
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS api_usage (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            timestamp TIMESTAMP NOT NULL,
-            api_name TEXT NOT NULL,
-            endpoint TEXT,
-            calls INTEGER DEFAULT 1,
-            tokens_prompt INTEGER DEFAULT 0,
-            tokens_response INTEGER DEFAULT 0,
-            tokens_total INTEGER DEFAULT 0,
-            response_time_ms INTEGER DEFAULT 0
-        )
-        ''')
-
-        cursor.execute('CREATE INDEX IF NOT EXISTS idx_api_timestamp ON api_usage(timestamp)')
-        cursor.execute('CREATE INDEX IF NOT EXISTS idx_api_name ON api_usage(api_name, timestamp)')
-
-        # Git Sync State (Single Row)
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS git_sync_state (
-            id INTEGER PRIMARY KEY CHECK (id = 1),
-            last_git_push TIMESTAMP,
-            pending_changes_count INTEGER DEFAULT 0,
-            has_new_bets BOOLEAN DEFAULT 0,
-            has_new_rejections BOOLEAN DEFAULT 0,
-            has_bet_resolutions BOOLEAN DEFAULT 0
-        )
-        ''')
-
-        # Initialize git_sync_state if empty
-        cursor.execute('SELECT count(*) FROM git_sync_state')
-        if cursor.fetchone()[0] == 0:
-            cursor.execute(
-                'INSERT INTO git_sync_state (id, last_git_push, pending_changes_count) VALUES (?, ?, ?)',
-                (1, safe_timestamp(datetime.now()), 0)
-            )
-
-        # Initialize capital if empty
-        cursor.execute('SELECT count(*) FROM portfolio_state')
-        if cursor.fetchone()[0] == 0:
-            cursor.execute(
-                'INSERT INTO portfolio_state (id, total_capital, last_updated) VALUES (?, ?, ?)',
-                (1, INITIAL_CAPITAL, safe_timestamp(datetime.now()))
-            )
-            logger.info(f"Initialized portfolio with ${INITIAL_CAPITAL} USDC")
-
-        conn.commit()
         logger.info("Database initialized successfully.")
+    except Exception as e:
+        logger.error(f"Error initializing database: {e}")
+        raise
 
-    # Run repair after initialization to fix any existing issues
-    repair_timestamps()
+def to_dict(obj) -> Dict[str, Any]:
+    """Helper to convert SQLAlchemy object to dict."""
+    if not obj:
+        return {}
+    return {c.name: getattr(obj, c.name) for c in obj.__table__.columns}
+
+def get_db_connection():
+    """Legacy wrapper for compatibility, though distinct from session_scope."""
+    return session_scope()
 
 def get_current_capital() -> float:
     """Reads current capital from portfolio_state."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute('SELECT total_capital FROM portfolio_state WHERE id = 1')
-        row = cursor.fetchone()
-        if row:
-            return row['total_capital']
+    with session_scope() as session:
+        state = session.query(PortfolioState).filter_by(id=1).first()
+        if state:
+            return float(state.total_capital)
         return INITIAL_CAPITAL
 
 def update_capital(new_capital: float):
-    """Updates total capital in portfolio_state."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute(
-            'UPDATE portfolio_state SET total_capital = ?, last_updated = ? WHERE id = 1',
-            (new_capital, safe_timestamp(datetime.now()))
+    """Updates total capital in portfolio_state (Atomic/Optimistic not strictly needed here if single writer, but using update for safety)."""
+    with session_scope() as session:
+        session.execute(
+            update(PortfolioState)
+            .where(PortfolioState.id == 1)
+            .values(
+                total_capital=new_capital,
+                last_updated=datetime.now(timezone.utc),
+                version=PortfolioState.version + 1
+            )
         )
-        conn.commit()
         logger.info(f"Capital updated to ${new_capital:.2f}")
 
 def insert_active_bet(bet_data: Dict[str, Any]):
     """Inserts a new active bet."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
+    with session_scope() as session:
+        bet = ActiveBet(
+            market_slug=bet_data['market_slug'],
+            url_slug=bet_data.get('url_slug', bet_data['market_slug']), # Fallback if missing
+            question=bet_data['question'],
+            action=bet_data['action'],
+            stake_usdc=bet_data['stake_usdc'],
+            entry_price=bet_data['entry_price'],
+            ai_probability=bet_data['ai_probability'],
+            confidence_score=bet_data['confidence_score'],
+            expected_value=bet_data['expected_value'],
+            edge=bet_data.get('edge', 0.0),
+            ai_reasoning=bet_data.get('ai_reasoning', ''),
+            end_date=bet_data.get('end_date'), # Expecting datetime object or ISO string
+            timestamp_created=datetime.now(timezone.utc),
+            status='OPEN'
+        )
+        # Handle string date if passed
+        if isinstance(bet.end_date, str):
+            from dateutil import parser
+            bet.end_date = parser.parse(bet.end_date)
+            if bet.end_date.tzinfo is None:
+                bet.end_date = bet.end_date.replace(tzinfo=timezone.utc)
 
-        cursor.execute('''
-        INSERT INTO active_bets (
-            market_slug, question, action, stake_usdc, entry_price,
-            ai_probability, confidence_score, expected_value, edge,
-            ai_reasoning, end_date, timestamp_created, status
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'OPEN')
-        ''', (
-            bet_data['market_slug'],
-            bet_data['question'],
-            bet_data['action'],
-            bet_data['stake_usdc'],
-            bet_data['entry_price'],
-            bet_data['ai_probability'],
-            bet_data['confidence_score'],
-            bet_data['expected_value'],
-            bet_data.get('edge', 0.0),
-            bet_data.get('ai_reasoning', ''),
-            safe_timestamp(bet_data.get('end_date')),
-            safe_timestamp(datetime.now())
-        ))
-        conn.commit()
+        session.add(bet)
+        # session.commit() handled by context manager
 
-        # Mark for git sync
-        mark_git_change('bet')
+        # Mark for git sync (needs new session or nested transaction if calling another function using session_scope,
+        # but mark_git_change uses session_scope which handles new session. Commit here is implicit by context manager exit)
 
-        logger.info(f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {bet_data.get('edge', 0)*100:+.1f}%)")
+    mark_git_change('bet')
+    logger.info(f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {bet_data.get('edge', 0)*100:+.1f}%)")
 
-def get_active_bets() -> List[sqlite3.Row]:
+def get_active_bets() -> List[Dict[str, Any]]:
     """Retrieves all OPEN bets."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM active_bets WHERE status = 'OPEN'")
-        return cursor.fetchall()
+    with session_scope() as session:
+        bets = session.query(ActiveBet).filter(ActiveBet.status == 'OPEN').all()
+        return [to_dict(b) for b in bets]
 
-def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[sqlite3.Connection] = None):
-    """Moves a bet from active_bets to results and updates capital."""
+def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[Session] = None):
+    """Moves a bet from active_bets to archived_bets (results) and updates capital."""
 
-    should_commit = conn is None
-    ctx = get_db_connection() if conn is None else nullcontext(conn)
-
-    with ctx as db_conn:
-        cursor = db_conn.cursor()
-
-        # Get bet details
-        cursor.execute("SELECT * FROM active_bets WHERE bet_id = ?", (bet_id,))
-        bet = cursor.fetchone()
+    # Inner function to perform logic with a given session
+    def _perform_close(session: Session):
+        bet = session.query(ActiveBet).filter_by(bet_id=bet_id).with_for_update().first()
         if not bet:
             logger.error(f"Bet {bet_id} not found!")
             return
 
         # Calculate ROI
-        roi = (profit_loss / bet['stake_usdc']) if bet['stake_usdc'] > 0 else 0.0
+        roi = (profit_loss / float(bet.stake_usdc)) if bet.stake_usdc > 0 else 0.0
 
-        # Insert into results
-        # Note: We use the original timestamp_created from the bet, but ensure it's safe
-        cursor.execute('''
-        INSERT INTO results (
-            bet_id, market_slug, question, action, stake_usdc, entry_price,
-            actual_outcome, profit_loss, roi,
-            ai_probability, confidence_score, edge, ai_reasoning,
-            timestamp_created, timestamp_closed
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ''', (
-            bet['bet_id'], bet['market_slug'], bet['question'], bet['action'],
-            bet['stake_usdc'], bet['entry_price'], outcome, profit_loss, roi,
-            bet['ai_probability'] if bet['ai_probability'] is not None else 0.0,
-            bet['confidence_score'] if bet['confidence_score'] is not None else 0.0,
-            bet['edge'] if bet['edge'] is not None else 0.0,
-            bet['ai_reasoning'] if bet['ai_reasoning'] is not None else '',
-            safe_timestamp(bet['timestamp_created']), safe_timestamp(datetime.now())
-        ))
+        # Archive
+        archived = ArchivedBet(
+            original_bet_id=bet.bet_id,
+            market_slug=bet.market_slug,
+            url_slug=bet.url_slug,
+            question=bet.question,
+            action=bet.action,
+            stake_usdc=bet.stake_usdc,
+            entry_price=bet.entry_price,
+            ai_probability=bet.ai_probability,
+            confidence_score=bet.confidence_score,
+            edge=bet.edge,
+            ai_reasoning=bet.ai_reasoning,
+            timestamp_created=bet.timestamp_created,
+            end_date=bet.end_date,
+            actual_outcome=outcome,
+            profit_loss=profit_loss,
+            roi=roi,
+            timestamp_resolved=datetime.now(timezone.utc)
+        )
+        session.add(archived)
 
-        # Update active_bet status
-        cursor.execute("UPDATE active_bets SET status = 'CLOSED' WHERE bet_id = ?", (bet_id,))
+        # Delete from active (or mark closed, but schema suggests moving to archived implies active removal or just keeping archive)
+        # Original code kept 'results' table and 'active_bets' with status 'CLOSED'.
+        # New prompt schema: 'active_bets' and 'archived_bets'.
+        # Prompt says: "Moves a bet from active_bets to results".
+        # Prompt for `archive_bet_without_resolution` says "session.delete(bet) # Remove from active".
+        # So I will DELETE from active_bets.
+        session.delete(bet)
 
-        # Update Capital
-        cursor.execute('SELECT total_capital FROM portfolio_state WHERE id = 1')
-        current_capital_row = cursor.fetchone()
-        current_capital = current_capital_row['total_capital'] if current_capital_row else INITIAL_CAPITAL
-        new_capital = current_capital + profit_loss
-
-        cursor.execute(
-            'UPDATE portfolio_state SET total_capital = ?, last_updated = ? WHERE id = 1',
-            (new_capital, safe_timestamp(datetime.now()))
+        # Atomic Capital Update
+        session.execute(
+            text("UPDATE portfolio_state SET total_capital = total_capital + :pl, version = version + 1 WHERE id = 1"),
+            {"pl": profit_loss}
         )
 
-        if should_commit:
-            db_conn.commit()
+        # Fetch new capital for logging
+        new_capital = session.query(PortfolioState.total_capital).scalar()
 
-        # Mark for git sync
-        mark_git_change('resolution')
-
-        # Post-mortem Log
-        was_correct = (bet['action'] == outcome)
-        ai_prob = bet['ai_probability'] if bet['ai_probability'] is not None else 0.0
         logger.info(
-            f"Bet {bet_id} closed. AI predicted {bet['action']} ({ai_prob*100:.0f}%), "
-            f"Actual: {outcome}. {'✅ CORRECT' if was_correct else '❌ WRONG'}. "
-            f"P/L: ${profit_loss:.2f}. New Capital: ${new_capital:.2f}"
+            f"Bet {bet_id} closed. AI predicted {bet.action} ({float(bet.ai_probability)*100:.0f}%), "
+            f"Actual: {outcome}. P/L: ${profit_loss:.2f}. New Capital: ${new_capital:.2f}"
         )
 
-def get_all_results() -> List[sqlite3.Row]:
-    """Retrieves all closed bets (results)."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM results ORDER BY timestamp_closed DESC")
-        return cursor.fetchall()
+    if conn:
+        _perform_close(conn)
+        # Caller manages commit if conn is passed
+    else:
+        with session_scope() as session:
+            _perform_close(session)
+            # session.commit()
 
-def get_results_with_metrics() -> List[sqlite3.Row]:
+    mark_git_change('resolution')
+
+def archive_bet_without_resolution(bet_id: int):
+    """Archives expired bet without resolution."""
+    with session_scope() as session:
+        bet = session.query(ActiveBet).filter_by(bet_id=bet_id).with_for_update().first()
+        if not bet:
+            return
+
+        archived = ArchivedBet(
+            original_bet_id=bet.bet_id,
+            market_slug=bet.market_slug,
+            url_slug=bet.url_slug,
+            question=bet.question,
+            action=bet.action,
+            stake_usdc=bet.stake_usdc,
+            entry_price=bet.entry_price,
+            ai_probability=bet.ai_probability,
+            confidence_score=bet.confidence_score,
+            edge=bet.edge,
+            ai_reasoning=bet.ai_reasoning,
+            timestamp_created=bet.timestamp_created,
+            end_date=bet.end_date,
+            actual_outcome=None, # UNRESOLVED implicit or explicit? Schema says check IN ('YES', 'NO', 'UNRESOLVED') or null?
+            # Schema: actual_outcome TEXT CHECK ...
+            # Let's set it to 'UNRESOLVED' or None. Prompt code example set actual_outcome=None.
+            # But the CHECK constraint allows 'UNRESOLVED'.
+            # If I set None, it might fail check if NOT NULL is there?
+            # Schema: "actual_outcome TEXT CHECK (actual_outcome IN ('YES', 'NO', 'UNRESOLVED'))"
+            # It does NOT say NOT NULL.
+            # However, prompt `archive_bet_without_resolution` sample code set `actual_outcome=None`.
+            # I will follow prompt code.
+            profit_loss=None,
+            roi=None,
+            timestamp_resolved=None
+        )
+        session.add(archived)
+        session.delete(bet)
+        logger.info(f"Archived expired bet {bet_id} without resolution.")
+
+def get_all_results() -> List[Dict[str, Any]]:
+    """Retrieves all closed bets (archived)."""
+    with session_scope() as session:
+        results = session.query(ArchivedBet).order_by(ArchivedBet.timestamp_resolved.desc().nulls_last()).all()
+        # Filter for those that have been resolved if needed, or return all archived?
+        # Function name is get_all_results, used for metrics. Metrics need P/L.
+        # So we should probably filter out those with profit_loss IS NULL.
+        filtered = [to_dict(r) for r in results if r.profit_loss is not None]
+        # For compatibility with legacy code which expects 'timestamp_closed', mapping timestamp_resolved
+        for r in filtered:
+            r['timestamp_closed'] = r.get('timestamp_resolved')
+        return filtered
+
+def get_results_with_metrics() -> List[Dict[str, Any]]:
     """
     Holt alle Results mit berechneten Metriken.
-    Berechnet days_held on-the-fly wenn nicht gespeichert.
     """
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute("""
-            SELECT
-                *,
-                CAST((julianday(timestamp_closed) - julianday(timestamp_created)) AS INTEGER) as computed_days_held
-            FROM results
-            ORDER BY timestamp_closed DESC
-        """)
-        return cursor.fetchall()
+    with session_scope() as session:
+        # We can calculate days_held in python or SQL.
+        results = session.query(ArchivedBet).filter(ArchivedBet.profit_loss != None).order_by(ArchivedBet.timestamp_resolved.desc()).all()
+        data = []
+        for r in results:
+            d = to_dict(r)
+            d['timestamp_closed'] = d.get('timestamp_resolved')
+            if d['timestamp_closed'] and d['timestamp_created']:
+                # Ensure timezones are compatible
+                created = d['timestamp_created']
+                closed = d['timestamp_closed']
+                d['computed_days_held'] = (closed - created).days
+            else:
+                d['computed_days_held'] = 0
+            data.append(d)
+        return data
 
 def get_capital_history() -> List[Tuple[datetime, float]]:
     """
     Gibt Zeitreihe von (timestamp, capital) zurück.
     """
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute("""
-            SELECT timestamp_closed, profit_loss
-            FROM results
-            ORDER BY timestamp_closed ASC
-        """)
+    with session_scope() as session:
+        results = session.query(ArchivedBet.timestamp_resolved, ArchivedBet.profit_loss)\
+            .filter(ArchivedBet.profit_loss != None)\
+            .order_by(ArchivedBet.timestamp_resolved.asc()).all()
 
-        results = cursor.fetchall()
-        history = [(datetime.now() - timedelta(days=365), INITIAL_CAPITAL)]  # Start point
-
+        history = [(datetime.now(timezone.utc) - timedelta(days=365), INITIAL_CAPITAL)]
         running_capital = INITIAL_CAPITAL
-        for row in results:
-            running_capital += row['profit_loss']
-            history.append((row['timestamp_closed'], running_capital))
+        for ts, pl in results:
+            running_capital += float(pl)
+            history.append((ts, running_capital))
 
         return history
 
 def insert_rejected_market(market_data: Dict[str, Any]):
-    """Loggt abgelehnte Märkte (PASS decisions)."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute('''
-        INSERT INTO rejected_markets (
-            market_slug, question, market_price, volume,
-            ai_probability, confidence_score, edge,
-            rejection_reason, ai_reasoning,
-            timestamp_analyzed, end_date
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ''', (
-            market_data['market_slug'],
-            market_data['question'],
-            market_data['market_price'],
-            market_data['volume'],
-            market_data['ai_probability'],
-            market_data['confidence_score'],
-            market_data['edge'],
-            market_data['rejection_reason'],
-            market_data.get('ai_reasoning', ''),
-            safe_timestamp(datetime.now()),
-            safe_timestamp(market_data.get('end_date'))
-        ))
-        conn.commit()
-
-        # Mark for git sync
-        mark_git_change('rejection')
-
-        logger.info(f"Rejected market logged: {market_data['question'][:40]}... (Reason: {market_data['rejection_reason']})")
-
-def get_rejected_markets(limit: int = 50) -> List[sqlite3.Row]:
-    """Holt letzte abgelehnte Märkte."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute(
-            "SELECT * FROM rejected_markets ORDER BY timestamp_analyzed DESC LIMIT ?",
-            (limit,)
+    """Loggt abgelehnte Märkte."""
+    with session_scope() as session:
+        rej = RejectedMarket(
+            market_slug=market_data['market_slug'],
+            url_slug=market_data.get('url_slug', market_data['market_slug']),
+            question=market_data['question'],
+            market_price=market_data['market_price'],
+            volume=market_data['volume'],
+            ai_probability=market_data['ai_probability'],
+            confidence_score=market_data['confidence_score'],
+            edge=market_data['edge'],
+            rejection_reason=market_data['rejection_reason'],
+            ai_reasoning=market_data.get('ai_reasoning', ''),
+            timestamp_analyzed=datetime.now(timezone.utc),
+            end_date=market_data.get('end_date')
         )
-        return cursor.fetchall()
+        if isinstance(rej.end_date, str):
+            from dateutil import parser
+            try:
+                rej.end_date = parser.parse(rej.end_date)
+                if rej.end_date.tzinfo is None:
+                    rej.end_date = rej.end_date.replace(tzinfo=timezone.utc)
+            except:
+                rej.end_date = None
+
+        session.add(rej)
+
+    mark_git_change('rejection')
+    logger.info(f"Rejected market logged: {market_data['question'][:40]}... (Reason: {market_data['rejection_reason']})")
+
+def insert_rejected_markets_batch(markets: List[Dict[str, Any]]):
+    """Batch insert rejected markets."""
+    if not markets:
+        return
+
+    with session_scope() as session:
+        objs = []
+        for m in markets:
+            end_date = m.get('end_date')
+            if isinstance(end_date, str):
+                from dateutil import parser
+                try:
+                    end_date = parser.parse(end_date)
+                    if end_date.tzinfo is None:
+                        end_date = end_date.replace(tzinfo=timezone.utc)
+                except:
+                    end_date = None
+
+            objs.append(RejectedMarket(
+                market_slug=m['market_slug'],
+                url_slug=m.get('url_slug', m['market_slug']),
+                question=m['question'],
+                market_price=m['market_price'],
+                volume=m['volume'],
+                ai_probability=m['ai_probability'],
+                confidence_score=m['confidence_score'],
+                edge=m['edge'],
+                rejection_reason=m['rejection_reason'],
+                ai_reasoning=m.get('ai_reasoning', ''),
+                timestamp_analyzed=datetime.now(timezone.utc),
+                end_date=end_date
+            ))
+
+        session.bulk_save_objects(objs)
+
+    mark_git_change('rejection')
+    logger.info(f"Batch inserted {len(markets)} rejected markets.")
+
+def get_rejected_markets(limit: int = 50) -> List[Dict[str, Any]]:
+    """Holt letzte abgelehnte Märkte."""
+    with session_scope() as session:
+        markets = session.query(RejectedMarket)\
+            .order_by(RejectedMarket.timestamp_analyzed.desc())\
+            .limit(limit).all()
+        return [to_dict(m) for m in markets]
 
 def calculate_metrics() -> Dict[str, Any]:
-    """Calculates performance metrics (Win Rate, ROI, Sharpe, Drawdown)."""
+    """Calculates performance metrics."""
     results = get_all_results()
 
     if not results:
@@ -588,18 +384,18 @@ def calculate_metrics() -> Dict[str, Any]:
     worst_bet = float('inf')
     total_pl = 0.0
 
-    # Sort results by closed time to build curve
-    # results is a list of sqlite3.Row, need to convert to list to sort if not already sorted by SQL
-    sorted_results = sorted(results, key=lambda x: x['timestamp_closed'])
+    # Sort results by closed time
+    sorted_results = sorted(results, key=lambda x: x['timestamp_closed'] or datetime.min.replace(tzinfo=timezone.utc))
 
     for res in sorted_results:
-        pl = res['profit_loss']
+        pl = float(res['profit_loss'])
         total_pl += pl
         if pl > 0:
             wins += 1
 
-        total_roi += res['roi']
-        returns.append(res['roi'])
+        roi = float(res['roi'])
+        total_roi += roi
+        returns.append(roi)
 
         current_cap += pl
         capital_curve.append(current_cap)
@@ -649,117 +445,84 @@ def calculate_metrics() -> Dict[str, Any]:
     }
 
 def update_last_dashboard_update():
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute(
-            'UPDATE portfolio_state SET last_dashboard_update = ? WHERE id = 1',
-            (safe_timestamp(datetime.now()),)
+    with session_scope() as session:
+        session.execute(
+            update(PortfolioState)
+            .where(PortfolioState.id == 1)
+            .values(last_dashboard_update=datetime.now(timezone.utc))
         )
-        conn.commit()
 
 def get_last_dashboard_update() -> Optional[datetime]:
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute('SELECT last_dashboard_update FROM portfolio_state WHERE id = 1')
-        row = cursor.fetchone()
-        if row and row['last_dashboard_update']:
-            val = row['last_dashboard_update']
-            # If adapter works, val is datetime. If not, it is bytes or str.
-            if isinstance(val, (bytes, str)):
-                 return parser.parse(val)
-            return val
+    with session_scope() as session:
+        state = session.query(PortfolioState).filter_by(id=1).first()
+        if state:
+            return state.last_dashboard_update
         return None
-
-# ============================================================================
-# NEW API TRACKING FUNCTIONS
-# ============================================================================
 
 def log_api_usage(api_name: str, endpoint: str, tokens_prompt: int, tokens_response: int, response_time_ms: int):
     """Log API usage to the database."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute('''
-        INSERT INTO api_usage (
-            timestamp, api_name, endpoint, tokens_prompt, tokens_response, tokens_total, response_time_ms
-        ) VALUES (?, ?, ?, ?, ?, ?, ?)
-        ''', (
-            safe_timestamp(datetime.now(timezone.utc)), # Store as UTC
-            api_name,
-            endpoint,
-            tokens_prompt,
-            tokens_response,
-            tokens_prompt + tokens_response,
-            response_time_ms
-        ))
-        conn.commit()
+    with session_scope() as session:
+        usage = ApiUsage(
+            timestamp=datetime.now(timezone.utc),
+            api_name=api_name,
+            endpoint=endpoint,
+            calls=1,
+            tokens_prompt=tokens_prompt,
+            tokens_response=tokens_response,
+            tokens_total=tokens_prompt + tokens_response,
+            response_time_ms=response_time_ms
+        )
+        session.add(usage)
 
 def get_api_usage_rpm(api_name: str = "gemini") -> int:
     """Returns number of API calls in the last minute."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
+    with session_scope() as session:
         one_min_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
-        cursor.execute(
-            "SELECT COUNT(*) FROM api_usage WHERE api_name = ? AND timestamp >= ?",
-            (api_name, safe_timestamp(one_min_ago))
-        )
-        return cursor.fetchone()[0]
+        count = session.query(func.sum(ApiUsage.calls)).filter(
+            ApiUsage.api_name == api_name,
+            ApiUsage.timestamp >= one_min_ago
+        ).scalar()
+        return count or 0
 
 def get_api_usage_rpd(api_name: str = "gemini") -> int:
-    """Returns number of API calls today (UTC based, effectively)."""
-    # Note: Requirement says "CET", but prompt implementation in step 5 assumes UTC storage and display conversion.
-    # To strictly follow "today (CET)", we need to calculate start of day in CET.
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
+    """Returns number of API calls today (UTC based)."""
+    with session_scope() as session:
         now_utc = datetime.now(timezone.utc)
-        # Approximate CET (UTC+1) for simple day boundary if timezone lib not fully utilized for queries
-        # Or better, just count last 24h or day since midnight UTC.
-        # Requirement: "today (CET)".
-        # Let's try to get start of day CET in UTC.
-        cet_offset = timedelta(hours=1) # Simplified, ignoring DST
-        now_cet = now_utc + cet_offset
-        start_of_day_cet = now_cet.replace(hour=0, minute=0, second=0, microsecond=0)
-        start_of_day_utc = start_of_day_cet - cet_offset
-
-        cursor.execute(
-            "SELECT COUNT(*) FROM api_usage WHERE api_name = ? AND timestamp >= ?",
-            (api_name, safe_timestamp(start_of_day_utc))
-        )
-        return cursor.fetchone()[0]
+        start_of_day = now_utc.replace(hour=0, minute=0, second=0, microsecond=0)
+        count = session.query(func.sum(ApiUsage.calls)).filter(
+            ApiUsage.api_name == api_name,
+            ApiUsage.timestamp >= start_of_day
+        ).scalar()
+        return count or 0
 
 def get_api_usage_tpm(api_name: str = "gemini") -> int:
     """Returns sum of tokens in the last minute."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
+    with session_scope() as session:
         one_min_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
-        cursor.execute(
-            "SELECT SUM(tokens_total) FROM api_usage WHERE api_name = ? AND timestamp >= ?",
-            (api_name, safe_timestamp(one_min_ago))
-        )
-        result = cursor.fetchone()[0]
-        return result if result else 0
+        tokens = session.query(func.sum(ApiUsage.tokens_total)).filter(
+            ApiUsage.api_name == api_name,
+            ApiUsage.timestamp >= one_min_ago
+        ).scalar()
+        return tokens or 0
 
 def get_last_run_timestamp() -> Optional[datetime]:
     """Reads last run timestamp from DB."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute('SELECT last_run_timestamp FROM portfolio_state WHERE id = 1')
-        row = cursor.fetchone()
-        if row and row['last_run_timestamp']:
-            val = row['last_run_timestamp']
-            if isinstance(val, (bytes, str)):
-                 return parser.parse(val)
-            return val
+    with session_scope() as session:
+        state = session.query(PortfolioState).filter_by(id=1).first()
+        if state:
+            return state.last_run_timestamp
         return None
 
 def set_last_run_timestamp(timestamp: datetime):
     """Saves last run timestamp."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute(
-            'UPDATE portfolio_state SET last_run_timestamp = ? WHERE id = 1',
-            (safe_timestamp(timestamp),)
+    with session_scope() as session:
+        if timestamp.tzinfo is None:
+            timestamp = timestamp.replace(tzinfo=timezone.utc)
+        session.execute(
+            update(PortfolioState)
+            .where(PortfolioState.id == 1)
+            .values(last_run_timestamp=timestamp)
         )
-        conn.commit()
 
 # ============================================================================
 # GIT SYNC HELPERS
@@ -770,78 +533,108 @@ def mark_git_change(change_type: str):
     Markiert eine Änderung für Git-Push.
     change_type: 'bet', 'rejection', 'resolution'
     """
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-
+    with session_scope() as session:
         field_map = {
             'bet': 'has_new_bets',
             'rejection': 'has_new_rejections',
             'resolution': 'has_bet_resolutions'
         }
-
         field = field_map.get(change_type)
         if field:
-            cursor.execute(f'''
+            # Need to build update dict dynamically or use raw sql
+            # Using raw sql for simplicity with field name variable
+            sql = text(f"""
                 UPDATE git_sync_state
-                SET {field} = 1, pending_changes_count = pending_changes_count + 1
+                SET {field} = true, pending_changes_count = pending_changes_count + 1
                 WHERE id = 1
-            ''')
-            conn.commit()
+            """)
+            session.execute(sql)
 
 def should_push_to_git() -> bool:
     """
     Prüft ob Git-Push nötig ist (mind. 1h seit letztem Push UND Änderungen vorhanden).
     """
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute('SELECT last_git_push, pending_changes_count FROM git_sync_state WHERE id = 1')
-        row = cursor.fetchone()
-
-        if not row:
+    with session_scope() as session:
+        state = session.query(GitSyncState).filter_by(id=1).first()
+        if not state:
             return False
 
-        last_push = row['last_git_push']
-        changes = row['pending_changes_count']
-
-        if changes == 0:
+        if state.pending_changes_count == 0:
             return False
 
-        # Parse timestamp
-        if isinstance(last_push, str):
-            last_push = parser.parse(last_push)
-        elif isinstance(last_push, bytes):
-            last_push = parser.parse(last_push.decode('utf-8'))
+        last_push = state.last_git_push
+        if not last_push:
+            return True
 
-        # Mind. 1 Stunde seit letztem Push
-        if datetime.now() - last_push >= timedelta(hours=1):
+        # Ensure UTC
+        if last_push.tzinfo is None:
+            last_push = last_push.replace(tzinfo=timezone.utc)
+
+        if datetime.now(timezone.utc) - last_push >= timedelta(hours=1):
             return True
 
         return False
 
 def has_ai_decisions_changes() -> bool:
     """Prüft ob AI_DECISIONS.md relevante Änderungen hat."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute('''
-            SELECT has_new_bets, has_new_rejections, has_bet_resolutions
-            FROM git_sync_state WHERE id = 1
-        ''')
-        row = cursor.fetchone()
-        if not row:
+    with session_scope() as session:
+        state = session.query(GitSyncState).filter_by(id=1).first()
+        if not state:
             return False
-        return any([row['has_new_bets'], row['has_new_rejections'], row['has_bet_resolutions']])
+        return any([state.has_new_bets, state.has_new_rejections, state.has_bet_resolutions])
 
 def reset_git_sync_flags():
     """Setzt Flags nach erfolgreichem Push zurück."""
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute('''
-            UPDATE git_sync_state
-            SET last_git_push = ?,
-                pending_changes_count = 0,
-                has_new_bets = 0,
-                has_new_rejections = 0,
-                has_bet_resolutions = 0
-            WHERE id = 1
-        ''', (safe_timestamp(datetime.now()),))
-        conn.commit()
+    with session_scope() as session:
+        session.execute(
+            update(GitSyncState)
+            .where(GitSyncState.id == 1)
+            .values(
+                last_git_push=datetime.now(timezone.utc),
+                pending_changes_count=0,
+                has_new_bets=False,
+                has_new_rejections=False,
+                has_bet_resolutions=False
+            )
+        )
+
+def get_unresolved_archived_bets() -> List[Dict[str, Any]]:
+    """Retrieves archived bets that are unresolved and older than 24h."""
+    with session_scope() as session:
+        cutoff = datetime.now(timezone.utc) - timedelta(days=1)
+        bets = session.query(ArchivedBet).filter(
+            ArchivedBet.actual_outcome == None,
+            ArchivedBet.end_date < cutoff
+        ).all()
+        return [to_dict(b) for b in bets]
+
+def get_all_unresolved_bets() -> List[Dict[str, Any]]:
+    """Retrieves all archived bets that are unresolved (for dashboard)."""
+    with session_scope() as session:
+        bets = session.query(ArchivedBet).filter(
+            ArchivedBet.actual_outcome == None
+        ).all()
+        return [to_dict(b) for b in bets]
+
+def update_archived_bet_outcome(archive_id: int, outcome: str, profit_loss: float):
+    """Updates an archived bet with the final outcome."""
+    with session_scope() as session:
+        bet = session.query(ArchivedBet).filter_by(archive_id=archive_id).with_for_update().first()
+        if not bet:
+            return
+
+        roi = (profit_loss / float(bet.stake_usdc)) if bet.stake_usdc > 0 else 0.0
+
+        bet.actual_outcome = outcome
+        bet.profit_loss = profit_loss
+        bet.roi = roi
+        bet.timestamp_resolved = datetime.now(timezone.utc)
+
+        # Update capital (since it wasn't updated when archived without resolution)
+        session.execute(
+            text("UPDATE portfolio_state SET total_capital = total_capital + :pl, version = version + 1 WHERE id = 1"),
+            {"pl": profit_loss}
+        )
+
+    mark_git_change('resolution')
+    logger.info(f"Archived Bet {archive_id} resolved: {outcome} (P/L: ${profit_loss:.2f})")

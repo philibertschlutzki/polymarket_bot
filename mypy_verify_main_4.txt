@@ -1,0 +1,2 @@
+main.py:295: error: Item "None" of "Any | None" has no attribute "get"  [union-attr]
+Found 1 error in 1 file (checked 1 source file)

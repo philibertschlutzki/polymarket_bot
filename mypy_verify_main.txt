@@ -1,0 +1,6 @@
+main.py:26: error: Skipping analyzing "google": module is installed, but missing library stubs or py.typed marker  [import-untyped]
+main.py:27: error: Skipping analyzing "google.genai": module is installed, but missing library stubs or py.typed marker  [import-untyped]
+main.py:27: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports
+main.py:291: error: Item "None" of "Any | None" has no attribute "get"  [union-attr]
+main.py:384: error: Argument "params" to "get" has incompatible type "dict[str, object]"; expected "SupportsItems[str | bytes | int | float, str | bytes | int | float | Iterable[str | bytes | int | float] | None] | tuple[str | bytes | int | float, str | bytes | int | float | Iterable[str | bytes | int | float] | None] | Iterable[tuple[str | bytes | int | float, str | bytes | int | float | Iterable[str | bytes | int | float] | None]] | str | bytes | None"  [arg-type]
+Found 4 errors in 1 file (checked 1 source file)

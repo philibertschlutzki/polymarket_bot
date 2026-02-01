@@ -25,6 +25,7 @@ class TestMarketDataModels(unittest.TestCase):
             question="Will Bitcoin reach $100k in 2024?",
             description="Test market",
             market_slug="test-123",
+            url_slug="test-market",
             yes_price=0.65,
             volume=50000.0,
             end_date="2024-12-31"

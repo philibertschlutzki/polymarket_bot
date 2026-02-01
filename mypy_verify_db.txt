@@ -1,0 +1,25 @@
+db_models.py:42: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:42: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:42: error: Invalid base class "Base"  [misc]
+db_models.py:70: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:70: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:70: error: Invalid base class "Base"  [misc]
+db_models.py:102: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:102: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:102: error: Invalid base class "Base"  [misc]
+db_models.py:124: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:124: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:124: error: Invalid base class "Base"  [misc]
+db_models.py:136: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:136: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:136: error: Invalid base class "Base"  [misc]
+db_models.py:149: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:149: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:149: error: Invalid base class "Base"  [misc]
+db_models.py:162: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:162: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:162: error: Invalid base class "Base"  [misc]
+db_models.py:183: error: Variable "db_models.Base" is not valid as a type  [valid-type]
+db_models.py:183: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+db_models.py:183: error: Invalid base class "Base"  [misc]
+Found 16 errors in 1 file (checked 1 source file)
