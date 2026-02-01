@@ -19,29 +19,30 @@ import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Union
 
 # Add project root to sys.path to allow imports from src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import requests  # noqa: E402
-from dateutil import parser as date_parser  # noqa: E402
-from dotenv import load_dotenv  # noqa: E402
+# flake8: noqa: E402
+import requests
+from dateutil import parser as date_parser
+from dotenv import load_dotenv
 from google import genai  # noqa: E402
 from google.genai import types  # noqa: E402
 from pydantic import BaseModel, Field  # noqa: E402
-from tenacity import (  # noqa: E402
+from tenacity import retry_if_exception_type  # noqa: E402
+from tenacity import (
     retry,
-    retry_if_exception_type,
     stop_after_attempt,
     wait_exponential,
 )
 
 # Internal modules
-from src import (  # noqa: E402
+from src import database  # noqa: E402
+from src import (
     ai_decisions_generator,
     dashboard,
-    database,
     git_integration,
 )
 
@@ -78,7 +79,7 @@ if log_file.exists():
             sys.exit(1)
 
 # Configure logging with both console and file output
-log_handlers = [
+log_handlers: List[logging.Handler] = [
     logging.StreamHandler(),  # Console output
     logging.handlers.RotatingFileHandler(
         str(log_file),
@@ -313,7 +314,7 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
         market_data = resolved_markets.get(bet["market_slug"])
         resolved_by = market_data.get("resolvedBy") if market_data else None
 
-        if resolved_by:
+        if resolved_by and market_data:
             # Resolved
             outcomes = market_data.get("outcomes", [])
             prices = [float(o.get("price", 0)) for o in outcomes] if outcomes else []
@@ -424,7 +425,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
     """
     try:
         logger.info("📡 Verbinde mit Polymarket Gamma API...")
-        params = {
+        params: Dict[str, Union[str, int]] = {
             "closed": "false",
             "limit": limit,
             "offset": 0,
@@ -519,7 +520,9 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
         return []
 
 
-def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:  # noqa: C901
+def fetch_missing_end_dates(  # noqa: C901
+    markets: List[MarketData],
+) -> List[MarketData]:
     """Retrieves missing end dates for markets using GraphQL.
 
     Some markets from the Gamma API might lack end dates. This function queries
