@@ -38,6 +38,9 @@ def init_database():
         # Create tables
         Base.metadata.create_all(engine)
 
+        # Migrate api_usage table if needed
+        migrate_api_usage_table()
+
         with session_scope() as session:
             # Initialize Portfolio State
             if session.query(PortfolioState).count() == 0:
@@ -61,6 +64,48 @@ def init_database():
         logger.info("Database initialized successfully.")
     except Exception as e:
         logger.error(f"Error initializing database: {e}")
+        raise
+
+
+def migrate_api_usage_table():
+    """Migrates api_usage table to ensure proper AUTOINCREMENT."""
+    from src.db_models import ApiUsage
+
+    try:
+        with engine.connect() as conn:
+            # Check if table exists
+            result = conn.execute(text(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name='api_usage'"
+            ))
+            if result.fetchone():
+                # Backup existing data
+                conn.execute(text("CREATE TEMPORARY TABLE api_usage_backup AS SELECT * FROM api_usage"))
+                # Drop and recreate
+                conn.execute(text("DROP TABLE api_usage"))
+                conn.commit()
+
+        # Recreate with proper schema
+        ApiUsage.__table__.create(engine, checkfirst=True)
+
+        # Restore data if backup exists
+        with engine.connect() as conn:
+            result = conn.execute(text(
+                "SELECT name FROM sqlite_temp_master WHERE type='table' AND name='api_usage_backup'"
+            ))
+            if result.fetchone():
+                conn.execute(text("""
+                    INSERT INTO api_usage (timestamp, api_name, endpoint, calls,
+                                          tokens_prompt, tokens_response, tokens_total, response_time_ms)
+                    SELECT timestamp, api_name, endpoint, calls,
+                           tokens_prompt, tokens_response, tokens_total, response_time_ms
+                    FROM api_usage_backup
+                """))
+                conn.execute(text("DROP TABLE api_usage_backup"))
+                conn.commit()
+
+        logger.info("api_usage table migration completed successfully.")
+    except Exception as e:
+        logger.error(f"Error migrating api_usage table: {e}")
         raise
 
 
@@ -560,7 +605,6 @@ def log_api_usage(
     """Log API usage to the database."""
     with session_scope() as session:
         usage = ApiUsage(
-            timestamp=datetime.now(timezone.utc),
             api_name=api_name,
             endpoint=endpoint,
             calls=1,
