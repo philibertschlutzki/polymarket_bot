@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-01 09:28:06 CET
+**Last Updated:** 2026-02-01 10:31:26 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-01 09:10:37 CET |
-| Next Run | 2026-02-01 09:25:37 CET |
+| Last Run | 2026-02-01 10:14:35 CET |
+| Next Run | 2026-02-01 10:29:35 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -20,8 +20,8 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 4 | 15 | 27% | 🟢 |
-| Today (RPD) | 176 | 1,500 | 11.7% | 🟢 |
-| Current Minute (TPM) | 3,029 | 1,000,000 | 0.30% | 🟢 |
+| Today (RPD) | 194 | 1,500 | 12.9% | 🟢 |
+| Current Minute (TPM) | 4,064 | 1,000,000 | 0.41% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $2093.79 (209.4% of capital) |
-| Avg Position Size | $95.17 |
+| Total Exposure | $2117.31 (211.7% of capital) |
+| Avg Position Size | $92.06 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.063) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.062) |
 
 ---
-## 🎯 Active Bets (22)
+## 🎯 Active Bets (23)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -72,7 +72,8 @@
 | Will the price of Ethereum be above $2,8... | YES | $57.76 | 0.00 | 0.30 | +30% 🟢 | 60% | $+6872.85 | 2026-02-01 | 0d | 🔴 |
 | Backpack FDV above $5B one day after lau... | YES | $27.09 | 0.02 | 0.15 | +13% 🟡 | 65% | $+198.68 | 2027-01-01 | 333d | 🟢 |
 | Will Ethereum dip to $2,400 in February? | NO | $198.69 | 1.00 | 0.05 | -95% 🔴 | 70% | $+125638.97 | 2026-03-01 | 27d | 🟢 |
-| Bitcoin Up or Down - February 1, 3:15AM-... | YES | $94.24 | 0.07 | 0.52 | +46% 🟢 | 60% | $+659.65 | 2026-02-01 | 0d | 🔴 |
+| Bitcoin Up or Down - February 1, 3:15AM-... | YES | $94.24 | 0.07 | 0.52 | +46% 🟢 | 60% | $+659.65 | 2026-02-01 | -1d | ⏰ Expired |
+| Will the price of Bitcoin be between $86... | YES | $23.52 | 0.00 | 0.15 | +15% 🟡 | 40% | $+2328.00 | 2026-02-01 | 0d | 🔴 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -95,7 +96,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 22 |
+| Markets with Active Bets | 23 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 

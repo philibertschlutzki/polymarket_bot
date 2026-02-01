@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-01 09:28:06 CET
+**Last Updated:** 2026-02-01 10:31:26 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -367,61 +367,77 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
+### Bet #23: Will the price of Bitcoin be between $86,000 and $88,000 on February 1?
+
+**Decision:** YES @ 0.00 (Stake: $23.52)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 0.1%)
+- **Confidence Score:** 40.0%
+- **Edge:** +14.8%
+- **Expected Value:** $+2328.00
+- **End Date:** 2026-02-01 18:00 CET
+
+**AI Reasoning:**
+> Der aktuelle Bitcoin-Preis liegt nahe an der Spanne von 86.000 bis 88.000 Dollar, was die Wahrscheinlichkeit erhöht. Allerdings ist die Volatilität von Bitcoin sehr hoch, und die Vorhersagen sind unterschiedlich. Es gibt technische Analysen, die einen möglichen Abwärtstrend auf 75.000 USD nahelegen, während andere ein 'Still Cheap'-Band über 90.000 USD sehen. Daher ist das Confidence Score niedrig.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (90)
+### Insufficient Edge (93)
 
 **Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 10:28*
-Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
-Reasoning: Juan Branco ist eine umstrittene Figur mit begrenzter politischer Basis und geringen Chancen gegen etablierte Kandidaten. Der aktuelle Marktpreis spie...
+*Analyzed: 2026-02-01 11:31*
+Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 75%
+Reasoning: Juan Branco ist eine umstrittene Persönlichkeit mit geringer politischer Erfahrung auf nationaler Ebene. Die gegen ihn erhobenen Vorwürfe und seine jü...
 
 **Will the next Prime Minister of Hungary be István Kapitány?...**
-*Analyzed: 2026-02-01 10:27*
+*Analyzed: 2026-02-01 11:30*
 Market: 0.01 | AI: 0.02 | Edge: +0.7% | Conf: 60%
-Reasoning: István Kapitány ist ein politischer Neuling ohne vorherige Regierungserfahrung. Obwohl er eine wichtige Rolle in der Oppositionspartei TISZA spielt, i...
+Reasoning: István Kapitány is a recent entrant to Hungarian politics, serving as a key economic figure within the Tisza Party led by Péter Magyar. While Kapitány...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 10:27*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 70%
-Reasoning: Brasilien ist traditionell eine starke Fussballnation. Allerdings hatten sie in den Qualifikationsspielen zur WM 2026 Schwierigkeiten. Obwohl sie sich...
-
-**Golden Knights vs. Ducks...**
-*Analyzed: 2026-02-01 10:26*
-Market: 0.53 | AI: 0.54 | Edge: +1.5% | Conf: 75%
-Reasoning: Basierend auf aktuellen Informationen und Vorhersagen scheint die Wahrscheinlichkeit, dass die Golden Knights gewinnen, leicht höher zu sein. Mehrere ...
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 10:11*
-Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis von 1,05 % spiegelt eine extrem geringe Wahrscheinlichkeit wider, dass Juan Branco die Wahl gewinnt.  Mehrere Faktoren stützen...
-
-**Will the next Prime Minister of Hungary be István Kapitány?...**
-*Analyzed: 2026-02-01 10:11*
-Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 70%
-Reasoning: István Kapitány ist zwar ein wichtiger Wirtschaftsexperte der oppositionellen Tisza-Partei, aber es ist unwahrscheinlich, dass er direkt nach den Wahl...
-
-**Will the Fed decrease interest rates by 50+ bps after the Ma...**
-*Analyzed: 2026-02-01 10:11*
-Market: 0.02 | AI: 0.05 | Edge: +3.1% | Conf: 70%
-Reasoning: Basierend auf der aktuellen Wirtschaftslage, der Haltung der Fed und dem aktuellen Marktpreis wird die Wahrscheinlichkeit einer Zinssenkung um 50+ Bas...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 10:11*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 70%
-Reasoning: Brasilien ist eine Top-Fussballnation mit einer starken Tradition und einem talentierten Kader. Obwohl sie seit 2002 nicht mehr gewonnen haben, gehöre...
-
-**Kraken IPO by December 31, 2026?...**
-*Analyzed: 2026-02-01 10:11*
-Market: 0.80 | AI: 0.85 | Edge: +5.5% | Conf: 80%
-Reasoning: Kraken has confidentially filed for an IPO and is aiming for a Q1 2026 listing, backed by strong revenue growth and recent funding rounds giving it a ...
+*Analyzed: 2026-02-01 11:30*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 65%
+Reasoning: Brasilien ist eine Fußballnation mit einer reichen Geschichte und hat die Weltmeisterschaft fünfmal gewonnen. Sie sind die einzige Nation, die an alle...
 
 **Will People’s Party (PPLE) win the most seats in the 2026 Th...**
-*Analyzed: 2026-02-01 10:10*
-Market: 0.63 | AI: 0.70 | Edge: +7.0% | Conf: 75%
-Reasoning: Die People's Party (PPLE) führt in den meisten Umfragen und hat eine klare progressive Agenda. Thailands politische Landschaft ist instabil, was Raum ...
+*Analyzed: 2026-02-01 11:30*
+Market: 0.65 | AI: 0.60 | Edge: -4.5% | Conf: 75%
+Reasoning: Die People's Party führt in den aktuellen Umfragen zur thailändischen Parlamentswahl 2026. Es gibt jedoch Unsicherheiten aufgrund der Volatilität der ...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 11:15*
+Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 60%
+Reasoning: Juan Branco ist eine umstrittene Figur in der französischen Politik. Er ist Anwalt, politischer Aktivist und Schriftsteller. Er hat sich als Kritiker ...
+
+**Will the next Prime Minister of Hungary be István Kapitány?...**
+*Analyzed: 2026-02-01 11:15*
+Market: 0.01 | AI: 0.02 | Edge: +0.7% | Conf: 70%
+Reasoning: István Kapitány ist zwar ein wichtiger Wirtschafts- und Energieexperte der TISZA Partei, aber es gibt keine klaren Anzeichen dafür, dass er selbst als...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 11:14*
+Market: 0.10 | AI: 0.11 | Edge: +1.5% | Conf: 75%
+Reasoning: Der aktuelle Marktpreis auf Polymarket liegt bei 9.50 %. Die Wettanbieter geben Brasilien Gewinnchancen von etwa 11.1% (8/1 Odds). Brasilien gehört tr...
+
+**Will People’s Party (PPLE) win the most seats in the 2026 Th...**
+*Analyzed: 2026-02-01 11:14*
+Market: 0.64 | AI: 0.68 | Edge: +4.0% | Conf: 75%
+Reasoning: The People's Party is currently leading in polls and has a strong market price on Polymarket. However, Thai politics are volatile, and coalition forma...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 10:59*
+Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
+Reasoning: Juan Branco ist eine umstrittene Figur mit begrenzter politischer Erfahrung und einer Vergangenheit, die von Kontroversen geprägt ist. Seine politisch...
+
+**Will the next Prime Minister of Hungary be István Kapitány?...**
+*Analyzed: 2026-02-01 10:59*
+Market: 0.01 | AI: 0.01 | Edge: -0.8% | Conf: 75%
+Reasoning: István Kapitány ist ein wichtiger Wirtschaftsexperte der Tisza Partei, aber es gibt keine Hinweise darauf, dass er als Premierministerkandidat gehande...
 
 
 ### Ai Analysis Failed (2)
@@ -437,7 +453,7 @@ Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 
-### Negative Expected Value (8)
+### Negative Expected Value (5)
 
 **Will Elon Musk post 140-159 tweets from January 30 to Februa...**
 *Analyzed: 2026-02-01 07:49*
@@ -463,21 +479,6 @@ Reasoning: Elon Musk has shown variable tweeting behavior. Given historical data
 *Analyzed: 2026-02-01 06:13*
 Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 60%
 Reasoning: Elon Musk hat in der Vergangenheit eine hohe Tweet-Frequenz gezeigt, aber die geforderte Spanne von 140-159 Tweets in 8 Tagen (durchschnittlich 17.5-1...
-
-**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 05:57*
-Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 60%
-Reasoning: Elon Musk hat in der Vergangenheit eine hohe Tweet-Frequenz gezeigt. Die für die Wette erforderliche durchschnittliche Anzahl an Tweets pro Tag (17.5 ...
-
-**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 05:41*
-Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 60%
-Reasoning: Elon Musk's tweeting habits are highly variable. While he has periods of very high activity, more recent data suggests a lower average. The specific r...
-
-**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 05:25*
-Market: 0.00 | AI: 0.95 | Edge: +95.0% | Conf: 85%
-Reasoning: Basierend auf den verfügbaren Daten deutet alles darauf hin, dass Elon Musk sehr aktiv auf X (ehemals Twitter) ist.  Mehrere Quellen aus dem Jahr 2026...
 
 
 ## 📊 Historical Analysis
