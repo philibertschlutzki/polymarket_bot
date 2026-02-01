@@ -252,7 +252,8 @@ Reasoning: {reasoning[:150]}...
             )
 
             history_section += f"""**{time_str} - {bet['question'][:50]}...**
-{result_icon} Predicted: {bet['action']} ({ai_prob:.0%}) | Actual: {bet['actual_outcome']} | Confidence: {conf:.0%} | P/L: ${bet['profit_loss']:+.2f}
+{result_icon} Predicted: {bet['action']} ({ai_prob:.0%}) | Actual: {bet['actual_outcome']} | """
+            history_section += f"""Confidence: {conf:.0%} | P/L: ${bet['profit_loss']:+.2f}
 Reasoning: {reasoning[:120]}...
 
 """

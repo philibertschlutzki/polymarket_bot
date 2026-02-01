@@ -223,64 +223,12 @@ def _generate_risk_metrics(active_bets, capital):
 
 
 def _generate_active_bets_section(all_active_display, now_cet):
-    active_rows = []
-    for bet in all_active_display:
-        q_text = bet["question"]
-        if len(q_text) > 40:
-            q_text = q_text[:40] + "..."
-        url_slug = bet.get("url_slug") or bet.get("market_slug")
-        url = f"https://polymarket.com/event/{url_slug}"
-        q_display = f"[{q_text}]({url})"
-        stake = float(bet["stake_usdc"])
-        price = float(bet["entry_price"])
-        ai_prob = float(bet["ai_probability"]) if bet["ai_probability"] is not None else 0.0
-        edge = float(bet["edge"]) if bet["edge"] is not None else 0.0
-        conf = float(bet["confidence_score"]) if bet["confidence_score"] is not None else 0.0
-        ev = float(bet["expected_value"])
+    active_rows = _build_active_rows(all_active_display, now_cet)
+    if active_rows:
+        active_table = "\n".join(active_rows)
+    else:
+        active_table = "| *No active bets* | - | - | - | - | - | - | - | - | - | - |"
 
-        if edge >= 0.20:
-            edge_ind = "🟢"
-        elif edge >= 0.10:
-            edge_ind = "🟡"
-        else:
-            edge_ind = "🔴"
-
-        end_date_val = bet.get("end_date")
-        end_date_display = "Unknown"
-        days_display = "N/A"
-        status = "🔵"
-
-        if end_date_val:
-            try:
-                ed_cet = to_cet(end_date_val)
-                if ed_cet:
-                    days_left = (ed_cet - now_cet).days
-                    end_date_display = ed_cet.strftime("%Y-%m-%d")
-                    days_display = f"{days_left}d"
-                    if days_left < 0:
-                        if bet.get("status") == "PENDING_RESOLUTION":
-                            status = "⏳ Pending Resolution"
-                        else:
-                            status = "⏰ Expired"
-                    elif days_left < 3:
-                        status = "🔴"
-                    elif days_left < 7:
-                        status = "🟡"
-                    else:
-                        status = "🟢"
-            except Exception:
-                pass
-
-        if bet.get("status") == "PENDING_RESOLUTION" and "Pending Resolution" not in status:
-            status = "⏳ Pending Resolution"
-
-        active_rows.append(
-            f"| {q_display} | {bet['action']} | ${stake:.2f} | {price:.2f} | "
-            f"{ai_prob:.2f} | {edge:+.0%} {edge_ind} | {conf:.0%} | ${ev:+.2f} | "
-            f"{end_date_display} | {days_display} | {status} |"
-        )
-
-    active_table = "\n".join(active_rows) if active_rows else "| *No active bets* | - | - | - | - | - | - | - | - | - | - |"
     return f"""## 🎯 Active Bets ({len(all_active_display)})
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
@@ -293,7 +241,104 @@ def _generate_active_bets_section(all_active_display, now_cet):
 """
 
 
+def _build_active_rows(all_active_display, now_cet):
+    active_rows = []
+    for bet in all_active_display:
+        q_display = _format_question_link(bet)
+        stake, price, ai_prob, edge, conf, ev = _extract_bet_metrics(bet)
+        edge_ind = _get_edge_indicator(edge)
+        end_date_display, days_display, status = _get_bet_status(bet, now_cet)
+
+        active_rows.append(
+            f"| {q_display} | {bet['action']} | ${stake:.2f} | {price:.2f} | "
+            f"{ai_prob:.2f} | {edge:+.0%} {edge_ind} | {conf:.0%} | ${ev:+.2f} | "
+            f"{end_date_display} | {days_display} | {status} |"
+        )
+    return active_rows
+
+
+def _format_question_link(bet):
+    q_text = bet["question"]
+    if len(q_text) > 40:
+        q_text = q_text[:40] + "..."
+    url_slug = bet.get("url_slug") or bet.get("market_slug")
+    url = f"https://polymarket.com/event/{url_slug}"
+    return f"[{q_text}]({url})"
+
+
+def _extract_bet_metrics(bet):
+    stake = float(bet["stake_usdc"])
+    price = float(bet["entry_price"])
+    ai_prob = float(bet["ai_probability"]) if bet["ai_probability"] is not None else 0.0
+    edge = float(bet["edge"]) if bet["edge"] is not None else 0.0
+    conf = float(bet["confidence_score"]) if bet["confidence_score"] is not None else 0.0
+    ev = float(bet["expected_value"])
+    return stake, price, ai_prob, edge, conf, ev
+
+
+def _get_edge_indicator(edge):
+    if edge >= 0.20:
+        return "🟢"
+    elif edge >= 0.10:
+        return "🟡"
+    return "🔴"
+
+
+def _get_bet_status(bet, now_cet):
+    end_date_val = bet.get("end_date")
+    end_date_display = "Unknown"
+    days_display = "N/A"
+    status = "🔵"
+
+    if end_date_val:
+        try:
+            ed_cet = to_cet(end_date_val)
+            if ed_cet:
+                days_left = (ed_cet - now_cet).days
+                end_date_display = ed_cet.strftime("%Y-%m-%d")
+                days_display = f"{days_left}d"
+                status = _calculate_status_icon(days_left, bet.get("status"))
+        except Exception:
+            pass
+
+    if bet.get("status") == "PENDING_RESOLUTION" and "Pending Resolution" not in status:
+        status = "⏳ Pending Resolution"
+
+    return end_date_display, days_display, status
+
+
+def _calculate_status_icon(days_left, bet_status):
+    if days_left < 0:
+        if bet_status == "PENDING_RESOLUTION":
+            return "⏳ Pending Resolution"
+        else:
+            return "⏰ Expired"
+    elif days_left < 3:
+        return "🔴"
+    elif days_left < 7:
+        return "🟡"
+    else:
+        return "🟢"
+
+
 def _generate_alerts_section(rpm_pct, rpd_pct, tpm_pct, active_bets, capital, now_cet):
+    alerts = []
+    alerts.extend(_check_api_limits(rpm_pct, rpd_pct, tpm_pct))
+    alerts.extend(_check_high_exposure(active_bets, capital))
+    alerts.extend(_check_expiring_soon(active_bets, now_cet))
+
+    if not alerts:
+        alerts.append("🟢 **No critical issues detected**")
+
+    return f"""## ⚠️ Alerts & Warnings
+
+{chr(10).join(f"- {a}" for a in alerts)}
+
+---
+"""
+
+
+def _check_api_limits(rpm_pct, rpd_pct, tpm_pct):
     alerts = []
     if rpm_pct >= 90:
         alerts.append(f"🔴 **API Limit Warning**: Gemini RPM at {rpm_pct:.0f}% capacity")
@@ -301,12 +346,20 @@ def _generate_alerts_section(rpm_pct, rpd_pct, tpm_pct, active_bets, capital, no
         alerts.append(f"🔴 **API Limit Warning**: Gemini RPD at {rpd_pct:.0f}% capacity")
     if tpm_pct >= 90:
         alerts.append(f"🔴 **API Limit Warning**: Gemini TPM at {tpm_pct:.0f}% capacity")
+    return alerts
 
+
+def _check_high_exposure(active_bets, capital):
+    alerts = []
     for bet in active_bets:
         pos_pct = (float(bet["stake_usdc"]) / capital * 100) if capital > 0 else 0
         if pos_pct > 10:
             alerts.append(f"🔴 **High Exposure**: \"{bet['question'][:30]}...\" is {pos_pct:.1f}% of capital")
+    return alerts
 
+
+def _check_expiring_soon(active_bets, now_cet):
+    alerts = []
     expiring_soon = 0
     for bet in active_bets:
         if bet.get("end_date"):
@@ -318,19 +371,9 @@ def _generate_alerts_section(rpm_pct, rpd_pct, tpm_pct, active_bets, capital, no
                         expiring_soon += 1
             except Exception:
                 pass
-
     if expiring_soon > 0:
         alerts.append(f"🟡 **Expiring Soon**: {expiring_soon} bet(s) expire within 7 days")
-
-    if not alerts:
-        alerts.append("🟢 **No critical issues detected**")
-
-    return f"""## ⚠️ Alerts & Warnings
-
-{chr(10).join(f"- {a}" for a in alerts)}
-
----
-"""
+    return alerts
 
 
 def _generate_market_insights(all_active_display):
@@ -392,11 +435,12 @@ def _generate_calibration_section(analytics_advanced, results):
             actual = f"{bucket['actual_win_rate']:.1%}" if bucket["actual_win_rate"] else "N/A"
             error = f"{bucket['calibration_error']:+.1%}" if bucket["calibration_error"] else "N/A"
             status = bucket["status"]
-            icon = "✅" if status == "well_calibrated" else "⚠️" if status == "acceptable" else "🔴" if status == "overconfident" else "🔵" if status == "underconfident" else "⚪"
+            icon = "✅" if status == "well_calibrated" else "⚠️" if status == "acceptable" else \
+                ("🔴" if status == "overconfident" else ("🔵" if status == "underconfident" else "⚪"))
             status_title = status.replace("_", " ").title()
             row = (
-                f"| {bucket['range']} | {pred} | {actual} | {bucket['num_bets']} | {error} | "
-                f"{icon} {status_title} |\n"
+                f"| {bucket['range']} | {pred} | {actual} | {bucket['num_bets']} | "
+                f"{error} | {icon} {status_title} |\n"
             )
             section += row
 

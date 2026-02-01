@@ -135,8 +135,9 @@ def insert_active_bet(bet_data: Dict[str, Any]):
         # but mark_git_change uses session_scope which handles new session. Commit here is implicit by context manager exit)
 
     mark_git_change("bet")
+    edge_pct = bet_data.get('edge', 0) * 100
     logger.info(
-        f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {bet_data.get('edge', 0)*100:+.1f}%)"
+        f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {edge_pct:+.1f}%)"
     )
 
 
@@ -200,7 +201,8 @@ def close_bet(
         )
         session.add(archived)
 
-        # Delete from active (or mark closed, but schema suggests moving to archived implies active removal or just keeping archive)
+        # Delete from active
+        # Schema suggests moving to archived implies active removal.
         # Original code kept 'results' table and 'active_bets' with status 'CLOSED'.
         # New prompt schema: 'active_bets' and 'archived_bets'.
         # Prompt says: "Moves a bet from active_bets to results".
