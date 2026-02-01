@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# isort: skip_file
 """
 Polymarket AI Value Bet Bot - Automated 24/7 System
 
@@ -21,21 +22,29 @@ import time
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Tuple
 
+import requests
+from dateutil import parser as date_parser
+from dotenv import load_dotenv
+from google import genai
+from google.genai import types
+from pydantic import BaseModel, Field
+from tenacity import (
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_exponential,
+)
+
 # Add project root to sys.path to allow imports from src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import requests  # noqa: E402
-from dateutil import parser as date_parser  # noqa: E402
-from dotenv import load_dotenv  # noqa: E402
-from google import genai  # noqa: E402
-from google.genai import types  # noqa: E402
-from pydantic import BaseModel, Field  # noqa: E402
-from tenacity import (retry, retry_if_exception_type,  # noqa: E402
-                      stop_after_attempt, wait_exponential)
-
 # Internal modules
-from src import (ai_decisions_generator, dashboard, database,  # noqa: E402
-                 git_integration)
+from src import (  # noqa: E402
+    ai_decisions_generator,
+    dashboard,
+    database,
+    git_integration,
+)
 
 # ============================================================================
 # KONFIGURATION

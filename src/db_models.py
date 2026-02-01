@@ -3,9 +3,20 @@ import os
 from contextlib import contextmanager
 from typing import Any, Dict
 
-from sqlalchemy import (ARRAY, JSON, BigInteger, Boolean, CheckConstraint,
-                        Column, DateTime, ForeignKey, Integer, Numeric, Text,
-                        create_engine)
+from sqlalchemy import (
+    ARRAY,
+    JSON,
+    BigInteger,
+    Boolean,
+    CheckConstraint,
+    Column,
+    DateTime,
+    ForeignKey,
+    Integer,
+    Numeric,
+    Text,
+    create_engine,
+)
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.sql import func
 

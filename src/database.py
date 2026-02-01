@@ -6,9 +6,17 @@ from typing import Any, Dict, List, Optional, Tuple
 from sqlalchemy import func, text, update
 from sqlalchemy.orm import Session
 
-from src.db_models import (ActiveBet, ApiUsage, ArchivedBet, Base,
-                           GitSyncState, PortfolioState, RejectedMarket,
-                           engine, session_scope)
+from src.db_models import (
+    ActiveBet,
+    ApiUsage,
+    ArchivedBet,
+    Base,
+    GitSyncState,
+    PortfolioState,
+    RejectedMarket,
+    engine,
+    session_scope,
+)
 
 # Configuration
 INITIAL_CAPITAL = 1000.0
