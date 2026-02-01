@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-01 05:13:36 CET
+**Last Updated:** 2026-02-01 06:18:16 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-01 04:56:25 CET |
-| Next Run | 2026-02-01 05:11:25 CET |
+| Last Run | 2026-02-01 06:00:34 CET |
+| Next Run | 2026-02-01 06:15:34 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
-| Today (RPD) | 96 | 1,500 | 6.4% | 🟢 |
-| Current Minute (TPM) | 5,586 | 1,000,000 | 0.56% | 🟢 |
+| Current Minute (RPM) | 6 | 15 | 40% | 🟢 |
+| Today (RPD) | 119 | 1,500 | 7.9% | 🟢 |
+| Current Minute (TPM) | 5,037 | 1,000,000 | 0.50% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,26 +41,26 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1716.01 (171.6% of capital) |
-| Avg Position Size | $95.33 |
+| Total Exposure | $1800.86 (180.1% of capital) |
+| Avg Position Size | $90.04 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.076) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.070) |
 
 ---
-## 🎯 Active Bets (18)
+## 🎯 Active Bets (20)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Will Ja Morant be traded this season? | NO | $86.60 | 0.25 | 0.15 | -10% 🔴 | 75% | $+11.55 | 2026-02-05 | 3d | 🟡 |
-| Based FDV above $300M one day after laun... | YES | $110.24 | 0.26 | 0.65 | +39% 🟢 | 70% | $+165.35 | 2027-01-01 | 334d | 🟢 |
+| Based FDV above $300M one day after laun... | YES | $110.24 | 0.26 | 0.65 | +39% 🟢 | 70% | $+165.35 | 2027-01-01 | 333d | 🟢 |
 | Will Mike Vrabel win NFL Coach of the Ye... | YES | $250.00 | 0.84 | 1.00 | +16% 🟡 | 100% | $+47.62 | 2026-02-11 | 10d | 🟢 |
-| Will Solana dip to $90 in January? | YES | $21.11 | 0.05 | 0.15 | +10% 🟡 | 60% | $+47.73 | 2026-02-01 | 0d | 🔴 |
+| Will Solana dip to $90 in January? | YES | $21.11 | 0.05 | 0.15 | +10% 🟡 | 60% | $+47.73 | 2026-02-01 | -1d | ⏰ Expired |
 | Will Pierre-Yves Bournazel win the Paris... | YES | $40.99 | 0.01 | 0.20 | +20% 🟡 | 70% | $+1598.69 | Unknown | N/A | 🔵 |
 | Will John Cornyn win the 2026 Texas Repu... | YES | $54.75 | 0.26 | 0.45 | +20% 🟡 | 70% | $+41.87 | 2026-03-03 | 29d | 🟢 |
 | Will Paramount close Warner Bros acquisi... | YES | $32.60 | 0.23 | 0.35 | +12% 🟡 | 70% | $+17.01 | Unknown | N/A | 🔵 |
 | U.S. forces seize another oil tanker by ... | YES | $98.10 | 0.36 | 0.65 | +29% 🟢 | 75% | $+79.03 | Unknown | N/A | 🔵 |
 | Will Aston Villa FC win on 2026-02-01? | YES | $77.47 | 0.46 | 0.65 | +20% 🟡 | 75% | $+33.20 | 2026-02-01 | 0d | 🔴 |
-| Will Bitcoin dip to $80,000 in February? | NO | $198.54 | 0.98 | 0.05 | -93% 🔴 | 70% | $+11589.58 | 2026-03-01 | 28d | 🟢 |
+| Will Bitcoin dip to $80,000 in February? | NO | $198.54 | 0.98 | 0.05 | -93% 🔴 | 70% | $+11589.58 | 2026-03-01 | 27d | 🟢 |
 | Will the price of Ethereum be above $2,6... | YES | $79.25 | 0.07 | 0.45 | +38% 🟢 | 60% | $+437.59 | 2026-02-01 | 0d | 🔴 |
 | Tesla launches unsupervised full self dr... | NO | $125.37 | 1.00 | 0.40 | -60% 🔴 | 70% | $+50023.95 | 2026-06-30 | 148d | 🟢 |
 | Will Josh Hawley win the 2028 Republican... | YES | $27.80 | 0.01 | 0.15 | +14% 🟡 | 60% | $+528.27 | 2028-11-07 | 1009d | 🟢 |
@@ -69,6 +69,8 @@
 | Moltbook AI agent sues a human by Feb 28... | NO | $156.17 | 0.78 | 0.15 | -62% 🔴 | 60% | $+433.80 | 2026-02-28 | 26d | 🟢 |
 | Will the price of Ethereum be above $2,7... | YES | $57.66 | 0.02 | 0.30 | +28% 🟢 | 65% | $+829.43 | 2026-02-01 | 0d | 🔴 |
 | Magic vs. Spurs | YES | $102.56 | 0.34 | 0.65 | +32% 🟢 | 75% | $+96.43 | 2026-02-01 | 0d | 🔴 |
+| Will the price of Ethereum be above $2,8... | YES | $57.76 | 0.00 | 0.30 | +30% 🟢 | 60% | $+6872.85 | 2026-02-01 | 0d | 🔴 |
+| Backpack FDV above $5B one day after lau... | YES | $27.09 | 0.02 | 0.15 | +13% 🟡 | 65% | $+198.68 | 2027-01-01 | 333d | 🟢 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -90,7 +92,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 18 |
+| Markets with Active Bets | 20 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 

@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-01 05:13:36 CET
+**Last Updated:** 2026-02-01 06:18:16 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -303,64 +303,111 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
+### Bet #19: Will the price of Ethereum be above $2,800 on February 1?
+
+**Decision:** YES @ 0.00 (Stake: $57.76)
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 0.2%)
+- **Confidence Score:** 60.0%
+- **Edge:** +29.8%
+- **Expected Value:** $+6872.85
+- **End Date:** 2026-02-01 18:00 CET
+
+**AI Reasoning:**
+> Der aktuelle Preis von Ethereum liegt unter 2.800 USD. Die kurzfristigen technischen Indikatoren sind gemischt, und viele Prognosen sehen zwar höhere Preise im Laufe des Jahres 2026, aber nicht unbedingt schon am 1. Februar. Es gibt erhebliche Abwärtsrisiken, und die allgemeine Marktvolatilität macht eine präzise Vorhersage schwierig. Der niedrige aktuelle Marktpreis auf Polymarket deutet ebenfalls auf eine geringe Wahrscheinlichkeit hin. Daher schätze ich die Wahrscheinlichkeit auf 30%.
+
+---
+
+### Bet #20: Backpack FDV above $5B one day after launch?
+
+**Decision:** YES @ 0.02 (Stake: $27.09)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 1.8%)
+- **Confidence Score:** 65.0%
+- **Edge:** +13.2%
+- **Expected Value:** $+198.68
+- **End Date:** 2027-01-01 06:00 CET
+
+**AI Reasoning:**
+> Eine Bewertung von 5 Milliarden Dollar für ein neues Token ist sehr ambitioniert, aber nicht unmöglich im Kryptobereich. Backpack hat einige Faktoren, die dafür und dagegen sprechen. Positiv ist, dass sie ein starkes Team haben (ehemalige FTX/Alameda Mitarbeiter), eine bestehende Nutzerbasis durch ihren Exchange und Wallet und Investorenunterstützung. Sie haben auch bereits ein signifikantes Handelsvolumen erzielt. Die Tatsache, dass es keine VC-Token-Zuteilung gibt, könnte ebenfalls positiv wirken.  Einige Quellen deuten darauf hin, dass die Community optimistisch ist und eine Bewertung von über 1 Milliarde Dollar erwartet.  Allerdings ist der aktuelle Marktpreis auf Polymarket sehr niedrig (1,80%), was auf eine geringe Zuversicht in dieses Ergebnis hindeutet.  Darüber hinaus ist die Konkurrenz durch andere Börsen wie Binance, OKX und Coinbase gross.  Auch regulatorische Herausforderungen könnten ein Faktor sein, da Backpack in den USA nicht verfügbar ist. Ein kürzlicher Bericht deutete an, dass der Token eine andere Funktionalität als aktuelle Modelle haben könnte, was zu Unsicherheit führt. Angesichts der hohen Latte, der Konkurrenz und der Unsicherheiten bewerte ich die Wahrscheinlichkeit als relativ gering, aber nicht Null, da Kryptomärkte unberechenbar sein können.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (87)
+### Insufficient Edge (86)
 
 **Will Elon Musk post 20-39 tweets from February 3 to February...**
-*Analyzed: 2026-02-01 06:13*
-Market: 0.00 | AI: 0.03 | Edge: +2.9% | Conf: 70%
-Reasoning: Elon Musk hat in der Vergangenheit eine sehr hohe Tweet-Frequenz gezeigt. Obwohl aktuelle Daten auf eine Verringerung hindeuten, ist es unwahrscheinli...
+*Analyzed: 2026-02-01 07:18*
+Market: 0.00 | AI: 0.10 | Edge: +10.0% | Conf: 70%
+Reasoning: Elon Musk hat in der Vergangenheit eine deutlich höhere Posting-Frequenz gezeigt. Obwohl Schwankungen möglich sind, ist es unwahrscheinlich, dass er i...
 
 **Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 06:13*
+*Analyzed: 2026-02-01 07:17*
 Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 70%
-Reasoning: Angesichts des sehr niedrigen Marktpreises von 1,05 %, der starken Konkurrenz durch etablierte Politiker wie Jordan Bardella und Jean-Luc Mélenchon, u...
+Reasoning: Juan Branco is a controversial figure with a history of legal issues and a limited base of support. While he has announced his candidacy, his chances ...
+
+**Will the next Prime Minister of Hungary be István Kapitány?...**
+*Analyzed: 2026-02-01 07:17*
+Market: 0.01 | AI: 0.01 | Edge: -0.3% | Conf: 90%
+Reasoning: István Kapitány ist primär ein Wirtschaftsberater der TISZA Partei und hat keine erkennbaren Ambitionen oder Unterstützung für das Amt des Premiermini...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 06:13*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 70%
-Reasoning: Brazil is a historically strong team with a rich football tradition, having won the World Cup five times. They have qualified for the 2026 World Cup a...
+*Analyzed: 2026-02-01 07:17*
+Market: 0.10 | AI: 0.15 | Edge: +5.5% | Conf: 70%
+Reasoning: Brasilien ist eine Fussball-Grossmacht mit einer langen Tradition und hat sich für die WM 2026 qualifiziert. Obwohl sie derzeit nicht als Top-Favorit ...
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 07:02*
+Market: 0.00 | AI: 0.03 | Edge: +2.9% | Conf: 70%
+Reasoning: Basierend auf aktuellen Daten und Elon Musks typischer Twitter-Aktivität im Januar 2026 ist es sehr unwahrscheinlich, dass er nur 140-159 Tweets in ei...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 07:01*
+Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis auf Polymarket deutet auf eine sehr geringe Wahrscheinlichkeit von 1.05 % hin. Die Recherche hat ergeben, dass Juan Branco ein...
+
+**Will the next Prime Minister of Hungary be István Kapitány?...**
+*Analyzed: 2026-02-01 07:01*
+Market: 0.01 | AI: 0.01 | Edge: -0.3% | Conf: 70%
+Reasoning: The current market price is very low, indicating a low probability. István Kapitány is primarily known as the economic expert for the TISZA party, led...
+
+**Backpack FDV above $5B one day after launch?...**
+*Analyzed: 2026-02-01 07:01*
+Market: 0.02 | AI: 0.01 | Edge: -0.9% | Conf: 70%
+Reasoning: Basierend auf dem aktuellen Stand der Krypto-Börse Backpack (Bewertung von 120 Millionen USD), der starken Konkurrenz durch etablierte Player wie Bina...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 07:00*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
+Reasoning: Brasilien ist eine starke Fussballnation mit einer reichen Geschichte und Tradition im Weltfussball. Sie haben sich für die FIFA Fussball-Weltmeisters...
 
 **Will Elon Musk post 20-39 tweets from February 3 to February...**
-*Analyzed: 2026-02-01 05:57*
-Market: 0.00 | AI: 0.01 | Edge: +0.9% | Conf: 80%
-Reasoning: Basierend auf historischen Daten über Elon Musks Twitter-Aktivität, die typischerweise weit über 39 Tweets in einem Zeitraum von 8 Tagen liegt, ist di...
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 05:57*
-Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
-Reasoning: Juan Branco is a controversial figure with limited popularity and significant legal and ethical issues. He lacks extensive political experience and fa...
-
-**Backpack FDV above $5B one day after launch?...**
-*Analyzed: 2026-02-01 05:56*
-Market: 0.02 | AI: 0.02 | Edge: +0.1% | Conf: 40%
-Reasoning: A Fully Diluted Valuation (FDV) of over $5 billion one day after launch is very ambitious for Backpack, given the competition and the current market c...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 05:56*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
-Reasoning: Brasilien ist eine Fussballnation mit grosser Tradition und hat die Weltmeisterschaft bereits fünfmal gewonnen. Sie sind das einzige Team, das an jede...
-
-**Will the price of Bitcoin be between $92,000 and $94,000 on ...**
-*Analyzed: 2026-02-01 05:41*
-Market: 0.00 | AI: 0.08 | Edge: +7.8% | Conf: 60%
-Reasoning: Die aktuelle Marktlage zeigt einen Abwärtstrend und hohe Volatilität. Die Preisprognosen für Februar 2026 variieren stark und liegen meist außerhalb d...
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 05:41*
-Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
-Reasoning: Juan Branco is a controversial figure with limited political experience and currently faces accusations of sexual assault. While he has a dedicated fo...
-
-**Backpack FDV above $5B one day after launch?...**
-*Analyzed: 2026-02-01 05:41*
-Market: 0.02 | AI: 0.05 | Edge: +3.1% | Conf: 60%
-Reasoning: Backpack is a growing crypto exchange with significant investment and a planned token launch. However, the $5B FDV target is ambitious, and the compan...
+*Analyzed: 2026-02-01 06:45*
+Market: 0.00 | AI: 0.01 | Edge: +0.5% | Conf: 90%
+Reasoning: Elon Musk's historical tweeting habits show a significantly higher frequency than the 20-39 tweets specified in the market question. Recent data confi...
 
 
-### Negative Expected Value (10)
+### Negative Expected Value (13)
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 07:17*
+Market: 0.00 | AI: 0.20 | Edge: +20.0% | Conf: 70%
+Reasoning: Elon Musk hat historisch gesehen eine hohe Tweet-Frequenz, aber der aktuelle Marktpreis deutet auf eine geringe Wahrscheinlichkeit hin. Ich schätze di...
+
+**Will Elon Musk post 20-39 tweets from February 3 to February...**
+*Analyzed: 2026-02-01 07:02*
+Market: 0.00 | AI: 0.99 | Edge: +99.0% | Conf: 75%
+Reasoning: Elon Musk hat eine sehr hohe Tweet-Frequenz.  Einige Quellen deuten darauf hin, dass er im Durchschnitt fast 100 Tweets pro Tag sendet. Andere Quellen...
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 06:45*
+Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 60%
+Reasoning: Elon Musk has shown variable tweeting behavior. Given historical data and current market trends, the likelihood of him tweeting between 140-159 times ...
 
 **Will Elon Musk post 140-159 tweets from January 30 to Februa...**
 *Analyzed: 2026-02-01 06:13*
@@ -397,37 +444,12 @@ Reasoning: Based on historical data from 2024-2026, Elon Musk's tweet frequency 
 Market: 0.00 | AI: 0.45 | Edge: +45.0% | Conf: 70%
 Reasoning: Elon Musk's historical Twitter activity suggests he is capable of posting a high volume of tweets. While older data showed averages exceeding 60 tweet...
 
-**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 03:50*
-Market: 0.00 | AI: 0.25 | Edge: +24.9% | Conf: 60%
-Reasoning: Elon Musks Tweet-Frequenz ist sehr variabel. Obwohl er in der Vergangenheit höhere Durchschnittswerte hatte, ist die geforderte Spanne (140-159 Tweets...
 
-**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 03:33*
-Market: 0.00 | AI: 0.35 | Edge: +34.9% | Conf: 60%
-Reasoning: Elon Musk is typically very active on Twitter, but predicting a specific range of tweets (140-159) within a 7-day period is difficult. His participati...
-
-**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 02:13*
-Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 60%
-Reasoning: Elon Musk typically posts a very high volume of tweets. While his activity can fluctuate, and his attendance at the WEF could potentially reduce his p...
-
-
-### Ai Analysis Failed (3)
+### Ai Analysis Failed (1)
 
 **Will Josh Hawley win the 2028 Republican presidential nomina...**
 *Analyzed: 2026-02-01 01:57*
 Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Josh Hawley win the 2028 Republican presidential nomina...**
-*Analyzed: 2026-02-01 01:41*
-Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**No change in Bank of England's interest rates after February...**
-*Analyzed: 2026-02-01 00:54*
-Market: 0.99 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 
