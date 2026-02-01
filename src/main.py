@@ -19,7 +19,7 @@ import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Union
 
 # Add project root to sys.path to allow imports from src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -424,7 +424,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
     """
     try:
         logger.info("📡 Verbinde mit Polymarket Gamma API...")
-        params = {
+        params: Dict[str, Union[str, int]] = {
             "closed": "false",
             "limit": limit,
             "offset": 0,
