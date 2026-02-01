@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-01 03:05:59 CET
+**Last Updated:** 2026-02-01 04:09:39 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -255,11 +255,106 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
+### Bet #16: Moltbook AI agent sues a human by Feb 28?
+
+**Decision:** NO @ 0.78 (Stake: $156.17)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 77.5%)
+- **Confidence Score:** 60.0%
+- **Edge:** -62.5%
+- **Expected Value:** $+433.80
+- **End Date:** 2026-02-28 01:00 CET
+
+**AI Reasoning:**
+> Obwohl der Marktpreis bei 77.50% liegt, deuten mehrere Faktoren auf eine deutlich geringere Wahrscheinlichkeit hin. Erstens ist die rechtliche Anerkennung von KI als eigenständige juristische Person, die klagen kann, noch lange nicht gegeben. Die meisten Rechtsexperten sind sich einig, dass die aktuelle KI-Technologie nicht die notwendige Autonomie oder das Bewusstsein besitzt, um als Kläger zu agieren. Zweitens, selbst wenn eine Klage eingereicht würde, ist es sehr wahrscheinlich, dass sie aus Mangel an Rechtsfähigkeit abgewiesen würde. Drittens, obwohl Moltbook eine Plattform für KI-Agenten ist, gibt es keine Beweise dafür, dass die KI-Agenten auf der Plattform die Fähigkeit oder den Wunsch haben, eine Klage zu initiieren.  Viertens, die Zeit bis zum 28. Februar 2026 ist kurz, um die rechtlichen und technologischen Hürden zu überwinden. Schließlich ist es zwar möglich, dass eine Klage von einem menschlichen Akteur im Namen einer KI eingereicht wird, aber auch dies erscheint unwahrscheinlich, da kein klarer Anreiz oder eine Notwendigkeit dafür besteht. Die hohe Marktwahrscheinlichkeit könnte auf Spekulationen oder einem Missverständnis der rechtlichen und technologischen Realitäten beruhen. Die 'Confidence Score' von 0.6 spiegelt die Unsicherheit wider, die mit dieser Einschätzung verbunden ist, insbesondere da sich das Gebiet der KI-Rechtsprechung schnell entwickelt.
+
+---
+
+### Bet #17: Will the price of Ethereum be above $2,700 on February 1?
+
+**Decision:** YES @ 0.02 (Stake: $57.66)
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 1.9%)
+- **Confidence Score:** 65.0%
+- **Edge:** +28.0%
+- **Expected Value:** $+829.43
+- **End Date:** 2026-02-01 18:00 CET
+
+**AI Reasoning:**
+> Die aktuelle Markttendenz ist rückläufig, und mehrere Quellen deuten auf einen möglichen Preisrückgang unter 2.700 $ hin. Obwohl es auch bullische Prognosen gibt, überwiegen derzeit die negativen Indikatoren. Die hohe Volatilität des Kryptomarktes macht eine genaue Vorhersage jedoch schwierig.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Negative Expected Value (7)
+### Insufficient Edge (88)
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 05:09*
+Market: 0.00 | AI: 0.03 | Edge: +2.9% | Conf: 80%
+Reasoning: Elon Musk twittert im Durchschnitt deutlich mehr als 20 Tweets pro Tag. Die Wettbedingung erfordert einen Durchschnitt von ca. 18 Tweets pro Tag über ...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 05:09*
+Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 75%
+Reasoning: Juan Branco is a controversial figure with limited mainstream appeal. Recent polls suggest a strong lead for Jordan Bardella, making it highly improba...
+
+**Backpack FDV above $5B one day after launch?...**
+*Analyzed: 2026-02-01 05:09*
+Market: 0.02 | AI: 0.03 | Edge: +1.0% | Conf: 60%
+Reasoning: Eine FDV von 5 Milliarden USD ist sehr hoch für einen Tag nach dem Launch, auch wenn Backpack vielversprechend ist. Die Community-Stimmung ist positiv...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 05:08*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 70%
+Reasoning: Brazil is a football powerhouse with a rich history and many talented players. They are among the favorites, but not the top favorites. Their recent p...
+
+**Will Angers win the 2025–26 French Ligue 1?...**
+*Analyzed: 2026-02-01 04:53*
+Market: 0.00 | AI: 0.00 | Edge: +0.1% | Conf: 70%
+Reasoning: Paris Saint-Germain ist der überwältigende Favorit, und Angers hat in der Vergangenheit nicht um den Titel mitgespielt. Obwohl sie in der Ligue 1 spie...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 04:53*
+Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 70%
+Reasoning: Juan Branco ist eine umstrittene Figur ohne breite Unterstützung oder eine etablierte Parteibasis. Er steht vor einem starken Konkurrenzfeld bei der P...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 04:53*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
+Reasoning: Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften und hat eine reiche Geschichte. Obwohl ihre letzten Leistungen nicht optimal wa...
+
+**Will Angers win the 2025–26 French Ligue 1?...**
+*Analyzed: 2026-02-01 04:37*
+Market: 0.00 | AI: 0.00 | Edge: +0.1% | Conf: 70%
+Reasoning: Angers SCO hat eine sehr geringe Wahrscheinlichkeit, die Ligue 1 2025-26 zu gewinnen. Hier ist die Begründung:*   **PSG ist der klare Favorit:** Paris...
+
+**Will Carole Delga win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 04:37*
+Market: 0.00 | AI: 0.04 | Edge: +3.9% | Conf: 60%
+Reasoning: Carole Delga is a potential candidate from the Socialist Party, but she faces challenges in terms of national recognition, a fragmented left, and stro...
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 04:37*
+Market: 0.00 | AI: 0.07 | Edge: +7.0% | Conf: 60%
+Reasoning: Die Wahrscheinlichkeit, dass Elon Musk innerhalb von 7 Tagen 140-159 Tweets absetzt, wird als gering eingeschätzt, da dies eine hohe durchschnittliche...
+
+
+### Negative Expected Value (9)
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 04:53*
+Market: 0.00 | AI: 0.85 | Edge: +85.0% | Conf: 75%
+Reasoning: Elon Musk hat eine hohe Tweet-Frequenz, die jedoch Schwankungen unterliegt. Basierend auf dem XTracker hat Elon Musk in den letzten 24 Stunden 58 Twee...
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 04:21*
+Market: 0.00 | AI: 0.30 | Edge: +29.9% | Conf: 50%
+Reasoning: Based on historical data from 2024-2026, Elon Musk's tweet frequency varies, but has shown a tendency to increase over time. While early 2026 data sug...
 
 **Will Elon Musk post 140-159 tweets from January 30 to Februa...**
 *Analyzed: 2026-02-01 04:05*
@@ -295,59 +390,6 @@ Reasoning: Obwohl FaZe im Allgemeinen höher eingestuft ist, hat 3DMAX sie kürz
 *Analyzed: 2026-01-31 23:33*
 Market: 1.00 | AI: 0.60 | Edge: -40.0% | Conf: 70%
 Reasoning: Despite the high market price, the facts suggest a slightly lower probability. 3DMAX's recent win is considered, but FaZe is still the higher-ranked t...
-
-
-### Insufficient Edge (90)
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 04:05*
-Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 80%
-Reasoning: Juan Branco has limited political experience and a history of controversies. He faces strong competition from established candidates like Jordan Barde...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 04:05*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
-Reasoning: Der aktuelle Marktpreis (9,50%) spiegelt eine implizite Wahrscheinlichkeit von etwa 9,5% wider, dass Brasilien die WM 2026 gewinnt. Die Wettanbieter s...
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 03:50*
-Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 90%
-Reasoning: Juan Branco is a controversial figure with a history of political activism and legal work. However, he lacks broad political support, faces serious al...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 03:49*
-Market: 0.10 | AI: 0.14 | Edge: +4.5% | Conf: 75%
-Reasoning: Brasilien ist ein starkes Team mit einer reichen Fussballgeschichte und Weltklassespielern. Carlo Ancelotti als Trainer ist ein grosser Vorteil. Aller...
-
-**Will Angers win the 2025–26 French Ligue 1?...**
-*Analyzed: 2026-02-01 03:33*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 75%
-Reasoning: Angesichts der aktuellen Marktpreise, der historischen Leistung von Angers, der Dominanz von PSG in der Ligue 1 und der sehr hohen Wettquoten ist die ...
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 03:33*
-Market: 0.01 | AI: 0.03 | Edge: +1.9% | Conf: 60%
-Reasoning: Juan Branco hat seine Kandidatur angekündigt und verfolgt eine aktivistische politische Strategie. Obwohl er kein etablierter Politiker ist, hat er ei...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 03:33*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 70%
-Reasoning: Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften. Sie haben das Turnier fünfmal gewonnen und sind die einzige Mannschaft, die an...
-
-**Will Bangladesh Jamaat-e-Islami win the most seats in the Ba...**
-*Analyzed: 2026-02-01 03:33*
-Market: 0.26 | AI: 0.35 | Edge: +9.5% | Conf: 65%
-Reasoning: Die politische Lage in Bangladesch ist unübersichtlich, aber Jamaat-e-Islami scheint an Einfluss zu gewinnen, besonders da die Awami League nicht an d...
-
-**Kings vs. Wizards...**
-*Analyzed: 2026-02-01 03:32*
-Market: 0.56 | AI: 0.60 | Edge: +4.5% | Conf: 75%
-Reasoning: Obwohl der aktuelle Marktpreis bei 55,50 % liegt, deuten die Quoten und Computermodelle auf eine höhere Wahrscheinlichkeit für einen Sieg der Kings hi...
-
-**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 03:17*
-Market: 0.00 | AI: 0.04 | Edge: +4.0% | Conf: 60%
-Reasoning: Basierend auf historischen Daten zu Elon Musks Tweet-Frequenz und unter Berücksichtigung seiner Teilnahme am WEF und der geplanten SpaceX-Starts, ist ...
 
 
 ### Ai Analysis Failed (3)

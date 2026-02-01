@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-01 03:05:58 CET
+**Last Updated:** 2026-02-01 04:09:39 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-01 02:48:38 CET |
-| Next Run | 2026-02-01 03:03:38 CET |
+| Last Run | 2026-02-01 03:52:57 CET |
+| Next Run | 2026-02-01 04:07:57 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 3 | 15 | 20% | 🟢 |
-| Today (RPD) | 59 | 1,500 | 3.9% | 🟢 |
-| Current Minute (TPM) | 2,675 | 1,000,000 | 0.27% | 🟢 |
+| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
+| Today (RPD) | 77 | 1,500 | 5.1% | 🟢 |
+| Current Minute (TPM) | 5,289 | 1,000,000 | 0.53% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1399.62 (140.0% of capital) |
-| Avg Position Size | $93.31 |
+| Total Exposure | $1613.45 (161.3% of capital) |
+| Avg Position Size | $94.91 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.095) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.082) |
 
 ---
-## 🎯 Active Bets (15)
+## 🎯 Active Bets (17)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -66,6 +66,8 @@
 | Will Josh Hawley win the 2028 Republican... | YES | $27.80 | 0.01 | 0.15 | +14% 🟡 | 60% | $+528.27 | 2028-11-07 | 1009d | 🟢 |
 | Mubadala Abu Dhabi Open, Qualification: ... | YES | $110.67 | 0.51 | 0.75 | +24% 🟢 | 80% | $+53.69 | 2026-02-07 | 6d | 🟡 |
 | Will Bangladesh Jamaat-e-Islami win the ... | NO | $86.13 | 0.26 | 0.15 | -11% 🔴 | 70% | $+12.14 | 2026-02-12 | 10d | 🟢 |
+| Moltbook AI agent sues a human by Feb 28... | NO | $156.17 | 0.78 | 0.15 | -62% 🔴 | 60% | $+433.80 | 2026-02-28 | 26d | 🟢 |
+| Will the price of Ethereum be above $2,7... | YES | $57.66 | 0.02 | 0.30 | +28% 🟢 | 65% | $+829.43 | 2026-02-01 | 0d | 🔴 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -77,7 +79,8 @@
 - 🔴 **High Exposure**: "Will Bitcoin dip to $80,000 in..." is 19.9% of capital
 - 🔴 **High Exposure**: "Tesla launches unsupervised fu..." is 12.5% of capital
 - 🔴 **High Exposure**: "Mubadala Abu Dhabi Open, Quali..." is 11.1% of capital
-- 🟡 **Expiring Soon**: 5 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Moltbook AI agent sues a human..." is 15.6% of capital
+- 🟡 **Expiring Soon**: 6 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -85,7 +88,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 15 |
+| Markets with Active Bets | 17 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
