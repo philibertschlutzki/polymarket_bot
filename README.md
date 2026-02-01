@@ -1,153 +1,98 @@
-# Polymarket AI Autonomous Trading Bot 🤖📈
+# Polymarket AI Value Bot 🤖📈
 
-Ein vollautomatisches, KI-gestütztes System, das 24/7 Polymarket-Märkte analysiert, Value-Bets identifiziert und die Performance in einem Live-Dashboard trackt.
-
-Konzipiert für den Betrieb auf einem **Raspberry Pi** oder Linux-Server.
-
+![Status](https://img.shields.io/badge/Status-Active-green)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
-![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%20%7C%20Linux-green)
-![Status](https://img.shields.io/badge/Status-Production-brightgreen)
+![Database](https://img.shields.io/badge/Database-SQLite%20%7C%20Postgres-lightgrey)
 
----
+An autonomous trading bot that identifies value bets on [Polymarket](https://polymarket.com) using AI-driven probability estimation and the Kelly Criterion.
 
-## 🚀 Features (v2.0)
+## 🚀 Features
 
-### 🧠 Intelligente Analyse
-*   **Gemini 2.0 Flash Integration:** Nutzt Google Search Grounding für Echtzeit-Faktenanalyse.
-*   **Edge-Erkennung:** Berechnet Wahrscheinlichkeiten und vergleicht diese mit Marktpreisen.
-*   **Kelly-Kriterium:** Dynamisches Risikomanagement zur Berechnung der optimalen Positionsgröße (max. 50% Portfolio-Cap).
+- **AI Analysis**: Uses **Google Gemini 2.0 Flash** with Search Grounding to estimate real-time probabilities.
+- **Value Discovery**: Fetches markets via **Polymarket Gamma API** and filters for high-volume opportunities.
+- **Smart Staking**: Calculates optimal bet size using the **Kelly Criterion** to maximize growth while managing risk.
+- **Auto-Resolution**: Automatically tracks and resolves bets using **Goldsky Subgraph GraphQL**.
+- **Dashboard**: Generates a real-time `PERFORMANCE_DASHBOARD.md` with charts and metrics.
+- **Transparency**: Logs detailed AI reasoning in `AI_DECISIONS.md`.
+- **Git Sync**: Automatically pushes updates to this repository for remote monitoring.
 
-### ⚙️ Autonomie & Persistenz
-*   **SQLite Datenbank:** Speichert Portfolio-Status (`portfolio_state`), aktive Wetten (`active_bets`) und Resultate (`results`) lokal und sicher.
-*   **Auto-Settlement:** Überwacht Wetten via GraphQL API und verbucht Gewinne/Verluste automatisch nach Marktschluss.
-*   **Quota-Management:** Intelligenter 15-Minuten-Zyklus zur Einhaltung der kostenlosen Gemini API-Limits (95% Auslastung).
-*   **Systemd Service:** Selbstheilender Prozess mit Auto-Restart bei Fehlern.
-
-### 📊 Reporting
-*   **Live-Dashboard:** Generiert automatisch ein `PERFORMANCE_DASHBOARD.md` mit ASCII-Charts, Win-Rate, Sharpe-Ratio und ROI.
-*   **Git Auto-Push:** Pusht Dashboard-Updates automatisch zurück in dieses Repository (via PAT).
-
----
-
-## 🛠 Voraussetzungen
-
-*   **Hardware:** Raspberry Pi (3B+ oder neuer empfohlen) oder Linux VM.
-*   **Software:** Python 3.10+, Git.
-*   **Accounts:**
-    *   GitHub Account (für Auto-Push)
-    *   Google AI Studio API Key (kostenlos)
-    *   *(Optional)* Polymarket Account (aktuell Paper-Trading Modus)
-
----
-
-## 📦 Installation & Deployment
-
-Das System verfügt über ein automatisiertes Deployment-Script für Raspberry Pi / Debian-basierte Systeme.
-### Oneliner
-```bash
-git clone https://github.com/philibertschlutzki/polymarket_bot.git && cd polymarket_bot && chmod +x deploy_raspberry_pi.sh && ./deploy_raspberry_pi.sh && chmod +x setup_logrotate.sh && ./setup_logrotate.sh
-```
-### 1. Repository klonen
-```bash
-git clone https://github.com/philibertschlutzki/polymarket_bot.git
-cd polymarket_bot
-```
-
-### 2. Deployment starten
-Das Script installiert Abhängigkeiten, richtet die Datenbank ein, konfiguriert den Systemdienst und hilft beim Erstellen der `.env` Datei.
-
-```bash
-chmod +x deploy_raspberry_pi.sh
-./deploy_raspberry_pi.sh
-```
-
-**Während der Installation wirst du aufgefordert:**
-1.  Einen **GitHub Personal Access Token (PAT)** einzugeben (Scope: `repo`).
-2.  Deinen **Google Gemini API Key** zu bestätigen.
-
-### 3. Log-Rotation (Optional)
-Damit die Logfiles den Speicher nicht füllen:
-```bash
-chmod +x setup_logrotate.sh
-./setup_logrotate.sh
-```
-
----
-
-## 🖥️ Monitoring & Steuerung
-
-Da der Bot als Hintergrunddienst läuft, nutzen Sie folgende Befehle zur Steuerung:
-
-**Status prüfen:**
-```bash
-sudo systemctl status polymarket-bot
-```
-
-**Live-Logs ansehen:**
-```bash
-tail -f logs/bot.log
-```
-
-**Bot stoppen/starten:**
-```bash
-sudo systemctl stop polymarket-bot
-sudo systemctl start polymarket-bot
-```
-
----
-
-## 📂 Projektstruktur
+## 📂 Structure
 
 ```
 polymarket_bot/
-├── main.py                 # Hauptlogik (Scheduler, API-Calls)
-├── database.py             # SQLite Datenbank-Layer
-├── dashboard.py            # Generierung des Markdown-Dashboards
-├── git_integration.py      # Auto-Push Logik
-├── deploy_raspberry_pi.sh  # Setup-Script
-├── requirements.txt        # Python Abhängigkeiten
-├── polymarket.db           # Datenbank (lokal, nicht in Git)
-├── logs/                   # Logfiles (rotiert)
-└── PERFORMANCE_DASHBOARD.md # Automatisch aktualisierter Report
+├── src/                # Core source code
+│   ├── main.py         # Entry point & scheduler
+│   ├── database.py     # Database operations
+│   └── ...
+├── scripts/            # Deployment & maintenance scripts
+├── database/           # SQLite database location
+├── docs/               # Detailed documentation
+├── tests/              # Unit tests
+└── archive/            # Legacy files
 ```
 
----
+## 🛠️ Installation
 
-## ⚙️ Konfiguration (.env)
+### 1. Prerequisites
+- Python 3.10+
+- Git
+- A Google Gemini API Key (Free tier available)
 
-Die Konfiguration erfolgt über die `.env` Datei. Das Deployment-Script erstellt diese automatisch, aber hier sind die Details:
+### 2. Setup
+```bash
+git clone https://github.com/philibertschlutzki/polymarket_bot.git
+cd polymarket_bot
 
-```env
-# Credentials
-GEMINI_API_KEY=Dein_Google_Key
-GITHUB_PAT=Dein_Github_Token
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
 
-# Trading Strategie
-MIN_VOLUME=10000          # Min. Volumen für Analyse ($)
-MIN_PRICE=0.05            # Min. Preis (5 Cent)
-MAX_PRICE=0.95            # Max. Preis (95 Cent)
-HIGH_VOLUME_THRESHOLD=50000 # Ausnahme für hohe Liquidität
-
-# System
-FETCH_MARKET_LIMIT=100    # Anzahl Märkte pro API-Call
-TOP_MARKETS_TO_ANALYZE=15 # Max. KI-Analysen pro 15min (Quota-Schutz)
+# Install dependencies
+pip install -r requirements.txt
 ```
 
----
+### 3. Configuration
+Copy the example environment file and edit it:
+```bash
+cp .env.example .env
+nano .env
+```
+Fill in:
+- `GEMINI_API_KEY`: Your Google AI Studio key.
+- `GITHUB_PAT`: (Optional) GitHub Token for auto-push.
 
-## 📈 Dashboard
+### 4. Database Initialization
+```bash
+python3 -c "from src import database; database.init_database()"
+```
 
-Das Dashboard [PERFORMANCE_DASHBOARD.md](./PERFORMANCE_DASHBOARD.md) wird automatisch aktualisiert, wenn:
-1.  Eine neue Wette platziert wurde.
-2.  Eine Wette abgeschlossen (resolved) wurde.
+### 5. Run
+```bash
+export PYTHONPATH=$(pwd)
+python3 src/main.py
+```
 
-Es enthält keine Live-Preise, sondern den Snapshot zum Zeitpunkt der Generierung.
+## 📦 Deployment (Raspberry Pi)
 
----
+Use the automated deployment script:
+```bash
+bash scripts/deploy_raspberry_pi.sh
+```
+This script handles dependencies, database setup, log rotation, and installs a `systemd` service.
 
-## ⚠️ Disclaimer
+## 📊 Documentation
 
-Dieses Tool dient ausschließlich zu Bildungs- und Forschungszwecken. 
-*   Die "Wetten" sind aktuell fiktiv (Paper Trading) und werden gegen ein virtuelles Portfolio in der SQLite-Datenbank verrechnet.
-*   Es erfolgt keine Interaktion mit Smart Contracts oder echten Funds auf der Polygon Blockchain.
-*   Nutzung auf eigene Gefahr.
+- [Architecture](ARCHITECTURE.md)
+- [Operations Guide](OPERATIONS.md)
+- [Contributing](CONTRIBUTING.md)
+- [Database Schema](docs/database_schema.md)
+- [API Endpoints](docs/api_endpoints.md)
+- [Changelog](CHANGELOG.md)
+
+## ⚖️ Disclaimer
+
+This bot is for educational and experimental purposes only. Prediction markets involve financial risk. The authors are not responsible for any financial losses incurred by using this software. Use at your own risk.
+
+## 📄 License
+
+MIT License

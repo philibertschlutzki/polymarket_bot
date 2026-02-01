@@ -1,18 +1,14 @@
 import logging
 import math
-import threading
 from datetime import datetime, timedelta, timezone
-from typing import List, Optional, Dict, Any, Tuple
-from sqlalchemy import select, func, text, update
-from sqlalchemy.orm import Session
-from sqlalchemy.exc import SQLAlchemyError
+from typing import Any, Dict, List, Optional, Tuple
 
-from db_models import (
-    engine, Base, session_scope,
-    ActiveBet, ArchivedBet, RejectedMarket, ApiUsage,
-    PortfolioState, GitSyncState,
-    ActiveBet
-)
+from sqlalchemy import func, text, update
+from sqlalchemy.orm import Session
+
+from src.db_models import (ActiveBet, ApiUsage, ArchivedBet, Base,
+                           GitSyncState, PortfolioState, RejectedMarket,
+                           engine, session_scope)
 
 # Configuration
 INITIAL_CAPITAL = 1000.0
@@ -20,8 +16,16 @@ INITIAL_CAPITAL = 1000.0
 # Logging
 logger = logging.getLogger(__name__)
 
+
 def init_database():
-    """Initializes the database with required tables and default values."""
+    """Initializes the database with required tables and default values.
+
+    Creates all tables defined in SQLAlchemy models if they don't exist.
+    Also initializes the 'portfolio_state' with default capital if empty.
+
+    Raises:
+        SQLAlchemyError: If table creation fails.
+    """
     try:
         # Create tables
         Base.metadata.create_all(engine)
@@ -32,7 +36,7 @@ def init_database():
                 init_portfolio = PortfolioState(
                     id=1,
                     total_capital=INITIAL_CAPITAL,
-                    last_updated=datetime.now(timezone.utc)
+                    last_updated=datetime.now(timezone.utc),
                 )
                 session.add(init_portfolio)
                 logger.info(f"Initialized portfolio with ${INITIAL_CAPITAL} USDC")
@@ -42,7 +46,7 @@ def init_database():
                 init_git = GitSyncState(
                     id=1,
                     last_git_push=datetime.now(timezone.utc),
-                    pending_changes_count=0
+                    pending_changes_count=0,
                 )
                 session.add(init_git)
 
@@ -51,15 +55,18 @@ def init_database():
         logger.error(f"Error initializing database: {e}")
         raise
 
+
 def to_dict(obj) -> Dict[str, Any]:
     """Helper to convert SQLAlchemy object to dict."""
     if not obj:
         return {}
     return {c.name: getattr(obj, c.name) for c in obj.__table__.columns}
 
+
 def get_db_connection():
     """Legacy wrapper for compatibility, though distinct from session_scope."""
     return session_scope()
+
 
 def get_current_capital() -> float:
     """Reads current capital from portfolio_state."""
@@ -69,8 +76,9 @@ def get_current_capital() -> float:
             return float(state.total_capital)
         return INITIAL_CAPITAL
 
+
 def update_capital(new_capital: float):
-    """Updates total capital in portfolio_state (Atomic/Optimistic not strictly needed here if single writer, but using update for safety)."""
+    """Updates total capital in portfolio_state (Atomic/Optimistic)."""
     with session_scope() as session:
         session.execute(
             update(PortfolioState)
@@ -78,33 +86,44 @@ def update_capital(new_capital: float):
             .values(
                 total_capital=new_capital,
                 last_updated=datetime.now(timezone.utc),
-                version=PortfolioState.version + 1
+                version=PortfolioState.version + 1,
             )
         )
         logger.info(f"Capital updated to ${new_capital:.2f}")
 
+
 def insert_active_bet(bet_data: Dict[str, Any]):
-    """Inserts a new active bet."""
+    """Records a new active bet in the database.
+
+    Args:
+        bet_data: A dictionary containing bet details (market_slug, question,
+            stake_usdc, etc.).
+    """
     with session_scope() as session:
         bet = ActiveBet(
-            market_slug=bet_data['market_slug'],
-            url_slug=bet_data.get('url_slug', bet_data['market_slug']), # Fallback if missing
-            question=bet_data['question'],
-            action=bet_data['action'],
-            stake_usdc=bet_data['stake_usdc'],
-            entry_price=bet_data['entry_price'],
-            ai_probability=bet_data['ai_probability'],
-            confidence_score=bet_data['confidence_score'],
-            expected_value=bet_data['expected_value'],
-            edge=bet_data.get('edge', 0.0),
-            ai_reasoning=bet_data.get('ai_reasoning', ''),
-            end_date=bet_data.get('end_date'), # Expecting datetime object or ISO string
+            market_slug=bet_data["market_slug"],
+            url_slug=bet_data.get(
+                "url_slug", bet_data["market_slug"]
+            ),  # Fallback if missing
+            question=bet_data["question"],
+            action=bet_data["action"],
+            stake_usdc=bet_data["stake_usdc"],
+            entry_price=bet_data["entry_price"],
+            ai_probability=bet_data["ai_probability"],
+            confidence_score=bet_data["confidence_score"],
+            expected_value=bet_data["expected_value"],
+            edge=bet_data.get("edge", 0.0),
+            ai_reasoning=bet_data.get("ai_reasoning", ""),
+            end_date=bet_data.get(
+                "end_date"
+            ),  # Expecting datetime object or ISO string
             timestamp_created=datetime.now(timezone.utc),
-            status='OPEN'
+            status="OPEN",
         )
         # Handle string date if passed
         if isinstance(bet.end_date, str):
             from dateutil import parser
+
             bet.end_date = parser.parse(bet.end_date)
             if bet.end_date.tzinfo is None:
                 bet.end_date = bet.end_date.replace(tzinfo=timezone.utc)
@@ -115,21 +134,44 @@ def insert_active_bet(bet_data: Dict[str, Any]):
         # Mark for git sync (needs new session or nested transaction if calling another function using session_scope,
         # but mark_git_change uses session_scope which handles new session. Commit here is implicit by context manager exit)
 
-    mark_git_change('bet')
-    logger.info(f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {bet_data.get('edge', 0)*100:+.1f}%)")
+    mark_git_change("bet")
+    edge_pct = bet_data.get('edge', 0) * 100
+    logger.info(
+        f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {edge_pct:+.1f}%)"
+    )
+
 
 def get_active_bets() -> List[Dict[str, Any]]:
-    """Retrieves all OPEN bets."""
+    """Retrieves all currently active (open) bets.
+
+    Returns:
+        A list of dictionaries representing active bets.
+    """
     with session_scope() as session:
-        bets = session.query(ActiveBet).filter(ActiveBet.status == 'OPEN').all()
+        bets = session.query(ActiveBet).filter(ActiveBet.status == "OPEN").all()
         return [to_dict(b) for b in bets]
 
-def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[Session] = None):
-    """Moves a bet from active_bets to archived_bets (results) and updates capital."""
+
+def close_bet(
+    bet_id: int, outcome: str, profit_loss: float, conn: Optional[Session] = None
+):
+    """Closes an active bet and records the result.
+
+    Moves the bet from 'active_bets' to 'archived_bets', records the outcome
+    and P/L, and updates the global capital atomically.
+
+    Args:
+        bet_id: The ID of the bet to close.
+        outcome: The resolved outcome ('YES' or 'NO').
+        profit_loss: The realized profit or loss in USDC.
+        conn: Optional existing SQLAlchemy session to use (for transactions).
+    """
 
     # Inner function to perform logic with a given session
     def _perform_close(session: Session):
-        bet = session.query(ActiveBet).filter_by(bet_id=bet_id).with_for_update().first()
+        bet = (
+            session.query(ActiveBet).filter_by(bet_id=bet_id).with_for_update().first()
+        )
         if not bet:
             logger.error(f"Bet {bet_id} not found!")
             return
@@ -155,11 +197,12 @@ def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[Sess
             actual_outcome=outcome,
             profit_loss=profit_loss,
             roi=roi,
-            timestamp_resolved=datetime.now(timezone.utc)
+            timestamp_resolved=datetime.now(timezone.utc),
         )
         session.add(archived)
 
-        # Delete from active (or mark closed, but schema suggests moving to archived implies active removal or just keeping archive)
+        # Delete from active
+        # Schema suggests moving to archived implies active removal.
         # Original code kept 'results' table and 'active_bets' with status 'CLOSED'.
         # New prompt schema: 'active_bets' and 'archived_bets'.
         # Prompt says: "Moves a bet from active_bets to results".
@@ -169,8 +212,10 @@ def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[Sess
 
         # Atomic Capital Update
         session.execute(
-            text("UPDATE portfolio_state SET total_capital = total_capital + :pl, version = version + 1 WHERE id = 1"),
-            {"pl": profit_loss}
+            text(
+                "UPDATE portfolio_state SET total_capital = total_capital + :pl, version = version + 1 WHERE id = 1"
+            ),
+            {"pl": profit_loss},
         )
 
         # Fetch new capital for logging
@@ -189,12 +234,15 @@ def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[Sess
             _perform_close(session)
             # session.commit()
 
-    mark_git_change('resolution')
+    mark_git_change("resolution")
+
 
 def archive_bet_without_resolution(bet_id: int):
     """Archives expired bet without resolution."""
     with session_scope() as session:
-        bet = session.query(ActiveBet).filter_by(bet_id=bet_id).with_for_update().first()
+        bet = (
+            session.query(ActiveBet).filter_by(bet_id=bet_id).with_for_update().first()
+        )
         if not bet:
             return
 
@@ -212,7 +260,7 @@ def archive_bet_without_resolution(bet_id: int):
             ai_reasoning=bet.ai_reasoning,
             timestamp_created=bet.timestamp_created,
             end_date=bet.end_date,
-            actual_outcome=None, # UNRESOLVED implicit or explicit? Schema says check IN ('YES', 'NO', 'UNRESOLVED') or null?
+            actual_outcome=None,  # UNRESOLVED implicit or explicit? Schema says check IN ('YES', 'NO', 'UNRESOLVED') or null?
             # Schema: actual_outcome TEXT CHECK ...
             # Let's set it to 'UNRESOLVED' or None. Prompt code example set actual_outcome=None.
             # But the CHECK constraint allows 'UNRESOLVED'.
@@ -223,24 +271,30 @@ def archive_bet_without_resolution(bet_id: int):
             # I will follow prompt code.
             profit_loss=None,
             roi=None,
-            timestamp_resolved=None
+            timestamp_resolved=None,
         )
         session.add(archived)
         session.delete(bet)
         logger.info(f"Archived expired bet {bet_id} without resolution.")
 
+
 def get_all_results() -> List[Dict[str, Any]]:
     """Retrieves all closed bets (archived)."""
     with session_scope() as session:
-        results = session.query(ArchivedBet).order_by(ArchivedBet.timestamp_resolved.desc().nulls_last()).all()
+        results = (
+            session.query(ArchivedBet)
+            .order_by(ArchivedBet.timestamp_resolved.desc().nulls_last())
+            .all()
+        )
         # Filter for those that have been resolved if needed, or return all archived?
         # Function name is get_all_results, used for metrics. Metrics need P/L.
         # So we should probably filter out those with profit_loss IS NULL.
         filtered = [to_dict(r) for r in results if r.profit_loss is not None]
         # For compatibility with legacy code which expects 'timestamp_closed', mapping timestamp_resolved
         for r in filtered:
-            r['timestamp_closed'] = r.get('timestamp_resolved')
+            r["timestamp_closed"] = r.get("timestamp_resolved")
         return filtered
+
 
 def get_results_with_metrics() -> List[Dict[str, Any]]:
     """
@@ -248,29 +302,38 @@ def get_results_with_metrics() -> List[Dict[str, Any]]:
     """
     with session_scope() as session:
         # We can calculate days_held in python or SQL.
-        results = session.query(ArchivedBet).filter(ArchivedBet.profit_loss != None).order_by(ArchivedBet.timestamp_resolved.desc()).all()
+        results = (
+            session.query(ArchivedBet)
+            .filter(ArchivedBet.profit_loss.is_not(None))
+            .order_by(ArchivedBet.timestamp_resolved.desc())
+            .all()
+        )
         data = []
         for r in results:
             d = to_dict(r)
-            d['timestamp_closed'] = d.get('timestamp_resolved')
-            if d['timestamp_closed'] and d['timestamp_created']:
+            d["timestamp_closed"] = d.get("timestamp_resolved")
+            if d["timestamp_closed"] and d["timestamp_created"]:
                 # Ensure timezones are compatible
-                created = d['timestamp_created']
-                closed = d['timestamp_closed']
-                d['computed_days_held'] = (closed - created).days
+                created = d["timestamp_created"]
+                closed = d["timestamp_closed"]
+                d["computed_days_held"] = (closed - created).days
             else:
-                d['computed_days_held'] = 0
+                d["computed_days_held"] = 0
             data.append(d)
         return data
+
 
 def get_capital_history() -> List[Tuple[datetime, float]]:
     """
     Gibt Zeitreihe von (timestamp, capital) zurück.
     """
     with session_scope() as session:
-        results = session.query(ArchivedBet.timestamp_resolved, ArchivedBet.profit_loss)\
-            .filter(ArchivedBet.profit_loss != None)\
-            .order_by(ArchivedBet.timestamp_resolved.asc()).all()
+        results = (
+            session.query(ArchivedBet.timestamp_resolved, ArchivedBet.profit_loss)
+            .filter(ArchivedBet.profit_loss.is_not(None))
+            .order_by(ArchivedBet.timestamp_resolved.asc())
+            .all()
+        )
 
         history = [(datetime.now(timezone.utc) - timedelta(days=365), INITIAL_CAPITAL)]
         running_capital = INITIAL_CAPITAL
@@ -280,36 +343,41 @@ def get_capital_history() -> List[Tuple[datetime, float]]:
 
         return history
 
+
 def insert_rejected_market(market_data: Dict[str, Any]):
     """Loggt abgelehnte Märkte."""
     with session_scope() as session:
         rej = RejectedMarket(
-            market_slug=market_data['market_slug'],
-            url_slug=market_data.get('url_slug', market_data['market_slug']),
-            question=market_data['question'],
-            market_price=market_data['market_price'],
-            volume=market_data['volume'],
-            ai_probability=market_data['ai_probability'],
-            confidence_score=market_data['confidence_score'],
-            edge=market_data['edge'],
-            rejection_reason=market_data['rejection_reason'],
-            ai_reasoning=market_data.get('ai_reasoning', ''),
+            market_slug=market_data["market_slug"],
+            url_slug=market_data.get("url_slug", market_data["market_slug"]),
+            question=market_data["question"],
+            market_price=market_data["market_price"],
+            volume=market_data["volume"],
+            ai_probability=market_data["ai_probability"],
+            confidence_score=market_data["confidence_score"],
+            edge=market_data["edge"],
+            rejection_reason=market_data["rejection_reason"],
+            ai_reasoning=market_data.get("ai_reasoning", ""),
             timestamp_analyzed=datetime.now(timezone.utc),
-            end_date=market_data.get('end_date')
+            end_date=market_data.get("end_date"),
         )
         if isinstance(rej.end_date, str):
             from dateutil import parser
+
             try:
                 rej.end_date = parser.parse(rej.end_date)
                 if rej.end_date.tzinfo is None:
                     rej.end_date = rej.end_date.replace(tzinfo=timezone.utc)
-            except:
+            except Exception:
                 rej.end_date = None
 
         session.add(rej)
 
-    mark_git_change('rejection')
-    logger.info(f"Rejected market logged: {market_data['question'][:40]}... (Reason: {market_data['rejection_reason']})")
+    mark_git_change("rejection")
+    logger.info(
+        f"Rejected market logged: {market_data['question'][:40]}... (Reason: {market_data['rejection_reason']})"
+    )
+
 
 def insert_rejected_markets_batch(markets: List[Dict[str, Any]]):
     """Batch insert rejected markets."""
@@ -319,43 +387,51 @@ def insert_rejected_markets_batch(markets: List[Dict[str, Any]]):
     with session_scope() as session:
         objs = []
         for m in markets:
-            end_date = m.get('end_date')
+            end_date = m.get("end_date")
             if isinstance(end_date, str):
                 from dateutil import parser
+
                 try:
                     end_date = parser.parse(end_date)
                     if end_date.tzinfo is None:
                         end_date = end_date.replace(tzinfo=timezone.utc)
-                except:
+                except Exception:
                     end_date = None
 
-            objs.append(RejectedMarket(
-                market_slug=m['market_slug'],
-                url_slug=m.get('url_slug', m['market_slug']),
-                question=m['question'],
-                market_price=m['market_price'],
-                volume=m['volume'],
-                ai_probability=m['ai_probability'],
-                confidence_score=m['confidence_score'],
-                edge=m['edge'],
-                rejection_reason=m['rejection_reason'],
-                ai_reasoning=m.get('ai_reasoning', ''),
-                timestamp_analyzed=datetime.now(timezone.utc),
-                end_date=end_date
-            ))
+            objs.append(
+                RejectedMarket(
+                    market_slug=m["market_slug"],
+                    url_slug=m.get("url_slug", m["market_slug"]),
+                    question=m["question"],
+                    market_price=m["market_price"],
+                    volume=m["volume"],
+                    ai_probability=m["ai_probability"],
+                    confidence_score=m["confidence_score"],
+                    edge=m["edge"],
+                    rejection_reason=m["rejection_reason"],
+                    ai_reasoning=m.get("ai_reasoning", ""),
+                    timestamp_analyzed=datetime.now(timezone.utc),
+                    end_date=end_date,
+                )
+            )
 
         session.bulk_save_objects(objs)
 
-    mark_git_change('rejection')
+    mark_git_change("rejection")
     logger.info(f"Batch inserted {len(markets)} rejected markets.")
+
 
 def get_rejected_markets(limit: int = 50) -> List[Dict[str, Any]]:
     """Holt letzte abgelehnte Märkte."""
     with session_scope() as session:
-        markets = session.query(RejectedMarket)\
-            .order_by(RejectedMarket.timestamp_analyzed.desc())\
-            .limit(limit).all()
+        markets = (
+            session.query(RejectedMarket)
+            .order_by(RejectedMarket.timestamp_analyzed.desc())
+            .limit(limit)
+            .all()
+        )
         return [to_dict(m) for m in markets]
+
 
 def calculate_metrics() -> Dict[str, Any]:
     """Calculates performance metrics."""
@@ -371,7 +447,7 @@ def calculate_metrics() -> Dict[str, Any]:
             "total_return_usd": 0.0,
             "total_return_percent": 0.0,
             "best_bet_usd": 0.0,
-            "worst_bet_usd": 0.0
+            "worst_bet_usd": 0.0,
         }
 
     wins = 0
@@ -380,20 +456,24 @@ def calculate_metrics() -> Dict[str, Any]:
     capital_curve = [INITIAL_CAPITAL]
     current_cap = INITIAL_CAPITAL
 
-    best_bet = -float('inf')
-    worst_bet = float('inf')
+    best_bet = -float("inf")
+    worst_bet = float("inf")
     total_pl = 0.0
 
     # Sort results by closed time
-    sorted_results = sorted(results, key=lambda x: x['timestamp_closed'] or datetime.min.replace(tzinfo=timezone.utc))
+    sorted_results = sorted(
+        results,
+        key=lambda x: x["timestamp_closed"]
+        or datetime.min.replace(tzinfo=timezone.utc),
+    )
 
     for res in sorted_results:
-        pl = float(res['profit_loss'])
+        pl = float(res["profit_loss"])
         total_pl += pl
         if pl > 0:
             wins += 1
 
-        roi = float(res['roi'])
+        roi = float(res["roi"])
         total_roi += roi
         returns.append(roi)
 
@@ -430,7 +510,7 @@ def calculate_metrics() -> Dict[str, Any]:
             max_dd = dd
 
     total_return_usd = current_cap - INITIAL_CAPITAL
-    total_return_percent = (total_return_usd / INITIAL_CAPITAL)
+    total_return_percent = total_return_usd / INITIAL_CAPITAL
 
     return {
         "total_bets": total_bets,
@@ -441,8 +521,9 @@ def calculate_metrics() -> Dict[str, Any]:
         "total_return_usd": total_return_usd,
         "total_return_percent": total_return_percent,
         "best_bet_usd": best_bet if total_bets > 0 else 0.0,
-        "worst_bet_usd": worst_bet if total_bets > 0 else 0.0
+        "worst_bet_usd": worst_bet if total_bets > 0 else 0.0,
     }
+
 
 def update_last_dashboard_update():
     with session_scope() as session:
@@ -452,6 +533,7 @@ def update_last_dashboard_update():
             .values(last_dashboard_update=datetime.now(timezone.utc))
         )
 
+
 def get_last_dashboard_update() -> Optional[datetime]:
     with session_scope() as session:
         state = session.query(PortfolioState).filter_by(id=1).first()
@@ -459,7 +541,14 @@ def get_last_dashboard_update() -> Optional[datetime]:
             return state.last_dashboard_update
         return None
 
-def log_api_usage(api_name: str, endpoint: str, tokens_prompt: int, tokens_response: int, response_time_ms: int):
+
+def log_api_usage(
+    api_name: str,
+    endpoint: str,
+    tokens_prompt: int,
+    tokens_response: int,
+    response_time_ms: int,
+):
     """Log API usage to the database."""
     with session_scope() as session:
         usage = ApiUsage(
@@ -470,40 +559,47 @@ def log_api_usage(api_name: str, endpoint: str, tokens_prompt: int, tokens_respo
             tokens_prompt=tokens_prompt,
             tokens_response=tokens_response,
             tokens_total=tokens_prompt + tokens_response,
-            response_time_ms=response_time_ms
+            response_time_ms=response_time_ms,
         )
         session.add(usage)
+
 
 def get_api_usage_rpm(api_name: str = "gemini") -> int:
     """Returns number of API calls in the last minute."""
     with session_scope() as session:
         one_min_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
-        count = session.query(func.sum(ApiUsage.calls)).filter(
-            ApiUsage.api_name == api_name,
-            ApiUsage.timestamp >= one_min_ago
-        ).scalar()
+        count = (
+            session.query(func.sum(ApiUsage.calls))
+            .filter(ApiUsage.api_name == api_name, ApiUsage.timestamp >= one_min_ago)
+            .scalar()
+        )
         return count or 0
+
 
 def get_api_usage_rpd(api_name: str = "gemini") -> int:
     """Returns number of API calls today (UTC based)."""
     with session_scope() as session:
         now_utc = datetime.now(timezone.utc)
         start_of_day = now_utc.replace(hour=0, minute=0, second=0, microsecond=0)
-        count = session.query(func.sum(ApiUsage.calls)).filter(
-            ApiUsage.api_name == api_name,
-            ApiUsage.timestamp >= start_of_day
-        ).scalar()
+        count = (
+            session.query(func.sum(ApiUsage.calls))
+            .filter(ApiUsage.api_name == api_name, ApiUsage.timestamp >= start_of_day)
+            .scalar()
+        )
         return count or 0
+
 
 def get_api_usage_tpm(api_name: str = "gemini") -> int:
     """Returns sum of tokens in the last minute."""
     with session_scope() as session:
         one_min_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
-        tokens = session.query(func.sum(ApiUsage.tokens_total)).filter(
-            ApiUsage.api_name == api_name,
-            ApiUsage.timestamp >= one_min_ago
-        ).scalar()
+        tokens = (
+            session.query(func.sum(ApiUsage.tokens_total))
+            .filter(ApiUsage.api_name == api_name, ApiUsage.timestamp >= one_min_ago)
+            .scalar()
+        )
         return tokens or 0
+
 
 def get_last_run_timestamp() -> Optional[datetime]:
     """Reads last run timestamp from DB."""
@@ -512,6 +608,7 @@ def get_last_run_timestamp() -> Optional[datetime]:
         if state:
             return state.last_run_timestamp
         return None
+
 
 def set_last_run_timestamp(timestamp: datetime):
     """Saves last run timestamp."""
@@ -524,9 +621,11 @@ def set_last_run_timestamp(timestamp: datetime):
             .values(last_run_timestamp=timestamp)
         )
 
+
 # ============================================================================
 # GIT SYNC HELPERS
 # ============================================================================
+
 
 def mark_git_change(change_type: str):
     """
@@ -535,9 +634,9 @@ def mark_git_change(change_type: str):
     """
     with session_scope() as session:
         field_map = {
-            'bet': 'has_new_bets',
-            'rejection': 'has_new_rejections',
-            'resolution': 'has_bet_resolutions'
+            "bet": "has_new_bets",
+            "rejection": "has_new_rejections",
+            "resolution": "has_bet_resolutions",
         }
         field = field_map.get(change_type)
         if field:
@@ -549,6 +648,7 @@ def mark_git_change(change_type: str):
                 WHERE id = 1
             """)
             session.execute(sql)
+
 
 def should_push_to_git() -> bool:
     """
@@ -575,13 +675,17 @@ def should_push_to_git() -> bool:
 
         return False
 
+
 def has_ai_decisions_changes() -> bool:
     """Prüft ob AI_DECISIONS.md relevante Änderungen hat."""
     with session_scope() as session:
         state = session.query(GitSyncState).filter_by(id=1).first()
         if not state:
             return False
-        return any([state.has_new_bets, state.has_new_rejections, state.has_bet_resolutions])
+        return any(
+            [state.has_new_bets, state.has_new_rejections, state.has_bet_resolutions]
+        )
+
 
 def reset_git_sync_flags():
     """Setzt Flags nach erfolgreichem Push zurück."""
@@ -594,32 +698,43 @@ def reset_git_sync_flags():
                 pending_changes_count=0,
                 has_new_bets=False,
                 has_new_rejections=False,
-                has_bet_resolutions=False
+                has_bet_resolutions=False,
             )
         )
+
 
 def get_unresolved_archived_bets() -> List[Dict[str, Any]]:
     """Retrieves archived bets that are unresolved and older than 24h."""
     with session_scope() as session:
         cutoff = datetime.now(timezone.utc) - timedelta(days=1)
-        bets = session.query(ArchivedBet).filter(
-            ArchivedBet.actual_outcome == None,
-            ArchivedBet.end_date < cutoff
-        ).all()
+        bets = (
+            session.query(ArchivedBet)
+            .filter(ArchivedBet.actual_outcome.is_(None), ArchivedBet.end_date < cutoff)
+            .all()
+        )
         return [to_dict(b) for b in bets]
+
 
 def get_all_unresolved_bets() -> List[Dict[str, Any]]:
     """Retrieves all archived bets that are unresolved (for dashboard)."""
     with session_scope() as session:
-        bets = session.query(ArchivedBet).filter(
-            ArchivedBet.actual_outcome == None
-        ).all()
+        bets = (
+            session.query(ArchivedBet)
+            .filter(ArchivedBet.actual_outcome.is_(None))
+            .all()
+        )
         return [to_dict(b) for b in bets]
+
 
 def update_archived_bet_outcome(archive_id: int, outcome: str, profit_loss: float):
     """Updates an archived bet with the final outcome."""
     with session_scope() as session:
-        bet = session.query(ArchivedBet).filter_by(archive_id=archive_id).with_for_update().first()
+        bet = (
+            session.query(ArchivedBet)
+            .filter_by(archive_id=archive_id)
+            .with_for_update()
+            .first()
+        )
         if not bet:
             return
 
@@ -632,9 +747,13 @@ def update_archived_bet_outcome(archive_id: int, outcome: str, profit_loss: floa
 
         # Update capital (since it wasn't updated when archived without resolution)
         session.execute(
-            text("UPDATE portfolio_state SET total_capital = total_capital + :pl, version = version + 1 WHERE id = 1"),
-            {"pl": profit_loss}
+            text(
+                "UPDATE portfolio_state SET total_capital = total_capital + :pl, version = version + 1 WHERE id = 1"
+            ),
+            {"pl": profit_loss},
         )
 
-    mark_git_change('resolution')
-    logger.info(f"Archived Bet {archive_id} resolved: {outcome} (P/L: ${profit_loss:.2f})")
+    mark_git_change("resolution")
+    logger.info(
+        f"Archived Bet {archive_id} resolved: {outcome} (P/L: ${profit_loss:.2f})"
+    )

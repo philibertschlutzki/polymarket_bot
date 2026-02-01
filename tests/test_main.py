@@ -7,7 +7,7 @@ Tests the core functionality with mock data
 import unittest
 from unittest.mock import Mock, patch, MagicMock
 from pydantic import ValidationError
-from main import (
+from src.main import (
     MarketData, 
     AIAnalysis, 
     TradingRecommendation,
@@ -99,7 +99,7 @@ class TestKellyCriterion(unittest.TestCase):
 class TestGammaAPIIntegration(unittest.TestCase):
     """Test Gamma API integration"""
     
-    @patch('main.requests.get')
+    @patch('src.main.requests.get')
     def test_fetch_markets_success(self, mock_get):
         """Test successful market fetching from Gamma API"""
         # Mock the response
@@ -135,7 +135,7 @@ class TestGammaAPIIntegration(unittest.TestCase):
         self.assertIn('params', call_args[1])
         self.assertEqual(call_args[1]['params']['closed'], 'false')
     
-    @patch('main.requests.get')
+    @patch('src.main.requests.get')
     def test_fetch_markets_with_filtering(self, mock_get):
         """Test market fetching with volume and price filtering"""
         # Mock the response
@@ -181,7 +181,7 @@ class TestGammaAPIIntegration(unittest.TestCase):
         self.assertEqual(len(markets), 1)
         self.assertEqual(markets[0].question, 'High Volume Market')
     
-    @patch('main.requests.get')
+    @patch('src.main.requests.get')
     def test_fetch_markets_error_response(self, mock_get):
         """Test handling of error responses with errors field"""
         # Mock an error response
@@ -197,7 +197,7 @@ class TestGammaAPIIntegration(unittest.TestCase):
         # Should return empty list on error (no markets in response)
         self.assertEqual(len(markets), 0)
     
-    @patch('main.requests.get')
+    @patch('src.main.requests.get')
     def test_fetch_markets_http_error(self, mock_get):
         """Test handling of HTTP errors"""
         # Mock an HTTP error
@@ -211,7 +211,7 @@ class TestGammaAPIIntegration(unittest.TestCase):
         # Should return empty list on error
         self.assertEqual(len(markets), 0)
     
-    @patch('main.requests.get')
+    @patch('src.main.requests.get')
     def test_fetch_markets_connection_error(self, mock_get):
         """Test handling of connection errors"""
         # Mock a connection error
@@ -223,7 +223,7 @@ class TestGammaAPIIntegration(unittest.TestCase):
         # Should return empty list on error
         self.assertEqual(len(markets), 0)
     
-    @patch('main.requests.get')
+    @patch('src.main.requests.get')
     def test_fetch_markets_with_list_outcome_prices(self, mock_get):
         """Test market fetching when outcome_prices is already a list"""
         # Mock the response with outcome_prices as list instead of string
@@ -249,7 +249,7 @@ class TestGammaAPIIntegration(unittest.TestCase):
         self.assertEqual(len(markets), 1)
         self.assertEqual(markets[0].yes_price, 0.65)
     
-    @patch('main.requests.get')
+    @patch('src.main.requests.get')
     def test_fetch_markets_expired(self, mock_get):
         """Test that expired markets are filtered out"""
         # Mock the response with an expired market
