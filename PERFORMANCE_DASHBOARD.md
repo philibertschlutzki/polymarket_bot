@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-01 02:02:03 CET
+**Last Updated:** 2026-02-01 03:05:58 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-01 01:44:44 CET |
-| Next Run | 2026-02-01 01:59:44 CET |
+| Last Run | 2026-02-01 02:48:38 CET |
+| Next Run | 2026-02-01 03:03:38 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
-| Today (RPD) | 38 | 1,500 | 2.5% | 🟢 |
-| Current Minute (TPM) | 4,020 | 1,000,000 | 0.40% | 🟢 |
+| Current Minute (RPM) | 3 | 15 | 20% | 🟢 |
+| Today (RPD) | 59 | 1,500 | 3.9% | 🟢 |
+| Current Minute (TPM) | 2,675 | 1,000,000 | 0.27% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1175.02 (117.5% of capital) |
-| Avg Position Size | $97.92 |
+| Total Exposure | $1399.62 (140.0% of capital) |
+| Avg Position Size | $93.31 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.120) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.095) |
 
 ---
-## 🎯 Active Bets (12)
+## 🎯 Active Bets (15)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -63,6 +63,9 @@
 | Will Bitcoin dip to $80,000 in February? | NO | $198.54 | 0.98 | 0.05 | -93% 🔴 | 70% | $+11589.58 | 2026-03-01 | 28d | 🟢 |
 | Will the price of Ethereum be above $2,6... | YES | $79.25 | 0.07 | 0.45 | +38% 🟢 | 60% | $+437.59 | 2026-02-01 | 0d | 🔴 |
 | Tesla launches unsupervised full self dr... | NO | $125.37 | 1.00 | 0.40 | -60% 🔴 | 70% | $+50023.95 | 2026-06-30 | 148d | 🟢 |
+| Will Josh Hawley win the 2028 Republican... | YES | $27.80 | 0.01 | 0.15 | +14% 🟡 | 60% | $+528.27 | 2028-11-07 | 1009d | 🟢 |
+| Mubadala Abu Dhabi Open, Qualification: ... | YES | $110.67 | 0.51 | 0.75 | +24% 🟢 | 80% | $+53.69 | 2026-02-07 | 6d | 🟡 |
+| Will Bangladesh Jamaat-e-Islami win the ... | NO | $86.13 | 0.26 | 0.15 | -11% 🔴 | 70% | $+12.14 | 2026-02-12 | 10d | 🟢 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -73,7 +76,8 @@
 - 🔴 **High Exposure**: "Will Mike Vrabel win NFL Coach..." is 25.0% of capital
 - 🔴 **High Exposure**: "Will Bitcoin dip to $80,000 in..." is 19.9% of capital
 - 🔴 **High Exposure**: "Tesla launches unsupervised fu..." is 12.5% of capital
-- 🟡 **Expiring Soon**: 4 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Mubadala Abu Dhabi Open, Quali..." is 11.1% of capital
+- 🟡 **Expiring Soon**: 5 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -81,7 +85,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 12 |
+| Markets with Active Bets | 15 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 

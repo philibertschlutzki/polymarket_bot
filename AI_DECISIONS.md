@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-01 02:02:03 CET
+**Last Updated:** 2026-02-01 03:05:59 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -207,64 +207,74 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
+### Bet #13: Will Josh Hawley win the 2028 Republican presidential nomination?
+
+**Decision:** YES @ 0.01 (Stake: $27.80)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 0.8%)
+- **Confidence Score:** 60.0%
+- **Edge:** +14.2%
+- **Expected Value:** $+528.27
+- **End Date:** 2028-11-07 01:00 CET
+
+**AI Reasoning:**
+> Der aktuelle Marktpreis von 0,75 % scheint die tatsächliche Wahrscheinlichkeit, dass Josh Hawley die Nominierung gewinnt, nicht realistisch widerzuspiegeln. Während Hawley sicherlich Ambitionen hat und im konservativen Missouri eine Basis hat, gibt es mehrere Faktoren, die seine Chancen erheblich schmälern. Erstens wird er sich wahrscheinlich einer stark umkämpften Vorwahl stellen, in der JD Vance als ein wichtiger Konkurrent gilt. Andere Kandidaten wie Marco Rubio, Ron DeSantis und Donald Trump Jr. könnten ebenfalls eine bedeutende Rolle spielen. Zweitens haben Hawleys Handlungen im Zusammenhang mit den Ereignissen vom 6. Januar 2021 seine Popularität über seine Kernbasis hinaus geschadet. Drittens zeigen Umfragen, dass seine Zustimmungsrate zwar in Missouri solide ist, dies aber nicht unbedingt auf nationaler Ebene gilt. Angesichts dieser Gegenwinde und der Vielzahl anderer potenzieller Kandidaten erscheint eine Wahrscheinlichkeit von 15 % realistischer. Das Konfidenzniveau ist moderat, da die politische Landschaft bis 2028 sich noch erheblich verändern könnte.
+
+---
+
+### Bet #14: Mubadala Abu Dhabi Open, Qualification: Hailey Baptiste vs Teodora Kostovic
+
+**Decision:** YES @ 0.51 (Stake: $110.67)
+
+**AI Analysis:**
+- **Estimated Probability:** 75.0% (vs Market: 50.5%)
+- **Confidence Score:** 80.0%
+- **Edge:** +24.5%
+- **Expected Value:** $+53.69
+- **End Date:** 2026-02-07 08:00 CET
+
+**AI Reasoning:**
+> Hailey Baptiste has a significantly higher WTA ranking (70) compared to Teodora Kostovic (177), indicating a higher skill level and consistency. Baptiste also has more experience as a professional player. Although Kostovic is a promising young player, the ranking and experience advantage favors Baptiste.
+
+---
+
+### Bet #15: Will Bangladesh Jamaat-e-Islami win the most seats in the Bangladesh parliamentary election?
+
+**Decision:** NO @ 0.26 (Stake: $86.13)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 25.5%)
+- **Confidence Score:** 70.0%
+- **Edge:** -10.5%
+- **Expected Value:** $+12.14
+- **End Date:** 2026-02-12 01:00 CET
+
+**AI Reasoning:**
+> Mehrere Faktoren deuten darauf hin, dass die Wahrscheinlichkeit, dass Jamaat-e-Islami die meisten Sitze gewinnt, geringer ist als der aktuelle Marktpreis. Die Awami League, die in den letzten Jahren die Wahlen gewonnen hat, ist von den Wahlen ausgeschlossen, was die Wettbewerbslandschaft verändert. Die Wahl wird als ein 'bipolarer Wettbewerb' zwischen der Bangladesh Nationalist Party (BNP) und der 11-Parteien-Allianz unter der Führung von Jamaat-e-Islami und der National Citizen Party (NCP) beschrieben. Obwohl JI über eine starke Basisorganisation und disziplinierte Kader verfügt, mangelt es ihr an breiter Masse. Umfragen deuten darauf hin, dass die Unterstützung für JI bei etwa 30-34 % liegt. Es gibt auch Berichte über Auseinandersetzungen zwischen BNP- und Jamaat-e-Islami-Aktivisten, was auf Rivalitäten hindeutet. Politische Analysten weisen darauf hin, dass die religiöse Ideologie und das historische Erbe der Partei die Wahlkampagne behindern könnten. Die Partei versucht, sich als Alternative zu etablieren, aber es ist ungewiss, ob sie genügend Unterstützung gewinnen wird, um die Mehrheit der Sitze zu erringen. Die Tatsache, dass die Partei versucht, sich als eine korruptionsfreiere Partei zu positionieren, könnte ihr einen strategischen Vorteil verschaffen. Die geschätzte Wahrscheinlichkeit liegt unter dem aktuellen Marktpreis von Polymarket, da die genannten Faktoren darauf hindeuten, dass es unwahrscheinlich ist, dass Jamaat-e-Islami die Mehrheit der Sitze gewinnen wird.
+
+---
+
 ## ❌ Rejected Markets
 
-*Showing last 94 rejected analyses*
+*Showing last 100 rejected analyses*
 
-### Insufficient Edge (87)
-
-**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 03:02*
-Market: 0.00 | AI: 0.02 | Edge: +1.9% | Conf: 75%
-Reasoning: Elon Musk hat in der Vergangenheit deutlich mehr als 17.5-19.875 Tweets pro Tag abgesetzt. Obwohl seine Aktivität variieren kann, ist es sehr unwahrsc...
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 03:01*
-Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
-Reasoning: Der aktuelle Marktpreis von 1,05 % spiegelt die sehr geringe Wahrscheinlichkeit wider, dass Juan Branco die Wahl gewinnt. Seine Vergangenheit ist von ...
-
-**Will Josh Hawley win the 2028 Republican presidential nomina...**
-*Analyzed: 2026-02-01 03:01*
-Market: 0.01 | AI: 0.03 | Edge: +2.2% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis von 0,75% (oder 0.0075) deutet auf eine sehr geringe implizite Wahrscheinlichkeit hin, dass Josh Hawley die republikanische No...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 03:01*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 65%
-Reasoning: Brazil has a strong history in World Cups and a talented squad, but faces tough competition from other top teams. Their recent performances have been ...
-
-**Kings vs. Wizards...**
-*Analyzed: 2026-02-01 03:01*
-Market: 0.56 | AI: 0.53 | Edge: -2.5% | Conf: 75%
-Reasoning: Die Sacramento Kings sind mit -2,5 Punkten leicht favorisiert. Obwohl beide Teams ähnliche Bilanzen haben, haben die Kings das letzte Spiel gegen die ...
+### Negative Expected Value (7)
 
 **Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 02:45*
-Market: 0.00 | AI: 0.03 | Edge: +2.9% | Conf: 60%
-Reasoning: Basierend auf den aktuellen Daten zu Elon Musks Tweet-Frequenz liegt die Wahrscheinlichkeit, dass er in der gegebenen Woche 140-159 Tweets absetzt, be...
+*Analyzed: 2026-02-01 04:05*
+Market: 0.00 | AI: 0.45 | Edge: +45.0% | Conf: 70%
+Reasoning: Elon Musk's historical Twitter activity suggests he is capable of posting a high volume of tweets. While older data showed averages exceeding 60 tweet...
 
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 02:45*
-Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 75%
-Reasoning: Der aktuelle Marktpreis von 1.05% spiegelt eine sehr geringe Wahrscheinlichkeit wider. Juan Branco ist ein relativ unbekannter Kandidat mit kontrovers...
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 03:50*
+Market: 0.00 | AI: 0.25 | Edge: +24.9% | Conf: 60%
+Reasoning: Elon Musks Tweet-Frequenz ist sehr variabel. Obwohl er in der Vergangenheit höhere Durchschnittswerte hatte, ist die geforderte Spanne (140-159 Tweets...
 
-**Will Josh Hawley win the 2028 Republican presidential nomina...**
-*Analyzed: 2026-02-01 02:45*
-Market: 0.01 | AI: 0.05 | Edge: +4.2% | Conf: 60%
-Reasoning: Josh Hawley is a conservative senator with a populist appeal. However, he faces significant challenges in winning the Republican nomination in 2028. H...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 02:45*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
-Reasoning: Basierend auf den aktuellen Wettquoten und FIFA-Ranglisten hat Brasilien eine etwa 8%ige Chance, die FIFA Fussball-Weltmeisterschaft 2026 zu gewinnen....
-
-**Will Bangladesh Jamaat-e-Islami win the most seats in the Ba...**
-*Analyzed: 2026-02-01 02:45*
-Market: 0.26 | AI: 0.35 | Edge: +9.5% | Conf: 70%
-Reasoning: Obwohl der aktuelle Marktpreis bei 25,50 % liegt, deuten die jüngsten Meinungsumfragen darauf hin, dass Jamaat-e-Islami die Lücke zur BNP schliesst. D...
-
-
-### Negative Expected Value (4)
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 03:33*
+Market: 0.00 | AI: 0.35 | Edge: +34.9% | Conf: 60%
+Reasoning: Elon Musk is typically very active on Twitter, but predicting a specific range of tweets (140-159) within a 7-day period is difficult. His participati...
 
 **Will Elon Musk post 140-159 tweets from January 30 to Februa...**
 *Analyzed: 2026-02-01 02:13*
@@ -285,6 +295,59 @@ Reasoning: Obwohl FaZe im Allgemeinen höher eingestuft ist, hat 3DMAX sie kürz
 *Analyzed: 2026-01-31 23:33*
 Market: 1.00 | AI: 0.60 | Edge: -40.0% | Conf: 70%
 Reasoning: Despite the high market price, the facts suggest a slightly lower probability. 3DMAX's recent win is considered, but FaZe is still the higher-ranked t...
+
+
+### Insufficient Edge (90)
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 04:05*
+Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 80%
+Reasoning: Juan Branco has limited political experience and a history of controversies. He faces strong competition from established candidates like Jordan Barde...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 04:05*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
+Reasoning: Der aktuelle Marktpreis (9,50%) spiegelt eine implizite Wahrscheinlichkeit von etwa 9,5% wider, dass Brasilien die WM 2026 gewinnt. Die Wettanbieter s...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 03:50*
+Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 90%
+Reasoning: Juan Branco is a controversial figure with a history of political activism and legal work. However, he lacks broad political support, faces serious al...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 03:49*
+Market: 0.10 | AI: 0.14 | Edge: +4.5% | Conf: 75%
+Reasoning: Brasilien ist ein starkes Team mit einer reichen Fussballgeschichte und Weltklassespielern. Carlo Ancelotti als Trainer ist ein grosser Vorteil. Aller...
+
+**Will Angers win the 2025–26 French Ligue 1?...**
+*Analyzed: 2026-02-01 03:33*
+Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 75%
+Reasoning: Angesichts der aktuellen Marktpreise, der historischen Leistung von Angers, der Dominanz von PSG in der Ligue 1 und der sehr hohen Wettquoten ist die ...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 03:33*
+Market: 0.01 | AI: 0.03 | Edge: +1.9% | Conf: 60%
+Reasoning: Juan Branco hat seine Kandidatur angekündigt und verfolgt eine aktivistische politische Strategie. Obwohl er kein etablierter Politiker ist, hat er ei...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 03:33*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 70%
+Reasoning: Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften. Sie haben das Turnier fünfmal gewonnen und sind die einzige Mannschaft, die an...
+
+**Will Bangladesh Jamaat-e-Islami win the most seats in the Ba...**
+*Analyzed: 2026-02-01 03:33*
+Market: 0.26 | AI: 0.35 | Edge: +9.5% | Conf: 65%
+Reasoning: Die politische Lage in Bangladesch ist unübersichtlich, aber Jamaat-e-Islami scheint an Einfluss zu gewinnen, besonders da die Awami League nicht an d...
+
+**Kings vs. Wizards...**
+*Analyzed: 2026-02-01 03:32*
+Market: 0.56 | AI: 0.60 | Edge: +4.5% | Conf: 75%
+Reasoning: Obwohl der aktuelle Marktpreis bei 55,50 % liegt, deuten die Quoten und Computermodelle auf eine höhere Wahrscheinlichkeit für einen Sieg der Kings hi...
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 03:17*
+Market: 0.00 | AI: 0.04 | Edge: +4.0% | Conf: 60%
+Reasoning: Basierend auf historischen Daten zu Elon Musks Tweet-Frequenz und unter Berücksichtigung seiner Teilnahme am WEF und der geplanten SpaceX-Starts, ist ...
 
 
 ### Ai Analysis Failed (3)
