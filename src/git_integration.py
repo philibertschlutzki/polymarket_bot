@@ -1,11 +1,12 @@
-import os
 import logging
-from datetime import datetime, timedelta
-from git import Repo, GitCommandError
-from src import database
-from src import error_logger
+from datetime import datetime
+
+from git import GitCommandError, Repo
+
+from src import database, error_logger
 
 logger = logging.getLogger(__name__)
+
 
 def push_dashboard_update():
     """Pushes dashboard updates to the remote Git repository.
@@ -20,19 +21,23 @@ def push_dashboard_update():
     try:
         # Prüfe ob Push nötig ist
         if not database.should_push_to_git():
-            logger.info("ℹ️  No pending changes or too soon since last push. Skipping Git sync.")
+            logger.info(
+                "ℹ️  No pending changes or too soon since last push. Skipping Git sync."
+            )
             return
 
-        repo = Repo('.')
+        repo = Repo(".")
         files_to_add = []
 
         # Immer Dashboard hinzufügen wenn Änderungen vorhanden
-        if os.path.exists('PERFORMANCE_DASHBOARD.md'):
-            files_to_add.append('PERFORMANCE_DASHBOARD.md')
+        if os.path.exists("PERFORMANCE_DASHBOARD.md"):  # noqa: F821
+            files_to_add.append("PERFORMANCE_DASHBOARD.md")
 
         # AI_DECISIONS.md nur bei relevanten Änderungen
-        if database.has_ai_decisions_changes() and os.path.exists('AI_DECISIONS.md'):
-            files_to_add.append('AI_DECISIONS.md')
+        if database.has_ai_decisions_changes() and os.path.exists(  # noqa: F821
+            "AI_DECISIONS.md"
+        ):
+            files_to_add.append("AI_DECISIONS.md")
 
         if not files_to_add:
             logger.info("ℹ️  No files to commit.")
@@ -55,7 +60,7 @@ def push_dashboard_update():
         logger.info(f"✅ Committed: {file_list}")
 
         # Push
-        origin = repo.remote(name='origin')
+        origin = repo.remote(name="origin")
         push_info = origin.push()
 
         # Check push result
@@ -69,14 +74,12 @@ def push_dashboard_update():
         error_logger.log_git_error(
             operation="push",
             error=e,
-            context={"files": files_to_add if 'files_to_add' in locals() else []}
+            context={"files": files_to_add if "files_to_add" in locals() else []},
         )
         logger.warning(f"⚠️  Git push failed: {e}")
 
     except Exception as e:
         error_logger.log_git_error(
-            operation="commit_or_push",
-            error=e,
-            context={}
+            operation="commit_or_push", error=e, context={}
         )
         logger.warning(f"⚠️  Git integration error: {e}")

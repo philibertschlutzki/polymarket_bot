@@ -9,35 +9,41 @@ Ein Bot zur Identifizierung von Value Bets auf Polymarket durch Kombination von:
 - Automatisches Portfolio-Tracking und Reporting
 """
 
-import os
-import sys
-import pathlib
 import json
 import logging
 import logging.handlers
-import time
 import math
+import os
+import pathlib
 import re
-from typing import Optional, List, Dict, Any, Tuple
-from datetime import datetime, timezone, timedelta
+import sys
+import time
+from datetime import datetime, timedelta, timezone
+from typing import Dict, List, Optional, Tuple
 
 # Add project root to sys.path to allow imports from src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from dotenv import load_dotenv
-from pydantic import BaseModel, Field
-from google import genai
-from google.genai import types
-import requests
-from dateutil import parser as date_parser
-from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+import requests  # noqa: E402
+from dateutil import parser as date_parser  # noqa: E402
+from dotenv import load_dotenv  # noqa: E402
+from google import genai  # noqa: E402
+from google.genai import types  # noqa: E402
+from pydantic import BaseModel, Field  # noqa: E402
+from tenacity import (  # noqa: E402
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_exponential,
+)
 
 # Internal modules
-from src import database
-from src import dashboard
-from src import git_integration
-from src import ai_decisions_generator
-from src import error_logger
+from src import (  # noqa: E402
+    ai_decisions_generator,
+    dashboard,
+    database,
+    git_integration,
+)
 
 # ============================================================================
 # KONFIGURATION
@@ -46,7 +52,7 @@ from src import error_logger
 # Configure logging with robust error handling
 
 # Ensure logs directory exists with correct permissions
-log_dir = pathlib.Path('logs')
+log_dir = pathlib.Path("logs")
 log_dir.mkdir(exist_ok=True)
 
 # Try to fix permissions if we can
@@ -55,20 +61,20 @@ try:
 except Exception:
     pass
 
-log_file = log_dir / 'bot.log'
+log_file = log_dir / "bot.log"
 
 # Remove existing log file if it has permission issues
 if log_file.exists():
     try:
-        with open(log_file, 'a') as test_file:
+        with open(log_file, "a") as test_file:
             pass
     except PermissionError:
         print(f"⚠️ Warning: Removing log file with permission issues: {log_file}")
         try:
             log_file.unlink()
-        except Exception as e:
+        except Exception:
             print(f"❌ Cannot remove log file. Please run: sudo rm {log_file}")
-            print(f"   Then restart the service.")
+            print("   Then restart the service.")
             sys.exit(1)
 
 # Configure logging with both console and file output
@@ -78,16 +84,16 @@ log_handlers = [
         str(log_file),
         maxBytes=10 * 1024 * 1024,  # 10 MB per file
         backupCount=5,
-        encoding='utf-8',
-        delay=True  # Lazy file creation to avoid permission issues
-    )
+        encoding="utf-8",
+        delay=True,  # Lazy file creation to avoid permission issues
+    ),
 ]
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=log_handlers
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    handlers=log_handlers,
 )
 logger = logging.getLogger(__name__)
 
@@ -121,8 +127,10 @@ API_RATE_LIMIT = int(os.getenv("API_RATE_LIMIT", "15"))
 # DATENMODELLE
 # ============================================================================
 
+
 class MarketData(BaseModel):
     """Datenmodell für einen Polymarket-Markt."""
+
     question: str = Field(..., description="Die Marktfrage")
     description: str = Field(default="", description="Detaillierte Marktbeschreibung")
     market_slug: str = Field(..., description="Eindeutige ID des Marktes (conditionId)")
@@ -131,14 +139,18 @@ class MarketData(BaseModel):
     volume: float = Field(..., description="Handelsvolumen in USD")
     end_date: Optional[str] = Field(None, description="Enddatum des Marktes")
 
+
 class AIAnalysis(BaseModel):
     """Datenmodell für die KI-Analyse."""
+
     estimated_probability: float = Field(..., ge=0.0, le=1.0)
     confidence_score: float = Field(..., ge=0.0, le=1.0)
     reasoning: str = Field(..., description="Begründung der KI")
 
+
 class TradingRecommendation(BaseModel):
     """Datenmodell für eine Handelsempfehlung."""
+
     action: str = Field(..., description="Empfehlung: YES, NO oder PASS")
     stake_usdc: float = Field(..., description="Empfohlener Einsatz in USDC")
     kelly_fraction: float = Field(..., description="Kelly-Fraction des Kapitals")
@@ -150,12 +162,15 @@ class TradingRecommendation(BaseModel):
     ai_reasoning: Optional[str] = None
     edge: Optional[float] = None
 
+
 # ============================================================================
 # UTILS
 # ============================================================================
 
+
 class RateLimiter:
     """Manages API rate limits using a sliding window."""
+
     def __init__(self, max_requests_per_minute=15):
         self.max_requests = max_requests_per_minute
         self.requests = []
@@ -174,10 +189,13 @@ class RateLimiter:
             sleep_time = 60 - elapsed
 
             if sleep_time > 0:
-                logger.info(f"⏳ Rate limit reached ({len(self.requests)}/{self.max_requests}). Sleeping for {sleep_time:.2f}s...")
-                time.sleep(sleep_time + 0.5) # Add small buffer
+                logger.info(
+                    f"⏳ Rate limit reached ({len(self.requests)}/{self.max_requests}). Sleeping for {sleep_time:.2f}s..."
+                )
+                time.sleep(sleep_time + 0.5)  # Add small buffer
 
         self.requests.append(datetime.now())
+
 
 # Global Rate Limiter instance
 rate_limiter = RateLimiter(max_requests_per_minute=API_RATE_LIMIT)
@@ -186,20 +204,21 @@ rate_limiter = RateLimiter(max_requests_per_minute=API_RATE_LIMIT)
 # RESOLUTION LOGIC
 # ============================================================================
 
-def check_and_resolve_bets():
+
+def check_and_resolve_bets():  # noqa: C901
     """Prüft abgelaufene Wetten auf Resolution und aktualisiert Resultate."""
     try:
         active_bets = database.get_active_bets()
         if not active_bets:
             # Check for archived but unresolved bets even if no active bets
             pass
-        
-        logger.info(f"🔍 Checking resolution status...")
+
+        logger.info("🔍 Checking resolution status...")
 
         bets_to_check = []
         for bet in active_bets:
             # Check date logic
-            end_date_val = bet.get('end_date')
+            end_date_val = bet.get("end_date")
             is_expired = False
 
             # Helper to parse date
@@ -209,7 +228,7 @@ def check_and_resolve_bets():
             elif isinstance(end_date_val, str):
                 try:
                     end_date_obj = date_parser.parse(end_date_val)
-                except:
+                except Exception:
                     end_date_obj = datetime.now(timezone.utc)
 
             # Ensure timezone awareness for comparison
@@ -240,21 +259,24 @@ def check_and_resolve_bets():
 
         # 2. Process ARCHIVED bets
         if archived_unresolved:
-            logger.info(f"🔍 Checking {len(archived_unresolved)} archived unresolved bets...")
+            logger.info(
+                f"🔍 Checking {len(archived_unresolved)} archived unresolved bets..."
+            )
             process_resolution_for_bets(archived_unresolved, is_archived=True)
 
-    except Exception as e:
-        logger.error(f"❌ Error during resolution check: {e}", exc_info=True)
+    except Exception as exc:
+        logger.error(f"❌ Error during resolution check: {exc}", exc_info=True)
 
-def process_resolution_for_bets(bets: List[Dict], is_archived: bool):
+
+def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C901
     """Helper to process resolution for a list of bets."""
-    unique_slugs = list(set(b['market_slug'] for b in bets))
+    unique_slugs = list(set(b["market_slug"] for b in bets))
     resolved_markets = {}
 
     # Batch Query Markets
     CHUNK_SIZE = 50
     for i in range(0, len(unique_slugs), CHUNK_SIZE):
-        slug_batch = unique_slugs[i:i + CHUNK_SIZE]
+        slug_batch = unique_slugs[i : i + CHUNK_SIZE]  # noqa: E203
         query_parts = []
         slug_map = {}
 
@@ -262,7 +284,9 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):
             alias = f"m_{idx}"
             slug_map[alias] = slug
             safe_id_str = json.dumps(slug)
-            query_parts.append(f'{alias}: market(id: {safe_id_str}) {{ closed resolvedBy outcomes {{ price }} }}')
+            query_parts.append(
+                f"{alias}: market(id: {safe_id_str}) {{ closed resolvedBy outcomes {{ price }} }}"
+            )
 
         if not query_parts:
             continue
@@ -271,40 +295,42 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):
 
         try:
             data = graphql_request_with_retry(query)
-            if not data or not data.get('data'):
+            if not data or not data.get("data"):
                 continue
 
-            for alias, market_data in data['data'].items():
+            for alias, market_data in data["data"].items():
                 if not market_data:
                     continue
                 original_slug = slug_map.get(alias)
                 if original_slug:
                     resolved_markets[original_slug] = market_data
 
-        except Exception as e:
-            logger.error(f"❌ Error during batch resolution check: {e}")
+        except Exception as exc:
+            logger.error(f"❌ Error during batch resolution check: {exc}")
 
     # Process Bets
     for bet in bets:
-        market_data = resolved_markets.get(bet['market_slug'])
-        resolved_by = market_data.get('resolvedBy') if market_data else None
+        market_data = resolved_markets.get(bet["market_slug"])
+        resolved_by = market_data.get("resolvedBy") if market_data else None
 
         if resolved_by:
             # Resolved
-            outcomes = market_data.get('outcomes', [])
-            prices = [float(o.get('price', 0)) for o in outcomes] if outcomes else []
+            outcomes = market_data.get("outcomes", [])
+            prices = [float(o.get("price", 0)) for o in outcomes] if outcomes else []
 
             actual_outcome = None
             if prices and len(prices) >= 2:
                 p_yes = float(prices[0])
-                if p_yes > 0.9: actual_outcome = "YES"
-                elif p_yes < 0.1: actual_outcome = "NO"
+                if p_yes > 0.9:
+                    actual_outcome = "YES"
+                elif p_yes < 0.1:
+                    actual_outcome = "NO"
 
             if actual_outcome:
-                stake = float(bet['stake_usdc'])
-                entry = float(bet['entry_price'])
+                stake = float(bet["stake_usdc"])
+                entry = float(bet["entry_price"])
 
-                if bet['action'] == actual_outcome:
+                if bet["action"] == actual_outcome:
                     if entry > 0:
                         profit = stake * ((1.0 / entry) - 1.0)
                     else:
@@ -313,11 +339,15 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):
                     profit = -stake
 
                 if is_archived:
-                    database.update_archived_bet_outcome(bet['archive_id'], actual_outcome, profit)
+                    database.update_archived_bet_outcome(
+                        bet["archive_id"], actual_outcome, profit
+                    )
                 else:
-                    database.close_bet(bet['bet_id'], actual_outcome, profit)
+                    database.close_bet(bet["bet_id"], actual_outcome, profit)
 
-                logger.info(f"✅ Bet resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})")
+                logger.info(
+                    f"✅ Bet resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})"
+                )
             else:
                 logger.warning(f"⚠️ Market resolved but outcome unclear: {prices}")
                 # If active and resolved but unclear, maybe we should archive as unresolved?
@@ -328,20 +358,26 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):
             if not is_archived:
                 # Active bet expired but not resolved -> Archive as PENDING
                 # Check if strictly expired
-                end_date = bet.get('end_date')
+                end_date = bet.get("end_date")
                 if end_date:
                     if isinstance(end_date, str):
-                        try: end_date = date_parser.parse(end_date).replace(tzinfo=timezone.utc)
-                        except: end_date = datetime.now(timezone.utc)
+                        try:
+                            end_date = date_parser.parse(end_date).replace(
+                                tzinfo=timezone.utc
+                            )
+                        except Exception:
+                            end_date = datetime.now(timezone.utc)
                     elif end_date.tzinfo is None:
                         end_date = end_date.replace(tzinfo=timezone.utc)
 
                     if end_date < datetime.now(timezone.utc):
-                        database.archive_bet_without_resolution(bet['bet_id'])
+                        database.archive_bet_without_resolution(bet["bet_id"])
+
 
 # ============================================================================
 # API HELPERS
 # ============================================================================
+
 
 def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dict]:
     """
@@ -352,9 +388,9 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
         try:
             response = requests.post(
                 GRAPHQL_URL,
-                json={'query': query},
+                json={"query": query},
                 headers={"Content-Type": "application/json"},
-                timeout=20
+                timeout=20,
             )
 
             if response.status_code == 200:
@@ -366,13 +402,14 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
                 logger.warning(f"GraphQL HTTP {response.status_code}")
                 return None
 
-        except Exception as e:
-            logger.error(f"GraphQL request failed: {e}")
+        except Exception as exc:
+            logger.error(f"GraphQL request failed: {exc}")
             if attempt == max_retries - 1:
                 return None
     return None
 
-def fetch_active_markets(limit: int = 20) -> List[MarketData]:
+
+def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
     """Fetches active markets from the Polymarket Gamma API.
 
     Retrieves open markets sorted by volume to identify potential trading opportunities.
@@ -386,38 +423,42 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         Returns an empty list if the API call fails.
     """
     try:
-        logger.info(f"📡 Verbinde mit Polymarket Gamma API...")
+        logger.info("📡 Verbinde mit Polymarket Gamma API...")
         params = {
             "closed": "false",
             "limit": limit,
             "offset": 0,
             "order": "volume",
-            "ascending": "false"
+            "ascending": "false",
         }
-        
+
         response = requests.get(POLYMARKET_GAMMA_API_URL, params=params, timeout=10)
-        
+
         if response.status_code != 200:
             logger.warning(f"⚠️  Gamma API HTTP Fehler: {response.status_code}")
             return []
-        
+
         data = response.json()
-        market_data_list = data if isinstance(data, list) else data.get("data", data.get("markets", []))
-        
+        market_data_list = (
+            data
+            if isinstance(data, list)
+            else data.get("data", data.get("markets", []))
+        )
+
         markets = []
-        
+
         for market in market_data_list:
-            volume_raw = market.get('volume')
+            volume_raw = market.get("volume")
             try:
                 volume = float(volume_raw) if volume_raw is not None else 0.0
-            except:
+            except Exception:
                 continue
-            
+
             if volume < MIN_VOLUME:
                 continue
-            
+
             # Check end date
-            end_date_str = market.get('close_time') or market.get('endDate')
+            end_date_str = market.get("close_time") or market.get("endDate")
             if end_date_str:
                 try:
                     end_date = date_parser.parse(end_date_str)
@@ -425,12 +466,14 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                         end_date = end_date.replace(tzinfo=timezone.utc)
                     if end_date < datetime.now(timezone.utc):
                         continue
-                except:
+                except Exception:
                     pass
-            
+
             # Price parsing
             try:
-                outcome_prices_raw = market.get('outcome_prices') or market.get('outcomePrices')
+                outcome_prices_raw = market.get("outcome_prices") or market.get(
+                    "outcomePrices"
+                )
                 if outcome_prices_raw:
                     if isinstance(outcome_prices_raw, str):
                         outcome_prices = json.loads(outcome_prices_raw)
@@ -438,38 +481,43 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
                         outcome_prices = outcome_prices_raw
                     else:
                         outcome_prices = [0.5, 0.5]
-                    
-                    yes_price = float(outcome_prices[0]) if len(outcome_prices) > 0 else 0.5
+
+                    yes_price = (
+                        float(outcome_prices[0]) if len(outcome_prices) > 0 else 0.5
+                    )
                 else:
                     yes_price = 0.5
-            except:
+            except Exception:
                 continue
-            
+
             # Filter Logic
             if not (MIN_PRICE <= yes_price <= MAX_PRICE):
                 if volume < HIGH_VOLUME_THRESHOLD:
                     continue
-            
-            # Extract IDs
-            market_slug = market.get('id') or market.get('conditionId') or ''
-            # NEW: Extract URL slug (prefer slug, then id)
-            url_slug = market.get('slug') or market.get('id') or ''
 
-            markets.append(MarketData(
-                question=market.get('question', ''),
-                description=market.get('description', ''),
-                market_slug=market_slug,
-                url_slug=url_slug,
-                yes_price=yes_price,
-                volume=volume,
-                end_date=end_date_str
-            ))
-            
+            # Extract IDs
+            market_slug = market.get("id") or market.get("conditionId") or ""
+            # NEW: Extract URL slug (prefer slug, then id)
+            url_slug = market.get("slug") or market.get("id") or ""
+
+            markets.append(
+                MarketData(
+                    question=market.get("question", ""),
+                    description=market.get("description", ""),
+                    market_slug=market_slug,
+                    url_slug=url_slug,
+                    yes_price=yes_price,
+                    volume=volume,
+                    end_date=end_date_str,
+                )
+            )
+
         return markets
-        
-    except Exception as e:
-        logger.error(f"⚠️  Fehler beim Abrufen der Märkte: {e}")
+
+    except Exception as exc:
+        logger.error(f"⚠️  Fehler beim Abrufen der Märkte: {exc}")
         return []
+
 
 def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
     """Retrieves missing end dates for markets using GraphQL.
@@ -488,7 +536,9 @@ def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
     if not markets_missing_date:
         return markets
 
-    logger.info(f"📅 Fetching missing end dates for {len(markets_missing_date)} markets...")
+    logger.info(
+        f"📅 Fetching missing end dates for {len(markets_missing_date)} markets..."
+    )
 
     query_parts = []
     slug_map = {}
@@ -497,7 +547,7 @@ def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
         alias = f"m_{idx}"
         slug_map[alias] = market.market_slug
         safe_id = json.dumps(market.market_slug)
-        query_parts.append(f'{alias}: market(id: {safe_id}) {{ end_date_iso }}')
+        query_parts.append(f"{alias}: market(id: {safe_id}) {{ end_date_iso }}")
 
     if not query_parts:
         return markets
@@ -507,19 +557,20 @@ def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
     try:
         response_json = graphql_request_with_retry(query)
         if response_json:
-            data = response_json.get('data', {})
+            data = response_json.get("data", {})
             for alias, market_data in data.items():
-                if market_data and 'end_date_iso' in market_data:
+                if market_data and "end_date_iso" in market_data:
                     original_slug = slug_map.get(alias)
                     if original_slug:
                         for market in markets:
                             if market.market_slug == original_slug:
-                                market.end_date = market_data['end_date_iso']
+                                market.end_date = market_data["end_date_iso"]
                                 break
-    except Exception as e:
-        logger.warning(f"⚠️  Fehler beim Nachladen von End Dates: {e}")
+    except Exception as exc:
+        logger.warning(f"⚠️  Fehler beim Nachladen von End Dates: {exc}")
 
     return markets
+
 
 def calculate_quick_edge(market: MarketData) -> float:
     """Schnelle Edge-Schätzung."""
@@ -527,15 +578,20 @@ def calculate_quick_edge(market: MarketData) -> float:
     volatility_score = 1.0 - (2 * price_deviation)
     volume_score = min(market.volume / 100000.0, 1.0)
 
-    if 0.2 <= market.yes_price <= 0.8: extreme_penalty = 1.0
-    elif 0.1 <= market.yes_price <= 0.9: extreme_penalty = 0.7
-    else: extreme_penalty = 0.3
+    if 0.2 <= market.yes_price <= 0.8:
+        extreme_penalty = 1.0
+    elif 0.1 <= market.yes_price <= 0.9:
+        extreme_penalty = 0.7
+    else:
+        extreme_penalty = 0.3
 
-    return (volatility_score * 0.4 + volume_score * 0.4 + extreme_penalty * 0.2)
+    return volatility_score * 0.4 + volume_score * 0.4 + extreme_penalty * 0.2
+
 
 def pre_filter_markets(markets: List[MarketData], top_n: int = 10) -> List[MarketData]:
     """Vorselektion der Märkte."""
-    if not markets: return []
+    if not markets:
+        return []
     market_scores = []
     for market in markets:
         score = calculate_quick_edge(market)
@@ -543,27 +599,45 @@ def pre_filter_markets(markets: List[MarketData], top_n: int = 10) -> List[Marke
     market_scores.sort(key=lambda x: x[1], reverse=True)
     return [m for m, _ in market_scores[:top_n]]
 
+
 # ============================================================================
 # AI & ANALYSIS
 # ============================================================================
 
-@retry(retry=retry_if_exception_type(Exception), stop=stop_after_attempt(3), wait=wait_exponential(multiplier=2, min=8, max=30))
+
+@retry(
+    retry=retry_if_exception_type(Exception),
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=2, min=8, max=30),
+)
 def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, dict]:
     start_time = time.time()
     response = client.models.generate_content(
-        model='gemini-2.0-flash',
+        model="gemini-2.0-flash",
         contents=prompt,
         config=types.GenerateContentConfig(
             tools=[types.Tool(google_search=types.GoogleSearch())]
-        )
+        ),
     )
     response_time_ms = int((time.time() - start_time) * 1000)
 
     usage_meta = {
-        'prompt_token_count': response.usage_metadata.prompt_token_count if hasattr(response, 'usage_metadata') and response.usage_metadata else 0,
-        'candidates_token_count': response.usage_metadata.candidates_token_count if hasattr(response, 'usage_metadata') and response.usage_metadata else 0,
-        'total_token_count': response.usage_metadata.total_token_count if hasattr(response, 'usage_metadata') and response.usage_metadata else 0,
-        'response_time_ms': response_time_ms
+        "prompt_token_count": (
+            response.usage_metadata.prompt_token_count
+            if hasattr(response, "usage_metadata") and response.usage_metadata
+            else 0
+        ),
+        "candidates_token_count": (
+            response.usage_metadata.candidates_token_count
+            if hasattr(response, "usage_metadata") and response.usage_metadata
+            else 0
+        ),
+        "total_token_count": (
+            response.usage_metadata.total_token_count
+            if hasattr(response, "usage_metadata") and response.usage_metadata
+            else 0
+        ),
+        "response_time_ms": response_time_ms,
     }
 
     text_response = response.text
@@ -572,13 +646,14 @@ def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, 
     elif "```" in text_response:
         text_response = text_response.split("```")[1].split("```")[0]
 
-    text_response = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', text_response)
+    text_response = re.sub(r"[\x00-\x1f\x7f-\x9f]", "", text_response)
     try:
         parsed_data = json.loads(text_response.strip())
-    except:
+    except Exception:
         parsed_data = json.loads(text_response.strip(), strict=False)
 
     return parsed_data, usage_meta
+
 
 def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
     """Analyzes a market using Google Gemini AI to estimate probability.
@@ -608,16 +683,19 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         database.log_api_usage(
             api_name="gemini",
             endpoint="generate_content",
-            tokens_prompt=usage_meta['prompt_token_count'],
-            tokens_response=usage_meta['candidates_token_count'],
-            response_time_ms=usage_meta['response_time_ms']
+            tokens_prompt=usage_meta["prompt_token_count"],
+            tokens_response=usage_meta["candidates_token_count"],
+            response_time_ms=usage_meta["response_time_ms"],
         )
         return AIAnalysis(**result)
-    except Exception as e:
-        logger.error(f"❌ Fehler bei KI-Analyse: {e}")
+    except Exception as exc:
+        logger.error(f"❌ Fehler bei KI-Analyse: {exc}")
         return None
 
-def calculate_kelly_stake(ai_prob: float, price: float, conf: float, capital: float) -> TradingRecommendation:
+
+def calculate_kelly_stake(
+    ai_prob: float, price: float, conf: float, capital: float
+) -> TradingRecommendation:
     """Calculates the optimal stake size using the Kelly Criterion.
 
     Determines whether to bet YES, NO, or PASS based on the calculated edge and
@@ -634,67 +712,95 @@ def calculate_kelly_stake(ai_prob: float, price: float, conf: float, capital: fl
         A TradingRecommendation object containing the action, stake size, and expected value.
     """
     if price <= 0.001 or price >= 0.999:
-        return TradingRecommendation(action="PASS", stake_usdc=0.0, kelly_fraction=0.0, expected_value=0.0, market_question="")
+        return TradingRecommendation(
+            action="PASS",
+            stake_usdc=0.0,
+            kelly_fraction=0.0,
+            expected_value=0.0,
+            market_question="",
+        )
 
     edge = ai_prob - price
     if abs(edge) < 0.10:
-        return TradingRecommendation(action="PASS", stake_usdc=0.0, kelly_fraction=0.0, expected_value=0.0, market_question="")
+        return TradingRecommendation(
+            action="PASS",
+            stake_usdc=0.0,
+            kelly_fraction=0.0,
+            expected_value=0.0,
+            market_question="",
+        )
 
-    if edge > 0: # Long
+    if edge > 0:  # Long
         net_odds = (1.0 / price) - 1.0
         kelly_f = (ai_prob * (net_odds + 1.0) - 1.0) / net_odds
         action = "YES"
-    else: # Short
+    else:  # Short
         no_price = 1.0 - price
         ai_no_prob = 1.0 - ai_prob
         net_odds = (1.0 / no_price) - 1.0
         kelly_f = (ai_no_prob * (net_odds + 1.0) - 1.0) / net_odds
         action = "NO"
 
-    capped_kelly = min(max(kelly_f * KELLY_FRACTION * math.sqrt(conf), 0.0), MAX_CAPITAL_FRACTION)
+    capped_kelly = min(
+        max(kelly_f * KELLY_FRACTION * math.sqrt(conf), 0.0), MAX_CAPITAL_FRACTION
+    )
     stake = capped_kelly * capital
-    
+
     if action == "YES":
-        ev = ai_prob * (stake * ((1.0/price)-1.0)) - (1-ai_prob)*stake
+        ev = ai_prob * (stake * ((1.0 / price) - 1.0)) - (1 - ai_prob) * stake
     else:
-        ev = (1-ai_prob) * (stake * ((1.0/(1-price))-1.0)) - ai_prob*stake
+        ev = (1 - ai_prob) * (stake * ((1.0 / (1 - price)) - 1.0)) - ai_prob * stake
 
     if ev <= 0:
-        return TradingRecommendation(action="PASS", stake_usdc=0.0, kelly_fraction=0.0, expected_value=0.0, market_question="")
+        return TradingRecommendation(
+            action="PASS",
+            stake_usdc=0.0,
+            kelly_fraction=0.0,
+            expected_value=0.0,
+            market_question="",
+        )
 
     return TradingRecommendation(
-        action=action, stake_usdc=round(stake, 2), kelly_fraction=round(capped_kelly, 4),
-        expected_value=round(ev, 2), market_question=""
+        action=action,
+        stake_usdc=round(stake, 2),
+        kelly_fraction=round(capped_kelly, 4),
+        expected_value=round(ev, 2),
+        market_question="",
     )
 
-def analyze_and_recommend(market: MarketData, capital: float) -> Tuple[Optional[TradingRecommendation], Optional[Dict]]:
+
+def analyze_and_recommend(
+    market: MarketData, capital: float
+) -> Tuple[Optional[TradingRecommendation], Optional[Dict]]:
     """
     Analysiert Markt und gibt Empfehlung ODER Rejection-Daten zurück.
     Returns: (Recommendation, RejectionDict)
     """
-    logger.info(f"📊 Analysiere: {market.question} (Vol: ${market.volume:,.0f}, Price: {market.yes_price:.2f})")
-    
+    logger.info(
+        f"📊 Analysiere: {market.question} (Vol: ${market.volume:,.0f}, Price: {market.yes_price:.2f})"
+    )
+
     ai_analysis = analyze_market_with_ai(market)
     if not ai_analysis:
         return None, {
-            'market_slug': market.market_slug,
-            'url_slug': market.url_slug,
-            'question': market.question,
-            'market_price': market.yes_price,
-            'volume': market.volume,
-            'ai_probability': 0.0,
-            'confidence_score': 0.0,
-            'edge': 0.0,
-            'rejection_reason': 'AI_ANALYSIS_FAILED',
-            'ai_reasoning': 'Gemini API error or timeout',
-            'end_date': market.end_date
+            "market_slug": market.market_slug,
+            "url_slug": market.url_slug,
+            "question": market.question,
+            "market_price": market.yes_price,
+            "volume": market.volume,
+            "ai_probability": 0.0,
+            "confidence_score": 0.0,
+            "edge": 0.0,
+            "rejection_reason": "AI_ANALYSIS_FAILED",
+            "ai_reasoning": "Gemini API error or timeout",
+            "end_date": market.end_date,
         }
 
     rec = calculate_kelly_stake(
         ai_analysis.estimated_probability,
         market.yes_price,
         ai_analysis.confidence_score,
-        capital
+        capital,
     )
 
     rec.market_question = market.question
@@ -705,27 +811,33 @@ def analyze_and_recommend(market: MarketData, capital: float) -> Tuple[Optional[
     rec.edge = edge
 
     if rec.action == "PASS":
-        if abs(edge) < 0.10: reason = "INSUFFICIENT_EDGE"
-        elif rec.expected_value <= 0: reason = "NEGATIVE_EXPECTED_VALUE"
-        elif market.yes_price <= 0.001 or market.yes_price >= 0.999: reason = "EXTREME_PRICE"
-        else: reason = "KELLY_TOO_SMALL"
+        if abs(edge) < 0.10:
+            reason = "INSUFFICIENT_EDGE"
+        elif rec.expected_value <= 0:
+            reason = "NEGATIVE_EXPECTED_VALUE"
+        elif market.yes_price <= 0.001 or market.yes_price >= 0.999:
+            reason = "EXTREME_PRICE"
+        else:
+            reason = "KELLY_TOO_SMALL"
 
         logger.info(f"⏭️  PASS: {market.question[:40]}... (Reason: {reason})")
         return None, {
-            'market_slug': market.market_slug,
-            'url_slug': market.url_slug,
-            'question': market.question,
-            'market_price': market.yes_price,
-            'volume': market.volume,
-            'ai_probability': ai_analysis.estimated_probability,
-            'confidence_score': ai_analysis.confidence_score,
-            'edge': edge,
-            'rejection_reason': reason,
-            'ai_reasoning': ai_analysis.reasoning,
-            'end_date': market.end_date
+            "market_slug": market.market_slug,
+            "url_slug": market.url_slug,
+            "question": market.question,
+            "market_price": market.yes_price,
+            "volume": market.volume,
+            "ai_probability": ai_analysis.estimated_probability,
+            "confidence_score": ai_analysis.confidence_score,
+            "edge": edge,
+            "rejection_reason": reason,
+            "ai_reasoning": ai_analysis.reasoning,
+            "end_date": market.end_date,
         }
     else:
-        logger.info(f"🎲 RECOMMENDATION: {rec.action} | Stake: ${rec.stake_usdc} | Edge: {edge:+.2%} | EV: ${rec.expected_value}")
+        logger.info(
+            f"🎲 RECOMMENDATION: {rec.action} | Stake: ${rec.stake_usdc} | Edge: {edge:+.2%} | EV: ${rec.expected_value}"
+        )
         return rec, None
 
 
@@ -733,27 +845,30 @@ def analyze_and_recommend(market: MarketData, capital: float) -> Tuple[Optional[
 # MAIN LOOPS
 # ============================================================================
 
+
 def single_run():
     """Einzelner 15-Minuten-Cycle"""
     logger.info("🎬 Start Single Run...")
     run_start_time = datetime.now(timezone.utc)
     capital = database.get_current_capital()
     logger.info(f"💰 Verfügbares Kapital: ${capital:.2f}")
-    
+
     check_and_resolve_bets()
-    
+
     raw_markets = fetch_active_markets(limit=FETCH_MARKET_LIMIT)
     raw_markets = fetch_missing_end_dates(raw_markets)
     top_markets = pre_filter_markets(raw_markets, top_n=TOP_MARKETS_TO_ANALYZE)
 
     active_bets = database.get_active_bets()
-    active_slugs = {b['market_slug'] for b in active_bets}
+    active_slugs = {b["market_slug"] for b in active_bets}
 
     rejections_to_insert = []
 
     for i, market in enumerate(top_markets):
         if market.market_slug in active_slugs:
-            logger.info(f"⏭️  Bereits aktive Wette für: {market.market_slug}. Skipping.")
+            logger.info(
+                f"⏭️  Bereits aktive Wette für: {market.market_slug}. Skipping."
+            )
             continue
 
         rate_limiter.wait_if_needed()
@@ -764,22 +879,24 @@ def single_run():
             rejections_to_insert.append(rejection)
 
         if rec and rec.action != "PASS":
-            database.insert_active_bet({
-                'market_slug': market.market_slug,
-                'url_slug': market.url_slug,
-                'question': market.question,
-                'action': rec.action,
-                'stake_usdc': rec.stake_usdc,
-                'entry_price': market.yes_price,
-                'ai_probability': rec.ai_probability,
-                'confidence_score': rec.confidence_score,
-                'expected_value': rec.expected_value,
-                'edge': rec.edge,
-                'ai_reasoning': rec.ai_reasoning,
-                'end_date': market.end_date
-            })
+            database.insert_active_bet(
+                {
+                    "market_slug": market.market_slug,
+                    "url_slug": market.url_slug,
+                    "question": market.question,
+                    "action": rec.action,
+                    "stake_usdc": rec.stake_usdc,
+                    "entry_price": market.yes_price,
+                    "ai_probability": rec.ai_probability,
+                    "confidence_score": rec.confidence_score,
+                    "expected_value": rec.expected_value,
+                    "edge": rec.edge,
+                    "ai_reasoning": rec.ai_reasoning,
+                    "end_date": market.end_date,
+                }
+            )
             active_slugs.add(market.market_slug)
-    
+
     # Batch Insert Rejections
     if rejections_to_insert:
         database.insert_rejected_markets_batch(rejections_to_insert)
@@ -790,6 +907,7 @@ def single_run():
     git_integration.push_dashboard_update()
     database.set_last_run_timestamp(run_start_time)
     logger.info("✅ Run completed. Sleeping 15 minutes...")
+
 
 def main_loop():
     if not GEMINI_API_KEY or GEMINI_API_KEY == "your_gemini_api_key_here":
@@ -806,9 +924,10 @@ def main_loop():
         except KeyboardInterrupt:
             logger.info("🛑 Shutdown requested")
             break
-        except Exception as e:
-            logger.error(f"❌ Run failed: {e}", exc_info=True)
+        except Exception as exc:
+            logger.error(f"❌ Run failed: {exc}", exc_info=True)
             time.sleep(60)
+
 
 if __name__ == "__main__":
     main_loop()
