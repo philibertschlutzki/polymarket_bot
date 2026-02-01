@@ -30,20 +30,12 @@ from dotenv import load_dotenv  # noqa: E402
 from google import genai  # noqa: E402
 from google.genai import types  # noqa: E402
 from pydantic import BaseModel, Field  # noqa: E402
-from tenacity import (  # noqa: E402
-    retry,
-    retry_if_exception_type,
-    stop_after_attempt,
-    wait_exponential,
-)
+from tenacity import (retry, retry_if_exception_type,  # noqa: E402
+                      stop_after_attempt, wait_exponential)
 
 # Internal modules
-from src import (  # noqa: E402
-    ai_decisions_generator,
-    dashboard,
-    database,
-    git_integration,
-)
+from src import (ai_decisions_generator, dashboard, database,  # noqa: E402
+                 git_integration)
 
 # ============================================================================
 # KONFIGURATION
