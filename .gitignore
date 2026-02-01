@@ -52,3 +52,4 @@ Thumbs.db
 logs/
 *.log
 *.log.*
+.mypy_cache/

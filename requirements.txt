@@ -7,3 +7,6 @@ tenacity==9.0.0
 GitPython>=3.1.40
 asciichartpy>=1.5.25
 sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+types-requests>=2.31.0
+types-python-dateutil>=2.9.0

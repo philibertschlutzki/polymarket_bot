@@ -1,10 +1,11 @@
 import logging
 import os
 from contextlib import contextmanager
+from typing import Any, Dict
 
-from sqlalchemy import (JSON, Boolean, CheckConstraint,
-                        Column, DateTime, Integer, Numeric, Text,
-                        create_engine)
+from sqlalchemy import (JSON, BigInteger, Boolean, CheckConstraint,
+                        Column, DateTime, ForeignKey, Integer, Numeric, Text,
+                        create_engine, ARRAY)
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.sql import func
 
@@ -15,7 +16,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
     DATABASE_URL = "sqlite:///database/polymarket.db"
 
-engine_args = {
+engine_args: Dict[str, Any] = {
     "pool_pre_ping": True,
     "echo": False,
 }
@@ -27,7 +28,7 @@ if DATABASE_URL.startswith("postgresql"):
 engine = create_engine(DATABASE_URL, **engine_args)
 
 SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
-Base = declarative_base()
+Base: Any = declarative_base()
 
 
 @contextmanager
@@ -46,7 +47,7 @@ def session_scope():
 
 class ActiveBet(Base):
     __tablename__ = "active_bets"
-    bet_id = Column(Integer, primary_key=True, autoincrement=True)
+    bet_id = Column(BigInteger, primary_key=True, autoincrement=True)
     market_slug = Column(Text, nullable=False, unique=True)
     url_slug = Column(Text, nullable=False)
     question = Column(Text, nullable=False)
@@ -77,8 +78,8 @@ class ActiveBet(Base):
 
 class ArchivedBet(Base):
     __tablename__ = "archived_bets"
-    archive_id = Column(Integer, primary_key=True, autoincrement=True)
-    original_bet_id = Column(Integer, nullable=False, unique=True)
+    archive_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    original_bet_id = Column(BigInteger, nullable=False, unique=True)
     market_slug = Column(Text, nullable=False)
     url_slug = Column(Text, nullable=False)
     question = Column(Text, nullable=False)
@@ -112,7 +113,7 @@ class ArchivedBet(Base):
 
 class RejectedMarket(Base):
     __tablename__ = "rejected_markets"
-    rejection_id = Column(Integer, primary_key=True, autoincrement=True)
+    rejection_id = Column(BigInteger, primary_key=True, autoincrement=True)
     market_slug = Column(Text, nullable=False)
     url_slug = Column(Text, nullable=False)
     question = Column(Text, nullable=False)
@@ -137,7 +138,7 @@ class RejectedMarket(Base):
 
 class ApiUsage(Base):
     __tablename__ = "api_usage"
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
     timestamp = Column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
@@ -174,3 +175,38 @@ class GitSyncState(Base):
     has_bet_resolutions = Column(Boolean, default=False)
 
     __table_args__ = (CheckConstraint("id = 1"),)
+
+
+class BetAnalysis(Base):
+    __tablename__ = 'bet_analysis'
+    analysis_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    archive_id = Column(BigInteger, ForeignKey('archived_bets.archive_id'), nullable=False)
+
+    ai_model = Column(Text, nullable=False)
+    predicted_outcome = Column(Text, nullable=False)
+    confidence = Column(Numeric(5, 4), nullable=False)
+    reasoning = Column(Text)
+    timestamp_analyzed = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
+    raw_response = Column(JSON)
+
+    __table_args__ = (
+        CheckConstraint("predicted_outcome IN ('YES', 'NO')"),
+        CheckConstraint("confidence BETWEEN 0 AND 1"),
+    )
+
+
+class FinalPredictions(Base):
+    __tablename__ = 'final_predictions'
+    prediction_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    archive_id = Column(BigInteger, ForeignKey('archived_bets.archive_id'), nullable=False, unique=True)
+    aggregated_outcome = Column(Text, nullable=False)
+    weighted_confidence = Column(Numeric(5, 4), nullable=False)
+    models_used = Column(ARRAY(Text))  # type: ignore # Using ARRAY for TEXT[]
+    weights_applied = Column(JSON)
+    timestamp_created = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
+    version = Column(Integer, nullable=False, default=1)
+
+    __table_args__ = (
+        CheckConstraint("aggregated_outcome IN ('YES', 'NO')"),
+        CheckConstraint("weighted_confidence BETWEEN 0 AND 1"),
+    )
