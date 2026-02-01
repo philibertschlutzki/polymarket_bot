@@ -74,14 +74,17 @@ def migrate_api_usage_table():
     try:
         with engine.connect() as conn:
             # Check if table exists
-            result = conn.execute(text(
-                "SELECT name FROM sqlite_master WHERE type='table' AND name='api_usage'"
-            ))
+            result = conn.execute(
+                text(
+                    "SELECT name FROM sqlite_master WHERE type='table' AND name='api_usage'"
+                )
+            )
             if result.fetchone():
-                # Backup existing data
-                conn.execute(text("CREATE TEMPORARY TABLE api_usage_backup AS SELECT * FROM api_usage"))
-                # Drop and recreate
-                conn.execute(text("DROP TABLE api_usage"))
+                # Check if backup already exists (from failed run) and drop it
+                conn.execute(text("DROP TABLE IF EXISTS api_usage_backup"))
+
+                # Rename existing table to backup
+                conn.execute(text("ALTER TABLE api_usage RENAME TO api_usage_backup"))
                 conn.commit()
 
         # Recreate with proper schema
@@ -89,9 +92,12 @@ def migrate_api_usage_table():
 
         # Restore data if backup exists
         with engine.connect() as conn:
-            result = conn.execute(text(
-                "SELECT name FROM sqlite_temp_master WHERE type='table' AND name='api_usage_backup'"
-            ))
+            # Check if backup table exists (using sqlite_master for persistent tables)
+            result = conn.execute(
+                text(
+                    "SELECT name FROM sqlite_master WHERE type='table' AND name='api_usage_backup'"
+                )
+            )
             if result.fetchone():
                 conn.execute(text("""
                     INSERT INTO api_usage (timestamp, api_name, endpoint, calls,

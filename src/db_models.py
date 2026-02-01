@@ -149,7 +149,11 @@ class RejectedMarket(Base):
 
 class ApiUsage(Base):
     __tablename__ = "api_usage"
-    id = Column(BigInteger().with_variant(Integer, "sqlite"), primary_key=True, autoincrement=True)
+    id = Column(
+        BigInteger().with_variant(Integer, "sqlite"),
+        primary_key=True,
+        autoincrement=True,
+    )
     timestamp = Column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
