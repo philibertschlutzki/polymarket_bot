@@ -1,6 +1,7 @@
 import logging
 import os
 from contextlib import contextmanager
+from typing import Any, Dict
 
 from sqlalchemy import (
     Boolean,
@@ -22,7 +23,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
     DATABASE_URL = "sqlite:///database/polymarket.db"
 
-engine_args = {
+engine_args: Dict[str, Any] = {
     "pool_pre_ping": True,
     "echo": False,
 }
@@ -51,7 +52,7 @@ def session_scope():
         session.close()
 
 
-class ActiveBet(Base):
+class ActiveBet(Base):  # type: ignore[misc,valid-type]
     __tablename__ = "active_bets"
     bet_id = Column(Integer, primary_key=True, autoincrement=True)
     market_slug = Column(Text, nullable=False, unique=True)
@@ -82,7 +83,7 @@ class ActiveBet(Base):
     )
 
 
-class ArchivedBet(Base):
+class ArchivedBet(Base):  # type: ignore[misc,valid-type]
     __tablename__ = "archived_bets"
     archive_id = Column(Integer, primary_key=True, autoincrement=True)
     original_bet_id = Column(Integer, nullable=False, unique=True)
@@ -117,7 +118,7 @@ class ArchivedBet(Base):
     )
 
 
-class RejectedMarket(Base):
+class RejectedMarket(Base):  # type: ignore[misc,valid-type]
     __tablename__ = "rejected_markets"
     rejection_id = Column(Integer, primary_key=True, autoincrement=True)
     market_slug = Column(Text, nullable=False)
@@ -142,7 +143,7 @@ class RejectedMarket(Base):
     )
 
 
-class ApiUsage(Base):
+class ApiUsage(Base):  # type: ignore[misc,valid-type]
     __tablename__ = "api_usage"
     id = Column(Integer, primary_key=True, autoincrement=True)
     timestamp = Column(
@@ -157,7 +158,7 @@ class ApiUsage(Base):
     response_time_ms = Column(Integer, default=0)
 
 
-class PortfolioState(Base):
+class PortfolioState(Base):  # type: ignore[misc,valid-type]
     __tablename__ = "portfolio_state"
     id = Column(Integer, primary_key=True)
     total_capital = Column(Numeric(15, 2), nullable=False)
@@ -171,7 +172,7 @@ class PortfolioState(Base):
     __table_args__ = (CheckConstraint("id = 1"),)
 
 
-class GitSyncState(Base):
+class GitSyncState(Base):  # type: ignore[misc,valid-type]
     __tablename__ = "git_sync_state"
     id = Column(Integer, primary_key=True)
     last_git_push = Column(DateTime(timezone=True))

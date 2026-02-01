@@ -79,7 +79,7 @@ if log_file.exists():
             sys.exit(1)
 
 # Configure logging with both console and file output
-log_handlers = [
+log_handlers: List[logging.Handler] = [
     logging.StreamHandler(),  # Console output
     logging.handlers.RotatingFileHandler(
         str(log_file),
@@ -314,7 +314,7 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
         market_data = resolved_markets.get(bet["market_slug"])
         resolved_by = market_data.get("resolvedBy") if market_data else None
 
-        if resolved_by:
+        if resolved_by and market_data:
             # Resolved
             outcomes = market_data.get("outcomes", [])
             prices = [float(o.get("price", 0)) for o in outcomes] if outcomes else []
