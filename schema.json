@@ -1,0 +1,524 @@
+{
+  "active_bets": {
+    "columns": [
+      {
+        "name": "bet_id",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "name": "market_slug",
+        "type": "TEXT",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "question",
+        "type": "TEXT",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "action",
+        "type": "TEXT",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "stake_usdc",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "entry_price",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "ai_probability",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "confidence_score",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "expected_value",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "end_date",
+        "type": "TIMESTAMP",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "timestamp_created",
+        "type": "TIMESTAMP",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "TEXT",
+        "not_null": false,
+        "default": "'OPEN'",
+        "primary_key": false
+      },
+      {
+        "name": "ai_reasoning",
+        "type": "TEXT",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "edge",
+        "type": "REAL",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "foreign_keys": [],
+    "indexes": [],
+    "row_count": 22
+  },
+  "api_usage": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "name": "timestamp",
+        "type": "TIMESTAMP",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "api_name",
+        "type": "TEXT",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "endpoint",
+        "type": "TEXT",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "calls",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": "1",
+        "primary_key": false
+      },
+      {
+        "name": "tokens_prompt",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "name": "tokens_response",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "name": "tokens_total",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "name": "response_time_ms",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": "0",
+        "primary_key": false
+      }
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      "idx_api_timestamp",
+      "idx_api_name"
+    ],
+    "row_count": 241
+  },
+  "git_sync_state": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "name": "last_git_push",
+        "type": "TIMESTAMP",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "pending_changes_count",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "name": "has_new_bets",
+        "type": "BOOLEAN",
+        "not_null": false,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "name": "has_new_rejections",
+        "type": "BOOLEAN",
+        "not_null": false,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "name": "has_bet_resolutions",
+        "type": "BOOLEAN",
+        "not_null": false,
+        "default": "0",
+        "primary_key": false
+      }
+    ],
+    "foreign_keys": [],
+    "indexes": [],
+    "row_count": 1
+  },
+  "portfolio_state": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "name": "total_capital",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "last_updated",
+        "type": "TIMESTAMP",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "last_dashboard_update",
+        "type": "TIMESTAMP",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "last_run_timestamp",
+        "type": "TIMESTAMP",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "foreign_keys": [],
+    "indexes": [],
+    "row_count": 1
+  },
+  "rejected_markets": {
+    "columns": [
+      {
+        "name": "rejection_id",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "name": "market_slug",
+        "type": "TEXT",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "question",
+        "type": "TEXT",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "market_price",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "volume",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "ai_probability",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "confidence_score",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "edge",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "rejection_reason",
+        "type": "TEXT",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "ai_reasoning",
+        "type": "TEXT",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "timestamp_analyzed",
+        "type": "TIMESTAMP",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "end_date",
+        "type": "TIMESTAMP",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      "idx_rejected_timestamp"
+    ],
+    "row_count": 224
+  },
+  "results": {
+    "columns": [
+      {
+        "name": "result_id",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "name": "bet_id",
+        "type": "INTEGER",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "market_slug",
+        "type": "TEXT",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "question",
+        "type": "TEXT",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "action",
+        "type": "TEXT",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "stake_usdc",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "entry_price",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "actual_outcome",
+        "type": "TEXT",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "profit_loss",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "roi",
+        "type": "REAL",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "timestamp_created",
+        "type": "TIMESTAMP",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "timestamp_closed",
+        "type": "TIMESTAMP",
+        "not_null": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "ai_reasoning",
+        "type": "TEXT",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "ai_probability",
+        "type": "REAL",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "confidence_score",
+        "type": "REAL",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "edge",
+        "type": "REAL",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "days_held",
+        "type": "INTEGER",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "market_volume",
+        "type": "REAL",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "foreign_keys": [
+      {
+        "column": "bet_id",
+        "references_table": "active_bets",
+        "references_column": "bet_id"
+      }
+    ],
+    "indexes": [],
+    "row_count": 0
+  },
+  "sqlite_sequence": {
+    "columns": [
+      {
+        "name": "name",
+        "type": "",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "name": "seq",
+        "type": "",
+        "not_null": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "foreign_keys": [],
+    "indexes": [],
+    "row_count": 3
+  }
+}
