@@ -219,9 +219,7 @@ class FinalPredictions(Base):
     aggregated_outcome = Column(Text, nullable=False)
     weighted_confidence = Column(Numeric(5, 4), nullable=False)
     models_used = Column(
-        ARRAY(Text)
-        if DATABASE_URL and DATABASE_URL.startswith("postgresql")
-        else JSON,
+        ARRAY(Text) if DATABASE_URL and DATABASE_URL.startswith("postgresql") else JSON,
         nullable=True,
     )
     weights_applied = Column(JSON)
