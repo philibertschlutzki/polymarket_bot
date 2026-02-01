@@ -56,7 +56,7 @@ def session_scope():
         session.close()
 
 
-class ActiveBet(Base):  # type: ignore[misc,valid-type]
+class ActiveBet(Base):
     __tablename__ = "active_bets"
     bet_id = Column(BigInteger, primary_key=True, autoincrement=True)
     market_slug = Column(Text, nullable=False, unique=True)
@@ -87,7 +87,7 @@ class ActiveBet(Base):  # type: ignore[misc,valid-type]
     )
 
 
-class ArchivedBet(Base):  # type: ignore[misc,valid-type]
+class ArchivedBet(Base):
     __tablename__ = "archived_bets"
     archive_id = Column(BigInteger, primary_key=True, autoincrement=True)
     original_bet_id = Column(BigInteger, nullable=False, unique=True)
@@ -122,7 +122,7 @@ class ArchivedBet(Base):  # type: ignore[misc,valid-type]
     )
 
 
-class RejectedMarket(Base):  # type: ignore[misc,valid-type]
+class RejectedMarket(Base):
     __tablename__ = "rejected_markets"
     rejection_id = Column(BigInteger, primary_key=True, autoincrement=True)
     market_slug = Column(Text, nullable=False)
@@ -147,7 +147,7 @@ class RejectedMarket(Base):  # type: ignore[misc,valid-type]
     )
 
 
-class ApiUsage(Base):  # type: ignore[misc,valid-type]
+class ApiUsage(Base):
     __tablename__ = "api_usage"
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     timestamp = Column(
@@ -162,7 +162,7 @@ class ApiUsage(Base):  # type: ignore[misc,valid-type]
     response_time_ms = Column(Integer, default=0)
 
 
-class PortfolioState(Base):  # type: ignore[misc,valid-type]
+class PortfolioState(Base):
     __tablename__ = "portfolio_state"
     id = Column(Integer, primary_key=True)
     total_capital = Column(Numeric(15, 2), nullable=False)
@@ -176,7 +176,7 @@ class PortfolioState(Base):  # type: ignore[misc,valid-type]
     __table_args__ = (CheckConstraint("id = 1"),)
 
 
-class GitSyncState(Base):  # type: ignore[misc,valid-type]
+class GitSyncState(Base):
     __tablename__ = "git_sync_state"
     id = Column(Integer, primary_key=True)
     last_git_push = Column(DateTime(timezone=True))
