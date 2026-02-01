@@ -19,7 +19,7 @@ import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Union
 
 # Add project root to sys.path to allow imports from src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -78,7 +78,9 @@ if log_file.exists():
             sys.exit(1)
 
 # Configure logging with both console and file output
-log_handlers = [
+log_handlers: List[
+    Union[logging.StreamHandler, logging.handlers.RotatingFileHandler]
+] = [
     logging.StreamHandler(),  # Console output
     logging.handlers.RotatingFileHandler(
         str(log_file),
@@ -313,7 +315,7 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
         market_data = resolved_markets.get(bet["market_slug"])
         resolved_by = market_data.get("resolvedBy") if market_data else None
 
-        if resolved_by:
+        if resolved_by and market_data:
             # Resolved
             outcomes = market_data.get("outcomes", [])
             prices = [float(o.get("price", 0)) for o in outcomes] if outcomes else []
@@ -424,10 +426,10 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
     """
     try:
         logger.info("📡 Verbinde mit Polymarket Gamma API...")
-        params = {
+        params: Dict[str, str] = {
             "closed": "false",
-            "limit": limit,
-            "offset": 0,
+            "limit": str(limit),
+            "offset": "0",
             "order": "volume",
             "ascending": "false",
         }

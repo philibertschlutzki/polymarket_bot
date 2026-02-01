@@ -1,6 +1,7 @@
 import logging
 import os
 from contextlib import contextmanager
+from typing import Any, Dict
 
 from sqlalchemy import (
     Boolean,
@@ -12,7 +13,7 @@ from sqlalchemy import (
     Text,
     create_engine,
 )
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
 from sqlalchemy.sql import func
 
 logger = logging.getLogger(__name__)
@@ -22,7 +23,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
     DATABASE_URL = "sqlite:///database/polymarket.db"
 
-engine_args = {
+engine_args: Dict[str, Any] = {
     "pool_pre_ping": True,
     "echo": False,
 }
@@ -34,7 +35,12 @@ if DATABASE_URL.startswith("postgresql"):
 engine = create_engine(DATABASE_URL, **engine_args)
 
 SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
-Base = declarative_base()
+
+
+class Base(DeclarativeBase):
+    """Base class for all SQLAlchemy models."""
+
+    pass
 
 
 @contextmanager
