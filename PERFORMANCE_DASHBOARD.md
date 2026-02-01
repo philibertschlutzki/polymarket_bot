@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-01 09:11:50 CET
+**Last Updated:** 2026-02-01 09:28:06 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-01 08:54:50 CET |
-| Next Run | 2026-02-01 09:09:50 CET |
+| Last Run | 2026-02-01 09:10:37 CET |
+| Next Run | 2026-02-01 09:25:37 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 6 | 15 | 40% | 🟢 |
-| Today (RPD) | 171 | 1,500 | 11.4% | 🟢 |
-| Current Minute (TPM) | 6,422 | 1,000,000 | 0.64% | 🟢 |
+| Current Minute (RPM) | 4 | 15 | 27% | 🟢 |
+| Today (RPD) | 176 | 1,500 | 11.7% | 🟢 |
+| Current Minute (TPM) | 3,029 | 1,000,000 | 0.30% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1999.55 (200.0% of capital) |
-| Avg Position Size | $95.22 |
+| Total Exposure | $2093.79 (209.4% of capital) |
+| Avg Position Size | $95.17 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.067) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.063) |
 
 ---
-## 🎯 Active Bets (21)
+## 🎯 Active Bets (22)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -72,6 +72,7 @@
 | Will the price of Ethereum be above $2,8... | YES | $57.76 | 0.00 | 0.30 | +30% 🟢 | 60% | $+6872.85 | 2026-02-01 | 0d | 🔴 |
 | Backpack FDV above $5B one day after lau... | YES | $27.09 | 0.02 | 0.15 | +13% 🟡 | 65% | $+198.68 | 2027-01-01 | 333d | 🟢 |
 | Will Ethereum dip to $2,400 in February? | NO | $198.69 | 1.00 | 0.05 | -95% 🔴 | 70% | $+125638.97 | 2026-03-01 | 27d | 🟢 |
+| Bitcoin Up or Down - February 1, 3:15AM-... | YES | $94.24 | 0.07 | 0.52 | +46% 🟢 | 60% | $+659.65 | 2026-02-01 | 0d | 🔴 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -86,7 +87,7 @@
 - 🔴 **High Exposure**: "Moltbook AI agent sues a human..." is 15.6% of capital
 - 🔴 **High Exposure**: "Magic vs. Spurs..." is 10.3% of capital
 - 🔴 **High Exposure**: "Will Ethereum dip to $2,400 in..." is 19.9% of capital
-- 🟡 **Expiring Soon**: 7 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 8 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -94,7 +95,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 21 |
+| Markets with Active Bets | 22 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
