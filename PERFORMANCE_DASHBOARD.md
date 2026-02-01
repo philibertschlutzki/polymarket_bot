@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-01 00:57:17 CET
+**Last Updated:** 2026-02-01 02:02:03 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-01 00:40:27 CET |
-| Next Run | 2026-02-01 00:55:27 CET |
+| Last Run | 2026-02-01 01:44:44 CET |
+| Next Run | 2026-02-01 01:59:44 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 4 | 15 | 27% | 🟢 |
-| Today (RPD) | 14 | 1,500 | 0.9% | 🟢 |
-| Current Minute (TPM) | 2,395 | 1,000,000 | 0.24% | 🟢 |
+| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
+| Today (RPD) | 38 | 1,500 | 2.5% | 🟢 |
+| Current Minute (TPM) | 4,020 | 1,000,000 | 0.40% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,26 +41,28 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $970.40 (97.0% of capital) |
-| Avg Position Size | $97.04 |
+| Total Exposure | $1175.02 (117.5% of capital) |
+| Avg Position Size | $97.92 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Medium 🟡 (HHI: 0.152) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.120) |
 
 ---
-## 🎯 Active Bets (10)
+## 🎯 Active Bets (12)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Will Ja Morant be traded this season? | NO | $86.60 | 0.25 | 0.15 | -10% 🔴 | 75% | $+11.55 | 2026-02-05 | 4d | 🟡 |
+| Will Ja Morant be traded this season? | NO | $86.60 | 0.25 | 0.15 | -10% 🔴 | 75% | $+11.55 | 2026-02-05 | 3d | 🟡 |
 | Based FDV above $300M one day after laun... | YES | $110.24 | 0.26 | 0.65 | +39% 🟢 | 70% | $+165.35 | 2027-01-01 | 334d | 🟢 |
 | Will Mike Vrabel win NFL Coach of the Ye... | YES | $250.00 | 0.84 | 1.00 | +16% 🟡 | 100% | $+47.62 | 2026-02-11 | 10d | 🟢 |
 | Will Solana dip to $90 in January? | YES | $21.11 | 0.05 | 0.15 | +10% 🟡 | 60% | $+47.73 | 2026-02-01 | 0d | 🔴 |
 | Will Pierre-Yves Bournazel win the Paris... | YES | $40.99 | 0.01 | 0.20 | +20% 🟡 | 70% | $+1598.69 | Unknown | N/A | 🔵 |
-| Will John Cornyn win the 2026 Texas Repu... | YES | $54.75 | 0.26 | 0.45 | +20% 🟡 | 70% | $+41.87 | 2026-03-03 | 30d | 🟢 |
+| Will John Cornyn win the 2026 Texas Repu... | YES | $54.75 | 0.26 | 0.45 | +20% 🟡 | 70% | $+41.87 | 2026-03-03 | 29d | 🟢 |
 | Will Paramount close Warner Bros acquisi... | YES | $32.60 | 0.23 | 0.35 | +12% 🟡 | 70% | $+17.01 | Unknown | N/A | 🔵 |
 | U.S. forces seize another oil tanker by ... | YES | $98.10 | 0.36 | 0.65 | +29% 🟢 | 75% | $+79.03 | Unknown | N/A | 🔵 |
 | Will Aston Villa FC win on 2026-02-01? | YES | $77.47 | 0.46 | 0.65 | +20% 🟡 | 75% | $+33.20 | 2026-02-01 | 0d | 🔴 |
 | Will Bitcoin dip to $80,000 in February? | NO | $198.54 | 0.98 | 0.05 | -93% 🔴 | 70% | $+11589.58 | 2026-03-01 | 28d | 🟢 |
+| Will the price of Ethereum be above $2,6... | YES | $79.25 | 0.07 | 0.45 | +38% 🟢 | 60% | $+437.59 | 2026-02-01 | 0d | 🔴 |
+| Tesla launches unsupervised full self dr... | NO | $125.37 | 1.00 | 0.40 | -60% 🔴 | 70% | $+50023.95 | 2026-06-30 | 148d | 🟢 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -70,7 +72,8 @@
 - 🔴 **High Exposure**: "Based FDV above $300M one day ..." is 11.0% of capital
 - 🔴 **High Exposure**: "Will Mike Vrabel win NFL Coach..." is 25.0% of capital
 - 🔴 **High Exposure**: "Will Bitcoin dip to $80,000 in..." is 19.9% of capital
-- 🟡 **Expiring Soon**: 3 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Tesla launches unsupervised fu..." is 12.5% of capital
+- 🟡 **Expiring Soon**: 4 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -78,7 +81,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 10 |
+| Markets with Active Bets | 12 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 

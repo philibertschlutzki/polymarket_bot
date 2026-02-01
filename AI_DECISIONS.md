@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-01 00:57:17 CET
+**Last Updated:** 2026-02-01 02:02:03 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -175,61 +175,116 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
+### Bet #11: Will the price of Ethereum be above $2,600 on February 1?
+
+**Decision:** YES @ 0.07 (Stake: $79.25)
+
+**AI Analysis:**
+- **Estimated Probability:** 45.0% (vs Market: 6.9%)
+- **Confidence Score:** 60.0%
+- **Edge:** +38.1%
+- **Expected Value:** $+437.59
+- **End Date:** 2026-02-01 18:00 CET
+
+**AI Reasoning:**
+> Der aktuelle Preis von Ethereum liegt deutlich unter der Zielmarke von 2.600 $. Einige Analysten prognostizieren zwar einen Anstieg in den kommenden Wochen, aber die jüngsten Preisrückgänge und die gemischte Marktstimmung deuten auf ein erhebliches Abwärtsrisiko hin. Die hohe Volatilität von Kryptowährungen macht eine präzise Vorhersage schwierig, aber eine Wahrscheinlichkeit von 45 % spiegelt die Möglichkeit einer Erholung wider, während die Unsicherheit des Marktes berücksichtigt wird.
+
+---
+
+### Bet #12: Tesla launches unsupervised full self driving (FSD) by June 30?
+
+**Decision:** NO @ 1.00 (Stake: $125.37)
+
+**AI Analysis:**
+- **Estimated Probability:** 40.0% (vs Market: 99.9%)
+- **Confidence Score:** 70.0%
+- **Edge:** -59.9%
+- **Expected Value:** $+50023.95
+- **End Date:** 2026-06-30 02:00 CEST
+
+**AI Reasoning:**
+> The Polymarket probability of 99.85% appears overly optimistic. While there is progress, several factors suggest a lower probability: The definition of 'unsupervised' is strict. Regulatory hurdles are significant. Elon Musk has a history of optimistic timelines. Although FSD is improving, interventions are still needed. Tesla is expanding its Robotaxi program and plans to begin Cybercab production in April 2026.
+
+---
+
 ## ❌ Rejected Markets
 
-*Showing last 72 rejected analyses*
+*Showing last 94 rejected analyses*
 
-### Insufficient Edge (66)
+### Insufficient Edge (87)
 
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 01:57*
-Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 60%
-Reasoning: Juan Branco ist ein umstrittener Anwalt und Aktivist mit einer starken Anhängerschaft außerhalb des Mainstreams. Er hat sich als Kritiker des französi...
-
-**Will the price of Ethereum be above $2,600 on February 1?...**
-*Analyzed: 2026-02-01 01:56*
-Market: 0.06 | AI: 0.15 | Edge: +8.9% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis (Yes) auf Polymarket liegt bei 6,05%, was eine sehr geringe Wahrscheinlichkeit widerspiegelt. Die aktuellen Ethereum Preise li...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 01:56*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
-Reasoning: Obwohl Brasilien eine Fussballnation mit grosser Tradition ist, zeigen die jüngsten Leistungen eine gewisse Instabilität. Der aktuelle Marktpreis von ...
-
-**Kings vs. Wizards...**
-*Analyzed: 2026-02-01 01:56*
-Market: 0.57 | AI: 0.55 | Edge: -2.5% | Conf: 70%
-Reasoning: Die aktuelle Markteinschätzung liegt bei 57,50 % für einen Sieg der Kings. Die Suchergebnisse zeigen, dass beide Teams ähnliche Bilanzen haben (Wizard...
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 03:02*
+Market: 0.00 | AI: 0.02 | Edge: +1.9% | Conf: 75%
+Reasoning: Elon Musk hat in der Vergangenheit deutlich mehr als 17.5-19.875 Tweets pro Tag abgesetzt. Obwohl seine Aktivität variieren kann, ist es sehr unwahrsc...
 
 **Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 01:41*
-Market: 0.01 | AI: 0.00 | Edge: -1.0% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis von 1.05% spiegelt eine extrem geringe Wahrscheinlichkeit wider, dass Juan Branco die Wahl gewinnt.  Mehrere Faktoren tragen z...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 01:40*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
-Reasoning: Basierend auf dem aktuellen Marktpreis von 9,50% scheint der Markt Brasilien eine geringe Chance einzuräumen.  Laut der FIFA-Weltrangliste vom 19. Jan...
-
-**Kings vs. Wizards...**
-*Analyzed: 2026-02-01 01:40*
-Market: 0.56 | AI: 0.53 | Edge: -3.5% | Conf: 70%
-Reasoning: Die Kings haben im direkten Vergleich die Nase vorn und die Wizards haben mit erheblichen Verletzungsproblemen zu kämpfen, insbesondere dem Ausfall vo...
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 01:25*
-Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 75%
-Reasoning: Juan Branco is a political activist and writer with a background in law and philosophy. He has been involved with various political movements and has ...
+*Analyzed: 2026-02-01 03:01*
+Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
+Reasoning: Der aktuelle Marktpreis von 1,05 % spiegelt die sehr geringe Wahrscheinlichkeit wider, dass Juan Branco die Wahl gewinnt. Seine Vergangenheit ist von ...
 
 **Will Josh Hawley win the 2028 Republican presidential nomina...**
-*Analyzed: 2026-02-01 01:25*
-Market: 0.01 | AI: 0.01 | Edge: +0.3% | Conf: 60%
-Reasoning: Josh Hawley ist ein konservativer Senator aus Missouri. Er wurde 2018 in den Senat gewählt und 2024 wiedergewählt. Hawley hat sich als Verfechter kons...
+*Analyzed: 2026-02-01 03:01*
+Market: 0.01 | AI: 0.03 | Edge: +2.2% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis von 0,75% (oder 0.0075) deutet auf eine sehr geringe implizite Wahrscheinlichkeit hin, dass Josh Hawley die republikanische No...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 01:25*
-Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
-Reasoning: Basierend auf den aktuellen Wettquoten und FIFA-Ranglisten hat Brasilien eine etwa 10%ige Chance, die FIFA Fussball-Weltmeisterschaft 2026 zu gewinnen...
+*Analyzed: 2026-02-01 03:01*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 65%
+Reasoning: Brazil has a strong history in World Cups and a talented squad, but faces tough competition from other top teams. Their recent performances have been ...
+
+**Kings vs. Wizards...**
+*Analyzed: 2026-02-01 03:01*
+Market: 0.56 | AI: 0.53 | Edge: -2.5% | Conf: 75%
+Reasoning: Die Sacramento Kings sind mit -2,5 Punkten leicht favorisiert. Obwohl beide Teams ähnliche Bilanzen haben, haben die Kings das letzte Spiel gegen die ...
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 02:45*
+Market: 0.00 | AI: 0.03 | Edge: +2.9% | Conf: 60%
+Reasoning: Basierend auf den aktuellen Daten zu Elon Musks Tweet-Frequenz liegt die Wahrscheinlichkeit, dass er in der gegebenen Woche 140-159 Tweets absetzt, be...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 02:45*
+Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 75%
+Reasoning: Der aktuelle Marktpreis von 1.05% spiegelt eine sehr geringe Wahrscheinlichkeit wider. Juan Branco ist ein relativ unbekannter Kandidat mit kontrovers...
+
+**Will Josh Hawley win the 2028 Republican presidential nomina...**
+*Analyzed: 2026-02-01 02:45*
+Market: 0.01 | AI: 0.05 | Edge: +4.2% | Conf: 60%
+Reasoning: Josh Hawley is a conservative senator with a populist appeal. However, he faces significant challenges in winning the Republican nomination in 2028. H...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 02:45*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
+Reasoning: Basierend auf den aktuellen Wettquoten und FIFA-Ranglisten hat Brasilien eine etwa 8%ige Chance, die FIFA Fussball-Weltmeisterschaft 2026 zu gewinnen....
+
+**Will Bangladesh Jamaat-e-Islami win the most seats in the Ba...**
+*Analyzed: 2026-02-01 02:45*
+Market: 0.26 | AI: 0.35 | Edge: +9.5% | Conf: 70%
+Reasoning: Obwohl der aktuelle Marktpreis bei 25,50 % liegt, deuten die jüngsten Meinungsumfragen darauf hin, dass Jamaat-e-Islami die Lücke zur BNP schliesst. D...
+
+
+### Negative Expected Value (4)
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 02:13*
+Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 60%
+Reasoning: Elon Musk typically posts a very high volume of tweets. While his activity can fluctuate, and his attendance at the WEF could potentially reduce his p...
+
+**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
+*Analyzed: 2026-02-01 00:22*
+Market: 1.00 | AI: 0.85 | Edge: -15.0% | Conf: 75%
+Reasoning: Obwohl FaZe in der Weltrangliste höher steht, hat 3DMAX sie kürzlich besiegt. Der Marktpreis deutet auf eine extrem hohe Wahrscheinlichkeit für 3DMAX ...
+
+**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
+*Analyzed: 2026-02-01 00:06*
+Market: 1.00 | AI: 0.65 | Edge: -35.0% | Conf: 70%
+Reasoning: Obwohl FaZe im Allgemeinen höher eingestuft ist, hat 3DMAX sie kürzlich geschlagen und zeigt eine starke Spielerleistung. Der aktuelle Marktpreis von ...
+
+**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
+*Analyzed: 2026-01-31 23:33*
+Market: 1.00 | AI: 0.60 | Edge: -40.0% | Conf: 70%
+Reasoning: Despite the high market price, the facts suggest a slightly lower probability. 3DMAX's recent win is considered, but FaZe is still the higher-ranked t...
 
 
 ### Ai Analysis Failed (3)
@@ -248,24 +303,6 @@ Reasoning: Gemini API error or timeout...
 *Analyzed: 2026-02-01 00:54*
 Market: 0.99 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
-
-
-### Negative Expected Value (3)
-
-**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
-*Analyzed: 2026-02-01 00:22*
-Market: 1.00 | AI: 0.85 | Edge: -15.0% | Conf: 75%
-Reasoning: Obwohl FaZe in der Weltrangliste höher steht, hat 3DMAX sie kürzlich besiegt. Der Marktpreis deutet auf eine extrem hohe Wahrscheinlichkeit für 3DMAX ...
-
-**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
-*Analyzed: 2026-02-01 00:06*
-Market: 1.00 | AI: 0.65 | Edge: -35.0% | Conf: 70%
-Reasoning: Obwohl FaZe im Allgemeinen höher eingestuft ist, hat 3DMAX sie kürzlich geschlagen und zeigt eine starke Spielerleistung. Der aktuelle Marktpreis von ...
-
-**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
-*Analyzed: 2026-01-31 23:33*
-Market: 1.00 | AI: 0.60 | Edge: -40.0% | Conf: 70%
-Reasoning: Despite the high market price, the facts suggest a slightly lower probability. 3DMAX's recent win is considered, but FaZe is still the higher-ranked t...
 
 
 ## 📊 Historical Analysis
