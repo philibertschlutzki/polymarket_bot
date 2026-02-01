@@ -50,12 +50,8 @@ This file contains detailed AI reasoning for all market analyses.
 
     for i, bet in enumerate(active_bets, 1):
         # Access with fallback for safety if columns were just added and rows have NULL
-        ai_prob = (
-            bet["ai_probability"] if bet["ai_probability"] is not None else 0.0
-        )
-        conf = (
-            bet["confidence_score"] if bet["confidence_score"] is not None else 0.0
-        )
+        ai_prob = bet["ai_probability"] if bet["ai_probability"] is not None else 0.0
+        conf = bet["confidence_score"] if bet["confidence_score"] is not None else 0.0
         edge = bet["edge"] if bet["edge"] is not None else 0.0
         reasoning = (
             bet["ai_reasoning"]
@@ -93,9 +89,7 @@ This file contains detailed AI reasoning for all market analyses.
 
     # === REJECTED MARKETS ===
     rejected_section = "## ❌ Rejected Markets\n\n"
-    rejected_section += (
-        f"*Showing last {len(rejected_markets)} rejected analyses*\n\n"
-    )
+    rejected_section += f"*Showing last {len(rejected_markets)} rejected analyses*\n\n"
 
     # Group by rejection reason
     rejection_groups = {}
@@ -118,9 +112,7 @@ This file contains detailed AI reasoning for all market analyses.
             )
             edge = market["edge"] if market["edge"] is not None else 0.0
             reasoning = (
-                market["ai_reasoning"]
-                if market["ai_reasoning"] is not None
-                else "N/A"
+                market["ai_reasoning"] if market["ai_reasoning"] is not None else "N/A"
             )
             conf = (
                 market["confidence_score"]
@@ -129,9 +121,7 @@ This file contains detailed AI reasoning for all market analyses.
             )
 
             timestamp = to_cet(market["timestamp_analyzed"])
-            time_str = (
-                timestamp.strftime("%Y-%m-%d %H:%M") if timestamp else "Unknown"
-            )
+            time_str = timestamp.strftime("%Y-%m-%d %H:%M") if timestamp else "Unknown"
 
             rejected_section += f"""**{market['question'][:60]}...**
 *Analyzed: {time_str}*
@@ -151,20 +141,14 @@ Reasoning: {reasoning[:150]}...
         from src import analytics_advanced
 
         # Confidence Calibration
-        calibration = analytics_advanced.calculate_confidence_calibration(
-            closed_bets
-        )
+        calibration = analytics_advanced.calculate_confidence_calibration(closed_bets)
 
         history_section += "### AI Confidence Calibration\n\n"
         history_section += (
             "Measures how well AI confidence scores match actual outcomes:\n\n"
         )
-        history_section += (
-            "| Confidence | Predicted | Actual | Bets | Calibration |\n"
-        )
-        history_section += (
-            "|------------|-----------|--------|------|-------------|\n"
-        )
+        history_section += "| Confidence | Predicted | Actual | Bets | Calibration |\n"
+        history_section += "|------------|-----------|--------|------|-------------|\n"
 
         for bucket in calibration["buckets"]:
             if bucket["num_bets"] > 0:
@@ -189,9 +173,7 @@ Reasoning: {reasoning[:150]}...
         )
 
         history_section += "\n### Edge Validation\n\n"
-        history_section += (
-            "Compares predicted market edge vs actual realized edge:\n\n"
-        )
+        history_section += "Compares predicted market edge vs actual realized edge:\n\n"
         history_section += "| Edge Range | Predicted | Realized | Accuracy |\n"
         history_section += "|------------|-----------|----------|----------|\n"
 
@@ -228,27 +210,19 @@ Reasoning: {reasoning[:150]}...
 
         for bet in recent_closed:
             timestamp = to_cet(bet["timestamp_closed"])
-            time_str = (
-                timestamp.strftime("%Y-%m-%d") if timestamp else "Unknown"
-            )
+            time_str = timestamp.strftime("%Y-%m-%d") if timestamp else "Unknown"
 
             was_correct = bet["action"] == bet["actual_outcome"]
             result_icon = "✅" if was_correct else "❌"
 
             ai_prob = (
-                bet["ai_probability"]
-                if bet["ai_probability"] is not None
-                else 0.0
+                bet["ai_probability"] if bet["ai_probability"] is not None else 0.0
             )
             conf = (
-                bet["confidence_score"]
-                if bet["confidence_score"] is not None
-                else 0.0
+                bet["confidence_score"] if bet["confidence_score"] is not None else 0.0
             )
             reasoning = (
-                bet["ai_reasoning"]
-                if bet["ai_reasoning"] is not None
-                else "N/A"
+                bet["ai_reasoning"] if bet["ai_reasoning"] is not None else "N/A"
             )
 
             history_section += f"""**{time_str} - {bet['question'][:50]}...**

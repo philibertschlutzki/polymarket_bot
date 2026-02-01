@@ -6,9 +6,17 @@ from typing import Any, Dict, List, Optional, Tuple
 from sqlalchemy import func, text, update
 from sqlalchemy.orm import Session
 
-from src.db_models import (ActiveBet, ApiUsage, ArchivedBet, Base,
-                           GitSyncState, PortfolioState, RejectedMarket,
-                           engine, session_scope)
+from src.db_models import (
+    ActiveBet,
+    ApiUsage,
+    ArchivedBet,
+    Base,
+    GitSyncState,
+    PortfolioState,
+    RejectedMarket,
+    engine,
+    session_scope,
+)
 
 # Configuration
 INITIAL_CAPITAL = 1000.0
@@ -135,7 +143,7 @@ def insert_active_bet(bet_data: Dict[str, Any]):
         # but mark_git_change uses session_scope which handles new session. Commit here is implicit by context manager exit)
 
     mark_git_change("bet")
-    edge_pct = bet_data.get('edge', 0) * 100
+    edge_pct = bet_data.get("edge", 0) * 100
     logger.info(
         f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {edge_pct:+.1f}%)"
     )

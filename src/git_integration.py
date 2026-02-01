@@ -79,7 +79,5 @@ def push_dashboard_update():
         logger.warning(f"⚠️  Git push failed: {e}")
 
     except Exception as e:
-        error_logger.log_git_error(
-            operation="commit_or_push", error=e, context={}
-        )
+        error_logger.log_git_error(operation="commit_or_push", error=e, context={})
         logger.warning(f"⚠️  Git integration error: {e}")

@@ -302,9 +302,12 @@ def calculate_model_trends(
 
         avg_confidence = (
             sum(
-                r["confidence_score"]
-                if "confidence_score" in r.keys() and r["confidence_score"] is not None
-                else 0
+                (
+                    r["confidence_score"]
+                    if "confidence_score" in r.keys()
+                    and r["confidence_score"] is not None
+                    else 0
+                )
                 for r in period_results
             )
             / num_bets
@@ -471,5 +474,7 @@ def calculate_drawdown_metrics(  # noqa: C901
             drawdown_periods,
             key=lambda x: abs(x["max_dd"]),
             reverse=True,
-        )[:5],  # Top 5 worst
+        )[
+            :5
+        ],  # Top 5 worst
     }
