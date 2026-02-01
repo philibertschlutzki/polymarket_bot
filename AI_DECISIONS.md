@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-01 04:09:39 CET
+**Last Updated:** 2026-02-01 05:13:36 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -287,64 +287,100 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
+### Bet #18: Magic vs. Spurs
+
+**Decision:** YES @ 0.34 (Stake: $102.56)
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 33.5%)
+- **Confidence Score:** 75.0%
+- **Edge:** +31.5%
+- **Expected Value:** $+96.43
+- **End Date:** 2026-02-01 22:00 CET
+
+**AI Reasoning:**
+> Basierend auf den aktuellen Wettquoten und Vorhersagen ist San Antonio der Favorit. Die Spurs haben eine Bilanz von 32-16, während die Magic 25-22 stehen. Bet365 gibt den Spurs eine Gewinnwahrscheinlichkeit von 48.76%, während andere Quellen, basierend auf Algorithmusanalysen, die Wahrscheinlichkeit für einen Spurs-Sieg bei etwa 71% sehen. Dimers.com simuliert das Spiel 10.000 Mal und gibt den Magic eine Gewinnwahrscheinlichkeit von 30 % und den Spurs 70 %. Franz Wagner von den Magic ist verletzt und wird voraussichtlich fehlen. Jeremy Sochan von den Spurs ist ebenfalls verletzt. Unter Berücksichtigung der Verletzungssituation und der allgemeinen Teamstärke scheint ein Spurs-Sieg wahrscheinlicher. Die Verletzung von Franz Wagner, einem wichtigen Spieler der Magic, erhöht die Wahrscheinlichkeit für einen Spurs-Sieg zusätzlich. Die Wahrscheinlichkeit eines Spurs-Sieges wird auf 65% geschätzt, was über dem aktuellen Marktpreis von 33.50% liegt.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (88)
+### Insufficient Edge (87)
 
-**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 05:09*
-Market: 0.00 | AI: 0.03 | Edge: +2.9% | Conf: 80%
-Reasoning: Elon Musk twittert im Durchschnitt deutlich mehr als 20 Tweets pro Tag. Die Wettbedingung erfordert einen Durchschnitt von ca. 18 Tweets pro Tag über ...
+**Will Elon Musk post 20-39 tweets from February 3 to February...**
+*Analyzed: 2026-02-01 06:13*
+Market: 0.00 | AI: 0.03 | Edge: +2.9% | Conf: 70%
+Reasoning: Elon Musk hat in der Vergangenheit eine sehr hohe Tweet-Frequenz gezeigt. Obwohl aktuelle Daten auf eine Verringerung hindeuten, ist es unwahrscheinli...
 
 **Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 05:09*
-Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 75%
-Reasoning: Juan Branco is a controversial figure with limited mainstream appeal. Recent polls suggest a strong lead for Jordan Bardella, making it highly improba...
+*Analyzed: 2026-02-01 06:13*
+Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 70%
+Reasoning: Angesichts des sehr niedrigen Marktpreises von 1,05 %, der starken Konkurrenz durch etablierte Politiker wie Jordan Bardella und Jean-Luc Mélenchon, u...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 06:13*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 70%
+Reasoning: Brazil is a historically strong team with a rich football tradition, having won the World Cup five times. They have qualified for the 2026 World Cup a...
+
+**Will Elon Musk post 20-39 tweets from February 3 to February...**
+*Analyzed: 2026-02-01 05:57*
+Market: 0.00 | AI: 0.01 | Edge: +0.9% | Conf: 80%
+Reasoning: Basierend auf historischen Daten über Elon Musks Twitter-Aktivität, die typischerweise weit über 39 Tweets in einem Zeitraum von 8 Tagen liegt, ist di...
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 05:57*
+Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
+Reasoning: Juan Branco is a controversial figure with limited popularity and significant legal and ethical issues. He lacks extensive political experience and fa...
 
 **Backpack FDV above $5B one day after launch?...**
-*Analyzed: 2026-02-01 05:09*
-Market: 0.02 | AI: 0.03 | Edge: +1.0% | Conf: 60%
-Reasoning: Eine FDV von 5 Milliarden USD ist sehr hoch für einen Tag nach dem Launch, auch wenn Backpack vielversprechend ist. Die Community-Stimmung ist positiv...
+*Analyzed: 2026-02-01 05:56*
+Market: 0.02 | AI: 0.02 | Edge: +0.1% | Conf: 40%
+Reasoning: A Fully Diluted Valuation (FDV) of over $5 billion one day after launch is very ambitious for Backpack, given the competition and the current market c...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 05:08*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 70%
-Reasoning: Brazil is a football powerhouse with a rich history and many talented players. They are among the favorites, but not the top favorites. Their recent p...
+*Analyzed: 2026-02-01 05:56*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
+Reasoning: Brasilien ist eine Fussballnation mit grosser Tradition und hat die Weltmeisterschaft bereits fünfmal gewonnen. Sie sind das einzige Team, das an jede...
 
-**Will Angers win the 2025–26 French Ligue 1?...**
-*Analyzed: 2026-02-01 04:53*
-Market: 0.00 | AI: 0.00 | Edge: +0.1% | Conf: 70%
-Reasoning: Paris Saint-Germain ist der überwältigende Favorit, und Angers hat in der Vergangenheit nicht um den Titel mitgespielt. Obwohl sie in der Ligue 1 spie...
+**Will the price of Bitcoin be between $92,000 and $94,000 on ...**
+*Analyzed: 2026-02-01 05:41*
+Market: 0.00 | AI: 0.08 | Edge: +7.8% | Conf: 60%
+Reasoning: Die aktuelle Marktlage zeigt einen Abwärtstrend und hohe Volatilität. Die Preisprognosen für Februar 2026 variieren stark und liegen meist außerhalb d...
 
 **Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 04:53*
-Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 70%
-Reasoning: Juan Branco ist eine umstrittene Figur ohne breite Unterstützung oder eine etablierte Parteibasis. Er steht vor einem starken Konkurrenzfeld bei der P...
+*Analyzed: 2026-02-01 05:41*
+Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
+Reasoning: Juan Branco is a controversial figure with limited political experience and currently faces accusations of sexual assault. While he has a dedicated fo...
 
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 04:53*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
-Reasoning: Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften und hat eine reiche Geschichte. Obwohl ihre letzten Leistungen nicht optimal wa...
+**Backpack FDV above $5B one day after launch?...**
+*Analyzed: 2026-02-01 05:41*
+Market: 0.02 | AI: 0.05 | Edge: +3.1% | Conf: 60%
+Reasoning: Backpack is a growing crypto exchange with significant investment and a planned token launch. However, the $5B FDV target is ambitious, and the compan...
 
-**Will Angers win the 2025–26 French Ligue 1?...**
-*Analyzed: 2026-02-01 04:37*
-Market: 0.00 | AI: 0.00 | Edge: +0.1% | Conf: 70%
-Reasoning: Angers SCO hat eine sehr geringe Wahrscheinlichkeit, die Ligue 1 2025-26 zu gewinnen. Hier ist die Begründung:*   **PSG ist der klare Favorit:** Paris...
 
-**Will Carole Delga win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 04:37*
-Market: 0.00 | AI: 0.04 | Edge: +3.9% | Conf: 60%
-Reasoning: Carole Delga is a potential candidate from the Socialist Party, but she faces challenges in terms of national recognition, a fragmented left, and stro...
+### Negative Expected Value (10)
 
 **Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 04:37*
-Market: 0.00 | AI: 0.07 | Edge: +7.0% | Conf: 60%
-Reasoning: Die Wahrscheinlichkeit, dass Elon Musk innerhalb von 7 Tagen 140-159 Tweets absetzt, wird als gering eingeschätzt, da dies eine hohe durchschnittliche...
+*Analyzed: 2026-02-01 06:13*
+Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 60%
+Reasoning: Elon Musk hat in der Vergangenheit eine hohe Tweet-Frequenz gezeigt, aber die geforderte Spanne von 140-159 Tweets in 8 Tagen (durchschnittlich 17.5-1...
 
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 05:57*
+Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 60%
+Reasoning: Elon Musk hat in der Vergangenheit eine hohe Tweet-Frequenz gezeigt. Die für die Wette erforderliche durchschnittliche Anzahl an Tweets pro Tag (17.5 ...
 
-### Negative Expected Value (9)
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 05:41*
+Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 60%
+Reasoning: Elon Musk's tweeting habits are highly variable. While he has periods of very high activity, more recent data suggests a lower average. The specific r...
+
+**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-01 05:25*
+Market: 0.00 | AI: 0.95 | Edge: +95.0% | Conf: 85%
+Reasoning: Basierend auf den verfügbaren Daten deutet alles darauf hin, dass Elon Musk sehr aktiv auf X (ehemals Twitter) ist.  Mehrere Quellen aus dem Jahr 2026...
 
 **Will Elon Musk post 140-159 tweets from January 30 to Februa...**
 *Analyzed: 2026-02-01 04:53*
@@ -375,21 +411,6 @@ Reasoning: Elon Musk is typically very active on Twitter, but predicting a speci
 *Analyzed: 2026-02-01 02:13*
 Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 60%
 Reasoning: Elon Musk typically posts a very high volume of tweets. While his activity can fluctuate, and his attendance at the WEF could potentially reduce his p...
-
-**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
-*Analyzed: 2026-02-01 00:22*
-Market: 1.00 | AI: 0.85 | Edge: -15.0% | Conf: 75%
-Reasoning: Obwohl FaZe in der Weltrangliste höher steht, hat 3DMAX sie kürzlich besiegt. Der Marktpreis deutet auf eine extrem hohe Wahrscheinlichkeit für 3DMAX ...
-
-**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
-*Analyzed: 2026-02-01 00:06*
-Market: 1.00 | AI: 0.65 | Edge: -35.0% | Conf: 70%
-Reasoning: Obwohl FaZe im Allgemeinen höher eingestuft ist, hat 3DMAX sie kürzlich geschlagen und zeigt eine starke Spielerleistung. Der aktuelle Marktpreis von ...
-
-**Counter-Strike: 3DMAX vs FaZe - Map 2 Winner...**
-*Analyzed: 2026-01-31 23:33*
-Market: 1.00 | AI: 0.60 | Edge: -40.0% | Conf: 70%
-Reasoning: Despite the high market price, the facts suggest a slightly lower probability. 3DMAX's recent win is considered, but FaZe is still the higher-ranked t...
 
 
 ### Ai Analysis Failed (3)
