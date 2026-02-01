@@ -24,24 +24,25 @@ from typing import Dict, List, Optional, Tuple, Union
 # Add project root to sys.path to allow imports from src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import requests  # noqa: E402
-from dateutil import parser as date_parser  # noqa: E402
-from dotenv import load_dotenv  # noqa: E402
+# flake8: noqa: E402
+import requests
+from dateutil import parser as date_parser
+from dotenv import load_dotenv
 from google import genai  # noqa: E402
 from google.genai import types  # noqa: E402
 from pydantic import BaseModel, Field  # noqa: E402
-from tenacity import (  # noqa: E402
+from tenacity import retry_if_exception_type  # noqa: E402
+from tenacity import (
     retry,
-    retry_if_exception_type,
     stop_after_attempt,
     wait_exponential,
 )
 
 # Internal modules
-from src import (  # noqa: E402
+from src import database  # noqa: E402
+from src import (
     ai_decisions_generator,
     dashboard,
-    database,
     git_integration,
 )
 
