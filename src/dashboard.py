@@ -1,6 +1,6 @@
 import logging
 import os
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone, tzinfo
 
 import asciichartpy
 from dateutil import parser
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 try:
     from zoneinfo import ZoneInfo
 
-    CET_TZ = ZoneInfo("Europe/Berlin")
+    CET_TZ: tzinfo = ZoneInfo("Europe/Berlin")
 except ImportError:
     # Fallback to fixed offset (UTC+1) if zoneinfo is not available
     CET_TZ = timezone(timedelta(hours=1))  # type: ignore

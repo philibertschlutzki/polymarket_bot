@@ -20,7 +20,7 @@ import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Union
 
 import requests
 from dateutil import parser as date_parser
@@ -30,7 +30,6 @@ from google.genai import types
 from pydantic import BaseModel, Field
 from tenacity import (
     retry,
-    retry_if_exception_type,
     stop_after_attempt,
     wait_exponential,
 )
@@ -39,10 +38,10 @@ from tenacity import (
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Internal modules
-from src import (  # noqa: E402
+from src import database  # noqa: E402
+from src import (
     ai_decisions_generator,
     dashboard,
-    database,
     git_integration,
 )
 
@@ -425,7 +424,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
     """
     try:
         logger.info("📡 Verbinde mit Polymarket Gamma API...")
-        params = {
+        params: Dict[str, Union[str, int]] = {
             "closed": "false",
             "limit": limit,
             "offset": 0,
