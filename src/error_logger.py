@@ -46,8 +46,15 @@ handler.setFormatter(JsonFormatter())
 error_logger.addHandler(handler)
 
 def log_error(level, category, component, message, error=None, context=None):
-    """
-    General structured error logging.
+    """Logs a structured error message to the error log file.
+
+    Args:
+        level: Logging level ('WARNING', 'ERROR', 'CRITICAL').
+        category: Broad category of the error (e.g., 'api', 'database').
+        component: Specific component where the error occurred.
+        message: Human-readable error message.
+        error: Optional Exception object to capture stack trace.
+        context: Optional dictionary of extra context data.
     """
     custom_fields = {
         "category": category,
@@ -65,8 +72,14 @@ def log_error(level, category, component, message, error=None, context=None):
         error_logger.error(message, extra={"custom_fields": custom_fields})
 
 def log_api_error(api_name, endpoint, error, response_code=None, context=None):
-    """
-    Specific logger for API errors.
+    """Helper to log API-related errors.
+
+    Args:
+        api_name: Name of the API (e.g., 'gemini').
+        endpoint: Endpoint being called.
+        error: The exception caught.
+        response_code: HTTP status code if available.
+        context: Additional context.
     """
     ctx = context or {}
     if response_code:
@@ -82,8 +95,12 @@ def log_api_error(api_name, endpoint, error, response_code=None, context=None):
     )
 
 def log_git_error(operation, error, context=None):
-    """
-    Specific logger for Git errors.
+    """Helper to log Git integration errors.
+
+    Args:
+        operation: The git operation (e.g., 'push').
+        error: The exception caught.
+        context: Additional context.
     """
     log_error(
         level="WARNING", # Git errors are usually not fatal for the main loop
@@ -95,8 +112,12 @@ def log_git_error(operation, error, context=None):
     )
 
 def log_database_error(operation, error, context=None):
-    """
-    Specific logger for Database errors.
+    """Helper to log Database errors.
+
+    Args:
+        operation: The database operation (e.g., 'insert_bet').
+        error: The exception caught.
+        context: Additional context.
     """
     log_error(
         level="CRITICAL",

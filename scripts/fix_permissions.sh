@@ -1,6 +1,11 @@
 #!/bin/bash
 echo "🔧 Fixing permissions for Polymarket Bot..."
 
+# Ensure we are in the project root (parent of scripts/)
+cd "$(dirname "$0")/.."
+WORKING_DIR=$(pwd)
+echo "📂 Working Directory: $WORKING_DIR"
+
 # Stop service
 sudo systemctl stop polymarket-bot.service 2>/dev/null || true
 
@@ -12,9 +17,14 @@ if [ -d logs ]; then
 fi
 
 # Fix database
-if [ -f polymarket.db ]; then
-    sudo chown $(whoami):$(whoami) polymarket.db
-    chmod u+rw polymarket.db
+if [ -f database/polymarket.db ]; then
+    sudo chown $(whoami):$(whoami) database/polymarket.db
+    chmod u+rw database/polymarket.db
+fi
+# Also directory
+if [ -d database ]; then
+    sudo chown -R $(whoami):$(whoami) database/
+    chmod -R u+rw database/
 fi
 
 # Fix .env

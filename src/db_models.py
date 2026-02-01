@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Numeric, DateTime, Boolean, Text, CheckConstraint, JSON, BigInteger
+from sqlalchemy import create_engine, Column, Integer, String, Numeric, DateTime, Boolean, Text, CheckConstraint, JSON, BigInteger, ForeignKey, ARRAY
 from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.sql import func
 from contextlib import contextmanager
@@ -7,13 +7,17 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:pass@localhost/polymarket_bot")
+# Default to SQLite if DATABASE_URL is not set
+DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    DATABASE_URL = "sqlite:///database/polymarket.db"
 
 engine_args = {
     "pool_pre_ping": True,
     "echo": False
 }
 
+# Add PostgreSQL specific arguments only if using PostgreSQL
 if DATABASE_URL.startswith("postgresql"):
     engine_args.update({
         "pool_size": 5,
@@ -161,10 +165,6 @@ class GitSyncState(Base):
 class BetAnalysis(Base):
     __tablename__ = 'bet_analysis'
     analysis_id = Column(BigInteger, primary_key=True, autoincrement=True)
-    archive_id = Column(BigInteger, nullable=False) # ForeignKey would be good, but prompt just said references. I'll stick to simple column to avoid complex relationship setups unless needed, but I should add FK if I want referential integrity. Let's add it.
-    # Actually, let's keep it simple as per prompt SQL which had REFERENCES but here I am defining ORM.
-    # I'll add ForeignKey to keep it clean.
-    from sqlalchemy import ForeignKey
     archive_id = Column(BigInteger, ForeignKey('archived_bets.archive_id'), nullable=False)
 
     ai_model = Column(Text, nullable=False)
@@ -182,7 +182,6 @@ class BetAnalysis(Base):
 class FinalPredictions(Base):
     __tablename__ = 'final_predictions'
     prediction_id = Column(BigInteger, primary_key=True, autoincrement=True)
-    from sqlalchemy import ForeignKey, ARRAY
     archive_id = Column(BigInteger, ForeignKey('archived_bets.archive_id'), nullable=False, unique=True)
     aggregated_outcome = Column(Text, nullable=False)
     weighted_confidence = Column(Numeric(5, 4), nullable=False)

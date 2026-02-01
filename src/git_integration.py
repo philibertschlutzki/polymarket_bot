@@ -2,15 +2,20 @@ import os
 import logging
 from datetime import datetime, timedelta
 from git import Repo, GitCommandError
-import database
-import error_logger
+from src import database
+from src import error_logger
 
 logger = logging.getLogger(__name__)
 
 def push_dashboard_update():
-    """
-    Pusht Dashboard-Updates in Batches (1-2h Intervall).
-    Inkludiert PERFORMANCE_DASHBOARD.md und AI_DECISIONS.md bei Änderungen.
+    """Pushes dashboard updates to the remote Git repository.
+
+    Checks if enough time has passed since the last push or if there are
+    significant changes. Commits and pushes `PERFORMANCE_DASHBOARD.md` and
+    `AI_DECISIONS.md` to the configured remote.
+
+    Uses `git_sync_state` in the database to track pending changes and
+    throttle push frequency.
     """
     try:
         # Prüfe ob Push nötig ist

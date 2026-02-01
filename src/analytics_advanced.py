@@ -7,8 +7,8 @@ import logging
 import math
 from datetime import datetime, timedelta
 from typing import List, Dict, Any, Tuple, Optional
-import database
-from dashboard import to_cet, CET_TZ
+from src import database
+from src.dashboard import to_cet, CET_TZ
 
 logger = logging.getLogger(__name__)
 

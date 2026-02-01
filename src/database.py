@@ -7,7 +7,7 @@ from sqlalchemy import select, func, text, update
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 
-from db_models import (
+from src.db_models import (
     engine, Base, session_scope,
     ActiveBet, ArchivedBet, RejectedMarket, ApiUsage,
     PortfolioState, GitSyncState,
@@ -21,7 +21,14 @@ INITIAL_CAPITAL = 1000.0
 logger = logging.getLogger(__name__)
 
 def init_database():
-    """Initializes the database with required tables and default values."""
+    """Initializes the database with required tables and default values.
+
+    Creates all tables defined in SQLAlchemy models if they don't exist.
+    Also initializes the 'portfolio_state' with default capital if empty.
+
+    Raises:
+        SQLAlchemyError: If table creation fails.
+    """
     try:
         # Create tables
         Base.metadata.create_all(engine)
@@ -84,7 +91,12 @@ def update_capital(new_capital: float):
         logger.info(f"Capital updated to ${new_capital:.2f}")
 
 def insert_active_bet(bet_data: Dict[str, Any]):
-    """Inserts a new active bet."""
+    """Records a new active bet in the database.
+
+    Args:
+        bet_data: A dictionary containing bet details (market_slug, question,
+            stake_usdc, etc.).
+    """
     with session_scope() as session:
         bet = ActiveBet(
             market_slug=bet_data['market_slug'],
@@ -119,13 +131,27 @@ def insert_active_bet(bet_data: Dict[str, Any]):
     logger.info(f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {bet_data.get('edge', 0)*100:+.1f}%)")
 
 def get_active_bets() -> List[Dict[str, Any]]:
-    """Retrieves all OPEN bets."""
+    """Retrieves all currently active (open) bets.
+
+    Returns:
+        A list of dictionaries representing active bets.
+    """
     with session_scope() as session:
         bets = session.query(ActiveBet).filter(ActiveBet.status == 'OPEN').all()
         return [to_dict(b) for b in bets]
 
 def close_bet(bet_id: int, outcome: str, profit_loss: float, conn: Optional[Session] = None):
-    """Moves a bet from active_bets to archived_bets (results) and updates capital."""
+    """Closes an active bet and records the result.
+
+    Moves the bet from 'active_bets' to 'archived_bets', records the outcome
+    and P/L, and updates the global capital atomically.
+
+    Args:
+        bet_id: The ID of the bet to close.
+        outcome: The resolved outcome ('YES' or 'NO').
+        profit_loss: The realized profit or loss in USDC.
+        conn: Optional existing SQLAlchemy session to use (for transactions).
+    """
 
     # Inner function to perform logic with a given session
     def _perform_close(session: Session):

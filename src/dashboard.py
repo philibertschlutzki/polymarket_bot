@@ -3,7 +3,7 @@ import os
 from datetime import datetime, timezone, timedelta
 import asciichartpy
 from dateutil import parser
-import database
+from src import database
 import math
 
 logger = logging.getLogger(__name__)
@@ -32,7 +32,12 @@ def to_cet(dt):
     return dt.astimezone(CET_TZ)
 
 def generate_dashboard():
-    """Generates the complete Performance Dashboard."""
+    """Generates the complete Performance Dashboard Markdown file.
+
+    Aggregates data from the database, calculates performance metrics,
+    and formats them into `PERFORMANCE_DASHBOARD.md`. This includes
+    active bets, recent results, chart visualization, and system status.
+    """
     logger.info("Generating dashboard...")
 
     # 1. Load Data
@@ -365,7 +370,7 @@ def generate_advanced_analytics_section(results: list) -> str:
 ---
 """
     try:
-        import analytics_advanced
+        from src import analytics_advanced
 
         # 1. Confidence Calibration
         calibration = analytics_advanced.calculate_confidence_calibration(results)

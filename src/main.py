@@ -21,6 +21,9 @@ import re
 from typing import Optional, List, Dict, Any, Tuple
 from datetime import datetime, timezone, timedelta
 
+# Add project root to sys.path to allow imports from src
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from google import genai
@@ -30,11 +33,11 @@ from dateutil import parser as date_parser
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 # Internal modules
-import database
-import dashboard
-import git_integration
-import ai_decisions_generator
-import error_logger
+from src import database
+from src import dashboard
+from src import git_integration
+from src import ai_decisions_generator
+from src import error_logger
 
 # ============================================================================
 # KONFIGURATION
@@ -370,7 +373,18 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
     return None
 
 def fetch_active_markets(limit: int = 20) -> List[MarketData]:
-    """Holt aktive Märkte von der Polymarket Gamma API."""
+    """Fetches active markets from the Polymarket Gamma API.
+
+    Retrieves open markets sorted by volume to identify potential trading opportunities.
+    Filters out markets with low volume or invalid data.
+
+    Args:
+        limit: Maximum number of markets to fetch (default: 20).
+
+    Returns:
+        A list of MarketData objects representing active markets.
+        Returns an empty list if the API call fails.
+    """
     try:
         logger.info(f"📡 Verbinde mit Polymarket Gamma API...")
         params = {
@@ -458,7 +472,18 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
         return []
 
 def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
-    """Lädt fehlende End Dates via GraphQL nach."""
+    """Retrieves missing end dates for markets using GraphQL.
+
+    Some markets from the Gamma API might lack end dates. This function queries
+    the Goldsky Subgraph to fill in this information, which is crucial for
+    resolution tracking.
+
+    Args:
+        markets: List of MarketData objects to check.
+
+    Returns:
+        The updated list of MarketData objects with populated end dates where possible.
+    """
     markets_missing_date = [m for m in markets if not m.end_date]
     if not markets_missing_date:
         return markets
@@ -556,6 +581,18 @@ def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, 
     return parsed_data, usage_meta
 
 def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
+    """Analyzes a market using Google Gemini AI to estimate probability.
+
+    Uses Gemini 2.0 Flash with Search Grounding to research the market question
+    and estimate the probability of the 'YES' outcome.
+
+    Args:
+        market: The MarketData object containing the question and context.
+
+    Returns:
+        An AIAnalysis object with probability, confidence, and reasoning,
+        or None if the API call fails.
+    """
     try:
         client = genai.Client(api_key=GEMINI_API_KEY)
         prompt = f"""
@@ -581,6 +618,21 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         return None
 
 def calculate_kelly_stake(ai_prob: float, price: float, conf: float, capital: float) -> TradingRecommendation:
+    """Calculates the optimal stake size using the Kelly Criterion.
+
+    Determines whether to bet YES, NO, or PASS based on the calculated edge and
+    expected value. Applies fractional Kelly and a confidence multiplier to
+    manage risk.
+
+    Args:
+        ai_prob: The estimated probability of the 'YES' outcome (0.0-1.0).
+        price: The current market price of 'YES' (0.0-1.0).
+        conf: The AI's confidence score (0.0-1.0).
+        capital: The total available capital for trading.
+
+    Returns:
+        A TradingRecommendation object containing the action, stake size, and expected value.
+    """
     if price <= 0.001 or price >= 0.999:
         return TradingRecommendation(action="PASS", stake_usdc=0.0, kelly_fraction=0.0, expected_value=0.0, market_question="")
 

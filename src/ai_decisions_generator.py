@@ -1,12 +1,17 @@
 import logging
 from datetime import datetime, timedelta
-import database
-from dashboard import to_cet, CET_TZ
+from src import database
+from src.dashboard import to_cet, CET_TZ
 
 logger = logging.getLogger(__name__)
 
 def generate_ai_decisions_file():
-    """Generates AI_DECISIONS.md with all AI analysis details."""
+    """Generates the AI Decision Log Markdown file.
+
+    Compiles a detailed log of all AI-driven trading decisions, including active
+    bets, rejected markets, and historical analysis. The output is written to
+    `AI_DECISIONS.md` and includes full reasoning text from the Gemini API.
+    """
 
     logger.info("Generating AI_DECISIONS.md...")
 
@@ -115,7 +120,7 @@ Reasoning: {reasoning[:150]}...
     if not closed_bets:
         history_section += "*No closed bets yet for analysis.*\n\n"
     else:
-        import analytics_advanced
+        from src import analytics_advanced
 
         # Confidence Calibration
         calibration = analytics_advanced.calculate_confidence_calibration(closed_bets)

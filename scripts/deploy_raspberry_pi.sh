@@ -4,6 +4,11 @@ set -e  # Exit on error
 echo "🚀 Polymarket Bot - Raspberry Pi Deployment"
 echo "============================================"
 
+# Ensure we are in the project root (parent of scripts/)
+cd "$(dirname "$0")/.."
+WORKING_DIR=$(pwd)
+echo "📂 Working Directory: $WORKING_DIR"
+
 # 1. System Requirements Check
 echo "📋 Checking system requirements..."
 if ! command -v python3 &> /dev/null; then
@@ -118,7 +123,23 @@ fi
 # 7. Database Initialization
 echo ""
 echo "🗄️  Initializing database..."
-python3 -c "import database; database.init_database()"
+
+# Load env vars to check DATABASE_URL
+set -a
+source .env
+set +a
+
+if [ -z "$DATABASE_URL" ] || [[ "$DATABASE_URL" == "sqlite"* ]]; then
+    echo "ℹ️  Using SQLite (Default). Creating database directory..."
+    mkdir -p database
+    # Fix permissions if needed
+    sudo chown -R $(whoami):$(whoami) database
+    chmod -R u+rw database
+fi
+
+# Set PYTHONPATH to include current dir so imports work
+export PYTHONPATH=$WORKING_DIR
+python3 -c "from src import database; database.init_database()"
 echo "✅ Database initialized with 1000 USDC starting capital"
 
 # 8. .gitignore Configuration
@@ -139,13 +160,35 @@ chmod -R u+rw logs
 # Remove any existing log files that might have wrong permissions
 rm -f logs/bot.log logs/bot.error.log logs/bot.log.*
 
-# 10. systemd Service Installation
+# 10. Logrotate Configuration
+echo ""
+echo "🔄 Configuring Logrotate..."
+LOGROTATE_CONF="/etc/logrotate.d/polymarket-bot"
+USER=$(whoami)
+
+# We use sudo to write to /etc/logrotate.d/
+if sudo bash -c "cat > $LOGROTATE_CONF" <<EOF
+$WORKING_DIR/logs/*.log {
+    daily
+    rotate 7
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 644 $USER $USER
+}
+EOF
+then
+    echo "✅ Logrotate configured."
+else
+    echo "⚠️  Failed to configure logrotate (sudo required)."
+fi
+
+# 11. systemd Service Installation
 echo ""
 echo "⚙️  Installing systemd service..."
 
 SERVICE_FILE="/etc/systemd/system/polymarket-bot.service"
-WORKING_DIR=$(pwd)
-USER=$(whoami)
 
 sudo tee $SERVICE_FILE > /dev/null <<EOF
 [Unit]
@@ -158,8 +201,9 @@ Type=simple
 User=$USER
 WorkingDirectory=$WORKING_DIR
 Environment="PATH=$WORKING_DIR/venv/bin:/usr/bin"
+# ExecStart points to src/main.py
 ExecStartPre=/bin/bash -c 'mkdir -p $WORKING_DIR/logs && chown -R $USER:$USER $WORKING_DIR/logs && chmod -R u+rw $WORKING_DIR/logs'
-ExecStart=$WORKING_DIR/venv/bin/python3 $WORKING_DIR/main.py
+ExecStart=$WORKING_DIR/venv/bin/python3 $WORKING_DIR/src/main.py
 Restart=on-failure
 RestartSec=10
 StartLimitBurst=5
@@ -175,7 +219,7 @@ EOF
 
 echo "✅ Service file created at $SERVICE_FILE"
 
-# 11. Enable and Start Service
+# 12. Enable and Start Service
 echo ""
 read -p "Start the bot service now? (y/n) " -n 1 -r
 echo
