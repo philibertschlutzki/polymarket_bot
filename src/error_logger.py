@@ -15,9 +15,7 @@ error_log_file = log_dir / "errors.log"
 # Configure separate logger for errors
 error_logger = logging.getLogger("error_logger")
 error_logger.setLevel(logging.WARNING)  # Capture WARNING, ERROR, CRITICAL
-error_logger.propagate = (
-    False  # Prevent propagation to root logger to avoid duplicates
-)
+error_logger.propagate = False  # Prevent propagation to root logger to avoid duplicates
 
 # Handler for error log file with rotation
 handler = logging.handlers.RotatingFileHandler(

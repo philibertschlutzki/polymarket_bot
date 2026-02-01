@@ -60,7 +60,9 @@ def generate_dashboard():
     performance_metrics = _generate_performance_metrics(results, metrics)
     risk_metrics = _generate_risk_metrics(active_bets, capital)
     active_bets_section = _generate_active_bets_section(all_active_display, now_cet)
-    alerts_section = _generate_alerts_section(rpm_pct, rpd_pct, tpm_pct, active_bets, capital, now_cet)
+    alerts_section = _generate_alerts_section(
+        rpm_pct, rpd_pct, tpm_pct, active_bets, capital, now_cet
+    )
     market_insights = _generate_market_insights(all_active_display)
     chart_section = generate_chart_section(results)
     recent_section = generate_recent_results_section(results)
@@ -271,7 +273,9 @@ def _extract_bet_metrics(bet):
     price = float(bet["entry_price"])
     ai_prob = float(bet["ai_probability"]) if bet["ai_probability"] is not None else 0.0
     edge = float(bet["edge"]) if bet["edge"] is not None else 0.0
-    conf = float(bet["confidence_score"]) if bet["confidence_score"] is not None else 0.0
+    conf = (
+        float(bet["confidence_score"]) if bet["confidence_score"] is not None else 0.0
+    )
     ev = float(bet["expected_value"])
     return stake, price, ai_prob, edge, conf, ev
 
@@ -341,11 +345,17 @@ def _generate_alerts_section(rpm_pct, rpd_pct, tpm_pct, active_bets, capital, no
 def _check_api_limits(rpm_pct, rpd_pct, tpm_pct):
     alerts = []
     if rpm_pct >= 90:
-        alerts.append(f"🔴 **API Limit Warning**: Gemini RPM at {rpm_pct:.0f}% capacity")
+        alerts.append(
+            f"🔴 **API Limit Warning**: Gemini RPM at {rpm_pct:.0f}% capacity"
+        )
     if rpd_pct >= 90:
-        alerts.append(f"🔴 **API Limit Warning**: Gemini RPD at {rpd_pct:.0f}% capacity")
+        alerts.append(
+            f"🔴 **API Limit Warning**: Gemini RPD at {rpd_pct:.0f}% capacity"
+        )
     if tpm_pct >= 90:
-        alerts.append(f"🔴 **API Limit Warning**: Gemini TPM at {tpm_pct:.0f}% capacity")
+        alerts.append(
+            f"🔴 **API Limit Warning**: Gemini TPM at {tpm_pct:.0f}% capacity"
+        )
     return alerts
 
 
@@ -354,7 +364,9 @@ def _check_high_exposure(active_bets, capital):
     for bet in active_bets:
         pos_pct = (float(bet["stake_usdc"]) / capital * 100) if capital > 0 else 0
         if pos_pct > 10:
-            alerts.append(f"🔴 **High Exposure**: \"{bet['question'][:30]}...\" is {pos_pct:.1f}% of capital")
+            alerts.append(
+                f"🔴 **High Exposure**: \"{bet['question'][:30]}...\" is {pos_pct:.1f}% of capital"
+            )
     return alerts
 
 
@@ -372,7 +384,9 @@ def _check_expiring_soon(active_bets, now_cet):
             except Exception:
                 pass
     if expiring_soon > 0:
-        alerts.append(f"🟡 **Expiring Soon**: {expiring_soon} bet(s) expire within 7 days")
+        alerts.append(
+            f"🟡 **Expiring Soon**: {expiring_soon} bet(s) expire within 7 days"
+        )
     return alerts
 
 
@@ -385,7 +399,11 @@ def _generate_market_insights(all_active_display):
         reason = rej["rejection_reason"]
         rejection_counts[reason] = rejection_counts.get(reason, 0) + 1
 
-    top_rejection = max(rejection_counts.items(), key=lambda x: x[1])[0] if rejection_counts else "N/A"
+    top_rejection = (
+        max(rejection_counts.items(), key=lambda x: x[1])[0]
+        if rejection_counts
+        else "N/A"
+    )
 
     return f"""## 📊 Market Insights
 
@@ -414,7 +432,9 @@ def generate_advanced_analytics_section(results: list) -> str:
         trends_section = _generate_trends_section(analytics_advanced, results)
         dd_section = _generate_drawdown_section(analytics_advanced, database)
 
-        return calibration_section + edge_section + trends_section + dd_section + "\n---\n"
+        return (
+            calibration_section + edge_section + trends_section + dd_section + "\n---\n"
+        )
     except Exception as e:
         logger.error(f"Error generating advanced analytics: {e}")
         return "\n*Advanced analytics unavailable*\n\n---\n"
@@ -432,11 +452,30 @@ def _generate_calibration_section(analytics_advanced, results):
             section += f"| {bucket['range']} | - | - | 0 | - | Insufficient data |\n"
         else:
             pred = f"{bucket['predicted_win_rate']:.1%}"
-            actual = f"{bucket['actual_win_rate']:.1%}" if bucket["actual_win_rate"] else "N/A"
-            error = f"{bucket['calibration_error']:+.1%}" if bucket["calibration_error"] else "N/A"
+            actual = (
+                f"{bucket['actual_win_rate']:.1%}"
+                if bucket["actual_win_rate"]
+                else "N/A"
+            )
+            error = (
+                f"{bucket['calibration_error']:+.1%}"
+                if bucket["calibration_error"]
+                else "N/A"
+            )
             status = bucket["status"]
-            icon = "✅" if status == "well_calibrated" else "⚠️" if status == "acceptable" else \
-                ("🔴" if status == "overconfident" else ("🔵" if status == "underconfident" else "⚪"))
+            icon = (
+                "✅"
+                if status == "well_calibrated"
+                else (
+                    "⚠️"
+                    if status == "acceptable"
+                    else (
+                        "🔴"
+                        if status == "overconfident"
+                        else ("🔵" if status == "underconfident" else "⚪")
+                    )
+                )
+            )
             status_title = status.replace("_", " ").title()
             row = (
                 f"| {bucket['range']} | {pred} | {actual} | {bucket['num_bets']} | "
@@ -465,7 +504,11 @@ def _generate_edge_section(analytics_advanced, results):
             real = f"{bucket['avg_realized_edge']:+.1%}"
             delta = f"{bucket['delta']:+.1%}"
             acc = f"{bucket['accuracy']:.0%}"
-            acc_icon = "✅" if bucket["accuracy"] >= 0.90 else "⚠️" if bucket["accuracy"] >= 0.80 else "🔴"
+            acc_icon = (
+                "✅"
+                if bucket["accuracy"] >= 0.90
+                else "⚠️" if bucket["accuracy"] >= 0.80 else "🔴"
+            )
             section += f"| {bucket['range']} | {pred} | {real} | {delta} | {acc} {acc_icon} | {bucket['num_bets']} |\n"
 
     section += f"\n**Overall Edge Accuracy:** {edge_val['overall_accuracy']:.0%}\n"
@@ -473,7 +516,9 @@ def _generate_edge_section(analytics_advanced, results):
 
 
 def _generate_trends_section(analytics_advanced, results):
-    trends = analytics_advanced.calculate_model_trends(results, window_days=30, num_periods=8)
+    trends = analytics_advanced.calculate_model_trends(
+        results, window_days=30, num_periods=8
+    )
     section = """\n## 📈 AI Model Performance Trends (30-day Rolling)
 
 | Period | Win Rate | Avg Conf | Calibration | Bets |

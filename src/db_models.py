@@ -2,9 +2,16 @@ import logging
 import os
 from contextlib import contextmanager
 
-from sqlalchemy import (Boolean, CheckConstraint,
-                        Column, DateTime, Integer, Numeric, Text,
-                        create_engine)
+from sqlalchemy import (
+    Boolean,
+    CheckConstraint,
+    Column,
+    DateTime,
+    Integer,
+    Numeric,
+    Text,
+    create_engine,
+)
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.sql import func
 
