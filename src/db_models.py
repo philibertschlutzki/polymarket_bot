@@ -3,9 +3,20 @@ import os
 from contextlib import contextmanager
 from typing import Any, Dict
 
-from sqlalchemy import (JSON, BigInteger, Boolean, CheckConstraint,
-                        Column, DateTime, ForeignKey, Integer, Numeric, Text,
-                        create_engine, ARRAY)
+from sqlalchemy import (
+    JSON,
+    BigInteger,
+    Boolean,
+    CheckConstraint,
+    Column,
+    DateTime,
+    ForeignKey,
+    Integer,
+    Numeric,
+    Text,
+    create_engine,
+    ARRAY,
+)
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.sql import func
 
@@ -178,15 +189,19 @@ class GitSyncState(Base):
 
 
 class BetAnalysis(Base):
-    __tablename__ = 'bet_analysis'
+    __tablename__ = "bet_analysis"
     analysis_id = Column(BigInteger, primary_key=True, autoincrement=True)
-    archive_id = Column(BigInteger, ForeignKey('archived_bets.archive_id'), nullable=False)
+    archive_id = Column(
+        BigInteger, ForeignKey("archived_bets.archive_id"), nullable=False
+    )
 
     ai_model = Column(Text, nullable=False)
     predicted_outcome = Column(Text, nullable=False)
     confidence = Column(Numeric(5, 4), nullable=False)
     reasoning = Column(Text)
-    timestamp_analyzed = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
+    timestamp_analyzed = Column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )
     raw_response = Column(JSON)
 
     __table_args__ = (
@@ -196,14 +211,18 @@ class BetAnalysis(Base):
 
 
 class FinalPredictions(Base):
-    __tablename__ = 'final_predictions'
+    __tablename__ = "final_predictions"
     prediction_id = Column(BigInteger, primary_key=True, autoincrement=True)
-    archive_id = Column(BigInteger, ForeignKey('archived_bets.archive_id'), nullable=False, unique=True)
+    archive_id = Column(
+        BigInteger, ForeignKey("archived_bets.archive_id"), nullable=False, unique=True
+    )
     aggregated_outcome = Column(Text, nullable=False)
     weighted_confidence = Column(Numeric(5, 4), nullable=False)
     models_used = Column(ARRAY(Text))  # type: ignore # Using ARRAY for TEXT[]
     weights_applied = Column(JSON)
-    timestamp_created = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
+    timestamp_created = Column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )
     version = Column(Integer, nullable=False, default=1)
 
     __table_args__ = (

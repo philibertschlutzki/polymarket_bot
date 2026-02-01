@@ -432,7 +432,9 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
             "ascending": "false",
         }
 
-        response = requests.get(POLYMARKET_GAMMA_API_URL, params=params, timeout=10)
+        response = requests.get(
+            POLYMARKET_GAMMA_API_URL, params=params, timeout=10  # type: ignore
+        )
 
         if response.status_code != 200:
             logger.warning(f"⚠️  Gamma API HTTP Fehler: {response.status_code}")
@@ -519,7 +521,9 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
         return []
 
 
-def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:  # noqa: C901
+def fetch_missing_end_dates(
+    markets: List[MarketData],
+) -> List[MarketData]:  # noqa: C901
     """Retrieves missing end dates for markets using GraphQL.
 
     Some markets from the Gamma API might lack end dates. This function queries
