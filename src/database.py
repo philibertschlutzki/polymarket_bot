@@ -78,7 +78,7 @@ def get_current_capital() -> float:
 
 
 def update_capital(new_capital: float):
-    """Updates total capital in portfolio_state (Atomic/Optimistic not strictly needed here if single writer, but using update for safety)."""
+    """Updates total capital in portfolio_state (Atomic/Optimistic)."""
     with session_scope() as session:
         session.execute(
             update(PortfolioState)

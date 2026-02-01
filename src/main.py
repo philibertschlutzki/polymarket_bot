@@ -519,7 +519,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
         return []
 
 
-def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
+def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:  # noqa: C901
     """Retrieves missing end dates for markets using GraphQL.
 
     Some markets from the Gamma API might lack end dates. This function queries
