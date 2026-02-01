@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-01 08:24:15 CET
+**Last Updated:** 2026-02-01 09:11:50 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -355,57 +355,57 @@ This file contains detailed AI reasoning for all market analyses.
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (86)
-
-**Will Player 174 win Beast Games: Season 2?...**
-*Analyzed: 2026-02-01 09:24*
-Market: 0.00 | AI: 0.03 | Edge: +2.7% | Conf: 70%
-Reasoning: Basierend auf den aktuellen Informationen und dem Stand der Dinge bei den 'Beast Games: Season 2', lässt sich die Wahrscheinlichkeit für einen Sieg vo...
+### Insufficient Edge (90)
 
 **Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 09:23*
-Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 85%
-Reasoning: Juan Branco is a controversial figure with limited political experience and is accused of sexual assault. The market price reflects his low chances. H...
-
-**Will the next Prime Minister of Hungary be István Kapitány?...**
-*Analyzed: 2026-02-01 09:23*
-Market: 0.01 | AI: 0.01 | Edge: -0.8% | Conf: 80%
-Reasoning: István Kapitány is a key economic advisor for the TISZA party, but there is no indication that he is a candidate for Prime Minister. The election is e...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 09:23*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 70%
-Reasoning: Brasilien gehört zu den Top-Favoriten, aber die Konkurrenz ist stark. Die aktuelle FIFA-Rangliste und die allgemeine Wahrnehmung deuten auf eine reali...
-
-**Will Player 174 win Beast Games: Season 2?...**
-*Analyzed: 2026-02-01 09:08*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 80%
-Reasoning: Spieler 174 (Vance Walker) wurde bereits in einer früheren Phase von Beast Games Season 2 eliminiert. Der aktuelle Marktpreis auf Polymarket von 0.30%...
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 09:08*
-Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 70%
-Reasoning: Juan Branco is a controversial figure with ongoing legal issues. The market price reflects a very low probability of him winning. He faces an uphill b...
-
-**Will the next Prime Minister of Hungary be István Kapitány?...**
-*Analyzed: 2026-02-01 09:08*
-Market: 0.01 | AI: 0.02 | Edge: +0.7% | Conf: 70%
-Reasoning: István Kapitány ist zwar ein Experte der TISZA-Partei, aber es gibt keine Anzeichen dafür, dass er als Premierministerkandidat gehandelt wird. Péter M...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-01 09:07*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
-Reasoning: Der aktuelle Marktpreis von 9,50 % scheint etwas niedrig zu sein, wenn man die historische Leistung Brasiliens, ihre aktuelle FIFA-Rangliste (Platz 5)...
-
-**Will Player 174 win Beast Games: Season 2?...**
-*Analyzed: 2026-02-01 08:52*
-Market: 0.00 | AI: 0.01 | Edge: +0.2% | Conf: 70%
-Reasoning: Player 174 is still in the competition, but the market strongly favors Player 167. The current market price of 0.30% for Player 174 reflects a very lo...
-
-**Will Juan Branco win the 2027 French presidential election?...**
-*Analyzed: 2026-02-01 08:52*
+*Analyzed: 2026-02-01 10:11*
 Market: 0.01 | AI: 0.01 | Edge: -0.6% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis von 1.05% spiegelt eine extrem geringe Wahrscheinlichkeit wider, dass Juan Branco die Präsidentschaftswahlen 2027 gewinnt. Meh...
+Reasoning: Der aktuelle Marktpreis von 1,05 % spiegelt eine extrem geringe Wahrscheinlichkeit wider, dass Juan Branco die Wahl gewinnt.  Mehrere Faktoren stützen...
+
+**Will the next Prime Minister of Hungary be István Kapitány?...**
+*Analyzed: 2026-02-01 10:11*
+Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 70%
+Reasoning: István Kapitány ist zwar ein wichtiger Wirtschaftsexperte der oppositionellen Tisza-Partei, aber es ist unwahrscheinlich, dass er direkt nach den Wahl...
+
+**Will the Fed decrease interest rates by 50+ bps after the Ma...**
+*Analyzed: 2026-02-01 10:11*
+Market: 0.02 | AI: 0.05 | Edge: +3.1% | Conf: 70%
+Reasoning: Basierend auf der aktuellen Wirtschaftslage, der Haltung der Fed und dem aktuellen Marktpreis wird die Wahrscheinlichkeit einer Zinssenkung um 50+ Bas...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-01 10:11*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 70%
+Reasoning: Brasilien ist eine Top-Fussballnation mit einer starken Tradition und einem talentierten Kader. Obwohl sie seit 2002 nicht mehr gewonnen haben, gehöre...
+
+**Kraken IPO by December 31, 2026?...**
+*Analyzed: 2026-02-01 10:11*
+Market: 0.80 | AI: 0.85 | Edge: +5.5% | Conf: 80%
+Reasoning: Kraken has confidentially filed for an IPO and is aiming for a Q1 2026 listing, backed by strong revenue growth and recent funding rounds giving it a ...
+
+**Will People’s Party (PPLE) win the most seats in the 2026 Th...**
+*Analyzed: 2026-02-01 10:10*
+Market: 0.63 | AI: 0.70 | Edge: +7.0% | Conf: 75%
+Reasoning: Die People's Party (PPLE) führt in den meisten Umfragen und hat eine klare progressive Agenda. Thailands politische Landschaft ist instabil, was Raum ...
+
+**Golden Knights vs. Ducks...**
+*Analyzed: 2026-02-01 10:10*
+Market: 0.53 | AI: 0.55 | Edge: +2.5% | Conf: 70%
+Reasoning: Die Vegas Golden Knights haben eine solide Mannschaft, aber die Anaheim Ducks haben eine ähnliche Leistung. Der Heimvorteil für Anaheim könnte ein Fak...
+
+**Will Player 174 win Beast Games: Season 2?...**
+*Analyzed: 2026-02-01 09:55*
+Market: 0.00 | AI: 0.00 | Edge: -0.3% | Conf: 100%
+Reasoning: Spieler 174 (Vance Walker) wurde bereits in Folge 5 von Beast Games Season 2 eliminiert. Daher kann er das Spiel nicht mehr gewinnen....
+
+**Will Juan Branco win the 2027 French presidential election?...**
+*Analyzed: 2026-02-01 09:55*
+Market: 0.01 | AI: 0.01 | Edge: -0.1% | Conf: 30%
+Reasoning: Juan Branco ist eine kontroverse Figur ohne aktuelle Umfragewerte. Seine politische Vergangenheit und rechtlichen Probleme könnten seine Wahlchancen b...
+
+**Will the next Prime Minister of Hungary be István Kapitány?...**
+*Analyzed: 2026-02-01 09:55*
+Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 75%
+Reasoning: István Kapitány ist zwar ein wichtiger Wirtschaftsvertreter der TISZA Partei, aber die niedrige Marktwahrscheinlichkeit von 1.30 %, die Dominanz von V...
 
 
 ### Ai Analysis Failed (1)
@@ -416,7 +416,7 @@ Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 
-### Negative Expected Value (13)
+### Negative Expected Value (9)
 
 **Will Elon Musk post 140-159 tweets from January 30 to Februa...**
 *Analyzed: 2026-02-01 07:49*
@@ -462,11 +462,6 @@ Reasoning: Basierend auf den verfügbaren Daten deutet alles darauf hin, dass El
 *Analyzed: 2026-02-01 04:53*
 Market: 0.00 | AI: 0.85 | Edge: +85.0% | Conf: 75%
 Reasoning: Elon Musk hat eine hohe Tweet-Frequenz, die jedoch Schwankungen unterliegt. Basierend auf dem XTracker hat Elon Musk in den letzten 24 Stunden 58 Twee...
-
-**Will Elon Musk post 140-159 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-01 04:21*
-Market: 0.00 | AI: 0.30 | Edge: +29.9% | Conf: 50%
-Reasoning: Based on historical data from 2024-2026, Elon Musk's tweet frequency varies, but has shown a tendency to increase over time. While early 2026 data sug...
 
 
 ## 📊 Historical Analysis
