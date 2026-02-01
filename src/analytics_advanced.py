@@ -101,11 +101,11 @@ def calculate_confidence_calibration(results: List) -> Dict[str, Any]:
         )
 
     # Overall calibration score (weighted by number of bets)
-    total_bets = sum(b["num_bets"] for b in bucket_data)
+    total_bets = sum(int(b["num_bets"]) for b in bucket_data)  # type: ignore
     if total_bets > 0:
         weighted_error = (
             sum(
-                abs(b["calibration_error"]) * b["num_bets"]
+                abs(float(b["calibration_error"])) * int(b["num_bets"])  # type: ignore
                 for b in bucket_data
                 if b["calibration_error"] is not None
             )
@@ -219,9 +219,10 @@ def calculate_edge_validation(results: List, min_bets: int = 10) -> Dict[str, An
     # Overall accuracy
     valid_buckets = [b for b in bucket_data if b["accuracy"] is not None]
     if valid_buckets:
-        total_bets = sum(b["num_bets"] for b in valid_buckets)
+        total_bets = sum(int(b["num_bets"]) for b in valid_buckets)  # type: ignore
         overall_accuracy = (
-            sum(b["accuracy"] * b["num_bets"] for b in valid_buckets) / total_bets
+            sum(float(b["accuracy"]) * int(b["num_bets"]) for b in valid_buckets)  # type: ignore
+            / total_bets
         )
     else:
         overall_accuracy = 0.0

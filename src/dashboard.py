@@ -16,7 +16,7 @@ try:
     CET_TZ = ZoneInfo("Europe/Berlin")
 except ImportError:
     # Fallback to fixed offset (UTC+1) if zoneinfo is not available
-    CET_TZ = timezone(timedelta(hours=1))
+    CET_TZ = timezone(timedelta(hours=1))  # type: ignore
 
 
 def to_cet(dt):
