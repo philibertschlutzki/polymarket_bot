@@ -46,7 +46,7 @@ def calculate_confidence_calibration(results: List) -> Dict[str, Any]:
         (0.00, 0.60, "<60%"),
     ]
 
-    bucket_data: List[Dict[str, Any]] = []
+    bucket_data = []
 
     for min_conf, max_conf, label in buckets:
         # Filter results in this bucket
@@ -73,9 +73,7 @@ def calculate_confidence_calibration(results: List) -> Dict[str, Any]:
 
         # Calculate metrics
         num_bets = len(bucket_results)
-        avg_predicted = (
-            sum(float(r["confidence_score"]) for r in bucket_results) / num_bets
-        )
+        avg_predicted = sum(r["confidence_score"] for r in bucket_results) / num_bets
 
         # Actual win rate (bet matched outcome)
         wins = sum(1 for r in bucket_results if r["action"] == r["actual_outcome"])
@@ -103,11 +101,11 @@ def calculate_confidence_calibration(results: List) -> Dict[str, Any]:
         )
 
     # Overall calibration score (weighted by number of bets)
-    total_bets = sum(b["num_bets"] for b in bucket_data)
+    total_bets = sum(int(b["num_bets"]) for b in bucket_data)  # type: ignore
     if total_bets > 0:
         weighted_error = (
             sum(
-                abs(float(b["calibration_error"])) * b["num_bets"]
+                abs(float(b["calibration_error"])) * int(b["num_bets"])  # type: ignore
                 for b in bucket_data
                 if b["calibration_error"] is not None
             )
@@ -161,7 +159,7 @@ def calculate_edge_validation(results: List, min_bets: int = 10) -> Dict[str, An
         (-float("inf"), -0.10, "-10% or less"),
     ]
 
-    bucket_data: List[Dict[str, Any]] = []
+    bucket_data = []
 
     for min_edge, max_edge, label in buckets:
         # Filter results with edge data
@@ -189,7 +187,7 @@ def calculate_edge_validation(results: List, min_bets: int = 10) -> Dict[str, An
             continue
 
         # Calculate predicted edge (stored in DB)
-        avg_predicted_edge = sum(float(r["edge"]) for r in bucket_results) / num_bets
+        avg_predicted_edge = sum(r["edge"] for r in bucket_results) / num_bets
 
         # Calculate realized edge
         # Realized edge = actual probability of correct prediction
@@ -198,9 +196,7 @@ def calculate_edge_validation(results: List, min_bets: int = 10) -> Dict[str, An
 
         # For YES bets: realized_edge = win_rate - entry_price
         # Simplified: Use win_rate as proxy for realized probability
-        avg_market_price = (
-            sum(float(r["entry_price"]) for r in bucket_results) / num_bets
-        )
+        avg_market_price = sum(r["entry_price"] for r in bucket_results) / num_bets
         avg_realized_edge = realized_win_rate - avg_market_price
 
         delta = avg_realized_edge - avg_predicted_edge
@@ -223,9 +219,10 @@ def calculate_edge_validation(results: List, min_bets: int = 10) -> Dict[str, An
     # Overall accuracy
     valid_buckets = [b for b in bucket_data if b["accuracy"] is not None]
     if valid_buckets:
-        total_bets = sum(b["num_bets"] for b in valid_buckets)
+        total_bets = sum(int(b["num_bets"]) for b in valid_buckets)  # type: ignore
         overall_accuracy = (
-            sum(b["accuracy"] * b["num_bets"] for b in valid_buckets) / total_bets
+            sum(float(b["accuracy"]) * int(b["num_bets"]) for b in valid_buckets)  # type: ignore
+            / total_bets
         )
     else:
         overall_accuracy = 0.0

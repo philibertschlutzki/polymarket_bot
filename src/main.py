@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# isort: skip_file
 """
 Polymarket AI Value Bet Bot - Automated 24/7 System
 
@@ -19,30 +20,29 @@ import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Dict, List, Optional, Tuple
 
-# Add project root to sys.path to allow imports from src
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# flake8: noqa: E402
 import requests
 from dateutil import parser as date_parser
 from dotenv import load_dotenv
-from google import genai  # noqa: E402
-from google.genai import types  # noqa: E402
-from pydantic import BaseModel, Field  # noqa: E402
-from tenacity import retry_if_exception_type  # noqa: E402
+from google import genai
+from google.genai import types
+from pydantic import BaseModel, Field
 from tenacity import (
     retry,
+    retry_if_exception_type,
     stop_after_attempt,
     wait_exponential,
 )
 
+# Add project root to sys.path to allow imports from src
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 # Internal modules
-from src import database  # noqa: E402
-from src import (
+from src import (  # noqa: E402
     ai_decisions_generator,
     dashboard,
+    database,
     git_integration,
 )
 
@@ -314,10 +314,10 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
         market_data = resolved_markets.get(bet["market_slug"])
         resolved_by = market_data.get("resolvedBy") if market_data else None
 
-        if resolved_by and market_data:
+        if market_data and resolved_by:
             # Resolved
             outcomes = market_data.get("outcomes", [])
-            prices = [float(o.get("price", 0)) for o in outcomes] if outcomes else []
+            prices = [float(o.get("price", 0)) for o in outcomes if o] if outcomes else []  # type: ignore
 
             actual_outcome = None
             if prices and len(prices) >= 2:
@@ -425,7 +425,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
     """
     try:
         logger.info("📡 Verbinde mit Polymarket Gamma API...")
-        params: Dict[str, Union[str, int]] = {
+        params = {
             "closed": "false",
             "limit": limit,
             "offset": 0,
@@ -433,7 +433,9 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
             "ascending": "false",
         }
 
-        response = requests.get(POLYMARKET_GAMMA_API_URL, params=params, timeout=10)
+        response = requests.get(
+            POLYMARKET_GAMMA_API_URL, params=params, timeout=10  # type: ignore
+        )
 
         if response.status_code != 200:
             logger.warning(f"⚠️  Gamma API HTTP Fehler: {response.status_code}")
