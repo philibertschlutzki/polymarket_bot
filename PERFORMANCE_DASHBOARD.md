@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-01 07:21:20 CET
+**Last Updated:** 2026-02-01 08:24:15 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-01 07:04:48 CET |
-| Next Run | 2026-02-01 07:19:48 CET |
+| Last Run | 2026-02-01 08:07:33 CET |
+| Next Run | 2026-02-01 08:22:33 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 4 | 15 | 27% | 🟢 |
-| Today (RPD) | 136 | 1,500 | 9.1% | 🟢 |
-| Current Minute (TPM) | 3,223 | 1,000,000 | 0.32% | 🟢 |
+| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
+| Today (RPD) | 153 | 1,500 | 10.2% | 🟢 |
+| Current Minute (TPM) | 4,098 | 1,000,000 | 0.41% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1800.86 (180.1% of capital) |
-| Avg Position Size | $90.04 |
+| Total Exposure | $1999.55 (200.0% of capital) |
+| Avg Position Size | $95.22 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.070) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.067) |
 
 ---
-## 🎯 Active Bets (20)
+## 🎯 Active Bets (21)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -64,13 +64,14 @@
 | Will the price of Ethereum be above $2,6... | YES | $79.25 | 0.07 | 0.45 | +38% 🟢 | 60% | $+437.59 | 2026-02-01 | 0d | 🔴 |
 | Tesla launches unsupervised full self dr... | NO | $125.37 | 1.00 | 0.40 | -60% 🔴 | 70% | $+50023.95 | 2026-06-30 | 148d | 🟢 |
 | Will Josh Hawley win the 2028 Republican... | YES | $27.80 | 0.01 | 0.15 | +14% 🟡 | 60% | $+528.27 | 2028-11-07 | 1009d | 🟢 |
-| Mubadala Abu Dhabi Open, Qualification: ... | YES | $110.67 | 0.51 | 0.75 | +24% 🟢 | 80% | $+53.69 | 2026-02-07 | 6d | 🟡 |
+| Mubadala Abu Dhabi Open, Qualification: ... | YES | $110.67 | 0.51 | 0.75 | +24% 🟢 | 80% | $+53.69 | 2026-02-07 | 5d | 🟡 |
 | Will Bangladesh Jamaat-e-Islami win the ... | NO | $86.13 | 0.26 | 0.15 | -11% 🔴 | 70% | $+12.14 | 2026-02-12 | 10d | 🟢 |
 | Moltbook AI agent sues a human by Feb 28... | NO | $156.17 | 0.78 | 0.15 | -62% 🔴 | 60% | $+433.80 | 2026-02-28 | 26d | 🟢 |
 | Will the price of Ethereum be above $2,7... | YES | $57.66 | 0.02 | 0.30 | +28% 🟢 | 65% | $+829.43 | 2026-02-01 | 0d | 🔴 |
 | Magic vs. Spurs | YES | $102.56 | 0.34 | 0.65 | +32% 🟢 | 75% | $+96.43 | 2026-02-01 | 0d | 🔴 |
 | Will the price of Ethereum be above $2,8... | YES | $57.76 | 0.00 | 0.30 | +30% 🟢 | 60% | $+6872.85 | 2026-02-01 | 0d | 🔴 |
 | Backpack FDV above $5B one day after lau... | YES | $27.09 | 0.02 | 0.15 | +13% 🟡 | 65% | $+198.68 | 2027-01-01 | 333d | 🟢 |
+| Will Ethereum dip to $2,400 in February? | NO | $198.69 | 1.00 | 0.05 | -95% 🔴 | 70% | $+125638.97 | 2026-03-01 | 27d | 🟢 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -84,6 +85,7 @@
 - 🔴 **High Exposure**: "Mubadala Abu Dhabi Open, Quali..." is 11.1% of capital
 - 🔴 **High Exposure**: "Moltbook AI agent sues a human..." is 15.6% of capital
 - 🔴 **High Exposure**: "Magic vs. Spurs..." is 10.3% of capital
+- 🔴 **High Exposure**: "Will Ethereum dip to $2,400 in..." is 19.9% of capital
 - 🟡 **Expiring Soon**: 7 bet(s) expire within 7 days
 
 ---
@@ -92,7 +94,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 20 |
+| Markets with Active Bets | 21 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
