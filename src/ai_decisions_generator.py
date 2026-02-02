@@ -1,6 +1,8 @@
 import logging
-import requests
 from datetime import datetime, timezone
+from typing import Dict, Optional
+
+import requests
 
 from src import database
 from src.dashboard import CET_TZ, to_cet
@@ -8,9 +10,10 @@ from src.dashboard import CET_TZ, to_cet
 logger = logging.getLogger(__name__)
 
 # Cache for validated URLs to avoid redundant HEAD requests in same run
-_url_cache = {}
+_url_cache: Dict[str, str] = {}
 
-def get_polymarket_url(slug: str, session: requests.Session = None) -> str:
+
+def get_polymarket_url(slug: str, session: Optional[requests.Session] = None) -> str:
     """
     Generates Polymarket URL and tests both formats (/event/ and /market/).
     Returns working URL or fallback to /event/.
@@ -23,7 +26,7 @@ def get_polymarket_url(slug: str, session: requests.Session = None) -> str:
 
     formats = [
         f"https://polymarket.com/event/{slug}",
-        f"https://polymarket.com/market/{slug}"
+        f"https://polymarket.com/market/{slug}",
     ]
 
     local_session = session or requests.Session()
@@ -73,6 +76,7 @@ def generate_ai_decisions_file():  # noqa: C901
         if isinstance(ts, str):
             try:
                 from dateutil import parser
+
                 return parser.parse(ts)
             except Exception:
                 return datetime.min.replace(tzinfo=timezone.utc)
@@ -114,12 +118,14 @@ This file contains detailed AI reasoning for all market analyses.
         slug = bet.get("url_slug") or bet.get("market_slug")
         url = get_polymarket_url(slug, session)
 
-        q_text = bet['question']
+        q_text = bet["question"]
         if len(q_text) > 60:
             q_text = q_text[:60] + "..."
 
         analyzed_cet = to_cet(bet.get("timestamp_created"))
-        analyzed_str = analyzed_cet.strftime('%Y-%m-%d %H:%M CET') if analyzed_cet else 'Unknown'
+        analyzed_str = (
+            analyzed_cet.strftime("%Y-%m-%d %H:%M CET") if analyzed_cet else "Unknown"
+        )
 
         # Access with fallback
         ai_prob = bet["ai_probability"] if bet["ai_probability"] is not None else 0.0
@@ -180,7 +186,11 @@ This file contains detailed AI reasoning for all market analyses.
             url = get_polymarket_url(slug, session)
 
             analyzed_cet = to_cet(market.get("timestamp_analyzed"))
-            analyzed_str = analyzed_cet.strftime('%Y-%m-%d %H:%M CET') if analyzed_cet else 'Unknown'
+            analyzed_str = (
+                analyzed_cet.strftime("%Y-%m-%d %H:%M CET")
+                if analyzed_cet
+                else "Unknown"
+            )
 
             ai_prob = (
                 market["ai_probability"]
@@ -216,15 +226,22 @@ Market: {market['market_price']:.2f} | AI: {ai_prob:.2f} | Edge: {edge:+.1%} | C
     else:
         try:
             from src import analytics_advanced
+
             # Confidence Calibration
-            calibration = analytics_advanced.calculate_confidence_calibration(closed_bets)
+            calibration = analytics_advanced.calculate_confidence_calibration(
+                closed_bets
+            )
 
             history_section += "### AI Confidence Calibration\n\n"
             history_section += (
                 "Measures how well AI confidence scores match actual outcomes:\n\n"
             )
-            history_section += "| Confidence | Predicted | Actual | Bets | Calibration |\n"
-            history_section += "|------------|-----------|--------|------|-------------|\n"
+            history_section += (
+                "| Confidence | Predicted | Actual | Bets | Calibration |\n"
+            )
+            history_section += (
+                "|------------|-----------|--------|------|-------------|\n"
+            )
 
             for bucket in calibration["buckets"]:
                 if bucket["num_bets"] > 0:
@@ -249,7 +266,9 @@ Market: {market['market_price']:.2f} | AI: {ai_prob:.2f} | Edge: {edge:+.1%} | C
             )
 
             history_section += "\n### Edge Validation\n\n"
-            history_section += "Compares predicted market edge vs actual realized edge:\n\n"
+            history_section += (
+                "Compares predicted market edge vs actual realized edge:\n\n"
+            )
             history_section += "| Edge Range | Predicted | Realized | Accuracy |\n"
             history_section += "|------------|-----------|----------|----------|\n"
 
