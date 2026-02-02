@@ -192,14 +192,14 @@ def _generate_performance_metrics(results, metrics):
 
 
 def _generate_risk_metrics(active_bets, capital):
-    total_exposure = sum(b["stake_usdc"] for b in active_bets)
+    total_exposure = sum(float(b["stake_usdc"]) for b in active_bets)
     exposure_pct = (total_exposure / capital * 100) if capital > 0 else 0
     avg_position = total_exposure / len(active_bets) if active_bets else 0
-    largest_stake = max((b["stake_usdc"] for b in active_bets), default=0)
+    largest_stake = max((float(b["stake_usdc"]) for b in active_bets), default=0)
     largest_pct = (largest_stake / capital * 100) if capital > 0 else 0
 
     if total_exposure > 0:
-        stakes = [b["stake_usdc"] for b in active_bets]
+        stakes = [float(b["stake_usdc"]) for b in active_bets]
         hhi = sum((s / total_exposure) ** 2 for s in stakes)
     else:
         hhi = 0
