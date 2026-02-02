@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-02 15:49:41 CET
+**Last Updated:** 2026-02-02 16:58:39 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-02 15:31:31 CET |
-| Next Run | 2026-02-02 15:46:31 CET |
+| Last Run | 2026-02-02 16:39:17 CET |
+| Next Run | 2026-02-02 16:54:17 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 2 | 15 | 13% | 🟢 |
-| Today (RPD) | 181 | 1,500 | 12.1% | 🟢 |
-| Current Minute (TPM) | 1,293 | 1,000,000 | 0.13% | 🟢 |
+| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
+| Today (RPD) | 189 | 1,500 | 12.6% | 🟢 |
+| Current Minute (TPM) | 616 | 1,000,000 | 0.06% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1325.15 (132.5% of capital) |
-| Avg Position Size | $63.10 |
+| Total Exposure | $1479.66 (148.0% of capital) |
+| Avg Position Size | $64.33 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.068) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.060) |
 
 ---
-## 🎯 Active Bets (21)
+## 🎯 Active Bets (23)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -72,6 +72,8 @@
 | [Will Elon Musk post 520-539 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-520-539) | YES | $47.83 | 0.00 | 0.25 | +25% 🟢 | 60% | $+2941.48 | 2026-02-06 | 4d | 🟡 |
 | [Jets vs. Stars](https://polymarket.com/event/nhl-wpg-dal-2026-02-02) | YES | $89.15 | 0.41 | 0.65 | +24% 🟢 | 75% | $+53.93 | 2026-02-03 | 0d | 🔴 |
 | [Will Elon Musk post 360-379 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-360-379) | YES | $49.96 | 0.15 | 0.35 | +20% 🟡 | 75% | $+62.86 | 2026-02-06 | 4d | 🟡 |
+| [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+49.25 | 2026-02-02 | 0d | 🔴 |
+| [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+523.46 | 2026-02-02 | 0d | 🔴 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -82,7 +84,7 @@
 - 🔴 **High Exposure**: "Will the next Dutch government..." is 15.7% of capital
 - 🔴 **High Exposure**: "Natural Disaster in 2026?..." is 14.1% of capital
 - 🔴 **High Exposure**: "Will Ethereum dip to $1,000 by..." is 12.2% of capital
-- 🟡 **Expiring Soon**: 6 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 8 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -90,7 +92,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 21 |
+| Markets with Active Bets | 23 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | AI_ANALYSIS_FAILED |
 
