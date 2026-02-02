@@ -390,7 +390,7 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
                 logger.debug(f"🔍 GraphQL Response Keys: {response_data.keys() if response_data else 'None'}")
                 return response_data
             elif response.status_code == 404:
-                logger.error(f"❌ GraphQL 404 Error")
+                logger.error("❌ GraphQL 404 Error")
                 logger.error(f"❌ Response Body: {response.text[:500]}")
                 logger.error(f"❌ Query was: {query[:200]}")
                 return None
@@ -404,7 +404,7 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
                 logger.warning(f"⚠️ Response Body: {response.text[:500]}")
                 return None
 
-        except requests.exceptions.Timeout as e:
+        except requests.exceptions.Timeout:
             logger.error(f"❌ GraphQL Timeout on attempt {attempt + 1}")
             logger.error(f"❌ Query: {query[:200]}")
         except requests.exceptions.ConnectionError as e:
@@ -718,7 +718,7 @@ def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, 
     except Exception as e:
         logger.error(f"❌ Gemini API Error Type: {type(e).__name__}")
         logger.error(f"❌ Error Details: {str(e)}")
-        logger.error(f"❌ Full Traceback:", exc_info=True)
+        logger.error("❌ Full Traceback:", exc_info=True)
         raise
 
 
@@ -752,7 +752,9 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         logger.debug(f"🔍 Sending prompt ({len(prompt)} chars)")
         result, usage_meta = _generate_gemini_response(client, prompt)
 
-        logger.info(f"✅ AI Analysis Success - Tokens: {usage_meta['total_token_count']}, Time: {usage_meta['response_time_ms']}ms")
+        logger.info(
+            f"✅ AI Analysis Success - Tokens: {usage_meta['total_token_count']}, Time: {usage_meta['response_time_ms']}ms"
+        )
         logger.debug(f"🔍 AI Result Keys: {result.keys() if result else 'None'}")
 
         database.log_api_usage(
