@@ -73,7 +73,7 @@ class TestLoggingLogic(unittest.TestCase):
         mock_client.models.generate_content.return_value = mock_response
 
         # tenacity raises RetryError after retries are exhausted
-        with self.assertRaises(RetryError):
+        with self.assertRaises(json.JSONDecodeError):
              _generate_gemini_response(mock_client, "test prompt")
 
         self.assertTrue(mock_logger.error.called)
