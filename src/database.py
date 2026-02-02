@@ -806,10 +806,10 @@ def update_archived_bet_outcome(
 
         roi = (profit_loss / float(bet.stake_usdc)) if bet.stake_usdc > 0 else 0.0
 
-        bet.actual_outcome = outcome
-        bet.profit_loss = profit_loss
-        bet.roi = roi
-        bet.timestamp_resolved = datetime.now(timezone.utc)
+        bet.actual_outcome = outcome  # type: ignore
+        bet.profit_loss = profit_loss  # type: ignore
+        bet.roi = roi  # type: ignore
+        bet.timestamp_resolved = datetime.now(timezone.utc)  # type: ignore
 
         # Update capital (since it wasn't updated when archived without resolution)
         session.execute(
