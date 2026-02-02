@@ -345,7 +345,9 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
                             bet["archive_id"], actual_outcome, profit, conn=session
                         )
                     else:
-                        database.close_bet(bet["bet_id"], actual_outcome, profit, conn=session)
+                        database.close_bet(
+                            bet["bet_id"], actual_outcome, profit, conn=session
+                        )
 
                     logger.info(
                         f"✅ Bet resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})"

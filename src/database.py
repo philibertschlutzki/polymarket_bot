@@ -688,6 +688,7 @@ def mark_git_change(change_type: str, conn: Optional[Session] = None):
     Markiert eine Änderung für Git-Push.
     change_type: 'bet', 'rejection', 'resolution'
     """
+
     def _perform_mark(session: Session):
         field_map = {
             "bet": "has_new_bets",
