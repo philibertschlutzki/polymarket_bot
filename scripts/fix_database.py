@@ -2,10 +2,17 @@
 Script to fix database integrity issues for Issues #72 and #74
 """
 
+import sys
+import os
+
+# Add parent directory to path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import logging
 from sqlalchemy import text
 from src.db_models import engine
 from src.database import migrate_api_usage_table, init_database
+# ... rest of the code
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

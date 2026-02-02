@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-02 20:06:08 CET
+**Last Updated:** 2026-02-02 20:26:58 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -490,7 +490,65 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (44)
+### Ai Analysis Failed (55)
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 20:26*
+Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 20:26*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Chong Won-oh win the 2026 Seoul Mayoral Election...**
+*Analyzed: 2026-02-02 20:26*
+Market: 0.59 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 20:26*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 20:06*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 20:06*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 19:40*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will the US next strike Iran on February 25, 2026 (ET)?...**
+*Analyzed: 2026-02-02 19:23*
+Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 19:23*
+Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 19:23*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+
+### Insufficient Edge (41)
+
+**U.S. strike on Somalia by February 7?...**
+*Analyzed: 2026-02-02 20:26*
+Market: 0.88 | AI: 0.85 | Edge: -3.4% | Conf: 80%
+Reasoning: The U.S. continues to conduct military operations in Somalia against Al-Shabaab and ISIS. There have been 23 U.S. strikes in Somalia in 2026 so far. S...
 
 **Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
 *Analyzed: 2026-02-02 20:06*
@@ -536,64 +594,6 @@ Reasoning: Die aktuelle Marktwahrscheinlichkeit liegt bei 9.50%. Brasilien gehö
 *Analyzed: 2026-02-02 18:46*
 Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 70%
 Reasoning: Die Beziehungen zwischen den USA und dem Iran sind angespannt, aber es gibt auch diplomatische Bemühungen, die Spannungen abzubauen. Ein US-Angriff au...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 18:46*
-Market: 0.03 | AI: 0.04 | Edge: +1.0% | Conf: 60%
-Reasoning: Chelsea ist ein Top-6-Team mit Chancen, die Top 4 zu erreichen. Die Wahrscheinlichkeit, dass sie den 2. Platz belegen, ist gering, da Teams wie ManCit...
-
-
-### Ai Analysis Failed (52)
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 20:06*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 20:06*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 19:40*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the US next strike Iran on February 25, 2026 (ET)?...**
-*Analyzed: 2026-02-02 19:23*
-Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 19:23*
-Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 19:23*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 19:23*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**McNeese State Cowboys vs. Stephen F. Austin Lumberjacks: O/U...**
-*Analyzed: 2026-02-02 19:23*
-Market: 0.50 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 19:06*
-Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 19:06*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
 
 
 ### Negative Expected Value (4)
