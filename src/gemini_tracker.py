@@ -1,10 +1,11 @@
 """
 Gemini API Usage Tracker with automatic logging and rate limiting.
 """
+
 import logging
 import time
 from functools import wraps
-from typing import Any, Optional
+from typing import Any
 
 from src import database
 
@@ -18,9 +19,12 @@ GEMINI_RPM_LIMIT = 15
 GEMINI_RPD_LIMIT = 1500
 GEMINI_TPM_LIMIT = 1_000_000
 
+
 class GeminiRateLimitError(Exception):
     """Raised when Gemini API rate limit is exceeded."""
+
     pass
+
 
 def track_gemini_call(func):
     """
@@ -32,6 +36,7 @@ def track_gemini_call(func):
             response = model.generate_content(prompt)
             return response
     """
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         start_time = time.time()
@@ -47,7 +52,7 @@ def track_gemini_call(func):
             _log_usage_from_response(
                 result=result,
                 function_name=func.__name__,
-                elapsed_time=time.time() - start_time
+                elapsed_time=time.time() - start_time,
             )
 
             return result
@@ -64,11 +69,12 @@ def track_gemini_call(func):
                 endpoint=func.__name__,
                 tokens_prompt=0,
                 tokens_response=0,
-                response_time_ms=int((time.time() - start_time) * 1000)
+                response_time_ms=int((time.time() - start_time) * 1000),
             )
             raise
 
     return wrapper
+
 
 def _check_rate_limits():
     """Check if current usage is within rate limits."""
@@ -98,16 +104,17 @@ def _check_rate_limits():
         )
         time.sleep(wait_time)
 
+
 def _log_usage_from_response(result: Any, function_name: str, elapsed_time: float):
     """Extract usage metadata from Gemini response and log it."""
     tokens_prompt = 0
     tokens_response = 0
 
     # Extract token usage from response
-    if hasattr(result, 'usage_metadata') and result.usage_metadata:
+    if hasattr(result, "usage_metadata") and result.usage_metadata:
         metadata = result.usage_metadata
-        tokens_prompt = getattr(metadata, 'prompt_token_count', 0)
-        tokens_response = getattr(metadata, 'candidates_token_count', 0)
+        tokens_prompt = getattr(metadata, "prompt_token_count", 0)
+        tokens_response = getattr(metadata, "candidates_token_count", 0)
 
     # Calculate response time
     response_time_ms = int(elapsed_time * 1000)
@@ -118,25 +125,29 @@ def _log_usage_from_response(result: Any, function_name: str, elapsed_time: floa
         endpoint=function_name,
         tokens_prompt=tokens_prompt,
         tokens_response=tokens_response,
-        response_time_ms=response_time_ms
+        response_time_ms=response_time_ms,
     )
 
     # Detailed logging
     # Use api_logger if configured, otherwise fallback to standard logger
     target_logger = api_logger if api_logger.handlers else logger
 
+    total_tokens = tokens_prompt + tokens_response
+    rpm = database.get_api_usage_rpm('gemini')
+
     target_logger.info(
         f"📊 Gemini API: {function_name} | "
-        f"Tokens: {tokens_prompt}→{tokens_response} ({tokens_prompt + tokens_response} total) | "
+        f"Tokens: {tokens_prompt}→{tokens_response} ({total_tokens} total) | "
         f"Time: {response_time_ms}ms | "
-        f"RPM: {database.get_api_usage_rpm('gemini')}/{GEMINI_RPM_LIMIT}"
+        f"RPM: {rpm}/{GEMINI_RPM_LIMIT}"
     )
+
 
 def log_gemini_usage_manual(
     tokens_prompt: int,
     tokens_response: int,
     endpoint: str = "manual_call",
-    response_time_ms: int = 0
+    response_time_ms: int = 0,
 ):
     """
     Manually log Gemini API usage when decorator cannot be used.
@@ -148,5 +159,5 @@ def log_gemini_usage_manual(
         endpoint=endpoint,
         tokens_prompt=tokens_prompt,
         tokens_response=tokens_response,
-        response_time_ms=response_time_ms
+        response_time_ms=response_time_ms,
     )

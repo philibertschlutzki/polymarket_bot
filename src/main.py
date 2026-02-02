@@ -862,9 +862,9 @@ def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, 
         return parsed_data, usage_meta
 
     except json.JSONDecodeError as e:
-        logger.error(f"❌ JSON Parse Error")
+        logger.error("❌ JSON Parse Error")
         # text_response might be undefined if error happened before text extraction
-        if 'text_response' in locals():
+        if "text_response" in locals():
             logger.error(f"❌ Problematic text: {text_response}")
         logger.error(f"❌ Error message: {e.msg}")
         raise

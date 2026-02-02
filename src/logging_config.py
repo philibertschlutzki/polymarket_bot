@@ -1,7 +1,6 @@
 import logging
 import os
-import sys
-from datetime import datetime
+
 
 def setup_api_logging():
     """Setup dedicated API usage logger."""
@@ -18,8 +17,7 @@ def setup_api_logging():
     # File handler for API metrics
     api_handler = logging.FileHandler(os.path.join(log_dir, "gemini_api_usage.log"))
     api_formatter = logging.Formatter(
-        '%(asctime)s | %(levelname)s | %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
+        "%(asctime)s | %(levelname)s | %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
     )
     api_handler.setFormatter(api_formatter)
 
