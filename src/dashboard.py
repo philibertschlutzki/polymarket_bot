@@ -58,6 +58,7 @@ def generate_dashboard():
     system_status = _generate_system_status(last_run, now_cet)
     gemini_usage, rpm_pct, rpd_pct, tpm_pct = _generate_gemini_usage()
     performance_metrics = _generate_performance_metrics(results, metrics)
+    capital_breakdown = _generate_capital_breakdown()
     risk_metrics = _generate_risk_metrics(active_bets, capital)
     active_bets_section = _generate_active_bets_section(all_active_display, now_cet)
     alerts_section = _generate_alerts_section(
@@ -74,6 +75,7 @@ def generate_dashboard():
         + system_status
         + gemini_usage
         + performance_metrics
+        + capital_breakdown
         + risk_metrics
         + active_bets_section
         + alerts_section
@@ -188,6 +190,30 @@ def _generate_performance_metrics(results, metrics):
 | Worst Bet | ${metrics['worst_bet_usd']:+.2f} |
 
 ---
+"""
+
+
+def _generate_capital_breakdown() -> str:
+    """Generates capital breakdown section."""
+    breakdown = database.get_capital_breakdown()
+
+    avail = breakdown["available_capital"]
+    locked = breakdown["locked_in_active"]
+    pending = breakdown["pending_resolution"]
+    total = breakdown["total_portfolio"]
+
+    warning = " ⚠️" if pending > 0 else ""
+
+    return f"""## 💰 Capital Breakdown
+
+| Category | Amount |
+|----------|--------|
+| Available Capital | ${avail:,.2f} |
+| Locked in Active Bets | ${locked:,.2f} |
+| Pending Resolution (>7d) | ${pending:,.2f}{warning} |
+| **Total Portfolio Value** | **${total:,.2f}** |
+
+***
 """
 
 
@@ -312,11 +338,15 @@ def _get_bet_status(bet, now_cet):
 
 
 def _calculate_status_icon(days_left, bet_status):
-    if days_left < 0:
-        if bet_status == "PENDING_RESOLUTION":
-            return "⏳ Pending Resolution"
-        else:
-            return "⏰ Expired"
+    """Calculates status icon based on days left and bet status."""
+    if bet_status == "PENDING_RESOLUTION":
+        return "⏳ Pending Resolution"
+    elif bet_status in ["UNRESOLVED", "EXPIRED_PENDING"]:
+        return "⏰ Unresolved"
+    elif bet_status == "DISPUTED":
+        return "⚠️ Disputed"
+    elif days_left < 0:
+        return "⏰ Expired"
     elif days_left < 3:
         return "🔴"
     elif days_left < 7:
@@ -631,9 +661,24 @@ def generate_recent_results_section(results):
         ts = r["timestamp_closed"]
         ts_cet = to_cet(ts)
         date_str = ts_cet.strftime("%Y-%m-%d") if ts_cet else "N/A"
-        icon = "✅ WIN" if float(r["profit_loss"]) > 0 else "❌ LOSS"
+
+        outcome = r.get("actual_outcome", "")
+        pl = float(r.get("profit_loss", 0))
+
+        # Icon based on outcome
+        if outcome == "AUTO_LOSS":
+            icon = "⚫ AUTO-LOSS"
+        elif outcome == "DISPUTED_LOSS":
+            icon = "🔴 DISPUTED-LOSS"
+        elif outcome == "ANNULLED":
+            icon = "↩️ ANNULLED"
+        elif pl > 0:
+            icon = "✅ WIN"
+        else:
+            icon = "❌ LOSS"
+
         rows.append(
-            f"| {date_str} | {r['question']} | {r['action']} | {icon} | ${float(r['profit_loss']):+.2f} |"
+            f"| {date_str} | {r['question'][:60]}... | {r['action']} | {icon} | ${pl:+.2f} |"
         )
 
     return f"""## 📜 Recent Results (Last 10)

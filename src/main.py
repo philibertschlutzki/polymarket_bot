@@ -40,6 +40,13 @@ from src import (  # noqa: E402
     database,
     git_integration,
 )
+from src.database import (  # noqa: E402
+    archive_expired_bets,
+    calculate_profit_with_fees,
+    log_status_change,
+    process_auto_loss_bets,
+    process_disputed_outcomes,
+)
 
 # ============================================================================
 # KONFIGURATION
@@ -221,8 +228,18 @@ rate_limiter = RateLimiter(max_requests_per_minute=API_RATE_LIMIT)
 
 
 def check_and_resolve_bets():  # noqa: C901
-    """Prüft abgelaufene Wetten auf Resolution und aktualisiert Resultate."""
+    """Checks and resolves expired bets."""
     try:
+        # Step 1: Archive any expired active bets
+        archive_expired_bets()
+
+        # Step 2: Process auto-loss for bets > 30 days
+        process_auto_loss_bets()
+
+        # Step 3: Process disputed outcomes > 7 days
+        process_disputed_outcomes()
+
+        # Step 4: Check for resolutions
         active_bets = database.get_active_bets()
         if not active_bets:
             # Check for archived but unresolved bets even if no active bets
@@ -287,6 +304,7 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
     """Helper to process resolution for a list of bets."""
     unique_slugs = list(set(b["market_slug"] for b in bets))
 
+    # Batch query for market data
     resolved_markets = execute_batched_query(
         unique_slugs,
         lambda safe_id: f"market(id: {safe_id}) {{ closed resolvedBy outcomes {{ price }} }}",
@@ -294,6 +312,7 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
 
     bets_to_close = []
     bets_to_update = []
+    bets_to_mark_disputed = []
 
     # Process Bets
     for bet in bets:
@@ -301,29 +320,60 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
         resolved_by = market_data.get("resolvedBy") if market_data else None
 
         if market_data and resolved_by:
-            # Resolved
+            # Check for Annulled
+            if resolved_by == "ANNULLED":
+                if is_archived:
+                    bets_to_update.append((bet["archive_id"], "ANNULLED", 0.0))
+                else:
+                    bets_to_close.append((bet["bet_id"], "ANNULLED", 0.0))
+                continue
+
+            # Market is resolved
             outcomes = market_data.get("outcomes", [])
-            prices = [float(o.get("price", 0)) for o in outcomes if o] if outcomes else []  # type: ignore
+            # Fix: handle potential missing price
+            prices = (
+                [float(o.get("price", 0)) for o in outcomes if o] if outcomes else []
+            )
 
             actual_outcome = None
+
             if prices and len(prices) >= 2:
                 p_yes = float(prices[0])
+
                 if p_yes > 0.9:
                     actual_outcome = "YES"
                 elif p_yes < 0.1:
                     actual_outcome = "NO"
+                elif 0.1 <= p_yes <= 0.9:
+                    # Disputed outcome - mark for later processing
+                    logger.warning(
+                        f"⚠️ Disputed outcome (price {p_yes:.2f}): {bet['question'][:50]}"
+                    )
+
+                    if is_archived:
+                        # Update archived bet to DISPUTED status
+                        bets_to_mark_disputed.append((bet["archive_id"], p_yes))
+                    else:
+                        # Archive active bet as DISPUTED
+                        database.archive_bet_without_resolution(bet["bet_id"])
+                        # TODO: Mark as disputed in next cycle
+                    continue
 
             if actual_outcome:
                 stake = float(bet["stake_usdc"])
                 entry = float(bet["entry_price"])
 
-                if bet["action"] == actual_outcome:
-                    if entry > 0:
-                        profit = stake * ((1.0 / entry) - 1.0)
-                    else:
-                        profit = 0.0
-                else:
-                    profit = -stake
+                # Calculate profit with fees
+                # Try to get dynamic gas fee (placeholder for future API integration)
+                gas_fee = 0.50  # Fallback
+
+                profit = calculate_profit_with_fees(
+                    stake=stake,
+                    entry_price=entry,
+                    action=bet["action"],
+                    actual_outcome=actual_outcome,
+                    gas_fee=gas_fee,
+                )
 
                 if is_archived:
                     bets_to_update.append((bet["archive_id"], actual_outcome, profit))
@@ -331,18 +381,13 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
                     bets_to_close.append((bet["bet_id"], actual_outcome, profit))
 
                 logger.info(
-                    f"✅ Bet resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})"
+                    f"✅ Bet resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f} after fees)"
                 )
-            else:
-                logger.warning(f"⚠️ Market resolved but outcome unclear: {prices}")
-                # If active and resolved but unclear, maybe we should archive as unresolved?
-                # For now, leave it.
 
         else:
             # Not resolved yet
             if not is_archived:
-                # Active bet expired but not resolved -> Archive as PENDING
-                # Check if strictly expired
+                # Active bet expired but not resolved -> Archive
                 end_date = bet.get("end_date")
                 if end_date:
                     if isinstance(end_date, str):
@@ -358,11 +403,33 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
                     if end_date < datetime.now(timezone.utc):
                         database.archive_bet_without_resolution(bet["bet_id"])
 
+    # Process closures
     if bets_to_close:
         database.close_bets_batch(bets_to_close)
 
     if bets_to_update:
         database.update_archived_bets_outcome_batch(bets_to_update)
+
+    # Mark disputed outcomes
+    if bets_to_mark_disputed:
+        for archive_id, price in bets_to_mark_disputed:
+            with database.session_scope() as session:
+                bet = (
+                    session.query(database.ArchivedBet)
+                    .filter_by(archive_id=archive_id)
+                    .first()
+                )
+                if bet and not bet.actual_outcome:
+                    bet.actual_outcome = "DISPUTED"
+                    bet.timestamp_resolved = datetime.now(timezone.utc)
+                    log_status_change(
+                        bet_id=archive_id,
+                        old_status="UNRESOLVED",
+                        new_status="DISPUTED",
+                        reason=f"UNCLEAR_OUTCOME_PRICE_{price:.2f}",
+                        is_archived=True,
+                        conn=session,
+                    )
 
 
 # ============================================================================
@@ -518,6 +585,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
         )
 
         markets = []
+        rejected_markets_buffer = []
 
         for market in market_data_list:
             volume_raw = market.get("volume")
@@ -554,6 +622,28 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
                     else:
                         outcome_prices = [0.5, 0.5]
 
+                    # Check for multi-outcome markets
+                    if len(outcome_prices) > 2:
+                        logger.info(
+                            f"⏭️ Skipping multi-outcome market: {market.get('question', '')[:50]}"
+                        )
+                        rejected_markets_buffer.append(
+                            {
+                                "market_slug": market.get("id", ""),
+                                "url_slug": market.get("slug", market.get("id", "")),
+                                "question": market.get("question", ""),
+                                "market_price": 0.5,
+                                "volume": volume,
+                                "ai_probability": 0.0,
+                                "confidence_score": 0.0,
+                                "edge": 0.0,
+                                "rejection_reason": "MULTI_OUTCOME_NOT_SUPPORTED",
+                                "ai_reasoning": f"Market has {len(outcome_prices)} outcomes, only 2-outcome markets supported",
+                                "end_date": end_date_str,
+                            }
+                        )
+                        continue
+
                     yes_price = (
                         float(outcome_prices[0]) if len(outcome_prices) > 0 else 0.5
                     )
@@ -583,6 +673,9 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
                     end_date=end_date_str,
                 )
             )
+
+        if rejected_markets_buffer:
+            database.insert_rejected_markets_batch(rejected_markets_buffer)
 
         return markets
 
