@@ -184,7 +184,9 @@ class RateLimiter:
         self.requests = [r for r in self.requests if r > now - timedelta(minutes=1)]
 
         # NEU: Log Rate Limiter Status
-        logger.debug(f"🔍 Rate Limiter: {len(self.requests)}/{self.max_requests} requests in window")
+        logger.debug(
+            f"🔍 Rate Limiter: {len(self.requests)}/{self.max_requests} requests in window"
+        )
 
         if len(self.requests) >= self.max_requests:
             # Sort requests just in case
@@ -387,7 +389,9 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
 
             if response.status_code == 200:
                 response_data = response.json()
-                logger.debug(f"🔍 GraphQL Response Keys: {response_data.keys() if response_data else 'None'}")
+                logger.debug(
+                    f"🔍 GraphQL Response Keys: {response_data.keys() if response_data else 'None'}"
+                )
                 return response_data
             elif response.status_code == 404:
                 logger.error("❌ GraphQL 404 Error")
@@ -396,7 +400,9 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
                 return None
             elif response.status_code in [429, 500, 502, 503, 504]:
                 wait_time = 2 ** (attempt + 1)
-                logger.warning(f"⚠️ GraphQL {response.status_code} - Retry in {wait_time}s")
+                logger.warning(
+                    f"⚠️ GraphQL {response.status_code} - Retry in {wait_time}s"
+                )
                 logger.warning(f"⚠️ Response: {response.text[:300]}")
                 time.sleep(wait_time)
             else:
@@ -737,7 +743,9 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
     """
     try:
         logger.info(f"🤖 Starting AI Analysis for: {market.question[:60]}")
-        logger.debug(f"🔍 Market Details - Slug: {market.market_slug}, Price: {market.yes_price}, Volume: {market.volume}")
+        logger.debug(
+            f"🔍 Market Details - Slug: {market.market_slug}, Price: {market.yes_price}, Volume: {market.volume}"
+        )
 
         client = genai.Client(api_key=GEMINI_API_KEY)
         prompt = f"""
@@ -773,6 +781,7 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
 
         # Use existing error_logger
         from src.error_logger import log_api_error
+
         log_api_error(
             api_name="gemini",
             endpoint="analyze_market",
@@ -781,8 +790,8 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
                 "market_slug": market.market_slug,
                 "question": market.question[:100],
                 "yes_price": market.yes_price,
-                "volume": market.volume
-            }
+                "volume": market.volume,
+            },
         )
         return None
 
