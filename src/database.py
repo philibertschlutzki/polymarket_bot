@@ -148,7 +148,9 @@ def migrate_active_bets_table():
 
                 # If table doesn't have AUTOINCREMENT, migrate it
                 if table_sql and "AUTOINCREMENT" not in table_sql[0]:
-                    logger.info("Migrating active_bets table to include AUTOINCREMENT...")
+                    logger.info(
+                        "Migrating active_bets table to include AUTOINCREMENT..."
+                    )
 
                     # Drop backup if exists
                     conn.execute(text("DROP TABLE IF EXISTS active_bets_backup"))
@@ -161,7 +163,9 @@ def migrate_active_bets_table():
                     conn.commit()
 
                     # Force SQLite AUTOINCREMENT to ensure explicit keyword is present
-                    ActiveBet.__table__.dialect_options["sqlite"]["autoincrement"] = True
+                    ActiveBet.__table__.dialect_options["sqlite"][
+                        "autoincrement"
+                    ] = True
 
                     # Recreate with proper schema
                     ActiveBet.__table__.create(engine, checkfirst=False)
