@@ -1,7 +1,7 @@
 import logging
 import math
 from datetime import datetime, timedelta, timezone
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from sqlalchemy import func, text, update
 from sqlalchemy.orm import Session
@@ -209,6 +209,16 @@ def get_active_bets() -> List[Dict[str, Any]]:
     with session_scope() as session:
         bets = session.query(ActiveBet).filter(ActiveBet.status == "OPEN").all()
         return [to_dict(b) for b in bets]
+
+
+def get_active_bet_slugs() -> Set[str]:
+    """Retrieves the set of market slugs for all active bets.
+
+    Optimized to only fetch the market_slug column.
+    """
+    with session_scope() as session:
+        slugs = session.query(ActiveBet.market_slug).filter(ActiveBet.status == "OPEN").all()
+        return {s[0] for s in slugs}
 
 
 def close_bet(
