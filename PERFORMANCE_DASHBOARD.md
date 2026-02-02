@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-02 18:11:44 CET
+**Last Updated:** 2026-02-02 19:23:21 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-02 17:50:41 CET |
-| Next Run | 2026-02-02 18:05:41 CET |
+| Last Run | 2026-02-02 19:04:16 CET |
+| Next Run | 2026-02-02 19:19:16 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 3 | 15 | 20% | 🟢 |
-| Today (RPD) | 204 | 1,500 | 13.6% | 🟢 |
-| Current Minute (TPM) | 3,471 | 1,000,000 | 0.35% | 🟢 |
+| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
+| Today (RPD) | 217 | 1,500 | 14.5% | 🟢 |
+| Current Minute (TPM) | 843 | 1,000,000 | 0.08% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1697.85 (169.8% of capital) |
-| Avg Position Size | $62.88 |
+| Total Exposure | $1823.13 (182.3% of capital) |
+| Avg Position Size | $62.87 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.052) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.047) |
 
 ---
-## 🎯 Active Bets (27)
+## 🎯 Active Bets (29)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -78,6 +78,8 @@
 | [Will Claude 5 be released by March 31, 2...](https://polymarket.com/event/will-claude-5-be-released-by-march-31-2026) | NO | $117.66 | 0.80 | 0.35 | -45% 🔴 | 70% | $+264.72 | Unknown | N/A | 🔵 |
 | [Will Apple be the third-largest company ...](https://polymarket.com/event/will-apple-be-the-third-largest-company-in-the-world-by-market-cap-on-february-28) | NO | $50.15 | 0.85 | 0.65 | -20% 🔴 | 70% | $+70.90 | 2026-02-28 | 25d | 🟢 |
 | [Will Elon Musk post 220-239 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-220-239) | YES | $27.38 | 0.01 | 0.15 | +14% 🟡 | 60% | $+383.39 | 2026-02-06 | 3d | 🟡 |
+| [Spread: Timberwolves (-7.5)](https://polymarket.com/event/nba-min-mem-2026-02-02-spread-away-7pt5) | YES | $63.42 | 0.51 | 0.65 | +14% 🟡 | 75% | $+18.21 | 2026-02-03 | 0d | 🔴 |
+| [Weber State Wildcats vs. Sacramento Stat...](https://polymarket.com/event/cbb-webst-sacst-2026-02-02-total-163pt5) | YES | $61.86 | 0.51 | 0.65 | +14% 🟡 | 75% | $+16.98 | 2026-02-03 | 0d | 🔴 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -89,7 +91,7 @@
 - 🔴 **High Exposure**: "Natural Disaster in 2026?..." is 14.1% of capital
 - 🔴 **High Exposure**: "Will Ethereum dip to $1,000 by..." is 12.2% of capital
 - 🔴 **High Exposure**: "Will Claude 5 be released by M..." is 11.8% of capital
-- 🟡 **Expiring Soon**: 7 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 9 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -97,7 +99,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 27 |
+| Markets with Active Bets | 29 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | AI_ANALYSIS_FAILED |
 

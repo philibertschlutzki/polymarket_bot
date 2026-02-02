@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-02 18:11:44 CET
+**Last Updated:** 2026-02-02 19:23:21 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -454,117 +454,149 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #28: Spread: Timberwolves (-7.5)
+
+**Decision:** YES @ 0.50 (Stake: $63.42)
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 50.5%)
+- **Confidence Score:** 75.0%
+- **Edge:** +14.5%
+- **Expected Value:** $+18.21
+- **End Date:** 2026-02-03 01:30 CET
+
+**AI Reasoning:**
+> Basierend auf den aktuellen Informationen und Vorhersagen für das Spiel Minnesota Timberwolves gegen Memphis Grizzlies am 2. Februar 2026 um 19:30 Uhr ET, hier ist meine Analyse:*   **Punktverteilung und Vorhersagen:** Die Timberwolves sind mit -7,5 Punkten favorisiert. Einige Quellen prognostizieren einen Sieg der Timberwolves, der die Punktverteilung abdeckt. Dimers.com prognostiziert eine Gewinnwahrscheinlichkeit von 72 % für die Timberwolves. Covers.com prognostiziert einen 118-109 Sieg der Timberwolves, was die Punktverteilung abdecken würde.*   **Team-Form:** Die Timberwolves haben eine Bilanz von 31-19 und haben ihre letzten vier Spiele gewonnen, wobei jeder dieser Siege mit mehr als 10 Punkten Vorsprung erzielt wurde. Die Grizzlies kämpfen und haben sechs Spiele in Folge verloren.*   **Verletzungen:** Mehrere wichtige Spieler der Grizzlies fehlen verletzungsbedingt, darunter Ja Morant, Zach Edey und Santi Aldama. Anthony Edwards und Julius Randle von den Timberwolves sind fraglich. Das Fehlen von Morant und anderen wichtigen Spielern schwächt die Grizzlies erheblich.*   **Head-to-Head-Ergebnisse:** Die Teams haben in dieser Saison ihre ersten beiden Spiele aufgeteilt, wobei Memphis am 17. Dezember in Minneapolis gewann. Die Timberwolves haben das letzte Spiel am 31. Januar mit 131:114 in Memphis gewonnen.*   **Statistische Trends:** Die Timberwolves erzielen im Schnitt 119,3 Punkte pro Spiel, während die Grizzlies 116,6 Punkte zulassen. Die Timberwolves haben eine höhere Feldwurfquote als die Grizzlies (48,2 % gegenüber 45,4 %).In Anbetracht dieser Faktoren scheint es wahrscheinlich, dass die Timberwolves das Spiel gegen die Grizzlies mit mindestens 8 Punkten gewinnen werden. Es gibt jedoch immer Unsicherheiten bei NBA-Spielen, insbesondere in Bezug auf Verletzungen und die Tagesform der einzelnen Spieler. Unter Berücksichtigung dieser Informationen schätze ich die Wahrscheinlichkeit, dass die Timberwolves mit 8 oder mehr Punkten gewinnen, auf 65 %. Die prognostizierte Gewinnwahrscheinlichkeit von Dimers.com von 72% stützt diese Einschätzung. Die Tatsache, dass die Timberwolves in dieser Saison bei 23 Spielen, in denen sie mit 7,5 oder mehr Punkten favorisiert waren, nur 10-13 ATS waren, dämpft die Wahrscheinlichkeit etwas. Die aktuelle Quote von Polymarket von 50,50 % scheint daher etwas niedrig zu sein.}
+
+---
+
+### Bet #29: Weber State Wildcats vs. Sacramento State Hornets: O/U 163.5
+
+**Decision:** YES @ 0.51 (Stake: $61.86)
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 51.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** +14.0%
+- **Expected Value:** $+16.98
+- **End Date:** 2026-02-03 04:00 CET
+
+**AI Reasoning:**
+> Weber State und Sacramento State haben im Durchschnitt hohe Punktzahlen erzielt. Die Over/Under-Linie in anderen Sportwetten liegt bei 165,5. Weber State hat das letzte Spiel gegen Sacramento State mit 95-82 gewonnen. Ich schätze eine Wahrscheinlichkeit von 65 % für 'Over' 163.5.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (49)
+### Ai Analysis Failed (53)
 
-**Will Civic Platform (GP) gain the most seats in the next Rus...**
-*Analyzed: 2026-02-02 18:11*
-Market: 0.00 | AI: 0.03 | Edge: +2.8% | Conf: 70%
-Reasoning: Die Civic Platform hat derzeit eine sehr geringe Repräsentation in der Staatsduma und es gibt keine Anzeichen dafür, dass sich dies bei den nächsten W...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 18:11*
-Market: 0.03 | AI: 0.04 | Edge: +1.0% | Conf: 60%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit von 3,05 % ist sehr niedrig, und es gibt keine eindeutigen Beweise dafür, dass Chelsea mit hoher Wahrscheinlichke...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 18:11*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
-Reasoning: Brasilien hat eine starke Fussballtradition und ist Rekordweltmeister. Sie haben sich auch für die WM 2026 qualifiziert. Allerdings ist ihre aktuelle ...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 17:53*
-Market: 0.00 | AI: 0.01 | Edge: +1.0% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis für 'Ja' liegt bei 0,05 %, was auf eine sehr geringe Wahrscheinlichkeit hindeutet, dass Bitcoin am 2. Februar 2026 über 94.000...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 17:53*
-Market: 0.03 | AI: 0.07 | Edge: +4.0% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis von 3,05 % deutet darauf hin, dass der Markt selbst diese Wahrscheinlichkeit als sehr gering einschätzt. Historisch gesehen is...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 17:53*
-Market: 0.43 | AI: 0.35 | Edge: -8.0% | Conf: 70%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit liegt bei 43 %, was meiner ersten Einschätzung etwas zu hoch erscheint. Die Situation zwischen Israel und dem Ira...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 17:35*
-Market: 0.00 | AI: 0.03 | Edge: +3.0% | Conf: 60%
-Reasoning: Angesichts der aktuellen Konsolidierungsphase von Bitcoin, der pessimistischeren KI-Vorhersagen (durchschnittlich ca. 76.000 USD für Ende Februar 2026...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 17:35*
-Market: 0.03 | AI: 0.04 | Edge: +0.8% | Conf: 60%
-Reasoning: Basierend auf den aktuellen Leistungen von Chelsea und den Vorhersagen verschiedener Supercomputer scheinen die Chancen, dass Chelsea in der Saison 20...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 17:16*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 90%
-Reasoning: Der aktuelle Bitcoin-Preis liegt bei ca. 78.490 $. Um die 94.000 $-Marke am 2. Februar zu erreichen, müsste Bitcoin um ca. 15.510 $ steigen, was einen...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 17:16*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
-Reasoning: Obwohl Brasilien eine Top-Mannschaft mit einem renommierten Trainer ist, deuten ihre jüngsten Leistungen, die starke Konkurrenz und die neue Turnierst...
-
-
-### Ai Analysis Failed (45)
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 18:11*
-Market: 0.42 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 17:53*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the government shutdown last 5 days or more?...**
-*Analyzed: 2026-02-02 17:53*
-Market: 0.50 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the price of Solana be above $120 on February 2?...**
-*Analyzed: 2026-02-02 17:35*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the US next strike Iran on February 26, 2026 (ET)?...**
-*Analyzed: 2026-02-02 17:35*
+**Will the US next strike Iran on February 25, 2026 (ET)?...**
+*Analyzed: 2026-02-02 19:23*
 Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 19:23*
+Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 17:35*
+*Analyzed: 2026-02-02 19:23*
 Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 **Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 17:35*
-Market: 0.46 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+*Analyzed: 2026-02-02 19:23*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Maple Leafs vs. Flames...**
-*Analyzed: 2026-02-02 17:35*
-Market: 0.52 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+**McNeese State Cowboys vs. Stephen F. Austin Lumberjacks: O/U...**
+*Analyzed: 2026-02-02 19:23*
+Market: 0.50 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Will the price of Solana be above $120 on February 2?...**
-*Analyzed: 2026-02-02 17:16*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 19:06*
+Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Will Bitcoin reach $150,000 in February?...**
-*Analyzed: 2026-02-02 17:16*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 19:06*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Idaho State Bengals vs. Portland State Vikings: O/U 137.5...**
+*Analyzed: 2026-02-02 19:06*
+Market: 0.48 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Kansas Jayhawks vs. Texas Tech Red Raiders: O/U 154.5...**
+*Analyzed: 2026-02-02 19:06*
+Market: 0.50 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 18:46*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 
-### Negative Expected Value (6)
+### Insufficient Edge (43)
+
+**Will Ethereum reach $3,200 in February?...**
+*Analyzed: 2026-02-02 19:23*
+Market: 0.08 | AI: 0.15 | Edge: +6.5% | Conf: 60%
+Reasoning: Ethereum's current price is around $2,350, and it has experienced a significant decline recently. Most analysts predict a continued downtrend or, at b...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 19:06*
+Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 70%
+Reasoning: Die aktuelle Marktwahrscheinlichkeit liegt bei 9.50%. Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften und hat eine starke Fußba...
+
+**Will the US next strike Iran on February 25, 2026 (ET)?...**
+*Analyzed: 2026-02-02 18:46*
+Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 70%
+Reasoning: Die Beziehungen zwischen den USA und dem Iran sind angespannt, aber es gibt auch diplomatische Bemühungen, die Spannungen abzubauen. Ein US-Angriff au...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 18:46*
+Market: 0.03 | AI: 0.04 | Edge: +1.0% | Conf: 60%
+Reasoning: Chelsea ist ein Top-6-Team mit Chancen, die Top 4 zu erreichen. Die Wahrscheinlichkeit, dass sie den 2. Platz belegen, ist gering, da Teams wie ManCit...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 18:46*
+Market: 0.10 | AI: 0.10 | Edge: +0.0% | Conf: 75%
+Reasoning: Basierend auf den aktuellen Wettquoten und der FIFA-Weltrangliste lässt sich die Wahrscheinlichkeit für einen brasilianischen Sieg bei der WM 2026 wie...
+
+**Kansas Jayhawks vs. Texas Tech Red Raiders: O/U 154.5...**
+*Analyzed: 2026-02-02 18:46*
+Market: 0.50 | AI: 0.53 | Edge: +3.5% | Conf: 70%
+Reasoning: Das Spiel wird voraussichtlich ein knappes Duell mit einer hohen Punktzahl. Texas Tech hat eine starke Offensive und Kansas erzielt im Schnitt fast 79...
+
+**Will the US next strike Iran on February 25, 2026 (ET)?...**
+*Analyzed: 2026-02-02 18:29*
+Market: 0.01 | AI: 0.02 | Edge: +1.2% | Conf: 70%
+Reasoning: Obwohl die Spannungen zwischen den USA und dem Iran hoch sind und eine militärische Eskalation nicht ausgeschlossen werden kann, deuten die Anzeichen ...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 18:29*
+Market: 0.03 | AI: 0.03 | Edge: +0.2% | Conf: 70%
+Reasoning: Chelsea ist eine starke Mannschaft, aber nicht der Top-Favorit auf die ersten beiden Plätze. Wettquoten und Expertenprognosen deuten auf eine geringe ...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 18:29*
+Market: 0.10 | AI: 0.11 | Edge: +1.5% | Conf: 75%
+Reasoning: Brasilien gehört zu den Favoriten auf den Gewinn der WM 2026, was durch ihre aktuelle FIFA-Rangliste und die Wettquoten verschiedener Anbieter belegt ...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 18:29*
+Market: 0.41 | AI: 0.35 | Edge: -6.0% | Conf: 75%
+Reasoning: Die Beziehungen zwischen Israel und dem Iran bleiben angespannt. Es gab in der Vergangenheit direkte Konfrontationen und eine anhaltende Stellvertrete...
+
+
+### Negative Expected Value (4)
 
 **Will the price of Solana be above $120 on February 2?...**
 *Analyzed: 2026-02-02 17:53*
@@ -585,16 +617,6 @@ Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 $. Obwohl eini
 *Analyzed: 2026-02-02 15:33*
 Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 60%
 Reasoning: Bitcoin's current price is around $77,000-$78,000. Recent performance shows a downtrend. While some long-term forecasts are bullish, short-term predic...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 13:18*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
-Reasoning: Die Mehrheit der kurzfristigen Prognosen deutet auf einen niedrigeren Preis hin als 94.000 USD, und der allgemeine Markttrend scheint rückläufig zu se...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 13:01*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 60%
-Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 $. Um diesen Wert zu erreichen, müsste es innerhalb kurzer Zeit zu einem erheblichen Preisansti...
 
 
 ## 📊 Historical Analysis
