@@ -280,6 +280,50 @@ def insert_active_bet(bet_data: Dict[str, Any]):
     )
 
 
+def insert_active_bets_batch(bets_data: List[Dict[str, Any]]):
+    """Batch records new active bets in the database."""
+    if not bets_data:
+        return
+
+    from dateutil import parser
+
+    with session_scope() as session:
+        for bet_data in bets_data:
+            bet = ActiveBet(
+                market_slug=bet_data["market_slug"],
+                url_slug=bet_data.get(
+                    "url_slug", bet_data["market_slug"]
+                ),  # Fallback if missing
+                question=bet_data["question"],
+                action=bet_data["action"],
+                stake_usdc=bet_data["stake_usdc"],
+                entry_price=bet_data["entry_price"],
+                ai_probability=bet_data["ai_probability"],
+                confidence_score=bet_data["confidence_score"],
+                expected_value=bet_data["expected_value"],
+                edge=bet_data.get("edge", 0.0),
+                ai_reasoning=bet_data.get("ai_reasoning", ""),
+                end_date=bet_data.get("end_date"),
+                timestamp_created=datetime.now(timezone.utc),
+                status="OPEN",
+            )
+            # Handle string date if passed
+            if isinstance(bet.end_date, str):
+                try:
+                    bet.end_date = parser.parse(bet.end_date)
+                    if bet.end_date.tzinfo is None:
+                        bet.end_date = bet.end_date.replace(tzinfo=timezone.utc)
+                except Exception:
+                    pass
+
+            session.add(bet)
+
+        # Mark for git sync using the same session (once for the batch)
+        mark_git_change("bet", conn=session)
+
+    logger.info(f"Batch inserted {len(bets_data)} active bets.")
+
+
 def get_active_bets() -> List[Dict[str, Any]]:
     """Retrieves all currently active (open) bets.
 
@@ -380,6 +424,75 @@ def close_bet(
         with session_scope() as session:
             _perform_close(session)
             # session.commit()
+
+
+def close_bets_batch(resolutions: List[Tuple[int, str, float]]):
+    """
+    Batch closes multiple bets.
+    resolutions: List of (bet_id, outcome, profit_loss)
+    """
+    if not resolutions:
+        return
+
+    with session_scope() as session:
+        bet_ids = [r[0] for r in resolutions]
+        outcome_map = {r[0]: (r[1], r[2]) for r in resolutions}
+
+        # Fetch active bets
+        bets = session.query(ActiveBet).filter(ActiveBet.bet_id.in_(bet_ids)).all()
+
+        total_pl = 0.0
+        archived_bets = []
+
+        for bet in bets:
+            outcome, profit = outcome_map[bet.bet_id]
+            total_pl += profit
+
+            roi = (profit / float(bet.stake_usdc)) if bet.stake_usdc > 0 else 0.0
+
+            archived = ArchivedBet(
+                original_bet_id=bet.bet_id,
+                market_slug=bet.market_slug,
+                url_slug=bet.url_slug,
+                question=bet.question,
+                action=bet.action,
+                stake_usdc=bet.stake_usdc,
+                entry_price=bet.entry_price,
+                ai_probability=bet.ai_probability,
+                confidence_score=bet.confidence_score,
+                edge=bet.edge,
+                ai_reasoning=bet.ai_reasoning,
+                timestamp_created=bet.timestamp_created,
+                end_date=bet.end_date,
+                actual_outcome=outcome,
+                profit_loss=profit,
+                roi=roi,
+                timestamp_resolved=datetime.now(timezone.utc),
+            )
+            archived_bets.append(archived)
+
+        if not archived_bets:
+            return
+
+        # Bulk insert archived
+        session.add_all(archived_bets)
+
+        # Bulk delete active
+        session.query(ActiveBet).filter(ActiveBet.bet_id.in_(bet_ids)).delete(
+            synchronize_session=False
+        )
+
+        # Update capital
+        session.execute(
+            text(
+                "UPDATE portfolio_state SET total_capital = total_capital + :pl, version = version + 1 WHERE id = 1"
+            ),
+            {"pl": total_pl},
+        )
+
+        mark_git_change("resolution", conn=session)
+
+    logger.info(f"Batch closed {len(resolutions)} bets. Total P/L: ${total_pl:.2f}")
 
 
 def archive_bet_without_resolution(bet_id: int, conn: Optional[Session] = None):
@@ -919,3 +1032,49 @@ def update_archived_bet_outcome(
     else:
         with session_scope() as session:
             _perform_update(session)
+
+
+def update_archived_bets_outcome_batch(resolutions: List[Tuple[int, str, float]]):
+    """
+    Batch updates archived bets with final outcome.
+    resolutions: List of (archive_id, outcome, profit_loss)
+    """
+    if not resolutions:
+        return
+
+    with session_scope() as session:
+        archive_ids = [r[0] for r in resolutions]
+        # Fetch bets to get stake_usdc for ROI calculation
+        bets = (
+            session.query(ArchivedBet)
+            .filter(ArchivedBet.archive_id.in_(archive_ids))
+            .all()
+        )
+        bet_map = {b.archive_id: b for b in bets}
+
+        total_pl = 0.0
+
+        for arch_id, outcome, profit in resolutions:
+            bet = bet_map.get(arch_id)
+            if bet:
+                roi = (profit / float(bet.stake_usdc)) if bet.stake_usdc > 0 else 0.0
+                bet.actual_outcome = outcome
+                bet.profit_loss = profit
+                bet.roi = roi
+                bet.timestamp_resolved = datetime.now(timezone.utc)
+                total_pl += profit
+
+        if total_pl != 0:
+            # Update capital
+            session.execute(
+                text(
+                    "UPDATE portfolio_state SET total_capital = total_capital + :pl, version = version + 1 WHERE id = 1"
+                ),
+                {"pl": total_pl},
+            )
+
+        mark_git_change("resolution", conn=session)
+
+    logger.info(
+        f"Batch updated {len(resolutions)} archived bets. Total P/L: ${total_pl:.2f}"
+    )
