@@ -278,75 +278,77 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
         lambda safe_id: f"market(id: {safe_id}) {{ closed resolvedBy outcomes {{ price }} }}",
     )
 
+    bets_to_close = []
+    bets_to_update = []
+
     # Process Bets
-    with database.session_scope() as session:
-        for bet in bets:
-            market_data = resolved_markets.get(bet["market_slug"])
-            resolved_by = market_data.get("resolvedBy") if market_data else None
+    for bet in bets:
+        market_data = resolved_markets.get(bet["market_slug"])
+        resolved_by = market_data.get("resolvedBy") if market_data else None
 
-            if market_data and resolved_by:
-                # Resolved
-                outcomes = market_data.get("outcomes", [])
-                prices = [float(o.get("price", 0)) for o in outcomes if o] if outcomes else []  # type: ignore
+        if market_data and resolved_by:
+            # Resolved
+            outcomes = market_data.get("outcomes", [])
+            prices = [float(o.get("price", 0)) for o in outcomes if o] if outcomes else []  # type: ignore
 
-                actual_outcome = None
-                if prices and len(prices) >= 2:
-                    p_yes = float(prices[0])
-                    if p_yes > 0.9:
-                        actual_outcome = "YES"
-                    elif p_yes < 0.1:
-                        actual_outcome = "NO"
+            actual_outcome = None
+            if prices and len(prices) >= 2:
+                p_yes = float(prices[0])
+                if p_yes > 0.9:
+                    actual_outcome = "YES"
+                elif p_yes < 0.1:
+                    actual_outcome = "NO"
 
-                if actual_outcome:
-                    stake = float(bet["stake_usdc"])
-                    entry = float(bet["entry_price"])
+            if actual_outcome:
+                stake = float(bet["stake_usdc"])
+                entry = float(bet["entry_price"])
 
-                    if bet["action"] == actual_outcome:
-                        if entry > 0:
-                            profit = stake * ((1.0 / entry) - 1.0)
-                        else:
-                            profit = 0.0
+                if bet["action"] == actual_outcome:
+                    if entry > 0:
+                        profit = stake * ((1.0 / entry) - 1.0)
                     else:
-                        profit = -stake
-
-                    if is_archived:
-                        database.update_archived_bet_outcome(
-                            bet["archive_id"], actual_outcome, profit, conn=session
-                        )
-                    else:
-                        database.close_bet(
-                            bet["bet_id"], actual_outcome, profit, conn=session
-                        )
-
-                    logger.info(
-                        f"✅ Bet resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})"
-                    )
+                        profit = 0.0
                 else:
-                    logger.warning(f"⚠️ Market resolved but outcome unclear: {prices}")
-                    # If active and resolved but unclear, maybe we should archive as unresolved?
-                    # For now, leave it.
+                    profit = -stake
 
+                if is_archived:
+                    bets_to_update.append((bet["archive_id"], actual_outcome, profit))
+                else:
+                    bets_to_close.append((bet["bet_id"], actual_outcome, profit))
+
+                logger.info(
+                    f"✅ Bet resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})"
+                )
             else:
-                # Not resolved yet
-                if not is_archived:
-                    # Active bet expired but not resolved -> Archive as PENDING
-                    # Check if strictly expired
-                    end_date = bet.get("end_date")
-                    if end_date:
-                        if isinstance(end_date, str):
-                            try:
-                                end_date = date_parser.parse(end_date).replace(
-                                    tzinfo=timezone.utc
-                                )
-                            except Exception:
-                                end_date = datetime.now(timezone.utc)
-                        elif end_date.tzinfo is None:
-                            end_date = end_date.replace(tzinfo=timezone.utc)
+                logger.warning(f"⚠️ Market resolved but outcome unclear: {prices}")
+                # If active and resolved but unclear, maybe we should archive as unresolved?
+                # For now, leave it.
 
-                        if end_date < datetime.now(timezone.utc):
-                            database.archive_bet_without_resolution(
-                                bet["bet_id"], conn=session
+        else:
+            # Not resolved yet
+            if not is_archived:
+                # Active bet expired but not resolved -> Archive as PENDING
+                # Check if strictly expired
+                end_date = bet.get("end_date")
+                if end_date:
+                    if isinstance(end_date, str):
+                        try:
+                            end_date = date_parser.parse(end_date).replace(
+                                tzinfo=timezone.utc
                             )
+                        except Exception:
+                            end_date = datetime.now(timezone.utc)
+                    elif end_date.tzinfo is None:
+                        end_date = end_date.replace(tzinfo=timezone.utc)
+
+                    if end_date < datetime.now(timezone.utc):
+                        database.archive_bet_without_resolution(bet["bet_id"])
+
+    if bets_to_close:
+        database.close_bets_batch(bets_to_close)
+
+    if bets_to_update:
+        database.update_archived_bets_outcome_batch(bets_to_update)
 
 
 # ============================================================================
@@ -875,6 +877,7 @@ def single_run():
     active_slugs = database.get_active_bet_slugs()
 
     rejections_to_insert = []
+    active_bets_to_insert = []
 
     for i, market in enumerate(top_markets):
         if market.market_slug in active_slugs:
@@ -891,7 +894,7 @@ def single_run():
             rejections_to_insert.append(rejection)
 
         if rec and rec.action != "PASS":
-            database.insert_active_bet(
+            active_bets_to_insert.append(
                 {
                     "market_slug": market.market_slug,
                     "url_slug": market.url_slug,
@@ -908,6 +911,10 @@ def single_run():
                 }
             )
             active_slugs.add(market.market_slug)
+
+    # Batch Insert Active Bets
+    if active_bets_to_insert:
+        database.insert_active_bets_batch(active_bets_to_insert)
 
     # Batch Insert Rejections
     if rejections_to_insert:
