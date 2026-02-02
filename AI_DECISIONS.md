@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-02 13:35:52 CET
+**Last Updated:** 2026-02-02 14:42:36 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -278,117 +278,149 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #17: Will Elon Musk post 300-319 tweets from January 27 to February 3, 2026?
+
+**Decision:** YES @ 0.00 (Stake: $24.82)
+
+**AI Analysis:**
+- **Estimated Probability:** 12.0% (vs Market: 0.2%)
+- **Confidence Score:** 70.0%
+- **Edge:** +11.8%
+- **Expected Value:** $+1961.04
+- **End Date:** 2026-02-03 18:00 CET
+
+**AI Reasoning:**
+> Elon Musk hat in den letzten 5 Tagen durchschnittlich 53 Tweets pro Tag gepostet, was auf 371 Tweets in der Wettperiode hindeutet. Historisch gesehen war seine Tweet-Frequenz sehr variabel, aber der aktuelle Trend deutet auf eine geringe Wahrscheinlichkeit hin, dass er in den Bereich von 300-319 Tweets fällt. Der niedrige Marktpreis von 0,15 % spiegelt ebenfalls diese geringe Wahrscheinlichkeit wider.
+
+---
+
+### Bet #18: Opinion FDV above $1B one day after launch?
+
+**Decision:** NO @ 0.56 (Stake: $93.58)
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 56.0%)
+- **Confidence Score:** 65.0%
+- **Edge:** -26.0%
+- **Expected Value:** $+55.30
+- **End Date:** 2027-01-01 06:00 CET
+
+**AI Reasoning:**
+> Opinion Labs is a project focused on decentralized prediction markets and oracles. As of April 2025, there were no specific details about their native token, but a token launch is expected, potentially with airdrop. They've raised $5 million in funding. The project facilitates trading on real-world events using crypto. They're building a decentralized prediction-market system where anyone can trade on real-world events using crypto. Opinion Labs has generated $13M+ in fees since October 2025.A fully diluted valuation (FDV) estimates a crypto's total market cap if all tokens were circulating. It's calculated by multiplying the total token supply by the current token price. Opinion Labs has confirmed a 1 billion token cap.Given that Opinion Labs is pre-TGE (Token Generation Event) as of late January 2026, projecting a $1B FDV one day after launch is highly speculative. While they've generated some fees and have backing, achieving that valuation rapidly depends on market conditions, initial token price, and overall investor sentiment. A 56% market price on Polymarket seems optimistic. Reaching a $1B FDV requires a token price of $1, assuming all 1 billion tokens are considered. It's difficult to predict the opening price, but the market would need to believe in its future growth potential to justify such a valuation immediately.Therefore, I estimate the probability of Opinion FDV being above $1B one day after launch to be around 30%. The confidence score reflects the uncertainty surrounding token launch dynamics.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Ai Analysis Failed (17)
+### Insufficient Edge (73)
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 14:42*
+Market: 0.00 | AI: 0.01 | Edge: +1.0% | Conf: 80%
+Reasoning: The current Bitcoin price is around $77,000 and the market sentiment is bearish due to macroeconomic factors, geopolitical tensions, and technical ind...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 14:25*
+Market: 0.00 | AI: 0.01 | Edge: +1.0% | Conf: 60%
+Reasoning: Obwohl einige Analysten einen Anstieg in Richtung 98.000 USD prognostizieren und der Februar historisch gesehen ein guter Monat für Bitcoin war, deute...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 14:25*
+Market: 0.04 | AI: 0.06 | Edge: +2.0% | Conf: 60%
+Reasoning: Chelsea is a team with potential, but they face significant hurdles to finish 2nd in the Premier League. Current season performance, strong competitio...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 14:25*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
+Reasoning: Brazil is a strong contender with a talented squad and a new coach. However, they face stiff competition from other top teams, and their recent perfor...
+
+**Over $10M committed to the Fabric public sale?...**
+*Analyzed: 2026-02-02 14:08*
+Market: 0.00 | AI: 0.10 | Edge: +10.0% | Conf: 60%
+Reasoning: The initial funding target was $2 million, while the Polymarket question asks about $10 million. Although the sale was oversubscribed, this does not g...
+
+**Will Elon Musk post 520-539 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-02 14:08*
+Market: 0.01 | AI: 0.05 | Edge: +4.4% | Conf: 70%
+Reasoning: Basierend auf historischen Tweet-Daten und insbesondere den aktuellen Daten von Xtracker ist es unwahrscheinlich, dass Elon Musk in dem gegebenen Zeit...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 14:08*
+Market: 0.00 | AI: 0.02 | Edge: +2.0% | Conf: 60%
+Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 USD. Die hohe Volatilität könnte zwar zu schnellen Anstiegen führen, aber die aktuelle Marktsti...
+
+**Will Elon Musk post 360-379 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-02 14:08*
+Market: 0.16 | AI: 0.20 | Edge: +4.5% | Conf: 60%
+Reasoning: Elon Musk's recent tweet activity (around 48 posts per day between Jan 27 and Feb 3, 2026) is close to the range required for the bet to succeed (45-4...
+
+**Nuggets vs. Pistons...**
+*Analyzed: 2026-02-02 14:08*
+Market: 0.36 | AI: 0.35 | Edge: -1.0% | Conf: 75%
+Reasoning: Obwohl die Nuggets ein starkes Team sind, spielen die Pistons zu Hause und haben eine bessere Saisonbilanz. Mehrere Quellen deuten auf einen wahrschei...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 13:52*
+Market: 0.00 | AI: 0.02 | Edge: +2.0% | Conf: 70%
+Reasoning: Der aktuelle Bitcoin-Preis liegt bei etwa 78.000 US-Dollar. Um bis zum 2. Februar um 12:00 Uhr ET über 94.000 US-Dollar zu liegen, wäre ein erhebliche...
+
+
+### Ai Analysis Failed (21)
+
+**Will Elon Musk post 520-539 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-02 14:42*
+Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 14:42*
+Market: 0.04 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 14:42*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Elon Musk post 360-379 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-02 14:42*
+Market: 0.16 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Elon Musk post 520-539 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-02 14:25*
+Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Elon Musk post 360-379 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-02 14:25*
+Market: 0.16 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 14:08*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 13:52*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Elon Musk post 360-379 tweets from January 30 to Februa...**
+*Analyzed: 2026-02-02 13:52*
+Market: 0.16 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Over $10M committed to the Fabric public sale?...**
 *Analyzed: 2026-02-02 13:35*
 Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Will Gold (GC) hit (HIGH) $8,500 by end of June?...**
-*Analyzed: 2026-02-02 13:18*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
 
-**Will Gold (GC) hit (LOW) $4,700 by end of February?...**
-*Analyzed: 2026-02-02 13:18*
-Market: 0.88 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Player 21 win Beast Games: Season 2?...**
-*Analyzed: 2026-02-02 12:11*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 12:11*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 11:54*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 11:37*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the Atlanta Braves win the 2026 World Series?...**
-*Analyzed: 2026-02-02 11:21*
-Market: 0.07 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Mike Vrabel win NFL Coach of the Year?...**
-*Analyzed: 2026-02-02 11:21*
-Market: 0.85 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 10:53*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-
-### Insufficient Edge (76)
-
-**Will Angers win the 2025–26 French Ligue 1?...**
-*Analyzed: 2026-02-02 13:35*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 90%
-Reasoning: Angers wird als extrem unwahrscheinlicher Gewinner der Ligue 1 angesehen. PSG ist der klare Favorit, und Angers' aktuelle Leistung und die Wettquoten ...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 13:35*
-Market: 0.00 | AI: 0.04 | Edge: +4.0% | Conf: 80%
-Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 $. Die Marktstimmung ist eher bearish, und viele Analysten erwarten kurzfristig einen weiteren ...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 13:35*
-Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
-Reasoning: Brasilien hat eine starke Fußballtradition und gehört oft zu den Favoriten. Die Qualifikation war jedoch nicht optimal und es gibt viele andere starke...
-
-**Will Angers win the 2025–26 French Ligue 1?...**
-*Analyzed: 2026-02-02 13:18*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 70%
-Reasoning: Paris Saint-Germain (PSG) ist der klare Favorit, um die Ligue 1 in der Saison 2025/26 zu gewinnen. Sie haben in den letzten Jahren eine beeindruckende...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 13:18*
-Market: 0.10 | AI: 0.09 | Edge: -0.5% | Conf: 75%
-Reasoning: Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften, aber die Konkurrenz ist stark und ihre jüngsten Leistungen waren nicht überwäl...
-
-**Opinion FDV above $1B one day after launch?...**
-*Analyzed: 2026-02-02 13:18*
-Market: 0.56 | AI: 0.62 | Edge: +6.0% | Conf: 75%
-Reasoning: Der aktuelle Marktpreis von 56% scheint etwas niedrig im Vergleich zu anderen Analysen (65% Wahrscheinlichkeit). Opinion Labs hat eine starke Unterstü...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 13:01*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
-Reasoning: Brasilien ist eine Fussballnation mit einer reichen Geschichte und hat die Weltmeisterschaft bereits fünfmal gewonnen. Sie haben sich auch für jede We...
-
-**Will Gold (GC) hit (HIGH) $8,500 by end of June?...**
-*Analyzed: 2026-02-02 13:01*
-Market: 0.10 | AI: 0.08 | Edge: -2.0% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis für 'Ja' liegt bei 10 %, was bereits eine geringe Wahrscheinlichkeit impliziert. Um Gold bis Juni 2026 auf 8.500 $ zu treiben,...
-
-**Will Mike Vrabel win NFL Coach of the Year?...**
-*Analyzed: 2026-02-02 13:01*
-Market: 0.86 | AI: 0.82 | Edge: -3.5% | Conf: 85%
-Reasoning: Mike Vrabel wird von Sportwettenanbietern und Analysten favorisiert. Er führte die Patriots zu einer herausragenden Saison und ist Finalist für den AP...
-
-**Rockets vs. Pacers: O/U 218.5...**
-*Analyzed: 2026-02-02 13:01*
-Market: 0.52 | AI: 0.60 | Edge: +8.0% | Conf: 75%
-Reasoning: Obwohl die Rockets eine starke Defensive haben, erzielen beide Teams im Durchschnitt hohe Punktzahlen. Die Pacers haben in vielen ihrer Spiele die Ove...
-
-
-### Negative Expected Value (7)
+### Negative Expected Value (6)
 
 **Will the price of Bitcoin be above $94,000 on February 2?...**
 *Analyzed: 2026-02-02 13:18*
@@ -419,11 +451,6 @@ Reasoning: Bitcoin is currently trading around $74,661 on February 2, 2026.  Mos
 *Analyzed: 2026-02-02 10:37*
 Market: 0.00 | AI: 0.65 | Edge: +65.0% | Conf: 70%
 Reasoning: While $94,000 is a significant increase from current levels, many analysts predict substantial Bitcoin price appreciation by 2026, with February histo...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 10:08*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
-Reasoning: Der Bitcoin-Preis ist in den letzten Wochen gefallen und liegt aktuell deutlich unter 94.000 USD. Analystenprognosen sind gemischt, wobei einige zwar ...
 
 
 ## 📊 Historical Analysis
