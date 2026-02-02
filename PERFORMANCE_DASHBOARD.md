@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-02 11:21:15 CET
+**Last Updated:** 2026-02-02 12:27:42 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,19 +9,19 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-02 11:08:51 CET |
-| Next Run | 2026-02-02 11:23:51 CET |
+| Last Run | 2026-02-02 12:09:16 CET |
+| Next Run | 2026-02-02 12:24:16 CET |
 | Run Interval | 15 minutes |
-| Bot Status | 🟢 Active |
+| Bot Status | 🔴 Delayed |
 
 ---
 ## 🤖 Gemini API Usage
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 3 | 15 | 20% | 🟢 |
-| Today (RPD) | 115 | 1,500 | 7.7% | 🟢 |
-| Current Minute (TPM) | 2,577 | 1,000,000 | 0.26% | 🟢 |
+| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
+| Today (RPD) | 134 | 1,500 | 8.9% | 🟢 |
+| Current Minute (TPM) | 4,084 | 1,000,000 | 0.41% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $809.25 (80.9% of capital) |
-| Avg Position Size | $80.92 |
+| Total Exposure | $874.89 (87.5% of capital) |
+| Avg Position Size | $72.91 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.135) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.119) |
 
 ---
-## 🎯 Active Bets (10)
+## 🎯 Active Bets (12)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -61,6 +61,8 @@
 | [Will the Logan Paul 1st Edition Charizar...](https://polymarket.com/event/will-the-logan-paul-1st-edition-charizard-sale-price-be-over-1pt4m-416) | YES | $25.81 | 0.08 | 0.20 | +12% 🟡 | 60% | $+41.22 | 2026-02-28 | 25d | 🟢 |
 | [Will Ja Morant be traded this season?](https://polymarket.com/event/will-ja-morant-be-traded-this-season) | YES | $59.82 | 0.24 | 0.45 | +21% 🟢 | 75% | $+52.35 | 2026-02-05 | 2d | 🔴 |
 | [Will Ethereum reach $3,400 in February?](https://polymarket.com/event/will-ethereum-reach-3400-in-february-2026) | YES | $24.11 | 0.03 | 0.15 | +12% 🟡 | 65% | $+80.72 | 2026-03-01 | 26d | 🟢 |
+| [Will Stephen Curry lead the NBA in three...](https://polymarket.com/event/nba-2025-26-3pm-leader-stephen-curry) | NO | $44.89 | 0.82 | 0.65 | -17% 🔴 | 75% | $+42.39 | 2026-04-12 | 68d | 🟢 |
+| [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+44.09 | 2026-02-02 | 0d | 🔴 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -71,7 +73,7 @@
 - 🔴 **High Exposure**: "Will the next Dutch government..." is 15.7% of capital
 - 🔴 **High Exposure**: "Natural Disaster in 2026?..." is 14.1% of capital
 - 🔴 **High Exposure**: "Will Ethereum dip to $1,000 by..." is 12.2% of capital
-- 🟡 **Expiring Soon**: 1 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 2 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -79,7 +81,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 10 |
+| Markets with Active Bets | 12 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
