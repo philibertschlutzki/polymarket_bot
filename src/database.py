@@ -80,36 +80,44 @@ def migrate_api_usage_table():
                 )
             )
             if result.fetchone():
-                # Check if backup already exists (from failed run) and drop it
-                conn.execute(text("DROP TABLE IF EXISTS api_usage_backup"))
+                # Check current schema
+                # SQLite doesn't expose AUTOINCREMENT in PRAGMA, need to check sql definition
+                table_sql = conn.execute(
+                    text(
+                        "SELECT sql FROM sqlite_master WHERE type='table' AND name='api_usage'"
+                    )
+                ).fetchone()
 
-                # Rename existing table to backup
-                conn.execute(text("ALTER TABLE api_usage RENAME TO api_usage_backup"))
-                conn.commit()
+                # If table doesn't have AUTOINCREMENT, migrate it
+                if table_sql and "AUTOINCREMENT" not in table_sql[0]:
+                    # Drop backup if exists
+                    conn.execute(text("DROP TABLE IF EXISTS api_usage_backup"))
+                    conn.commit()
 
-        # Recreate with proper schema
-        ApiUsage.__table__.create(engine, checkfirst=True)
+                    # Rename existing table to backup
+                    conn.execute(
+                        text("ALTER TABLE api_usage RENAME TO api_usage_backup")
+                    )
+                    conn.commit()
 
-        # Restore data if backup exists
-        with engine.connect() as conn:
-            # Check if backup table exists (using sqlite_master for persistent tables)
-            result = conn.execute(
-                text(
-                    "SELECT name FROM sqlite_master WHERE type='table' AND name='api_usage_backup'"
-                )
-            )
-            if result.fetchone():
-                conn.execute(text("""
-                    INSERT INTO api_usage (timestamp, api_name, endpoint, calls,
-                                          tokens_prompt, tokens_response, tokens_total, response_time_ms)
-                    SELECT timestamp, api_name, endpoint, calls,
-                           tokens_prompt, tokens_response, tokens_total, response_time_ms
-                    FROM api_usage_backup
-                """))
-                conn.execute(text("DROP TABLE api_usage_backup"))
-                conn.commit()
+                    # Recreate with proper schema
+                    ApiUsage.__table__.create(engine, checkfirst=False)
 
-        logger.info("api_usage table migration completed successfully.")
+                    # Restore data
+                    conn.execute(text("""
+                        INSERT INTO api_usage (timestamp, api_name, endpoint, calls,
+                                              tokens_prompt, tokens_response, tokens_total, response_time_ms)
+                        SELECT timestamp, api_name, endpoint, calls,
+                               tokens_prompt, tokens_response, tokens_total, response_time_ms
+                        FROM api_usage_backup
+                    """))
+                    conn.execute(text("DROP TABLE api_usage_backup"))
+                    conn.commit()
+
+                    logger.info("api_usage table migration completed successfully.")
+                else:
+                    logger.info("api_usage table already has correct schema.")
+
     except Exception as e:
         logger.error(f"Error migrating api_usage table: {e}")
         raise
@@ -442,7 +450,6 @@ def insert_rejected_markets_batch(markets: List[Dict[str, Any]]):
         return
 
     with session_scope() as session:
-        objs = []
         for m in markets:
             end_date = m.get("end_date")
             if isinstance(end_date, str):
@@ -455,25 +462,21 @@ def insert_rejected_markets_batch(markets: List[Dict[str, Any]]):
                 except Exception:
                     end_date = None
 
-            objs.append(
-                RejectedMarket(
-                    market_slug=m["market_slug"],
-                    url_slug=m.get("url_slug", m["market_slug"]),
-                    question=m["question"],
-                    market_price=m["market_price"],
-                    volume=m["volume"],
-                    ai_probability=m["ai_probability"],
-                    confidence_score=m["confidence_score"],
-                    edge=m["edge"],
-                    rejection_reason=m["rejection_reason"],
-                    ai_reasoning=m.get("ai_reasoning", ""),
-                    timestamp_analyzed=datetime.now(timezone.utc),
-                    end_date=end_date,
-                )
+            rej = RejectedMarket(
+                market_slug=m["market_slug"],
+                url_slug=m.get("url_slug", m["market_slug"]),
+                question=m["question"],
+                market_price=m["market_price"],
+                volume=m["volume"],
+                ai_probability=m["ai_probability"],
+                confidence_score=m["confidence_score"],
+                edge=m["edge"],
+                rejection_reason=m["rejection_reason"],
+                ai_reasoning=m.get("ai_reasoning", ""),
+                timestamp_analyzed=datetime.now(timezone.utc),
+                end_date=end_date,
             )
-
-        session.bulk_save_objects(objs)
-        mark_git_change("rejection", conn=session)
+            session.add(rej)  # Triggers AUTOINCREMENT
 
     logger.info(f"Batch inserted {len(markets)} rejected markets.")
 
