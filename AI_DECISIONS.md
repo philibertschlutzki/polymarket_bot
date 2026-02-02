@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-02 20:26:58 CET
+**Last Updated:** 2026-02-02 23:09:49 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -342,23 +342,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #21: Counter-Strike: BC.Game Esports vs FaZe (BO3) - IEM Krakow Group B
-
-**Decision:** YES @ 0.42 (Stake: $86.97)
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 41.5%)
-- **Confidence Score:** 75.0%
-- **Edge:** +23.5%
-- **Expected Value:** $+49.25
-- **End Date:** 2026-02-02 22:30 CET
-
-**AI Reasoning:**
-> FaZe ist das höher eingestufte Team (Platz 5 der Welt gegenüber Platz 40 von BC.Game), aber beide Teams haben ihre letzten Spiele bei der IEM Krakau verloren. BC.Game hat eine starke Aufstellung mit s1mple und electroNic, was ihre Gewinnchancen erhöht. Ich schätze, dass FaZe eine 65%ige Chance hat, dieses BO3-Match zu gewinnen, da sie insgesamt das stärkere Team sind.
-
----
-
-### Bet #22: Will Ethereum dip to $1,400 in February?
+### Bet #21: Will Ethereum dip to $1,400 in February?
 
 **Decision:** YES @ 0.04 (Stake: $23.00)
 
@@ -374,7 +358,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #23: Will Claude 5 be released by March 31, 2026?
+### Bet #22: Will Claude 5 be released by March 31, 2026?
 
 **Decision:** NO @ 0.80 (Stake: $117.66)
 
@@ -390,7 +374,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #24: Will Apple be the third-largest company in the world by market cap on February 28?
+### Bet #23: Will Apple be the third-largest company in the world by market cap on February 28?
 
 **Decision:** NO @ 0.86 (Stake: $50.15)
 
@@ -406,7 +390,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #25: Will Elon Musk post 220-239 tweets from January 30 to February 6, 2026?
+### Bet #24: Will Elon Musk post 220-239 tweets from January 30 to February 6, 2026?
 
 **Decision:** YES @ 0.01 (Stake: $27.38)
 
@@ -422,7 +406,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #26: Spread: Timberwolves (-7.5)
+### Bet #25: Spread: Timberwolves (-7.5)
 
 **Decision:** YES @ 0.50 (Stake: $63.42)
 
@@ -438,7 +422,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #27: Weber State Wildcats vs. Sacramento State Hornets: O/U 163.5
+### Bet #26: Weber State Wildcats vs. Sacramento State Hornets: O/U 163.5
 
 **Decision:** YES @ 0.51 (Stake: $61.86)
 
@@ -454,7 +438,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #28: Will Israel strike Gaza on February 2, 2026?
+### Bet #27: Will Israel strike Gaza on February 2, 2026?
 
 **Decision:** YES @ 0.20 (Stake: $39.22)
 
@@ -470,7 +454,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #29: Will Ethereum reach $3,200 in February?
+### Bet #28: Will Ethereum reach $3,200 in February?
 
 **Decision:** YES @ 0.08 (Stake: $25.33)
 
@@ -486,117 +470,149 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #29: Bitcoin Up or Down - February 2, 4:45PM-5:00PM ET
+
+**Decision:** NO @ 0.56 (Stake: $39.57)
+
+**AI Analysis:**
+- **Estimated Probability:** 45.0% (vs Market: 55.5%)
+- **Confidence Score:** 70.0%
+- **Edge:** -10.5%
+- **Expected Value:** $+9.34
+- **End Date:** 2026-02-02 23:00 CET
+
+**AI Reasoning:**
+> Basierend auf den aktuellen Marktnachrichten und -analysen scheint der Bitcoin-Markt am 2. Februar 2026 bärisch zu sein. Mehrere Quellen deuten auf einen Abwärtstrend, einen Rückgang der Liquidität und eine allgemeine Risikoaversion hin. Obwohl der Marktpreis von Polymarket bei 55.50 % für 'Up' liegt, deuten die jüngsten Marktbewegungen auf die Möglichkeit eines weiteren Abwärtstrends hin. Daher schätze ich die Wahrscheinlichkeit, dass Bitcoin im genannten Zeitraum steigt oder gleich bleibt, auf 45 %. Ich bin mir aufgrund der Volatilität von Bitcoin und der kurzfristigen Unvorhersehbarkeit des Marktes mit einer 70-prozentigen Wahrscheinlichkeit sicher.
+
+---
+
+### Bet #30: Will Chong Won-oh win the 2026 Seoul Mayoral Election
+
+**Decision:** NO @ 0.58 (Stake: $75.73)
+
+**AI Analysis:**
+- **Estimated Probability:** 37.0% (vs Market: 58.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -21.0%
+- **Expected Value:** $+37.87
+- **End Date:** 2026-06-03 02:00 CEST
+
+**AI Reasoning:**
+> Der aktuelle Marktpreis auf Polymarket liegt bei 58,00 %, was eine implizite Wahrscheinlichkeit von 58 % für einen Sieg von Chong Won-oh widerspiegelt. Allerdings zeigen Umfragen vom Anfang des Jahres 2026 ein sehr knappes Rennen zwischen Chong Won-oh und dem amtierenden Bürgermeister Oh Se-hoon. Eine Umfrage sah Oh mit 37 % vor Chong mit 34 %. Angesichts dieser knappen Umfrageergebnisse, des hohen Anteils unentschlossener Wähler (24 %) und der Tatsache, dass Wahlen oft unvorhersehbar sind, halte ich eine Wahrscheinlichkeit von 37% für realistischer. Obwohl der Marktpreis höher ist, berücksichtige ich die Unsicherheit, die in den Umfragedaten vorhanden ist. Es ist wichtig zu beachten, dass sich die politische Landschaft schnell ändern kann, und diese Einschätzung basiert auf den aktuell verfügbaren Informationen.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Ai Analysis Failed (55)
+### Ai Analysis Failed (56)
 
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 20:26*
-Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+**Will the price of Ethereum be above $2,500 on February 3?...**
+*Analyzed: 2026-02-02 23:09*
+Market: 0.05 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 20:26*
+*Analyzed: 2026-02-02 23:09*
 Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 23:09*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will François Hollande win the 2027 French presidential elec...**
+*Analyzed: 2026-02-02 22:40*
+Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will the price of Ethereum be above $2,500 on February 3?...**
+*Analyzed: 2026-02-02 22:40*
+Market: 0.05 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 22:40*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will the price of Bitcoin be above $80,000 on February 4?...**
+*Analyzed: 2026-02-02 22:40*
+Market: 0.27 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 **Will Chong Won-oh win the 2026 Seoul Mayoral Election...**
-*Analyzed: 2026-02-02 20:26*
-Market: 0.59 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+*Analyzed: 2026-02-02 22:40*
+Market: 0.58 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 **Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 20:26*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+*Analyzed: 2026-02-02 22:40*
+Market: 0.42 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 20:06*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 20:06*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 19:40*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the US next strike Iran on February 25, 2026 (ET)?...**
-*Analyzed: 2026-02-02 19:23*
+**Will the US next strike Iran on February 27, 2026 (ET)?...**
+*Analyzed: 2026-02-02 21:56*
 Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 19:23*
-Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
 
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 19:23*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+### Insufficient Edge (42)
 
+**Will the price of Bitcoin be above $80,000 on February 4?...**
+*Analyzed: 2026-02-02 23:09*
+Market: 0.29 | AI: 0.35 | Edge: +5.8% | Conf: 60%
+Reasoning: Die Prognosen sind sehr unterschiedlich, wobei einige Experten einen Preis über 80.000 $ sehen, während andere niedrigere Werte erwarten. Der jüngste ...
 
-### Insufficient Edge (41)
+**Syracuse Orange vs. North Carolina Tar Heels: O/U 156.5...**
+*Analyzed: 2026-02-02 23:09*
+Market: 0.54 | AI: 0.48 | Edge: -5.5% | Conf: 75%
+Reasoning: Mehrere Quellen prognostizieren ein enges Spiel. Winners and Whiners sagt einen Endstand von 78-68 voraus, was unter 156.5 liegt. Sportsgambler progno...
 
-**U.S. strike on Somalia by February 7?...**
-*Analyzed: 2026-02-02 20:26*
-Market: 0.88 | AI: 0.85 | Edge: -3.4% | Conf: 80%
-Reasoning: The U.S. continues to conduct military operations in Somalia against Al-Shabaab and ISIS. There have been 23 U.S. strikes in Somalia in 2026 so far. S...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 20:06*
-Market: 0.03 | AI: 0.05 | Edge: +2.2% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis für 'Ja' ist sehr niedrig (2.75%). Supercomputer-Vorhersagen deuten eher auf eine Top-4-Platzierung hin, nicht spezifisch auf ...
-
-**U.S. strike on Somalia by February 7?...**
-*Analyzed: 2026-02-02 20:06*
-Market: 0.88 | AI: 0.88 | Edge: -0.2% | Conf: 85%
-Reasoning: Die USA führen regelmäßig Luftangriffe in Somalia durch, insbesondere unter der derzeitigen Regierung. Die US-Strategie konzentriert sich auf die Bekä...
+**Sabres vs. Panthers...**
+*Analyzed: 2026-02-02 23:09*
+Market: 0.50 | AI: 0.45 | Edge: -4.5% | Conf: 75%
+Reasoning: Die Florida Panthers sind zwar der Favorit laut den Wettquoten (ca. 55% Gewinnwahrscheinlichkeit), aber die Sabres haben eine bessere Saisonbilanz und...
 
 **Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 19:40*
-Market: 0.03 | AI: 0.02 | Edge: -0.6% | Conf: 60%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit (2,65 %) scheint etwas überhöht. Chelsea ist ein starkes Team, aber die Premier League ist sehr wettbewerbsfähig....
+*Analyzed: 2026-02-02 22:40*
+Market: 0.03 | AI: 0.08 | Edge: +5.2% | Conf: 60%
+Reasoning: Chelsea hat eine Chance auf den 2. Platz, aber starke Konkurrenz, Inkonsistenz und Trainerwechsel machen es unwahrscheinlich. Die Wettquoten spiegeln ...
 
-**Will Ethereum reach $3,200 in February?...**
-*Analyzed: 2026-02-02 19:40*
-Market: 0.08 | AI: 0.15 | Edge: +6.5% | Conf: 70%
-Reasoning: Basierend auf der aktuellen Marktlage, der technischen Analyse und den verfügbaren Prognosen halte ich es für unwahrscheinlich, dass Ethereum im Febru...
+**Sabres vs. Panthers...**
+*Analyzed: 2026-02-02 22:40*
+Market: 0.50 | AI: 0.48 | Edge: -1.5% | Conf: 75%
+Reasoning: Die Florida Panthers sind laut Sportwettenanbietern leicht favorisiert (ca. 52% Gewinnwahrscheinlichkeit). Der aktuelle Marktpreis von 49.50% für eine...
 
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 19:40*
-Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit liegt bei 9,50 %. Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften. Ihre Gewinnchancen häng...
+**Will the US next strike Iran on February 8, 2026 (ET)?...**
+*Analyzed: 2026-02-02 21:56*
+Market: 0.01 | AI: 0.02 | Edge: +1.2% | Conf: 60%
+Reasoning: Die Wahrscheinlichkeit eines Angriffs am genannten Datum ist gering, da diplomatische Bemühungen laufen und ein Angriff das Risiko einer Eskalation bi...
 
-**U.S. strike on Somalia by February 7?...**
-*Analyzed: 2026-02-02 19:40*
-Market: 0.89 | AI: 0.85 | Edge: -3.6% | Conf: 80%
-Reasoning: Die USA haben ihre Militäroperationen in Somalia deutlich verstärkt, insbesondere Luftangriffe gegen Al-Shabaab und ISIS-Somalia. Angesichts der jüngs...
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 21:56*
+Market: 0.03 | AI: 0.05 | Edge: +2.1% | Conf: 65%
+Reasoning: Die aktuelle Marktwahrscheinlichkeit auf Polymarket liegt bei 2.90%. Wettanbieter geben Chelsea eine geringe Chance, die Premier League zu gewinnen (z...
 
-**Will Ethereum reach $3,200 in February?...**
-*Analyzed: 2026-02-02 19:23*
-Market: 0.08 | AI: 0.15 | Edge: +6.5% | Conf: 60%
-Reasoning: Ethereum's current price is around $2,350, and it has experienced a significant decline recently. Most analysts predict a continued downtrend or, at b...
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 21:56*
+Market: 0.39 | AI: 0.30 | Edge: -9.0% | Conf: 75%
+Reasoning: Die aktuelle geopolitische Lage zwischen Israel und dem Iran ist angespannt, aber nicht auf dem Siedepunkt eines offenen Krieges.  Es gibt eine Reihe ...
 
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 19:06*
-Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 70%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit liegt bei 9.50%. Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften und hat eine starke Fußba...
+**Will Chong Won-oh win the 2026 Seoul Mayoral Election...**
+*Analyzed: 2026-02-02 21:56*
+Market: 0.60 | AI: 0.55 | Edge: -4.5% | Conf: 75%
+Reasoning: Die aktuelle Marktpreis für 'Ja' liegt bei 59.50%, was bereits eine relativ hohe Wahrscheinlichkeit widerspiegelt. Eine Umfrage vom 1. Januar 2026 deu...
 
-**Will the US next strike Iran on February 25, 2026 (ET)?...**
-*Analyzed: 2026-02-02 18:46*
-Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 70%
-Reasoning: Die Beziehungen zwischen den USA und dem Iran sind angespannt, aber es gibt auch diplomatische Bemühungen, die Spannungen abzubauen. Ein US-Angriff au...
+**Will Giannis Antetokounmpo be traded to the Golden State War...**
+*Analyzed: 2026-02-02 21:14*
+Market: 0.18 | AI: 0.22 | Edge: +3.8% | Conf: 70%
+Reasoning: Giannis ist offenbar offen für einen Trade, und die Warriors gehören zu den interessierten Teams. Allerdings gibt es Hürden wie die Forderungen der Bu...
 
 
-### Negative Expected Value (4)
+### Negative Expected Value (2)
 
 **Will the price of Solana be above $120 on February 2?...**
 *Analyzed: 2026-02-02 17:53*
@@ -607,16 +623,6 @@ Reasoning: Der Preis von Solana liegt derzeit bei etwa 103-105 $. Der Trend ist 
 *Analyzed: 2026-02-02 16:40*
 Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 70%
 Reasoning: Der aktuelle Preis von Solana liegt bei etwa 104 US-Dollar. Es gibt zwar einige optimistische Prognosen für die Zukunft, aber die hohe Volatilität des...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 16:07*
-Market: 0.00 | AI: 0.20 | Edge: +20.0% | Conf: 60%
-Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 $. Obwohl einige Experten für 2026 höhere Preise vorhersagen, gibt es auch erhebliche Abwärtsri...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 15:33*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 60%
-Reasoning: Bitcoin's current price is around $77,000-$78,000. Recent performance shows a downtrend. While some long-term forecasts are bullish, short-term predic...
 
 
 ## 📊 Historical Analysis
