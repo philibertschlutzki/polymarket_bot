@@ -90,8 +90,10 @@ log_handlers: List[logging.Handler] = [
     ),
 ]
 
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+
 logging.basicConfig(
-    level=logging.INFO,
+    level=getattr(logging, LOG_LEVEL),
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
     handlers=log_handlers,
@@ -181,6 +183,11 @@ class RateLimiter:
         # Remove requests older than 1 minute
         self.requests = [r for r in self.requests if r > now - timedelta(minutes=1)]
 
+        # NEU: Log Rate Limiter Status
+        logger.debug(
+            f"🔍 Rate Limiter: {len(self.requests)}/{self.max_requests} requests in window"
+        )
+
         if len(self.requests) >= self.max_requests:
             # Sort requests just in case
             self.requests.sort()
@@ -190,9 +197,11 @@ class RateLimiter:
             sleep_time = 60 - elapsed
 
             if sleep_time > 0:
-                logger.info(
-                    f"⏳ Rate limit reached ({len(self.requests)}/{self.max_requests}). Sleeping for {sleep_time:.2f}s..."
+                logger.warning(
+                    f"⏳ Rate Limit Hit: {len(self.requests)}/{self.max_requests} "
+                    f"requests. Sleeping {sleep_time:.2f}s"
                 )
+                logger.warning(f"⏳ Oldest request at: {oldest.isoformat()}")
                 time.sleep(sleep_time + 0.5)  # Add small buffer
 
         self.requests.append(datetime.now())
@@ -363,6 +372,10 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
     """
     for attempt in range(max_retries):
         try:
+            logger.debug(f"🔍 GraphQL Attempt {attempt + 1}/{max_retries}")
+            logger.debug(f"🔍 GraphQL URL: {GRAPHQL_URL}")
+            logger.debug(f"🔍 GraphQL Query (first 300 chars): {query[:300]}")
+
             response = requests.post(
                 GRAPHQL_URL,
                 json={"query": query},
@@ -370,17 +383,41 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
                 timeout=20,
             )
 
+            # NEU: Detailliertes Response Logging
+            logger.debug(f"🔍 GraphQL Status Code: {response.status_code}")
+            logger.debug(f"🔍 GraphQL Response Headers: {dict(response.headers)}")
+
             if response.status_code == 200:
-                return response.json()
+                response_data = response.json()
+                logger.debug(
+                    f"🔍 GraphQL Response Keys: {response_data.keys() if response_data else 'None'}"
+                )
+                return response_data
+            elif response.status_code == 404:
+                logger.error("❌ GraphQL 404 Error")
+                logger.error(f"❌ Response Body: {response.text[:500]}")
+                logger.error(f"❌ Query was: {query[:200]}")
+                return None
             elif response.status_code in [429, 500, 502, 503, 504]:
                 wait_time = 2 ** (attempt + 1)
+                logger.warning(
+                    f"⚠️ GraphQL {response.status_code} - Retry in {wait_time}s"
+                )
+                logger.warning(f"⚠️ Response: {response.text[:300]}")
                 time.sleep(wait_time)
             else:
-                logger.warning(f"GraphQL HTTP {response.status_code}")
+                logger.warning(f"⚠️ GraphQL HTTP {response.status_code}")
+                logger.warning(f"⚠️ Response Body: {response.text[:500]}")
                 return None
 
+        except requests.exceptions.Timeout:
+            logger.error(f"❌ GraphQL Timeout on attempt {attempt + 1}")
+            logger.error(f"❌ Query: {query[:200]}")
+        except requests.exceptions.ConnectionError as e:
+            logger.error(f"❌ GraphQL Connection Error: {str(e)}")
         except Exception as exc:
-            logger.error(f"GraphQL request failed: {exc}")
+            logger.error(f"❌ GraphQL Error Type: {type(exc).__name__}")
+            logger.error(f"❌ GraphQL Error: {exc}", exc_info=True)
             if attempt == max_retries - 1:
                 return None
     return None
@@ -627,47 +664,68 @@ def pre_filter_markets(markets: List[MarketData], top_n: int = 10) -> List[Marke
 )
 def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, dict]:
     start_time = time.time()
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            tools=[types.Tool(google_search=types.GoogleSearch())]
-        ),
-    )
-    response_time_ms = int((time.time() - start_time) * 1000)
 
-    usage_meta = {
-        "prompt_token_count": (
-            response.usage_metadata.prompt_token_count
-            if hasattr(response, "usage_metadata") and response.usage_metadata
-            else 0
-        ),
-        "candidates_token_count": (
-            response.usage_metadata.candidates_token_count
-            if hasattr(response, "usage_metadata") and response.usage_metadata
-            else 0
-        ),
-        "total_token_count": (
-            response.usage_metadata.total_token_count
-            if hasattr(response, "usage_metadata") and response.usage_metadata
-            else 0
-        ),
-        "response_time_ms": response_time_ms,
-    }
-
-    text_response = response.text
-    if "```json" in text_response:
-        text_response = text_response.split("```json")[1].split("```")[0]
-    elif "```" in text_response:
-        text_response = text_response.split("```")[1].split("```")[0]
-
-    text_response = re.sub(r"[\x00-\x1f\x7f-\x9f]", "", text_response)
     try:
-        parsed_data = json.loads(text_response.strip())
-    except Exception:
-        parsed_data = json.loads(text_response.strip(), strict=False)
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                tools=[types.Tool(google_search=types.GoogleSearch())]
+            ),
+        )
 
-    return parsed_data, usage_meta
+        logger.debug(f"🔍 Gemini Raw Response Type: {type(response)}")
+        logger.debug(f"🔍 Gemini Has Text: {hasattr(response, 'text')}")
+
+        response_time_ms = int((time.time() - start_time) * 1000)
+
+        usage_meta = {
+            "prompt_token_count": (
+                response.usage_metadata.prompt_token_count
+                if hasattr(response, "usage_metadata") and response.usage_metadata
+                else 0
+            ),
+            "candidates_token_count": (
+                response.usage_metadata.candidates_token_count
+                if hasattr(response, "usage_metadata") and response.usage_metadata
+                else 0
+            ),
+            "total_token_count": (
+                response.usage_metadata.total_token_count
+                if hasattr(response, "usage_metadata") and response.usage_metadata
+                else 0
+            ),
+            "response_time_ms": response_time_ms,
+        }
+
+        text_response = response.text
+        logger.debug(f"🔍 Gemini Raw Text (first 500 chars): {text_response[:500]}")
+
+        if "```json" in text_response:
+            text_response = text_response.split("```json")[1].split("```")[0]
+        elif "```" in text_response:
+            text_response = text_response.split("```")[1].split("```")[0]
+
+        logger.debug(f"🔍 Extracted JSON Text: {text_response[:200]}")
+
+        text_response = re.sub(r"[\x00-\x1f\x7f-\x9f]", "", text_response)
+        try:
+            parsed_data = json.loads(text_response.strip())
+        except Exception:
+            parsed_data = json.loads(text_response.strip(), strict=False)
+
+        return parsed_data, usage_meta
+
+    except json.JSONDecodeError as e:
+        logger.error(f"❌ JSON Parse Error at position {e.pos}")
+        logger.error(f"❌ Problematic text: {text_response}")
+        logger.error(f"❌ Error message: {e.msg}")
+        raise
+    except Exception as e:
+        logger.error(f"❌ Gemini API Error Type: {type(e).__name__}")
+        logger.error(f"❌ Error Details: {str(e)}")
+        logger.error("❌ Full Traceback:", exc_info=True)
+        raise
 
 
 def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
@@ -684,6 +742,11 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         or None if the API call fails.
     """
     try:
+        logger.info(f"🤖 Starting AI Analysis for: {market.question[:60]}")
+        logger.debug(
+            f"🔍 Market Details - Slug: {market.market_slug}, Price: {market.yes_price}, Volume: {market.volume}"
+        )
+
         client = genai.Client(api_key=GEMINI_API_KEY)
         prompt = f"""
         Analysiere folgende Wettfrage von Polymarket und schätze die Wahrscheinlichkeit ein:
@@ -693,7 +756,14 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         Nutze Google Search für Fakten.
         Output JSON: {{ "estimated_probability": 0.0-1.0, "confidence_score": 0.0-1.0, "reasoning": "..." }}
         """
+
+        logger.debug(f"🔍 Sending prompt ({len(prompt)} chars)")
         result, usage_meta = _generate_gemini_response(client, prompt)
+
+        logger.info(
+            f"✅ AI Analysis Success - Tokens: {usage_meta['total_token_count']}, Time: {usage_meta['response_time_ms']}ms"
+        )
+        logger.debug(f"🔍 AI Result Keys: {result.keys() if result else 'None'}")
 
         database.log_api_usage(
             api_name="gemini",
@@ -704,7 +774,25 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         )
         return AIAnalysis(**result)
     except Exception as exc:
-        logger.error(f"❌ Fehler bei KI-Analyse: {exc}")
+        logger.error(f"❌ AI Analysis Failed for: {market.question[:60]}")
+        logger.error(f"❌ Market Slug: {market.market_slug}")
+        logger.error(f"❌ Exception Type: {type(exc).__name__}")
+        logger.error(f"❌ Exception Details: {str(exc)}", exc_info=True)
+
+        # Use existing error_logger
+        from src.error_logger import log_api_error
+
+        log_api_error(
+            api_name="gemini",
+            endpoint="analyze_market",
+            error=exc,
+            context={
+                "market_slug": market.market_slug,
+                "question": market.question[:100],
+                "yes_price": market.yes_price,
+                "volume": market.volume,
+            },
+        )
         return None
 
 
