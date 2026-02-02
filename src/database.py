@@ -104,15 +104,13 @@ def migrate_api_usage_table():
                     ApiUsage.__table__.create(engine, checkfirst=False)
 
                     # Restore data
-                    conn.execute(
-                        text("""
+                    conn.execute(text("""
                         INSERT INTO api_usage (timestamp, api_name, endpoint, calls,
                                               tokens_prompt, tokens_response, tokens_total, response_time_ms)
                         SELECT timestamp, api_name, endpoint, calls,
                                tokens_prompt, tokens_response, tokens_total, response_time_ms
                         FROM api_usage_backup
-                    """)
-                    )
+                    """))
                     conn.execute(text("DROP TABLE api_usage_backup"))
                     conn.commit()
 
