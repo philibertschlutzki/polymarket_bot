@@ -72,6 +72,13 @@ export PYTHONPATH=$(pwd)
 python3 src/main.py
 ```
 
+## 🤖 API Monitoring
+
+The bot includes a robust API usage tracking system for Gemini:
+- **Rate Limiting**: Automatically adheres to Free Tier limits (15 RPM, 1,500 RPD, 1M TPM).
+- **Logging**: Tracks every API call in `logs/gemini_api_usage.log`.
+- **Reporting**: Generates real-time usage stats in the dashboard and via `src/api_usage_report.py`.
+
 ## 📦 Deployment (Raspberry Pi)
 
 Use the automated deployment script:

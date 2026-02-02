@@ -40,6 +40,8 @@ from src import (  # noqa: E402
     database,
     git_integration,
 )
+from src.gemini_tracker import track_gemini_call  # noqa: E402
+from src.logging_config import setup_api_logging  # noqa: E402
 from src.database import (  # noqa: E402
     archive_expired_bets,
     calculate_profit_with_fees,
@@ -101,6 +103,9 @@ logging.basicConfig(
     handlers=log_handlers,
 )
 logger = logging.getLogger(__name__)
+
+# Setup dedicated API logging
+setup_api_logging()
 
 load_dotenv()
 
@@ -794,18 +799,25 @@ def retry_with_rate_limit_handling(func):
     return wrapper
 
 
+@track_gemini_call
+def _execute_gemini_request(client: genai.Client, prompt: str):
+    """Executes the raw Gemini API request."""
+    return client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            tools=[types.Tool(google_search=types.GoogleSearch())]
+        ),
+    )
+
+
 @retry_with_rate_limit_handling
 def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, dict]:
     start_time = time.time()
 
     try:
-        response = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search=types.GoogleSearch())]
-            ),
-        )
+        # Call the tracked function
+        response = _execute_gemini_request(client, prompt)
 
         logger.debug(f"🔍 Gemini Raw Response Type: {type(response)}")
         logger.debug(f"🔍 Gemini Has Text: {hasattr(response, 'text')}")
@@ -850,8 +862,10 @@ def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, 
         return parsed_data, usage_meta
 
     except json.JSONDecodeError as e:
-        logger.error(f"❌ JSON Parse Error at position {e.pos}")
-        logger.error(f"❌ Problematic text: {text_response}")
+        logger.error(f"❌ JSON Parse Error")
+        # text_response might be undefined if error happened before text extraction
+        if 'text_response' in locals():
+            logger.error(f"❌ Problematic text: {text_response}")
         logger.error(f"❌ Error message: {e.msg}")
         raise
     except Exception as e:
@@ -898,13 +912,6 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         )
         logger.debug(f"🔍 AI Result Keys: {result.keys() if result else 'None'}")
 
-        database.log_api_usage(
-            api_name="gemini",
-            endpoint="generate_content",
-            tokens_prompt=usage_meta["prompt_token_count"],
-            tokens_response=usage_meta["candidates_token_count"],
-            response_time_ms=usage_meta["response_time_ms"],
-        )
         return AIAnalysis(**result)
     except ClientError as exc:
         if "429" in str(exc) or "RESOURCE_EXHAUSTED" in str(exc):
