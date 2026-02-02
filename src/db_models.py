@@ -18,6 +18,8 @@ from sqlalchemy import (
     Text,
     create_engine,
 )
+from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.sql import func
 
 
 class BetStatus:
@@ -33,9 +35,6 @@ class BetStatus:
     LOST = "LOST"
     ANNULLED = "ANNULLED"  # Market cancelled, stake returned
 
-
-from sqlalchemy.orm import declarative_base, sessionmaker
-from sqlalchemy.sql import func
 
 logger = logging.getLogger(__name__)
 

@@ -11,7 +11,6 @@ from src.db_models import (
     ApiUsage,
     ArchivedBet,
     Base,
-    BetStatus,
     BetStatusHistory,
     GitSyncState,
     PortfolioState,
@@ -1191,6 +1190,7 @@ def update_archived_bets_outcome_batch(resolutions: List[Tuple[int, str, float]]
         f"Batch updated {len(resolutions)} archived bets. Total P/L: ${total_pl:.2f}"
     )
 
+
 def log_status_change(
     bet_id: int,
     old_status: str,
@@ -1283,12 +1283,7 @@ def archive_expired_bets() -> int:
                 timestamp_archived=now,
             )
             session.add(archived)
-            session.flush() # Get archive_id if needed, but we log using original or archive id?
-            # User request said log_status_change bet_id=bet.bet_id for this step, is_archived=False?
-            # Wait, once archived, it is in archived_bets.
-            # The log says "Archive with new status".
-            # The prompt code:
-            # This seems to log the transition FROM Active.
+            session.flush()  # Get archive_id if needed
 
             # Log status change
             log_status_change(
@@ -1296,7 +1291,7 @@ def archive_expired_bets() -> int:
                 old_status="OPEN",
                 new_status=new_status,
                 reason=f"AUTO_ARCHIVE_EXPIRED_{days_expired}_DAYS",
-                is_archived=False, # It WAS active
+                is_archived=False,
                 conn=session,
             )
 
@@ -1366,8 +1361,10 @@ def process_auto_loss_bets() -> int:
         # a total loss means we must deduct the stake from total_capital.
         if total_loss != 0:
             session.execute(
-                text("UPDATE portfolio_state SET total_capital = total_capital + :pl WHERE id = 1"),
-                {"pl": total_loss}
+                text(
+                    "UPDATE portfolio_state SET total_capital = total_capital + :pl WHERE id = 1"
+                ),
+                {"pl": total_loss},
             )
 
         if count > 0:
@@ -1433,53 +1430,14 @@ def process_disputed_outcomes() -> int:
             count += 1
 
         # Update capital
-        # Wait, if it was DISPUTED, was the capital returned?
-        # Usually capital is deducted on entry.
-        # If it was marked DISPUTED, profit_loss was None or 0?
-        # If profit_loss was None, then capital was NOT updated (only updated on close).
-        # So still, if we mark loss (-stake), we just don't add anything back.
-        # BUT the prompt code has:
-        # if total_loss != 0:
-        #    session.execute(text("UPDATE portfolio_state SET total_capital = total_capital + :pl WHERE id = 1"), {"pl": total_loss})
-        # This implies we ARE reducing capital?
-        # If I bet 100, capital 900.
-        # Loss means I have 900.
-        # If I add -100, capital becomes 800. That would be double counting loss!
-        # CHECK logic.
-        # Close bet logic: .
-        # If I win 100 profit (stake 100 -> return 200). PL = +100. Cap = 900 + 100 = 1000. Correct.
-        # If I lose (stake 100 -> return 0). PL = -100. Cap = 900 + (-100) = 800. WRONG.
-        # Wait, how is capital handled?
-        #  in :
-        #
-        # If profit_loss is negative (-stake), then capital DECREASES.
-        # But capital was decreased when bet was placed?
-        # Let's check .
-        # It does NOT update capital.
-        # So capital is updated ONLY on close?
-        # Let's check . .
-        # .
-        # .
-        # . .
-        #  in .
-        # It adds to ActiveBet table. It does NOT update .
-        # Wait, if capital is not deducted on entry, then  calculation in dashboard must deduct active bets.
-        # Dashboard: .
-        # Yes.
-        #  in DB represents TOTAL portfolio value (cash + bets)?
-        # Or just cash?
-        # If  does NOT change , then  includes the stake.
-        # So  = Cash + Active Stakes.
-        # When a bet closes:
-        # Win:  increases by Profit. (e.g. +100).
-        # Loss:  decreases by Loss (e.g. -100).
-        # So yes, we MUST apply the loss to .
-        # So the prompt code is correct: .
-
+        # Since total_capital includes the stake (it is not deducted on entry),
+        # a total loss means we must deduct the stake from total_capital.
         if total_loss != 0:
-             session.execute(
-                text("UPDATE portfolio_state SET total_capital = total_capital + :pl WHERE id = 1"),
-                {"pl": total_loss}
+            session.execute(
+                text(
+                    "UPDATE portfolio_state SET total_capital = total_capital + :pl WHERE id = 1"
+                ),
+                {"pl": total_loss},
             )
 
         if count > 0:
@@ -1557,51 +1515,12 @@ def get_capital_breakdown() -> Dict[str, float]:
         active_bets = session.query(ActiveBet).filter(ActiveBet.status == "OPEN").all()
         locked_in_active = sum(float(b.stake_usdc) for b in active_bets)
 
-        # Pending resolution (archived but unresolved, > 7 days)
-        # The prompt says "> 7 days past end_date".
-        # But  usually refers to ALL unresolved bets that are not active.
-        # However,  splits them into EXPIRED_PENDING (<7d) and UNRESOLVED (>7d).
-        # The prompt code filters .
-        # So it seems  here strictly means "Long Pending / Unresolved".
-        # But  =  -  - .
-        # What about  (<7d)?
-        # If they are not subtracted,  will be too high?
-        # Let's check prompt code:
-        # pending_bets = filter(..., end_date < seven_days_ago).
-        # This ignores bets expired < 7 days.
-        # If I have 1000 total. 100 active. 100 expired yesterday.
-        # locked = 100.
-        # pending = 0.
-        # available = 1000 - 100 - 0 = 900.
-        # But 100 is also tied up in "expired yesterday".
-        # So  should be 800.
-        # I suspect the prompt logic might be incomplete or specific about what "pending_resolution" means for display,
-        # but for  calculation it should probably include ALL unresolved archived bets.
-        # However, I should stick to the prompt's instructions unless it's critical.
-        # If I return  that is too high, the bot might trade with money it doesn't have.
-        # Wait,  handles resolution.
-        # If a bet is expired, it is archived.
-        # If I assume  includes everything.
-        # I should subtract ALL unresolved bets to get "Available for new bets".
-        # I will modify the query to include ALL unresolved archived bets, OR follow prompt strictly and maybe  is just a display metric?
-        # The prompt says: "Calculates capital breakdown for dashboard."
-        # It calculates .
-        # If  only includes >7d, then <7d are treated as "available". This seems WRONG for a trading bot.
-        # But maybe  are considered "active" in some other view? No, they are in .
-        # I will change the logic to include ALL unresolved archived bets to be safe for .
-        # But for the returned dict , I might want to stick to the name?
-        # Let's look at  return usage. It's for dashboard display.
-        # "Pending Resolution (>7d)" is the label in dashboard.
-        # So  variable matches the label.
-        # But  MUST be correct.
-        # So I will calculate  for available calculation.
-
         now = datetime.now(timezone.utc)
         seven_days_ago = now - timedelta(days=7)
 
         # All unresolved archived bets
         all_unresolved = (
-             session.query(ArchivedBet)
+            session.query(ArchivedBet)
             .filter(ArchivedBet.actual_outcome.is_(None))
             .all()
         )
@@ -1609,22 +1528,12 @@ def get_capital_breakdown() -> Dict[str, float]:
 
         # Pending > 7 days (subset)
         pending_older_7d = sum(
-            float(b.stake_usdc) for b in all_unresolved
+            float(b.stake_usdc)
+            for b in all_unresolved
             if b.end_date and b.end_date.replace(tzinfo=timezone.utc) < seven_days_ago
         )
 
         available = total_capital - locked_in_active - total_unresolved
-
-        # Prompt wants  key. I will return the >7d one as requested for display?
-        # "pending_resolution: Total stake in bets > 7 days past end_date"
-        # Dashboard: "| Pending Resolution (>7d) | {warning} |"
-        # So yes, return the specific subset for display.
-        # But  should be correct.
-        # The prompt code:
-        # available = total_capital - locked_in_active - pending_resolution
-        # This implies the prompt author forgot about <7d expired bets, or considers them "available" (which is weird), or considers them "active" (but they are not in active_bets).
-        # I will correct  to be .
-        # And return  as the >7d amount.
 
         return {
             "available_capital": available,
