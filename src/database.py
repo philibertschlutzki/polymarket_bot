@@ -41,6 +41,9 @@ def init_database():
         # Migrate api_usage table if needed
         migrate_api_usage_table()
 
+        # Migrate active_bets table if needed
+        migrate_active_bets_table()
+
         with session_scope() as session:
             # Initialize Portfolio State
             if session.query(PortfolioState).count() == 0:
@@ -120,6 +123,72 @@ def migrate_api_usage_table():
 
     except Exception as e:
         logger.error(f"Error migrating api_usage table: {e}")
+        raise
+
+
+def migrate_active_bets_table():
+    """Migrates active_bets table to ensure proper AUTOINCREMENT."""
+    from src.db_models import ActiveBet
+
+    try:
+        with engine.connect() as conn:
+            # Check if table exists
+            result = conn.execute(
+                text(
+                    "SELECT name FROM sqlite_master WHERE type='table' AND name='active_bets'"
+                )
+            )
+            if result.fetchone():
+                # Check current schema
+                table_sql = conn.execute(
+                    text(
+                        "SELECT sql FROM sqlite_master WHERE type='table' AND name='active_bets'"
+                    )
+                ).fetchone()
+
+                # If table doesn't have AUTOINCREMENT, migrate it
+                if table_sql and "AUTOINCREMENT" not in table_sql[0]:
+                    logger.info("Migrating active_bets table to include AUTOINCREMENT...")
+
+                    # Drop backup if exists
+                    conn.execute(text("DROP TABLE IF EXISTS active_bets_backup"))
+                    conn.commit()
+
+                    # Rename existing table to backup
+                    conn.execute(
+                        text("ALTER TABLE active_bets RENAME TO active_bets_backup")
+                    )
+                    conn.commit()
+
+                    # Force SQLite AUTOINCREMENT to ensure explicit keyword is present
+                    ActiveBet.__table__.dialect_options["sqlite"]["autoincrement"] = True
+
+                    # Recreate with proper schema
+                    ActiveBet.__table__.create(engine, checkfirst=False)
+
+                    # Restore data
+                    conn.execute(text("""
+                        INSERT INTO active_bets (
+                            market_slug, url_slug, question, action, stake_usdc,
+                            entry_price, ai_probability, confidence_score, expected_value,
+                            edge, ai_reasoning, end_date, timestamp_created, status, version
+                        )
+                        SELECT
+                            market_slug, url_slug, question, action, stake_usdc,
+                            entry_price, ai_probability, confidence_score, expected_value,
+                            edge, ai_reasoning, end_date, timestamp_created, status, version
+                        FROM active_bets_backup
+                    """))
+
+                    conn.execute(text("DROP TABLE active_bets_backup"))
+                    conn.commit()
+
+                    logger.info("active_bets table migration completed successfully.")
+                else:
+                    logger.info("active_bets table already has correct schema.")
+
+    except Exception as e:
+        logger.error(f"Error migrating active_bets table: {e}")
         raise
 
 
