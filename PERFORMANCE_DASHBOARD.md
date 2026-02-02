@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-02 19:23:21 CET
+**Last Updated:** 2026-02-02 19:40:01 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-02 19:04:16 CET |
-| Next Run | 2026-02-02 19:19:16 CET |
+| Last Run | 2026-02-02 19:21:07 CET |
+| Next Run | 2026-02-02 19:36:07 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
-| Today (RPD) | 217 | 1,500 | 14.5% | 🟢 |
-| Current Minute (TPM) | 843 | 1,000,000 | 0.08% | 🟢 |
+| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
+| Today (RPD) | 222 | 1,500 | 14.8% | 🟢 |
+| Current Minute (TPM) | 4,450 | 1,000,000 | 0.45% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1823.13 (182.3% of capital) |
-| Avg Position Size | $62.87 |
+| Total Exposure | $1862.35 (186.2% of capital) |
+| Avg Position Size | $62.08 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.047) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.046) |
 
 ---
-## 🎯 Active Bets (29)
+## 🎯 Active Bets (30)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -66,7 +66,7 @@
 | [Starmer out by December 31, 2026?](https://polymarket.com/event/starmer-out-by-december-31-2026) | YES | $55.04 | 0.53 | 0.65 | +12% 🟡 | 70% | $+13.11 | 2026-12-31 | 331d | 🟢 |
 | [Will Russia enter Sloviansk by June 30?](https://polymarket.com/event/will-russia-enter-sloviansk-by-june-30) | YES | $39.23 | 0.26 | 0.40 | +14% 🟡 | 65% | $+22.31 | 2026-06-30 | 147d | 🟢 |
 | [Will Mike Vrabel win NFL Coach of the Ye...](https://polymarket.com/event/will-mike-vrabel-win-nfl-coach-of-the-year) | NO | $29.13 | 0.85 | 0.75 | -10% 🔴 | 90% | $+21.09 | 2026-02-11 | 8d | 🟢 |
-| [Will Gold (GC) hit (HIGH) $8,500 by end ...](https://polymarket.com/event/will-gold-gc-hit-high-8500-by-end-of-june-241-524) | YES | $21.52 | 0.10 | 0.20 | +10% 🟡 | 60% | $+21.52 | 2026-06-30 | 148d | 🟢 |
+| [Will Gold (GC) hit (HIGH) $8,500 by end ...](https://polymarket.com/event/will-gold-gc-hit-high-8500-by-end-of-june-241-524) | YES | $21.52 | 0.10 | 0.20 | +10% 🟡 | 60% | $+21.52 | 2026-06-30 | 147d | 🟢 |
 | [Will Elon Musk post 300-319 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-27-february-3-300-319) | YES | $24.82 | 0.00 | 0.12 | +12% 🟡 | 70% | $+1961.04 | 2026-02-03 | 0d | 🔴 |
 | [Opinion FDV above $1B one day after laun...](https://polymarket.com/event/opinion-fdv-above-1b-one-day-after-launch-277) | NO | $93.58 | 0.56 | 0.30 | -26% 🔴 | 65% | $+55.30 | 2027-01-01 | 332d | 🟢 |
 | [Will Elon Musk post 520-539 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-520-539) | YES | $47.83 | 0.00 | 0.25 | +25% 🟢 | 60% | $+2941.48 | 2026-02-06 | 3d | 🟡 |
@@ -80,6 +80,7 @@
 | [Will Elon Musk post 220-239 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-220-239) | YES | $27.38 | 0.01 | 0.15 | +14% 🟡 | 60% | $+383.39 | 2026-02-06 | 3d | 🟡 |
 | [Spread: Timberwolves (-7.5)](https://polymarket.com/event/nba-min-mem-2026-02-02-spread-away-7pt5) | YES | $63.42 | 0.51 | 0.65 | +14% 🟡 | 75% | $+18.21 | 2026-02-03 | 0d | 🔴 |
 | [Weber State Wildcats vs. Sacramento Stat...](https://polymarket.com/event/cbb-webst-sacst-2026-02-02-total-163pt5) | YES | $61.86 | 0.51 | 0.65 | +14% 🟡 | 75% | $+16.98 | 2026-02-03 | 0d | 🔴 |
+| [Will Israel strike Gaza on February 2, 2...](https://polymarket.com/event/will-israel-strike-gaza-on-february-2-2026) | YES | $39.22 | 0.20 | 0.35 | +15% 🟡 | 70% | $+29.41 | 2026-02-28 | 25d | 🟢 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -99,7 +100,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 29 |
+| Markets with Active Bets | 30 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | AI_ANALYSIS_FAILED |
 

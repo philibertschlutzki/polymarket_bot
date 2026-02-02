@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-02 19:23:21 CET
+**Last Updated:** 2026-02-02 19:40:01 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -486,11 +486,85 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #30: Will Israel strike Gaza on February 2, 2026?
+
+**Decision:** YES @ 0.20 (Stake: $39.22)
+
+**AI Analysis:**
+- **Estimated Probability:** 35.0% (vs Market: 20.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** +15.0%
+- **Expected Value:** $+29.41
+- **End Date:** 2026-02-28 01:00 CET
+
+**AI Reasoning:**
+> Die jüngsten Eskalationen und die brüchige Waffenruhe deuten auf ein erhöhtes Risiko eines israelischen Angriffs hin. Obwohl ein Waffenstillstand besteht, gab es in den letzten Tagen schwere wechselseitige Angriffe. Die Wahrscheinlichkeit wird auf 35% geschätzt, da ein Angriff nicht garantiert ist, aber die Spannungen hoch sind. Es gibt auch Bemühungen, den Waffenstillstand aufrechtzuerhalten, was die Wahrscheinlichkeit eines Angriffs reduziert. Das Vertrauen in diese Einschätzung ist relativ hoch (70%), da sie auf aktuellen Ereignissen und Nachrichten basiert.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Ai Analysis Failed (53)
+### Insufficient Edge (45)
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 19:40*
+Market: 0.03 | AI: 0.02 | Edge: -0.6% | Conf: 60%
+Reasoning: Die aktuelle Marktwahrscheinlichkeit (2,65 %) scheint etwas überhöht. Chelsea ist ein starkes Team, aber die Premier League ist sehr wettbewerbsfähig....
+
+**Will Ethereum reach $3,200 in February?...**
+*Analyzed: 2026-02-02 19:40*
+Market: 0.08 | AI: 0.15 | Edge: +6.5% | Conf: 70%
+Reasoning: Basierend auf der aktuellen Marktlage, der technischen Analyse und den verfügbaren Prognosen halte ich es für unwahrscheinlich, dass Ethereum im Febru...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 19:40*
+Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
+Reasoning: Die aktuelle Marktwahrscheinlichkeit liegt bei 9,50 %. Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften. Ihre Gewinnchancen häng...
+
+**U.S. strike on Somalia by February 7?...**
+*Analyzed: 2026-02-02 19:40*
+Market: 0.89 | AI: 0.85 | Edge: -3.6% | Conf: 80%
+Reasoning: Die USA haben ihre Militäroperationen in Somalia deutlich verstärkt, insbesondere Luftangriffe gegen Al-Shabaab und ISIS-Somalia. Angesichts der jüngs...
+
+**Will Ethereum reach $3,200 in February?...**
+*Analyzed: 2026-02-02 19:23*
+Market: 0.08 | AI: 0.15 | Edge: +6.5% | Conf: 60%
+Reasoning: Ethereum's current price is around $2,350, and it has experienced a significant decline recently. Most analysts predict a continued downtrend or, at b...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 19:06*
+Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 70%
+Reasoning: Die aktuelle Marktwahrscheinlichkeit liegt bei 9.50%. Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften und hat eine starke Fußba...
+
+**Will the US next strike Iran on February 25, 2026 (ET)?...**
+*Analyzed: 2026-02-02 18:46*
+Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 70%
+Reasoning: Die Beziehungen zwischen den USA und dem Iran sind angespannt, aber es gibt auch diplomatische Bemühungen, die Spannungen abzubauen. Ein US-Angriff au...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 18:46*
+Market: 0.03 | AI: 0.04 | Edge: +1.0% | Conf: 60%
+Reasoning: Chelsea ist ein Top-6-Team mit Chancen, die Top 4 zu erreichen. Die Wahrscheinlichkeit, dass sie den 2. Platz belegen, ist gering, da Teams wie ManCit...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 18:46*
+Market: 0.10 | AI: 0.10 | Edge: +0.0% | Conf: 75%
+Reasoning: Basierend auf den aktuellen Wettquoten und der FIFA-Weltrangliste lässt sich die Wahrscheinlichkeit für einen brasilianischen Sieg bei der WM 2026 wie...
+
+**Kansas Jayhawks vs. Texas Tech Red Raiders: O/U 154.5...**
+*Analyzed: 2026-02-02 18:46*
+Market: 0.50 | AI: 0.53 | Edge: +3.5% | Conf: 70%
+Reasoning: Das Spiel wird voraussichtlich ein knappes Duell mit einer hohen Punktzahl. Texas Tech hat eine starke Offensive und Kansas erzielt im Schnitt fast 79...
+
+
+### Ai Analysis Failed (51)
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 19:40*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will the US next strike Iran on February 25, 2026 (ET)?...**
 *Analyzed: 2026-02-02 19:23*
@@ -536,64 +610,6 @@ Reasoning: Gemini API error or timeout...
 *Analyzed: 2026-02-02 19:06*
 Market: 0.50 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 18:46*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-
-### Insufficient Edge (43)
-
-**Will Ethereum reach $3,200 in February?...**
-*Analyzed: 2026-02-02 19:23*
-Market: 0.08 | AI: 0.15 | Edge: +6.5% | Conf: 60%
-Reasoning: Ethereum's current price is around $2,350, and it has experienced a significant decline recently. Most analysts predict a continued downtrend or, at b...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 19:06*
-Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 70%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit liegt bei 9.50%. Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften und hat eine starke Fußba...
-
-**Will the US next strike Iran on February 25, 2026 (ET)?...**
-*Analyzed: 2026-02-02 18:46*
-Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 70%
-Reasoning: Die Beziehungen zwischen den USA und dem Iran sind angespannt, aber es gibt auch diplomatische Bemühungen, die Spannungen abzubauen. Ein US-Angriff au...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 18:46*
-Market: 0.03 | AI: 0.04 | Edge: +1.0% | Conf: 60%
-Reasoning: Chelsea ist ein Top-6-Team mit Chancen, die Top 4 zu erreichen. Die Wahrscheinlichkeit, dass sie den 2. Platz belegen, ist gering, da Teams wie ManCit...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 18:46*
-Market: 0.10 | AI: 0.10 | Edge: +0.0% | Conf: 75%
-Reasoning: Basierend auf den aktuellen Wettquoten und der FIFA-Weltrangliste lässt sich die Wahrscheinlichkeit für einen brasilianischen Sieg bei der WM 2026 wie...
-
-**Kansas Jayhawks vs. Texas Tech Red Raiders: O/U 154.5...**
-*Analyzed: 2026-02-02 18:46*
-Market: 0.50 | AI: 0.53 | Edge: +3.5% | Conf: 70%
-Reasoning: Das Spiel wird voraussichtlich ein knappes Duell mit einer hohen Punktzahl. Texas Tech hat eine starke Offensive und Kansas erzielt im Schnitt fast 79...
-
-**Will the US next strike Iran on February 25, 2026 (ET)?...**
-*Analyzed: 2026-02-02 18:29*
-Market: 0.01 | AI: 0.02 | Edge: +1.2% | Conf: 70%
-Reasoning: Obwohl die Spannungen zwischen den USA und dem Iran hoch sind und eine militärische Eskalation nicht ausgeschlossen werden kann, deuten die Anzeichen ...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 18:29*
-Market: 0.03 | AI: 0.03 | Edge: +0.2% | Conf: 70%
-Reasoning: Chelsea ist eine starke Mannschaft, aber nicht der Top-Favorit auf die ersten beiden Plätze. Wettquoten und Expertenprognosen deuten auf eine geringe ...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 18:29*
-Market: 0.10 | AI: 0.11 | Edge: +1.5% | Conf: 75%
-Reasoning: Brasilien gehört zu den Favoriten auf den Gewinn der WM 2026, was durch ihre aktuelle FIFA-Rangliste und die Wettquoten verschiedener Anbieter belegt ...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 18:29*
-Market: 0.41 | AI: 0.35 | Edge: -6.0% | Conf: 75%
-Reasoning: Die Beziehungen zwischen Israel und dem Iran bleiben angespannt. Es gab in der Vergangenheit direkte Konfrontationen und eine anhaltende Stellvertrete...
 
 
 ### Negative Expected Value (4)
