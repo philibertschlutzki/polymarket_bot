@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-02 14:42:36 CET
+**Last Updated:** 2026-02-02 15:49:41 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -310,11 +310,99 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #19: Will Elon Musk post 520-539 tweets from January 30 to February 6, 2026?
+
+**Decision:** YES @ 0.00 (Stake: $47.83)
+
+**AI Analysis:**
+- **Estimated Probability:** 25.0% (vs Market: 0.4%)
+- **Confidence Score:** 60.0%
+- **Edge:** +24.6%
+- **Expected Value:** $+2941.48
+- **End Date:** 2026-02-06 18:00 CET
+
+**AI Reasoning:**
+> Elon Musk's tweeting habits are highly variable. While historical data suggests he's capable of tweeting far more, recent data indicates a lower frequency. The Polymarket data suggests some expectation of a higher tweet volume than recent trends, but the target range of 520-539 is still a significant increase over current activity. Therefore, the probability is estimated to be low but not negligible.
+
+---
+
+### Bet #20: Jets vs. Stars
+
+**Decision:** YES @ 0.40 (Stake: $89.15)
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 40.5%)
+- **Confidence Score:** 75.0%
+- **Edge:** +24.5%
+- **Expected Value:** $+53.93
+- **End Date:** 2026-02-03 02:30 CET
+
+**AI Reasoning:**
+> Die Dallas Stars sind das stärkere Team mit einer besseren Bilanz und spielen zu Hause. Die Wettquoten spiegeln dies wider, da sie als Favorit gelten. Obwohl die Jets in ihrem letzten Spiel gewonnen haben, haben die Stars die letzten vier Spiele gewonnen. Die Wahrscheinlichkeit, dass die Stars gewinnen, ist höher als die implizite Wahrscheinlichkeit des aktuellen Marktpreises von 40,50%.
+
+---
+
+### Bet #21: Will Elon Musk post 360-379 tweets from January 30 to February 6, 2026?
+
+**Decision:** YES @ 0.16 (Stake: $49.96)
+
+**AI Analysis:**
+- **Estimated Probability:** 35.0% (vs Market: 15.5%)
+- **Confidence Score:** 75.0%
+- **Edge:** +19.5%
+- **Expected Value:** $+62.86
+- **End Date:** 2026-02-06 18:00 CET
+
+**AI Reasoning:**
+> Elon Musk ist bekannt für seine hohe Twitter-Aktivität. Einige Quellen deuten darauf hin, dass er durchschnittlich sehr viele Tweets pro Tag absetzt. Allerdings ist die Spanne seiner täglichen Tweet-Anzahl recht groß. Die Polymarket-Frage bezieht sich auf den Zeitraum vom 30. Januar bis zum 6. Februar 2026. Der aktuelle Marktpreis für 'Yes' liegt bei 15.50%, was auf eine relativ geringe Wahrscheinlichkeit hindeutet, dass Musk in diesem Zeitraum zwischen 360 und 379 Tweets absetzen wird. Eine Quelle von heute (2. Februar 2026) zeigt, dass Polymarket Wetten zu Elon Musks Tweets vom 2. bis 4. Februar 2026 anbietet. Ein weiterer Polymarket-Eintrag zeigt eine Aufschlüsselung der Wahrscheinlichkeiten für verschiedene Tweet-Bereiche im gleichen Zeitraum. Ich schätze die Wahrscheinlichkeit auf 35%, da Musk zwar zu hoher Aktivität neigt, die spezifische Spanne aber dennoch schwer vorherzusagen ist. Ich gebe eine Confidence Score von 0.75, da die Datenlage zwar Informationen zur Tweet-Frequenz liefert, aber die Vorhersage für einen spezifischen Zeitraum unsicher bleibt.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (73)
+### Insufficient Edge (67)
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 15:49*
+Market: 0.00 | AI: 0.08 | Edge: +8.0% | Conf: 70%
+Reasoning: Angesichts der aktuellen rückläufigen Markttrends, der Vorhersagen, die eher einen fallenden oder stagnierenden Preis erwarten lassen, und der Tatsach...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 15:49*
+Market: 0.05 | AI: 0.06 | Edge: +1.4% | Conf: 65%
+Reasoning: Die aktuelle Wettquote (4,55 %) scheint die Schwierigkeit dieser Vorhersage widerzuspiegeln. Chelsea ist ein Top-Team, aber die Premier League ist har...
+
+**Will the US next strike Iran on February 6, 2026 (ET)?...**
+*Analyzed: 2026-02-02 15:33*
+Market: 0.02 | AI: 0.02 | Edge: +0.2% | Conf: 75%
+Reasoning: Die Beziehungen zwischen den USA und dem Iran sind angespannt, aber es gibt auch diplomatische Bemühungen zur Deeskalation. Ein Angriff am 6. Februar ...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 15:16*
+Market: 0.00 | AI: 0.08 | Edge: +8.0% | Conf: 75%
+Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 $. Es gibt einen Abwärtstrend und eine hohe Volatilität. Die allgemeine Marktstimmung ist vorsi...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 15:16*
+Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
+Reasoning: Basierend auf den aktuellen Wettquoten und Expertenmeinungen hat Brasilien eine reelle, aber keine überwältigende Chance, die Weltmeisterschaft 2026 z...
+
+**Counter-Strike: Vitality vs 3DMAX - Map 1 Winner...**
+*Analyzed: 2026-02-02 15:00*
+Market: 1.00 | AI: 0.95 | Edge: -5.0% | Conf: 85%
+Reasoning: Vitality ist ein klar favorisiertes Team mit einer höheren Rangliste, einer stärkeren aktuellen Form und einem Starspieler. Der Marktwert von 99,95% s...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 15:00*
+Market: 0.00 | AI: 0.00 | Edge: -0.0% | Conf: 100%
+Reasoning: Der aktuelle Bitcoin-Preis liegt bei rund 76.000 USD. Der Preis müsste innerhalb weniger Stunden um fast 20.000 USD steigen, um die 94.000 USD zu erre...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 15:00*
+Market: 0.04 | AI: 0.08 | Edge: +3.5% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis von 4,50 % deutet auf eine sehr geringe implizite Wahrscheinlichkeit hin, dass Chelsea in der Saison 2025/26 Zweiter wird.  Me...
 
 **Will the price of Bitcoin be above $94,000 on February 2?...**
 *Analyzed: 2026-02-02 14:42*
@@ -326,48 +414,43 @@ Reasoning: The current Bitcoin price is around $77,000 and the market sentiment 
 Market: 0.00 | AI: 0.01 | Edge: +1.0% | Conf: 60%
 Reasoning: Obwohl einige Analysten einen Anstieg in Richtung 98.000 USD prognostizieren und der Februar historisch gesehen ein guter Monat für Bitcoin war, deute...
 
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 14:25*
-Market: 0.04 | AI: 0.06 | Edge: +2.0% | Conf: 60%
-Reasoning: Chelsea is a team with potential, but they face significant hurdles to finish 2nd in the Premier League. Current season performance, strong competitio...
+
+### Ai Analysis Failed (26)
+
+**Will the US next strike Iran on February 6, 2026 (ET)?...**
+*Analyzed: 2026-02-02 15:49*
+Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 14:25*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
-Reasoning: Brazil is a strong contender with a talented squad and a new coach. However, they face stiff competition from other top teams, and their recent perfor...
+*Analyzed: 2026-02-02 15:49*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
-**Over $10M committed to the Fabric public sale?...**
-*Analyzed: 2026-02-02 14:08*
-Market: 0.00 | AI: 0.10 | Edge: +10.0% | Conf: 60%
-Reasoning: The initial funding target was $2 million, while the Polymarket question asks about $10 million. Although the sale was oversubscribed, this does not g...
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 15:33*
+Market: 0.05 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
-**Will Elon Musk post 520-539 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-02 14:08*
-Market: 0.01 | AI: 0.05 | Edge: +4.4% | Conf: 70%
-Reasoning: Basierend auf historischen Tweet-Daten und insbesondere den aktuellen Daten von Xtracker ist es unwahrscheinlich, dass Elon Musk in dem gegebenen Zeit...
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 15:33*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 14:08*
-Market: 0.00 | AI: 0.02 | Edge: +2.0% | Conf: 60%
-Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 USD. Die hohe Volatilität könnte zwar zu schnellen Anstiegen führen, aber die aktuelle Marktsti...
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 15:16*
+Market: 0.05 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 15:00*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will Elon Musk post 360-379 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-02 14:08*
-Market: 0.16 | AI: 0.20 | Edge: +4.5% | Conf: 60%
-Reasoning: Elon Musk's recent tweet activity (around 48 posts per day between Jan 27 and Feb 3, 2026) is close to the range required for the bet to succeed (45-4...
-
-**Nuggets vs. Pistons...**
-*Analyzed: 2026-02-02 14:08*
-Market: 0.36 | AI: 0.35 | Edge: -1.0% | Conf: 75%
-Reasoning: Obwohl die Nuggets ein starkes Team sind, spielen die Pistons zu Hause und haben eine bessere Saisonbilanz. Mehrere Quellen deuten auf einen wahrschei...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 13:52*
-Market: 0.00 | AI: 0.02 | Edge: +2.0% | Conf: 70%
-Reasoning: Der aktuelle Bitcoin-Preis liegt bei etwa 78.000 US-Dollar. Um bis zum 2. Februar um 12:00 Uhr ET über 94.000 US-Dollar zu liegen, wäre ein erhebliche...
-
-
-### Ai Analysis Failed (21)
+*Analyzed: 2026-02-02 15:00*
+Market: 0.16 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will Elon Musk post 520-539 tweets from January 30 to Februa...**
 *Analyzed: 2026-02-02 14:42*
@@ -384,43 +467,13 @@ Reasoning: Gemini API error or timeout...
 Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Will Elon Musk post 360-379 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-02 14:42*
-Market: 0.16 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
 
-**Will Elon Musk post 520-539 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-02 14:25*
-Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+### Negative Expected Value (7)
 
-**Will Elon Musk post 360-379 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-02 14:25*
-Market: 0.16 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 14:08*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 13:52*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Elon Musk post 360-379 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-02 13:52*
-Market: 0.16 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Over $10M committed to the Fabric public sale?...**
-*Analyzed: 2026-02-02 13:35*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-
-### Negative Expected Value (6)
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 15:33*
+Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 60%
+Reasoning: Bitcoin's current price is around $77,000-$78,000. Recent performance shows a downtrend. While some long-term forecasts are bullish, short-term predic...
 
 **Will the price of Bitcoin be above $94,000 on February 2?...**
 *Analyzed: 2026-02-02 13:18*
