@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-01 10:31:26 CET
+**Last Updated:** 2026-02-02 11:21:15 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,19 +9,19 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-01 10:14:35 CET |
-| Next Run | 2026-02-01 10:29:35 CET |
+| Last Run | 2026-02-02 11:08:51 CET |
+| Next Run | 2026-02-02 11:23:51 CET |
 | Run Interval | 15 minutes |
-| Bot Status | 🔴 Delayed |
+| Bot Status | 🟢 Active |
 
 ---
 ## 🤖 Gemini API Usage
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 4 | 15 | 27% | 🟢 |
-| Today (RPD) | 194 | 1,500 | 12.9% | 🟢 |
-| Current Minute (TPM) | 4,064 | 1,000,000 | 0.41% | 🟢 |
+| Current Minute (RPM) | 3 | 15 | 20% | 🟢 |
+| Today (RPD) | 115 | 1,500 | 7.7% | 🟢 |
+| Current Minute (TPM) | 2,577 | 1,000,000 | 0.26% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,54 +41,37 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $2117.31 (211.7% of capital) |
-| Avg Position Size | $92.06 |
-| Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.062) |
+| Total Exposure | $809.25 (80.9% of capital) |
+| Avg Position Size | $80.92 |
+| Largest Position | $156.77 (15.7%) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.135) |
 
 ---
-## 🎯 Active Bets (23)
+## 🎯 Active Bets (10)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Will Ja Morant be traded this season? | NO | $86.60 | 0.25 | 0.15 | -10% 🔴 | 75% | $+11.55 | 2026-02-05 | 3d | 🟡 |
-| Based FDV above $300M one day after laun... | YES | $110.24 | 0.26 | 0.65 | +39% 🟢 | 70% | $+165.35 | 2027-01-01 | 333d | 🟢 |
-| Will Mike Vrabel win NFL Coach of the Ye... | YES | $250.00 | 0.84 | 1.00 | +16% 🟡 | 100% | $+47.62 | 2026-02-11 | 10d | 🟢 |
-| Will Solana dip to $90 in January? | YES | $21.11 | 0.05 | 0.15 | +10% 🟡 | 60% | $+47.73 | 2026-02-01 | -1d | ⏰ Expired |
-| Will Pierre-Yves Bournazel win the Paris... | YES | $40.99 | 0.01 | 0.20 | +20% 🟡 | 70% | $+1598.69 | Unknown | N/A | 🔵 |
-| Will John Cornyn win the 2026 Texas Repu... | YES | $54.75 | 0.26 | 0.45 | +20% 🟡 | 70% | $+41.87 | 2026-03-03 | 29d | 🟢 |
-| Will Paramount close Warner Bros acquisi... | YES | $32.60 | 0.23 | 0.35 | +12% 🟡 | 70% | $+17.01 | Unknown | N/A | 🔵 |
-| U.S. forces seize another oil tanker by ... | YES | $98.10 | 0.36 | 0.65 | +29% 🟢 | 75% | $+79.03 | Unknown | N/A | 🔵 |
-| Will Aston Villa FC win on 2026-02-01? | YES | $77.47 | 0.46 | 0.65 | +20% 🟡 | 75% | $+33.20 | 2026-02-01 | 0d | 🔴 |
-| Will Bitcoin dip to $80,000 in February? | NO | $198.54 | 0.98 | 0.05 | -93% 🔴 | 70% | $+11589.58 | 2026-03-01 | 27d | 🟢 |
-| Will the price of Ethereum be above $2,6... | YES | $79.25 | 0.07 | 0.45 | +38% 🟢 | 60% | $+437.59 | 2026-02-01 | 0d | 🔴 |
-| Tesla launches unsupervised full self dr... | NO | $125.37 | 1.00 | 0.40 | -60% 🔴 | 70% | $+50023.95 | 2026-06-30 | 148d | 🟢 |
-| Will Josh Hawley win the 2028 Republican... | YES | $27.80 | 0.01 | 0.15 | +14% 🟡 | 60% | $+528.27 | 2028-11-07 | 1009d | 🟢 |
-| Mubadala Abu Dhabi Open, Qualification: ... | YES | $110.67 | 0.51 | 0.75 | +24% 🟢 | 80% | $+53.69 | 2026-02-07 | 5d | 🟡 |
-| Will Bangladesh Jamaat-e-Islami win the ... | NO | $86.13 | 0.26 | 0.15 | -11% 🔴 | 70% | $+12.14 | 2026-02-12 | 10d | 🟢 |
-| Moltbook AI agent sues a human by Feb 28... | NO | $156.17 | 0.78 | 0.15 | -62% 🔴 | 60% | $+433.80 | 2026-02-28 | 26d | 🟢 |
-| Will the price of Ethereum be above $2,7... | YES | $57.66 | 0.02 | 0.30 | +28% 🟢 | 65% | $+829.43 | 2026-02-01 | 0d | 🔴 |
-| Magic vs. Spurs | YES | $102.56 | 0.34 | 0.65 | +32% 🟢 | 75% | $+96.43 | 2026-02-01 | 0d | 🔴 |
-| Will the price of Ethereum be above $2,8... | YES | $57.76 | 0.00 | 0.30 | +30% 🟢 | 60% | $+6872.85 | 2026-02-01 | 0d | 🔴 |
-| Backpack FDV above $5B one day after lau... | YES | $27.09 | 0.02 | 0.15 | +13% 🟡 | 65% | $+198.68 | 2027-01-01 | 333d | 🟢 |
-| Will Ethereum dip to $2,400 in February? | NO | $198.69 | 1.00 | 0.05 | -95% 🔴 | 70% | $+125638.97 | 2026-03-01 | 27d | 🟢 |
-| Bitcoin Up or Down - February 1, 3:15AM-... | YES | $94.24 | 0.07 | 0.52 | +46% 🟢 | 60% | $+659.65 | 2026-02-01 | -1d | ⏰ Expired |
-| Will the price of Bitcoin be between $86... | YES | $23.52 | 0.00 | 0.15 | +15% 🟡 | 40% | $+2328.00 | 2026-02-01 | 0d | 🔴 |
+| [Will Bitcoin dip to $65,000 by December ...](https://polymarket.com/event/will-bitcoin-dip-to-65000-by-december-31-2026-175) | NO | $106.06 | 0.71 | 0.35 | -36% 🔴 | 70% | $+131.66 | 2027-01-01 | 332d | 🟢 |
+| [Will the next Dutch government be anothe...](https://polymarket.com/event/will-the-next-dutch-government-be-another-combination) | YES | $156.77 | 0.00 | 0.75 | +75% 🟢 | 70% | $+58631.59 | Unknown | N/A | 🔵 |
+| [Natural Disaster in 2026?](https://polymarket.com/event/natural-disaster-in-2026) | NO | $140.96 | 0.46 | 0.15 | -31% 🔴 | 70% | $+80.92 | 2026-12-31 | 331d | 🟢 |
+| [U.S. forces seize another oil tanker by ...](https://polymarket.com/event/us-forces-seize-another-oil-tanker-by-february-14-2026) | YES | $99.93 | 0.35 | 0.65 | +30% 🟢 | 75% | $+85.65 | Unknown | N/A | 🔵 |
+| [Will OpenAI’s market cap be between $500...](https://polymarket.com/event/will-openais-market-cap-be-between-500b-and-750b-at-market-close-on-ipo-day) | YES | $44.62 | 0.10 | 0.30 | +20% 🟡 | 65% | $+87.91 | 2026-06-30 | 147d | 🟢 |
+| [Will Ethereum dip to $1,000 by December ...](https://polymarket.com/event/will-ethereum-dip-to-1000-by-december-31-2026) | NO | $122.37 | 0.23 | 0.10 | -13% 🔴 | 75% | $+20.66 | 2027-01-01 | 332d | 🟢 |
+| [Will Microsoft be the largest company in...](https://polymarket.com/event/will-microsoft-be-the-largest-company-in-the-world-by-market-cap-on-february-28-189) | YES | $28.80 | 0.00 | 0.15 | +15% 🟡 | 60% | $+2851.21 | 2026-02-28 | 25d | 🟢 |
+| [Will the Logan Paul 1st Edition Charizar...](https://polymarket.com/event/will-the-logan-paul-1st-edition-charizard-sale-price-be-over-1pt4m-416) | YES | $25.81 | 0.08 | 0.20 | +12% 🟡 | 60% | $+41.22 | 2026-02-28 | 25d | 🟢 |
+| [Will Ja Morant be traded this season?](https://polymarket.com/event/will-ja-morant-be-traded-this-season) | YES | $59.82 | 0.24 | 0.45 | +21% 🟢 | 75% | $+52.35 | 2026-02-05 | 2d | 🔴 |
+| [Will Ethereum reach $3,400 in February?](https://polymarket.com/event/will-ethereum-reach-3400-in-february-2026) | YES | $24.11 | 0.03 | 0.15 | +12% 🟡 | 65% | $+80.72 | 2026-03-01 | 26d | 🟢 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
 ---
 ## ⚠️ Alerts & Warnings
 
-- 🔴 **High Exposure**: "Based FDV above $300M one day ..." is 11.0% of capital
-- 🔴 **High Exposure**: "Will Mike Vrabel win NFL Coach..." is 25.0% of capital
-- 🔴 **High Exposure**: "Will Bitcoin dip to $80,000 in..." is 19.9% of capital
-- 🔴 **High Exposure**: "Tesla launches unsupervised fu..." is 12.5% of capital
-- 🔴 **High Exposure**: "Mubadala Abu Dhabi Open, Quali..." is 11.1% of capital
-- 🔴 **High Exposure**: "Moltbook AI agent sues a human..." is 15.6% of capital
-- 🔴 **High Exposure**: "Magic vs. Spurs..." is 10.3% of capital
-- 🔴 **High Exposure**: "Will Ethereum dip to $2,400 in..." is 19.9% of capital
-- 🟡 **Expiring Soon**: 8 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Bitcoin dip to $65,000 by..." is 10.6% of capital
+- 🔴 **High Exposure**: "Will the next Dutch government..." is 15.7% of capital
+- 🔴 **High Exposure**: "Natural Disaster in 2026?..." is 14.1% of capital
+- 🔴 **High Exposure**: "Will Ethereum dip to $1,000 by..." is 12.2% of capital
+- 🟡 **Expiring Soon**: 1 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -96,7 +79,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 23 |
+| Markets with Active Bets | 10 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
