@@ -1,4 +1,5 @@
 import logging
+import os
 from datetime import datetime
 
 from git import GitCommandError, Repo
@@ -30,13 +31,11 @@ def push_dashboard_update():
         files_to_add = []
 
         # Immer Dashboard hinzufügen wenn Änderungen vorhanden
-        if os.path.exists("PERFORMANCE_DASHBOARD.md"):  # noqa: F821
+        if os.path.exists("PERFORMANCE_DASHBOARD.md"):
             files_to_add.append("PERFORMANCE_DASHBOARD.md")
 
         # AI_DECISIONS.md nur bei relevanten Änderungen
-        if database.has_ai_decisions_changes() and os.path.exists(  # noqa: F821
-            "AI_DECISIONS.md"
-        ):
+        if database.has_ai_decisions_changes() and os.path.exists("AI_DECISIONS.md"):
             files_to_add.append("AI_DECISIONS.md")
 
         if not files_to_add:
