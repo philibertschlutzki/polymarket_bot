@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-02 16:58:39 CET
+**Last Updated:** 2026-02-02 18:11:44 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -390,117 +390,186 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #24: Will Ethereum dip to $1,400 in February?
+
+**Decision:** YES @ 0.04 (Stake: $23.00)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 4.5%)
+- **Confidence Score:** 70.0%
+- **Edge:** +10.5%
+- **Expected Value:** $+53.66
+- **End Date:** 2026-03-01 06:00 CET
+
+**AI Reasoning:**
+> Der aktuelle Marktpreis (Yes) liegt bei 4.50%, was impliziert, dass der Markt diese Wahrscheinlichkeit bereits einpreist. Um eine fundierte Einschätzung abzugeben, habe ich mir aktuelle Nachrichten und Preisprognosen zu ETH angesehen. Viele Quellen deuten darauf hin, dass ETH in den kommenden Wochen fallen könnte. Einige Quellen deuten auf ein mögliches Unterschreiten der 2100 $-Marke hin. Andererseits prognostizieren einige Quellen einen Anstieg auf bis zu 3500 $. Da die Frage auf den niedrigsten Preis innerhalb eines bestimmten Monats abzielt, gebe ich eine Wahrscheinlichkeit von 15 % an, dass ETH im Februar kurzzeitig auf 1.400 $ oder darunter fällt. Diese Schätzung berücksichtigt die allgemeine Volatilität von Kryptowährungen und die Möglichkeit unvorhergesehener Marktereignisse. Die Unsicherheit ist jedoch gross, daher liegt die Konfidenz bei 0.7.
+
+---
+
+### Bet #25: Will Claude 5 be released by March 31, 2026?
+
+**Decision:** NO @ 0.80 (Stake: $117.66)
+
+**AI Analysis:**
+- **Estimated Probability:** 35.0% (vs Market: 80.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -45.0%
+- **Expected Value:** $+264.72
+- **End Date:** Unknown
+
+**AI Reasoning:**
+> Based on the release history of Claude models, the specific definition of the betting question (requiring 'Claude 5' and not a version like 4.5), and the lack of an official announcement from Anthropic, I estimate the probability of Claude 5 being released by March 31, 2026 to be 35%. While there are rumors about Claude Sonnet 5, it's unlikely this would qualify as 'Claude 5' according to the market's rules.
+
+---
+
+### Bet #26: Will Apple be the third-largest company in the world by market cap on February 28?
+
+**Decision:** NO @ 0.86 (Stake: $50.15)
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 85.5%)
+- **Confidence Score:** 70.0%
+- **Edge:** -20.5%
+- **Expected Value:** $+70.90
+- **End Date:** 2026-02-28 01:00 CET
+
+**AI Reasoning:**
+> Apple is a strong company, but faces intense competition from other tech giants. Market conditions are volatile and analyst forecasts are mixed. The current market price seems slightly overvalued.
+
+---
+
+### Bet #27: Will Elon Musk post 220-239 tweets from January 30 to February 6, 2026?
+
+**Decision:** YES @ 0.01 (Stake: $27.38)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 1.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** +14.0%
+- **Expected Value:** $+383.39
+- **End Date:** 2026-02-06 18:00 CET
+
+**AI Reasoning:**
+> Elon Musk's historical tweet frequency is highly variable but often exceeds the average of 27.5-29.875 tweets per day required to meet the 220-239 tweet target within the specified timeframe. While a lower tweeting period is possible, it is less probable given his past activity. The confidence score reflects the uncertainty due to the fluctuating nature of his Twitter usage.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Ai Analysis Failed (37)
+### Insufficient Edge (49)
+
+**Will Civic Platform (GP) gain the most seats in the next Rus...**
+*Analyzed: 2026-02-02 18:11*
+Market: 0.00 | AI: 0.03 | Edge: +2.8% | Conf: 70%
+Reasoning: Die Civic Platform hat derzeit eine sehr geringe Repräsentation in der Staatsduma und es gibt keine Anzeichen dafür, dass sich dies bei den nächsten W...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 18:11*
+Market: 0.03 | AI: 0.04 | Edge: +1.0% | Conf: 60%
+Reasoning: Die aktuelle Marktwahrscheinlichkeit von 3,05 % ist sehr niedrig, und es gibt keine eindeutigen Beweise dafür, dass Chelsea mit hoher Wahrscheinlichke...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 18:11*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
+Reasoning: Brasilien hat eine starke Fussballtradition und ist Rekordweltmeister. Sie haben sich auch für die WM 2026 qualifiziert. Allerdings ist ihre aktuelle ...
 
 **Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 16:58*
-Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+*Analyzed: 2026-02-02 17:53*
+Market: 0.00 | AI: 0.01 | Edge: +1.0% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis für 'Ja' liegt bei 0,05 %, was auf eine sehr geringe Wahrscheinlichkeit hindeutet, dass Bitcoin am 2. Februar 2026 über 94.000...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 17:53*
+Market: 0.03 | AI: 0.07 | Edge: +4.0% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis von 3,05 % deutet darauf hin, dass der Markt selbst diese Wahrscheinlichkeit als sehr gering einschätzt. Historisch gesehen is...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 17:53*
+Market: 0.43 | AI: 0.35 | Edge: -8.0% | Conf: 70%
+Reasoning: Die aktuelle Marktwahrscheinlichkeit liegt bei 43 %, was meiner ersten Einschätzung etwas zu hoch erscheint. Die Situation zwischen Israel und dem Ira...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 17:35*
+Market: 0.00 | AI: 0.03 | Edge: +3.0% | Conf: 60%
+Reasoning: Angesichts der aktuellen Konsolidierungsphase von Bitcoin, der pessimistischeren KI-Vorhersagen (durchschnittlich ca. 76.000 USD für Ende Februar 2026...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 17:35*
+Market: 0.03 | AI: 0.04 | Edge: +0.8% | Conf: 60%
+Reasoning: Basierend auf den aktuellen Leistungen von Chelsea und den Vorhersagen verschiedener Supercomputer scheinen die Chancen, dass Chelsea in der Saison 20...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 17:16*
+Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 90%
+Reasoning: Der aktuelle Bitcoin-Preis liegt bei ca. 78.490 $. Um die 94.000 $-Marke am 2. Februar zu erreichen, müsste Bitcoin um ca. 15.510 $ steigen, was einen...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 17:16*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
+Reasoning: Obwohl Brasilien eine Top-Mannschaft mit einem renommierten Trainer ist, deuten ihre jüngsten Leistungen, die starke Konkurrenz und die neue Turnierst...
+
+
+### Ai Analysis Failed (45)
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 18:11*
+Market: 0.42 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 17:53*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will the government shutdown last 5 days or more?...**
+*Analyzed: 2026-02-02 17:53*
+Market: 0.50 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 **Will the price of Solana be above $120 on February 2?...**
-*Analyzed: 2026-02-02 16:58*
+*Analyzed: 2026-02-02 17:35*
 Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
+**Will the US next strike Iran on February 26, 2026 (ET)?...**
+*Analyzed: 2026-02-02 17:35*
+Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 16:58*
+*Analyzed: 2026-02-02 17:35*
 Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 17:35*
+Market: 0.46 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 **Maple Leafs vs. Flames...**
-*Analyzed: 2026-02-02 16:58*
+*Analyzed: 2026-02-02 17:35*
 Market: 0.52 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Will Elon Musk post 340-359 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-02 16:40*
-Market: 0.16 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 16:24*
+**Will the price of Solana be above $120 on February 2?...**
+*Analyzed: 2026-02-02 17:16*
 Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Will the price of Solana be above $100 on February 2?...**
-*Analyzed: 2026-02-02 16:24*
-Market: 0.93 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 16:24*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the price of Bitcoin be above $78,000 on February 2?...**
-*Analyzed: 2026-02-02 16:24*
-Market: 0.63 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the US next strike Iran on February 28, 2026 (ET)?...**
-*Analyzed: 2026-02-02 16:07*
-Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-
-### Insufficient Edge (56)
-
 **Will Bitcoin reach $150,000 in February?...**
-*Analyzed: 2026-02-02 16:58*
-Market: 0.00 | AI: 0.08 | Edge: +7.6% | Conf: 60%
-Reasoning: Mehrere Quellen prognostizieren einen Bitcoin-Preis zwischen 100.000 und 230.000 US-Dollar für das Jahr 2026. Einige Prognosen sind jedoch konservativ...
-
-**Will Elon Musk post 340-359 tweets from January 30 to Februa...**
-*Analyzed: 2026-02-02 16:58*
-Market: 0.16 | AI: 0.20 | Edge: +3.5% | Conf: 60%
-Reasoning: Elon Musk hat in der Vergangenheit eine hohe Twitter-Aktivität gezeigt, aber die Volatilität seiner Aktivität und die Unsicherheit im Zusammenhang mit...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 16:40*
-Market: 0.00 | AI: 0.08 | Edge: +8.0% | Conf: 75%
-Reasoning: Die Mehrheit der verfügbaren Daten deutet auf eine bärische oder neutrale Preisentwicklung von Bitcoin hin. Die aktuellen Marktpreise, Analystenmeinun...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 16:40*
-Market: 0.10 | AI: 0.11 | Edge: +1.6% | Conf: 75%
-Reasoning: Brasilien ist historisch gesehen eine der erfolgreichsten Nationalmannschaften im Fussball. Sie haben die FIFA Fussball-Weltmeisterschaft fünfmal gewo...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 15:49*
-Market: 0.00 | AI: 0.08 | Edge: +8.0% | Conf: 70%
-Reasoning: Angesichts der aktuellen rückläufigen Markttrends, der Vorhersagen, die eher einen fallenden oder stagnierenden Preis erwarten lassen, und der Tatsach...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 15:49*
-Market: 0.05 | AI: 0.06 | Edge: +1.4% | Conf: 65%
-Reasoning: Die aktuelle Wettquote (4,55 %) scheint die Schwierigkeit dieser Vorhersage widerzuspiegeln. Chelsea ist ein Top-Team, aber die Premier League ist har...
-
-**Will the US next strike Iran on February 6, 2026 (ET)?...**
-*Analyzed: 2026-02-02 15:33*
-Market: 0.02 | AI: 0.02 | Edge: +0.2% | Conf: 75%
-Reasoning: Die Beziehungen zwischen den USA und dem Iran sind angespannt, aber es gibt auch diplomatische Bemühungen zur Deeskalation. Ein Angriff am 6. Februar ...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 15:16*
-Market: 0.00 | AI: 0.08 | Edge: +8.0% | Conf: 75%
-Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 $. Es gibt einen Abwärtstrend und eine hohe Volatilität. Die allgemeine Marktstimmung ist vorsi...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 15:16*
-Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
-Reasoning: Basierend auf den aktuellen Wettquoten und Expertenmeinungen hat Brasilien eine reelle, aber keine überwältigende Chance, die Weltmeisterschaft 2026 z...
-
-**Counter-Strike: Vitality vs 3DMAX - Map 1 Winner...**
-*Analyzed: 2026-02-02 15:00*
-Market: 1.00 | AI: 0.95 | Edge: -5.0% | Conf: 85%
-Reasoning: Vitality ist ein klar favorisiertes Team mit einer höheren Rangliste, einer stärkeren aktuellen Form und einem Starspieler. Der Marktwert von 99,95% s...
+*Analyzed: 2026-02-02 17:16*
+Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 
-### Negative Expected Value (7)
+### Negative Expected Value (6)
+
+**Will the price of Solana be above $120 on February 2?...**
+*Analyzed: 2026-02-02 17:53*
+Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 75%
+Reasoning: Der Preis von Solana liegt derzeit bei etwa 103-105 $. Der Trend ist rückläufig, die Marktstimmung ist negativ und die technische Analyse deutet auf w...
 
 **Will the price of Solana be above $120 on February 2?...**
 *Analyzed: 2026-02-02 16:40*
@@ -526,16 +595,6 @@ Reasoning: Die Mehrheit der kurzfristigen Prognosen deutet auf einen niedrigeren
 *Analyzed: 2026-02-02 13:01*
 Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 60%
 Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 $. Um diesen Wert zu erreichen, müsste es innerhalb kurzer Zeit zu einem erheblichen Preisansti...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 12:27*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
-Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 USD. Die Analystenprognosen für 2026 sind zwar unterschiedlich, aber viele erwarten eine Konsol...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 12:11*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
-Reasoning: Der aktuelle Abwärtstrend von Bitcoin, kombiniert mit kurzfristigen Unsicherheiten und negativen technischen Indikatoren, macht es unwahrscheinlich, d...
 
 
 ## 📊 Historical Analysis
