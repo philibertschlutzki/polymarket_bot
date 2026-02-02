@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-02 12:27:42 CET
+**Last Updated:** 2026-02-02 13:35:52 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-02 12:09:16 CET |
-| Next Run | 2026-02-02 12:24:16 CET |
+| Last Run | 2026-02-02 13:16:07 CET |
+| Next Run | 2026-02-02 13:31:07 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
-| Today (RPD) | 134 | 1,500 | 8.9% | 🟢 |
-| Current Minute (TPM) | 4,084 | 1,000,000 | 0.41% | 🟢 |
+| Current Minute (RPM) | 2 | 15 | 13% | 🟢 |
+| Today (RPD) | 156 | 1,500 | 10.4% | 🟢 |
+| Current Minute (TPM) | 1,686 | 1,000,000 | 0.17% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $874.89 (87.5% of capital) |
-| Avg Position Size | $72.91 |
+| Total Exposure | $1019.81 (102.0% of capital) |
+| Avg Position Size | $63.74 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.119) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.093) |
 
 ---
-## 🎯 Active Bets (12)
+## 🎯 Active Bets (16)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -63,6 +63,10 @@
 | [Will Ethereum reach $3,400 in February?](https://polymarket.com/event/will-ethereum-reach-3400-in-february-2026) | YES | $24.11 | 0.03 | 0.15 | +12% 🟡 | 65% | $+80.72 | 2026-03-01 | 26d | 🟢 |
 | [Will Stephen Curry lead the NBA in three...](https://polymarket.com/event/nba-2025-26-3pm-leader-stephen-curry) | NO | $44.89 | 0.82 | 0.65 | -17% 🔴 | 75% | $+42.39 | 2026-04-12 | 68d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+44.09 | 2026-02-02 | 0d | 🔴 |
+| [Starmer out by December 31, 2026?](https://polymarket.com/event/starmer-out-by-december-31-2026) | YES | $55.04 | 0.53 | 0.65 | +12% 🟡 | 70% | $+13.11 | 2026-12-31 | 331d | 🟢 |
+| [Will Russia enter Sloviansk by June 30?](https://polymarket.com/event/will-russia-enter-sloviansk-by-june-30) | YES | $39.23 | 0.26 | 0.40 | +14% 🟡 | 65% | $+22.31 | 2026-06-30 | 147d | 🟢 |
+| [Will Mike Vrabel win NFL Coach of the Ye...](https://polymarket.com/event/will-mike-vrabel-win-nfl-coach-of-the-year) | NO | $29.13 | 0.85 | 0.75 | -10% 🔴 | 90% | $+21.09 | 2026-02-11 | 8d | 🟢 |
+| [Will Gold (GC) hit (HIGH) $8,500 by end ...](https://polymarket.com/event/will-gold-gc-hit-high-8500-by-end-of-june-241-524) | YES | $21.52 | 0.10 | 0.20 | +10% 🟡 | 60% | $+21.52 | 2026-06-30 | 148d | 🟢 |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -81,7 +85,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 12 |
+| Markets with Active Bets | 16 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 

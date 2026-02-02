@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-02 12:27:42 CET
+**Last Updated:** 2026-02-02 13:35:52 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -214,97 +214,90 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #13: Starmer out by December 31, 2026?
+
+**Decision:** YES @ 0.52 (Stake: $55.04)
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 52.5%)
+- **Confidence Score:** 70.0%
+- **Edge:** +12.5%
+- **Expected Value:** $+13.11
+- **End Date:** 2026-12-31 13:00 CET
+
+**AI Reasoning:**
+> Keir Starmer's low approval ratings, the challenges facing the Labour government in 2026, and the potential for challengers suggest a higher probability than the current market price that he will not be Prime Minister by the end of 2026.
+
+---
+
+### Bet #14: Will Russia enter Sloviansk by June 30?
+
+**Decision:** YES @ 0.26 (Stake: $39.23)
+
+**AI Analysis:**
+- **Estimated Probability:** 40.0% (vs Market: 25.5%)
+- **Confidence Score:** 65.0%
+- **Edge:** +14.5%
+- **Expected Value:** $+22.31
+- **End Date:** 2026-06-30 02:00 CEST
+
+**AI Reasoning:**
+> Russische Truppen konzentrieren sich auf die Region Slowjansk, aber die ukrainische Verteidigung ist stark. Die ISW-Karte ist die Hauptquelle, aber nicht immer genau. Friedensverhandlungen sind auch eine Möglichkeit. Die Wahrscheinlichkeit ist höher als der aktuelle Marktpreis.
+
+---
+
+### Bet #15: Will Mike Vrabel win NFL Coach of the Year?
+
+**Decision:** NO @ 0.86 (Stake: $29.13)
+
+**AI Analysis:**
+- **Estimated Probability:** 75.0% (vs Market: 85.5%)
+- **Confidence Score:** 90.0%
+- **Edge:** -10.5%
+- **Expected Value:** $+21.09
+- **End Date:** 2026-02-11 13:00 CET
+
+**AI Reasoning:**
+> Mike Vrabel wird von Sportwettenanbietern als Favorit für den NFL Coach of the Year Award 2025-2026 gehandelt. Einige Quellen geben ihm eine implizite Wahrscheinlichkeit von 74 % bis 78.5 % basierend auf den Quoten. Er führte die New England Patriots in seiner ersten Saison zu einem Ergebnis von 14-3. Er war bereits NFL Coach of the Year im Jahr 2021. Er ist einer der fünf Finalisten für die Auszeichnung. Der aktuelle Marktpreis von 85,50 % erscheint etwas hoch, aber angesichts seiner Favoritenrolle und der starken Saison, die er hingelegt hat, ist eine Wahrscheinlichkeit von 75 % eine fundierte Schätzung.
+
+---
+
+### Bet #16: Will Gold (GC) hit (HIGH) $8,500 by end of June?
+
+**Decision:** YES @ 0.10 (Stake: $21.52)
+
+**AI Analysis:**
+- **Estimated Probability:** 20.0% (vs Market: 10.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** +10.0%
+- **Expected Value:** $+21.52
+- **End Date:** 2026-06-30 19:30 CEST
+
+**AI Reasoning:**
+> Based on current gold futures prices, analyst forecasts ranging from $4,500 to $8,896 by the end of 2026, and the fact that $8,500 is a very bullish target, I estimate a 20% probability of gold reaching $8,500 by the end of June 2026. My confidence score is 0.60, reflecting the uncertainty in forecasting commodity prices and the wide range of existing predictions.
+
+---
+
 ## ❌ Rejected Markets
 
-*Showing last 91 rejected analyses*
-
-### Negative Expected Value (6)
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 12:27*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
-Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 USD. Die Analystenprognosen für 2026 sind zwar unterschiedlich, aber viele erwarten eine Konsol...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 12:11*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
-Reasoning: Der aktuelle Abwärtstrend von Bitcoin, kombiniert mit kurzfristigen Unsicherheiten und negativen technischen Indikatoren, macht es unwahrscheinlich, d...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 11:09*
-Market: 0.00 | AI: 0.35 | Edge: +35.0% | Conf: 60%
-Reasoning: Bitcoin is currently trading around $74,661 on February 2, 2026.  Most analysts predict Bitcoin to be significantly higher than $94,000 by 2026, with ...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 10:37*
-Market: 0.00 | AI: 0.65 | Edge: +65.0% | Conf: 70%
-Reasoning: While $94,000 is a significant increase from current levels, many analysts predict substantial Bitcoin price appreciation by 2026, with February histo...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 10:08*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
-Reasoning: Der Bitcoin-Preis ist in den letzten Wochen gefallen und liegt aktuell deutlich unter 94.000 USD. Analystenprognosen sind gemischt, wobei einige zwar ...
-
-**Will the price of Bitcoin be above $94,000 on February 2?...**
-*Analyzed: 2026-02-02 10:04*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 60%
-Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 USD. Obwohl einige Analysten einen Aufwärtstrend für 2026 vorhersagen, deuten die jüngsten Kurs...
-
-
-### Insufficient Edge (68)
-
-**Will Player 21 win Beast Games: Season 2?...**
-*Analyzed: 2026-02-02 12:27*
-Market: 0.00 | AI: 0.01 | Edge: +0.7% | Conf: 60%
-Reasoning: Mehrere Faktoren beeinflussen diese Einschätzung:*   **Geringer aktueller Marktpreis:** Der aktuelle Marktpreis von 0,30 % deutet darauf hin, dass der...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 12:27*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
-Reasoning: Brasilien ist eine Fussballnation mit einer reichen Geschichte und hat die FIFA Fussball-Weltmeisterschaft fünfmal gewonnen. Sie haben sich auch für j...
-
-**Will Gold (GC) hit (HIGH) $8,500 by end of June?...**
-*Analyzed: 2026-02-02 12:27*
-Market: 0.10 | AI: 0.03 | Edge: -7.0% | Conf: 60%
-Reasoning: Der aktuelle Goldpreis liegt deutlich unter 8.500 USD. Analystenprognosen variieren stark, aber nur wenige sehen einen Anstieg auf dieses Niveau bis J...
-
-**Will Mike Vrabel win NFL Coach of the Year?...**
-*Analyzed: 2026-02-02 12:27*
-Market: 0.86 | AI: 0.78 | Edge: -8.0% | Conf: 85%
-Reasoning: Mike Vrabel hat eine herausragende Saison hingelegt und die Patriots zu einem deutlichen Aufstieg geführt. Die Wettquoten spiegeln dies wider. Es gibt...
-
-**Will Ethereum reach $4,400 in February?...**
-*Analyzed: 2026-02-02 12:11*
-Market: 0.00 | AI: 0.08 | Edge: +7.6% | Conf: 60%
-Reasoning: Ethereum is currently trading around $2,246 and has been on a downward trend. While short-term predictions suggest a possible rise to $2,709, reaching...
-
-**Will Gold (GC) hit (HIGH) $8,500 by end of June?...**
-*Analyzed: 2026-02-02 12:11*
-Market: 0.10 | AI: 0.01 | Edge: -9.0% | Conf: 60%
-Reasoning: Die Polymarket-Frage fragt, ob Gold (GC) bis Ende Juni 2026 8.500 $ erreichen wird. Der aktuelle Marktpreis für "Ja" liegt bei 10,00 %.  **Aktuelle Ma...
-
-**Will Mike Vrabel win NFL Coach of the Year?...**
-*Analyzed: 2026-02-02 12:11*
-Market: 0.86 | AI: 0.79 | Edge: -6.5% | Conf: 85%
-Reasoning: Mike Vrabel führte die New England Patriots zu einer beeindruckenden 14-3 Saison, was eine deutliche Verbesserung darstellt. Er hat bereits den NFL Co...
-
-**Will Player 21 win Beast Games: Season 2?...**
-*Analyzed: 2026-02-02 11:54*
-Market: 0.00 | AI: 0.00 | Edge: -0.3% | Conf: 100%
-Reasoning: Player 21 (Ethan) has already dropped out of Beast Games Season 2 in Episode 4 after accepting a $50,000 bribe. Therefore, it is impossible for him to...
-
-**Will Gold (GC) hit (HIGH) $8,500 by end of June?...**
-*Analyzed: 2026-02-02 11:54*
-Market: 0.10 | AI: 0.15 | Edge: +5.0% | Conf: 60%
-Reasoning: Der aktuelle Goldpreis liegt bei etwa 4.668 USD. Um bis Ende Juni 2026 auf 8.500 USD zu steigen, müsste ein außergewöhnlicher Anstieg erfolgen. Einige...
-
-**Will Mike Vrabel win NFL Coach of the Year?...**
-*Analyzed: 2026-02-02 11:54*
-Market: 0.85 | AI: 0.78 | Edge: -7.0% | Conf: 85%
-Reasoning: Mike Vrabel wird von vielen Quellen als Favorit gehandelt, nachdem er die New England Patriots zu einer sehr erfolgreichen Saison 2025 geführt hat. Er...
-
+*Showing last 100 rejected analyses*
 
 ### Ai Analysis Failed (17)
+
+**Over $10M committed to the Fabric public sale?...**
+*Analyzed: 2026-02-02 13:35*
+Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Gold (GC) hit (HIGH) $8,500 by end of June?...**
+*Analyzed: 2026-02-02 13:18*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Gold (GC) hit (LOW) $4,700 by end of February?...**
+*Analyzed: 2026-02-02 13:18*
+Market: 0.88 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will Player 21 win Beast Games: Season 2?...**
 *Analyzed: 2026-02-02 12:11*
@@ -341,20 +334,96 @@ Reasoning: Gemini API error or timeout...
 Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Will the Logan Paul 1st Edition Charizard sale price be over...**
-*Analyzed: 2026-02-02 10:16*
-Market: 0.08 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+
+### Insufficient Edge (76)
+
+**Will Angers win the 2025–26 French Ligue 1?...**
+*Analyzed: 2026-02-02 13:35*
+Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 90%
+Reasoning: Angers wird als extrem unwahrscheinlicher Gewinner der Ligue 1 angesehen. PSG ist der klare Favorit, und Angers' aktuelle Leistung und die Wettquoten ...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 13:35*
+Market: 0.00 | AI: 0.04 | Edge: +4.0% | Conf: 80%
+Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 $. Die Marktstimmung ist eher bearish, und viele Analysten erwarten kurzfristig einen weiteren ...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 10:16*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+*Analyzed: 2026-02-02 13:35*
+Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
+Reasoning: Brasilien hat eine starke Fußballtradition und gehört oft zu den Favoriten. Die Qualifikation war jedoch nicht optimal und es gibt viele andere starke...
 
-**Will Ja Morant be traded this season?...**
-*Analyzed: 2026-02-02 10:16*
-Market: 0.29 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+**Will Angers win the 2025–26 French Ligue 1?...**
+*Analyzed: 2026-02-02 13:18*
+Market: 0.00 | AI: 0.00 | Edge: +0.0% | Conf: 70%
+Reasoning: Paris Saint-Germain (PSG) ist der klare Favorit, um die Ligue 1 in der Saison 2025/26 zu gewinnen. Sie haben in den letzten Jahren eine beeindruckende...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 13:18*
+Market: 0.10 | AI: 0.09 | Edge: -0.5% | Conf: 75%
+Reasoning: Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften, aber die Konkurrenz ist stark und ihre jüngsten Leistungen waren nicht überwäl...
+
+**Opinion FDV above $1B one day after launch?...**
+*Analyzed: 2026-02-02 13:18*
+Market: 0.56 | AI: 0.62 | Edge: +6.0% | Conf: 75%
+Reasoning: Der aktuelle Marktpreis von 56% scheint etwas niedrig im Vergleich zu anderen Analysen (65% Wahrscheinlichkeit). Opinion Labs hat eine starke Unterstü...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 13:01*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
+Reasoning: Brasilien ist eine Fussballnation mit einer reichen Geschichte und hat die Weltmeisterschaft bereits fünfmal gewonnen. Sie haben sich auch für jede We...
+
+**Will Gold (GC) hit (HIGH) $8,500 by end of June?...**
+*Analyzed: 2026-02-02 13:01*
+Market: 0.10 | AI: 0.08 | Edge: -2.0% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis für 'Ja' liegt bei 10 %, was bereits eine geringe Wahrscheinlichkeit impliziert. Um Gold bis Juni 2026 auf 8.500 $ zu treiben,...
+
+**Will Mike Vrabel win NFL Coach of the Year?...**
+*Analyzed: 2026-02-02 13:01*
+Market: 0.86 | AI: 0.82 | Edge: -3.5% | Conf: 85%
+Reasoning: Mike Vrabel wird von Sportwettenanbietern und Analysten favorisiert. Er führte die Patriots zu einer herausragenden Saison und ist Finalist für den AP...
+
+**Rockets vs. Pacers: O/U 218.5...**
+*Analyzed: 2026-02-02 13:01*
+Market: 0.52 | AI: 0.60 | Edge: +8.0% | Conf: 75%
+Reasoning: Obwohl die Rockets eine starke Defensive haben, erzielen beide Teams im Durchschnitt hohe Punktzahlen. Die Pacers haben in vielen ihrer Spiele die Ove...
+
+
+### Negative Expected Value (7)
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 13:18*
+Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
+Reasoning: Die Mehrheit der kurzfristigen Prognosen deutet auf einen niedrigeren Preis hin als 94.000 USD, und der allgemeine Markttrend scheint rückläufig zu se...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 13:01*
+Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 60%
+Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 $. Um diesen Wert zu erreichen, müsste es innerhalb kurzer Zeit zu einem erheblichen Preisansti...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 12:27*
+Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
+Reasoning: Der aktuelle Bitcoin-Preis liegt deutlich unter 94.000 USD. Die Analystenprognosen für 2026 sind zwar unterschiedlich, aber viele erwarten eine Konsol...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 12:11*
+Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
+Reasoning: Der aktuelle Abwärtstrend von Bitcoin, kombiniert mit kurzfristigen Unsicherheiten und negativen technischen Indikatoren, macht es unwahrscheinlich, d...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 11:09*
+Market: 0.00 | AI: 0.35 | Edge: +35.0% | Conf: 60%
+Reasoning: Bitcoin is currently trading around $74,661 on February 2, 2026.  Most analysts predict Bitcoin to be significantly higher than $94,000 by 2026, with ...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 10:37*
+Market: 0.00 | AI: 0.65 | Edge: +65.0% | Conf: 70%
+Reasoning: While $94,000 is a significant increase from current levels, many analysts predict substantial Bitcoin price appreciation by 2026, with February histo...
+
+**Will the price of Bitcoin be above $94,000 on February 2?...**
+*Analyzed: 2026-02-02 10:08*
+Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 70%
+Reasoning: Der Bitcoin-Preis ist in den letzten Wochen gefallen und liegt aktuell deutlich unter 94.000 USD. Analystenprognosen sind gemischt, wobei einige zwar ...
 
 
 ## 📊 Historical Analysis
