@@ -12,11 +12,28 @@ from sqlalchemy import (
     Column,
     DateTime,
     ForeignKey,
+    Index,
     Integer,
     Numeric,
     Text,
     create_engine,
 )
+
+
+class BetStatus:
+    """Bet status constants"""
+
+    OPEN = "OPEN"
+    EXPIRED_PENDING = "EXPIRED_PENDING"  # Expired < 7 days
+    UNRESOLVED = "UNRESOLVED"  # Expired > 7 days, not resolved
+    DISPUTED = "DISPUTED"  # Price 0.1-0.9, < 7 days
+    DISPUTED_LOSS = "DISPUTED_LOSS"  # Price 0.1-0.9, > 7 days → auto-loss
+    AUTO_LOSS = "AUTO_LOSS"  # > 30 days unresolved → total loss
+    WON = "WON"
+    LOST = "LOST"
+    ANNULLED = "ANNULLED"  # Market cancelled, stake returned
+
+
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.sql import func
 
@@ -126,7 +143,9 @@ class ArchivedBet(Base):
         CheckConstraint("entry_price BETWEEN 0 AND 1"),
         CheckConstraint("ai_probability BETWEEN 0 AND 1"),
         CheckConstraint("confidence_score BETWEEN 0 AND 1"),
-        CheckConstraint("actual_outcome IN ('YES', 'NO', 'UNRESOLVED')"),
+        CheckConstraint(
+            "actual_outcome IN ('YES', 'NO', 'UNRESOLVED', 'AUTO_LOSS', 'DISPUTED', 'DISPUTED_LOSS', 'ANNULLED')"
+        ),
     )
 
 
@@ -256,3 +275,22 @@ class FinalPredictions(Base):
         CheckConstraint("aggregated_outcome IN ('YES', 'NO')"),
         CheckConstraint("weighted_confidence BETWEEN 0 AND 1"),
     )
+
+
+class BetStatusHistory(Base):
+    __tablename__ = "bet_status_history"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    bet_id = Column(Integer, nullable=False, index=True)
+    is_archived = Column(
+        Boolean, default=False
+    )  # True if bet_id refers to archived_bets.archive_id
+    old_status = Column(Text, nullable=False)
+    new_status = Column(Text, nullable=False)
+    reason = Column(Text, nullable=False)
+    profit_loss_at_time = Column(Numeric(10, 2), nullable=True)
+    timestamp = Column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )
+
+    __table_args__ = (Index("idx_bet_timestamp", "bet_id", "timestamp"),)
