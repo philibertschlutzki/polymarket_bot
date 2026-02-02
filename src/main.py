@@ -29,12 +29,6 @@ from google import genai
 from google.genai import types
 from google.genai.errors import ClientError
 from pydantic import BaseModel, Field
-from tenacity import (
-    retry,
-    retry_if_exception_type,
-    stop_after_attempt,
-    wait_exponential,
-)
 
 # Add project root to sys.path to allow imports from src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -697,7 +691,7 @@ def retry_with_rate_limit_handling(func):
                     wait_time = 2 ** (attempt + 2)  # 4, 8, 16 seconds
                     logger.warning(f"⚠️ API Error - Retrying in {wait_time}s")
                     time.sleep(wait_time)
-            except Exception as e:
+            except Exception:
                 if attempt == max_attempts - 1:
                     raise
                 wait_time = 2 ** (attempt + 2)
@@ -821,7 +815,7 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         return AIAnalysis(**result)
     except ClientError as exc:
         if "429" in str(exc) or "RESOURCE_EXHAUSTED" in str(exc):
-            logger.error(f"❌ Rate Limit Exhausted - Setting extended backoff")
+            logger.error("❌ Rate Limit Exhausted - Setting extended backoff")
             rate_limiter.set_extended_backoff(120)  # 2 minute cooldown
 
         logger.error(f"❌ AI Analysis Failed for: {market.question[:60]}")
