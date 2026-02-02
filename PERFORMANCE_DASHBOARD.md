@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-02 19:40:01 CET
+**Last Updated:** 2026-02-02 20:06:08 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-02 19:21:07 CET |
-| Next Run | 2026-02-02 19:36:07 CET |
+| Last Run | 2026-02-02 19:38:23 CET |
+| Next Run | 2026-02-02 19:53:23 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
-| Today (RPD) | 222 | 1,500 | 14.8% | 🟢 |
-| Current Minute (TPM) | 4,450 | 1,000,000 | 0.45% | 🟢 |
+| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
+| Today (RPD) | 225 | 1,500 | 15.0% | 🟢 |
+| Current Minute (TPM) | 825 | 1,000,000 | 0.08% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,13 +41,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1862.35 (186.2% of capital) |
-| Avg Position Size | $62.08 |
+| Total Exposure | $1799.39 (179.9% of capital) |
+| Avg Position Size | $62.05 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.046) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.047) |
 
 ---
-## 🎯 Active Bets (30)
+## 🎯 Active Bets (31)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -62,7 +62,6 @@
 | [Will Ja Morant be traded this season?](https://polymarket.com/event/will-ja-morant-be-traded-this-season) | YES | $59.82 | 0.24 | 0.45 | +21% 🟢 | 75% | $+52.35 | 2026-02-05 | 2d | 🔴 |
 | [Will Ethereum reach $3,400 in February?](https://polymarket.com/event/will-ethereum-reach-3400-in-february-2026) | YES | $24.11 | 0.03 | 0.15 | +12% 🟡 | 65% | $+80.72 | 2026-03-01 | 26d | 🟢 |
 | [Will Stephen Curry lead the NBA in three...](https://polymarket.com/event/nba-2025-26-3pm-leader-stephen-curry) | NO | $44.89 | 0.82 | 0.65 | -17% 🔴 | 75% | $+42.39 | 2026-04-12 | 68d | 🟢 |
-| [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+44.09 | 2026-02-02 | -1d | ⏰ Expired |
 | [Starmer out by December 31, 2026?](https://polymarket.com/event/starmer-out-by-december-31-2026) | YES | $55.04 | 0.53 | 0.65 | +12% 🟡 | 70% | $+13.11 | 2026-12-31 | 331d | 🟢 |
 | [Will Russia enter Sloviansk by June 30?](https://polymarket.com/event/will-russia-enter-sloviansk-by-june-30) | YES | $39.23 | 0.26 | 0.40 | +14% 🟡 | 65% | $+22.31 | 2026-06-30 | 147d | 🟢 |
 | [Will Mike Vrabel win NFL Coach of the Ye...](https://polymarket.com/event/will-mike-vrabel-win-nfl-coach-of-the-year) | NO | $29.13 | 0.85 | 0.75 | -10% 🔴 | 90% | $+21.09 | 2026-02-11 | 8d | 🟢 |
@@ -73,7 +72,6 @@
 | [Jets vs. Stars](https://polymarket.com/event/nhl-wpg-dal-2026-02-02) | YES | $89.15 | 0.41 | 0.65 | +24% 🟢 | 75% | $+53.93 | 2026-02-03 | 0d | 🔴 |
 | [Will Elon Musk post 360-379 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-360-379) | YES | $49.96 | 0.15 | 0.35 | +20% 🟡 | 75% | $+62.86 | 2026-02-06 | 3d | 🟡 |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+49.25 | 2026-02-02 | 0d | 🔴 |
-| [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+523.46 | 2026-02-02 | -1d | ⏰ Expired |
 | [Will Ethereum dip to $1,400 in February?](https://polymarket.com/event/will-ethereum-dip-to-1400-in-february-2026) | YES | $23.00 | 0.04 | 0.15 | +10% 🟡 | 70% | $+53.66 | 2026-03-01 | 26d | 🟢 |
 | [Will Claude 5 be released by March 31, 2...](https://polymarket.com/event/will-claude-5-be-released-by-march-31-2026) | NO | $117.66 | 0.80 | 0.35 | -45% 🔴 | 70% | $+264.72 | Unknown | N/A | 🔵 |
 | [Will Apple be the third-largest company ...](https://polymarket.com/event/will-apple-be-the-third-largest-company-in-the-world-by-market-cap-on-february-28) | NO | $50.15 | 0.85 | 0.65 | -20% 🔴 | 70% | $+70.90 | 2026-02-28 | 25d | 🟢 |
@@ -81,6 +79,9 @@
 | [Spread: Timberwolves (-7.5)](https://polymarket.com/event/nba-min-mem-2026-02-02-spread-away-7pt5) | YES | $63.42 | 0.51 | 0.65 | +14% 🟡 | 75% | $+18.21 | 2026-02-03 | 0d | 🔴 |
 | [Weber State Wildcats vs. Sacramento Stat...](https://polymarket.com/event/cbb-webst-sacst-2026-02-02-total-163pt5) | YES | $61.86 | 0.51 | 0.65 | +14% 🟡 | 75% | $+16.98 | 2026-02-03 | 0d | 🔴 |
 | [Will Israel strike Gaza on February 2, 2...](https://polymarket.com/event/will-israel-strike-gaza-on-february-2-2026) | YES | $39.22 | 0.20 | 0.35 | +15% 🟡 | 70% | $+29.41 | 2026-02-28 | 25d | 🟢 |
+| [Will Ethereum reach $3,200 in February?](https://polymarket.com/event/will-ethereum-reach-3200-in-february-2026) | YES | $25.33 | 0.09 | 0.20 | +12% 🟡 | 65% | $+34.27 | 2026-03-01 | 26d | 🟢 |
+| [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
+| [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -100,7 +101,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 30 |
+| Markets with Active Bets | 31 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | AI_ANALYSIS_FAILED |
 

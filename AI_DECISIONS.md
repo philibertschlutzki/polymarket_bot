@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-02 19:40:01 CET
+**Last Updated:** 2026-02-02 20:06:08 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -198,23 +198,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #12: Will the price of Bitcoin be between $80,000 and $82,000 on February 2?
-
-**Decision:** YES @ 0.05 (Stake: $20.75)
-
-**AI Analysis:**
-- **Estimated Probability:** 15.0% (vs Market: 4.8%)
-- **Confidence Score:** 60.0%
-- **Edge:** +10.2%
-- **Expected Value:** $+44.09
-- **End Date:** 2026-02-02 18:00 CET
-
-**AI Reasoning:**
-> Der Bitcoin-Preis befindet sich derzeit in einem Abwärtstrend und zeigt eine hohe Volatilität. Technische Analysen deuten auf weitere Rückgänge hin, und AI-Modelle sind sich über die kurzfristige Entwicklung uneinig. Obwohl kurzfristige Aufwärtsbewegungen möglich sind, ist es unwahrscheinlich, dass der Preis bis zum angegebenen Zeitpunkt in den Bereich von 80.000 bis 82.000 US-Dollar steigt. Die aktuelle Marktpreis von 4.80% auf Polymarket scheint die geringe Wahrscheinlichkeit zu bestätigen.
-
----
-
-### Bet #13: Starmer out by December 31, 2026?
+### Bet #12: Starmer out by December 31, 2026?
 
 **Decision:** YES @ 0.52 (Stake: $55.04)
 
@@ -230,7 +214,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #14: Will Russia enter Sloviansk by June 30?
+### Bet #13: Will Russia enter Sloviansk by June 30?
 
 **Decision:** YES @ 0.26 (Stake: $39.23)
 
@@ -246,7 +230,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #15: Will Mike Vrabel win NFL Coach of the Year?
+### Bet #14: Will Mike Vrabel win NFL Coach of the Year?
 
 **Decision:** NO @ 0.86 (Stake: $29.13)
 
@@ -262,7 +246,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #16: Will Gold (GC) hit (HIGH) $8,500 by end of June?
+### Bet #15: Will Gold (GC) hit (HIGH) $8,500 by end of June?
 
 **Decision:** YES @ 0.10 (Stake: $21.52)
 
@@ -278,7 +262,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #17: Will Elon Musk post 300-319 tweets from January 27 to February 3, 2026?
+### Bet #16: Will Elon Musk post 300-319 tweets from January 27 to February 3, 2026?
 
 **Decision:** YES @ 0.00 (Stake: $24.82)
 
@@ -294,7 +278,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #18: Opinion FDV above $1B one day after launch?
+### Bet #17: Opinion FDV above $1B one day after launch?
 
 **Decision:** NO @ 0.56 (Stake: $93.58)
 
@@ -310,7 +294,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #19: Will Elon Musk post 520-539 tweets from January 30 to February 6, 2026?
+### Bet #18: Will Elon Musk post 520-539 tweets from January 30 to February 6, 2026?
 
 **Decision:** YES @ 0.00 (Stake: $47.83)
 
@@ -326,7 +310,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #20: Jets vs. Stars
+### Bet #19: Jets vs. Stars
 
 **Decision:** YES @ 0.40 (Stake: $89.15)
 
@@ -342,7 +326,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #21: Will Elon Musk post 360-379 tweets from January 30 to February 6, 2026?
+### Bet #20: Will Elon Musk post 360-379 tweets from January 30 to February 6, 2026?
 
 **Decision:** YES @ 0.16 (Stake: $49.96)
 
@@ -358,7 +342,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #22: Counter-Strike: BC.Game Esports vs FaZe (BO3) - IEM Krakow Group B
+### Bet #21: Counter-Strike: BC.Game Esports vs FaZe (BO3) - IEM Krakow Group B
 
 **Decision:** YES @ 0.42 (Stake: $86.97)
 
@@ -374,23 +358,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #23: Will the price of Solana be above $100 on February 2?
-
-**Decision:** NO @ 0.96 (Stake: $67.54)
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 96.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -31.0%
-- **Expected Value:** $+523.46
-- **End Date:** 2026-02-02 18:00 CET
-
-**AI Reasoning:**
-> Solana's price is currently fluctuating around $100. While the Polymarket price suggests a high probability, recent price drops, bearish sentiment, and mixed technical analysis indicate increased uncertainty. A potential bounce from oversold conditions could push the price above $100, but the risk of further decline keeps the probability below the market's implied probability.
-
----
-
-### Bet #24: Will Ethereum dip to $1,400 in February?
+### Bet #22: Will Ethereum dip to $1,400 in February?
 
 **Decision:** YES @ 0.04 (Stake: $23.00)
 
@@ -406,7 +374,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #25: Will Claude 5 be released by March 31, 2026?
+### Bet #23: Will Claude 5 be released by March 31, 2026?
 
 **Decision:** NO @ 0.80 (Stake: $117.66)
 
@@ -422,7 +390,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #26: Will Apple be the third-largest company in the world by market cap on February 28?
+### Bet #24: Will Apple be the third-largest company in the world by market cap on February 28?
 
 **Decision:** NO @ 0.86 (Stake: $50.15)
 
@@ -438,7 +406,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #27: Will Elon Musk post 220-239 tweets from January 30 to February 6, 2026?
+### Bet #25: Will Elon Musk post 220-239 tweets from January 30 to February 6, 2026?
 
 **Decision:** YES @ 0.01 (Stake: $27.38)
 
@@ -454,7 +422,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #28: Spread: Timberwolves (-7.5)
+### Bet #26: Spread: Timberwolves (-7.5)
 
 **Decision:** YES @ 0.50 (Stake: $63.42)
 
@@ -470,7 +438,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #29: Weber State Wildcats vs. Sacramento State Hornets: O/U 163.5
+### Bet #27: Weber State Wildcats vs. Sacramento State Hornets: O/U 163.5
 
 **Decision:** YES @ 0.51 (Stake: $61.86)
 
@@ -486,7 +454,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #30: Will Israel strike Gaza on February 2, 2026?
+### Bet #28: Will Israel strike Gaza on February 2, 2026?
 
 **Decision:** YES @ 0.20 (Stake: $39.22)
 
@@ -502,11 +470,37 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #29: Will Ethereum reach $3,200 in February?
+
+**Decision:** YES @ 0.08 (Stake: $25.33)
+
+**AI Analysis:**
+- **Estimated Probability:** 20.0% (vs Market: 8.5%)
+- **Confidence Score:** 65.0%
+- **Edge:** +11.5%
+- **Expected Value:** $+34.27
+- **End Date:** 2026-03-01 06:00 CET
+
+**AI Reasoning:**
+> Der aktuelle Marktpreis der Wette liegt bei 8.50%, was eine sehr geringe implizite Wahrscheinlichkeit darstellt. Ethereum wird derzeit um die 2.300 - 2.400 USD gehandelt. Um 3.200 USD zu erreichen, müsste es im Februar einen signifikanten Anstieg geben. Einige Prognosen deuten darauf hin, dass Ethereum bis Ende Februar die 3.000 USD erreichen könnte. MEXC News prognostiziert sogar, dass ETH bis Februar 2026 die 3.500 USD erreichen könnte. CoinCodex prognostiziert hingegen einen Wert von 2.976,98 USD bis Ende 2026. Angesichts der aktuellen Volatilität und der gemischten Prognosen schätze ich die Wahrscheinlichkeit, dass Ethereum 3.200 USD im Februar erreicht, als gering ein. Das Momentum ist derzeit eher negativ. Ich gebe eine Wahrscheinlichkeit von 20% an, da ein plötzlicher Bullenlauf immer möglich ist, aber nicht sehr wahrscheinlich erscheint. Das Confidence Score ist moderat, da die Vorhersagen sehr unterschiedlich sind.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (45)
+### Insufficient Edge (44)
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 20:06*
+Market: 0.03 | AI: 0.05 | Edge: +2.2% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis für 'Ja' ist sehr niedrig (2.75%). Supercomputer-Vorhersagen deuten eher auf eine Top-4-Platzierung hin, nicht spezifisch auf ...
+
+**U.S. strike on Somalia by February 7?...**
+*Analyzed: 2026-02-02 20:06*
+Market: 0.88 | AI: 0.88 | Edge: -0.2% | Conf: 85%
+Reasoning: Die USA führen regelmäßig Luftangriffe in Somalia durch, insbesondere unter der derzeitigen Regierung. Die US-Strategie konzentriert sich auf die Bekä...
 
 **Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
 *Analyzed: 2026-02-02 19:40*
@@ -548,18 +542,18 @@ Reasoning: Die Beziehungen zwischen den USA und dem Iran sind angespannt, aber e
 Market: 0.03 | AI: 0.04 | Edge: +1.0% | Conf: 60%
 Reasoning: Chelsea ist ein Top-6-Team mit Chancen, die Top 4 zu erreichen. Die Wahrscheinlichkeit, dass sie den 2. Platz belegen, ist gering, da Teams wie ManCit...
 
+
+### Ai Analysis Failed (52)
+
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 18:46*
-Market: 0.10 | AI: 0.10 | Edge: +0.0% | Conf: 75%
-Reasoning: Basierend auf den aktuellen Wettquoten und der FIFA-Weltrangliste lässt sich die Wahrscheinlichkeit für einen brasilianischen Sieg bei der WM 2026 wie...
+*Analyzed: 2026-02-02 20:06*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
-**Kansas Jayhawks vs. Texas Tech Red Raiders: O/U 154.5...**
-*Analyzed: 2026-02-02 18:46*
-Market: 0.50 | AI: 0.53 | Edge: +3.5% | Conf: 70%
-Reasoning: Das Spiel wird voraussichtlich ein knappes Duell mit einer hohen Punktzahl. Texas Tech hat eine starke Offensive und Kansas erzielt im Schnitt fast 79...
-
-
-### Ai Analysis Failed (51)
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 20:06*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Israel x Iran ceasefire broken by March 31, 2026?...**
 *Analyzed: 2026-02-02 19:40*
@@ -599,16 +593,6 @@ Reasoning: Gemini API error or timeout...
 **Israel x Iran ceasefire broken by March 31, 2026?...**
 *Analyzed: 2026-02-02 19:06*
 Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Idaho State Bengals vs. Portland State Vikings: O/U 137.5...**
-*Analyzed: 2026-02-02 19:06*
-Market: 0.48 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Kansas Jayhawks vs. Texas Tech Red Raiders: O/U 154.5...**
-*Analyzed: 2026-02-02 19:06*
-Market: 0.50 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 
