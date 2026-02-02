@@ -58,7 +58,11 @@ def session_scope():
 
 class ActiveBet(Base):
     __tablename__ = "active_bets"
-    bet_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    bet_id = Column(
+        BigInteger().with_variant(Integer, "sqlite"),
+        primary_key=True,
+        autoincrement=True,
+    )
     market_slug = Column(Text, nullable=False, unique=True)
     url_slug = Column(Text, nullable=False)
     question = Column(Text, nullable=False)
@@ -89,7 +93,11 @@ class ActiveBet(Base):
 
 class ArchivedBet(Base):
     __tablename__ = "archived_bets"
-    archive_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    archive_id = Column(
+        BigInteger().with_variant(Integer, "sqlite"),
+        primary_key=True,
+        autoincrement=True,
+    )
     original_bet_id = Column(BigInteger, nullable=False, unique=True)
     market_slug = Column(Text, nullable=False)
     url_slug = Column(Text, nullable=False)
@@ -124,7 +132,11 @@ class ArchivedBet(Base):
 
 class RejectedMarket(Base):
     __tablename__ = "rejected_markets"
-    rejection_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    rejection_id = Column(
+        BigInteger().with_variant(Integer, "sqlite"),
+        primary_key=True,
+        autoincrement=True,
+    )
     market_slug = Column(Text, nullable=False)
     url_slug = Column(Text, nullable=False)
     question = Column(Text, nullable=False)
@@ -194,7 +206,11 @@ class GitSyncState(Base):
 
 class BetAnalysis(Base):
     __tablename__ = "bet_analysis"
-    analysis_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    analysis_id = Column(
+        BigInteger().with_variant(Integer, "sqlite"),
+        primary_key=True,
+        autoincrement=True,
+    )
     archive_id = Column(
         BigInteger, ForeignKey("archived_bets.archive_id"), nullable=False
     )
@@ -216,7 +232,11 @@ class BetAnalysis(Base):
 
 class FinalPredictions(Base):
     __tablename__ = "final_predictions"
-    prediction_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    prediction_id = Column(
+        BigInteger().with_variant(Integer, "sqlite"),
+        primary_key=True,
+        autoincrement=True,
+    )
     archive_id = Column(
         BigInteger, ForeignKey("archived_bets.archive_id"), nullable=False, unique=True
     )

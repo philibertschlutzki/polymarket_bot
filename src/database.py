@@ -198,10 +198,9 @@ def insert_active_bet(bet_data: Dict[str, Any]):
         session.add(bet)
         # session.commit() handled by context manager
 
-        # Mark for git sync (needs new session or nested transaction if calling another function using session_scope,
-        # but mark_git_change uses session_scope which handles new session. Commit here is implicit by context manager exit)
+        # Mark for git sync using the same session
+        mark_git_change("bet", conn=session)
 
-    mark_git_change("bet")
     edge_pct = bet_data.get("edge", 0) * 100
     logger.info(
         f"New bet recorded: {bet_data['question'][:30]}... (${bet_data['stake_usdc']}, Edge: {edge_pct:+.1f}%)"
@@ -269,12 +268,6 @@ def close_bet(
         session.add(archived)
 
         # Delete from active
-        # Schema suggests moving to archived implies active removal.
-        # Original code kept 'results' table and 'active_bets' with status 'CLOSED'.
-        # New prompt schema: 'active_bets' and 'archived_bets'.
-        # Prompt says: "Moves a bet from active_bets to results".
-        # Prompt for `archive_bet_without_resolution` says "session.delete(bet) # Remove from active".
-        # So I will DELETE from active_bets.
         session.delete(bet)
 
         # Atomic Capital Update
@@ -301,12 +294,11 @@ def close_bet(
             _perform_close(session)
             # session.commit()
 
-    mark_git_change("resolution")
 
-
-def archive_bet_without_resolution(bet_id: int):
+def archive_bet_without_resolution(bet_id: int, conn: Optional[Session] = None):
     """Archives expired bet without resolution."""
-    with session_scope() as session:
+
+    def _perform_archive(session: Session):
         bet = (
             session.query(ActiveBet).filter_by(bet_id=bet_id).with_for_update().first()
         )
@@ -343,6 +335,12 @@ def archive_bet_without_resolution(bet_id: int):
         session.add(archived)
         session.delete(bet)
         logger.info(f"Archived expired bet {bet_id} without resolution.")
+
+    if conn:
+        _perform_archive(conn)
+    else:
+        with session_scope() as session:
+            _perform_archive(session)
 
 
 def get_all_results() -> List[Dict[str, Any]]:
@@ -439,8 +437,8 @@ def insert_rejected_market(market_data: Dict[str, Any]):
                 rej.end_date = None
 
         session.add(rej)
+        mark_git_change("rejection", conn=session)
 
-    mark_git_change("rejection")
     logger.info(
         f"Rejected market logged: {market_data['question'][:40]}... (Reason: {market_data['rejection_reason']})"
     )
@@ -480,7 +478,6 @@ def insert_rejected_markets_batch(markets: List[Dict[str, Any]]):
             )
             session.add(rej)  # Triggers AUTOINCREMENT
 
-    mark_git_change("rejection")
     logger.info(f"Batch inserted {len(markets)} rejected markets.")
 
 
@@ -689,12 +686,13 @@ def set_last_run_timestamp(timestamp: datetime):
 # ============================================================================
 
 
-def mark_git_change(change_type: str):
+def mark_git_change(change_type: str, conn: Optional[Session] = None):
     """
     Markiert eine Änderung für Git-Push.
     change_type: 'bet', 'rejection', 'resolution'
     """
-    with session_scope() as session:
+
+    def _perform_mark(session: Session):
         field_map = {
             "bet": "has_new_bets",
             "rejection": "has_new_rejections",
@@ -710,6 +708,12 @@ def mark_git_change(change_type: str):
                 WHERE id = 1
             """)
             session.execute(sql)
+
+    if conn:
+        _perform_mark(conn)
+    else:
+        with session_scope() as session:
+            _perform_mark(session)
 
 
 def should_push_to_git() -> bool:
@@ -788,9 +792,12 @@ def get_all_unresolved_bets() -> List[Dict[str, Any]]:
         return [to_dict(b) for b in bets]
 
 
-def update_archived_bet_outcome(archive_id: int, outcome: str, profit_loss: float):
+def update_archived_bet_outcome(
+    archive_id: int, outcome: str, profit_loss: float, conn: Optional[Session] = None
+):
     """Updates an archived bet with the final outcome."""
-    with session_scope() as session:
+
+    def _perform_update(session: Session):
         bet = (
             session.query(ArchivedBet)
             .filter_by(archive_id=archive_id)
@@ -802,10 +809,10 @@ def update_archived_bet_outcome(archive_id: int, outcome: str, profit_loss: floa
 
         roi = (profit_loss / float(bet.stake_usdc)) if bet.stake_usdc > 0 else 0.0
 
-        bet.actual_outcome = outcome
-        bet.profit_loss = profit_loss
-        bet.roi = roi
-        bet.timestamp_resolved = datetime.now(timezone.utc)
+        bet.actual_outcome = outcome  # type: ignore
+        bet.profit_loss = profit_loss  # type: ignore
+        bet.roi = roi  # type: ignore
+        bet.timestamp_resolved = datetime.now(timezone.utc)  # type: ignore
 
         # Update capital (since it wasn't updated when archived without resolution)
         session.execute(
@@ -814,8 +821,14 @@ def update_archived_bet_outcome(archive_id: int, outcome: str, profit_loss: floa
             ),
             {"pl": profit_loss},
         )
+        mark_git_change("resolution", conn=session)
 
-    mark_git_change("resolution")
-    logger.info(
-        f"Archived Bet {archive_id} resolved: {outcome} (P/L: ${profit_loss:.2f})"
-    )
+        logger.info(
+            f"Archived Bet {archive_id} resolved: {outcome} (P/L: ${profit_loss:.2f})"
+        )
+
+    if conn:
+        _perform_update(conn)
+    else:
+        with session_scope() as session:
+            _perform_update(session)

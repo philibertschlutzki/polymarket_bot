@@ -20,7 +20,7 @@ import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import requests
 from dateutil import parser as date_parser
@@ -272,107 +272,81 @@ def check_and_resolve_bets():  # noqa: C901
 def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C901
     """Helper to process resolution for a list of bets."""
     unique_slugs = list(set(b["market_slug"] for b in bets))
-    resolved_markets = {}
 
-    # Batch Query Markets
-    CHUNK_SIZE = 50
-    for i in range(0, len(unique_slugs), CHUNK_SIZE):
-        slug_batch = unique_slugs[i : i + CHUNK_SIZE]  # noqa: E203
-        query_parts = []
-        slug_map = {}
-
-        for idx, slug in enumerate(slug_batch):
-            alias = f"m_{idx}"
-            slug_map[alias] = slug
-            safe_id_str = json.dumps(slug)
-            query_parts.append(
-                f"{alias}: market(id: {safe_id_str}) {{ closed resolvedBy outcomes {{ price }} }}"
-            )
-
-        if not query_parts:
-            continue
-
-        query = "query BatchResolution { " + " ".join(query_parts) + " }"
-
-        try:
-            data = graphql_request_with_retry(query)
-            if not data or not data.get("data"):
-                continue
-
-            for alias, market_data in data["data"].items():
-                if not market_data:
-                    continue
-                original_slug = slug_map.get(alias)
-                if original_slug:
-                    resolved_markets[original_slug] = market_data
-
-        except Exception as exc:
-            logger.error(f"❌ Error during batch resolution check: {exc}")
+    resolved_markets = execute_batched_query(
+        unique_slugs,
+        lambda safe_id: f"market(id: {safe_id}) {{ closed resolvedBy outcomes {{ price }} }}",
+    )
 
     # Process Bets
-    for bet in bets:
-        market_data = resolved_markets.get(bet["market_slug"])
-        resolved_by = market_data.get("resolvedBy") if market_data else None
+    with database.session_scope() as session:
+        for bet in bets:
+            market_data = resolved_markets.get(bet["market_slug"])
+            resolved_by = market_data.get("resolvedBy") if market_data else None
 
-        if market_data and resolved_by:
-            # Resolved
-            outcomes = market_data.get("outcomes", [])
-            prices = [float(o.get("price", 0)) for o in outcomes if o] if outcomes else []  # type: ignore
+            if market_data and resolved_by:
+                # Resolved
+                outcomes = market_data.get("outcomes", [])
+                prices = [float(o.get("price", 0)) for o in outcomes if o] if outcomes else []  # type: ignore
 
-            actual_outcome = None
-            if prices and len(prices) >= 2:
-                p_yes = float(prices[0])
-                if p_yes > 0.9:
-                    actual_outcome = "YES"
-                elif p_yes < 0.1:
-                    actual_outcome = "NO"
+                actual_outcome = None
+                if prices and len(prices) >= 2:
+                    p_yes = float(prices[0])
+                    if p_yes > 0.9:
+                        actual_outcome = "YES"
+                    elif p_yes < 0.1:
+                        actual_outcome = "NO"
 
-            if actual_outcome:
-                stake = float(bet["stake_usdc"])
-                entry = float(bet["entry_price"])
+                if actual_outcome:
+                    stake = float(bet["stake_usdc"])
+                    entry = float(bet["entry_price"])
 
-                if bet["action"] == actual_outcome:
-                    if entry > 0:
-                        profit = stake * ((1.0 / entry) - 1.0)
+                    if bet["action"] == actual_outcome:
+                        if entry > 0:
+                            profit = stake * ((1.0 / entry) - 1.0)
+                        else:
+                            profit = 0.0
                     else:
-                        profit = 0.0
-                else:
-                    profit = -stake
+                        profit = -stake
 
-                if is_archived:
-                    database.update_archived_bet_outcome(
-                        bet["archive_id"], actual_outcome, profit
+                    if is_archived:
+                        database.update_archived_bet_outcome(
+                            bet["archive_id"], actual_outcome, profit, conn=session
+                        )
+                    else:
+                        database.close_bet(
+                            bet["bet_id"], actual_outcome, profit, conn=session
+                        )
+
+                    logger.info(
+                        f"✅ Bet resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})"
                     )
                 else:
-                    database.close_bet(bet["bet_id"], actual_outcome, profit)
+                    logger.warning(f"⚠️ Market resolved but outcome unclear: {prices}")
+                    # If active and resolved but unclear, maybe we should archive as unresolved?
+                    # For now, leave it.
 
-                logger.info(
-                    f"✅ Bet resolved: {bet['action']} -> {actual_outcome} (P/L: ${profit:.2f})"
-                )
             else:
-                logger.warning(f"⚠️ Market resolved but outcome unclear: {prices}")
-                # If active and resolved but unclear, maybe we should archive as unresolved?
-                # For now, leave it.
+                # Not resolved yet
+                if not is_archived:
+                    # Active bet expired but not resolved -> Archive as PENDING
+                    # Check if strictly expired
+                    end_date = bet.get("end_date")
+                    if end_date:
+                        if isinstance(end_date, str):
+                            try:
+                                end_date = date_parser.parse(end_date).replace(
+                                    tzinfo=timezone.utc
+                                )
+                            except Exception:
+                                end_date = datetime.now(timezone.utc)
+                        elif end_date.tzinfo is None:
+                            end_date = end_date.replace(tzinfo=timezone.utc)
 
-        else:
-            # Not resolved yet
-            if not is_archived:
-                # Active bet expired but not resolved -> Archive as PENDING
-                # Check if strictly expired
-                end_date = bet.get("end_date")
-                if end_date:
-                    if isinstance(end_date, str):
-                        try:
-                            end_date = date_parser.parse(end_date).replace(
-                                tzinfo=timezone.utc
+                        if end_date < datetime.now(timezone.utc):
+                            database.archive_bet_without_resolution(
+                                bet["bet_id"], conn=session
                             )
-                        except Exception:
-                            end_date = datetime.now(timezone.utc)
-                    elif end_date.tzinfo is None:
-                        end_date = end_date.replace(tzinfo=timezone.utc)
-
-                    if end_date < datetime.now(timezone.utc):
-                        database.archive_bet_without_resolution(bet["bet_id"])
 
 
 # ============================================================================
@@ -408,6 +382,57 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
             if attempt == max_retries - 1:
                 return None
     return None
+
+
+def execute_batched_query(
+    slugs: List[str],
+    query_fragment_fn: Callable[[str], str],
+    chunk_size: int = 50,
+) -> Dict[str, Any]:
+    """
+    Executes a batched GraphQL query by chunking the requests.
+
+    Args:
+        slugs: List of market slugs/IDs to query.
+        query_fragment_fn: Function that takes a JSON-safe ID string and returns the GraphQL query part.
+        chunk_size: Number of items per request.
+
+    Returns:
+        Dict mapping original slug to the returned data.
+    """
+    results = {}
+
+    for i in range(0, len(slugs), chunk_size):
+        end_idx = i + chunk_size
+        chunk = slugs[i:end_idx]
+        query_parts = []
+        slug_map = {}
+
+        for idx, slug in enumerate(chunk):
+            alias = f"m_{idx}"
+            slug_map[alias] = slug
+            safe_id = json.dumps(slug)
+            query_parts.append(f"{alias}: {query_fragment_fn(safe_id)}")
+
+        if not query_parts:
+            continue
+
+        query = "query BatchQuery { " + " ".join(query_parts) + " }"
+
+        try:
+            data = graphql_request_with_retry(query)
+            if not data or not data.get("data"):
+                continue
+
+            for alias, market_data in data["data"].items():
+                if market_data:
+                    original_slug = slug_map.get(alias)
+                    if original_slug:
+                        results[original_slug] = market_data
+        except Exception as exc:
+            logger.error(f"❌ Error during batch GraphQL query: {exc}")
+
+    return results
 
 
 def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
@@ -545,34 +570,17 @@ def fetch_missing_end_dates(  # noqa: C901
         f"📅 Fetching missing end dates for {len(markets_missing_date)} markets..."
     )
 
-    query_parts = []
-    slug_map = {}
+    slugs = [m.market_slug for m in markets_missing_date]
+    data_map = execute_batched_query(
+        slugs,
+        lambda safe_id: f"market(id: {safe_id}) {{ end_date_iso }}",
+    )
 
-    for idx, market in enumerate(markets_missing_date):
-        alias = f"m_{idx}"
-        slug_map[alias] = market.market_slug
-        safe_id = json.dumps(market.market_slug)
-        query_parts.append(f"{alias}: market(id: {safe_id}) {{ end_date_iso }}")
-
-    if not query_parts:
-        return markets
-
-    query = "query FetchEndDates { " + " ".join(query_parts) + " }"
-
-    try:
-        response_json = graphql_request_with_retry(query)
-        if response_json:
-            data = response_json.get("data", {})
-            for alias, market_data in data.items():
-                if market_data and "end_date_iso" in market_data:
-                    original_slug = slug_map.get(alias)
-                    if original_slug:
-                        for market in markets:
-                            if market.market_slug == original_slug:
-                                market.end_date = market_data["end_date_iso"]
-                                break
-    except Exception as exc:
-        logger.warning(f"⚠️  Fehler beim Nachladen von End Dates: {exc}")
+    for market in markets_missing_date:
+        if market.market_slug in data_map:
+            market_data = data_map[market.market_slug]
+            if market_data and "end_date_iso" in market_data:
+                market.end_date = market_data["end_date_iso"]
 
     return markets
 
