@@ -27,6 +27,7 @@ from dateutil import parser as date_parser
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
+from google.genai.errors import ClientError
 from pydantic import BaseModel, Field
 from tenacity import (
     retry,
@@ -124,7 +125,7 @@ FETCH_MARKET_LIMIT = int(os.getenv("FETCH_MARKET_LIMIT", "100"))
 TOP_MARKETS_TO_ANALYZE = int(os.getenv("TOP_MARKETS_TO_ANALYZE", "15"))
 
 # API Rate Limit (Gemini Free Tier is often 15 RPM)
-API_RATE_LIMIT = int(os.getenv("API_RATE_LIMIT", "15"))
+API_RATE_LIMIT = int(os.getenv("API_RATE_LIMIT", "10"))
 
 # ============================================================================
 # DATENMODELLE
@@ -174,25 +175,31 @@ class TradingRecommendation(BaseModel):
 class RateLimiter:
     """Manages API rate limits using a sliding window."""
 
-    def __init__(self, max_requests_per_minute=15):
+    def __init__(self, max_requests_per_minute=10):
         self.max_requests = max_requests_per_minute
         self.requests = []
+        self.backoff_until = None  # Track if we need extended backoff
 
     def wait_if_needed(self):
         now = datetime.now()
+
+        # Check if we're in extended backoff period (from 429 errors)
+        if self.backoff_until and now < self.backoff_until:
+            sleep_time = (self.backoff_until - now).total_seconds()
+            logger.warning(f"⏳ Extended backoff active. Sleeping {sleep_time:.1f}s")
+            time.sleep(sleep_time)
+            self.backoff_until = None
+
         # Remove requests older than 1 minute
         self.requests = [r for r in self.requests if r > now - timedelta(minutes=1)]
 
-        # NEU: Log Rate Limiter Status
         logger.debug(
             f"🔍 Rate Limiter: {len(self.requests)}/{self.max_requests} requests in window"
         )
 
         if len(self.requests) >= self.max_requests:
-            # Sort requests just in case
             self.requests.sort()
             oldest = self.requests[0]
-            # Time passed since oldest request
             elapsed = (now - oldest).total_seconds()
             sleep_time = 60 - elapsed
 
@@ -201,10 +208,14 @@ class RateLimiter:
                     f"⏳ Rate Limit Hit: {len(self.requests)}/{self.max_requests} "
                     f"requests. Sleeping {sleep_time:.2f}s"
                 )
-                logger.warning(f"⏳ Oldest request at: {oldest.isoformat()}")
-                time.sleep(sleep_time + 0.5)  # Add small buffer
+                time.sleep(sleep_time + 1.0)  # Increased buffer to 1 second
 
         self.requests.append(datetime.now())
+
+    def set_extended_backoff(self, seconds: int):
+        """Set an extended backoff period (e.g., after 429 error)."""
+        self.backoff_until = datetime.now() + timedelta(seconds=seconds)
+        logger.warning(f"⏳ Extended backoff set for {seconds}s")
 
 
 # Global Rate Limiter instance
@@ -657,11 +668,46 @@ def pre_filter_markets(markets: List[MarketData], top_n: int = 10) -> List[Marke
 # ============================================================================
 
 
-@retry(
-    retry=retry_if_exception_type(Exception),
-    stop=stop_after_attempt(3),
-    wait=wait_exponential(multiplier=2, min=8, max=30),
-)
+def retry_with_rate_limit_handling(func):
+    """Custom retry handler that treats 429 errors specially."""
+
+    def wrapper(*args, **kwargs):
+        max_attempts = 3
+        for attempt in range(max_attempts):
+            try:
+                return func(*args, **kwargs)
+            except ClientError as e:
+                if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                    if attempt == max_attempts - 1:
+                        logger.error(
+                            f"❌ Rate limit exhausted after {max_attempts} attempts"
+                        )
+                        raise
+
+                    # For 429, wait much longer (60-120 seconds)
+                    wait_time = 60 * (attempt + 1)
+                    logger.warning(
+                        f"⏳ Rate Limit (429) - Waiting {wait_time}s before retry {attempt + 1}/{max_attempts}"
+                    )
+                    time.sleep(wait_time)
+                else:
+                    # Other ClientErrors: shorter backoff
+                    if attempt == max_attempts - 1:
+                        raise
+                    wait_time = 2 ** (attempt + 2)  # 4, 8, 16 seconds
+                    logger.warning(f"⚠️ API Error - Retrying in {wait_time}s")
+                    time.sleep(wait_time)
+            except Exception as e:
+                if attempt == max_attempts - 1:
+                    raise
+                wait_time = 2 ** (attempt + 2)
+                logger.warning(f"⚠️ Unexpected error - Retrying in {wait_time}s")
+                time.sleep(wait_time)
+
+    return wrapper
+
+
+@retry_with_rate_limit_handling
 def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, dict]:
     start_time = time.time()
 
@@ -773,13 +819,13 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
             response_time_ms=usage_meta["response_time_ms"],
         )
         return AIAnalysis(**result)
-    except Exception as exc:
-        logger.error(f"❌ AI Analysis Failed for: {market.question[:60]}")
-        logger.error(f"❌ Market Slug: {market.market_slug}")
-        logger.error(f"❌ Exception Type: {type(exc).__name__}")
-        logger.error(f"❌ Exception Details: {str(exc)}", exc_info=True)
+    except ClientError as exc:
+        if "429" in str(exc) or "RESOURCE_EXHAUSTED" in str(exc):
+            logger.error(f"❌ Rate Limit Exhausted - Setting extended backoff")
+            rate_limiter.set_extended_backoff(120)  # 2 minute cooldown
 
-        # Use existing error_logger
+        logger.error(f"❌ AI Analysis Failed for: {market.question[:60]}")
+
         from src.error_logger import log_api_error
 
         log_api_error(
@@ -789,10 +835,13 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
             context={
                 "market_slug": market.market_slug,
                 "question": market.question[:100],
-                "yes_price": market.yes_price,
-                "volume": market.volume,
             },
         )
+        return None
+
+    except Exception as exc:
+        logger.error(f"❌ Unexpected error in AI analysis: {type(exc).__name__}")
+        logger.error(str(exc), exc_info=True)
         return None
 
 
