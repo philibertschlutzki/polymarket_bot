@@ -872,8 +872,7 @@ def single_run():
     raw_markets = fetch_missing_end_dates(raw_markets)
     top_markets = pre_filter_markets(raw_markets, top_n=TOP_MARKETS_TO_ANALYZE)
 
-    active_bets = database.get_active_bets()
-    active_slugs = {b["market_slug"] for b in active_bets}
+    active_slugs = database.get_active_bet_slugs()
 
     rejections_to_insert = []
 
