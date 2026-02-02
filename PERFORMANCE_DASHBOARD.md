@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-02 23:09:49 CET
+**Last Updated:** 2026-02-03 00:14:08 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-02 22:11:09 CET |
-| Next Run | 2026-02-02 22:26:09 CET |
+| Last Run | 2026-02-02 23:24:51 CET |
+| Next Run | 2026-02-02 23:39:51 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 239 | 1,500 | 15.9% | 🟢 |
-| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
+| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
+| Today (RPD) | 245 | 1,500 | 16.3% | 🟢 |
+| Current Minute (TPM) | 839 | 1,000,000 | 0.08% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-1,002.98 |
-| Locked in Active Bets | $1,827.72 |
+| Available Capital | $-1,068.77 |
+| Locked in Active Bets | $1,853.94 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1827.72 (182.8% of capital) |
-| Avg Position Size | $60.92 |
+| Total Exposure | $1853.94 (185.4% of capital) |
+| Avg Position Size | $59.80 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.046) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.045) |
 
 ---
-## 🎯 Active Bets (33)
+## 🎯 Active Bets (35)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -89,11 +89,13 @@
 | [Weber State Wildcats vs. Sacramento Stat...](https://polymarket.com/event/cbb-webst-sacst-2026-02-02-total-163pt5) | YES | $61.86 | 0.51 | 0.65 | +14% 🟡 | 75% | $+16.98 | 2026-02-03 | 0d | 🔴 |
 | [Will Israel strike Gaza on February 2, 2...](https://polymarket.com/event/will-israel-strike-gaza-on-february-2-2026) | YES | $39.22 | 0.20 | 0.35 | +15% 🟡 | 70% | $+29.41 | 2026-02-28 | 25d | 🟢 |
 | [Will Ethereum reach $3,200 in February?](https://polymarket.com/event/will-ethereum-reach-3200-in-february-2026) | YES | $25.33 | 0.09 | 0.20 | +12% 🟡 | 65% | $+34.27 | 2026-03-01 | 26d | 🟢 |
-| [Bitcoin Up or Down - February 2, 4:45PM-...](https://polymarket.com/event/btc-updown-15m-1770068700) | NO | $39.57 | 0.56 | 0.45 | -10% 🔴 | 70% | $+9.34 | 2026-02-02 | -1d | ⏰ Expired |
 | [Will Chong Won-oh win the 2026 Seoul May...](https://polymarket.com/event/will-chong-won-oh-win-the-2026-seoul-mayoral-election) | NO | $75.73 | 0.58 | 0.37 | -21% 🔴 | 70% | $+37.87 | 2026-06-03 | 120d | 🟢 |
+| [Will Anthropic have the best AI model at...](https://polymarket.com/event/will-anthropic-have-the-best-ai-model-at-the-end-of-february-2026) | YES | $41.83 | 0.06 | 0.25 | +19% 🟡 | 70% | $+125.50 | 2026-02-28 | 25d | 🟢 |
+| [Will Ethereum reach $3,600 in February?](https://polymarket.com/event/will-ethereum-reach-3600-in-february-2026) | YES | $23.96 | 0.03 | 0.15 | +12% 🟡 | 60% | $+95.83 | 2026-03-01 | 26d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
+| [Bitcoin Up or Down - February 2, 4:45PM-...](https://polymarket.com/event/btc-updown-15m-1770068700) | NO | $39.57 | 0.56 | 0.45 | -10% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -113,7 +115,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 33 |
+| Markets with Active Bets | 35 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | AI_ANALYSIS_FAILED |
 

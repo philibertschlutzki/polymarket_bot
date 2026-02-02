@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-02 23:09:49 CET
+**Last Updated:** 2026-02-03 00:14:08 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -470,23 +470,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #29: Bitcoin Up or Down - February 2, 4:45PM-5:00PM ET
-
-**Decision:** NO @ 0.56 (Stake: $39.57)
-
-**AI Analysis:**
-- **Estimated Probability:** 45.0% (vs Market: 55.5%)
-- **Confidence Score:** 70.0%
-- **Edge:** -10.5%
-- **Expected Value:** $+9.34
-- **End Date:** 2026-02-02 23:00 CET
-
-**AI Reasoning:**
-> Basierend auf den aktuellen Marktnachrichten und -analysen scheint der Bitcoin-Markt am 2. Februar 2026 bärisch zu sein. Mehrere Quellen deuten auf einen Abwärtstrend, einen Rückgang der Liquidität und eine allgemeine Risikoaversion hin. Obwohl der Marktpreis von Polymarket bei 55.50 % für 'Up' liegt, deuten die jüngsten Marktbewegungen auf die Möglichkeit eines weiteren Abwärtstrends hin. Daher schätze ich die Wahrscheinlichkeit, dass Bitcoin im genannten Zeitraum steigt oder gleich bleibt, auf 45 %. Ich bin mir aufgrund der Volatilität von Bitcoin und der kurzfristigen Unvorhersehbarkeit des Marktes mit einer 70-prozentigen Wahrscheinlichkeit sicher.
-
----
-
-### Bet #30: Will Chong Won-oh win the 2026 Seoul Mayoral Election
+### Bet #29: Will Chong Won-oh win the 2026 Seoul Mayoral Election
 
 **Decision:** NO @ 0.58 (Stake: $75.73)
 
@@ -502,64 +486,63 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #30: Will Anthropic have the best AI model at the end of February 2026?
+
+**Decision:** YES @ 0.06 (Stake: $41.83)
+
+**AI Analysis:**
+- **Estimated Probability:** 25.0% (vs Market: 6.2%)
+- **Confidence Score:** 70.0%
+- **Edge:** +18.8%
+- **Expected Value:** $+125.50
+- **End Date:** 2026-02-28 01:00 CET
+
+**AI Reasoning:**
+> Anthropic ist ein starker Konkurrent mit Claude Opus 4.5, aber der KI-Markt ist hart umkämpft. Google (Gemini 3 Pro), OpenAI (GPT-5.2) und andere holen schnell auf. Die Chatbot Arena Rangliste ist dynamisch und kann sich bis Ende Februar 2026 ändern. Es gibt viele Faktoren, die die Leistung von KI-Modellen beeinflussen, einschliesslich der Trainingsdaten, der Modellarchitektur und der Optimierungstechniken. Obwohl Anthropic in Bezug auf Sicherheit und bestimmte Anwendungen Stärken hat, ist es unsicher, ob diese Stärken ausreichen, um die Spitzenposition in der Chatbot Arena zu erreichen.  Die 6.25% im aktuellen Marktpreis scheinen mir zu niedrig, angesichts der aktuellen Wettbewerbsfähigkeit von Anthropic.
+
+---
+
+### Bet #31: Will Ethereum reach $3,600 in February?
+
+**Decision:** YES @ 0.03 (Stake: $23.96)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 3.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** +12.0%
+- **Expected Value:** $+95.83
+- **End Date:** 2026-03-01 06:00 CET
+
+**AI Reasoning:**
+> Ethereum wird aktuell um die 2.300 - 2.400 USD gehandelt. Der Markt ist sehr volatil mit gemischten Analystenmeinungen. Einige Analysten erwarten kurzfristig einen weiteren Rückgang. Es gibt zu viele Abwärtsrisiken und Widerstände, um bis Ende Februar 2026 die 3.600 USD zu erreichen. Obwohl einige langfristige Prognosen positiv sind, überwiegen kurzfristig die Unsicherheiten.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Ai Analysis Failed (56)
-
-**Will the price of Ethereum be above $2,500 on February 3?...**
-*Analyzed: 2026-02-02 23:09*
-Market: 0.05 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 23:09*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 23:09*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+### Insufficient Edge (42)
 
 **Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-02 22:40*
-Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+*Analyzed: 2026-02-03 00:14*
+Market: 0.02 | AI: 0.01 | Edge: -1.0% | Conf: 60%
+Reasoning: Die Wahrscheinlichkeit, dass François Hollande die Präsidentschaftswahlen 2027 gewinnt, ist sehr gering. Hier ist die Begründung: *  **Historische Unp...
 
-**Will the price of Ethereum be above $2,500 on February 3?...**
-*Analyzed: 2026-02-02 22:40*
-Market: 0.05 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-03 00:14*
+Market: 0.03 | AI: 0.01 | Edge: -2.0% | Conf: 60%
+Reasoning: Die aktuelle Marktwahrscheinlichkeit für ein 'Ja' beträgt 3,05 %, was bereits sehr niedrig ist. Chelsea ist zwar ein historisch starkes Team, aber ihr...
 
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 22:40*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+**Will the Minnesota Timberwolves win the NBA Western Conferen...**
+*Analyzed: 2026-02-03 00:14*
+Market: 0.04 | AI: 0.04 | Edge: +0.4% | Conf: 70%
+Reasoning: Der aktuelle Marktpreis von 3,55 % deutet auf eine geringe Wahrscheinlichkeit hin. Die Wettquoten liegen zwischen +900 und +2000, was ebenfalls auf ei...
 
-**Will the price of Bitcoin be above $80,000 on February 4?...**
-*Analyzed: 2026-02-02 22:40*
-Market: 0.27 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Chong Won-oh win the 2026 Seoul Mayoral Election...**
-*Analyzed: 2026-02-02 22:40*
-Market: 0.58 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 22:40*
-Market: 0.42 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the US next strike Iran on February 27, 2026 (ET)?...**
-*Analyzed: 2026-02-02 21:56*
-Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-
-### Insufficient Edge (42)
+**Will Anthropic have the best AI model at the end of February...**
+*Analyzed: 2026-02-02 23:46*
+Market: 0.06 | AI: 0.10 | Edge: +3.8% | Conf: 70%
+Reasoning: Anthropic's Claude Opus 4.5 ist ein Top-Modell, aber Google's Gemini 3 Pro liegt derzeit auf Platz 1 der LLM Arena Leaderboard. Die alphabetische Reih...
 
 **Will the price of Bitcoin be above $80,000 on February 4?...**
 *Analyzed: 2026-02-02 23:09*
@@ -591,38 +574,66 @@ Reasoning: Die Florida Panthers sind laut Sportwettenanbietern leicht favorisier
 Market: 0.01 | AI: 0.02 | Edge: +1.2% | Conf: 60%
 Reasoning: Die Wahrscheinlichkeit eines Angriffs am genannten Datum ist gering, da diplomatische Bemühungen laufen und ein Angriff das Risiko einer Eskalation bi...
 
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 21:56*
-Market: 0.03 | AI: 0.05 | Edge: +2.1% | Conf: 65%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit auf Polymarket liegt bei 2.90%. Wettanbieter geben Chelsea eine geringe Chance, die Premier League zu gewinnen (z...
+
+### Ai Analysis Failed (57)
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 00:14*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 21:56*
-Market: 0.39 | AI: 0.30 | Edge: -9.0% | Conf: 75%
-Reasoning: Die aktuelle geopolitische Lage zwischen Israel und dem Iran ist angespannt, aber nicht auf dem Siedepunkt eines offenen Krieges.  Es gibt eine Reihe ...
+*Analyzed: 2026-02-03 00:14*
+Market: 0.38 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
-**Will Chong Won-oh win the 2026 Seoul Mayoral Election...**
-*Analyzed: 2026-02-02 21:56*
-Market: 0.60 | AI: 0.55 | Edge: -4.5% | Conf: 75%
-Reasoning: Die aktuelle Marktpreis für 'Ja' liegt bei 59.50%, was bereits eine relativ hohe Wahrscheinlichkeit widerspiegelt. Eine Umfrage vom 1. Januar 2026 deu...
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-02 23:46*
+Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
-**Will Giannis Antetokounmpo be traded to the Golden State War...**
-*Analyzed: 2026-02-02 21:14*
-Market: 0.18 | AI: 0.22 | Edge: +3.8% | Conf: 70%
-Reasoning: Giannis ist offenbar offen für einen Trade, und die Warriors gehören zu den interessierten Teams. Allerdings gibt es Hürden wie die Forderungen der Bu...
+**Will Ethereum reach $3,600 in February?...**
+*Analyzed: 2026-02-02 23:46*
+Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 23:46*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 23:46*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Syracuse Orange vs. North Carolina Tar Heels: O/U 156.5...**
+*Analyzed: 2026-02-02 23:46*
+Market: 0.54 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will the price of Ethereum be above $2,500 on February 3?...**
+*Analyzed: 2026-02-02 23:09*
+Market: 0.05 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-02 23:09*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-02 23:09*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 
-### Negative Expected Value (2)
+### Negative Expected Value (1)
 
 **Will the price of Solana be above $120 on February 2?...**
 *Analyzed: 2026-02-02 17:53*
 Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 75%
 Reasoning: Der Preis von Solana liegt derzeit bei etwa 103-105 $. Der Trend ist rückläufig, die Marktstimmung ist negativ und die technische Analyse deutet auf w...
-
-**Will the price of Solana be above $120 on February 2?...**
-*Analyzed: 2026-02-02 16:40*
-Market: 0.00 | AI: 0.15 | Edge: +14.9% | Conf: 70%
-Reasoning: Der aktuelle Preis von Solana liegt bei etwa 104 US-Dollar. Es gibt zwar einige optimistische Prognosen für die Zukunft, aber die hohe Volatilität des...
 
 
 ## 📊 Historical Analysis
