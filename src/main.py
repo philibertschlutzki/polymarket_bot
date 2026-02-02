@@ -398,7 +398,8 @@ def execute_batched_query(
     results = {}
 
     for i in range(0, len(slugs), chunk_size):
-        chunk = slugs[i : i + chunk_size]
+        end_idx = i + chunk_size
+        chunk = slugs[i:end_idx]
         query_parts = []
         slug_map = {}
 
