@@ -217,7 +217,11 @@ def get_active_bet_slugs() -> Set[str]:
     Optimized to only fetch the market_slug column.
     """
     with session_scope() as session:
-        slugs = session.query(ActiveBet.market_slug).filter(ActiveBet.status == "OPEN").all()
+        slugs = (
+            session.query(ActiveBet.market_slug)
+            .filter(ActiveBet.status == "OPEN")
+            .all()
+        )
         return {s[0] for s in slugs}
 
 
