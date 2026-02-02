@@ -44,6 +44,9 @@ def init_database():
         # Migrate active_bets table if needed
         migrate_active_bets_table()
 
+        # Migrate archived_bets table if needed
+        migrate_archived_bets_table()
+
         with session_scope() as session:
             # Initialize Portfolio State
             if session.query(PortfolioState).count() == 0:
@@ -193,6 +196,78 @@ def migrate_active_bets_table():
 
     except Exception as e:
         logger.error(f"Error migrating active_bets table: {e}")
+        raise
+
+
+def migrate_archived_bets_table():
+    """Migrates archived_bets table to ensure proper AUTOINCREMENT."""
+    from src.db_models import ArchivedBet
+
+    try:
+        with engine.connect() as conn:
+            # Check if table exists
+            result = conn.execute(
+                text(
+                    "SELECT name FROM sqlite_master WHERE type='table' AND name='archived_bets'"
+                )
+            )
+            if result.fetchone():
+                # Check current schema
+                table_sql = conn.execute(
+                    text(
+                        "SELECT sql FROM sqlite_master WHERE type='table' AND name='archived_bets'"
+                    )
+                ).fetchone()
+
+                # If table doesn't have AUTOINCREMENT, migrate it
+                if table_sql and "AUTOINCREMENT" not in table_sql[0]:
+                    logger.info(
+                        "Migrating archived_bets table to include AUTOINCREMENT..."
+                    )
+
+                    # Drop backup if exists
+                    conn.execute(text("DROP TABLE IF EXISTS archived_bets_backup"))
+                    conn.commit()
+
+                    # Rename existing table to backup
+                    conn.execute(
+                        text("ALTER TABLE archived_bets RENAME TO archived_bets_backup")
+                    )
+                    conn.commit()
+
+                    # Force SQLite AUTOINCREMENT
+                    ArchivedBet.__table__.dialect_options["sqlite"][
+                        "autoincrement"
+                    ] = True
+
+                    # Recreate with proper schema
+                    ArchivedBet.__table__.create(engine, checkfirst=False)
+
+                    # Restore data
+                    conn.execute(text("""
+                        INSERT INTO archived_bets (
+                            archive_id, original_bet_id, market_slug, url_slug, question, action,
+                            stake_usdc, entry_price, ai_probability, confidence_score,
+                            edge, ai_reasoning, timestamp_created, timestamp_archived,
+                            end_date, actual_outcome, profit_loss, roi, timestamp_resolved, version
+                        )
+                        SELECT
+                            archive_id, original_bet_id, market_slug, url_slug, question, action,
+                            stake_usdc, entry_price, ai_probability, confidence_score,
+                            edge, ai_reasoning, timestamp_created, timestamp_archived,
+                            end_date, actual_outcome, profit_loss, roi, timestamp_resolved, version
+                        FROM archived_bets_backup
+                    """))
+
+                    conn.execute(text("DROP TABLE archived_bets_backup"))
+                    conn.commit()
+
+                    logger.info("archived_bets table migration completed successfully.")
+                else:
+                    logger.info("archived_bets table already has correct schema.")
+
+    except Exception as e:
+        logger.error(f"Error migrating archived_bets table: {e}")
         raise
 
 
