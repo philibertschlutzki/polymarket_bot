@@ -77,10 +77,17 @@ def generate_ai_decisions_file():  # noqa: C901
             try:
                 from dateutil import parser
 
-                return parser.parse(ts)
+                ts = parser.parse(ts)
             except Exception:
                 return datetime.min.replace(tzinfo=timezone.utc)
-        return ts or datetime.min.replace(tzinfo=timezone.utc)
+
+        if ts is None:
+            return datetime.min.replace(tzinfo=timezone.utc)
+
+        if ts.tzinfo is None:
+            ts = ts.replace(tzinfo=timezone.utc)
+
+        return ts
 
     active_bets_all.sort(key=get_ts, reverse=True)
     active_bets = active_bets_all[:50]
