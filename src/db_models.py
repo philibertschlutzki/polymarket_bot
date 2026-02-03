@@ -51,6 +51,9 @@ engine_args: Dict[str, Any] = {
 # Add PostgreSQL specific arguments only if using PostgreSQL
 if DATABASE_URL.startswith("postgresql"):
     engine_args.update({"pool_size": 5, "max_overflow": 10})
+else:
+    # SQLite: Allow multi-threaded access
+    engine_args.update({"connect_args": {"check_same_thread": False}})
 
 engine = create_engine(DATABASE_URL, **engine_args)
 
