@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-03 14:17:59 CET
+**Last Updated:** 2026-02-03 15:18:04 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 168 | 1,500 | 11.2% | 🟢 |
+| Today (RPD) | 183 | 1,500 | 12.2% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-3,653.12 |
-| Locked in Active Bets | $4,112.33 |
+| Available Capital | $-4,307.96 |
+| Locked in Active Bets | $4,767.17 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $4112.33 (411.2% of capital) |
-| Avg Position Size | $72.15 |
+| Total Exposure | $4767.17 (476.7% of capital) |
+| Avg Position Size | $76.89 |
 | Largest Position | $238.80 (23.9%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.028) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.025) |
 
 ---
-## 🎯 Active Bets (66)
+## 🎯 Active Bets (71)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -118,6 +118,11 @@
 | [Will Elon Musk post 215-239 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-2-february-4-215-239) | NO | $116.19 | 0.50 | 0.20 | -30% 🔴 | 60% | $+69.71 | 2026-02-04 | 1d | 🔴 |
 | [Will Olivier Faure win the 2027 French p...](https://polymarket.com/event/will-olivier-faure-win-the-2027-french-presidential-election) | NO | $154.92 | 0.50 | 0.10 | -40% 🔴 | 60% | $+123.94 | 2027-04-30 | 450d | 🟢 |
 | [Will Angers win the 2025–26 French Ligue...](https://polymarket.com/event/will-angers-win-the-202526-french-ligue-1) | NO | $236.70 | 0.50 | 0.00 | -50% 🔴 | 90% | $+236.22 | 2026-05-30 | 115d | 🟢 |
+| [Will there be exactly 0 confirmed VEI 4 ...](https://polymarket.com/event/will-there-be-exactly-0-confirmed-vei-4-or-higher-volcanic-eruptions-worldwide-in-2026) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-12-31 | 330d | 🟢 |
+| [Will the US next strike Iran on February...](https://polymarket.com/event/will-the-us-next-strike-iran-on-february-9-2026-et) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+77.94 | 2026-02-28 | 24d | 🟢 |
+| [Will US or Israel strike Iran first?](https://polymarket.com/event/will-us-or-israel-strike-iran-first) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-03-31 | 55d | 🟢 |
+| [Will OpenAI have the best AI model at th...](https://polymarket.com/event/will-openai-have-the-best-ai-model-at-the-end-of-february-2026) | NO | $108.25 | 0.50 | 0.25 | -25% 🔴 | 75% | $+54.13 | 2026-02-28 | 24d | 🟢 |
+| [Penguins vs. Islanders](https://polymarket.com/event/nhl-pit-nyi-2026-02-03) | YES | $212.18 | 0.50 | 0.99 | +49% 🟢 | 75% | $+207.93 | 2026-02-04 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
@@ -148,7 +153,11 @@
 - 🔴 **High Exposure**: "Will Elon Musk post 215-239 tw..." is 11.6% of capital
 - 🔴 **High Exposure**: "Will Olivier Faure win the 202..." is 15.5% of capital
 - 🔴 **High Exposure**: "Will Angers win the 2025–26 Fr..." is 23.7% of capital
-- 🟡 **Expiring Soon**: 18 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will there be exactly 0 confir..." is 14.6% of capital
+- 🔴 **High Exposure**: "Will the US next strike Iran o..." is 13.0% of capital
+- 🔴 **High Exposure**: "Will OpenAI have the best AI m..." is 10.8% of capital
+- 🔴 **High Exposure**: "Penguins vs. Islanders..." is 21.2% of capital
+- 🟡 **Expiring Soon**: 19 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -156,7 +165,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 66 |
+| Markets with Active Bets | 71 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
