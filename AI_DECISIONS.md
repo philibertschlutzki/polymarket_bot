@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-03 05:18:50 CET
+**Last Updated:** 2026-02-03 06:34:43 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -534,64 +534,122 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #33: Will the US next strike Iran on February 22, 2026 (ET)?
+
+**Decision:** YES @ 0.01 (Stake: $31.09)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 0.8%)
+- **Confidence Score:** 75.0%
+- **Edge:** +14.2%
+- **Expected Value:** $+590.62
+- **End Date:** 2026-02-28 01:00 CET
+
+**AI Reasoning:**
+> Die Wahrscheinlichkeit eines US-Angriffs auf iranischem Gebiet bis zum 22. Februar 2026 (ET) schätze ich als gering ein, aber nicht unmöglich. Mehrere Faktoren deuten auf eine erhöhte Spannung zwischen den USA und dem Iran hin, darunter eine verstärkte militärische Präsenz der USA in der Region, Drohungen von US-Präsident Trump und die Bereitschaft des Irans, auf jegliche Aggressionen zu reagieren. Es gibt auch Berichte über laufende Verhandlungen zwischen den USA und dem Iran sowie Bemühungen regionaler Mächte, eine Deeskalation zu erreichen. Die Tatsache, dass Gespräche stattfinden, deutet darauf hin, dass beide Seiten zumindest vorübergehend eine militärische Konfrontation vermeiden wollen. Allerdings sind die Gespräche fragil, und Trump hat gewarnt, dass 'schlimme Dinge' passieren könnten, wenn keine Einigung erzielt wird. Die Definition des Marktes ist sehr spezifisch, und die Anforderungen an die Beweislage (Konsens glaubwürdiger Berichte innerhalb von 48 Stunden) machen es unwahrscheinlicher, dass ein geheimer oder begrenzter Angriff als 'Ja' gewertet würde. Die militärische Aufrüstung der USA im Nahen Osten erhöht zwar die Wahrscheinlichkeit eines Konflikts, es gibt aber auch Anzeichen für diplomatische Bemühungen. Angesichts der laufenden Gespräche und der Bemühungen um eine Deeskalation halte ich einen US-Angriff auf den Iran bis zum 22. Februar für unwahrscheinlich. Der aktuelle Marktpreis von 0,75% erscheint deutlich zu niedrig, spiegelt aber wahrscheinlich die inhärente Unsicherheit wider.
+
+---
+
+### Bet #34: Over $30M committed to the Hurupay public sale?
+
+**Decision:** YES @ 0.04 (Stake: $45.07)
+
+**AI Analysis:**
+- **Estimated Probability:** 25.0% (vs Market: 4.4%)
+- **Confidence Score:** 70.0%
+- **Edge:** +20.6%
+- **Expected Value:** $+211.01
+- **End Date:** 2026-05-01 07:00 CEST
+
+**AI Reasoning:**
+> Hurupay is a promising project on MetaDAO with an uncapped ICO, but the current market price (4.40% 'Yes') suggests skepticism. While the project has potential, the crypto market is competitive, and ICOs carry inherent risks. A 25% probability reflects a conservative outlook given the available information.
+
+---
+
+### Bet #35: Will the US strike Cuba next?
+
+**Decision:** YES @ 0.01 (Stake: $27.72)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 0.8%)
+- **Confidence Score:** 60.0%
+- **Edge:** +14.2%
+- **Expected Value:** $+492.03
+- **End Date:** 2026-12-31 01:00 CET
+
+**AI Reasoning:**
+> Die Beziehungen zwischen den USA und Kuba sind angespannt, und die USA haben bereits aggressive Maßnahmen gegen Kuba ergriffen, was die Wahrscheinlichkeit eines Angriffs erhöht. Kuba ist jedoch militärisch vorbereitet, was die Wahrscheinlichkeit verringert. Gespräche könnten die Situation entspannen. Die Wahrscheinlichkeit wird auf 15% geschätzt, da ein begrenzter Angriff wahrscheinlicher ist als eine vollständige Invasion. Das Konfidenzniveau ist moderat, da die Situation von vielen Faktoren abhängt und schwer vorherzusagen ist.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (63)
+### Insufficient Edge (74)
 
-**Will the US strike Cuba next?...**
-*Analyzed: 2026-02-03 05:18*
-Market: 0.01 | AI: 0.00 | Edge: -0.6% | Conf: 60%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit von 1,15 % deutet auf eine sehr geringe Wahrscheinlichkeit hin. Ich schätze die Wahrscheinlichkeit sogar noch etw...
-
-**Will the US next strike Iran on February 22, 2026 (ET)?...**
-*Analyzed: 2026-02-03 05:18*
-Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 75%
-Reasoning: Die geopolitische Lage ist angespannt, aber es gibt auch Signale für mögliche Verhandlungen zwischen den USA und dem Iran. US-Präsident Trump hat in d...
+**Will SpaceX's public ticker be $SX?...**
+*Analyzed: 2026-02-03 06:34*
+Market: 0.02 | AI: 0.01 | Edge: -0.8% | Conf: 90%
+Reasoning: While there are many reports about a potential SpaceX IPO in 2026, there is no credible information about the ticker symbol. The current 'Yes' bid on ...
 
 **Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 05:18*
-Market: 0.02 | AI: 0.03 | Edge: +0.8% | Conf: 60%
-Reasoning: François Hollande had very low approval ratings during his presidency. While he has recently returned to the National Assembly as a deputy, his age an...
+*Analyzed: 2026-02-03 06:34*
+Market: 0.02 | AI: 0.03 | Edge: +1.0% | Conf: 60%
+Reasoning: François Hollande war ein unpopulärer Präsident und obwohl er Ambitionen zeigt und es Hinweise auf eine Kandidatur gibt, ist es sehr unwahrscheinlich,...
+
+**Will Elon Musk post 40-64 tweets from February 2 to February...**
+*Analyzed: 2026-02-03 06:34*
+Market: 0.05 | AI: 0.08 | Edge: +3.2% | Conf: 75%
+Reasoning: Elon Musk's recent tweeting activity has been significantly higher than the average required to reach between 40 and 64 tweets in 3 days. While his tw...
+
+**Will the Toronto Raptors win the NBA Eastern Conference Fina...**
+*Analyzed: 2026-02-03 06:34*
+Market: 0.05 | AI: 0.12 | Edge: +6.6% | Conf: 60%
+Reasoning: Die Raptors haben eine Chance, die Eastern Conference Finals zu erreichen, aber es ist ein schwieriges Unterfangen. Sie haben eine solide Mannschaft, ...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 05:18*
-Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 70%
-Reasoning: Brazil is a football powerhouse with a rich history and has qualified for the World Cup. However, the competition is fierce, and their recent performa...
-
-**Will the US next strike Iran on February 22, 2026 (ET)?...**
-*Analyzed: 2026-02-03 05:02*
-Market: 0.01 | AI: 0.07 | Edge: +6.2% | Conf: 70%
-Reasoning: Die Spannungen zwischen den USA und dem Iran sind hoch, aber es gibt auch diplomatische Bemühungen, die Situation zu deeskalieren. Ein Angriff ist mög...
-
-**Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 05:02*
-Market: 0.02 | AI: 0.01 | Edge: -1.0% | Conf: 70%
-Reasoning: Die Wahrscheinlichkeit, dass François Hollande die Präsidentschaftswahlen 2027 gewinnt, ist sehr gering. Hier ist die Begründung:*   **Geringe Popular...
+*Analyzed: 2026-02-03 06:34*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 65%
+Reasoning: Brasilien wird allgemein als einer der Favoriten für den Gewinn der FIFA Fussball-Weltmeisterschaft 2026 angesehen, mit einer talentierten Mannschaft ...
 
 **Will SpaceX's public ticker be $SX?...**
-*Analyzed: 2026-02-03 05:02*
-Market: 0.04 | AI: 0.04 | Edge: -0.5% | Conf: 70%
-Reasoning: Obwohl es eine hohe Wahrscheinlichkeit für einen SpaceX-Börsengang gibt (geschätzt über 70%), ist die Wahrscheinlichkeit, dass das Ticker-Symbol spezi...
-
-**Will the US next strike Iran on February 22, 2026 (ET)?...**
-*Analyzed: 2026-02-03 04:42*
-Market: 0.01 | AI: 0.04 | Edge: +3.2% | Conf: 70%
-Reasoning: Die Lage ist angespannt, aber es gibt diplomatische Bemühungen. Ein Angriff am 22. Februar ist unwahrscheinlich, aber nicht ausgeschlossen, falls die ...
+*Analyzed: 2026-02-03 06:16*
+Market: 0.02 | AI: 0.02 | Edge: -0.4% | Conf: 30%
+Reasoning: Ein Börsengang von SpaceX bis Ende 2027 erscheint wahrscheinlich, aber die Wahrscheinlichkeit, dass das Ticker-Symbol spezifisch '$SX' sein wird, ist ...
 
 **Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 04:42*
-Market: 0.02 | AI: 0.03 | Edge: +1.0% | Conf: 60%
-Reasoning: François Hollande faces significant challenges in winning the 2027 French presidential election. His past unpopularity, the fragmented political lands...
+*Analyzed: 2026-02-03 06:16*
+Market: 0.02 | AI: 0.07 | Edge: +5.0% | Conf: 70%
+Reasoning: François Hollande's historical unpopularity, the current market price, and the evolving political landscape in France suggest a low probability of him...
 
-**Will SpaceX's public ticker be $SX?...**
-*Analyzed: 2026-02-03 04:42*
-Market: 0.04 | AI: 0.10 | Edge: +5.6% | Conf: 60%
-Reasoning: Es gibt begrenzte Hinweise darauf, dass das Ticker Symbol von SpaceX '$SX' sein wird. Während es einige Spekulationen gibt, deuten andere Spekulatione...
+**Over $30M committed to the Hurupay public sale?...**
+*Analyzed: 2026-02-03 06:16*
+Market: 0.04 | AI: 0.10 | Edge: +5.6% | Conf: 75%
+Reasoning: Obwohl Hurupay ein interessantes Projekt mit Unterstützung von Microsoft und Bankless ist, deutet der aktuelle Polymarket-Preis von 4,40 % für 'Yes' a...
+
+**Will the Toronto Raptors win the NBA Eastern Conference Fina...**
+*Analyzed: 2026-02-03 06:16*
+Market: 0.06 | AI: 0.01 | Edge: -5.0% | Conf: 60%
+Reasoning: Die Toronto Raptors sind ein NBA-Team, aber ihre Chancen, die Eastern Conference Finals 2025-2026 zu gewinnen, sind gering. Der aktuelle Marktpreis vo...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 06:16*
+Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
+Reasoning: Brasilien gehört traditionell zu den Favoriten bei Weltmeisterschaften, und die Seleção hat sich für die WM 2026 qualifiziert. Brasilien ist mit 5 Tit...
 
 
-### Ai Analysis Failed (37)
+### Ai Analysis Failed (26)
+
+**Will the US strike Cuba next?...**
+*Analyzed: 2026-02-03 06:16*
+Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will the US strike Cuba next?...**
+*Analyzed: 2026-02-03 05:38*
+Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will SpaceX's public ticker be $SX?...**
 *Analyzed: 2026-02-03 05:18*
@@ -631,16 +689,6 @@ Reasoning: Gemini API error or timeout...
 **Will François Hollande win the 2027 French presidential elec...**
 *Analyzed: 2026-02-03 02:08*
 Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**76ers vs. Clippers: O/U 218.5...**
-*Analyzed: 2026-02-03 02:08*
-Market: 0.50 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Alphabet (GOOGL) beat quarterly earnings?...**
-*Analyzed: 2026-02-03 01:41*
-Market: 0.97 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 
