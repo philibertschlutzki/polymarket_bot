@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-02 21:54:28 CET
+**Last Updated:** 2026-02-03 08:14:25 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-02 20:08:03 CET |
-| Next Run | 2026-02-02 20:23:03 CET |
+| Last Run | 2026-02-03 07:40:19 CET |
+| Next Run | 2026-02-03 07:55:19 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 4 | 15 | 27% | 🟢 |
-| Today (RPD) | 71 | 1,500 | 4.7% | 🟢 |
-| Current Minute (TPM) | 4,953 | 1,000,000 | 0.50% | 🟢 |
+| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
+| Today (RPD) | 93 | 1,500 | 6.2% | 🟢 |
+| Current Minute (TPM) | 1,342 | 1,000,000 | 0.13% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-887.68 |
-| Locked in Active Bets | $1,799.39 |
+| Available Capital | $-1,581.18 |
+| Locked in Active Bets | $2,040.39 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1955.47 (195.5% of capital) |
-| Avg Position Size | $55.87 |
+| Total Exposure | $2040.39 (204.0% of capital) |
+| Avg Position Size | $53.69 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.041) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.038) |
 
 ---
-## 🎯 Active Bets (44)
+## 🎯 Active Bets (47)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -94,8 +94,11 @@
 | [Will Alphabet (GOOGL) beat quarterly ear...](https://polymarket.com/event/googl-quarterly-earnings-gaap-eps-02-04-2026-2pt64) | NO | $71.87 | 0.97 | 0.65 | -32% 🔴 | 75% | $+859.80 | 2026-02-04 | 1d | 🔴 |
 | [Will the US next strike Iran on February...](https://polymarket.com/event/will-the-us-next-strike-iran-on-february-18-2026-et) | YES | $30.12 | 0.01 | 0.15 | +14% 🟡 | 70% | $+615.34 | 2026-02-28 | 24d | 🟢 |
 | [Will the US next strike Iran on February...](https://polymarket.com/event/will-the-us-next-strike-iran-on-february-22-2026-et) | YES | $31.09 | 0.01 | 0.15 | +14% 🟡 | 75% | $+590.62 | 2026-02-28 | 24d | 🟢 |
-| [Over $30M committed to the Hurupay publi...](https://polymarket.com/event/over-30m-committed-to-the-hurupay-public-sale-273-384) | YES | $45.07 | 0.04 | 0.25 | +21% 🟢 | 70% | $+211.01 | 2026-05-01 | 87d | 🟢 |
+| [Over $30M committed to the Hurupay publi...](https://polymarket.com/event/over-30m-committed-to-the-hurupay-public-sale-273-384) | YES | $45.07 | 0.04 | 0.25 | +21% 🟢 | 70% | $+211.01 | 2026-05-01 | 86d | 🟢 |
 | [Will the US strike Cuba next?](https://polymarket.com/event/will-the-us-strike-cuba-next-519) | YES | $27.72 | 0.01 | 0.15 | +14% 🟡 | 60% | $+492.03 | 2026-12-31 | 330d | 🟢 |
+| [Will Elon Musk post 40-64 tweets from Fe...](https://polymarket.com/event/elon-musk-of-tweets-february-2-february-4-40-64) | YES | $32.00 | 0.05 | 0.20 | +15% 🟡 | 65% | $+98.62 | 2026-02-04 | 1d | 🔴 |
+| [Will Elon Musk post 320-339 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-27-february-3-320-339) | YES | $24.45 | 0.04 | 0.15 | +11% 🟡 | 70% | $+73.34 | 2026-02-03 | 0d | 🔴 |
+| [Will the next Dutch government be GL/Pvd...](https://polymarket.com/event/will-the-next-dutch-government-be-glpvda-vvd-d66) | YES | $28.47 | 0.00 | 0.15 | +15% 🟡 | 60% | $+1191.64 | Unknown | N/A | 🔵 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
@@ -116,7 +119,7 @@
 - 🔴 **High Exposure**: "Natural Disaster in 2026?..." is 14.1% of capital
 - 🔴 **High Exposure**: "Will Ethereum dip to $1,000 by..." is 12.2% of capital
 - 🔴 **High Exposure**: "Will Claude 5 be released by M..." is 11.8% of capital
-- 🟡 **Expiring Soon**: 6 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 8 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -124,7 +127,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 44 |
+| Markets with Active Bets | 47 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
