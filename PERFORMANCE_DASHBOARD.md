@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-03 09:25:14 CET
+**Last Updated:** 2026-02-03 11:16:57 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-03 09:01:41 CET |
-| Next Run | 2026-02-03 09:16:41 CET |
+| Last Run | 2026-02-03 10:14:28 CET |
+| Next Run | 2026-02-03 10:29:28 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
-| Today (RPD) | 119 | 1,500 | 7.9% | 🟢 |
-| Current Minute (TPM) | 876 | 1,000,000 | 0.09% | 🟢 |
+| Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
+| Today (RPD) | 133 | 1,500 | 8.9% | 🟢 |
+| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-1,939.61 |
-| Locked in Active Bets | $2,398.82 |
+| Available Capital | $-2,159.48 |
+| Locked in Active Bets | $2,618.69 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $2398.82 (239.9% of capital) |
-| Avg Position Size | $54.52 |
+| Total Exposure | $2618.69 (261.9% of capital) |
+| Avg Position Size | $55.72 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.033) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.031) |
 
 ---
-## 🎯 Active Bets (53)
+## 🎯 Active Bets (56)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -105,6 +105,9 @@
 | [Zama FDV above $300M one day after launc...](https://polymarket.com/event/zama-fdv-above-300m-one-day-after-launch) | NO | $37.69 | 0.79 | 0.65 | -14% 🔴 | 75% | $+24.24 | 2027-01-01 | 331d | 🟢 |
 | [Will Silver (SI) hit (LOW) $75 by end of...](https://polymarket.com/event/will-silver-si-hit-low-75-by-end-of-february-739-471-473-237-171) | NO | $67.70 | 0.61 | 0.40 | -22% 🔴 | 60% | $+37.81 | 2026-02-28 | 24d | 🟢 |
 | [Will Amazon be the largest company in th...](https://polymarket.com/event/will-amazon-be-the-largest-company-in-the-world-by-market-cap-on-december-31-376) | YES | $29.67 | 0.01 | 0.15 | +14% 🟡 | 70% | $+438.80 | 2026-12-31 | 330d | 🟢 |
+| [LoL: Invictus Gaming vs JD Gaming (BO3) ...](https://polymarket.com/event/lol-ig1-jdg-2026-02-03) | YES | $110.52 | 0.28 | 0.65 | +36% 🟢 | 75% | $+141.55 | 2026-02-03 | 0d | 🔴 |
+| [Will the US next strike Iran on February...](https://polymarket.com/event/will-the-us-next-strike-iran-on-february-13-2026-et) | YES | $22.58 | 0.01 | 0.12 | +11% 🟡 | 70% | $+178.14 | 2026-02-28 | 24d | 🟢 |
+| [Will Elon Musk post 460-479 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-460-479) | YES | $86.77 | 0.00 | 0.45 | +45% 🟢 | 60% | $+11069.12 | 2026-02-06 | 3d | 🟡 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
@@ -126,7 +129,8 @@
 - 🔴 **High Exposure**: "Will Ethereum dip to $1,000 by..." is 12.2% of capital
 - 🔴 **High Exposure**: "Will Claude 5 be released by M..." is 11.8% of capital
 - 🔴 **High Exposure**: "Will Elon Musk post 440-459 tw..." is 15.6% of capital
-- 🟡 **Expiring Soon**: 10 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "LoL: Invictus Gaming vs JD Gam..." is 11.1% of capital
+- 🟡 **Expiring Soon**: 12 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -134,7 +138,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 53 |
+| Markets with Active Bets | 56 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
