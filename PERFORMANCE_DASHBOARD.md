@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-03 20:48:39 CET
+**Last Updated:** 2026-02-03 21:48:50 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 292 | 1,500 | 19.5% | 🟢 |
+| Today (RPD) | 316 | 1,500 | 21.1% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-6,462.87 |
-| Locked in Active Bets | $6,400.27 |
+| Available Capital | $-7,363.97 |
+| Locked in Active Bets | $7,301.37 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $6400.27 (640.0% of capital) |
-| Avg Position Size | $85.34 |
+| Total Exposure | $7301.37 (730.1% of capital) |
+| Avg Position Size | $87.97 |
 | Largest Position | $238.80 (23.9%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.019) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.017) |
 
 ---
-## 🎯 Active Bets (91)
+## 🎯 Active Bets (99)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -136,6 +136,14 @@
 | [Will the price of Bitcoin be above $74,0...](https://polymarket.com/event/bitcoin-above-74k-on-february-6) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-06 | 2d | 🔴 |
 | [Miami (OH) RedHawks vs. Buffalo Bulls: O...](https://polymarket.com/event/cbb-miaoh-buf-2026-02-03-total-163pt5) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-04 | 0d | 🔴 |
 | [Will Carlos Sainz Jr. be the 2026 F1 Dri...](https://polymarket.com/event/will-carlos-sainz-jr-be-the-2026-f1-drivers-champion) | NO | $173.34 | 0.50 | 0.07 | -43% 🔴 | 65% | $+149.07 | 2026-12-06 | 305d | 🟢 |
+| [Knicks vs. Wizards](https://polymarket.com/event/nba-nyk-was-2026-02-03) | YES | $118.59 | 0.50 | 0.75 | +25% 🟢 | 90% | $+59.29 | 2026-02-04 | 0d | 🔴 |
+| [Will Bitcoin dip to $70,000 in February?](https://polymarket.com/event/will-bitcoin-dip-to-70k-in-february-2026) | NO | $60.47 | 0.50 | 0.35 | -15% 🔴 | 65% | $+18.14 | 2026-03-01 | 25d | 🟢 |
+| [Will the government shutdown last 6 days...](https://polymarket.com/event/will-the-government-shutdown-last-6-days-or-more-888) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+77.94 | 2026-03-31 | 55d | 🟢 |
+| [Will the US next strike Iran on February...](https://polymarket.com/event/will-the-us-next-strike-iran-on-february-10-2026-et) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-28 | 24d | 🟢 |
+| [US strikes Iran by February 4, 2026?](https://polymarket.com/event/us-strikes-iran-by-february-4-2026) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-04 | 0d | 🔴 |
+| [Will Elon Musk post 140-164 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-2-february-4-140-164) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-04 | 0d | 🔴 |
+| [Will the US next strike Iran on February...](https://polymarket.com/event/will-the-us-next-strike-iran-on-february-11-2026-et) | NO | $204.98 | 0.50 | 0.01 | -49% 🔴 | 70% | $+200.88 | 2026-02-28 | 24d | 🟢 |
+| [Transylvania Open: Yue Yuan vs Sara Sorr...](https://polymarket.com/event/wta-yuan-tormo-2026-02-03) | YES | $115.24 | 0.50 | 0.75 | +25% 🟢 | 85% | $+57.62 | 2026-02-10 | 6d | 🟡 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
@@ -185,7 +193,12 @@
 - 🔴 **High Exposure**: "Will Avengers: Doomsday be the..." is 14.6% of capital
 - 🔴 **High Exposure**: "Will Ethereum dip to $800 in F..." is 19.7% of capital
 - 🔴 **High Exposure**: "Will Carlos Sainz Jr. be the 2..." is 17.3% of capital
-- 🟡 **Expiring Soon**: 22 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Knicks vs. Wizards..." is 11.9% of capital
+- 🔴 **High Exposure**: "Will the government shutdown l..." is 13.0% of capital
+- 🔴 **High Exposure**: "US strikes Iran by February 4,..." is 14.6% of capital
+- 🔴 **High Exposure**: "Will the US next strike Iran o..." is 20.5% of capital
+- 🔴 **High Exposure**: "Transylvania Open: Yue Yuan vs..." is 11.5% of capital
+- 🟡 **Expiring Soon**: 26 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -193,7 +206,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 91 |
+| Markets with Active Bets | 99 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
