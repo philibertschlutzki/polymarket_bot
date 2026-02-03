@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-03 15:18:04 CET
+**Last Updated:** 2026-02-03 16:48:09 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 183 | 1,500 | 12.2% | 🟢 |
+| Today (RPD) | 202 | 1,500 | 13.5% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-4,307.96 |
-| Locked in Active Bets | $4,767.17 |
+| Available Capital | $-4,556.50 |
+| Locked in Active Bets | $5,015.71 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $4767.17 (476.7% of capital) |
-| Avg Position Size | $76.89 |
+| Total Exposure | $5015.71 (501.6% of capital) |
+| Avg Position Size | $77.16 |
 | Largest Position | $238.80 (23.9%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.025) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.024) |
 
 ---
-## 🎯 Active Bets (71)
+## 🎯 Active Bets (74)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -123,6 +123,9 @@
 | [Will US or Israel strike Iran first?](https://polymarket.com/event/will-us-or-israel-strike-iran-first) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-03-31 | 55d | 🟢 |
 | [Will OpenAI have the best AI model at th...](https://polymarket.com/event/will-openai-have-the-best-ai-model-at-the-end-of-february-2026) | NO | $108.25 | 0.50 | 0.25 | -25% 🔴 | 75% | $+54.13 | 2026-02-28 | 24d | 🟢 |
 | [Penguins vs. Islanders](https://polymarket.com/event/nhl-pit-nyi-2026-02-03) | YES | $212.18 | 0.50 | 0.99 | +49% 🟢 | 75% | $+207.93 | 2026-02-04 | 0d | 🔴 |
+| [Will the price of Solana be above $120 o...](https://polymarket.com/event/solana-above-120-on-february-3) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-03 | 0d | 🔴 |
+| [Will the US next strike Iran on February...](https://polymarket.com/event/will-the-us-next-strike-iran-on-february-14-2026-et) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-28 | 24d | 🟢 |
+| [Will Brazil win the 2026 FIFA World Cup?](https://polymarket.com/event/will-brazil-win-the-2026-fifa-world-cup-183) | NO | $64.95 | 0.50 | 0.35 | -15% 🔴 | 75% | $+19.49 | 2026-07-20 | 166d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
@@ -157,7 +160,8 @@
 - 🔴 **High Exposure**: "Will the US next strike Iran o..." is 13.0% of capital
 - 🔴 **High Exposure**: "Will OpenAI have the best AI m..." is 10.8% of capital
 - 🔴 **High Exposure**: "Penguins vs. Islanders..." is 21.2% of capital
-- 🟡 **Expiring Soon**: 19 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the US next strike Iran o..." is 12.6% of capital
+- 🟡 **Expiring Soon**: 20 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -165,7 +169,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 71 |
+| Markets with Active Bets | 74 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
