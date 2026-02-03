@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-03 01:41:38 CET
+**Last Updated:** 2026-02-03 02:51:10 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -310,23 +310,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #19: Jets vs. Stars
-
-**Decision:** YES @ 0.40 (Stake: $89.15)
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 40.5%)
-- **Confidence Score:** 75.0%
-- **Edge:** +24.5%
-- **Expected Value:** $+53.93
-- **End Date:** 2026-02-03 02:30 CET
-
-**AI Reasoning:**
-> Die Dallas Stars sind das stärkere Team mit einer besseren Bilanz und spielen zu Hause. Die Wettquoten spiegeln dies wider, da sie als Favorit gelten. Obwohl die Jets in ihrem letzten Spiel gewonnen haben, haben die Stars die letzten vier Spiele gewonnen. Die Wahrscheinlichkeit, dass die Stars gewinnen, ist höher als die implizite Wahrscheinlichkeit des aktuellen Marktpreises von 40,50%.
-
----
-
-### Bet #20: Will Elon Musk post 360-379 tweets from January 30 to February 6, 2026?
+### Bet #19: Will Elon Musk post 360-379 tweets from January 30 to February 6, 2026?
 
 **Decision:** YES @ 0.16 (Stake: $49.96)
 
@@ -342,7 +326,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #21: Will Ethereum dip to $1,400 in February?
+### Bet #20: Will Ethereum dip to $1,400 in February?
 
 **Decision:** YES @ 0.04 (Stake: $23.00)
 
@@ -358,7 +342,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #22: Will Claude 5 be released by March 31, 2026?
+### Bet #21: Will Claude 5 be released by March 31, 2026?
 
 **Decision:** NO @ 0.80 (Stake: $117.66)
 
@@ -374,7 +358,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #23: Will Apple be the third-largest company in the world by market cap on February 28?
+### Bet #22: Will Apple be the third-largest company in the world by market cap on February 28?
 
 **Decision:** NO @ 0.86 (Stake: $50.15)
 
@@ -390,7 +374,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #24: Will Elon Musk post 220-239 tweets from January 30 to February 6, 2026?
+### Bet #23: Will Elon Musk post 220-239 tweets from January 30 to February 6, 2026?
 
 **Decision:** YES @ 0.01 (Stake: $27.38)
 
@@ -406,23 +390,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #25: Spread: Timberwolves (-7.5)
-
-**Decision:** YES @ 0.50 (Stake: $63.42)
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 50.5%)
-- **Confidence Score:** 75.0%
-- **Edge:** +14.5%
-- **Expected Value:** $+18.21
-- **End Date:** 2026-02-03 01:30 CET
-
-**AI Reasoning:**
-> Basierend auf den aktuellen Informationen und Vorhersagen für das Spiel Minnesota Timberwolves gegen Memphis Grizzlies am 2. Februar 2026 um 19:30 Uhr ET, hier ist meine Analyse:*   **Punktverteilung und Vorhersagen:** Die Timberwolves sind mit -7,5 Punkten favorisiert. Einige Quellen prognostizieren einen Sieg der Timberwolves, der die Punktverteilung abdeckt. Dimers.com prognostiziert eine Gewinnwahrscheinlichkeit von 72 % für die Timberwolves. Covers.com prognostiziert einen 118-109 Sieg der Timberwolves, was die Punktverteilung abdecken würde.*   **Team-Form:** Die Timberwolves haben eine Bilanz von 31-19 und haben ihre letzten vier Spiele gewonnen, wobei jeder dieser Siege mit mehr als 10 Punkten Vorsprung erzielt wurde. Die Grizzlies kämpfen und haben sechs Spiele in Folge verloren.*   **Verletzungen:** Mehrere wichtige Spieler der Grizzlies fehlen verletzungsbedingt, darunter Ja Morant, Zach Edey und Santi Aldama. Anthony Edwards und Julius Randle von den Timberwolves sind fraglich. Das Fehlen von Morant und anderen wichtigen Spielern schwächt die Grizzlies erheblich.*   **Head-to-Head-Ergebnisse:** Die Teams haben in dieser Saison ihre ersten beiden Spiele aufgeteilt, wobei Memphis am 17. Dezember in Minneapolis gewann. Die Timberwolves haben das letzte Spiel am 31. Januar mit 131:114 in Memphis gewonnen.*   **Statistische Trends:** Die Timberwolves erzielen im Schnitt 119,3 Punkte pro Spiel, während die Grizzlies 116,6 Punkte zulassen. Die Timberwolves haben eine höhere Feldwurfquote als die Grizzlies (48,2 % gegenüber 45,4 %).In Anbetracht dieser Faktoren scheint es wahrscheinlich, dass die Timberwolves das Spiel gegen die Grizzlies mit mindestens 8 Punkten gewinnen werden. Es gibt jedoch immer Unsicherheiten bei NBA-Spielen, insbesondere in Bezug auf Verletzungen und die Tagesform der einzelnen Spieler. Unter Berücksichtigung dieser Informationen schätze ich die Wahrscheinlichkeit, dass die Timberwolves mit 8 oder mehr Punkten gewinnen, auf 65 %. Die prognostizierte Gewinnwahrscheinlichkeit von Dimers.com von 72% stützt diese Einschätzung. Die Tatsache, dass die Timberwolves in dieser Saison bei 23 Spielen, in denen sie mit 7,5 oder mehr Punkten favorisiert waren, nur 10-13 ATS waren, dämpft die Wahrscheinlichkeit etwas. Die aktuelle Quote von Polymarket von 50,50 % scheint daher etwas niedrig zu sein.}
-
----
-
-### Bet #26: Weber State Wildcats vs. Sacramento State Hornets: O/U 163.5
+### Bet #24: Weber State Wildcats vs. Sacramento State Hornets: O/U 163.5
 
 **Decision:** YES @ 0.51 (Stake: $61.86)
 
@@ -438,7 +406,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #27: Will Israel strike Gaza on February 2, 2026?
+### Bet #25: Will Israel strike Gaza on February 2, 2026?
 
 **Decision:** YES @ 0.20 (Stake: $39.22)
 
@@ -454,7 +422,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #28: Will Ethereum reach $3,200 in February?
+### Bet #26: Will Ethereum reach $3,200 in February?
 
 **Decision:** YES @ 0.08 (Stake: $25.33)
 
@@ -470,7 +438,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #29: Will Chong Won-oh win the 2026 Seoul Mayoral Election
+### Bet #27: Will Chong Won-oh win the 2026 Seoul Mayoral Election
 
 **Decision:** NO @ 0.58 (Stake: $75.73)
 
@@ -486,7 +454,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #30: Will Anthropic have the best AI model at the end of February 2026?
+### Bet #28: Will Anthropic have the best AI model at the end of February 2026?
 
 **Decision:** YES @ 0.06 (Stake: $41.83)
 
@@ -502,7 +470,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #31: Will Ethereum reach $3,600 in February?
+### Bet #29: Will Ethereum reach $3,600 in February?
 
 **Decision:** YES @ 0.03 (Stake: $23.96)
 
@@ -518,19 +486,51 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #32: Spread: Timberwolves (-6.5)
+### Bet #30: Israel x Iran ceasefire broken by March 31, 2026?
 
-**Decision:** YES @ 0.54 (Stake: $51.77)
+**Decision:** YES @ 0.40 (Stake: $86.13)
 
 **AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 54.0%)
-- **Confidence Score:** 75.0%
-- **Edge:** +11.0%
-- **Expected Value:** $+10.55
-- **End Date:** 2026-02-03 01:30 CET
+- **Estimated Probability:** 65.0% (vs Market: 40.5%)
+- **Confidence Score:** 70.0%
+- **Edge:** +24.5%
+- **Expected Value:** $+52.10
+- **End Date:** 2026-03-31 02:00 CEST
 
 **AI Reasoning:**
-> Die Timberwolves sind Favorit mit einer Punktverteilung von -6 bis -7.5. Sie haben die Grizzlies kürzlich mit 17 Punkten geschlagen, aber Anthony Edwards' Status ist ungewiss. Die Grizzlies haben wichtige Verletzungen. Der aktuelle Marktpreis erscheint etwas niedrig im Vergleich zu den verfügbaren Informationen, rechtfertigt aber keine extrem hohe Wahrscheinlichkeit aufgrund der Unsicherheiten.
+> Die Beziehungen zwischen Israel und Iran sind weiterhin angespannt, und es gab in der Vergangenheit direkte militärische Auseinandersetzungen. Trotz diplomatischer Bemühungen und eines bestehenden Waffenstillstands ist die Wahrscheinlichkeit eines erneuten Konflikts aufgrund des ungelösten Streits um das iranische Atomprogramm und der aggressiven Rhetorik beider Seiten relativ hoch. Ein israelischer oder iranischer Angriff bis zum 31. März 2026 ist wahrscheinlich, aber nicht sicher.
+
+---
+
+### Bet #31: Will Chelsea finish in 2nd place in the 2025-26 English Premier League?
+
+**Decision:** YES @ 0.03 (Stake: $23.96)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 3.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** +12.0%
+- **Expected Value:** $+95.83
+- **End Date:** 2026-05-27 02:00 CEST
+
+**AI Reasoning:**
+> Obwohl Chelsea Fortschritte gemacht hat und das Potenzial für eine Top-4-Platzierung besitzt, ist der Sprung auf den 2. Platz angesichts der starken Konkurrenz durch Teams wie Manchester City, Arsenal und Liverpool eine größere Herausforderung. Die Wettquoten vom August 2025 deuteten auf eine implizierte Wahrscheinlichkeit von 25 % für eine Top-2-Platzierung hin, aber die aktuelle Teamleistung und die Vorhersagen lassen eine etwas konservativere Schätzung ratsam erscheinen. Daher erscheint eine Wahrscheinlichkeit von 15 % realistisch, wobei die Unsicherheit aufgrund der Dynamik des Fußballsports und unvorhergesehener Faktoren wie Verletzungen oder Trainerwechsel besteht.
+
+---
+
+### Bet #32: Will Alphabet (GOOGL) beat quarterly earnings?
+
+**Decision:** NO @ 0.97 (Stake: $71.87)
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 97.3%)
+- **Confidence Score:** 75.0%
+- **Edge:** -32.3%
+- **Expected Value:** $+859.80
+- **End Date:** 2026-02-04 23:00 CET
+
+**AI Reasoning:**
+> Der aktuelle Marktpreis von 97,30 % impliziert eine sehr hohe Wahrscheinlichkeit, dass Alphabet die Konsensschätzung von 2,64 $ GAAP EPS übertreffen wird.  Allerdings ist es wichtig, dies kritisch zu bewerten und nicht blindlings dem Markt zu folgen.  Eine so hohe implizite Wahrscheinlichkeit deutet darauf hin, dass der Markt möglicherweise übermäßig optimistisch ist. Um eine fundiertere Einschätzung vorzunehmen, ist es notwendig, weitere Faktoren zu berücksichtigen, wie z. B. die allgemeine Wirtschaftslage, die jüngsten Leistungen von Alphabet, Analystenprognosen (über die Seeking Alpha-Konsensschätzung hinaus) und alle unternehmensspezifischen Nachrichten, die sich auf die Erträge auswirken könnten. Aufgrund fehlender Informationen zu diesen Faktoren schätze ich die Wahrscheinlichkeit konservativer auf 65% und die Konfidenz auf 75%, da die reine Beurteilung der Marktwahrscheinlichkeit riskant ist.
 
 ---
 
@@ -538,60 +538,27 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (49)
+### Ai Analysis Failed (52)
 
-**Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 01:41*
-Market: 0.02 | AI: 0.01 | Edge: -1.0% | Conf: 60%
-Reasoning: François Hollande war während seiner Amtszeit sehr unbeliebt und die politische Landschaft in Frankreich hat sich seitdem weiter nach rechts verschobe...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-03 01:41*
-Market: 0.03 | AI: 0.04 | Edge: +0.8% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis deutet auf eine sehr geringe Wahrscheinlichkeit hin, dass Chelsea Zweiter wird (3.15%). Die verfügbaren Suchergebnisse bestäti...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 01:41*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
-Reasoning: Basierend auf den aktuellen FIFA-Weltrangliste liegt Brasilien auf Platz 5. Historisch gesehen ist Brasilien mit fünf Weltmeistertiteln das erfolgreic...
+**Will the Los Angeles Lakers win the NBA Western Conference F...**
+*Analyzed: 2026-02-03 02:51*
+Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **76ers vs. Clippers: O/U 218.5...**
-*Analyzed: 2026-02-03 01:41*
-Market: 0.51 | AI: 0.58 | Edge: +7.0% | Conf: 75%
-Reasoning: Beide Teams haben im Durchschnitt eine hohe Punktzahl. Joel Embiid wird wahrscheinlich spielen. Trotz der Abwesenheit von Paul George und der fraglich...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-03 01:09*
-Market: 0.04 | AI: 0.10 | Edge: +6.4% | Conf: 65%
-Reasoning: Die Wahrscheinlichkeit, dass Chelsea in der Saison 2025/26 den zweiten Platz in der Premier League belegt, wird auf etwa 10 % geschätzt. Mehrere Fakto...
-
-**Will the Minnesota Timberwolves win the NBA Western Conferen...**
-*Analyzed: 2026-02-03 01:09*
-Market: 0.04 | AI: 0.08 | Edge: +4.4% | Conf: 70%
-Reasoning: Die Timberwolves haben in den letzten Jahren eine gute Leistung gezeigt und waren in den Western Conference Finals. Allerdings gibt es starke Konkurre...
+*Analyzed: 2026-02-03 02:31*
+Market: 0.50 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 00:40*
-Market: 0.02 | AI: 0.02 | Edge: +0.2% | Conf: 60%
-Reasoning: François Hollande is considering running for president in 2027, however, his historical unpopularity and the changing political landscape of France ma...
+*Analyzed: 2026-02-03 02:08*
+Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-03 00:40*
-Market: 0.03 | AI: 0.07 | Edge: +3.9% | Conf: 70%
-Reasoning: Chelsea ist ein starkes Team, aber die Konkurrenz in der Premier League ist groß. Der aktuelle Marktpreis spiegelt die Herausforderungen wider, aber C...
-
-**Will the Minnesota Timberwolves win the NBA Western Conferen...**
-*Analyzed: 2026-02-03 00:40*
-Market: 0.04 | AI: 0.06 | Edge: +2.4% | Conf: 70%
-Reasoning: Die Timberwolves sind ein starkes Team mit einem aufstrebenden Superstar in Anthony Edwards und Playoff-Erfahrung. Allerdings ist die Konkurrenz in de...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 00:40*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 70%
-Reasoning: Brasiliens aktuelle Marktwahrscheinlichkeit auf Polymarket liegt bei 9,50%. Laut Vegas Insider vom 29. Januar 2026 gehören Brasilien und Argentinien m...
-
-
-### Ai Analysis Failed (50)
+**76ers vs. Clippers: O/U 218.5...**
+*Analyzed: 2026-02-03 02:08*
+Market: 0.50 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will Alphabet (GOOGL) beat quarterly earnings?...**
 *Analyzed: 2026-02-03 01:41*
@@ -623,33 +590,58 @@ Reasoning: Gemini API error or timeout...
 Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-03 00:14*
-Market: 0.38 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
 
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 23:46*
-Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+### Insufficient Edge (48)
 
-**Will Ethereum reach $3,600 in February?...**
-*Analyzed: 2026-02-02 23:46*
-Market: 0.03 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+**Will François Hollande win the 2027 French presidential elec...**
+*Analyzed: 2026-02-03 02:51*
+Market: 0.03 | AI: 0.03 | Edge: +0.4% | Conf: 70%
+Reasoning: Die Wahrscheinlichkeit, dass François Hollande die französische Präsidentschaftswahl 2027 gewinnt, ist gering. Hier ist die Begründung:*   **Geringe P...
+
+**Will SpaceX's public ticker be $SX?...**
+*Analyzed: 2026-02-03 02:51*
+Market: 0.04 | AI: 0.05 | Edge: +0.5% | Conf: 70%
+Reasoning: Obwohl es keine definitive Möglichkeit gibt, das Börsenkürzel vorherzusagen, hier ist die Begründung für die Wahrscheinlichkeitsschätzung:*   **Gering...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 23:46*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
+*Analyzed: 2026-02-03 02:51*
+Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
+Reasoning: Brasilien gehört zwar immer zu den Favoriten, aber ihre letzten Leistungen bei Weltmeisterschaften waren nicht berauschend. Sie erreichten seit 2002 n...
 
+**Will Alphabet (GOOGL) beat quarterly earnings?...**
+*Analyzed: 2026-02-03 02:31*
+Market: 0.97 | AI: 0.97 | Edge: -0.3% | Conf: 85%
+Reasoning: The current market price of 97.30% suggests a high likelihood of Alphabet beating earnings expectations. Analysts generally expect Alphabet to beat ex...
 
-### Negative Expected Value (1)
+**Will François Hollande win the 2027 French presidential elec...**
+*Analyzed: 2026-02-03 02:31*
+Market: 0.03 | AI: 0.03 | Edge: +0.4% | Conf: 60%
+Reasoning: François Hollande's chances of winning the 2027 French presidential election are estimated to be low due to his past unpopularity and the current frag...
 
-**Will the price of Solana be above $120 on February 2?...**
-*Analyzed: 2026-02-02 17:53*
-Market: 0.00 | AI: 0.15 | Edge: +15.0% | Conf: 75%
-Reasoning: Der Preis von Solana liegt derzeit bei etwa 103-105 $. Der Trend ist rückläufig, die Marktstimmung ist negativ und die technische Analyse deutet auf w...
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 02:31*
+Market: 0.10 | AI: 0.11 | Edge: +1.5% | Conf: 75%
+Reasoning: Brasilien gehört zu den Favoriten für den Gewinn der FIFA Fussball-Weltmeisterschaft 2026. Mehrere Quellen nennen Brasilien als einen der Top-Anwärter...
+
+**Will Alphabet (GOOGL) beat quarterly earnings?...**
+*Analyzed: 2026-02-03 02:08*
+Market: 0.97 | AI: 0.95 | Edge: -2.3% | Conf: 85%
+Reasoning: Alphabet hat in der Vergangenheit die Erwartungen übertroffen, insbesondere im letzten Quartal (Q3 2025). Google Cloud und AI treiben ein erhebliches ...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 02:08*
+Market: 0.10 | AI: 0.10 | Edge: +0.0% | Conf: 75%
+Reasoning: Basierend auf den aktuellen Wettquoten und FIFA-Rankings hat Brasilien eine Chance, die FIFA Fussball-Weltmeisterschaft 2026 zu gewinnen, aber es gibt...
+
+**Will François Hollande win the 2027 French presidential elec...**
+*Analyzed: 2026-02-03 01:41*
+Market: 0.02 | AI: 0.01 | Edge: -1.0% | Conf: 60%
+Reasoning: François Hollande war während seiner Amtszeit sehr unbeliebt und die politische Landschaft in Frankreich hat sich seitdem weiter nach rechts verschobe...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-03 01:41*
+Market: 0.03 | AI: 0.04 | Edge: +0.8% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis deutet auf eine sehr geringe Wahrscheinlichkeit hin, dass Chelsea Zweiter wird (3.15%). Die verfügbaren Suchergebnisse bestäti...
 
 
 ## 📊 Historical Analysis
