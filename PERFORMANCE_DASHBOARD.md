@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-03 08:14:25 CET
+**Last Updated:** 2026-02-03 09:25:14 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-03 07:40:19 CET |
-| Next Run | 2026-02-03 07:55:19 CET |
+| Last Run | 2026-02-03 09:01:41 CET |
+| Next Run | 2026-02-03 09:16:41 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -20,8 +20,8 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
-| Today (RPD) | 93 | 1,500 | 6.2% | 🟢 |
-| Current Minute (TPM) | 1,342 | 1,000,000 | 0.13% | 🟢 |
+| Today (RPD) | 119 | 1,500 | 7.9% | 🟢 |
+| Current Minute (TPM) | 876 | 1,000,000 | 0.09% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-1,581.18 |
-| Locked in Active Bets | $2,040.39 |
+| Available Capital | $-1,939.61 |
+| Locked in Active Bets | $2,398.82 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $2040.39 (204.0% of capital) |
-| Avg Position Size | $53.69 |
+| Total Exposure | $2398.82 (239.9% of capital) |
+| Avg Position Size | $54.52 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.038) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.033) |
 
 ---
-## 🎯 Active Bets (47)
+## 🎯 Active Bets (53)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -99,6 +99,12 @@
 | [Will Elon Musk post 40-64 tweets from Fe...](https://polymarket.com/event/elon-musk-of-tweets-february-2-february-4-40-64) | YES | $32.00 | 0.05 | 0.20 | +15% 🟡 | 65% | $+98.62 | 2026-02-04 | 1d | 🔴 |
 | [Will Elon Musk post 320-339 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-27-february-3-320-339) | YES | $24.45 | 0.04 | 0.15 | +11% 🟡 | 70% | $+73.34 | 2026-02-03 | 0d | 🔴 |
 | [Will the next Dutch government be GL/Pvd...](https://polymarket.com/event/will-the-next-dutch-government-be-glpvda-vvd-d66) | YES | $28.47 | 0.00 | 0.15 | +15% 🟡 | 60% | $+1191.64 | Unknown | N/A | 🔵 |
+| [Hezbollah strike on Israel by March 31?](https://polymarket.com/event/hezbollah-strike-on-israel-by-march-31-737-523) | YES | $38.73 | 0.33 | 0.45 | +12% 🟡 | 70% | $+14.90 | 2026-03-31 | 55d | 🟢 |
+| [Will Elon Musk post 420-439 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-420-439) | YES | $28.24 | 0.02 | 0.15 | +13% 🟡 | 75% | $+160.03 | 2026-02-06 | 3d | 🟡 |
+| [Will Elon Musk post 440-459 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-440-459) | YES | $156.40 | 0.01 | 0.75 | +74% 🟢 | 70% | $+12876.84 | 2026-02-06 | 3d | 🟡 |
+| [Zama FDV above $300M one day after launc...](https://polymarket.com/event/zama-fdv-above-300m-one-day-after-launch) | NO | $37.69 | 0.79 | 0.65 | -14% 🔴 | 75% | $+24.24 | 2027-01-01 | 331d | 🟢 |
+| [Will Silver (SI) hit (LOW) $75 by end of...](https://polymarket.com/event/will-silver-si-hit-low-75-by-end-of-february-739-471-473-237-171) | NO | $67.70 | 0.61 | 0.40 | -22% 🔴 | 60% | $+37.81 | 2026-02-28 | 24d | 🟢 |
+| [Will Amazon be the largest company in th...](https://polymarket.com/event/will-amazon-be-the-largest-company-in-the-world-by-market-cap-on-december-31-376) | YES | $29.67 | 0.01 | 0.15 | +14% 🟡 | 70% | $+438.80 | 2026-12-31 | 330d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
@@ -119,7 +125,8 @@
 - 🔴 **High Exposure**: "Natural Disaster in 2026?..." is 14.1% of capital
 - 🔴 **High Exposure**: "Will Ethereum dip to $1,000 by..." is 12.2% of capital
 - 🔴 **High Exposure**: "Will Claude 5 be released by M..." is 11.8% of capital
-- 🟡 **Expiring Soon**: 8 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Elon Musk post 440-459 tw..." is 15.6% of capital
+- 🟡 **Expiring Soon**: 10 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -127,7 +134,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 47 |
+| Markets with Active Bets | 53 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 

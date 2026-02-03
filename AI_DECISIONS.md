@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-03 08:14:25 CET
+**Last Updated:** 2026-02-03 09:25:14 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -630,11 +630,112 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #39: Hezbollah strike on Israel by March 31?
+
+**Decision:** YES @ 0.32 (Stake: $38.73)
+
+**AI Analysis:**
+- **Estimated Probability:** 45.0% (vs Market: 32.5%)
+- **Confidence Score:** 70.0%
+- **Edge:** +12.5%
+- **Expected Value:** $+14.90
+- **End Date:** 2026-03-31 02:00 CEST
+
+**AI Reasoning:**
+> Die Situation zwischen Israel und der Hisbollah ist angespannt. Es gab in den letzten Monaten gegenseitige Angriffe und Drohungen. Israel führt regelmäßig Luftangriffe auf Hisbollah-Ziele im Südlibanon durch. Berichte deuten darauf hin, dass die Hisbollah Pläne für eine Invasion Nordisraels hat und über beträchtliche militärische Fähigkeiten verfügt. Die libanesische Politik ist fragil, und es gibt Forderungen nach einer Entwaffnung der Hisbollah, was die Situation zusätzlich verkompliziert. Die Unterstützung des Irans für die Hisbollah ist ein wichtiger Faktor, und regionale Spannungen, an denen der Iran beteiligt ist, könnten sich auf die Wahrscheinlichkeit eines Angriffs auswirken. Trotz der bestehenden Vereinbarungen zur Waffenruhe kommt es weiterhin zu Verstößen und gegenseitigen Beschuldigungen. Anfang Februar 2026 gab es eine Eskalation mit israelischen Luftangriffen auf Hisbollah-Ziele im Libanon.
+
+---
+
+### Bet #40: Will Elon Musk post 420-439 tweets from January 30 to February 6, 2026?
+
+**Decision:** YES @ 0.02 (Stake: $28.24)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 2.2%)
+- **Confidence Score:** 75.0%
+- **Edge:** +12.8%
+- **Expected Value:** $+160.03
+- **End Date:** 2026-02-06 18:00 CET
+
+**AI Reasoning:**
+> Um die Wahrscheinlichkeit zu schätzen, dass Elon Musk zwischen dem 30. Januar und dem 6. Februar 2026 420-439 Tweets postet, muss man seine typische Twitter-Aktivität berücksichtigen.Basierend auf aktuellen Informationen:*   **Durchschnittliche Tweet-Frequenz:** Einige Quellen deuten darauf hin, dass Elon Musk im Jahr 2025 durchschnittlich etwa 68 bis fast 100 Tweets pro Tag gepostet hat. Dies ist jedoch eine sehr variable Zahl.*   **XTracker-Daten:** Laut XTracker hat Elon Musk vom 27. Januar bis zum 3. Februar 2026 263 Posts getätigt, was einem Tagesdurchschnitt von 53 Tweets entspricht. Vom 30. Januar bis zum 6. Februar 2026 waren es 63 Posts.*   **Polymarket-Daten:** Es gibt auch Polymarket-Vorhersagemärkte für die Anzahl der Tweets von Elon Musk über bestimmte Zeiträume. Diese Märkte und die zugehörigen XTracker-Daten sind wahrscheinlich die zuverlässigsten Quellen für eine fundierte Schätzung.**Analyse:**Ein Bereich von 420-439 Tweets über 8 Tage entspricht einem Durchschnitt von 52,5 bis 54,875 Tweets pro Tag.Basierend auf den XTracker-Daten vom 30. Januar bis zum 6. Februar 2026 mit 63 Posts ist die Wahrscheinlichkeit, dass Elon Musk in diesem Zeitraum 420-439 Tweets postet, gering, aber nicht ausgeschlossen. Die Zahl der Tweets ist höher als der Marktwert.**Fazit:**Angesichts des aktuellen Marktwertes von 2,25 % und der Analyse der historischen Tweet-Frequenz von Elon Musk und der jüngsten XTracker-Daten wird die geschätzte Wahrscheinlichkeit, dass Elon Musk zwischen dem 30. Januar und dem 6. Februar 2026 420-439 Tweets postet, auf 0,15 (15 %) geschätzt. Das Konfidenzniveau beträgt 0,75, da diese Schätzung auf den verfügbaren Daten und der Annahme basiert, dass Elon Musks Tweet-Verhalten relativ stabil bleibt. Die Polymarket-Vorhersagemärkte haben eine hohe Trefferquote, was dieses Ergebnis unterstützt.
+
+---
+
+### Bet #41: Will Elon Musk post 440-459 tweets from January 30 to February 6, 2026?
+
+**Decision:** YES @ 0.01 (Stake: $156.40)
+
+**AI Analysis:**
+- **Estimated Probability:** 75.0% (vs Market: 0.9%)
+- **Confidence Score:** 70.0%
+- **Edge:** +74.1%
+- **Expected Value:** $+12876.84
+- **End Date:** 2026-02-06 18:00 CET
+
+**AI Reasoning:**
+> Elon Musk's historical tweeting habits suggest a high frequency of posts. While there can be fluctuations, averaging 55-57 tweets per day falls within his likely range of activity. The current Polymarket price of 90% 'Yes' also indicates a strong belief in the market that he will post within the specified range. However, the possibility of unforeseen circumstances impacting his tweeting behavior prevents a higher confidence score.
+
+---
+
+### Bet #42: Zama FDV above $300M one day after launch?
+
+**Decision:** NO @ 0.79 (Stake: $37.69)
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 78.7%)
+- **Confidence Score:** 75.0%
+- **Edge:** -13.7%
+- **Expected Value:** $+24.24
+- **End Date:** 2027-01-01 06:00 CET
+
+**AI Reasoning:**
+> Zama ist ein vielversprechendes Krypto-Projekt, das sich auf Fully Homomorphic Encryption (FHE) spezialisiert hat. FHE ermöglicht Berechnungen auf verschlüsselten Daten, was für datenschutzorientierte Anwendungen sehr wertvoll ist. Zama hat bereits eine beträchtliche Finanzierung erhalten und wird von namhaften Investoren unterstützt. Am 3. Februar 2026 wurde Zama auf Binance gelistet, was die Liquidität und das Interesse erhöht. Zum Zeitpunkt dieser Analyse (3. Februar 2026) beträgt die Fully Diluted Valuation (FDV) 362,613,194 USD. Der aktuelle Preis liegt bei 0,032277 USD. Angesichts des Hypes um das Projekt und der Notwendigkeit von Datenschutz im Blockchain-Bereich ist es wahrscheinlich, dass Zama kurz nach dem Start eine hohe Bewertung erzielen wird. Der aktuelle Marktpreis auf Polymarket beträgt 78.70%, was die Einschätzung stützt. Allerdings ist der Kryptomarkt volatil, und es gibt keine Garantie dafür, dass Zama diesen Wert halten oder übertreffen kann. Die Unsicherheit über die gesamte Marktsituation und mögliche Verzögerungen oder Probleme beim Launch des Tokens rechtfertigen eine etwas konservativere Schätzung als den aktuellen Marktpreis.
+
+---
+
+### Bet #43: Will Silver (SI) hit (LOW) $75 by end of February?
+
+**Decision:** NO @ 0.62 (Stake: $67.70)
+
+**AI Analysis:**
+- **Estimated Probability:** 40.0% (vs Market: 61.5%)
+- **Confidence Score:** 60.0%
+- **Edge:** -21.5%
+- **Expected Value:** $+37.81
+- **End Date:** 2026-02-28 01:00 CET
+
+**AI Reasoning:**
+> Silver is volatile and sensitive to various economic factors. While the current price is above $75, unexpected events or shifts in market sentiment could drive the price down. Market forecasts vary widely, reflecting uncertainty. The current market price on Polymarket of 61.50% suggests a significant portion of the market believes it's possible. However, given the recent upward trend, a drop that significant is not the most likely scenario.
+
+---
+
+### Bet #44: Will Amazon be the largest company in the world by market cap on December 31?
+
+**Decision:** YES @ 0.01 (Stake: $29.67)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 1.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** +14.0%
+- **Expected Value:** $+438.80
+- **End Date:** 2026-12-31 01:00 CET
+
+**AI Reasoning:**
+> Amazon is currently the 5th largest company by market cap. While it has strong growth potential in AI and cloud computing, it faces stiff competition and regulatory hurdles. NVIDIA, Alphabet, Apple and Microsoft would need to falter significantly for Amazon to take the top spot by the end of 2026. Current market trends and analyst predictions suggest this is unlikely.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Ai Analysis Failed (18)
+### Ai Analysis Failed (12)
+
+**Will the US next strike Iran on February 7, 2026 (ET)?...**
+*Analyzed: 2026-02-03 09:25*
+Market: 0.01 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will Player 157 win Beast Games: Season 2?...**
 *Analyzed: 2026-02-03 08:14*
@@ -681,63 +782,58 @@ Reasoning: Gemini API error or timeout...
 Market: 0.04 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
-**Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 03:13*
-Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
 
-
-### Insufficient Edge (82)
-
-**Will SpaceX's public ticker be $SX?...**
-*Analyzed: 2026-02-03 08:14*
-Market: 0.02 | AI: 0.08 | Edge: +6.1% | Conf: 40%
-Reasoning: SpaceX is likely to IPO by the end of 2027. However, the choice of ticker symbol is speculative. While '$SX' is a possibility, there are many other op...
-
-**Hezbollah strike on Israel by March 31?...**
-*Analyzed: 2026-02-03 08:14*
-Market: 0.32 | AI: 0.25 | Edge: -7.5% | Conf: 70%
-Reasoning: Die Einschätzung der Wahrscheinlichkeit eines Angriffs der Hisbollah auf Israel bis zum 31. März 2026 ist komplex. Es gibt widersprüchliche Informatio...
+### Insufficient Edge (88)
 
 **Will Player 157 win Beast Games: Season 2?...**
-*Analyzed: 2026-02-03 07:41*
-Market: 0.02 | AI: 0.01 | Edge: -0.9% | Conf: 75%
-Reasoning: Der aktuelle Marktpreis von Polymarket für Spieler 157 liegt bei 1,90 %, was sehr niedrig ist. Es gibt eine überwältigende Unterstützung für Spieler 1...
+*Analyzed: 2026-02-03 09:25*
+Market: 0.02 | AI: 0.01 | Edge: -0.8% | Conf: 80%
+Reasoning: Basierend auf aktuellen Berichten und Fan-Theorien ist es sehr wahrscheinlich, dass Spieler 157 (Catey) bereits aus Beast Games Season 2 ausgeschieden...
 
 **Will SpaceX's public ticker be $SX?...**
-*Analyzed: 2026-02-03 07:41*
-Market: 0.02 | AI: 0.01 | Edge: -1.4% | Conf: 60%
-Reasoning: Die Wahrscheinlichkeit, dass SpaceX das Tickersymbol '$SX' wählen wird, ist gering. Hier ist der Grund:  * **Ticker-Konventionen:** Die meisten US-Akt...
-
-**Will the Toronto Raptors win the NBA Eastern Conference Fina...**
-*Analyzed: 2026-02-03 07:41*
-Market: 0.06 | AI: 0.08 | Edge: +2.2% | Conf: 70%
-Reasoning: Die Toronto Raptors haben eine Chance, die NBA Eastern Conference Finals zu gewinnen, aber sie sind keine Favoriten. Ihre Stärken liegen in ihrer Vert...
+*Analyzed: 2026-02-03 09:25*
+Market: 0.02 | AI: 0.01 | Edge: -0.5% | Conf: 30%
+Reasoning: Es gibt keine Grundlage, um anzunehmen, dass SpaceX das Ticker Symbol '$SX' wählen wird. Es ist ein spekulativer Markt, und viele andere Ticker Symbol...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 07:41*
-Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 70%
-Reasoning: Brazil is a football powerhouse with a rich history and talented squad. However, their recent performances have been underwhelming, and they had a dif...
+*Analyzed: 2026-02-03 09:25*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 75%
+Reasoning: Basierend auf den aktuellen FIFA-Ranglisten, den Wettquoten und den Analysen verschiedener Sportmedien, scheinen die Chancen Brasiliens, die FIFA Fuss...
 
-**Hezbollah strike on Israel by March 31?...**
-*Analyzed: 2026-02-03 07:41*
-Market: 0.32 | AI: 0.35 | Edge: +2.5% | Conf: 70%
-Reasoning: Die Wahrscheinlichkeit eines Angriffs von Hisbollah auf Israel bis zum 31. März 2026 wird auf 35 % geschätzt. Die Unsicherheit ist hoch, da die Situat...
+**LoL: Invictus Gaming vs JD Gaming (BO3) - LPL Group Ascend...**
+*Analyzed: 2026-02-03 09:25*
+Market: 0.28 | AI: 0.25 | Edge: -3.5% | Conf: 75%
+Reasoning: JD Gaming hat eine höhere aktuelle Gewinnrate und Weltranglistenposition. Obwohl Invictus Gaming eine starke historische Leistung aufweist, deutet die...
 
-**Will Player 157 win Beast Games: Season 2?...**
-*Analyzed: 2026-02-03 07:25*
-Market: 0.02 | AI: 0.01 | Edge: -0.8% | Conf: 90%
-Reasoning: Basierend auf aktuellen Spoilern und Fan-Theorien ist Catey (Spieler 157) in Folge 6 ausgeschieden. Daher ist es höchst unwahrscheinlich, dass sie die...
+**Will Ethereum reach $4,200 in February?...**
+*Analyzed: 2026-02-03 09:03*
+Market: 0.01 | AI: 0.02 | Edge: +1.4% | Conf: 75%
+Reasoning: Ethereum is currently trading around $2,300, with recent negative trends. Analyst predictions and historical data suggest a limited upside for Februar...
+
+**Will the US next strike Iran on February 7, 2026 (ET)?...**
+*Analyzed: 2026-02-03 09:03*
+Market: 0.01 | AI: 0.01 | Edge: -0.4% | Conf: 75%
+Reasoning: Der aktuelle Marktpreis ist sehr niedrig, was die geringe Wahrscheinlichkeit widerspiegelt. Es gibt Anzeichen für bevorstehende Verhandlungen zwischen...
 
 **Will SpaceX's public ticker be $SX?...**
-*Analyzed: 2026-02-03 07:25*
-Market: 0.02 | AI: 0.02 | Edge: -0.4% | Conf: 75%
-Reasoning: SpaceX is anticipated to launch its IPO in 2026, but as of now, it is still a private entity and does not have a ticker symbol. The proposed ticker '$...
+*Analyzed: 2026-02-03 09:03*
+Market: 0.02 | AI: 0.03 | Edge: +1.5% | Conf: 60%
+Reasoning: Es gibt zwar Gerüchte über einen Börsengang von SpaceX, aber es ist reine Spekulation, dass das Unternehmen den Ticker $SX verwenden wird. Obwohl es z...
 
-**Will the Toronto Raptors win the NBA Eastern Conference Fina...**
-*Analyzed: 2026-02-03 07:25*
-Market: 0.06 | AI: 0.02 | Edge: -3.8% | Conf: 60%
-Reasoning: Based on the current market price, expert opinions, team performance, injuries, the strength of the Eastern Conference, and team composition, the Toro...
+**Will Player 157 win Beast Games: Season 2?...**
+*Analyzed: 2026-02-03 09:03*
+Market: 0.02 | AI: 0.01 | Edge: -1.0% | Conf: 60%
+Reasoning: Die aktuelle Marktbewertung auf Polymarket für 'Yes' liegt bei 2%, was bereits eine sehr geringe Wahrscheinlichkeit widerspiegelt. Ich habe nach zusät...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 09:03*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 70%
+Reasoning: Brasilien gehört aufgrund seiner Geschichte und seines Talents zum erweiterten Kreis der Favoriten. Die aktuelle Form und die Konkurrenz durch andere ...
+
+**Will Silver (SI) hit (LOW) $75 by end of February?...**
+*Analyzed: 2026-02-03 09:03*
+Market: 0.62 | AI: 0.60 | Edge: -2.5% | Conf: 60%
+Reasoning: Silver has experienced extreme volatility recently, with a sharp rise followed by an equally sharp decline. Current forecasts are varied. Factoring in...
 
 
 ## 📊 Historical Analysis
