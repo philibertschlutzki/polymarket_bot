@@ -207,6 +207,8 @@ def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, 
 
     try:
         response = _execute_gemini_request(client, prompt)
+        logger.debug(f"🔍 Gemini Raw Response Type: {type(response)}")
+
         response_time_ms = int((time.time() - start_time) * 1000)
 
         usage_meta = {
@@ -223,6 +225,8 @@ def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, 
         }
 
         text_response = response.text
+        logger.debug(f"🔍 Gemini Raw Text (first 500 chars): {text_response[:500]}")
+
         if "```json" in text_response:
             text_response = text_response.split("```json")[1].split("```")[0]
         elif "```" in text_response:
@@ -438,6 +442,7 @@ def analyze_and_recommend(
 def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dict]:
     for attempt in range(max_retries):
         try:
+            logger.debug(f"🔍 GraphQL Attempt {attempt + 1}/{max_retries}")
             response = requests.post(
                 GRAPHQL_URL,
                 json={"query": query},
@@ -446,10 +451,17 @@ def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dic
             )
             if response.status_code == 200:
                 return response.json()
+            elif response.status_code == 404:
+                logger.error("❌ GraphQL 404 Error")
+                return None
             elif response.status_code in [429, 500, 502, 503, 504]:
                 wait_time = 2 ** (attempt + 1)
+                logger.warning(
+                    f"⚠️ GraphQL {response.status_code} - Retry in {wait_time}s"
+                )
                 time.sleep(wait_time)
             else:
+                logger.warning(f"⚠️ GraphQL HTTP {response.status_code}")
                 return None
         except Exception as exc:
             logger.error(f"❌ GraphQL Error: {exc}")
@@ -535,7 +547,14 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
                     pass
 
             try:
-                outcome_prices = json.loads(market.get("outcome_prices") or "[]")
+                outcome_prices_raw = market.get("outcome_prices")
+                outcome_prices = []
+                if outcome_prices_raw:
+                    if isinstance(outcome_prices_raw, str):
+                        outcome_prices = json.loads(outcome_prices_raw)
+                    elif isinstance(outcome_prices_raw, list):
+                        outcome_prices = outcome_prices_raw
+
                 if len(outcome_prices) > 2:
                     rejected_buffer.append(
                         {
