@@ -30,15 +30,15 @@ class HealthMonitor:
         self.metrics_history: List[Dict] = []
         self.process = psutil.Process(os.getpid())
 
-    def collect_metrics(
-        self, rate_limiter_stats: Dict, queue_stats: Dict
-    ) -> Dict:
+    def collect_metrics(self, rate_limiter_stats: Dict, queue_stats: Dict) -> Dict:
         """Collects current system and application metrics."""
 
         # System Resources
         memory_info = self.process.memory_info()
         memory_mb = memory_info.rss / 1024 / 1024
-        cpu_percent = self.process.cpu_percent(interval=None)  # Non-blocking if called repeatedly
+        cpu_percent = self.process.cpu_percent(
+            interval=None
+        )  # Non-blocking if called repeatedly
 
         uptime_seconds = int(time.time() - self.start_time)
         uptime_str = str(datetime.timedelta(seconds=uptime_seconds))
@@ -167,7 +167,9 @@ class HealthMonitor:
             if api.get("backoff_active"):
                 markdown += f"- **WARNING**: API Backoff active until {api.get('backoff_until')}\n"
 
-            if current_metrics["alert_status"] == "OK" and not api.get("backoff_active"):
+            if current_metrics["alert_status"] == "OK" and not api.get(
+                "backoff_active"
+            ):
                 markdown += "- All systems nominal.\n"
 
             with open(self.export_path, "w", encoding="utf-8") as f:

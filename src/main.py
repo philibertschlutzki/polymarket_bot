@@ -121,7 +121,9 @@ GEMINI_RPM_MAX = float(os.getenv("GEMINI_RPM_MAX", "4.0"))
 MARKET_FETCH_INTERVAL_MINUTES = int(os.getenv("MARKET_FETCH_INTERVAL_MINUTES", "5"))
 QUEUE_SIZE_LIMIT = int(os.getenv("QUEUE_SIZE_LIMIT", "100"))
 HEALTH_CHECK_INTERVAL_SECONDS = int(os.getenv("HEALTH_CHECK_INTERVAL_SECONDS", "60"))
-HEALTH_DASHBOARD_UPDATE_MINUTES = int(os.getenv("HEALTH_DASHBOARD_UPDATE_MINUTES", "15"))
+HEALTH_DASHBOARD_UPDATE_MINUTES = int(
+    os.getenv("HEALTH_DASHBOARD_UPDATE_MINUTES", "15")
+)
 MEMORY_WARNING_MB = int(os.getenv("MEMORY_WARNING_MB", "400"))
 MEMORY_CRITICAL_MB = int(os.getenv("MEMORY_CRITICAL_MB", "480"))
 
@@ -140,15 +142,13 @@ FETCH_MARKET_LIMIT = int(os.getenv("FETCH_MARKET_LIMIT", "100"))
 
 # Global Components
 rate_limiter = AdaptiveRateLimiter(
-    initial_rpm=GEMINI_RPM_INITIAL,
-    min_rpm=GEMINI_RPM_MIN,
-    max_rpm=GEMINI_RPM_MAX
+    initial_rpm=GEMINI_RPM_INITIAL, min_rpm=GEMINI_RPM_MIN, max_rpm=GEMINI_RPM_MAX
 )
 queue_manager = QueueManager(db_path="data/queue.db")
 health_monitor = HealthMonitor(
     memory_warning_threshold_mb=MEMORY_WARNING_MB,
     memory_critical_threshold_mb=MEMORY_CRITICAL_MB,
-    export_path="HEALTH_STATUS.md"
+    export_path="HEALTH_STATUS.md",
 )
 
 # ============================================================================
@@ -210,9 +210,15 @@ def _generate_gemini_response(client: genai.Client, prompt: str) -> tuple[dict, 
         response_time_ms = int((time.time() - start_time) * 1000)
 
         usage_meta = {
-            "prompt_token_count": getattr(response.usage_metadata, "prompt_token_count", 0),
-            "candidates_token_count": getattr(response.usage_metadata, "candidates_token_count", 0),
-            "total_token_count": getattr(response.usage_metadata, "total_token_count", 0),
+            "prompt_token_count": getattr(
+                response.usage_metadata, "prompt_token_count", 0
+            ),
+            "candidates_token_count": getattr(
+                response.usage_metadata, "candidates_token_count", 0
+            ),
+            "total_token_count": getattr(
+                response.usage_metadata, "total_token_count", 0
+            ),
             "response_time_ms": response_time_ms,
         }
 
@@ -269,7 +275,9 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         if "429" in str(exc) or "RESOURCE_EXHAUSTED" in str(exc):
             logger.error("❌ Rate Limit Exhausted (429) - Reporting to limiter")
             rate_limiter.report_429_error()
-            queue_manager.move_to_retry_queue(market.market_slug, "RATE_LIMIT_429", str(exc))
+            queue_manager.move_to_retry_queue(
+                market.market_slug, "RATE_LIMIT_429", str(exc)
+            )
         else:
             logger.error(f"❌ Gemini Client Error: {exc}")
             rate_limiter.report_error("CLIENT_ERROR")
@@ -288,11 +296,15 @@ def analyze_market_with_ai(market: MarketData) -> Optional[AIAnalysis]:
         logger.error(f"❌ Unexpected Error in AI Analysis: {error_type} - {exc}")
 
         if "JSONDecodeError" in error_type:
-            queue_manager.move_to_retry_queue(market.market_slug, "PARSE_ERROR", str(exc))
+            queue_manager.move_to_retry_queue(
+                market.market_slug, "PARSE_ERROR", str(exc)
+            )
         elif "Timeout" in str(exc) or "timeout" in str(exc).lower():
             queue_manager.move_to_retry_queue(market.market_slug, "TIMEOUT", str(exc))
         else:
-            queue_manager.move_to_retry_queue(market.market_slug, "UNKNOWN_ERROR", str(exc))
+            queue_manager.move_to_retry_queue(
+                market.market_slug, "UNKNOWN_ERROR", str(exc)
+            )
 
         return None
 
@@ -303,13 +315,21 @@ def calculate_kelly_stake(
     """Calculates optimal stake size using Kelly Criterion."""
     if price <= 0.001 or price >= 0.999:
         return TradingRecommendation(
-            action="PASS", stake_usdc=0.0, kelly_fraction=0.0, expected_value=0.0, market_question=""
+            action="PASS",
+            stake_usdc=0.0,
+            kelly_fraction=0.0,
+            expected_value=0.0,
+            market_question="",
         )
 
     edge = ai_prob - price
     if abs(edge) < 0.10:
         return TradingRecommendation(
-            action="PASS", stake_usdc=0.0, kelly_fraction=0.0, expected_value=0.0, market_question=""
+            action="PASS",
+            stake_usdc=0.0,
+            kelly_fraction=0.0,
+            expected_value=0.0,
+            market_question="",
         )
 
     if edge > 0:  # Long
@@ -335,7 +355,11 @@ def calculate_kelly_stake(
 
     if ev <= 0:
         return TradingRecommendation(
-            action="PASS", stake_usdc=0.0, kelly_fraction=0.0, expected_value=0.0, market_question=""
+            action="PASS",
+            stake_usdc=0.0,
+            kelly_fraction=0.0,
+            expected_value=0.0,
+            market_question="",
         )
 
     return TradingRecommendation(
@@ -410,6 +434,7 @@ def analyze_and_recommend(
 # API HELPERS (Existing)
 # ============================================================================
 
+
 def graphql_request_with_retry(query: str, max_retries: int = 3) -> Optional[dict]:
     for attempt in range(max_retries):
         try:
@@ -440,7 +465,8 @@ def execute_batched_query(
 ) -> Dict[str, Any]:
     results = {}
     for i in range(0, len(slugs), chunk_size):
-        chunk = slugs[i:i + chunk_size]
+        end_idx = i + chunk_size
+        chunk = slugs[i:end_idx]
         query_parts = []
         slug_map = {}
 
@@ -511,16 +537,18 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
             try:
                 outcome_prices = json.loads(market.get("outcome_prices") or "[]")
                 if len(outcome_prices) > 2:
-                    rejected_buffer.append({
-                        "market_slug": market.get("id"),
-                        "url_slug": market.get("slug"),
-                        "question": market.get("question"),
-                        "market_price": 0.5,
-                        "volume": volume,
-                        "rejection_reason": "MULTI_OUTCOME_NOT_SUPPORTED",
-                        "ai_reasoning": "Multi-outcome market",
-                        "end_date": end_date_str
-                    })
+                    rejected_buffer.append(
+                        {
+                            "market_slug": market.get("id"),
+                            "url_slug": market.get("slug"),
+                            "question": market.get("question"),
+                            "market_price": 0.5,
+                            "volume": volume,
+                            "rejection_reason": "MULTI_OUTCOME_NOT_SUPPORTED",
+                            "ai_reasoning": "Multi-outcome market",
+                            "end_date": end_date_str,
+                        }
+                    )
                     continue
                 yes_price = float(outcome_prices[0]) if len(outcome_prices) > 0 else 0.5
             except Exception:
@@ -557,7 +585,9 @@ def fetch_missing_end_dates(markets: List[MarketData]) -> List[MarketData]:
         return markets
 
     slugs = [m.market_slug for m in missing]
-    data_map = execute_batched_query(slugs, lambda s: f"market(id: {s}) {{ end_date_iso }}")
+    data_map = execute_batched_query(
+        slugs, lambda s: f"market(id: {s}) {{ end_date_iso }}"
+    )
 
     for m in missing:
         if m.market_slug in data_map:
@@ -584,6 +614,7 @@ def calculate_quick_edge(market: MarketData) -> float:
 # ============================================================================
 # RESOLUTION LOGIC (Preserved)
 # ============================================================================
+
 
 def check_and_resolve_bets():  # noqa: C901
     try:
@@ -648,7 +679,9 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
                 continue
 
             outcomes = market_data.get("outcomes", [])
-            prices = [float(o.get("price", 0)) for o in outcomes if o] if outcomes else []
+            prices = (
+                [float(o.get("price", 0)) for o in outcomes if o] if outcomes else []
+            )
             actual_outcome = None
 
             if prices and len(prices) >= 2:
@@ -669,7 +702,9 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
                 stake = float(bet["stake_usdc"])
                 entry = float(bet["entry_price"])
                 gas_fee = 0.50
-                profit = calculate_profit_with_fees(stake, entry, bet["action"], actual_outcome, gas_fee)
+                profit = calculate_profit_with_fees(
+                    stake, entry, bet["action"], actual_outcome, gas_fee
+                )
 
                 if is_archived:
                     bets_to_update.append((bet["archive_id"], actual_outcome, profit))
@@ -686,7 +721,9 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
         database.update_archived_bets_outcome_batch(bets_to_update)
     if bets_to_mark_disputed:
         for archive_id, price in bets_to_mark_disputed:
-            log_status_change(archive_id, "UNRESOLVED", "DISPUTED", f"PRICE_{price}", True)
+            log_status_change(
+                archive_id, "UNRESOLVED", "DISPUTED", f"PRICE_{price}", True
+            )
 
 
 # ============================================================================
@@ -700,7 +737,9 @@ def market_discovery_worker():
 
     while True:
         try:
-            logger.info(f"🔍 Market Discovery Cycle (Every {MARKET_FETCH_INTERVAL_MINUTES} min)")
+            logger.info(
+                f"🔍 Market Discovery Cycle (Every {MARKET_FETCH_INTERVAL_MINUTES} min)"
+            )
 
             # 1. Fetch Markets
             raw_markets = fetch_active_markets(limit=FETCH_MARKET_LIMIT)
@@ -725,7 +764,9 @@ def market_discovery_worker():
                 if queue_manager.add_market(market_dict, priority):
                     added_count += 1
 
-            logger.info(f"✅ Market Discovery: {added_count} new markets added to queue")
+            logger.info(
+                f"✅ Market Discovery: {added_count} new markets added to queue"
+            )
 
             # 4. Check Retry Queue
             requeued = queue_manager.check_retry_queue()
@@ -775,7 +816,9 @@ def queue_processing_worker():
             # 5. Process Result
             if rejection:
                 database.insert_rejected_markets_batch([rejection])
-                queue_manager.mark_completed(market.market_slug, f"REJECTED: {rejection['rejection_reason']}")
+                queue_manager.mark_completed(
+                    market.market_slug, f"REJECTED: {rejection['rejection_reason']}"
+                )
 
             elif rec:
                 if rec.action != "PASS":
@@ -794,7 +837,9 @@ def queue_processing_worker():
                         "end_date": market.end_date,
                     }
                     database.insert_active_bets_batch([bet_data])
-                    queue_manager.mark_completed(market.market_slug, f"BET: {rec.action} ${rec.stake_usdc}")
+                    queue_manager.mark_completed(
+                        market.market_slug, f"BET: {rec.action} ${rec.stake_usdc}"
+                    )
                 else:
                     # Should be caught by rejection usually, but just in case
                     queue_manager.mark_completed(market.market_slug, "PASS")
@@ -863,6 +908,7 @@ def resolution_worker():
 # ============================================================================
 # MAIN LOOP
 # ============================================================================
+
 
 def main_loop():
     if not GEMINI_API_KEY:

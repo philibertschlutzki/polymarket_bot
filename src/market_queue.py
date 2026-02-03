@@ -23,6 +23,7 @@ class QueueManager:
         """Returns a thread-local database connection."""
         if not hasattr(self.local, "conn"):
             import os
+
             os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
 
             self.local.conn = sqlite3.connect(self.db_path, timeout=30.0)
@@ -36,8 +37,7 @@ class QueueManager:
         conn = self._get_conn()
         try:
             with conn:
-                conn.execute(
-                    """
+                conn.execute("""
                     CREATE TABLE IF NOT EXISTS market_queue (
                         market_slug TEXT PRIMARY KEY,
                         data TEXT NOT NULL,
@@ -46,17 +46,13 @@ class QueueManager:
                         added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         processed_at TIMESTAMP
                     )
-                    """
-                )
-                conn.execute(
-                    """
+                    """)
+                conn.execute("""
                     CREATE INDEX IF NOT EXISTS idx_queue_priority
                     ON market_queue (status, priority_score DESC)
-                    """
-                )
+                    """)
 
-                conn.execute(
-                    """
+                conn.execute("""
                     CREATE TABLE IF NOT EXISTS retry_queue (
                         market_slug TEXT PRIMARY KEY,
                         data TEXT NOT NULL,
@@ -65,17 +61,13 @@ class QueueManager:
                         next_retry_at TIMESTAMP,
                         first_attempt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )
-                    """
-                )
-                conn.execute(
-                    """
+                    """)
+                conn.execute("""
                     CREATE INDEX IF NOT EXISTS idx_retry_time
                     ON retry_queue (next_retry_at ASC)
-                    """
-                )
+                    """)
 
-                conn.execute(
-                    """
+                conn.execute("""
                     CREATE TABLE IF NOT EXISTS queue_history (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         market_slug TEXT,
@@ -83,8 +75,7 @@ class QueueManager:
                         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         details TEXT
                     )
-                    """
-                )
+                    """)
         except Exception as e:
             logger.error(f"❌ Failed to initialize queue DB: {e}")
             raise
@@ -109,7 +100,9 @@ class QueueManager:
                     (market_slug, json.dumps(market_data), priority_score),
                 )
 
-                self._log_history(conn, market_slug, "added", {"priority": priority_score})
+                self._log_history(
+                    conn, market_slug, "added", {"priority": priority_score}
+                )
                 return True
         except sqlite3.IntegrityError:
             # Already exists
@@ -127,14 +120,12 @@ class QueueManager:
         try:
             with conn:
                 # Find best candidate
-                cursor = conn.execute(
-                    """
+                cursor = conn.execute("""
                     SELECT market_slug, data FROM market_queue
                     WHERE status = 'pending'
                     ORDER BY priority_score DESC
                     LIMIT 1
-                    """
-                )
+                    """)
                 row = cursor.fetchone()
 
                 if row:
@@ -170,7 +161,9 @@ class QueueManager:
                     """,
                     (market_slug,),
                 )
-                self._log_history(conn, market_slug, "completed", {"result": result_summary})
+                self._log_history(
+                    conn, market_slug, "completed", {"result": result_summary}
+                )
         except Exception as e:
             logger.error(f"❌ Error marking market completed: {e}")
 
@@ -182,7 +175,7 @@ class QueueManager:
                 # Get current failure count if exists in retry queue, or start at 0
                 cursor = conn.execute(
                     "SELECT failure_count, data FROM retry_queue WHERE market_slug = ?",
-                    (market_slug,)
+                    (market_slug,),
                 )
                 row = cursor.fetchone()
 
@@ -193,23 +186,27 @@ class QueueManager:
                     failure_count = 1
                     # Fetch data from main queue
                     cursor = conn.execute(
-                         "SELECT data FROM market_queue WHERE market_slug = ?",
-                         (market_slug,)
+                        "SELECT data FROM market_queue WHERE market_slug = ?",
+                        (market_slug,),
                     )
                     m_row = cursor.fetchone()
                     if not m_row:
-                        logger.error(f"❌ Could not find market data for {market_slug} to retry")
+                        logger.error(
+                            f"❌ Could not find market data for {market_slug} to retry"
+                        )
                         return
                     market_json = m_row["data"]
 
                 # Mark as failed in main queue
                 conn.execute(
                     "UPDATE market_queue SET status = 'failed' WHERE market_slug = ?",
-                    (market_slug,)
+                    (market_slug,),
                 )
 
                 if failure_count > 6:
-                    self._log_history(conn, market_slug, "retry_exhausted", {"error": error_msg})
+                    self._log_history(
+                        conn, market_slug, "retry_exhausted", {"error": error_msg}
+                    )
                     logger.warning(f"❌ Retry limit exhausted for {market_slug}")
                     return
 
@@ -229,11 +226,16 @@ class QueueManager:
                     (market_slug, market_json, error_type, failure_count, next_retry),
                 )
 
-                self._log_history(conn, market_slug, "retrying", {
-                    "attempt": failure_count,
-                    "wait": wait_seconds,
-                    "error": error_msg
-                })
+                self._log_history(
+                    conn,
+                    market_slug,
+                    "retrying",
+                    {
+                        "attempt": failure_count,
+                        "wait": wait_seconds,
+                        "error": error_msg,
+                    },
+                )
 
         except Exception as e:
             logger.error(f"❌ Error moving to retry queue: {e}")
@@ -244,14 +246,12 @@ class QueueManager:
         requeued = []
         try:
             with conn:
-                cursor = conn.execute(
-                    """
+                cursor = conn.execute("""
                     SELECT market_slug, data, failure_count
                     FROM retry_queue
                     WHERE next_retry_at <= CURRENT_TIMESTAMP
                     LIMIT 5
-                    """
-                )
+                    """)
                 rows = cursor.fetchall()
 
                 for row in rows:
@@ -268,12 +268,14 @@ class QueueManager:
 
                     mq_cursor = conn.execute(
                         "SELECT priority_score FROM market_queue WHERE market_slug = ?",
-                        (market_slug,)
+                        (market_slug,),
                     )
                     mq_row = mq_cursor.fetchone()
                     orig_priority = mq_row["priority_score"] if mq_row else 0.5
 
-                    new_priority = max(orig_priority - (0.1 * row["failure_count"]), 0.1)
+                    new_priority = max(
+                        orig_priority - (0.1 * row["failure_count"]), 0.1
+                    )
 
                     conn.execute(
                         """
@@ -281,7 +283,7 @@ class QueueManager:
                         SET status = 'pending', priority_score = ?
                         WHERE market_slug = ?
                         """,
-                        (new_priority, market_slug)
+                        (new_priority, market_slug),
                     )
 
                     # Remove from retry_queue?
@@ -291,9 +293,13 @@ class QueueManager:
                     # "requeue_from_retry()... Keep: Original retry_queue entry for history" seems to imply
                     # keeping the record but maybe marking it processed?
                     # Let's delete it from retry_queue to avoid loop, since we have history table.
-                    conn.execute("DELETE FROM retry_queue WHERE market_slug = ?", (market_slug,))
+                    conn.execute(
+                        "DELETE FROM retry_queue WHERE market_slug = ?", (market_slug,)
+                    )
 
-                    self._log_history(conn, market_slug, "requeued", {"new_priority": new_priority})
+                    self._log_history(
+                        conn, market_slug, "requeued", {"new_priority": new_priority}
+                    )
                     requeued.append(data)
 
         except Exception as e:
@@ -310,17 +316,21 @@ class QueueManager:
             "completed": 0,
             "failed": 0,
             "retry_queue_total": 0,
-            "retry_exhausted": 0
+            "retry_exhausted": 0,
         }
         try:
-            cursor = conn.execute("SELECT status, COUNT(*) as cnt FROM market_queue GROUP BY status")
+            cursor = conn.execute(
+                "SELECT status, COUNT(*) as cnt FROM market_queue GROUP BY status"
+            )
             for row in cursor:
                 stats[row["status"]] = row["cnt"]
 
             cursor = conn.execute("SELECT COUNT(*) as cnt FROM retry_queue")
             stats["retry_queue_total"] = cursor.fetchone()["cnt"]
 
-            cursor = conn.execute("SELECT COUNT(*) as cnt FROM retry_queue WHERE failure_count >= 6")
+            cursor = conn.execute(
+                "SELECT COUNT(*) as cnt FROM retry_queue WHERE failure_count >= 6"
+            )
             stats["retry_exhausted"] = cursor.fetchone()["cnt"]
 
         except Exception as e:
@@ -342,7 +352,7 @@ class QueueManager:
                     WHERE status IN ('completed', 'failed')
                     AND processed_at < ?
                     """,
-                    (cutoff,)
+                    (cutoff,),
                 )
 
                 # Cleanup retry_queue (exhausted)
@@ -353,7 +363,7 @@ class QueueManager:
                     WHERE failure_count >= 6
                     AND first_attempt < ?
                     """,
-                    (cutoff,)
+                    (cutoff,),
                 )
 
                 # Cleanup history
@@ -366,7 +376,7 @@ class QueueManager:
         try:
             conn.execute(
                 "INSERT INTO queue_history (market_slug, action, details) VALUES (?, ?, ?)",
-                (market_slug, action, json.dumps(details))
+                (market_slug, action, json.dumps(details)),
             )
         except Exception:
             pass
