@@ -544,7 +544,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-## ❌ Rejected Markets
+### Bet #29: Israel x Iran ceasefire broken by March 31, 2026?
 
 *Showing last 50 rejected analyses*
 
