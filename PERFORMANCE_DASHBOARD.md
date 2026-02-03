@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-03 11:16:57 CET
+**Last Updated:** 2026-02-03 12:17:47 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 133 | 1,500 | 8.9% | 🟢 |
+| Today (RPD) | 146 | 1,500 | 9.7% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-2,159.48 |
-| Locked in Active Bets | $2,618.69 |
+| Available Capital | $-2,615.99 |
+| Locked in Active Bets | $3,075.20 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $2618.69 (261.9% of capital) |
-| Avg Position Size | $55.72 |
+| Total Exposure | $3075.20 (307.5% of capital) |
+| Avg Position Size | $60.30 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.031) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.028) |
 
 ---
-## 🎯 Active Bets (56)
+## 🎯 Active Bets (60)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -108,6 +108,10 @@
 | [LoL: Invictus Gaming vs JD Gaming (BO3) ...](https://polymarket.com/event/lol-ig1-jdg-2026-02-03) | YES | $110.52 | 0.28 | 0.65 | +36% 🟢 | 75% | $+141.55 | 2026-02-03 | 0d | 🔴 |
 | [Will the US next strike Iran on February...](https://polymarket.com/event/will-the-us-next-strike-iran-on-february-13-2026-et) | YES | $22.58 | 0.01 | 0.12 | +11% 🟡 | 70% | $+178.14 | 2026-02-28 | 24d | 🟢 |
 | [Will Elon Musk post 460-479 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-460-479) | YES | $86.77 | 0.00 | 0.45 | +45% 🟢 | 60% | $+11069.12 | 2026-02-06 | 3d | 🟡 |
+| [Will the US next strike Iran on February...](https://polymarket.com/event/will-the-us-next-strike-iran-on-february-7-2026-et) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+77.94 | 2026-02-28 | 24d | 🟢 |
+| [Counter-Strike: 3DMAX vs Team Falcons (B...](https://polymarket.com/event/cs2-3dmax-fal2-2026-02-03) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-03 | 0d | 🔴 |
+| [Will Raphaël Glucksmann win the 2027 Fre...](https://polymarket.com/event/will-raphal-glucksmann-win-the-2027-french-presidential-election) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2027-04-30 | 450d | 🟢 |
+| [Transylvania Open: Anastasia Potapova vs...](https://polymarket.com/event/wta-potapov-bronzet-2026-02-01) | YES | $115.24 | 0.50 | 0.75 | +25% 🟢 | 85% | $+57.62 | 2026-02-08 | 4d | 🟡 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
@@ -130,7 +134,10 @@
 - 🔴 **High Exposure**: "Will Claude 5 be released by M..." is 11.8% of capital
 - 🔴 **High Exposure**: "Will Elon Musk post 440-459 tw..." is 15.6% of capital
 - 🔴 **High Exposure**: "LoL: Invictus Gaming vs JD Gam..." is 11.1% of capital
-- 🟡 **Expiring Soon**: 12 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the US next strike Iran o..." is 13.0% of capital
+- 🔴 **High Exposure**: "Will Raphaël Glucksmann win th..." is 14.6% of capital
+- 🔴 **High Exposure**: "Transylvania Open: Anastasia P..." is 11.5% of capital
+- 🟡 **Expiring Soon**: 14 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -138,7 +145,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 56 |
+| Markets with Active Bets | 60 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
