@@ -133,7 +133,7 @@ def _log_usage_from_response(result: Any, function_name: str, elapsed_time: floa
     target_logger = api_logger if api_logger.handlers else logger
 
     total_tokens = tokens_prompt + tokens_response
-    rpm = database.get_api_usage_rpm('gemini')
+    rpm = database.get_api_usage_rpm("gemini")
 
     target_logger.info(
         f"📊 Gemini API: {function_name} | "

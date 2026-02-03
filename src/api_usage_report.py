@@ -32,9 +32,15 @@ def generate_api_usage_report():
     tpm_pct = (tpm / GEMINI_TPM_LIMIT) * 100
 
     # Status indicators
-    rpm_status = '🔴 LIMIT' if rpm_pct >= 90 else '🟡 WARNING' if rpm_pct >= 70 else '🟢 OK'
-    rpd_status = '🔴 LIMIT' if rpd_pct >= 90 else '🟡 WARNING' if rpd_pct >= 70 else '🟢 OK'
-    tpm_status = '🔴 LIMIT' if tpm_pct >= 90 else '🟡 WARNING' if tpm_pct >= 70 else '🟢 OK'
+    rpm_status = (
+        "🔴 LIMIT" if rpm_pct >= 90 else "🟡 WARNING" if rpm_pct >= 70 else "🟢 OK"
+    )
+    rpd_status = (
+        "🔴 LIMIT" if rpd_pct >= 90 else "🟡 WARNING" if rpd_pct >= 70 else "🟢 OK"
+    )
+    tpm_status = (
+        "🔴 LIMIT" if tpm_pct >= 90 else "🟡 WARNING" if tpm_pct >= 70 else "🟢 OK"
+    )
 
     report = f"""
 ╔══════════════════════════════════════════════════════════════╗
