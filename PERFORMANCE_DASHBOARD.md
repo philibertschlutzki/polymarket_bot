@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-03 04:06:10 CET
+**Last Updated:** 2026-02-03 05:18:50 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-03 03:44:15 CET |
-| Next Run | 2026-02-03 03:59:15 CET |
+| Last Run | 2026-02-03 04:57:36 CET |
+| Next Run | 2026-02-03 05:12:36 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
-| Today (RPD) | 33 | 1,500 | 2.2% | 🟢 |
-| Current Minute (TPM) | 4,630 | 1,000,000 | 0.46% | 🟢 |
+| Current Minute (RPM) | 3 | 15 | 20% | 🟢 |
+| Today (RPD) | 49 | 1,500 | 3.3% | 🟢 |
+| Current Minute (TPM) | 4,297 | 1,000,000 | 0.43% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-1,302.50 |
-| Locked in Active Bets | $1,821.47 |
+| Available Capital | $-1,332.62 |
+| Locked in Active Bets | $1,851.59 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1821.47 (182.1% of capital) |
-| Avg Position Size | $58.76 |
+| Total Exposure | $1851.59 (185.2% of capital) |
+| Avg Position Size | $57.86 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.046) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.044) |
 
 ---
-## 🎯 Active Bets (39)
+## 🎯 Active Bets (40)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -92,6 +92,7 @@
 | [Israel x Iran ceasefire broken by March ...](https://polymarket.com/event/israel-x-iran-ceasefire-broken-by-march-31-2026-312-682) | YES | $86.13 | 0.41 | 0.65 | +24% 🟢 | 70% | $+52.10 | 2026-03-31 | 55d | 🟢 |
 | [Will Chelsea finish in 2nd place in the ...](https://polymarket.com/event/will-chelsea-finish-in-2nd-place-in-the-2025-26-english-premier-league) | YES | $23.96 | 0.03 | 0.15 | +12% 🟡 | 60% | $+95.83 | 2026-05-27 | 112d | 🟢 |
 | [Will Alphabet (GOOGL) beat quarterly ear...](https://polymarket.com/event/googl-quarterly-earnings-gaap-eps-02-04-2026-2pt64) | NO | $71.87 | 0.97 | 0.65 | -32% 🔴 | 75% | $+859.80 | 2026-02-04 | 1d | 🔴 |
+| [Will the US next strike Iran on February...](https://polymarket.com/event/will-the-us-next-strike-iran-on-february-18-2026-et) | YES | $30.12 | 0.01 | 0.15 | +14% 🟡 | 70% | $+615.34 | 2026-02-28 | 24d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
@@ -119,7 +120,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 39 |
+| Markets with Active Bets | 40 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 

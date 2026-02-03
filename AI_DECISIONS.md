@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-03 04:06:10 CET
+**Last Updated:** 2026-02-03 05:18:50 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -518,64 +518,95 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #32: Will the US next strike Iran on February 18, 2026 (ET)?
+
+**Decision:** YES @ 0.01 (Stake: $30.12)
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 0.7%)
+- **Confidence Score:** 70.0%
+- **Edge:** +14.3%
+- **Expected Value:** $+615.34
+- **End Date:** 2026-02-28 01:00 CET
+
+**AI Reasoning:**
+> Tensions between the US and Iran are high, but diplomatic efforts are underway. A US strike is possible, but not highly probable within the specific timeframe. Factors include internal unrest in Iran, regional opposition to a strike, and ongoing negotiations. The current market price also suggests a low probability.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (57)
+### Insufficient Edge (63)
+
+**Will the US strike Cuba next?...**
+*Analyzed: 2026-02-03 05:18*
+Market: 0.01 | AI: 0.00 | Edge: -0.6% | Conf: 60%
+Reasoning: Die aktuelle Marktwahrscheinlichkeit von 1,15 % deutet auf eine sehr geringe Wahrscheinlichkeit hin. Ich schätze die Wahrscheinlichkeit sogar noch etw...
 
 **Will the US next strike Iran on February 22, 2026 (ET)?...**
-*Analyzed: 2026-02-03 04:06*
-Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 70%
-Reasoning: Die geopolitische Lage ist zwar angespannt, aber es gibt auch Signale für mögliche Verhandlungen zwischen den USA und dem Iran. Der zeitliche Rahmen i...
+*Analyzed: 2026-02-03 05:18*
+Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 75%
+Reasoning: Die geopolitische Lage ist angespannt, aber es gibt auch Signale für mögliche Verhandlungen zwischen den USA und dem Iran. US-Präsident Trump hat in d...
 
 **Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 04:06*
-Market: 0.02 | AI: 0.03 | Edge: +0.8% | Conf: 70%
-Reasoning: Der aktuelle Marktpreis deutet auf eine sehr geringe Wahrscheinlichkeit hin. François Hollande wird zwar als möglicher Kandidat gehandelt und hat Erfa...
-
-**Will SpaceX's public ticker be $SX?...**
-*Analyzed: 2026-02-03 04:06*
-Market: 0.05 | AI: 0.04 | Edge: -0.6% | Conf: 70%
-Reasoning: Es gibt keine Beispiele für bestehende Ticker Symbole die mit einem Dollarzeichen beginnen. Das Symbol 'X' ist kompliziert, da es bereits von U.S. Ste...
+*Analyzed: 2026-02-03 05:18*
+Market: 0.02 | AI: 0.03 | Edge: +0.8% | Conf: 60%
+Reasoning: François Hollande had very low approval ratings during his presidency. While he has recently returned to the National Assembly as a deputy, his age an...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 04:06*
-Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
-Reasoning: Basierend auf den aktuellen FIFA-Weltrangliste vom 19. Januar 2026 liegt Brasilien auf Platz 5. Historisch gesehen ist Brasilien mit 5 Weltmeistertite...
-
-**Capitals vs. Flyers...**
-*Analyzed: 2026-02-03 04:06*
-Market: 0.44 | AI: 0.48 | Edge: +3.5% | Conf: 70%
-Reasoning: Die Flyers haben aufgrund ihrer Heimstärke und der Torhüterprobleme der Capitals einen leichten Vorteil. Allerdings haben die Capitals in den letzten ...
-
-**Will the US next strike Iran on February 18, 2026 (ET)?...**
-*Analyzed: 2026-02-03 03:48*
-Market: 0.01 | AI: 0.08 | Edge: +7.4% | Conf: 60%
-Reasoning: Die Spannungen zwischen den USA und Iran sind zwar hoch, aber es gibt auch deutliche Anzeichen für diplomatische Bemühungen. Ein US-Schlag am 18. Febr...
+*Analyzed: 2026-02-03 05:18*
+Market: 0.10 | AI: 0.12 | Edge: +2.5% | Conf: 70%
+Reasoning: Brazil is a football powerhouse with a rich history and has qualified for the World Cup. However, the competition is fierce, and their recent performa...
 
 **Will the US next strike Iran on February 22, 2026 (ET)?...**
-*Analyzed: 2026-02-03 03:48*
-Market: 0.01 | AI: 0.03 | Edge: +2.2% | Conf: 70%
-Reasoning: Mehrere Faktoren deuten darauf hin, dass ein US-Angriff auf den Iran am 22. Februar 2026 unwahrscheinlich ist, obwohl die Spannungen hoch bleiben. Ers...
+*Analyzed: 2026-02-03 05:02*
+Market: 0.01 | AI: 0.07 | Edge: +6.2% | Conf: 70%
+Reasoning: Die Spannungen zwischen den USA und dem Iran sind hoch, aber es gibt auch diplomatische Bemühungen, die Situation zu deeskalieren. Ein Angriff ist mög...
 
 **Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 03:48*
-Market: 0.02 | AI: 0.03 | Edge: +0.6% | Conf: 70%
-Reasoning: François Hollande's historical unpopularity during his presidency, combined with a fragmented left-wing political landscape and the rise of other stro...
+*Analyzed: 2026-02-03 05:02*
+Market: 0.02 | AI: 0.01 | Edge: -1.0% | Conf: 70%
+Reasoning: Die Wahrscheinlichkeit, dass François Hollande die Präsidentschaftswahlen 2027 gewinnt, ist sehr gering. Hier ist die Begründung:*   **Geringe Popular...
 
 **Will SpaceX's public ticker be $SX?...**
-*Analyzed: 2026-02-03 03:48*
-Market: 0.05 | AI: 0.01 | Edge: -3.6% | Conf: 90%
-Reasoning: The ticker symbol '$SX' is already in use by St-Georges Eco-Mining Corp., a Canadian mining company. While a SpaceX IPO in 2026 is likely, the specifi...
+*Analyzed: 2026-02-03 05:02*
+Market: 0.04 | AI: 0.04 | Edge: -0.5% | Conf: 70%
+Reasoning: Obwohl es eine hohe Wahrscheinlichkeit für einen SpaceX-Börsengang gibt (geschätzt über 70%), ist die Wahrscheinlichkeit, dass das Ticker-Symbol spezi...
+
+**Will the US next strike Iran on February 22, 2026 (ET)?...**
+*Analyzed: 2026-02-03 04:42*
+Market: 0.01 | AI: 0.04 | Edge: +3.2% | Conf: 70%
+Reasoning: Die Lage ist angespannt, aber es gibt diplomatische Bemühungen. Ein Angriff am 22. Februar ist unwahrscheinlich, aber nicht ausgeschlossen, falls die ...
+
+**Will François Hollande win the 2027 French presidential elec...**
+*Analyzed: 2026-02-03 04:42*
+Market: 0.02 | AI: 0.03 | Edge: +1.0% | Conf: 60%
+Reasoning: François Hollande faces significant challenges in winning the 2027 French presidential election. His past unpopularity, the fragmented political lands...
+
+**Will SpaceX's public ticker be $SX?...**
+*Analyzed: 2026-02-03 04:42*
+Market: 0.04 | AI: 0.10 | Edge: +5.6% | Conf: 60%
+Reasoning: Es gibt begrenzte Hinweise darauf, dass das Ticker Symbol von SpaceX '$SX' sein wird. Während es einige Spekulationen gibt, deuten andere Spekulatione...
+
+
+### Ai Analysis Failed (37)
+
+**Will SpaceX's public ticker be $SX?...**
+*Analyzed: 2026-02-03 05:18*
+Market: 0.04 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 03:48*
-Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
-Reasoning: Brasiliens aktueller Marktpreis von 9.5% deutet auf eine implizite Wahrscheinlichkeit von rund 9.5% hin.  Allerdings ist es wichtig, andere Faktoren z...
+*Analyzed: 2026-02-03 05:02*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
-
-### Ai Analysis Failed (43)
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 04:42*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will SpaceX's public ticker be $SX?...**
 *Analyzed: 2026-02-03 03:29*
@@ -610,21 +641,6 @@ Reasoning: Gemini API error or timeout...
 **Will Alphabet (GOOGL) beat quarterly earnings?...**
 *Analyzed: 2026-02-03 01:41*
 Market: 0.97 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-03 01:41*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 01:09*
-Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 01:09*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 
