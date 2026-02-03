@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-03 13:17:54 CET
+**Last Updated:** 2026-02-03 14:17:59 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 158 | 1,500 | 10.5% | 🟢 |
+| Today (RPD) | 168 | 1,500 | 11.2% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-3,416.42 |
-| Locked in Active Bets | $3,875.63 |
+| Available Capital | $-3,653.12 |
+| Locked in Active Bets | $4,112.33 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $3875.63 (387.6% of capital) |
-| Avg Position Size | $69.21 |
+| Total Exposure | $4112.33 (411.2% of capital) |
+| Avg Position Size | $72.15 |
 | Largest Position | $238.80 (23.9%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.028) |
 
 ---
-## 🎯 Active Bets (65)
+## 🎯 Active Bets (66)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -117,6 +117,7 @@
 | [Will António José Seguro win the second ...](https://polymarket.com/event/will-antnio-jos-seguro-win-the-second-round-by-at-least-35) | NO | $232.43 | 0.50 | 0.01 | -49% 🔴 | 90% | $+227.78 | 2026-02-08 | 4d | 🟡 |
 | [Will Elon Musk post 215-239 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-2-february-4-215-239) | NO | $116.19 | 0.50 | 0.20 | -30% 🔴 | 60% | $+69.71 | 2026-02-04 | 1d | 🔴 |
 | [Will Olivier Faure win the 2027 French p...](https://polymarket.com/event/will-olivier-faure-win-the-2027-french-presidential-election) | NO | $154.92 | 0.50 | 0.10 | -40% 🔴 | 60% | $+123.94 | 2027-04-30 | 450d | 🟢 |
+| [Will Angers win the 2025–26 French Ligue...](https://polymarket.com/event/will-angers-win-the-202526-french-ligue-1) | NO | $236.70 | 0.50 | 0.00 | -50% 🔴 | 90% | $+236.22 | 2026-05-30 | 115d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -1d | ⏳ Pending Resolution |
@@ -146,6 +147,7 @@
 - 🔴 **High Exposure**: "Will António José Seguro win t..." is 23.2% of capital
 - 🔴 **High Exposure**: "Will Elon Musk post 215-239 tw..." is 11.6% of capital
 - 🔴 **High Exposure**: "Will Olivier Faure win the 202..." is 15.5% of capital
+- 🔴 **High Exposure**: "Will Angers win the 2025–26 Fr..." is 23.7% of capital
 - 🟡 **Expiring Soon**: 18 bet(s) expire within 7 days
 
 ---
@@ -154,7 +156,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 65 |
+| Markets with Active Bets | 66 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
