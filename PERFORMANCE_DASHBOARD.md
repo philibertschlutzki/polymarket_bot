@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-03 02:51:10 CET
+**Last Updated:** 2026-02-03 04:06:10 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Last Run | 2026-02-03 02:23:52 CET |
-| Next Run | 2026-02-03 02:38:52 CET |
+| Last Run | 2026-02-03 03:44:15 CET |
+| Next Run | 2026-02-03 03:59:15 CET |
 | Run Interval | 15 minutes |
 | Bot Status | 🔴 Delayed |
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 17 | 1,500 | 1.1% | 🟢 |
-| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
+| Current Minute (RPM) | 5 | 15 | 33% | 🟢 |
+| Today (RPD) | 33 | 1,500 | 2.2% | 🟢 |
+| Current Minute (TPM) | 4,630 | 1,000,000 | 0.46% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -42,7 +42,7 @@
 | Category | Amount |
 |----------|--------|
 | Available Capital | $-1,302.50 |
-| Locked in Active Bets | $1,883.33 |
+| Locked in Active Bets | $1,821.47 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,10 +51,10 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $1883.33 (188.3% of capital) |
-| Avg Position Size | $58.85 |
+| Total Exposure | $1821.47 (182.1% of capital) |
+| Avg Position Size | $58.76 |
 | Largest Position | $156.77 (15.7%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.044) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.046) |
 
 ---
 ## 🎯 Active Bets (39)
@@ -84,7 +84,6 @@
 | [Will Claude 5 be released by March 31, 2...](https://polymarket.com/event/will-claude-5-be-released-by-march-31-2026) | NO | $117.66 | 0.80 | 0.35 | -45% 🔴 | 70% | $+264.72 | Unknown | N/A | 🔵 |
 | [Will Apple be the third-largest company ...](https://polymarket.com/event/will-apple-be-the-third-largest-company-in-the-world-by-market-cap-on-february-28) | NO | $50.15 | 0.85 | 0.65 | -20% 🔴 | 70% | $+70.90 | 2026-02-28 | 24d | 🟢 |
 | [Will Elon Musk post 220-239 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-220-239) | YES | $27.38 | 0.01 | 0.15 | +14% 🟡 | 60% | $+383.39 | 2026-02-06 | 3d | 🟡 |
-| [Weber State Wildcats vs. Sacramento Stat...](https://polymarket.com/event/cbb-webst-sacst-2026-02-02-total-163pt5) | YES | $61.86 | 0.51 | 0.65 | +14% 🟡 | 75% | $+16.98 | 2026-02-03 | 0d | 🔴 |
 | [Will Israel strike Gaza on February 2, 2...](https://polymarket.com/event/will-israel-strike-gaza-on-february-2-2026) | YES | $39.22 | 0.20 | 0.35 | +15% 🟡 | 70% | $+29.41 | 2026-02-28 | 24d | 🟢 |
 | [Will Ethereum reach $3,200 in February?](https://polymarket.com/event/will-ethereum-reach-3200-in-february-2026) | YES | $25.33 | 0.09 | 0.20 | +12% 🟡 | 65% | $+34.27 | 2026-03-01 | 26d | 🟢 |
 | [Will Chong Won-oh win the 2026 Seoul May...](https://polymarket.com/event/will-chong-won-oh-win-the-2026-seoul-mayoral-election) | NO | $75.73 | 0.58 | 0.37 | -21% 🔴 | 70% | $+37.87 | 2026-06-03 | 119d | 🟢 |
@@ -100,6 +99,7 @@
 | [Spread: Timberwolves (-7.5)](https://polymarket.com/event/nba-min-mem-2026-02-02-spread-away-7pt5) | YES | $63.42 | 0.51 | 0.65 | +14% 🟡 | 75% | $+0.00 | 2026-02-03 | -1d | ⏳ Pending Resolution |
 | [Spread: Timberwolves (-6.5)](https://polymarket.com/event/nba-min-mem-2026-02-02-spread-away-6pt5) | YES | $51.77 | 0.54 | 0.65 | +11% 🟡 | 75% | $+0.00 | 2026-02-03 | -1d | ⏳ Pending Resolution |
 | [Jets vs. Stars](https://polymarket.com/event/nhl-wpg-dal-2026-02-02) | YES | $89.15 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-03 | -1d | ⏳ Pending Resolution |
+| [Weber State Wildcats vs. Sacramento Stat...](https://polymarket.com/event/cbb-webst-sacst-2026-02-02-total-163pt5) | YES | $61.86 | 0.51 | 0.65 | +14% 🟡 | 75% | $+0.00 | 2026-02-03 | -1d | ⏳ Pending Resolution |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -111,7 +111,7 @@
 - 🔴 **High Exposure**: "Natural Disaster in 2026?..." is 14.1% of capital
 - 🔴 **High Exposure**: "Will Ethereum dip to $1,000 by..." is 12.2% of capital
 - 🔴 **High Exposure**: "Will Claude 5 be released by M..." is 11.8% of capital
-- 🟡 **Expiring Soon**: 7 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 6 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights

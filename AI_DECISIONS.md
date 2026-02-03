@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-03 02:51:10 CET
+**Last Updated:** 2026-02-03 04:06:10 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -390,23 +390,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #24: Weber State Wildcats vs. Sacramento State Hornets: O/U 163.5
-
-**Decision:** YES @ 0.51 (Stake: $61.86)
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 51.0%)
-- **Confidence Score:** 75.0%
-- **Edge:** +14.0%
-- **Expected Value:** $+16.98
-- **End Date:** 2026-02-03 04:00 CET
-
-**AI Reasoning:**
-> Weber State und Sacramento State haben im Durchschnitt hohe Punktzahlen erzielt. Die Over/Under-Linie in anderen Sportwetten liegt bei 165,5. Weber State hat das letzte Spiel gegen Sacramento State mit 95-82 gewonnen. Ich schätze eine Wahrscheinlichkeit von 65 % für 'Over' 163.5.
-
----
-
-### Bet #25: Will Israel strike Gaza on February 2, 2026?
+### Bet #24: Will Israel strike Gaza on February 2, 2026?
 
 **Decision:** YES @ 0.20 (Stake: $39.22)
 
@@ -422,7 +406,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #26: Will Ethereum reach $3,200 in February?
+### Bet #25: Will Ethereum reach $3,200 in February?
 
 **Decision:** YES @ 0.08 (Stake: $25.33)
 
@@ -438,7 +422,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #27: Will Chong Won-oh win the 2026 Seoul Mayoral Election
+### Bet #26: Will Chong Won-oh win the 2026 Seoul Mayoral Election
 
 **Decision:** NO @ 0.58 (Stake: $75.73)
 
@@ -454,7 +438,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #28: Will Anthropic have the best AI model at the end of February 2026?
+### Bet #27: Will Anthropic have the best AI model at the end of February 2026?
 
 **Decision:** YES @ 0.06 (Stake: $41.83)
 
@@ -470,7 +454,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #29: Will Ethereum reach $3,600 in February?
+### Bet #28: Will Ethereum reach $3,600 in February?
 
 **Decision:** YES @ 0.03 (Stake: $23.96)
 
@@ -486,7 +470,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #30: Israel x Iran ceasefire broken by March 31, 2026?
+### Bet #29: Israel x Iran ceasefire broken by March 31, 2026?
 
 **Decision:** YES @ 0.40 (Stake: $86.13)
 
@@ -502,7 +486,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #31: Will Chelsea finish in 2nd place in the 2025-26 English Premier League?
+### Bet #30: Will Chelsea finish in 2nd place in the 2025-26 English Premier League?
 
 **Decision:** YES @ 0.03 (Stake: $23.96)
 
@@ -518,7 +502,7 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
-### Bet #32: Will Alphabet (GOOGL) beat quarterly earnings?
+### Bet #31: Will Alphabet (GOOGL) beat quarterly earnings?
 
 **Decision:** NO @ 0.97 (Stake: $71.87)
 
@@ -538,7 +522,70 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 *Showing last 100 rejected analyses*
 
-### Ai Analysis Failed (52)
+### Insufficient Edge (57)
+
+**Will the US next strike Iran on February 22, 2026 (ET)?...**
+*Analyzed: 2026-02-03 04:06*
+Market: 0.01 | AI: 0.01 | Edge: +0.2% | Conf: 70%
+Reasoning: Die geopolitische Lage ist zwar angespannt, aber es gibt auch Signale für mögliche Verhandlungen zwischen den USA und dem Iran. Der zeitliche Rahmen i...
+
+**Will François Hollande win the 2027 French presidential elec...**
+*Analyzed: 2026-02-03 04:06*
+Market: 0.02 | AI: 0.03 | Edge: +0.8% | Conf: 70%
+Reasoning: Der aktuelle Marktpreis deutet auf eine sehr geringe Wahrscheinlichkeit hin. François Hollande wird zwar als möglicher Kandidat gehandelt und hat Erfa...
+
+**Will SpaceX's public ticker be $SX?...**
+*Analyzed: 2026-02-03 04:06*
+Market: 0.05 | AI: 0.04 | Edge: -0.6% | Conf: 70%
+Reasoning: Es gibt keine Beispiele für bestehende Ticker Symbole die mit einem Dollarzeichen beginnen. Das Symbol 'X' ist kompliziert, da es bereits von U.S. Ste...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 04:06*
+Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
+Reasoning: Basierend auf den aktuellen FIFA-Weltrangliste vom 19. Januar 2026 liegt Brasilien auf Platz 5. Historisch gesehen ist Brasilien mit 5 Weltmeistertite...
+
+**Capitals vs. Flyers...**
+*Analyzed: 2026-02-03 04:06*
+Market: 0.44 | AI: 0.48 | Edge: +3.5% | Conf: 70%
+Reasoning: Die Flyers haben aufgrund ihrer Heimstärke und der Torhüterprobleme der Capitals einen leichten Vorteil. Allerdings haben die Capitals in den letzten ...
+
+**Will the US next strike Iran on February 18, 2026 (ET)?...**
+*Analyzed: 2026-02-03 03:48*
+Market: 0.01 | AI: 0.08 | Edge: +7.4% | Conf: 60%
+Reasoning: Die Spannungen zwischen den USA und Iran sind zwar hoch, aber es gibt auch deutliche Anzeichen für diplomatische Bemühungen. Ein US-Schlag am 18. Febr...
+
+**Will the US next strike Iran on February 22, 2026 (ET)?...**
+*Analyzed: 2026-02-03 03:48*
+Market: 0.01 | AI: 0.03 | Edge: +2.2% | Conf: 70%
+Reasoning: Mehrere Faktoren deuten darauf hin, dass ein US-Angriff auf den Iran am 22. Februar 2026 unwahrscheinlich ist, obwohl die Spannungen hoch bleiben. Ers...
+
+**Will François Hollande win the 2027 French presidential elec...**
+*Analyzed: 2026-02-03 03:48*
+Market: 0.02 | AI: 0.03 | Edge: +0.6% | Conf: 70%
+Reasoning: François Hollande's historical unpopularity during his presidency, combined with a fragmented left-wing political landscape and the rise of other stro...
+
+**Will SpaceX's public ticker be $SX?...**
+*Analyzed: 2026-02-03 03:48*
+Market: 0.05 | AI: 0.01 | Edge: -3.6% | Conf: 90%
+Reasoning: The ticker symbol '$SX' is already in use by St-Georges Eco-Mining Corp., a Canadian mining company. While a SpaceX IPO in 2026 is likely, the specifi...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 03:48*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
+Reasoning: Brasiliens aktueller Marktpreis von 9.5% deutet auf eine implizite Wahrscheinlichkeit von rund 9.5% hin.  Allerdings ist es wichtig, andere Faktoren z...
+
+
+### Ai Analysis Failed (43)
+
+**Will SpaceX's public ticker be $SX?...**
+*Analyzed: 2026-02-03 03:29*
+Market: 0.04 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will François Hollande win the 2027 French presidential elec...**
+*Analyzed: 2026-02-03 03:13*
+Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will the Los Angeles Lakers win the NBA Western Conference F...**
 *Analyzed: 2026-02-03 02:51*
@@ -579,69 +626,6 @@ Reasoning: Gemini API error or timeout...
 *Analyzed: 2026-02-03 01:09*
 Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-03 01:09*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 00:14*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-
-### Insufficient Edge (48)
-
-**Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 02:51*
-Market: 0.03 | AI: 0.03 | Edge: +0.4% | Conf: 70%
-Reasoning: Die Wahrscheinlichkeit, dass François Hollande die französische Präsidentschaftswahl 2027 gewinnt, ist gering. Hier ist die Begründung:*   **Geringe P...
-
-**Will SpaceX's public ticker be $SX?...**
-*Analyzed: 2026-02-03 02:51*
-Market: 0.04 | AI: 0.05 | Edge: +0.5% | Conf: 70%
-Reasoning: Obwohl es keine definitive Möglichkeit gibt, das Börsenkürzel vorherzusagen, hier ist die Begründung für die Wahrscheinlichkeitsschätzung:*   **Gering...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 02:51*
-Market: 0.10 | AI: 0.10 | Edge: +0.5% | Conf: 75%
-Reasoning: Brasilien gehört zwar immer zu den Favoriten, aber ihre letzten Leistungen bei Weltmeisterschaften waren nicht berauschend. Sie erreichten seit 2002 n...
-
-**Will Alphabet (GOOGL) beat quarterly earnings?...**
-*Analyzed: 2026-02-03 02:31*
-Market: 0.97 | AI: 0.97 | Edge: -0.3% | Conf: 85%
-Reasoning: The current market price of 97.30% suggests a high likelihood of Alphabet beating earnings expectations. Analysts generally expect Alphabet to beat ex...
-
-**Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 02:31*
-Market: 0.03 | AI: 0.03 | Edge: +0.4% | Conf: 60%
-Reasoning: François Hollande's chances of winning the 2027 French presidential election are estimated to be low due to his past unpopularity and the current frag...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 02:31*
-Market: 0.10 | AI: 0.11 | Edge: +1.5% | Conf: 75%
-Reasoning: Brasilien gehört zu den Favoriten für den Gewinn der FIFA Fussball-Weltmeisterschaft 2026. Mehrere Quellen nennen Brasilien als einen der Top-Anwärter...
-
-**Will Alphabet (GOOGL) beat quarterly earnings?...**
-*Analyzed: 2026-02-03 02:08*
-Market: 0.97 | AI: 0.95 | Edge: -2.3% | Conf: 85%
-Reasoning: Alphabet hat in der Vergangenheit die Erwartungen übertroffen, insbesondere im letzten Quartal (Q3 2025). Google Cloud und AI treiben ein erhebliches ...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-03 02:08*
-Market: 0.10 | AI: 0.10 | Edge: +0.0% | Conf: 75%
-Reasoning: Basierend auf den aktuellen Wettquoten und FIFA-Rankings hat Brasilien eine Chance, die FIFA Fussball-Weltmeisterschaft 2026 zu gewinnen, aber es gibt...
-
-**Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 01:41*
-Market: 0.02 | AI: 0.01 | Edge: -1.0% | Conf: 60%
-Reasoning: François Hollande war während seiner Amtszeit sehr unbeliebt und die politische Landschaft in Frankreich hat sich seitdem weiter nach rechts verschobe...
-
-**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-03 01:41*
-Market: 0.03 | AI: 0.04 | Edge: +0.8% | Conf: 60%
-Reasoning: Der aktuelle Marktpreis deutet auf eine sehr geringe Wahrscheinlichkeit hin, dass Chelsea Zweiter wird (3.15%). Die verfügbaren Suchergebnisse bestäti...
 
 
 ## 📊 Historical Analysis
