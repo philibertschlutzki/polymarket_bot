@@ -21,10 +21,9 @@ import re
 import sys
 import threading
 import time
-from datetime import datetime, timedelta, timezone
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+from datetime import datetime, timezone
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
-import psutil
 import requests
 from dateutil import parser as date_parser
 from dotenv import load_dotenv
@@ -441,7 +440,7 @@ def execute_batched_query(
 ) -> Dict[str, Any]:
     results = {}
     for i in range(0, len(slugs), chunk_size):
-        chunk = slugs[i : i + chunk_size]
+        chunk = slugs[i:i + chunk_size]
         query_parts = []
         slug_map = {}
 
@@ -468,7 +467,7 @@ def execute_batched_query(
     return results
 
 
-def fetch_active_markets(limit: int = 20) -> List[MarketData]:
+def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
     try:
         logger.info("📡 Connecting to Polymarket Gamma API...")
         params = {
@@ -478,7 +477,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:
             "order": "volume",
             "ascending": "false",
         }
-        response = requests.get(POLYMARKET_GAMMA_API_URL, params=params, timeout=10) # type: ignore
+        response = requests.get(POLYMARKET_GAMMA_API_URL, params=params, timeout=10)  # type: ignore
         if response.status_code != 200:
             return []
 
@@ -586,7 +585,7 @@ def calculate_quick_edge(market: MarketData) -> float:
 # RESOLUTION LOGIC (Preserved)
 # ============================================================================
 
-def check_and_resolve_bets():
+def check_and_resolve_bets():  # noqa: C901
     try:
         archive_expired_bets()
         process_auto_loss_bets()
@@ -605,7 +604,7 @@ def check_and_resolve_bets():
                 try:
                     end_date = date_parser.parse(end_date_val)
                     if end_date.tzinfo is None:
-                         end_date = end_date.replace(tzinfo=timezone.utc)
+                        end_date = end_date.replace(tzinfo=timezone.utc)
                     if end_date < datetime.now(timezone.utc):
                         is_expired = True
                 except Exception:
@@ -625,7 +624,7 @@ def check_and_resolve_bets():
         logger.error(f"❌ Resolution Check Failed: {exc}", exc_info=True)
 
 
-def process_resolution_for_bets(bets: List[Dict], is_archived: bool):
+def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C901
     unique_slugs = list(set(b["market_slug"] for b in bets))
     resolved_markets = execute_batched_query(
         unique_slugs,
@@ -677,9 +676,9 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):
                 else:
                     bets_to_close.append((bet["bet_id"], actual_outcome, profit))
         else:
-             # Not resolved, check if we need to archive active bet
-             if not is_archived:
-                  database.archive_bet_without_resolution(bet["bet_id"])
+            # Not resolved, check if we need to archive active bet
+            if not is_archived:
+                database.archive_bet_without_resolution(bet["bet_id"])
 
     if bets_to_close:
         database.close_bets_batch(bets_to_close)
@@ -687,7 +686,7 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):
         database.update_archived_bets_outcome_batch(bets_to_update)
     if bets_to_mark_disputed:
         for archive_id, price in bets_to_mark_disputed:
-             log_status_change(archive_id, "UNRESOLVED", "DISPUTED", f"PRICE_{price}", True)
+            log_status_change(archive_id, "UNRESOLVED", "DISPUTED", f"PRICE_{price}", True)
 
 
 # ============================================================================
@@ -766,8 +765,8 @@ def queue_processing_worker():
             # 3. Acquire Token (Blocks)
             logger.debug("⏳ Acquiring rate limit token...")
             if not rate_limiter.acquire_token(block=True):
-                 # Should not happen with block=True unless interrupted
-                 continue
+                # Should not happen with block=True unless interrupted
+                continue
 
             # 4. Analyze
             capital = database.get_current_capital()
@@ -855,7 +854,7 @@ def resolution_worker():
     while True:
         try:
             check_and_resolve_bets()
-            time.sleep(900) # 15 minutes
+            time.sleep(900)  # 15 minutes
         except Exception as e:
             logger.error(f"❌ Error in ResolutionWorker: {e}")
             time.sleep(60)

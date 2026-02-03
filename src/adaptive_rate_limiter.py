@@ -47,7 +47,7 @@ class AdaptiveRateLimiter:
         self.tokens = min(self.tokens + tokens_to_add, self.max_rpm)
         self.last_refill = now
 
-    def acquire_token(self, block: bool = True) -> bool:
+    def acquire_token(self, block: bool = True) -> bool:  # noqa: C901
         """
         Attempts to acquire a token.
         If block is True, waits until a token is available.
@@ -84,14 +84,14 @@ class AdaptiveRateLimiter:
                     tokens_per_second = self.current_rpm / 60.0
                     if tokens_per_second > 0:
                         wait_time = tokens_needed / tokens_per_second
-                        sleep_time = max(0.1, wait_time) # Minimum wait
+                        sleep_time = max(0.1, wait_time)  # Minimum wait
                     else:
                         sleep_time = 1.0
 
             # Sleep outside the lock
             if sleep_time > 0:
                 if self.backoff_until and sleep_time > 1.0:
-                     logger.warning(f"⏳ Rate Limit Wait: Sleeping {sleep_time:.2f}s")
+                    logger.warning(f"⏳ Rate Limit Wait: Sleeping {sleep_time:.2f}s")
                 time.sleep(sleep_time)
 
     def report_success(self):
@@ -151,13 +151,17 @@ class AdaptiveRateLimiter:
             backoff_active = False
             backoff_until_str = None
             if self.backoff_until:
-                 if time.time() < self.backoff_until:
-                     backoff_active = True
-                     backoff_until_str = datetime.datetime.fromtimestamp(self.backoff_until).isoformat()
+                if time.time() < self.backoff_until:
+                    backoff_active = True
+                    backoff_until_str = datetime.datetime.fromtimestamp(
+                        self.backoff_until
+                    ).isoformat()
 
             last_429_str = None
             if self.last_429_time:
-                last_429_str = datetime.datetime.fromtimestamp(self.last_429_time).isoformat()
+                last_429_str = datetime.datetime.fromtimestamp(
+                    self.last_429_time
+                ).isoformat()
 
             return {
                 "current_rpm": self.current_rpm,

@@ -2,7 +2,7 @@ import datetime
 import logging
 import os
 import time
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import psutil
 
@@ -159,7 +159,10 @@ class HealthMonitor:
 ## ⚠️ Alerts
 """
             if current_metrics["alert_status"] != "OK":
-                markdown += f"- **{current_metrics['alert_status']}**: Memory usage is high ({current_metrics['memory_mb']} MB)\n"
+                markdown += (
+                    f"- **{current_metrics['alert_status']}**: "
+                    f"Memory usage is high ({current_metrics['memory_mb']} MB)\n"
+                )
 
             if api.get("backoff_active"):
                 markdown += f"- **WARNING**: API Backoff active until {api.get('backoff_until')}\n"
