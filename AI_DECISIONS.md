@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-03 00:14:08 CET
+**Last Updated:** 2026-02-03 01:41:38 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -518,64 +518,105 @@ Da diese Ereignisse unabhängig voneinander betrachtet werden können, addieren 
 
 ---
 
+### Bet #32: Spread: Timberwolves (-6.5)
+
+**Decision:** YES @ 0.54 (Stake: $51.77)
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 54.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** +11.0%
+- **Expected Value:** $+10.55
+- **End Date:** 2026-02-03 01:30 CET
+
+**AI Reasoning:**
+> Die Timberwolves sind Favorit mit einer Punktverteilung von -6 bis -7.5. Sie haben die Grizzlies kürzlich mit 17 Punkten geschlagen, aber Anthony Edwards' Status ist ungewiss. Die Grizzlies haben wichtige Verletzungen. Der aktuelle Marktpreis erscheint etwas niedrig im Vergleich zu den verfügbaren Informationen, rechtfertigt aber keine extrem hohe Wahrscheinlichkeit aufgrund der Unsicherheiten.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 100 rejected analyses*
 
-### Insufficient Edge (42)
+### Insufficient Edge (49)
 
 **Will François Hollande win the 2027 French presidential elec...**
-*Analyzed: 2026-02-03 00:14*
+*Analyzed: 2026-02-03 01:41*
 Market: 0.02 | AI: 0.01 | Edge: -1.0% | Conf: 60%
-Reasoning: Die Wahrscheinlichkeit, dass François Hollande die Präsidentschaftswahlen 2027 gewinnt, ist sehr gering. Hier ist die Begründung: *  **Historische Unp...
+Reasoning: François Hollande war während seiner Amtszeit sehr unbeliebt und die politische Landschaft in Frankreich hat sich seitdem weiter nach rechts verschobe...
 
 **Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-03 00:14*
-Market: 0.03 | AI: 0.01 | Edge: -2.0% | Conf: 60%
-Reasoning: Die aktuelle Marktwahrscheinlichkeit für ein 'Ja' beträgt 3,05 %, was bereits sehr niedrig ist. Chelsea ist zwar ein historisch starkes Team, aber ihr...
+*Analyzed: 2026-02-03 01:41*
+Market: 0.03 | AI: 0.04 | Edge: +0.8% | Conf: 60%
+Reasoning: Der aktuelle Marktpreis deutet auf eine sehr geringe Wahrscheinlichkeit hin, dass Chelsea Zweiter wird (3.15%). Die verfügbaren Suchergebnisse bestäti...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 01:41*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 75%
+Reasoning: Basierend auf den aktuellen FIFA-Weltrangliste liegt Brasilien auf Platz 5. Historisch gesehen ist Brasilien mit fünf Weltmeistertiteln das erfolgreic...
+
+**76ers vs. Clippers: O/U 218.5...**
+*Analyzed: 2026-02-03 01:41*
+Market: 0.51 | AI: 0.58 | Edge: +7.0% | Conf: 75%
+Reasoning: Beide Teams haben im Durchschnitt eine hohe Punktzahl. Joel Embiid wird wahrscheinlich spielen. Trotz der Abwesenheit von Paul George und der fraglich...
+
+**Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
+*Analyzed: 2026-02-03 01:09*
+Market: 0.04 | AI: 0.10 | Edge: +6.4% | Conf: 65%
+Reasoning: Die Wahrscheinlichkeit, dass Chelsea in der Saison 2025/26 den zweiten Platz in der Premier League belegt, wird auf etwa 10 % geschätzt. Mehrere Fakto...
 
 **Will the Minnesota Timberwolves win the NBA Western Conferen...**
-*Analyzed: 2026-02-03 00:14*
-Market: 0.04 | AI: 0.04 | Edge: +0.4% | Conf: 70%
-Reasoning: Der aktuelle Marktpreis von 3,55 % deutet auf eine geringe Wahrscheinlichkeit hin. Die Wettquoten liegen zwischen +900 und +2000, was ebenfalls auf ei...
+*Analyzed: 2026-02-03 01:09*
+Market: 0.04 | AI: 0.08 | Edge: +4.4% | Conf: 70%
+Reasoning: Die Timberwolves haben in den letzten Jahren eine gute Leistung gezeigt und waren in den Western Conference Finals. Allerdings gibt es starke Konkurre...
 
-**Will Anthropic have the best AI model at the end of February...**
-*Analyzed: 2026-02-02 23:46*
-Market: 0.06 | AI: 0.10 | Edge: +3.8% | Conf: 70%
-Reasoning: Anthropic's Claude Opus 4.5 ist ein Top-Modell, aber Google's Gemini 3 Pro liegt derzeit auf Platz 1 der LLM Arena Leaderboard. Die alphabetische Reih...
-
-**Will the price of Bitcoin be above $80,000 on February 4?...**
-*Analyzed: 2026-02-02 23:09*
-Market: 0.29 | AI: 0.35 | Edge: +5.8% | Conf: 60%
-Reasoning: Die Prognosen sind sehr unterschiedlich, wobei einige Experten einen Preis über 80.000 $ sehen, während andere niedrigere Werte erwarten. Der jüngste ...
-
-**Syracuse Orange vs. North Carolina Tar Heels: O/U 156.5...**
-*Analyzed: 2026-02-02 23:09*
-Market: 0.54 | AI: 0.48 | Edge: -5.5% | Conf: 75%
-Reasoning: Mehrere Quellen prognostizieren ein enges Spiel. Winners and Whiners sagt einen Endstand von 78-68 voraus, was unter 156.5 liegt. Sportsgambler progno...
-
-**Sabres vs. Panthers...**
-*Analyzed: 2026-02-02 23:09*
-Market: 0.50 | AI: 0.45 | Edge: -4.5% | Conf: 75%
-Reasoning: Die Florida Panthers sind zwar der Favorit laut den Wettquoten (ca. 55% Gewinnwahrscheinlichkeit), aber die Sabres haben eine bessere Saisonbilanz und...
+**Will François Hollande win the 2027 French presidential elec...**
+*Analyzed: 2026-02-03 00:40*
+Market: 0.02 | AI: 0.02 | Edge: +0.2% | Conf: 60%
+Reasoning: François Hollande is considering running for president in 2027, however, his historical unpopularity and the changing political landscape of France ma...
 
 **Will Chelsea finish in 2nd place in the 2025-26 English Prem...**
-*Analyzed: 2026-02-02 22:40*
-Market: 0.03 | AI: 0.08 | Edge: +5.2% | Conf: 60%
-Reasoning: Chelsea hat eine Chance auf den 2. Platz, aber starke Konkurrenz, Inkonsistenz und Trainerwechsel machen es unwahrscheinlich. Die Wettquoten spiegeln ...
+*Analyzed: 2026-02-03 00:40*
+Market: 0.03 | AI: 0.07 | Edge: +3.9% | Conf: 70%
+Reasoning: Chelsea ist ein starkes Team, aber die Konkurrenz in der Premier League ist groß. Der aktuelle Marktpreis spiegelt die Herausforderungen wider, aber C...
 
-**Sabres vs. Panthers...**
-*Analyzed: 2026-02-02 22:40*
-Market: 0.50 | AI: 0.48 | Edge: -1.5% | Conf: 75%
-Reasoning: Die Florida Panthers sind laut Sportwettenanbietern leicht favorisiert (ca. 52% Gewinnwahrscheinlichkeit). Der aktuelle Marktpreis von 49.50% für eine...
+**Will the Minnesota Timberwolves win the NBA Western Conferen...**
+*Analyzed: 2026-02-03 00:40*
+Market: 0.04 | AI: 0.06 | Edge: +2.4% | Conf: 70%
+Reasoning: Die Timberwolves sind ein starkes Team mit einem aufstrebenden Superstar in Anthony Edwards und Playoff-Erfahrung. Allerdings ist die Konkurrenz in de...
 
-**Will the US next strike Iran on February 8, 2026 (ET)?...**
-*Analyzed: 2026-02-02 21:56*
-Market: 0.01 | AI: 0.02 | Edge: +1.2% | Conf: 60%
-Reasoning: Die Wahrscheinlichkeit eines Angriffs am genannten Datum ist gering, da diplomatische Bemühungen laufen und ein Angriff das Risiko einer Eskalation bi...
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 00:40*
+Market: 0.10 | AI: 0.08 | Edge: -1.5% | Conf: 70%
+Reasoning: Brasiliens aktuelle Marktwahrscheinlichkeit auf Polymarket liegt bei 9,50%. Laut Vegas Insider vom 29. Januar 2026 gehören Brasilien und Argentinien m...
 
 
-### Ai Analysis Failed (57)
+### Ai Analysis Failed (50)
+
+**Will Alphabet (GOOGL) beat quarterly earnings?...**
+*Analyzed: 2026-02-03 01:41*
+Market: 0.97 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-03 01:41*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will François Hollande win the 2027 French presidential elec...**
+*Analyzed: 2026-02-03 01:09*
+Market: 0.02 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Will Brazil win the 2026 FIFA World Cup?...**
+*Analyzed: 2026-02-03 01:09*
+Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
+
+**Israel x Iran ceasefire broken by March 31, 2026?...**
+*Analyzed: 2026-02-03 01:09*
+Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
+Reasoning: Gemini API error or timeout...
 
 **Will Brazil win the 2026 FIFA World Cup?...**
 *Analyzed: 2026-02-03 00:14*
@@ -600,31 +641,6 @@ Reasoning: Gemini API error or timeout...
 **Will Brazil win the 2026 FIFA World Cup?...**
 *Analyzed: 2026-02-02 23:46*
 Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 23:46*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Syracuse Orange vs. North Carolina Tar Heels: O/U 156.5...**
-*Analyzed: 2026-02-02 23:46*
-Market: 0.54 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will the price of Ethereum be above $2,500 on February 3?...**
-*Analyzed: 2026-02-02 23:09*
-Market: 0.05 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Will Brazil win the 2026 FIFA World Cup?...**
-*Analyzed: 2026-02-02 23:09*
-Market: 0.10 | AI: 0.00 | Edge: +0.0% | Conf: 0%
-Reasoning: Gemini API error or timeout...
-
-**Israel x Iran ceasefire broken by March 31, 2026?...**
-*Analyzed: 2026-02-02 23:09*
-Market: 0.40 | AI: 0.00 | Edge: +0.0% | Conf: 0%
 Reasoning: Gemini API error or timeout...
 
 
