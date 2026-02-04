@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-04 15:46:17 CET
+**Last Updated:** 2026-02-04 16:46:24 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
-| Today (RPD) | 134 | 1,500 | 8.9% | 🟢 |
-| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
+| Current Minute (RPM) | 2 | 15 | 13% | 🟢 |
+| Today (RPD) | 151 | 1,500 | 10.1% | 🟢 |
+| Current Minute (TPM) | 2,483 | 1,000,000 | 0.25% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-13,471.66 |
-| Locked in Active Bets | $12,188.19 |
+| Available Capital | $-13,941.06 |
+| Locked in Active Bets | $12,657.59 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $12188.19 (1218.8% of capital) |
-| Avg Position Size | $97.51 |
+| Total Exposure | $12657.59 (1265.8% of capital) |
+| Avg Position Size | $98.12 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.011) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.010) |
 
 ---
-## 🎯 Active Bets (153)
+## 🎯 Active Bets (157)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -186,6 +186,10 @@
 | [Will Elon Musk post 90-114 tweets from F...](https://polymarket.com/event/elon-musk-of-tweets-february-2-february-4-90-114) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-04 | 0d | 🔴 |
 | [Will Elon Musk post 240-259 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-3-february-10-240-259) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-10 | 6d | 🟡 |
 | [Will Aztec launch a token by March 31, 2...](https://polymarket.com/event/will-aztec-launch-a-token-by-march-31-2026) | YES | $250.00 | 0.50 | 1.00 | +50% 🟢 | 100% | $+250.00 | Unknown | N/A | 🔵 |
+| [Will the price of Bitcoin be above $80,0...](https://polymarket.com/event/bitcoin-above-80k-on-february-6) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-02-06 | 2d | 🔴 |
+| [Will Z.ai have the best AI model at the ...](https://polymarket.com/event/will-zai-have-the-best-ai-model-at-the-end-of-february-2026) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-02-28 | 23d | 🟢 |
+| [Will Gold (GC) hit (HIGH) $5,800 by end ...](https://polymarket.com/event/will-gold-gc-hit-high-5800-by-end-of-february-759-378-429-713-662-579) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-02-28 | 23d | 🟢 |
+| [Will Claude 5 be released by February 28...](https://polymarket.com/event/will-claude-5-be-released-by-february-28-2026-352) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | Unknown | N/A | 🔵 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
@@ -273,7 +277,10 @@
 - 🔴 **High Exposure**: "Will LDP win a majority in the..." is 15.7% of capital
 - 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 16.7% of capital
 - 🔴 **High Exposure**: "Will Aztec launch a token by M..." is 25.0% of capital
-- 🟡 **Expiring Soon**: 41 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 13.6% of capital
+- 🔴 **High Exposure**: "Will Z.ai have the best AI mod..." is 13.6% of capital
+- 🔴 **High Exposure**: "Will Gold (GC) hit (HIGH) $5,8..." is 13.6% of capital
+- 🟡 **Expiring Soon**: 42 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -281,7 +288,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 153 |
+| Markets with Active Bets | 157 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
