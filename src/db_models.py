@@ -86,6 +86,9 @@ class ActiveBet(Base):
     parent_event_slug = Column(Text, nullable=True, index=True)
     outcome_variant_id = Column(Text, nullable=True)
     is_multi_outcome = Column(Boolean, default=False, nullable=False)
+    parent_analysis_id = Column(Integer)
+    full_distribution = Column(Text)
+    alternative_outcomes_count = Column(Integer, default=0)
     url_slug = Column(Text, nullable=False)
     question = Column(Text, nullable=False)
     action = Column(Text, nullable=False)
@@ -110,6 +113,7 @@ class ActiveBet(Base):
         CheckConstraint("ai_probability BETWEEN 0 AND 1"),
         CheckConstraint("confidence_score BETWEEN 0 AND 1"),
         CheckConstraint("status IN ('OPEN', 'PENDING_RESOLUTION')"),
+        {"sqlite_autoincrement": True},
     )
 
 
@@ -125,6 +129,9 @@ class ArchivedBet(Base):
     parent_event_slug = Column(Text, nullable=True, index=True)
     outcome_variant_id = Column(Text, nullable=True)
     is_multi_outcome = Column(Boolean, default=False, nullable=False)
+    parent_analysis_id = Column(Integer)
+    full_distribution = Column(Text)
+    alternative_outcomes_count = Column(Integer, default=0)
     url_slug = Column(Text, nullable=False)
     question = Column(Text, nullable=False)
     action = Column(Text, nullable=False)
@@ -154,6 +161,31 @@ class ArchivedBet(Base):
         CheckConstraint(
             "actual_outcome IN ('YES', 'NO', 'UNRESOLVED', 'AUTO_LOSS', 'DISPUTED', 'DISPUTED_LOSS', 'ANNULLED')"
         ),
+        {"sqlite_autoincrement": True},
+    )
+
+
+class MultiOutcomeAnalysis(Base):
+    __tablename__ = "multi_outcome_analyses"
+    analysis_id = Column(
+        BigInteger().with_variant(Integer, "sqlite"),
+        primary_key=True,
+        autoincrement=True,
+    )
+    parent_event_slug = Column(Text, nullable=False)
+    timestamp_analyzed = Column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )
+    full_distribution = Column(Text, nullable=False)
+    market_prices = Column(Text, nullable=False)
+    edges = Column(Text, nullable=False)
+    best_outcome_slug = Column(Text)
+    reasoning = Column(Text)
+    outcomes_count = Column(Integer)
+
+    __table_args__ = (
+        Index("idx_multi_analyses_parent", "parent_event_slug"),
+        Index("idx_multi_analyses_timestamp", "timestamp_analyzed"),
     )
 
 

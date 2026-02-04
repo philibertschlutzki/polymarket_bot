@@ -154,7 +154,59 @@ This file contains detailed AI reasoning for all market analyses.
         bet_type_info = ""
         if bet.get("is_multi_outcome"):
             parent = bet.get("parent_event_slug")
-            bet_type_info = f"**Multi-Outcome Event** (Parent: `{parent}`)\n"
+
+            options_table = ""
+            if bet.get("full_distribution"):
+                try:
+                    import json
+
+                    distribution = json.loads(bet["full_distribution"])
+
+                    # Load complete analysis for market prices
+                    analysis_data = database.get_multi_outcome_analysis(parent)
+
+                    if analysis_data:
+                        market_prices = analysis_data["market_prices"]
+                        edges = analysis_data["edges"]
+
+                        options_table = "\n**All Analyzed Options:**\n\n"
+                        options_table += "| Option | AI Probability | Market Price | Edge | Status |\n"
+                        options_table += "|--------|----------------|--------------|------|--------|\n"
+
+                        sorted_outcomes = sorted(
+                            distribution.items(), key=lambda x: x[1], reverse=True
+                        )
+
+                        for outcome_slug, ai_prob in sorted_outcomes:
+                            market_price = market_prices.get(outcome_slug, 0.5)
+                            edge = edges.get(outcome_slug, 0.0)
+
+                            is_selected = outcome_slug == bet["market_slug"]
+
+                            option_name = outcome_slug.replace("-", " ").title()
+                            if len(option_name) > 30:
+                                option_name = option_name[:27] + "..."
+
+                            if is_selected:
+                                status = f"✅ **SELECTED** ({bet['action']})"
+                            elif abs(edge) >= 0.10:
+                                status = "⚠️ Alternative Edge"
+                            else:
+                                status = "❌ Insufficient Edge"
+
+                            options_table += (
+                                f"| {option_name} | {ai_prob:.1%} | "
+                                f"{market_price:.1%} | {edge:+.1%} | {status} |\n"
+                            )
+
+                        options_table += "\n"
+                except Exception as e:
+                    logger.error(f"Error rendering multi-outcome table: {e}")
+                    options_table = ""
+
+            bet_type_info = (
+                f"**Multi-Outcome Event** (Parent: `{parent}`)\n{options_table}"
+            )
 
         active_section += f"""### Bet #{i}: [{q_text}]({url})
 {bet_type_info}*Analyzed: {analyzed_str}*
@@ -175,6 +227,28 @@ This file contains detailed AI reasoning for all market analyses.
 ---
 
 """
+
+    # Multi-Outcome Summary
+    multi_outcome_groups = {}
+    for bet in active_bets:
+        if bet.get("is_multi_outcome"):
+            parent = bet.get("parent_event_slug")
+            if parent not in multi_outcome_groups:
+                multi_outcome_groups[parent] = []
+            multi_outcome_groups[parent].append(bet)
+
+    if multi_outcome_groups:
+        active_section += "\n### 🎲 Multi-Outcome Events Summary\n\n"
+
+        for parent, bets in multi_outcome_groups.items():
+            total_stake = sum(float(b["stake_usdc"]) for b in bets)
+            total_ev = sum(float(b["expected_value"]) for b in bets)
+
+            active_section += f"**{parent}**: {len(bets)} bet(s) | "
+            active_section += f"Total Stake: ${total_stake:.2f} | "
+            active_section += f"Combined EV: ${total_ev:+.2f}\n\n"
+
+    active_section += "---\n\n"
 
     # === REJECTED MARKETS ===
     rejected_section = "## ❌ Rejected Markets\n\n"
