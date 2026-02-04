@@ -80,7 +80,10 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-## ❌ Rejected Markets
+**[Nuggets vs. Knicks: O/U 226.5](https://polymarket.com/market/nba-den-nyk-2026-02-04-total-226pt5)**
+*Analyzed: 2026-02-04 11:40 CET*
+Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 75%
+**[View Market →](https://polymarket.com/market/nba-den-nyk-2026-02-04-total-226pt5)**
 
 *Showing last 0 rejected analyses*
 
