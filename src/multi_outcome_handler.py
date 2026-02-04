@@ -36,7 +36,7 @@ class MultiOutcomeHandler:
         potential_groups = defaultdict(list)
 
         for market in markets:
-            question = get_field(market, 'question')
+            question = get_field(market, "question")
 
             # Heuristic 1: "X price on Y: Range" or "X price on Y - Range"
             # Pattern: (Main Event) [:|-] (Variant)
@@ -84,7 +84,7 @@ class MultiOutcomeHandler:
         final_groups = {}
 
         for key, group_markets in potential_groups.items():
-            if len(group_markets) >= self.config['detection']['min_outcomes_threshold']:
+            if len(group_markets) >= self.config["detection"]["min_outcomes_threshold"]:
                 # likely multi-outcome
                 slug = key.lower().replace(" ", "-").replace("?", "").replace(":", "")
                 # Ensure unique
@@ -94,27 +94,20 @@ class MultiOutcomeHandler:
                 for m in group_markets:
                     singles.append(m)
 
-        return {
-            'single_markets': singles,
-            'multi_outcome_events': final_groups
-        }
+        return {"single_markets": singles, "multi_outcome_events": final_groups}
 
     def analyze_multi_outcome_event(
-        self,
-        parent_slug: str,
-        outcomes: List[Any],
-        gemini_client
+        self, parent_slug: str, outcomes: List[Any], gemini_client
     ) -> Optional[Dict]:
         """
         Coordinates analysis of a multi-outcome event.
         """
-        self.logger.info(f"Analyzing multi-outcome event: {parent_slug} ({len(outcomes)} outcomes)")
+        self.logger.info(
+            f"Analyzing multi-outcome event: {parent_slug} ({len(outcomes)} outcomes)"
+        )
 
         # Prepare data for prompt
-        event_data = {
-            'parent_slug': parent_slug,
-            'outcomes': outcomes
-        }
+        event_data = {"parent_slug": parent_slug, "outcomes": outcomes}
 
         prompt = generate_multi_outcome_prompt(event_data)
 
@@ -126,10 +119,11 @@ class MultiOutcomeHandler:
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     response_mime_type="application/json"
-                )
+                ),
             )
 
             import json
+
             text_response = response.text
             # Clean markdown
             if "```json" in text_response:
@@ -140,11 +134,13 @@ class MultiOutcomeHandler:
             analysis = json.loads(text_response.strip())
 
             # Validate distribution
-            if not self.validate_distribution(analysis.get('distribution', {})):
+            if not self.validate_distribution(analysis.get("distribution", {})):
                 self.logger.warning(f"Distribution validation failed for {parent_slug}")
                 # We could force normalize here if config says so
-                if self.config['analysis']['normalize_distribution']:
-                    analysis['distribution'] = self._force_normalize(analysis['distribution'])
+                if self.config["analysis"]["normalize_distribution"]:
+                    analysis["distribution"] = self._force_normalize(
+                        analysis["distribution"]
+                    )
                 else:
                     return None
 
@@ -170,14 +166,16 @@ class MultiOutcomeHandler:
 
     def check_existing_bets(self, parent_event_slug: str) -> Optional[str]:
         """Checks if bets exist for this parent event."""
-        if not self.config['conflicts']['block_on_existing_bet']:
+        if not self.config["conflicts"]["block_on_existing_bet"]:
             return None
 
         session = self.Session()
         try:
-            exists = session.query(ActiveBet).filter(
-                ActiveBet.parent_event_slug == parent_event_slug
-            ).first()
+            exists = (
+                session.query(ActiveBet)
+                .filter(ActiveBet.parent_event_slug == parent_event_slug)
+                .first()
+            )
 
             if exists:
                 return f"Bet already active on event {parent_event_slug}"
@@ -185,7 +183,9 @@ class MultiOutcomeHandler:
         finally:
             session.close()
 
-    def select_best_outcome(self, analysis: Dict, market_map: Dict[str, Any]) -> Optional[Dict]:
+    def select_best_outcome(
+        self, analysis: Dict, market_map: Dict[str, Any]
+    ) -> Optional[Dict]:
         """
         Selects the best outcome based on strategy.
         market_map: {outcome_variant_id (or slug): MarketData}
@@ -193,12 +193,12 @@ class MultiOutcomeHandler:
         best_outcome = None
         max_abs_edge = 0.0
 
-        strategy = self.config['strategy']
-        min_edge = strategy['min_edge_absolute']
-        min_conf = strategy['min_confidence']
+        strategy = self.config["strategy"]
+        min_edge = strategy["min_edge_absolute"]
+        min_conf = strategy["min_confidence"]
 
-        distribution = analysis.get('distribution', {})
-        best_pick_ai = analysis.get('best_pick', {})
+        distribution = analysis.get("distribution", {})
+        best_pick_ai = analysis.get("best_pick", {})
 
         # We can iterate through distribution and find the matching market
         for outcome_id, ai_prob in distribution.items():
@@ -208,7 +208,7 @@ class MultiOutcomeHandler:
 
             # Retrieve market price
             # Assuming market has 'yes_price'
-            market_price = getattr(market, 'yes_price', 0.5)
+            market_price = getattr(market, "yes_price", 0.5)
 
             edge = ai_prob - market_price
 
@@ -217,15 +217,15 @@ class MultiOutcomeHandler:
                 if abs(edge) > max_abs_edge:
                     max_abs_edge = abs(edge)
                     best_outcome = {
-                        'market': market,
-                        'ai_probability': ai_prob,
-                        'edge': edge,
-                        'confidence': best_pick_ai.get('confidence', 0.7),  # Fallback
-                        'action': 'YES' if edge > 0 else 'NO',
-                        'reasoning': analysis.get('reasoning', '')
+                        "market": market,
+                        "ai_probability": ai_prob,
+                        "edge": edge,
+                        "confidence": best_pick_ai.get("confidence", 0.7),  # Fallback
+                        "action": "YES" if edge > 0 else "NO",
+                        "reasoning": analysis.get("reasoning", ""),
                     }
 
-        if best_outcome and best_outcome['confidence'] >= min_conf:
+        if best_outcome and best_outcome["confidence"] >= min_conf:
             return best_outcome
 
         return None

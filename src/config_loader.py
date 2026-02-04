@@ -15,7 +15,7 @@ def get_default_config() -> Dict[str, Any]:
             "use_url_pattern": True,
             "use_api_metadata": True,
             "use_title_matching": True,
-            "min_outcomes_threshold": 3
+            "min_outcomes_threshold": 3,
         },
         "analysis": {
             "use_specialized_prompt": True,
@@ -23,22 +23,19 @@ def get_default_config() -> Dict[str, Any]:
             "force_normalization_threshold": 0.02,
             "min_probability_threshold": 0.01,
             "require_all_outcomes": True,
-            "max_outcomes_per_event": 50
+            "max_outcomes_per_event": 50,
         },
         "strategy": {
             "min_edge_absolute": 0.10,
             "min_confidence": 0.70,
-            "select_best_only": True
+            "select_best_only": True,
         },
-        "conflicts": {
-            "block_on_existing_bet": True,
-            "allow_hedging": False
-        },
+        "conflicts": {"block_on_existing_bet": True, "allow_hedging": False},
         "logging": {
             "log_full_distribution": True,
             "log_rejected_outcomes": True,
-            "log_normalization_warnings": True
-        }
+            "log_normalization_warnings": True,
+        },
     }
 
 

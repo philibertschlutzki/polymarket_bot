@@ -168,7 +168,9 @@ class MarketData(BaseModel):
     yes_price: float = Field(..., description="Aktueller Preis für 'Yes' (0.0-1.0)")
     volume: float = Field(..., description="Handelsvolumen in USD")
     end_date: Optional[str] = Field(None, description="Enddatum des Marktes")
-    group_item_title: Optional[str] = Field(None, description="Label for multi-outcome variant")
+    group_item_title: Optional[str] = Field(
+        None, description="Label for multi-outcome variant"
+    )
 
 
 class AIAnalysis(BaseModel):
@@ -768,7 +770,7 @@ def market_discovery_worker():  # noqa: C901
             added_count = 0
 
             # Process Singles
-            for market in groups['single_markets']:
+            for market in groups["single_markets"]:
                 if market.market_slug in active_slugs:
                     continue
 
@@ -779,7 +781,7 @@ def market_discovery_worker():  # noqa: C901
                     added_count += 1
 
             # Process Multi-Outcome
-            for parent_slug, outcomes in groups['multi_outcome_events'].items():
+            for parent_slug, outcomes in groups["multi_outcome_events"].items():
                 # Check conflicts
                 conflict = multi_outcome_handler.check_existing_bets(parent_slug)
                 if conflict:
@@ -788,11 +790,11 @@ def market_discovery_worker():  # noqa: C901
 
                 # Prepare queue item
                 queue_item = {
-                    'market_slug': parent_slug,
-                    'is_multi_outcome': True,
-                    'parent_slug': parent_slug,
-                    'outcomes': [m.dict() for m in outcomes],
-                    'question': f"Multi-Outcome: {outcomes[0].question} ...",
+                    "market_slug": parent_slug,
+                    "is_multi_outcome": True,
+                    "parent_slug": parent_slug,
+                    "outcomes": [m.dict() for m in outcomes],
+                    "question": f"Multi-Outcome: {outcomes[0].question} ...",
                 }
 
                 # Calculate priority
@@ -838,9 +840,9 @@ def queue_processing_worker():  # noqa: C901
             logger.info(f"📤 Popped from queue: {market_data.get('question')[:50]}")
 
             # 2. Check if Multi-Outcome
-            if market_data.get('is_multi_outcome'):
-                parent_slug = market_data.get('parent_slug')
-                outcomes = [MarketData(**m) for m in market_data.get('outcomes')]
+            if market_data.get("is_multi_outcome"):
+                parent_slug = market_data.get("parent_slug")
+                outcomes = [MarketData(**m) for m in market_data.get("outcomes")]
 
                 # Acquire Token
                 logger.debug("⏳ Acquiring rate limit token for multi-outcome...")
@@ -848,21 +850,25 @@ def queue_processing_worker():  # noqa: C901
                     continue
 
                 client = genai.Client(api_key=GEMINI_API_KEY)
-                analysis = multi_outcome_handler.analyze_multi_outcome_event(parent_slug, outcomes, client)
+                analysis = multi_outcome_handler.analyze_multi_outcome_event(
+                    parent_slug, outcomes, client
+                )
 
                 if analysis:
                     market_map = {m.market_slug: m for m in outcomes}
-                    best = multi_outcome_handler.select_best_outcome(analysis, market_map)
+                    best = multi_outcome_handler.select_best_outcome(
+                        analysis, market_map
+                    )
 
                     if best:
-                        m = best['market']
+                        m = best["market"]
                         capital = database.get_current_capital()
 
                         rec = calculate_kelly_stake(
-                            best['ai_probability'],
+                            best["ai_probability"],
                             m.yes_price,
-                            best['confidence'],
-                            capital
+                            best["confidence"],
+                            capital,
                         )
 
                         if rec.action != "PASS":
@@ -873,27 +879,34 @@ def queue_processing_worker():  # noqa: C901
                                 "is_multi_outcome": True,
                                 "url_slug": m.url_slug,
                                 "question": m.question,
-                                "action": best['action'],
+                                "action": best["action"],
                                 "stake_usdc": rec.stake_usdc,
                                 "entry_price": m.yes_price,
-                                "ai_probability": best['ai_probability'],
-                                "confidence_score": best['confidence'],
+                                "ai_probability": best["ai_probability"],
+                                "confidence_score": best["confidence"],
                                 "expected_value": rec.expected_value,
-                                "edge": best['edge'],
-                                "ai_reasoning": best['reasoning'],
+                                "edge": best["edge"],
+                                "ai_reasoning": best["reasoning"],
                                 "end_date": m.end_date,
                             }
                             database.insert_active_bets_batch([bet_data])
                             queue_manager.mark_completed(
-                                parent_slug, f"BET: {rec.action} on {m.market_slug} (${rec.stake_usdc})"
+                                parent_slug,
+                                f"BET: {rec.action} on {m.market_slug} (${rec.stake_usdc})",
                             )
                         else:
-                            queue_manager.mark_completed(parent_slug, "PASS: Kelly too low or Edge too small")
+                            queue_manager.mark_completed(
+                                parent_slug, "PASS: Kelly too low or Edge too small"
+                            )
                     else:
-                        queue_manager.mark_completed(parent_slug, "PASS: No profitable outcome found")
+                        queue_manager.mark_completed(
+                            parent_slug, "PASS: No profitable outcome found"
+                        )
                 else:
                     # Analysis failed
-                    queue_manager.move_to_retry_queue(parent_slug, "ANALYSIS_FAILED", "Null response")
+                    queue_manager.move_to_retry_queue(
+                        parent_slug, "ANALYSIS_FAILED", "Null response"
+                    )
 
             else:
                 # Single Market Logic

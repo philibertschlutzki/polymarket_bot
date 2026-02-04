@@ -9,8 +9,8 @@ def generate_multi_outcome_prompt(event_data: Dict[str, Any]) -> str:
         'outcomes': List[MarketData] or List[Dict]
     }
     """
-    parent_slug = event_data.get('parent_slug', 'Unknown Event')
-    outcomes = event_data.get('outcomes', [])
+    parent_slug = event_data.get("parent_slug", "Unknown Event")
+    outcomes = event_data.get("outcomes", [])
 
     # Format outcomes table
     outcomes_text = "MARKET ID | OUTCOME / RANGE | CURRENT PRICE (YES)\n"
@@ -18,14 +18,14 @@ def generate_multi_outcome_prompt(event_data: Dict[str, Any]) -> str:
 
     for outcome in outcomes:
         # Handle both MarketData object and Dict
-        if hasattr(outcome, 'question'):
+        if hasattr(outcome, "question"):
             question = outcome.question
             market_slug = outcome.market_slug
             price = outcome.yes_price
         else:
-            question = outcome.get('question', '')
-            market_slug = outcome.get('market_slug', '')
-            price = outcome.get('yes_price', 0.5)
+            question = outcome.get("question", "")
+            market_slug = outcome.get("market_slug", "")
+            price = outcome.get("yes_price", 0.5)
 
         outcomes_text += f"{market_slug} | {question} | {price:.3f}\n"
 
