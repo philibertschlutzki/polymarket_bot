@@ -271,7 +271,7 @@ class MultiOutcomeHandler:
         return analysis_id
 
     def select_multiple_outcomes(
-        self, analysis: Dict, market_map: Dict[str, Any], max_bets: int = None
+        self, analysis: Dict, market_map: Dict[str, Any], max_bets: Optional[int] = None
     ) -> List[Dict]:
         """
         Selects MULTIPLE profitable outcomes from a multi-outcome event.

@@ -1710,7 +1710,7 @@ def insert_multi_outcome_analysis(
     full_distribution: dict,
     market_prices: dict,
     reasoning: str,
-    best_outcome_slug: str = None,
+    best_outcome_slug: Optional[str] = None,
 ) -> int:
     """
     Inserts a complete multi-outcome analysis into database.
@@ -1735,7 +1735,7 @@ def insert_multi_outcome_analysis(
         )
         session.add(analysis)
         session.flush()  # Get ID
-        analysis_id = analysis.analysis_id
+        analysis_id = int(analysis.analysis_id)  # type: ignore
 
     logger.info(
         f"✅ Saved multi-outcome analysis #{analysis_id} for {parent_event_slug}"
