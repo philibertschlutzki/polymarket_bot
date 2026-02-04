@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-04 02:49:41 CET
+**Last Updated:** 2026-02-04 03:49:48 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 12 | 1,500 | 0.8% | 🟢 |
+| Today (RPD) | 23 | 1,500 | 1.5% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-9,496.89 |
-| Locked in Active Bets | $8,278.37 |
+| Available Capital | $-10,251.83 |
+| Locked in Active Bets | $9,033.31 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $8278.37 (827.8% of capital) |
-| Avg Position Size | $88.07 |
+| Total Exposure | $9033.31 (903.3% of capital) |
+| Avg Position Size | $91.25 |
 | Largest Position | $238.80 (23.9%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.015) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.014) |
 
 ---
-## 🎯 Active Bets (121)
+## 🎯 Active Bets (126)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -155,6 +155,11 @@
 | [Will the price of Bitcoin be above $82,0...](https://polymarket.com/event/bitcoin-above-82k-on-february-5) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-05 | 1d | 🔴 |
 | [Will Bitcoin dip to $72,000 February 2-8...](https://polymarket.com/event/will-bitcoin-dip-to-72k-february-2-8) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-09 | 5d | 🟡 |
 | [Will Ethereum reach $4,000 in February?](https://polymarket.com/event/will-ethereum-reach-4000-in-february-2026) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-03-01 | 25d | 🟢 |
+| [Will Witkoff meet with Iranian officials...](https://polymarket.com/event/will-witkoff-meet-with-iranian-officials-by-february-28) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-28 | 23d | 🟢 |
+| [Will the U.S. collect between $100b and ...](https://polymarket.com/event/will-the-us-collect-between-100b-and-200b-in-revenue-in-2025) | YES | $207.44 | 0.50 | 0.95 | +45% 🟢 | 85% | $+186.70 | 2026-02-28 | 24d | 🟢 |
+| [Will Gold (GC) hit (LOW) $4,600 by end o...](https://polymarket.com/event/will-gold-gc-hit-low-4600-by-end-of-february-292-259-212-256-398-758-656-625) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-28 | 23d | 🟢 |
+| [Will Elon Musk post 0-19 tweets from Feb...](https://polymarket.com/event/elon-musk-of-tweets-february-6-february-13-0-19) | NO | $207.44 | 0.50 | 0.05 | -45% 🔴 | 85% | $+186.70 | 2026-02-13 | 9d | 🟢 |
+| [Will Stephen Miran be the first to leave...](https://polymarket.com/event/will-stephen-miran-be-the-first-to-leave-the-trump-cabinet-before-2027-187) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-12-31 | 329d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
@@ -223,6 +228,10 @@
 - 🔴 **High Exposure**: "Will Meituan have the best AI ..." is 11.1% of capital
 - 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 11.6% of capital
 - 🔴 **High Exposure**: "Will Ethereum reach $4,000 in ..." is 14.6% of capital
+- 🔴 **High Exposure**: "Will the U.S. collect between ..." is 20.7% of capital
+- 🔴 **High Exposure**: "Will Gold (GC) hit (LOW) $4,60..." is 14.6% of capital
+- 🔴 **High Exposure**: "Will Elon Musk post 0-19 tweet..." is 20.7% of capital
+- 🔴 **High Exposure**: "Will Stephen Miran be the firs..." is 13.6% of capital
 - 🟡 **Expiring Soon**: 29 bet(s) expire within 7 days
 
 ---
@@ -231,7 +240,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 121 |
+| Markets with Active Bets | 126 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
