@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-04 20:47:03 CET
+**Last Updated:** 2026-02-04 21:47:11 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 3 | 15 | 20% | 🟢 |
-| Today (RPD) | 208 | 1,500 | 13.9% | 🟢 |
-| Current Minute (TPM) | 1,367 | 1,000,000 | 0.14% | 🟢 |
+| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
+| Today (RPD) | 225 | 1,500 | 15.0% | 🟢 |
+| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-15,461.99 |
-| Locked in Active Bets | $12,940.54 |
+| Available Capital | $-15,910.29 |
+| Locked in Active Bets | $13,388.84 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $12940.54 (1294.1% of capital) |
-| Avg Position Size | $99.54 |
+| Total Exposure | $13388.84 (1338.9% of capital) |
+| Avg Position Size | $100.67 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.010) |
 
 ---
-## 🎯 Active Bets (171)
+## 🎯 Active Bets (174)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -191,6 +191,9 @@
 | [Iran strike on US military by February 2...](https://polymarket.com/event/iran-strike-on-us-military-by-february-28) | NO | $83.67 | 0.50 | 0.30 | -20% 🔴 | 70% | $+33.47 | 2026-02-28 | 23d | 🟢 |
 | [Will Canada win the most gold medals in ...](https://polymarket.com/event/will-canada-win-the-most-gold-medals-in-the-2026-winter-olympics) | NO | $151.55 | 0.50 | 0.15 | -35% 🔴 | 75% | $+106.09 | 2026-02-22 | 17d | 🟢 |
 | [Timberwolves vs. Raptors](https://polymarket.com/event/nba-min-tor-2026-02-04) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-05 | 0d | 🔴 |
+| [Will the next Prime Minister of Hungary ...](https://polymarket.com/event/will-the-next-prime-minister-of-hungary-be-jnos-lzr) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-05-31 | 115d | 🟢 |
+| [Will Bitcoin dip to $70,000 February 2-8...](https://polymarket.com/event/will-bitcoin-dip-to-70k-february-2-8) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-09 | 4d | 🟡 |
+| [S&P 500 (SPX) Up or Down on February 4?](https://polymarket.com/event/spx-up-or-down-on-february-4-2026) | YES | $250.00 | 0.50 | 1.00 | +50% 🟢 | 100% | $+250.00 | 2026-02-04 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -3d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -3d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
@@ -296,7 +299,9 @@
 - 🔴 **High Exposure**: "Will Reza Pahlavi enter Iran b..." is 19.7% of capital
 - 🔴 **High Exposure**: "Will Trump say "Six Seven" thi..." is 11.5% of capital
 - 🔴 **High Exposure**: "Will Canada win the most gold ..." is 15.2% of capital
-- 🟡 **Expiring Soon**: 35 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the next Prime Minister o..." is 13.6% of capital
+- 🔴 **High Exposure**: "S&P 500 (SPX) Up or Down on Fe..." is 25.0% of capital
+- 🟡 **Expiring Soon**: 37 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -304,7 +309,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 171 |
+| Markets with Active Bets | 174 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
