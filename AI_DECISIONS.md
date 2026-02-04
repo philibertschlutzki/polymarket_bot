@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-04 13:46:01 CET
+**Last Updated:** 2026-02-04 14:46:12 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,43 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will LDP win a majority in the 2026 Japanese snap election?](https://polymarket.com/event/will-ldp-win-a-majority-in-the-2026-japanese-snap-election)
+### Bet #1: [Will Elon Musk post 90-114 tweets from February 2 to Februar...](https://polymarket.com/market/elon-musk-of-tweets-february-2-february-4-90-114)
+*Analyzed: 2026-02-04 14:20 CET*
+
+**Decision:** NO @ 0.50 (Stake: $62.75)
+**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-2-february-4-90-114)**
+
+**AI Analysis:**
+- **Estimated Probability:** 35.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -15.0%
+- **Expected Value:** $+18.82
+- **End Date:** 2026-02-04 18:00 CET
+
+**AI Reasoning:**
+> Um die Wahrscheinlichkeit einzuschätzen, dass Elon Musk zwischen dem 2. und 4. Februar 2026 90-114 Tweets postet, muss ich historische Daten über seine Twitter-Aktivität berücksichtigen. Da die Frage sich auf einen sehr spezifischen Zeitraum bezieht, ist es schwierig, eine genaue Vorhersage zu treffen, ohne die Echtzeit-Tweet-Frequenz während dieses Zeitraums zu überwachen. Ich kann die Polymarket-Tracker-Seite nicht direkt abfragen oder auf historische Daten zugreifen, aber ich kann nach allgemeinen Mustern in seiner Twitter-Nutzung suchen. Der aktuelle Marktpreis von 50% deutet auf eine erhebliche Unsicherheit hin. Angesichts der Volatilität von Musks Twitter-Verhalten und der relativ engen Spanne von 90-114 Tweets über einen Zeitraum von drei Tagen, würde ich die Wahrscheinlichkeit konservativer auf etwa 35% schätzen. Die 'confidence_score' ist 0.7, da dies eine Schätzung basierend auf begrenzten Echtzeitdaten ist.
+
+---
+
+### Bet #2: [Will the price of Bitcoin be above $90,000 on February 5?](https://polymarket.com/market/bitcoin-above-90k-on-february-5)
+*Analyzed: 2026-02-04 13:47 CET*
+
+**Decision:** NO @ 0.50 (Stake: $167.33)
+**[View Market →](https://polymarket.com/market/bitcoin-above-90k-on-february-5)**
+
+**AI Analysis:**
+- **Estimated Probability:** 10.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -40.0%
+- **Expected Value:** $+133.87
+- **End Date:** 2026-02-05 18:00 CET
+
+**AI Reasoning:**
+> Der aktuelle Bitcoin-Preis liegt deutlich unter 90.000 $. Obwohl Bitcoin volatil ist, deutet die aktuelle Marktstimmung und die Analystenprognosen darauf hin, dass ein so deutlicher Anstieg in so kurzer Zeit unwahrscheinlich ist. Die Vorhersagemärkte von Gemini geben ebenfalls niedrige Wahrscheinlichkeiten für das Überschreiten ähnlicher Preisniveaus an. Es ist zwar möglich, aber angesichts aller Faktoren eher unwahrscheinlich.
+
+---
+
+### Bet #3: [Will LDP win a majority in the 2026 Japanese snap election?](https://polymarket.com/event/will-ldp-win-a-majority-in-the-2026-japanese-snap-election)
 *Analyzed: 2026-02-04 13:45 CET*
 
 **Decision:** YES @ 0.50 (Stake: $156.52)
@@ -33,7 +69,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Will the price of Solana be above $110 on February 4?](https://polymarket.com/market/solana-above-110-on-february-4)
+### Bet #4: [Will the price of Solana be above $110 on February 4?](https://polymarket.com/market/solana-above-110-on-february-4)
 *Analyzed: 2026-02-04 13:25 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -51,7 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will Rand Paul win the 2028 Republican presidential nominati...](https://polymarket.com/market/will-rand-paul-win-the-2028-republican-presidential-nomination)
+### Bet #5: [Will Rand Paul win the 2028 Republican presidential nominati...](https://polymarket.com/market/will-rand-paul-win-the-2028-republican-presidential-nomination)
 *Analyzed: 2026-02-04 12:55 CET*
 
 **Decision:** NO @ 0.50 (Stake: $166.54)
@@ -69,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Ostrava Open: Tamara Korpatsch vs Emiliana Arango](https://polymarket.com/event/wta-korpats-arango-2026-02-04)
+### Bet #6: [Ostrava Open: Tamara Korpatsch vs Emiliana Arango](https://polymarket.com/event/wta-korpats-arango-2026-02-04)
 *Analyzed: 2026-02-04 12:50 CET*
 
 **Decision:** YES @ 0.50 (Stake: $166.02)
@@ -87,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [Will the Washington Wizards win the NBA Eastern Conference F...](https://polymarket.com/market/will-the-washington-wizards-win-the-nba-eastern-conference-finals)
+### Bet #7: [Will the Washington Wizards win the NBA Eastern Conference F...](https://polymarket.com/market/will-the-washington-wizards-win-the-nba-eastern-conference-finals)
 *Analyzed: 2026-02-04 12:42 CET*
 
 **Decision:** NO @ 0.50 (Stake: $225.88)
@@ -105,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will Opinion launch a token by June 30, 2026?](https://polymarket.com/market/will-opinion-launch-a-token-by-june-30-2026-176-237)
+### Bet #8: [Will Opinion launch a token by June 30, 2026?](https://polymarket.com/market/will-opinion-launch-a-token-by-june-30-2026-176-237)
 *Analyzed: 2026-02-04 11:30 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -123,25 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [LoL: EDward Gaming vs Team WE - Game 2 Winner](https://polymarket.com/market/lol-edg-we-2026-02-04-game2)
-*Analyzed: 2026-02-04 11:25 CET*
-
-**Decision:** YES @ 0.50 (Stake: $64.95)
-**[View Market →](https://polymarket.com/market/lol-edg-we-2026-02-04-game2)**
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 50.0%)
-- **Confidence Score:** 75.0%
-- **Edge:** +15.0%
-- **Expected Value:** $+19.49
-- **End Date:** 2026-02-04 14:00 CET
-
-**AI Reasoning:**
-> EDward Gaming hat eine historisch bessere Bilanz gegen Team WE und wird von Buchmachern favorisiert. Obwohl Team WE in letzter Zeit eine gute Form gezeigt hat, deutet die Kombination aus Head-to-Head-Bilanz und Buchmacher-Quoten auf einen Vorteil für EDward Gaming hin.
-
----
-
-### Bet #8: [Will the US strike Yemen next?](https://polymarket.com/market/will-the-us-strike-yemen-next-667)
+### Bet #9: [Will the US strike Yemen next?](https://polymarket.com/market/will-the-us-strike-yemen-next-667)
 *Analyzed: 2026-02-04 10:47 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -169,7 +187,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #9: [Will Elon Musk post 300-319 tweets from February 3 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-3-february-10-300-319)
+### Bet #10: [Will Elon Musk post 300-319 tweets from February 3 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-3-february-10-300-319)
 *Analyzed: 2026-02-04 10:34 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -187,7 +205,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #10: [Will the US next strike Iran on February 16, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-16-2026-et)
+### Bet #11: [Will the US next strike Iran on February 16, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-16-2026-et)
 *Analyzed: 2026-02-04 10:22 CET*
 
 **Decision:** NO @ 0.50 (Stake: $182.03)
@@ -205,7 +223,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #11: [X banned in U.K. by March 31?](https://polymarket.com/event/x-banned-in-uk-by-march-31)
+### Bet #12: [X banned in U.K. by March 31?](https://polymarket.com/event/x-banned-in-uk-by-march-31)
 *Analyzed: 2026-02-04 10:12 CET*
 
 **Decision:** NO @ 0.50 (Stake: $86.60)
@@ -223,7 +241,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #12: [Will Backpack launch a token by March 31?](https://polymarket.com/market/will-backpack-launch-a-token-by-march-31)
+### Bet #13: [Will Backpack launch a token by March 31?](https://polymarket.com/market/will-backpack-launch-a-token-by-march-31)
 *Analyzed: 2026-02-04 10:12 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -241,7 +259,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #13: [Will there be between 11 and 13 earthquakes of magnitude 7.0...](https://polymarket.com/market/will-there-be-between-11-and-13-earthquakes-of-magnitude-7pt0-or-higher-worldwide-in-2026)
+### Bet #14: [Will there be between 11 and 13 earthquakes of magnitude 7.0...](https://polymarket.com/market/will-there-be-between-11-and-13-earthquakes-of-magnitude-7pt0-or-higher-worldwide-in-2026)
 *Analyzed: 2026-02-04 09:57 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -259,7 +277,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #14: [Celtics vs. Rockets](https://polymarket.com/event/nba-bos-hou-2026-02-04)
+### Bet #15: [Celtics vs. Rockets](https://polymarket.com/event/nba-bos-hou-2026-02-04)
 *Analyzed: 2026-02-04 09:52 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -277,7 +295,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #15: [Will the People’s Party (PPLE) win 180 or more seats in the ...](https://polymarket.com/market/will-the-peoples-party-pple-win-180-or-more-seats-in-the-2026-thai-legislative-election)
+### Bet #16: [Will the People’s Party (PPLE) win 180 or more seats in the ...](https://polymarket.com/market/will-the-peoples-party-pple-win-180-or-more-seats-in-the-2026-thai-legislative-election)
 *Analyzed: 2026-02-04 09:52 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -295,7 +313,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #16: [Will the price of Ethereum be above $2,600 on February 4?](https://polymarket.com/market/ethereum-above-2600-on-february-4)
+### Bet #17: [Will the price of Ethereum be above $2,600 on February 4?](https://polymarket.com/market/ethereum-above-2600-on-february-4)
 *Analyzed: 2026-02-04 09:37 CET*
 
 **Decision:** NO @ 0.50 (Stake: $125.50)
@@ -313,7 +331,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #17: [Will Franco Colapinto be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-franco-colapinto-be-the-2026-f1-drivers-champion)
+### Bet #18: [Will Franco Colapinto be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-franco-colapinto-be-the-2026-f1-drivers-champion)
 *Analyzed: 2026-02-04 09:12 CET*
 
 **Decision:** NO @ 0.50 (Stake: $189.78)
@@ -331,7 +349,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #18: [Will the US next strike Iran on February 20, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-20-2026-et)
+### Bet #19: [Will the US next strike Iran on February 20, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-20-2026-et)
 *Analyzed: 2026-02-04 06:35 CET*
 
 **Decision:** NO @ 0.50 (Stake: $129.90)
@@ -349,7 +367,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #19: [Will Alibaba have the best AI model at the end of February 2...](https://polymarket.com/market/will-alibaba-have-the-best-ai-model-at-the-end-of-february-2026)
+### Bet #20: [Will Alibaba have the best AI model at the end of February 2...](https://polymarket.com/market/will-alibaba-have-the-best-ai-model-at-the-end-of-february-2026)
 *Analyzed: 2026-02-04 05:40 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -367,7 +385,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #20: [Will Liam Lawson be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-liam-lawson-be-the-2026-f1-drivers-champion)
+### Bet #21: [Will Liam Lawson be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-liam-lawson-be-the-2026-f1-drivers-champion)
 *Analyzed: 2026-02-04 05:22 CET*
 
 **Decision:** NO @ 0.50 (Stake: $207.49)
@@ -385,7 +403,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #21: [Will the price of Bitcoin be between $92,000 and $94,000 on ...](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-92000-94000-on-february-4)
+### Bet #22: [Will the price of Bitcoin be between $92,000 and $94,000 on ...](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-92000-94000-on-february-4)
 *Analyzed: 2026-02-04 05:00 CET*
 
 **Decision:** NO @ 0.50 (Stake: $188.25)
@@ -403,7 +421,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #22: [Will Mistral have the best AI model at the end of February 2...](https://polymarket.com/market/will-mistral-have-the-best-ai-model-at-the-end-of-february-2026)
+### Bet #23: [Will Mistral have the best AI model at the end of February 2...](https://polymarket.com/market/will-mistral-have-the-best-ai-model-at-the-end-of-february-2026)
 *Analyzed: 2026-02-04 04:19 CET*
 
 **Decision:** NO @ 0.50 (Stake: $120.93)
@@ -421,7 +439,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #23: [Will Bangladesh Nationalist Party win the most seats in the ...](https://polymarket.com/market/will-bangladesh-nationalist-party-win-the-most-seats-in-the-bangladesh-parliamentary-election)
+### Bet #24: [Will Bangladesh Nationalist Party win the most seats in the ...](https://polymarket.com/market/will-bangladesh-nationalist-party-win-the-most-seats-in-the-bangladesh-parliamentary-election)
 *Analyzed: 2026-02-04 04:14 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -439,7 +457,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #24: [Will Stephen Miran be the first to leave the Trump Cabinet b...](https://polymarket.com/market/will-stephen-miran-be-the-first-to-leave-the-trump-cabinet-before-2027-187)
+### Bet #25: [Will Stephen Miran be the first to leave the Trump Cabinet b...](https://polymarket.com/market/will-stephen-miran-be-the-first-to-leave-the-trump-cabinet-before-2027-187)
 *Analyzed: 2026-02-04 03:30 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -457,7 +475,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #25: [Will Elon Musk post 0-19 tweets from February 6 to February ...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-0-19)
+### Bet #26: [Will Elon Musk post 0-19 tweets from February 6 to February ...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-0-19)
 *Analyzed: 2026-02-04 03:29 CET*
 
 **Decision:** NO @ 0.50 (Stake: $207.44)
@@ -475,7 +493,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #26: [Will Gold (GC) hit (LOW) $4,600 by end of February?](https://polymarket.com/market/will-gold-gc-hit-low-4600-by-end-of-february-292-259-212-256-398-758-656-625)
+### Bet #27: [Will Gold (GC) hit (LOW) $4,600 by end of February?](https://polymarket.com/market/will-gold-gc-hit-low-4600-by-end-of-february-292-259-212-256-398-758-656-625)
 *Analyzed: 2026-02-04 03:14 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -493,7 +511,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #27: [Will the U.S. collect between $100b and $200b in revenue in ...](https://polymarket.com/market/will-the-us-collect-between-100b-and-200b-in-revenue-in-2025)
+### Bet #28: [Will the U.S. collect between $100b and $200b in revenue in ...](https://polymarket.com/market/will-the-us-collect-between-100b-and-200b-in-revenue-in-2025)
 *Analyzed: 2026-02-04 03:09 CET*
 
 **Decision:** YES @ 0.50 (Stake: $207.44)
@@ -511,7 +529,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #28: [Will Witkoff meet with Iranian officials by February 28?](https://polymarket.com/event/will-witkoff-meet-with-iranian-officials-by-february-28)
+### Bet #29: [Will Witkoff meet with Iranian officials by February 28?](https://polymarket.com/event/will-witkoff-meet-with-iranian-officials-by-february-28)
 *Analyzed: 2026-02-04 03:04 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -529,7 +547,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #29: [Will Ethereum reach $4,000 in February?](https://polymarket.com/market/will-ethereum-reach-4000-in-february-2026)
+### Bet #30: [Will Ethereum reach $4,000 in February?](https://polymarket.com/market/will-ethereum-reach-4000-in-february-2026)
 *Analyzed: 2026-02-04 02:34 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -547,7 +565,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #30: [Will Bitcoin dip to $72,000 February 2-8?](https://polymarket.com/market/will-bitcoin-dip-to-72k-february-2-8)
+### Bet #31: [Will Bitcoin dip to $72,000 February 2-8?](https://polymarket.com/market/will-bitcoin-dip-to-72k-february-2-8)
 *Analyzed: 2026-02-04 02:25 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -565,7 +583,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #31: [Will the price of Bitcoin be above $82,000 on February 5?](https://polymarket.com/market/bitcoin-above-82k-on-february-5)
+### Bet #32: [Will the price of Bitcoin be above $82,000 on February 5?](https://polymarket.com/market/bitcoin-above-82k-on-february-5)
 *Analyzed: 2026-02-04 02:24 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -583,7 +601,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #32: [Will the price of Bitcoin be above $84,000 on February 5?](https://polymarket.com/market/bitcoin-above-84k-on-february-5)
+### Bet #33: [Will the price of Bitcoin be above $84,000 on February 5?](https://polymarket.com/market/bitcoin-above-84k-on-february-5)
 *Analyzed: 2026-02-04 02:20 CET*
 
 **Decision:** NO @ 0.50 (Stake: $116.19)
@@ -601,7 +619,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #33: [Will global temperature increase by between 1.15ºC and 1.19º...](https://polymarket.com/market/will-global-temperature-increase-by-between-1pt15c-and-1pt19c-in-january-2026)
+### Bet #34: [Will global temperature increase by between 1.15ºC and 1.19º...](https://polymarket.com/market/will-global-temperature-increase-by-between-1pt15c-and-1pt19c-in-january-2026)
 *Analyzed: 2026-02-04 02:04 CET*
 
 **Decision:** NO @ 0.50 (Stake: $77.46)
@@ -619,7 +637,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #34: [Will the US next strike Iran on February 12, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-12-2026-et)
+### Bet #35: [Will the US next strike Iran on February 12, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-12-2026-et)
 *Analyzed: 2026-02-04 00:44 CET*
 
 **Decision:** NO @ 0.50 (Stake: $83.67)
@@ -637,7 +655,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #35: [Will Solana dip to $90 in February?](https://polymarket.com/market/will-solana-dip-to-90-in-february-2026)
+### Bet #36: [Will Solana dip to $90 in February?](https://polymarket.com/market/will-solana-dip-to-90-in-february-2026)
 *Analyzed: 2026-02-04 00:44 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -655,7 +673,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #36: [Will Meituan have the best AI model at the end of February 2...](https://polymarket.com/market/will-meituan-have-the-best-ai-model-at-the-end-of-february-2026)
+### Bet #37: [Will Meituan have the best AI model at the end of February 2...](https://polymarket.com/market/will-meituan-have-the-best-ai-model-at-the-end-of-february-2026)
 *Analyzed: 2026-02-03 23:24 CET*
 
 **Decision:** NO @ 0.50 (Stake: $110.68)
@@ -673,7 +691,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #37: [Will Jaxon Smith-Njigba win the 2025–26 NFL MVP award?](https://polymarket.com/market/will-jaxon-smith-njigba-win-the-202526-nfl-mvp-award)
+### Bet #38: [Will Jaxon Smith-Njigba win the 2025–26 NFL MVP award?](https://polymarket.com/market/will-jaxon-smith-njigba-win-the-202526-nfl-mvp-award)
 *Analyzed: 2026-02-03 23:19 CET*
 
 **Decision:** NO @ 0.50 (Stake: $200.80)
@@ -691,7 +709,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #38: [Open Sud de France: Valentin Royer vs Arthur Fils](https://polymarket.com/event/atp-royer-fils-2026-02-02)
+### Bet #39: [Open Sud de France: Valentin Royer vs Arthur Fils](https://polymarket.com/event/atp-royer-fils-2026-02-02)
 *Analyzed: 2026-02-03 22:59 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -709,7 +727,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #39: [Will the price of Ethereum be above $2,500 on February 4?](https://polymarket.com/market/ethereum-above-2500-on-february-4)
+### Bet #40: [Will the price of Ethereum be above $2,500 on February 4?](https://polymarket.com/market/ethereum-above-2500-on-february-4)
 *Analyzed: 2026-02-03 22:59 CET*
 
 **Decision:** NO @ 0.50 (Stake: $86.60)
@@ -727,7 +745,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #40: [Will the price of Bitcoin be above $94,000 on February 4?](https://polymarket.com/market/bitcoin-above-94k-on-february-4)
+### Bet #41: [Will the price of Bitcoin be above $94,000 on February 4?](https://polymarket.com/market/bitcoin-above-94k-on-february-4)
 *Analyzed: 2026-02-03 22:49 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -745,7 +763,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #41: [xAI IPO before 2027?](https://polymarket.com/market/xai-ipo-before-2027)
+### Bet #42: [xAI IPO before 2027?](https://polymarket.com/market/xai-ipo-before-2027)
 *Analyzed: 2026-02-03 22:39 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -763,7 +781,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #42: [Will Elon Musk post 115-139 tweets from February 2 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-2-february-4-115-139)
+### Bet #43: [Will Elon Musk post 115-139 tweets from February 2 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-2-february-4-115-139)
 *Analyzed: 2026-02-03 22:29 CET*
 
 **Decision:** NO @ 0.50 (Stake: $83.67)
@@ -781,7 +799,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #43: [Will Player 157 win Beast Games: Season 2?](https://polymarket.com/market/will-player-157-win-beast-games-season-2-384)
+### Bet #44: [Will Player 157 win Beast Games: Season 2?](https://polymarket.com/market/will-player-157-win-beast-games-season-2-384)
 *Analyzed: 2026-02-03 22:14 CET*
 
 **Decision:** NO @ 0.50 (Stake: $173.21)
@@ -799,7 +817,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #44: [Will Baidu have the best AI model at the end of March 2026?](https://polymarket.com/market/will-baidu-have-the-best-ai-model-at-the-end-of-march-2026-986)
+### Bet #45: [Will Baidu have the best AI model at the end of March 2026?](https://polymarket.com/market/will-baidu-have-the-best-ai-model-at-the-end-of-march-2026-986)
 *Analyzed: 2026-02-03 21:49 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -817,7 +835,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #45: [Transylvania Open: Yue Yuan vs Sara Sorribes Tormo](https://polymarket.com/event/wta-yuan-tormo-2026-02-03)
+### Bet #46: [Transylvania Open: Yue Yuan vs Sara Sorribes Tormo](https://polymarket.com/event/wta-yuan-tormo-2026-02-03)
 *Analyzed: 2026-02-03 21:38 CET*
 
 **Decision:** YES @ 0.50 (Stake: $115.24)
@@ -835,7 +853,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #46: [Will the US next strike Iran on February 11, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-11-2026-et)
+### Bet #47: [Will the US next strike Iran on February 11, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-11-2026-et)
 *Analyzed: 2026-02-03 21:34 CET*
 
 **Decision:** NO @ 0.50 (Stake: $204.98)
@@ -853,7 +871,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #47: [Will Elon Musk post 140-164 tweets from February 2 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-2-february-4-140-164)
+### Bet #48: [Will Elon Musk post 140-164 tweets from February 2 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-2-february-4-140-164)
 *Analyzed: 2026-02-03 21:34 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -871,7 +889,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #48: [Will the US next strike Iran on February 10, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-10-2026-et)
+### Bet #49: [Will the US next strike Iran on February 10, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-10-2026-et)
 *Analyzed: 2026-02-03 21:26 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -889,7 +907,7 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #49: [Will the government shutdown last 6 days or more?](https://polymarket.com/market/will-the-government-shutdown-last-6-days-or-more-888)
+### Bet #50: [Will the government shutdown last 6 days or more?](https://polymarket.com/market/will-the-government-shutdown-last-6-days-or-more-888)
 *Analyzed: 2026-02-03 21:19 CET*
 
 **Decision:** NO @ 0.50 (Stake: $129.90)
@@ -907,29 +925,29 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ---
 
-### Bet #50: [Will Bitcoin dip to $70,000 in February?](https://polymarket.com/market/will-bitcoin-dip-to-70k-in-february-2026)
-*Analyzed: 2026-02-03 21:04 CET*
-
-**Decision:** NO @ 0.50 (Stake: $60.47)
-**[View Market →](https://polymarket.com/market/will-bitcoin-dip-to-70k-in-february-2026)**
-
-**AI Analysis:**
-- **Estimated Probability:** 35.0% (vs Market: 50.0%)
-- **Confidence Score:** 65.0%
-- **Edge:** -15.0%
-- **Expected Value:** $+18.14
-- **End Date:** 2026-03-01 06:00 CET
-
-**AI Reasoning:**
-> Basierend auf den aktuellen Marktdaten und -trends ist die Wahrscheinlichkeit, dass Bitcoin im Februar 2026 auf 70.000 $ oder darunter fällt, relativ gering, aber nicht ausgeschlossen.**Begründung:***   **Aktueller Preis und Widerstandsniveaus:** Bitcoin wird derzeit um die 73.762 $ gehandelt. Es gab einen kürzlichen Rückgang auf bis zu 74.500 $. Es gibt eine Unterstützung im Bereich von 73.581,22 $ - 76.702,93 $. Ein Unterschreiten dieses Bereiches könnte den Preis weiter nach unten drücken.*   **Volatilität:** Bitcoin ist bekannt für seine hohe Volatilität. Die jüngste Volatilität wurde durch die Ernennung von Kevin Warsh zum Vorsitzenden der Federal Reserve ausgelöst. Solche Ereignisse können kurzfristige Preisrückgänge verursachen. Die Volatilität der letzten 30 Tage beträgt 4,43 %.*   **Marktstimmung:** Die Marktstimmung ist vorsichtig, beeinflusst von geopolitischen Risiken, hohen Zinsen und sich langsam bewegenden Krypto-Regulierungen. Es gibt auch eine gewisse Angst auf dem Markt.*   **Technische Analyse:** Einige technische Indikatoren deuten auf eine mögliche Erholung hin, nachdem Bitcoin von der Nachfragezone von 75.000 $ abgeprallt ist. Eine bullische Divergenz deutet auf eine mögliche kurzfristige Erholung hin.*   **Historische Daten:** Februar ist historisch gesehen ein bullischer Monat für Bitcoin.*   **Vorhersagen:** Einige Analysten prognostizieren, dass Bitcoin bis Ende 2026 auf 100.000 $ steigen wird. Andere prognostizieren einen Anstieg auf 80.050,95 $ bis zum 5. Februar 2026. Es gibt auch Prognosen, die niedrigere Werte vorhersagen.**Zusammenfassend lässt sich sagen:** Obwohl es Anzeichen für eine mögliche Erholung gibt, deuten die bestehende Volatilität, die vorsichtige Marktstimmung und die Möglichkeit weiterer negativer Nachrichten darauf hin, dass ein Dip unter 70.000 $ nicht ausgeschlossen werden kann. Es ist jedoch unwahrscheinlich, dass dies geschieht, da das aktuelle Unterstützungsniveau gehalten werden könnte. Daher schätze ich die Wahrscheinlichkeit auf 35 %. Das Vertrauen ist moderat, da die Marktbedingungen sich schnell ändern können.
-
----
-
 ## ❌ Rejected Markets
 
 *Showing last 50 rejected analyses*
 
 ### Insufficient Edge (49)
+
+**[Timberwolves vs. Raptors: O/U 225.5](https://polymarket.com/market/nba-min-tor-2026-02-04-total-225pt5)**
+*Analyzed: 2026-02-04 14:27 CET*
+Market: 0.50 | AI: 0.60 | Edge: +10.0% | Conf: 75%
+**[View Market →](https://polymarket.com/market/nba-min-tor-2026-02-04-total-225pt5)**
+
+**Reasoning:** Die Timberwolves erzielen im Schnitt 119.5 Punkte pro Spiel, die Raptors 113.6. Das ergibt einen Durchschnitt von 233.1 Punkten, was deutlich über der Marke von 225.5 liegt. Die letzten Spiele der Timberwolves deuten ebenfalls auf einen Trend zum Over hin. Allerdings gibt es Unsicherheiten bezüglich der Gesundheit von Edwards, und die Raptors können das Tempo kontrollieren. Daher eine etwas konservativere Einschätzung. Die aktuellen Marktpreise von 50% scheinen mir etwas niedrig zu sein, wenn man die reinen Zahlen betrachtet.
+
+---
+
+**[LoL: Weibo Gaming vs Anyone's Legend - Game 2 Winner](https://polymarket.com/market/lol-wb-al-2026-02-04-game2)**
+*Analyzed: 2026-02-04 13:50 CET*
+Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 75%
+**[View Market →](https://polymarket.com/market/lol-wb-al-2026-02-04-game2)**
+
+**Reasoning:** Anyone's Legend scheint in der aktuellen Saison eine leicht bessere Form und eine höhere Platzierung in der Liga zu haben. Der Head-to-Head-Vergleich deutet ebenfalls auf einen leichten Vorteil für Anyone's Legend hin. Allerdings ist Weibo Gaming ein starkes Team, das in der Lage ist, zu gewinnen, was die Wahrscheinlichkeit nicht zu hoch ansetzen lässt. Die Quote von 50% im aktuellen Marktpreis erscheint deshalb etwas niedrig.
+
+---
 
 **[Will Elon Musk post 200-219 tweets from February 3 to February 10, 2026?](https://polymarket.com/market/elon-musk-of-tweets-february-3-february-10-200-219)**
 *Analyzed: 2026-02-04 13:45 CET*
@@ -1351,24 +1369,6 @@ Market: 0.02 | AI: 0.01 | Edge: -0.8% | Conf: 90%
 **[View Market →](https://polymarket.com/market/will-player-157-win-beast-games-season-2-384)**
 
 **Reasoning:** Spieler 157 (Catey) ist höchstwahrscheinlich bereits ausgeschieden. Der Markt favorisiert andere Spieler deutlich. Die Analyse von Spoilern und Markttrends deutet stark auf eine geringe Gewinnwahrscheinlichkeit für Spieler 157 hin.
-
----
-
-**[Will Brazil win the 2026 FIFA World Cup?](https://polymarket.com/market/will-brazil-win-the-2026-fifa-world-cup-183)**
-*Analyzed: 2026-02-03 10:16 CET*
-Market: 0.10 | AI: 0.11 | Edge: +1.5% | Conf: 75%
-**[View Market →](https://polymarket.com/market/will-brazil-win-the-2026-fifa-world-cup-183)**
-
-**Reasoning:** Brazil has a strong historical record in the World Cup and is currently ranked 5th in the FIFA world rankings. However, their recent performances have been underwhelming, and they are not the top favorite according to most sources. Considering these factors and the betting odds, an estimated probability of 11% seems reasonable. The confidence score is somewhat reduced due to the conflicting opinions on Brazil's current form.
-
----
-
-**[Transylvania Open: Oleksandra Oliynykova vs Anna Bondar](https://polymarket.com/event/wta-oliynyk-bondar-2026-02-03)**
-*Analyzed: 2026-02-03 10:16 CET*
-Market: 0.38 | AI: 0.35 | Edge: -3.0% | Conf: 75%
-**[View Market →](https://polymarket.com/event/wta-oliynyk-bondar-2026-02-03)**
-
-**Reasoning:** Anna Bondar ist die höher eingestufte Spielerin und hat laut Vorhersagen und Wettquoten eine höhere Wahrscheinlichkeit zu gewinnen. Obwohl Oliynykova ihr letztes Match gewonnen hat, deutet Bondars insgesamt bessere Ranglistenposition und die Head-to-Head-Statistik auf einen Vorteil für Bondar hin. Die Marktpreise scheinen Oliynykova unterzubewerten, aber ich bleibe bei einer konservativeren Schätzung, die die verfügbaren Daten widerspiegelt.
 
 ---
 
