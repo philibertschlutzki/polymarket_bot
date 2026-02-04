@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-04 04:49:54 CET
+**Last Updated:** 2026-02-04 05:49:58 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 31 | 1,500 | 2.1% | 🟢 |
+| Today (RPD) | 39 | 1,500 | 2.6% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-10,437.71 |
-| Locked in Active Bets | $9,219.19 |
+| Available Capital | $-10,896.20 |
+| Locked in Active Bets | $9,677.68 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $9219.19 (921.9% of capital) |
-| Avg Position Size | $91.28 |
+| Total Exposure | $9677.68 (967.8% of capital) |
+| Avg Position Size | $93.05 |
 | Largest Position | $238.80 (23.9%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.014) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.013) |
 
 ---
-## 🎯 Active Bets (128)
+## 🎯 Active Bets (131)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -162,6 +162,9 @@
 | [Will Stephen Miran be the first to leave...](https://polymarket.com/event/will-stephen-miran-be-the-first-to-leave-the-trump-cabinet-before-2027-187) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-12-31 | 329d | 🟢 |
 | [Will Bangladesh Nationalist Party win th...](https://polymarket.com/event/will-bangladesh-nationalist-party-win-the-most-seats-in-the-bangladesh-parliamentary-election) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-12 | 7d | 🟢 |
 | [Will Mistral have the best AI model at t...](https://polymarket.com/event/will-mistral-have-the-best-ai-model-at-the-end-of-february-2026) | NO | $120.93 | 0.50 | 0.20 | -30% 🔴 | 65% | $+72.56 | 2026-02-28 | 23d | 🟢 |
+| [Will the price of Bitcoin be between $92...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-92000-94000-on-february-4) | NO | $188.25 | 0.50 | 0.05 | -45% 🔴 | 70% | $+169.42 | 2026-02-04 | 0d | 🔴 |
+| [Will Liam Lawson be the 2026 F1 Drivers'...](https://polymarket.com/event/will-liam-lawson-be-the-2026-f1-drivers-champion) | NO | $207.49 | 0.50 | 0.00 | -50% 🔴 | 70% | $+205.83 | 2026-12-06 | 304d | 🟢 |
+| [Will Alibaba have the best AI model at t...](https://polymarket.com/event/will-alibaba-have-the-best-ai-model-at-the-end-of-february-2026) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-28 | 23d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
@@ -235,7 +238,9 @@
 - 🔴 **High Exposure**: "Will Elon Musk post 0-19 tweet..." is 20.7% of capital
 - 🔴 **High Exposure**: "Will Stephen Miran be the firs..." is 13.6% of capital
 - 🔴 **High Exposure**: "Will Mistral have the best AI ..." is 12.1% of capital
-- 🟡 **Expiring Soon**: 30 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the price of Bitcoin be b..." is 18.8% of capital
+- 🔴 **High Exposure**: "Will Liam Lawson be the 2026 F..." is 20.7% of capital
+- 🟡 **Expiring Soon**: 31 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -243,7 +248,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 128 |
+| Markets with Active Bets | 131 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
