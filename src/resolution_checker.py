@@ -50,7 +50,8 @@ def check_and_resolve_bets() -> int:
     # Batch process
     resolved_count = 0
     for i in range(0, len(eligible_bets), BATCH_SIZE):
-        batch = eligible_bets[i:i + BATCH_SIZE]
+        end_index = i + BATCH_SIZE
+        batch = eligible_bets[i:end_index]
         resolved_count += _process_batch(batch)
 
     logger.info(
