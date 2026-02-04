@@ -1,7 +1,8 @@
 import logging
 import re
-from typing import List, Dict, Any, Optional
 from collections import defaultdict
+from typing import Any, Dict, List, Optional
+
 from src.db_models import ActiveBet
 from src.prompts.multi_outcome_prompt import generate_multi_outcome_prompt
 

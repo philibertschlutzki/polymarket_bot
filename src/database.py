@@ -15,9 +15,9 @@ from src.db_models import (
     GitSyncState,
     PortfolioState,
     RejectedMarket,
+    SessionLocal,
     engine,
     session_scope,
-    SessionLocal,
 )
 
 # Configuration

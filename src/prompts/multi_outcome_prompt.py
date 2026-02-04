@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Any, Dict
 
 
 def generate_multi_outcome_prompt(event_data: Dict[str, Any]) -> str:
