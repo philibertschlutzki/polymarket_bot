@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-04 14:46:11 CET
+**Last Updated:** 2026-02-04 15:46:17 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
-| Today (RPD) | 126 | 1,500 | 8.4% | 🟢 |
+| Today (RPD) | 134 | 1,500 | 8.9% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-13,158.91 |
-| Locked in Active Bets | $11,875.44 |
+| Available Capital | $-13,471.66 |
+| Locked in Active Bets | $12,188.19 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $11875.44 (1187.5% of capital) |
-| Avg Position Size | $96.55 |
-| Largest Position | $238.80 (23.9%) |
+| Total Exposure | $12188.19 (1218.8% of capital) |
+| Avg Position Size | $97.51 |
+| Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.011) |
 
 ---
-## 🎯 Active Bets (151)
+## 🎯 Active Bets (153)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -184,6 +184,8 @@
 | [Will LDP win a majority in the 2026 Japa...](https://polymarket.com/event/will-ldp-win-a-majority-in-the-2026-japanese-snap-election) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+109.57 | 2026-02-08 | 3d | 🟡 |
 | [Will the price of Bitcoin be above $90,0...](https://polymarket.com/event/bitcoin-above-90k-on-february-5) | NO | $167.33 | 0.50 | 0.10 | -40% 🔴 | 70% | $+133.87 | 2026-02-05 | 1d | 🔴 |
 | [Will Elon Musk post 90-114 tweets from F...](https://polymarket.com/event/elon-musk-of-tweets-february-2-february-4-90-114) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-04 | 0d | 🔴 |
+| [Will Elon Musk post 240-259 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-3-february-10-240-259) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-10 | 6d | 🟡 |
+| [Will Aztec launch a token by March 31, 2...](https://polymarket.com/event/will-aztec-launch-a-token-by-march-31-2026) | YES | $250.00 | 0.50 | 1.00 | +50% 🟢 | 100% | $+250.00 | Unknown | N/A | 🔵 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -2d | ⏳ Pending Resolution |
@@ -270,7 +272,8 @@
 - 🔴 **High Exposure**: "Will Rand Paul win the 2028 Re..." is 16.7% of capital
 - 🔴 **High Exposure**: "Will LDP win a majority in the..." is 15.7% of capital
 - 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 16.7% of capital
-- 🟡 **Expiring Soon**: 40 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Aztec launch a token by M..." is 25.0% of capital
+- 🟡 **Expiring Soon**: 41 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -278,7 +281,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 151 |
+| Markets with Active Bets | 153 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
