@@ -529,7 +529,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
         data = response.json()
         market_data_list = data if isinstance(data, list) else data.get("data", [])
         markets = []
-        rejected_buffer = []
+        rejected_buffer: List[Dict[str, Any]] = []
 
         for market in market_data_list:
             volume_raw = market.get("volume")

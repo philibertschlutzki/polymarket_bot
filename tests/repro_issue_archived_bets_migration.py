@@ -1,6 +1,7 @@
 import os
-import sys
 import sqlite3
+import sys
+
 from sqlalchemy import create_engine, text
 
 # Set env var before importing src modules
@@ -12,7 +13,8 @@ os.environ["DATABASE_URL"] = f"sqlite:///{test_db_path}"
 # Add src to path
 sys.path.append(os.getcwd())
 
-from src.database import migrate_archived_bets_table, engine
+from src.database import engine, migrate_archived_bets_table
+
 
 def setup_broken_table():
     with engine.connect() as conn:
@@ -61,28 +63,37 @@ def setup_broken_table():
         """))
         conn.commit()
 
+
 def verify_autoincrement_missing():
     with engine.connect() as conn:
-        sql = conn.execute(text("SELECT sql FROM sqlite_master WHERE name='archived_bets'")).scalar()
+        sql = conn.execute(
+            text("SELECT sql FROM sqlite_master WHERE name='archived_bets'")
+        ).scalar()
         if "AUTOINCREMENT" in sql:
             raise Exception("Table unexpectedly has AUTOINCREMENT already!")
         print("Verified: Table is missing AUTOINCREMENT.")
 
+
 def verify_migration_success():
     with engine.connect() as conn:
         # Check schema
-        sql = conn.execute(text("SELECT sql FROM sqlite_master WHERE name='archived_bets'")).scalar()
+        sql = conn.execute(
+            text("SELECT sql FROM sqlite_master WHERE name='archived_bets'")
+        ).scalar()
         if "AUTOINCREMENT" not in sql:
             raise Exception("Migration failed: AUTOINCREMENT not found in schema!")
         print("Verified: Table now has AUTOINCREMENT.")
 
         # Check data preservation
-        row = conn.execute(text("SELECT * FROM archived_bets WHERE archive_id=100")).fetchone()
+        row = conn.execute(
+            text("SELECT * FROM archived_bets WHERE archive_id=100")
+        ).fetchone()
         if not row:
             raise Exception("Migration failed: Data lost!")
         if row.original_bet_id != 12345:
-             raise Exception("Migration failed: Data corrupted!")
+            raise Exception("Migration failed: Data corrupted!")
         print("Verified: Data preserved.")
+
 
 def main():
     try:
@@ -100,11 +111,13 @@ def main():
     except Exception as e:
         print(f"FAILURE: {e}")
         import traceback
+
         traceback.print_exc()
         sys.exit(1)
     finally:
         if os.path.exists(test_db_path):
             os.remove(test_db_path)
+
 
 if __name__ == "__main__":
     main()

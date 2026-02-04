@@ -1,14 +1,17 @@
-import unittest
-from unittest.mock import Mock, patch, MagicMock
 import json
+import unittest
+from unittest.mock import MagicMock, Mock, patch
+
 import requests
 from tenacity import RetryError
-from src.main import graphql_request_with_retry, _generate_gemini_response
+
+from src.main import _generate_gemini_response, graphql_request_with_retry
+
 
 class TestLoggingLogic(unittest.TestCase):
 
-    @patch('src.main.requests.post')
-    @patch('src.main.logger')
+    @patch("src.main.requests.post")
+    @patch("src.main.logger")
     def test_graphql_logging_success(self, mock_logger, mock_post):
         """Test GraphQL logging on success"""
         mock_response = Mock()
@@ -23,8 +26,8 @@ class TestLoggingLogic(unittest.TestCase):
         # Check if debug logs were called
         self.assertTrue(mock_logger.debug.called)
 
-    @patch('src.main.requests.post')
-    @patch('src.main.logger')
+    @patch("src.main.requests.post")
+    @patch("src.main.logger")
     def test_graphql_logging_404(self, mock_logger, mock_post):
         """Test GraphQL logging on 404"""
         mock_response = Mock()
@@ -38,8 +41,8 @@ class TestLoggingLogic(unittest.TestCase):
         # Check if error logs were called
         self.assertTrue(mock_logger.error.called)
 
-    @patch('src.main.genai.Client')
-    @patch('src.main.logger')
+    @patch("src.main.genai.Client")
+    @patch("src.main.logger")
     def test_gemini_logging_success(self, mock_logger, mock_client_cls):
         """Test Gemini logging on success"""
         mock_client = mock_client_cls.return_value
@@ -57,13 +60,13 @@ class TestLoggingLogic(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertTrue(mock_logger.debug.called)
 
-    @patch('src.main.genai.Client')
-    @patch('src.main.logger')
+    @patch("src.main.genai.Client")
+    @patch("src.main.logger")
     def test_gemini_logging_json_error(self, mock_logger, mock_client_cls):
         """Test Gemini logging on JSON error"""
         mock_client = mock_client_cls.return_value
         mock_response = Mock()
-        mock_response.text = 'Invalid JSON'
+        mock_response.text = "Invalid JSON"
 
         # Mock usage metadata to avoid attribute error before json parsing
         mock_response.usage_metadata.prompt_token_count = 10
@@ -74,9 +77,10 @@ class TestLoggingLogic(unittest.TestCase):
 
         # tenacity raises RetryError after retries are exhausted
         with self.assertRaises(json.JSONDecodeError):
-             _generate_gemini_response(mock_client, "test prompt")
+            _generate_gemini_response(mock_client, "test prompt")
 
         self.assertTrue(mock_logger.error.called)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
