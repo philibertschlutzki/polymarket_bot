@@ -152,9 +152,9 @@ This file contains detailed AI reasoning for all market analyses.
                 pass
 
         bet_type_info = ""
-        if bet.get('is_multi_outcome'):
-             parent = bet.get('parent_event_slug')
-             bet_type_info = f"**Multi-Outcome Event** (Parent: `{parent}`)\n"
+        if bet.get("is_multi_outcome"):
+            parent = bet.get("parent_event_slug")
+            bet_type_info = f"**Multi-Outcome Event** (Parent: `{parent}`)\n"
 
         active_section += f"""### Bet #{i}: [{q_text}]({url})
 {bet_type_info}*Analyzed: {analyzed_str}*

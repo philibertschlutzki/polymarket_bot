@@ -423,14 +423,14 @@ def _check_expiring_soon(active_bets, now_cet):
 
 
 def _generate_multi_outcome_section(active_bets):
-    multi_bets = [b for b in active_bets if b.get('is_multi_outcome')]
+    """Generates the Multi-Outcome Events section."""
+    multi_bets = [b for b in active_bets if b.get("is_multi_outcome")]
     if not multi_bets:
         return ""
 
-    # Group by parent event
     grouped = {}
     for b in multi_bets:
-        p = b.get('parent_event_slug') or "Unknown"
+        p = b.get("parent_event_slug") or "Unknown"
         if p not in grouped:
             grouped[p] = []
         grouped[p].append(b)
@@ -439,47 +439,52 @@ def _generate_multi_outcome_section(active_bets):
     section += "| Event | Selected Range | Stake | End Date |\n"
     section += "|-------|----------------|-------|----------|\n"
 
-    total_events = len(grouped)
     total_stake = 0.0
     total_edge = 0.0
     count = 0
 
     for p, bets in grouped.items():
-        # Usually 1 bet per event per strategy
         for b in bets:
-            event_name = p
-            if len(event_name) > 30:
-                 event_name = event_name[:28] + "..."
-
-            selected = f"{b.get('outcome_variant_id', '?')} ({b['action']})"
-            stake_val = float(b['stake_usdc'])
-            stake = f"${stake_val:.2f}"
-
-            end_date_val = b.get('end_date')
-            end_date = "N/A"
-            if end_date_val:
-                try:
-                    ed_cet = to_cet(end_date_val)
-                    if ed_cet:
-                         end_date = ed_cet.strftime("%b %d, %H:%M")
-                except:
-                    pass
-
-            section += f"| {event_name} | {selected} | {stake} | {end_date} |\n"
-
+            row_str, stake_val, edge_val = _format_multi_outcome_row(p, b)
+            section += row_str
             total_stake += stake_val
-            if b.get('edge'):
-                total_edge += float(b['edge'])
+            if edge_val is not None:
+                total_edge += edge_val
                 count += 1
 
     avg_edge = (total_edge / count * 100) if count > 0 else 0.0
 
-    section += f"\n**Multi-Outcome Statistics:**\n"
-    section += f"- Total Events: {total_events}\n"
+    section += "\n**Multi-Outcome Statistics:**\n"
+    section += f"- Total Events: {len(grouped)}\n"
     section += f"- Average Edge: {avg_edge:+.1f}%\n"
     section += f"- Capital Allocated: ${total_stake:.2f}\n"
     section += "---\n"
     return section
+
+
+def _format_multi_outcome_row(parent_slug, bet):
+    event_name = parent_slug
+    if len(event_name) > 30:
+        event_name = event_name[:28] + "..."
+
+    selected = f"{bet.get('outcome_variant_id', '?')} ({bet['action']})"
+    stake_val = float(bet["stake_usdc"])
+    stake = f"${stake_val:.2f}"
+
+    end_date_val = bet.get("end_date")
+    end_date = "N/A"
+    if end_date_val:
+        try:
+            ed_cet = to_cet(end_date_val)
+            if ed_cet:
+                end_date = ed_cet.strftime("%b %d, %H:%M")
+        except Exception:
+            pass
+
+    row = f"| {event_name} | {selected} | {stake} | {end_date} |\n"
+    edge = float(bet["edge"]) if bet.get("edge") else None
+    return row, stake_val, edge
+
 
 def _generate_market_insights(all_active_display):
     markets_analyzed = os.getenv("TOP_MARKETS_TO_ANALYZE", "15")
@@ -514,7 +519,11 @@ def _generate_market_insights(all_active_display):
 def generate_advanced_analytics_section(results: list) -> str:
     """Generiert erweiterte Analytics Section."""
     if len(results) < 5:
-        return """## 📊 Advanced Analytics\n\n*Insufficient data (need at least 5 closed bets)*\n\n---\n"""
+        return (
+            "## 📊 Advanced Analytics\n\n"
+            "*Insufficient data (need at least 5 closed bets)*\n\n"
+            "---\n"
+        )
     try:
         from src import analytics_advanced
 
@@ -526,8 +535,8 @@ def generate_advanced_analytics_section(results: list) -> str:
         return (
             calibration_section + edge_section + trends_section + dd_section + "\n---\n"
         )
-    except Exception as e:
-        logger.error(f"Error generating advanced analytics: {e}")
+    except Exception:
+        logger.exception("Error generating advanced analytics")
         return "\n*Advanced analytics unavailable*\n\n---\n"
 
 
@@ -589,7 +598,10 @@ def _generate_edge_section(analytics_advanced, results):
 """
     for bucket in edge_val["buckets"]:
         if bucket["status"] == "insufficient_data":
-            section += f"| {bucket['range']} | - | - | - | - | {bucket['num_bets']} (need 10+) |\n"
+            section += (
+                f"| {bucket['range']} | - | - | - | - | "
+                f"{bucket['num_bets']} (need 10+) |\n"
+            )
         else:
             pred = f"{bucket['avg_predicted_edge']:+.1%}"
             real = f"{bucket['avg_realized_edge']:+.1%}"
@@ -600,7 +612,10 @@ def _generate_edge_section(analytics_advanced, results):
                 if bucket["accuracy"] >= 0.90
                 else "⚠️" if bucket["accuracy"] >= 0.80 else "🔴"
             )
-            section += f"| {bucket['range']} | {pred} | {real} | {delta} | {acc} {acc_icon} | {bucket['num_bets']} |\n"
+            section += (
+                f"| {bucket['range']} | {pred} | {real} | {delta} | "
+                f"{acc} {acc_icon} | {bucket['num_bets']} |\n"
+            )
 
     section += f"\n**Overall Edge Accuracy:** {edge_val['overall_accuracy']:.0%}\n"
     return section

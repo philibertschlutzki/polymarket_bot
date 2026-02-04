@@ -1,10 +1,10 @@
 import logging
 import re
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Optional
 from collections import defaultdict
-from sqlalchemy.orm import Session
 from src.db_models import ActiveBet
 from src.prompts.multi_outcome_prompt import generate_multi_outcome_prompt
+
 
 class MultiOutcomeHandler:
     def __init__(self, db_session_factory, config: Dict[str, Any]):
@@ -12,7 +12,7 @@ class MultiOutcomeHandler:
         self.config = config
         self.logger = logging.getLogger(__name__)
 
-    def group_markets(self, markets: List[Any]) -> Dict[str, Any]:
+    def group_markets(self, markets: List[Any]) -> Dict[str, Any]:  # noqa: C901
         """
         Groups markets by parent event using heuristic strategies.
 
@@ -25,7 +25,6 @@ class MultiOutcomeHandler:
             }
         }
         """
-        grouped = defaultdict(list)
         singles = []
 
         # Helper to get raw data if market is pydantic model or dict
@@ -34,29 +33,10 @@ class MultiOutcomeHandler:
                 return getattr(m, field)
             return m.get(field)
 
-        # 1. Group by Title Similarity (Method C - most robust fallback)
-        # We look for common prefixes. This is O(N^2) naive, but with 100 markets it's fine.
-        # Better: Clustering.
-        # Simple approach: Tokenize title, find overlapping clusters.
-
-        # Simplified approach for this task:
-        # Use a "Group Key" derived from title.
-        # e.g. "Bitcoin price on Feb 4: <80k" -> "Bitcoin price on Feb 4"
-        # Regex for common patterns: ":", "-", "Will X be..."
-
-        processed_slugs = set()
-
-        # First pass: Identify obvious groups via API metadata if available (not implemented in standard MarketData yet)
-        # Assuming we only have standard fields for now.
-
-        # We will iterate and build groups dynamically.
-        # Key: Normalized Title Prefix
-
         potential_groups = defaultdict(list)
 
         for market in markets:
             question = get_field(market, 'question')
-            market_slug = get_field(market, 'market_slug')
 
             # Heuristic 1: "X price on Y: Range" or "X price on Y - Range"
             # Pattern: (Main Event) [:|-] (Variant)
@@ -76,13 +56,15 @@ class MultiOutcomeHandler:
         skip_keys = set()
         for i in range(len(keys)):
             k1 = keys[i]
-            if k1 in skip_keys: continue
+            if k1 in skip_keys:
+                continue
 
             merged_groups[k1].extend(potential_groups[k1])
 
-            for j in range(i+1, len(keys)):
+            for j in range(i + 1, len(keys)):
                 k2 = keys[j]
-                if k2 in skip_keys: continue
+                if k2 in skip_keys:
+                    continue
 
                 # Check similarity: Common prefix
                 prefix_len = 0
@@ -90,7 +72,7 @@ class MultiOutcomeHandler:
                 while prefix_len < min_len and k1[prefix_len] == k2[prefix_len]:
                     prefix_len += 1
 
-                if prefix_len > 15: # Threshold: "Will Trump deport" is ~17 chars
+                if prefix_len > 15:  # Threshold: "Will Trump deport" is ~17 chars
                     # Merge k2 into k1
                     merged_groups[k1].extend(potential_groups[k2])
                     skip_keys.add(k2)
@@ -99,12 +81,6 @@ class MultiOutcomeHandler:
         potential_groups = merged_groups
 
         # Post-process groups
-        # If a group has only 1 item, it's likely a single market (unless explicit multi-outcome detected later)
-        # If > 1, check if they truly belong together.
-
-        # We need a robust slug for the parent event.
-        # If we derived a key "Bitcoin price on Feb 4", we make a slug from it.
-
         final_groups = {}
 
         for key, group_markets in potential_groups.items():
@@ -143,21 +119,6 @@ class MultiOutcomeHandler:
         prompt = generate_multi_outcome_prompt(event_data)
 
         try:
-            # Call Gemini (we assume gemini_client has a method compatible with this)
-            # The main.py uses _generate_gemini_response which expects client and prompt.
-            # We might need to call that helper or use the client directly.
-            # Assuming gemini_client is the raw genai.Client
-
-            # We need the response parsing logic from main.py or replicate it.
-            # To avoid circular imports or duplication, we should probably pass a callback or
-            # expect `gemini_client` to be a wrapper.
-            # But the plan said `gemini_client`.
-
-            # Let's assume we use the same `_execute_gemini_request` logic.
-            # Since that function is in main.py, we can't easily import it without circular dep if main imports this.
-            # We will rely on the caller (main.py) to pass a callable `analyze_fn` or similar,
-            # OR we implement the call here using google.genai directly.
-
             from google.genai import types
 
             response = gemini_client.models.generate_content(
@@ -251,11 +212,6 @@ class MultiOutcomeHandler:
 
             edge = ai_prob - market_price
 
-            # Logic: If edge is positive and > threshold
-            # Also check confidence from AI analysis (global or per outcome?)
-            # Usually analysis has a global reasoning or specific confidence.
-            # Let's use the 'best_pick' from AI as a guide, but verify with our calc.
-
             if abs(edge) >= min_edge:
                 # Check if this is the "best" so far
                 if abs(edge) > max_abs_edge:
@@ -264,7 +220,7 @@ class MultiOutcomeHandler:
                         'market': market,
                         'ai_probability': ai_prob,
                         'edge': edge,
-                        'confidence': best_pick_ai.get('confidence', 0.7), # Fallback
+                        'confidence': best_pick_ai.get('confidence', 0.7),  # Fallback
                         'action': 'YES' if edge > 0 else 'NO',
                         'reasoning': analysis.get('reasoning', '')
                     }

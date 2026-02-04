@@ -1,5 +1,6 @@
 from typing import Dict, Any
 
+
 def generate_multi_outcome_prompt(event_data: Dict[str, Any]) -> str:
     """
     Generates a prompt for multi-outcome event analysis.
@@ -18,13 +19,13 @@ def generate_multi_outcome_prompt(event_data: Dict[str, Any]) -> str:
     for outcome in outcomes:
         # Handle both MarketData object and Dict
         if hasattr(outcome, 'question'):
-             question = outcome.question
-             market_slug = outcome.market_slug
-             price = outcome.yes_price
+            question = outcome.question
+            market_slug = outcome.market_slug
+            price = outcome.yes_price
         else:
-             question = outcome.get('question', '')
-             market_slug = outcome.get('market_slug', '')
-             price = outcome.get('yes_price', 0.5)
+            question = outcome.get('question', '')
+            market_slug = outcome.get('market_slug', '')
+            price = outcome.get('yes_price', 0.5)
 
         outcomes_text += f"{market_slug} | {question} | {price:.3f}\n"
 

@@ -7,6 +7,7 @@ logger = logging.getLogger(__name__)
 
 CONFIG_PATH = "config/multi_outcome.yaml"
 
+
 def get_default_config() -> Dict[str, Any]:
     return {
         "enabled": True,
@@ -39,6 +40,7 @@ def get_default_config() -> Dict[str, Any]:
             "log_normalization_warnings": True
         }
     }
+
 
 def load_multi_outcome_config() -> Dict[str, Any]:
     """Loads the multi-outcome configuration from YAML."""

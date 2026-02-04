@@ -743,7 +743,7 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
 # ============================================================================
 
 
-def market_discovery_worker():
+def market_discovery_worker():  # noqa: C901
     """Fetches markets periodically and adds them to the queue."""
     logger.info("✅ Started thread: MarketDiscovery")
 
@@ -780,26 +780,26 @@ def market_discovery_worker():
 
             # Process Multi-Outcome
             for parent_slug, outcomes in groups['multi_outcome_events'].items():
-                 # Check conflicts
-                 conflict = multi_outcome_handler.check_existing_bets(parent_slug)
-                 if conflict:
-                     logger.info(f"Skipping multi-outcome {parent_slug}: {conflict}")
-                     continue
+                # Check conflicts
+                conflict = multi_outcome_handler.check_existing_bets(parent_slug)
+                if conflict:
+                    logger.info(f"Skipping multi-outcome {parent_slug}: {conflict}")
+                    continue
 
-                 # Prepare queue item
-                 queue_item = {
-                     'market_slug': parent_slug,
-                     'is_multi_outcome': True,
-                     'parent_slug': parent_slug,
-                     'outcomes': [m.dict() for m in outcomes],
-                     'question': f"Multi-Outcome: {outcomes[0].question} ...",
-                 }
+                # Prepare queue item
+                queue_item = {
+                    'market_slug': parent_slug,
+                    'is_multi_outcome': True,
+                    'parent_slug': parent_slug,
+                    'outcomes': [m.dict() for m in outcomes],
+                    'question': f"Multi-Outcome: {outcomes[0].question} ...",
+                }
 
-                 # Calculate priority
-                 priority = max(calculate_quick_edge(m) for m in outcomes)
+                # Calculate priority
+                priority = max(calculate_quick_edge(m) for m in outcomes)
 
-                 if queue_manager.add_market(queue_item, priority):
-                     added_count += 1
+                if queue_manager.add_market(queue_item, priority):
+                    added_count += 1
 
             logger.info(
                 f"✅ Market Discovery: {added_count} new markets added to queue"
@@ -821,7 +821,7 @@ def market_discovery_worker():
             time.sleep(60)
 
 
-def queue_processing_worker():
+def queue_processing_worker():  # noqa: C901
     """Continuously processes the market queue."""
     logger.info("✅ Started thread: QueueProcessor")
 
@@ -892,8 +892,8 @@ def queue_processing_worker():
                     else:
                         queue_manager.mark_completed(parent_slug, "PASS: No profitable outcome found")
                 else:
-                     # Analysis failed
-                     queue_manager.move_to_retry_queue(parent_slug, "ANALYSIS_FAILED", "Null response")
+                    # Analysis failed
+                    queue_manager.move_to_retry_queue(parent_slug, "ANALYSIS_FAILED", "Null response")
 
             else:
                 # Single Market Logic
