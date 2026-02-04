@@ -41,14 +41,13 @@ from src import (  # noqa: E402
     dashboard,
     database,
     git_integration,
+    resolution_checker,
 )
 from src.gemini_tracker import track_gemini_call  # noqa: E402
 from src.logging_config import setup_api_logging  # noqa: E402
 from src.database import (  # noqa: E402
-    archive_expired_bets,
     calculate_profit_with_fees,
     log_status_change,
-    process_auto_loss_bets,
     process_disputed_outcomes,
 )
 
@@ -637,8 +636,25 @@ def calculate_quick_edge(market: MarketData) -> float:
 
 def check_and_resolve_bets():  # noqa: C901
     try:
-        archive_expired_bets()
-        process_auto_loss_bets()
+        # Archive expired bets
+        archived = database.archive_expired_bets()
+        if archived > 0:
+            logger.info(f"📦 Archived {archived} expired bet(s)")
+
+        # ===== NEU: Resolution Check =====
+        try:
+            resolved = resolution_checker.check_and_resolve_bets()
+            if resolved > 0:
+                logger.info(f"✅ Resolved {resolved} bet(s) with outcomes from Goldsky")
+        except Exception as e:
+            logger.error(f"❌ Error during resolution check: {e}", exc_info=True)
+        # =================================
+
+        # Process auto-losses (30+ days)
+        auto_losses = database.process_auto_loss_bets()
+        if auto_losses > 0:
+            logger.info(f"💀 Processed {auto_losses} auto-loss bets")
+
         process_disputed_outcomes()
 
         active_bets = database.get_active_bets()

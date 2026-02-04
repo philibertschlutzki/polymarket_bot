@@ -14,7 +14,8 @@ graph TD
     E -->|Stake Size| F[Database (SQLite/Postgres)]
     F -->|Store Bet| G[src/database.py]
 
-    H[Goldsky GraphQL] -->|Resolution Status| B
+    H[Goldsky GraphQL] -->|Resolution Status| RC[src/resolution_checker.py]
+    RC -->|Update Outcomes| G[src/database.py]
 
     B -->|Update Stats| I[src/dashboard.py]
     I -->|Generate MD| J[PERFORMANCE_DASHBOARD.md]
@@ -48,6 +49,13 @@ Data persistence layer.
 Reporting engine.
 - Generates `PERFORMANCE_DASHBOARD.md` from database stats.
 - Visualizes metrics (ROI, Win Rate, Drawdown) and active bets.
+
+### `resolution_checker.py`
+Automatic outcome resolution.
+- Queries Goldsky GraphQL API for market resolutions.
+- Updates archived bets with final outcomes (YES/NO/DISPUTED).
+- Calculates profit/loss with fees.
+- Runs every 15 minutes as part of main loop.
 
 ### `ai_decisions_generator.py`
 Audit log generator.
