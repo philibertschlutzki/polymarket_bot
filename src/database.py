@@ -17,6 +17,7 @@ from src.db_models import (
     RejectedMarket,
     engine,
     session_scope,
+    SessionLocal,
 )
 
 # Configuration
@@ -347,6 +348,9 @@ def insert_active_bet(bet_data: Dict[str, Any]):
     with session_scope() as session:
         bet = ActiveBet(
             market_slug=bet_data["market_slug"],
+            parent_event_slug=bet_data.get("parent_event_slug"),
+            outcome_variant_id=bet_data.get("outcome_variant_id"),
+            is_multi_outcome=bet_data.get("is_multi_outcome", False),
             url_slug=bet_data.get(
                 "url_slug", bet_data["market_slug"]
             ),  # Fallback if missing
@@ -396,6 +400,9 @@ def insert_active_bets_batch(bets_data: List[Dict[str, Any]]):
         for bet_data in bets_data:
             bet = ActiveBet(
                 market_slug=bet_data["market_slug"],
+                parent_event_slug=bet_data.get("parent_event_slug"),
+                outcome_variant_id=bet_data.get("outcome_variant_id"),
+                is_multi_outcome=bet_data.get("is_multi_outcome", False),
                 url_slug=bet_data.get(
                     "url_slug", bet_data["market_slug"]
                 ),  # Fallback if missing
@@ -485,6 +492,9 @@ def close_bet(
         archived = ArchivedBet(
             original_bet_id=bet.bet_id,
             market_slug=bet.market_slug,
+            parent_event_slug=bet.parent_event_slug,
+            outcome_variant_id=bet.outcome_variant_id,
+            is_multi_outcome=bet.is_multi_outcome,
             url_slug=bet.url_slug,
             question=bet.question,
             action=bet.action,
@@ -558,6 +568,9 @@ def close_bets_batch(resolutions: List[Tuple[int, str, float]]):
             archived = ArchivedBet(
                 original_bet_id=bet.bet_id,
                 market_slug=bet.market_slug,
+                parent_event_slug=bet.parent_event_slug,
+                outcome_variant_id=bet.outcome_variant_id,
+                is_multi_outcome=bet.is_multi_outcome,
                 url_slug=bet.url_slug,
                 question=bet.question,
                 action=bet.action,
@@ -613,6 +626,9 @@ def archive_bet_without_resolution(bet_id: int, conn: Optional[Session] = None):
         archived = ArchivedBet(
             original_bet_id=bet.bet_id,
             market_slug=bet.market_slug,
+            parent_event_slug=bet.parent_event_slug,
+            outcome_variant_id=bet.outcome_variant_id,
+            is_multi_outcome=bet.is_multi_outcome,
             url_slug=bet.url_slug,
             question=bet.question,
             action=bet.action,
@@ -1265,6 +1281,9 @@ def archive_expired_bets() -> int:
             archived = ArchivedBet(
                 original_bet_id=bet.bet_id,
                 market_slug=bet.market_slug,
+                parent_event_slug=bet.parent_event_slug,
+                outcome_variant_id=bet.outcome_variant_id,
+                is_multi_outcome=bet.is_multi_outcome,
                 url_slug=bet.url_slug,
                 question=bet.question,
                 action=bet.action,

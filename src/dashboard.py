@@ -64,6 +64,7 @@ def generate_dashboard():
     alerts_section = _generate_alerts_section(
         rpm_pct, rpd_pct, tpm_pct, active_bets, capital, now_cet
     )
+    multi_outcome_section = _generate_multi_outcome_section(active_bets)
     market_insights = _generate_market_insights(all_active_display)
     chart_section = generate_chart_section(results)
     recent_section = generate_recent_results_section(results)
@@ -78,6 +79,7 @@ def generate_dashboard():
         + capital_breakdown
         + risk_metrics
         + active_bets_section
+        + multi_outcome_section
         + alerts_section
         + market_insights
         + advanced_analytics_section
@@ -419,6 +421,65 @@ def _check_expiring_soon(active_bets, now_cet):
         )
     return alerts
 
+
+def _generate_multi_outcome_section(active_bets):
+    multi_bets = [b for b in active_bets if b.get('is_multi_outcome')]
+    if not multi_bets:
+        return ""
+
+    # Group by parent event
+    grouped = {}
+    for b in multi_bets:
+        p = b.get('parent_event_slug') or "Unknown"
+        if p not in grouped:
+            grouped[p] = []
+        grouped[p].append(b)
+
+    section = "## 🎲 Multi-Outcome Events (Active)\n\n"
+    section += "| Event | Selected Range | Stake | End Date |\n"
+    section += "|-------|----------------|-------|----------|\n"
+
+    total_events = len(grouped)
+    total_stake = 0.0
+    total_edge = 0.0
+    count = 0
+
+    for p, bets in grouped.items():
+        # Usually 1 bet per event per strategy
+        for b in bets:
+            event_name = p
+            if len(event_name) > 30:
+                 event_name = event_name[:28] + "..."
+
+            selected = f"{b.get('outcome_variant_id', '?')} ({b['action']})"
+            stake_val = float(b['stake_usdc'])
+            stake = f"${stake_val:.2f}"
+
+            end_date_val = b.get('end_date')
+            end_date = "N/A"
+            if end_date_val:
+                try:
+                    ed_cet = to_cet(end_date_val)
+                    if ed_cet:
+                         end_date = ed_cet.strftime("%b %d, %H:%M")
+                except:
+                    pass
+
+            section += f"| {event_name} | {selected} | {stake} | {end_date} |\n"
+
+            total_stake += stake_val
+            if b.get('edge'):
+                total_edge += float(b['edge'])
+                count += 1
+
+    avg_edge = (total_edge / count * 100) if count > 0 else 0.0
+
+    section += f"\n**Multi-Outcome Statistics:**\n"
+    section += f"- Total Events: {total_events}\n"
+    section += f"- Average Edge: {avg_edge:+.1f}%\n"
+    section += f"- Capital Allocated: ${total_stake:.2f}\n"
+    section += "---\n"
+    return section
 
 def _generate_market_insights(all_active_display):
     markets_analyzed = os.getenv("TOP_MARKETS_TO_ANALYZE", "15")

@@ -151,8 +151,13 @@ This file contains detailed AI reasoning for all market analyses.
             except Exception:
                 pass
 
+        bet_type_info = ""
+        if bet.get('is_multi_outcome'):
+             parent = bet.get('parent_event_slug')
+             bet_type_info = f"**Multi-Outcome Event** (Parent: `{parent}`)\n"
+
         active_section += f"""### Bet #{i}: [{q_text}]({url})
-*Analyzed: {analyzed_str}*
+{bet_type_info}*Analyzed: {analyzed_str}*
 
 **Decision:** {bet['action']} @ {bet['entry_price']:.2f} (Stake: ${bet['stake_usdc']:.2f})
 **[View Market →]({url})**

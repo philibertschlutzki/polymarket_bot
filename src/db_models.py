@@ -82,7 +82,10 @@ class ActiveBet(Base):
         primary_key=True,
         autoincrement=True,
     )
-    market_slug = Column(Text, nullable=False, unique=True)
+    market_slug = Column(Text, nullable=False)
+    parent_event_slug = Column(Text, nullable=True, index=True)
+    outcome_variant_id = Column(Text, nullable=True)
+    is_multi_outcome = Column(Boolean, default=False, nullable=False)
     url_slug = Column(Text, nullable=False)
     question = Column(Text, nullable=False)
     action = Column(Text, nullable=False)
@@ -119,6 +122,9 @@ class ArchivedBet(Base):
     )
     original_bet_id = Column(BigInteger, nullable=False, unique=True)
     market_slug = Column(Text, nullable=False)
+    parent_event_slug = Column(Text, nullable=True, index=True)
+    outcome_variant_id = Column(Text, nullable=True)
+    is_multi_outcome = Column(Boolean, default=False, nullable=False)
     url_slug = Column(Text, nullable=False)
     question = Column(Text, nullable=False)
     action = Column(Text, nullable=False)
