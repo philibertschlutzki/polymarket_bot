@@ -381,6 +381,35 @@ def calculate_kelly_stake(
     )
 
 
+def calculate_kelly_stake_multi(
+    ai_prob: float,
+    price: float,
+    conf: float,
+    capital: float,
+    is_multi_bet: bool = False,
+) -> TradingRecommendation:
+    """
+    Kelly Criterion with reduction for multi-outcome bets.
+
+    Args:
+        is_multi_bet: If True, applies reduction factor
+    """
+    rec = calculate_kelly_stake(ai_prob, price, conf, capital)
+
+    if is_multi_bet and rec.action != "PASS":
+        # Apply reduction factor from config
+        reduction = multi_outcome_config["strategy"].get("kelly_reduction_factor", 0.75)
+        rec.stake_usdc = round(rec.stake_usdc * reduction, 2)
+        rec.kelly_fraction = round(rec.kelly_fraction * reduction, 4)
+
+        logger.debug(
+            f"Applied multi-bet Kelly reduction ({reduction:.0%}): "
+            f"${rec.stake_usdc}"
+        )
+
+    return rec
+
+
 def analyze_and_recommend(
     market: MarketData, capital: float
 ) -> Tuple[Optional[TradingRecommendation], Optional[Dict]]:
@@ -872,47 +901,81 @@ def queue_processing_worker():  # noqa: C901
 
                 if analysis:
                     market_map = {m.market_slug: m for m in outcomes}
-                    best = multi_outcome_handler.select_best_outcome(
-                        analysis, market_map
+                    try:
+                        analysis_id = multi_outcome_handler.persist_analysis(
+                            parent_slug, analysis, market_map
+                        )
+                        logger.info(
+                            f"✅ Saved analysis #{analysis_id} for {parent_slug}"
+                        )
+                    except Exception as e:
+                        logger.error(f"❌ Failed to persist analysis: {e}")
+                        analysis_id = None
+
+                    profitable_outcomes = (
+                        multi_outcome_handler.select_multiple_outcomes(
+                            analysis, market_map
+                        )
                     )
 
-                    if best:
-                        m = best["market"]
+                    if profitable_outcomes:
                         capital = database.get_current_capital()
+                        bets_placed = []
 
-                        rec = calculate_kelly_stake(
-                            best["ai_probability"],
-                            m.yes_price,
-                            best["confidence"],
-                            capital,
-                        )
+                        is_multi = len(profitable_outcomes) > 1
 
-                        if rec.action != "PASS":
-                            bet_data = {
-                                "market_slug": m.market_slug,
-                                "parent_event_slug": parent_slug,
-                                "outcome_variant_id": m.market_slug,
-                                "is_multi_outcome": True,
-                                "url_slug": m.url_slug,
-                                "question": m.question,
-                                "action": best["action"],
-                                "stake_usdc": rec.stake_usdc,
-                                "entry_price": m.yes_price,
-                                "ai_probability": best["ai_probability"],
-                                "confidence_score": best["confidence"],
-                                "expected_value": rec.expected_value,
-                                "edge": best["edge"],
-                                "ai_reasoning": best["reasoning"],
-                                "end_date": m.end_date,
-                            }
-                            database.insert_active_bets_batch([bet_data])
+                        for outcome_data in profitable_outcomes:
+                            m = outcome_data["market"]
+
+                            rec = calculate_kelly_stake_multi(
+                                outcome_data["ai_probability"],
+                                m.yes_price,
+                                outcome_data["confidence"],
+                                capital,
+                                is_multi_bet=is_multi,
+                            )
+
+                            if rec.action != "PASS":
+                                bet_data = {
+                                    "market_slug": m.market_slug,
+                                    "parent_event_slug": parent_slug,
+                                    "outcome_variant_id": m.market_slug,
+                                    "is_multi_outcome": True,
+                                    "parent_analysis_id": analysis_id,
+                                    "full_distribution": json.dumps(
+                                        analysis["distribution"]
+                                    ),
+                                    "alternative_outcomes_count": len(
+                                        analysis["distribution"]
+                                    )
+                                    - 1,
+                                    "url_slug": m.url_slug,
+                                    "question": m.question,
+                                    "action": outcome_data["action"],
+                                    "stake_usdc": rec.stake_usdc,
+                                    "entry_price": m.yes_price,
+                                    "ai_probability": outcome_data["ai_probability"],
+                                    "confidence_score": outcome_data["confidence"],
+                                    "expected_value": rec.expected_value,
+                                    "edge": outcome_data["edge"],
+                                    "ai_reasoning": analysis.get("reasoning", ""),
+                                    "end_date": m.end_date,
+                                }
+                                bets_placed.append(bet_data)
+                                capital -= rec.stake_usdc
+
+                        if bets_placed:
+                            database.insert_active_bets_batch(bets_placed)
                             queue_manager.mark_completed(
                                 parent_slug,
-                                f"BET: {rec.action} on {m.market_slug} (${rec.stake_usdc})",
+                                f"PLACED {len(bets_placed)} BETS: {[b['action'] for b in bets_placed]}",
+                            )
+                            logger.info(
+                                f"✅ Placed {len(bets_placed)} bets on {parent_slug}"
                             )
                         else:
                             queue_manager.mark_completed(
-                                parent_slug, "PASS: Kelly too low or Edge too small"
+                                parent_slug, "PASS: All outcomes below stake threshold"
                             )
                     else:
                         queue_manager.mark_completed(

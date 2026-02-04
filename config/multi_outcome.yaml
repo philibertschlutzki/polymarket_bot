@@ -22,6 +22,10 @@ multi_outcome:
     min_edge_absolute: 0.10
     min_confidence: 0.70
     select_best_only: true
+    max_multi_outcome_bets: 2
+    bet_alternatives_enabled: true
+    alternatives_min_edge: 0.12
+    kelly_reduction_factor: 0.75
 
   # Conflict management
   conflicts:

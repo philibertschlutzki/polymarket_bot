@@ -230,3 +230,122 @@ class MultiOutcomeHandler:
             return best_outcome
 
         return None
+
+    def persist_analysis(
+        self, parent_slug: str, analysis: Dict, market_map: Dict[str, Any]
+    ) -> int:
+        """
+        Persists complete multi-outcome analysis to database.
+
+        Args:
+            parent_slug: Parent event identifier
+            analysis: Complete AI analysis with distribution
+            market_map: Mapping of outcome slugs to MarketData
+
+        Returns:
+            analysis_id: Database ID of stored analysis
+        """
+        from src import database
+
+        distribution = analysis.get("distribution", {})
+        market_prices = {}
+
+        for slug, market in market_map.items():
+            if hasattr(market, "yes_price"):
+                market_prices[slug] = market.yes_price
+            else:
+                market_prices[slug] = market.get("yes_price", 0.5)
+
+        best_pick = analysis.get("best_pick", {})
+        best_outcome_slug = best_pick.get("market_slug")
+        reasoning = analysis.get("reasoning", "")
+
+        analysis_id = database.insert_multi_outcome_analysis(
+            parent_event_slug=parent_slug,
+            full_distribution=distribution,
+            market_prices=market_prices,
+            reasoning=reasoning,
+            best_outcome_slug=best_outcome_slug,
+        )
+
+        return analysis_id
+
+    def select_multiple_outcomes(
+        self, analysis: Dict, market_map: Dict[str, Any], max_bets: Optional[int] = None
+    ) -> List[Dict]:
+        """
+        Selects MULTIPLE profitable outcomes from a multi-outcome event.
+
+        Args:
+            analysis: AI analysis with distribution
+            market_map: Mapping of slugs to MarketData
+            max_bets: Maximum number of bets to return (default from config)
+
+        Returns:
+            List of outcome dicts with market, ai_probability, edge, etc.
+        """
+        if not self.config["strategy"].get("bet_alternatives_enabled", True):
+            max_bets = 1  # Nur beste Option
+        elif max_bets is None:
+            max_bets = self.config["strategy"].get("max_multi_outcome_bets", 2)
+
+        strategy = self.config["strategy"]
+        min_edge = strategy["min_edge_absolute"]
+        min_conf = strategy["min_confidence"]
+
+        distribution = analysis.get("distribution", {})
+        best_pick = analysis.get("best_pick", {})
+        base_confidence = best_pick.get("confidence", 0.7)
+
+        candidates = []
+
+        for outcome_slug, ai_prob in distribution.items():
+            market = market_map.get(outcome_slug)
+            if not market:
+                continue
+
+            if hasattr(market, "yes_price"):
+                market_price = market.yes_price
+            else:
+                market_price = market.get("yes_price", 0.5)
+
+            edge = ai_prob - market_price
+
+            # Check if this outcome was selected for betting
+            is_best = outcome_slug == best_pick.get("market_slug")
+
+            min_edge_for_alt = self.config["strategy"].get(
+                "alternatives_min_edge", min_edge
+            )
+            required_edge = min_edge if is_best else min_edge_for_alt
+
+            # Only consider outcomes with sufficient edge
+            if abs(edge) >= required_edge:
+                # Reduce confidence slightly for non-best picks
+                confidence = base_confidence if is_best else (base_confidence * 0.9)
+
+                if confidence >= min_conf:
+                    candidates.append(
+                        {
+                            "market": market,
+                            "outcome_slug": outcome_slug,
+                            "ai_probability": ai_prob,
+                            "edge": edge,
+                            "confidence": confidence,
+                            "action": "YES" if edge > 0 else "NO",
+                            "is_best_pick": is_best,
+                        }
+                    )
+
+        # Sort by absolute edge (highest first)
+        candidates.sort(key=lambda x: abs(x["edge"]), reverse=True)
+
+        # Return top N
+        selected = candidates[:max_bets]
+
+        self.logger.info(
+            f"📊 Selected {len(selected)}/{len(candidates)} profitable outcomes "
+            f"from {len(distribution)} total options"
+        )
+
+        return selected

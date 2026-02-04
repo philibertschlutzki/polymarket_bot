@@ -1,3 +1,4 @@
+import json
 import logging
 import math
 from datetime import datetime, timedelta, timezone
@@ -13,6 +14,7 @@ from src.db_models import (
     Base,
     BetStatusHistory,
     GitSyncState,
+    MultiOutcomeAnalysis,
     PortfolioState,
     RejectedMarket,
     SessionLocal,
@@ -89,8 +91,14 @@ def init_database():
         # Migrate active_bets table if needed
         migrate_active_bets_table()
 
+        # Migrate active_bets for multi_outcome (NEW)
+        migrate_active_bets_multi_outcome()
+
         # Migrate archived_bets table if needed
         migrate_archived_bets_table()
+
+        # Migrate archived_bets for multi_outcome (NEW)
+        migrate_archived_bets_multi_outcome()
 
         # Migrate bet_status_history table if needed
         migrate_status_history_table()
@@ -247,6 +255,41 @@ def migrate_active_bets_table():
         raise
 
 
+def migrate_active_bets_multi_outcome():
+    """Adds multi-outcome columns to active_bets."""
+    try:
+        with engine.connect() as conn:
+            # Check if columns exist
+            table_info = conn.execute(text("PRAGMA table_info(active_bets)")).fetchall()
+            columns = [c[1] for c in table_info]
+
+            if "parent_analysis_id" not in columns:
+                conn.execute(
+                    text(
+                        "ALTER TABLE active_bets ADD COLUMN parent_analysis_id INTEGER"
+                    )
+                )
+                logger.info("Added parent_analysis_id to active_bets")
+
+            if "full_distribution" not in columns:
+                conn.execute(
+                    text("ALTER TABLE active_bets ADD COLUMN full_distribution TEXT")
+                )
+                logger.info("Added full_distribution to active_bets")
+
+            if "alternative_outcomes_count" not in columns:
+                conn.execute(
+                    text(
+                        "ALTER TABLE active_bets ADD COLUMN alternative_outcomes_count INTEGER DEFAULT 0"
+                    )
+                )
+                logger.info("Added alternative_outcomes_count to active_bets")
+
+            conn.commit()
+    except Exception as e:
+        logger.error(f"Error migrating active_bets multi_outcome: {e}")
+
+
 def migrate_archived_bets_table():
     """Migrates archived_bets table to ensure proper AUTOINCREMENT."""
     from src.db_models import ArchivedBet
@@ -326,6 +369,43 @@ def migrate_archived_bets_table():
         raise
 
 
+def migrate_archived_bets_multi_outcome():
+    """Adds multi-outcome columns to archived_bets."""
+    try:
+        with engine.connect() as conn:
+            # Check if columns exist
+            table_info = conn.execute(
+                text("PRAGMA table_info(archived_bets)")
+            ).fetchall()
+            columns = [c[1] for c in table_info]
+
+            if "parent_analysis_id" not in columns:
+                conn.execute(
+                    text(
+                        "ALTER TABLE archived_bets ADD COLUMN parent_analysis_id INTEGER"
+                    )
+                )
+                logger.info("Added parent_analysis_id to archived_bets")
+
+            if "full_distribution" not in columns:
+                conn.execute(
+                    text("ALTER TABLE archived_bets ADD COLUMN full_distribution TEXT")
+                )
+                logger.info("Added full_distribution to archived_bets")
+
+            if "alternative_outcomes_count" not in columns:
+                conn.execute(
+                    text(
+                        "ALTER TABLE archived_bets ADD COLUMN alternative_outcomes_count INTEGER DEFAULT 0"
+                    )
+                )
+                logger.info("Added alternative_outcomes_count to archived_bets")
+
+            conn.commit()
+    except Exception as e:
+        logger.error(f"Error migrating archived_bets multi_outcome: {e}")
+
+
 def migrate_status_history_table():
     """Creates bet_status_history table if not exists."""
     from src.db_models import BetStatusHistory
@@ -394,6 +474,9 @@ def insert_active_bet(bet_data: Dict[str, Any]):
             parent_event_slug=bet_data.get("parent_event_slug"),
             outcome_variant_id=bet_data.get("outcome_variant_id"),
             is_multi_outcome=bet_data.get("is_multi_outcome", False),
+            parent_analysis_id=bet_data.get("parent_analysis_id"),
+            full_distribution=bet_data.get("full_distribution"),
+            alternative_outcomes_count=bet_data.get("alternative_outcomes_count", 0),
             url_slug=bet_data.get(
                 "url_slug", bet_data["market_slug"]
             ),  # Fallback if missing
@@ -446,6 +529,11 @@ def insert_active_bets_batch(bets_data: List[Dict[str, Any]]):
                 parent_event_slug=bet_data.get("parent_event_slug"),
                 outcome_variant_id=bet_data.get("outcome_variant_id"),
                 is_multi_outcome=bet_data.get("is_multi_outcome", False),
+                parent_analysis_id=bet_data.get("parent_analysis_id"),
+                full_distribution=bet_data.get("full_distribution"),
+                alternative_outcomes_count=bet_data.get(
+                    "alternative_outcomes_count", 0
+                ),
                 url_slug=bet_data.get(
                     "url_slug", bet_data["market_slug"]
                 ),  # Fallback if missing
@@ -538,6 +626,9 @@ def close_bet(
             parent_event_slug=bet.parent_event_slug,
             outcome_variant_id=bet.outcome_variant_id,
             is_multi_outcome=bet.is_multi_outcome,
+            parent_analysis_id=bet.parent_analysis_id,
+            full_distribution=bet.full_distribution,
+            alternative_outcomes_count=bet.alternative_outcomes_count,
             url_slug=bet.url_slug,
             question=bet.question,
             action=bet.action,
@@ -614,6 +705,9 @@ def close_bets_batch(resolutions: List[Tuple[int, str, float]]):
                 parent_event_slug=bet.parent_event_slug,
                 outcome_variant_id=bet.outcome_variant_id,
                 is_multi_outcome=bet.is_multi_outcome,
+                parent_analysis_id=bet.parent_analysis_id,
+                full_distribution=bet.full_distribution,
+                alternative_outcomes_count=bet.alternative_outcomes_count,
                 url_slug=bet.url_slug,
                 question=bet.question,
                 action=bet.action,
@@ -672,6 +766,9 @@ def archive_bet_without_resolution(bet_id: int, conn: Optional[Session] = None):
             parent_event_slug=bet.parent_event_slug,
             outcome_variant_id=bet.outcome_variant_id,
             is_multi_outcome=bet.is_multi_outcome,
+            parent_analysis_id=bet.parent_analysis_id,
+            full_distribution=bet.full_distribution,
+            alternative_outcomes_count=bet.alternative_outcomes_count,
             url_slug=bet.url_slug,
             question=bet.question,
             action=bet.action,
@@ -1327,6 +1424,9 @@ def archive_expired_bets() -> int:
                 parent_event_slug=bet.parent_event_slug,
                 outcome_variant_id=bet.outcome_variant_id,
                 is_multi_outcome=bet.is_multi_outcome,
+                parent_analysis_id=bet.parent_analysis_id,
+                full_distribution=bet.full_distribution,
+                alternative_outcomes_count=bet.alternative_outcomes_count,
                 url_slug=bet.url_slug,
                 question=bet.question,
                 action=bet.action,
@@ -1602,4 +1702,68 @@ def get_capital_breakdown() -> Dict[str, float]:
             "locked_in_active": locked_in_active,
             "pending_resolution": pending_older_7d,
             "total_portfolio": total_capital,
+        }
+
+
+def insert_multi_outcome_analysis(
+    parent_event_slug: str,
+    full_distribution: dict,
+    market_prices: dict,
+    reasoning: str,
+    best_outcome_slug: Optional[str] = None,
+) -> int:
+    """
+    Inserts a complete multi-outcome analysis into database.
+
+    Returns:
+        analysis_id: The ID of the inserted record
+    """
+    edges = {
+        slug: full_distribution.get(slug, 0) - market_prices.get(slug, 0.5)
+        for slug in full_distribution.keys()
+    }
+
+    with session_scope() as session:
+        analysis = MultiOutcomeAnalysis(
+            parent_event_slug=parent_event_slug,
+            full_distribution=json.dumps(full_distribution),
+            market_prices=json.dumps(market_prices),
+            edges=json.dumps(edges),
+            best_outcome_slug=best_outcome_slug,
+            reasoning=reasoning,
+            outcomes_count=len(full_distribution),
+        )
+        session.add(analysis)
+        session.flush()  # Get ID
+        analysis_id = int(analysis.analysis_id)  # type: ignore
+
+    logger.info(
+        f"✅ Saved multi-outcome analysis #{analysis_id} for {parent_event_slug}"
+    )
+    return analysis_id
+
+
+def get_multi_outcome_analysis(parent_event_slug: str) -> Optional[Dict]:
+    """Retrieves the latest analysis for a multi-outcome event."""
+    with session_scope() as session:
+        analysis = (
+            session.query(MultiOutcomeAnalysis)
+            .filter(MultiOutcomeAnalysis.parent_event_slug == parent_event_slug)
+            .order_by(MultiOutcomeAnalysis.timestamp_analyzed.desc())
+            .first()
+        )
+
+        if not analysis:
+            return None
+
+        return {
+            "analysis_id": analysis.analysis_id,
+            "parent_event_slug": analysis.parent_event_slug,
+            "timestamp_analyzed": analysis.timestamp_analyzed,
+            "full_distribution": json.loads(analysis.full_distribution),
+            "market_prices": json.loads(analysis.market_prices),
+            "edges": json.loads(analysis.edges),
+            "best_outcome_slug": analysis.best_outcome_slug,
+            "reasoning": analysis.reasoning,
+            "outcomes_count": analysis.outcomes_count,
         }
