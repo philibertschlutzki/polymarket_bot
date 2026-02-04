@@ -401,7 +401,6 @@ def calculate_kelly_stake_multi(
         reduction = multi_outcome_config["strategy"].get("kelly_reduction_factor", 0.75)
         rec.stake_usdc = round(rec.stake_usdc * reduction, 2)
         rec.kelly_fraction = round(rec.kelly_fraction * reduction, 4)
-        rec.expected_value = rec.expected_value * reduction
 
         logger.debug(
             f"Applied multi-bet Kelly reduction ({reduction:.0%}): "
@@ -906,13 +905,17 @@ def queue_processing_worker():  # noqa: C901
                         analysis_id = multi_outcome_handler.persist_analysis(
                             parent_slug, analysis, market_map
                         )
-                        logger.info(f"✅ Saved analysis #{analysis_id} for {parent_slug}")
+                        logger.info(
+                            f"✅ Saved analysis #{analysis_id} for {parent_slug}"
+                        )
                     except Exception as e:
                         logger.error(f"❌ Failed to persist analysis: {e}")
                         analysis_id = None
 
-                    profitable_outcomes = multi_outcome_handler.select_multiple_outcomes(
-                        analysis, market_map
+                    profitable_outcomes = (
+                        multi_outcome_handler.select_multiple_outcomes(
+                            analysis, market_map
+                        )
                     )
 
                     if profitable_outcomes:

@@ -260,14 +260,14 @@ def migrate_active_bets_multi_outcome():
     try:
         with engine.connect() as conn:
             # Check if columns exist
-            table_info = conn.execute(
-                text("PRAGMA table_info(active_bets)")
-            ).fetchall()
+            table_info = conn.execute(text("PRAGMA table_info(active_bets)")).fetchall()
             columns = [c[1] for c in table_info]
 
             if "parent_analysis_id" not in columns:
                 conn.execute(
-                    text("ALTER TABLE active_bets ADD COLUMN parent_analysis_id INTEGER")
+                    text(
+                        "ALTER TABLE active_bets ADD COLUMN parent_analysis_id INTEGER"
+                    )
                 )
                 logger.info("Added parent_analysis_id to active_bets")
 
@@ -531,7 +531,9 @@ def insert_active_bets_batch(bets_data: List[Dict[str, Any]]):
                 is_multi_outcome=bet_data.get("is_multi_outcome", False),
                 parent_analysis_id=bet_data.get("parent_analysis_id"),
                 full_distribution=bet_data.get("full_distribution"),
-                alternative_outcomes_count=bet_data.get("alternative_outcomes_count", 0),
+                alternative_outcomes_count=bet_data.get(
+                    "alternative_outcomes_count", 0
+                ),
                 url_slug=bet_data.get(
                     "url_slug", bet_data["market_slug"]
                 ),  # Fallback if missing
