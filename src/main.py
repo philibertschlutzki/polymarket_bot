@@ -401,6 +401,7 @@ def calculate_kelly_stake_multi(
         reduction = multi_outcome_config["strategy"].get("kelly_reduction_factor", 0.75)
         rec.stake_usdc = round(rec.stake_usdc * reduction, 2)
         rec.kelly_fraction = round(rec.kelly_fraction * reduction, 4)
+        rec.expected_value = rec.expected_value * reduction
 
         logger.debug(
             f"Applied multi-bet Kelly reduction ({reduction:.0%}): "
