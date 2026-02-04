@@ -36,9 +36,9 @@ def check_and_resolve_bets() -> int:
 
     # Filter: only check bets past cutoff
     eligible_bets = [
-        b for b in unresolved_bets
-        if b.get("end_date") and
-        _parse_datetime(b["end_date"]) < cutoff_time
+        b
+        for b in unresolved_bets
+        if b.get("end_date") and _parse_datetime(b["end_date"]) < cutoff_time
     ]
 
     if not eligible_bets:
@@ -53,7 +53,9 @@ def check_and_resolve_bets() -> int:
         batch = eligible_bets[i:i + BATCH_SIZE]
         resolved_count += _process_batch(batch)
 
-    logger.info(f"✅ Resolution check complete. Resolved: {resolved_count}/{len(eligible_bets)}")
+    logger.info(
+        f"✅ Resolution check complete. Resolved: {resolved_count}/{len(eligible_bets)}"
+    )
     return resolved_count
 
 
@@ -121,7 +123,7 @@ def _query_goldsky(market_ids: List[str]) -> Optional[List[Dict]]:
                 GOLDSKY_URL,
                 json={"query": query, "variables": variables},
                 headers={"Content-Type": "application/json"},
-                timeout=REQUEST_TIMEOUT
+                timeout=REQUEST_TIMEOUT,
             )
             response.raise_for_status()
 
@@ -133,7 +135,9 @@ def _query_goldsky(market_ids: List[str]) -> Optional[List[Dict]]:
             return data.get("data", {}).get("markets", [])
 
         except requests.exceptions.RequestException as e:
-            logger.warning(f"⚠️ Goldsky request failed (attempt {attempt + 1}/{MAX_RETRIES}): {e}")
+            logger.warning(
+                f"⚠️ Goldsky request failed (attempt {attempt + 1}/{MAX_RETRIES}): {e}"
+            )
             if attempt == MAX_RETRIES - 1:
                 logger.error("❌ Goldsky query failed after max retries")
                 return None
@@ -182,7 +186,9 @@ def _determine_outcome(market: Dict, bet: Dict) -> Tuple[Optional[str], float]:
         return actual_outcome, profit_loss
     else:
         # Edge case: unclear price (0.05-0.1 or 0.9-0.95)
-        logger.warning(f"Unclear resolution price {yes_price} for {market['id']}, marking as DISPUTED")
+        logger.warning(
+            f"Unclear resolution price {yes_price} for {market['id']}, marking as DISPUTED"
+        )
         return "DISPUTED", 0.0
 
     # Calculate profit/loss
@@ -195,7 +201,7 @@ def _determine_outcome(market: Dict, bet: Dict) -> Tuple[Optional[str], float]:
         entry_price=entry_price,
         action=action,
         actual_outcome=actual_outcome,
-        gas_fee=0.50
+        gas_fee=0.50,
     )
 
     return actual_outcome, profit_loss
@@ -210,6 +216,7 @@ def _parse_datetime(dt_value) -> datetime:
 
     if isinstance(dt_value, str):
         from dateutil import parser
+
         dt = parser.parse(dt_value)
         if dt.tzinfo is None:
             dt = dt.replace(tzinfo=timezone.utc)

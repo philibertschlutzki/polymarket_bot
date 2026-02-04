@@ -46,10 +46,8 @@ from src import (  # noqa: E402
 from src.gemini_tracker import track_gemini_call  # noqa: E402
 from src.logging_config import setup_api_logging  # noqa: E402
 from src.database import (  # noqa: E402
-    archive_expired_bets,
     calculate_profit_with_fees,
     log_status_change,
-    process_auto_loss_bets,
     process_disputed_outcomes,
 )
 
@@ -654,6 +652,9 @@ def check_and_resolve_bets():  # noqa: C901
 
         # Process auto-losses (30+ days)
         auto_losses = database.process_auto_loss_bets()
+        if auto_losses > 0:
+            logger.info(f"💀 Processed {auto_losses} auto-loss bets")
+
         process_disputed_outcomes()
 
         active_bets = database.get_active_bets()
