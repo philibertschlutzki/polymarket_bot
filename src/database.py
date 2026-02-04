@@ -15,6 +15,7 @@ from src.db_models import (
     GitSyncState,
     PortfolioState,
     RejectedMarket,
+    SessionLocal,
     engine,
     session_scope,
 )
@@ -24,6 +25,49 @@ INITIAL_CAPITAL = 1000.0
 
 # Logging
 logger = logging.getLogger(__name__)
+
+__all__ = [
+    "SessionLocal",
+    "init_database",
+    "insert_active_bet",
+    "insert_active_bets_batch",
+    "get_active_bets",
+    "get_active_bet_slugs",
+    "close_bet",
+    "close_bets_batch",
+    "archive_bet_without_resolution",
+    "get_all_results",
+    "get_results_with_metrics",
+    "get_capital_history",
+    "insert_rejected_market",
+    "insert_rejected_markets_batch",
+    "get_rejected_markets",
+    "calculate_metrics",
+    "update_last_dashboard_update",
+    "get_last_dashboard_update",
+    "log_api_usage",
+    "get_api_usage_rpm",
+    "get_api_usage_rpd",
+    "get_api_usage_tpm",
+    "get_last_run_timestamp",
+    "set_last_run_timestamp",
+    "mark_git_change",
+    "should_push_to_git",
+    "has_ai_decisions_changes",
+    "reset_git_sync_flags",
+    "get_unresolved_archived_bets",
+    "get_all_unresolved_bets",
+    "update_archived_bet_outcome",
+    "update_archived_bets_outcome_batch",
+    "log_status_change",
+    "archive_expired_bets",
+    "process_auto_loss_bets",
+    "process_disputed_outcomes",
+    "calculate_profit_with_fees",
+    "get_capital_breakdown",
+    "get_current_capital",
+    "update_capital",
+]
 
 
 def init_database():
@@ -347,6 +391,9 @@ def insert_active_bet(bet_data: Dict[str, Any]):
     with session_scope() as session:
         bet = ActiveBet(
             market_slug=bet_data["market_slug"],
+            parent_event_slug=bet_data.get("parent_event_slug"),
+            outcome_variant_id=bet_data.get("outcome_variant_id"),
+            is_multi_outcome=bet_data.get("is_multi_outcome", False),
             url_slug=bet_data.get(
                 "url_slug", bet_data["market_slug"]
             ),  # Fallback if missing
@@ -396,6 +443,9 @@ def insert_active_bets_batch(bets_data: List[Dict[str, Any]]):
         for bet_data in bets_data:
             bet = ActiveBet(
                 market_slug=bet_data["market_slug"],
+                parent_event_slug=bet_data.get("parent_event_slug"),
+                outcome_variant_id=bet_data.get("outcome_variant_id"),
+                is_multi_outcome=bet_data.get("is_multi_outcome", False),
                 url_slug=bet_data.get(
                     "url_slug", bet_data["market_slug"]
                 ),  # Fallback if missing
@@ -485,6 +535,9 @@ def close_bet(
         archived = ArchivedBet(
             original_bet_id=bet.bet_id,
             market_slug=bet.market_slug,
+            parent_event_slug=bet.parent_event_slug,
+            outcome_variant_id=bet.outcome_variant_id,
+            is_multi_outcome=bet.is_multi_outcome,
             url_slug=bet.url_slug,
             question=bet.question,
             action=bet.action,
@@ -558,6 +611,9 @@ def close_bets_batch(resolutions: List[Tuple[int, str, float]]):
             archived = ArchivedBet(
                 original_bet_id=bet.bet_id,
                 market_slug=bet.market_slug,
+                parent_event_slug=bet.parent_event_slug,
+                outcome_variant_id=bet.outcome_variant_id,
+                is_multi_outcome=bet.is_multi_outcome,
                 url_slug=bet.url_slug,
                 question=bet.question,
                 action=bet.action,
@@ -613,6 +669,9 @@ def archive_bet_without_resolution(bet_id: int, conn: Optional[Session] = None):
         archived = ArchivedBet(
             original_bet_id=bet.bet_id,
             market_slug=bet.market_slug,
+            parent_event_slug=bet.parent_event_slug,
+            outcome_variant_id=bet.outcome_variant_id,
+            is_multi_outcome=bet.is_multi_outcome,
             url_slug=bet.url_slug,
             question=bet.question,
             action=bet.action,
@@ -1265,6 +1324,9 @@ def archive_expired_bets() -> int:
             archived = ArchivedBet(
                 original_bet_id=bet.bet_id,
                 market_slug=bet.market_slug,
+                parent_event_slug=bet.parent_event_slug,
+                outcome_variant_id=bet.outcome_variant_id,
+                is_multi_outcome=bet.is_multi_outcome,
                 url_slug=bet.url_slug,
                 question=bet.question,
                 action=bet.action,

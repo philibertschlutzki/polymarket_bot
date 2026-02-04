@@ -1,7 +1,7 @@
+import os
+import sys
 import unittest
 from unittest.mock import MagicMock, patch
-import sys
-import os
 
 # Ensure src is in path
 sys.path.append(os.getcwd())
@@ -13,11 +13,12 @@ except Exception as e:
     # If import fails (e.g. DB connection), we might need to mock before import
     print(f"Warning: import src.git_integration failed: {e}")
 
+
 class TestGitIntegration(unittest.TestCase):
 
-    @patch('src.git_integration.database')
-    @patch('src.git_integration.Repo')
-    @patch('src.git_integration.os.path.exists')
+    @patch("src.git_integration.database")
+    @patch("src.git_integration.Repo")
+    @patch("src.git_integration.os.path.exists")
     def test_push_dashboard_update_success(self, mock_exists, mock_repo, mock_database):
         # Setup mocks
         mock_database.should_push_to_git.return_value = True
@@ -52,5 +53,6 @@ class TestGitIntegration(unittest.TestCase):
         mock_repo_instance.index.commit.assert_called()
         mock_repo_instance.remote().push.assert_called()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

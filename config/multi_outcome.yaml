@@ -1,0 +1,35 @@
+multi_outcome:
+  enabled: true
+
+  # Detection settings
+  detection:
+    use_url_pattern: true
+    use_api_metadata: true
+    use_title_matching: true
+    min_outcomes_threshold: 3
+
+  # Analysis settings
+  analysis:
+    use_specialized_prompt: true
+    normalize_distribution: true
+    force_normalization_threshold: 0.02
+    min_probability_threshold: 0.01
+    require_all_outcomes: true
+    max_outcomes_per_event: 50
+
+  # Betting strategy
+  strategy:
+    min_edge_absolute: 0.10
+    min_confidence: 0.70
+    select_best_only: true
+
+  # Conflict management
+  conflicts:
+    block_on_existing_bet: true
+    allow_hedging: false
+
+  # Logging
+  logging:
+    log_full_distribution: true
+    log_rejected_outcomes: true
+    log_normalization_warnings: true

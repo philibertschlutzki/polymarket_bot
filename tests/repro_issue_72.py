@@ -1,10 +1,11 @@
 import os
 import sys
 import unittest
+
 from sqlalchemy import text
 
 # Ensure src is in path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Set a test database URL before importing modules that create engine
 TEST_DB_URL = "sqlite:///test_issue_72.db"
@@ -15,6 +16,7 @@ if os.path.exists("test_issue_72.db"):
     os.remove("test_issue_72.db")
 
 from src import database, db_models
+
 
 class TestIssue72(unittest.TestCase):
     def tearDown(self):
@@ -61,12 +63,15 @@ class TestIssue72(unittest.TestCase):
             self.fail("Should have raised IntegrityError due to missing ID")
         except Exception as e:
             print(f"Caught expected error: {e}")
-            if "NOT NULL constraint failed: api_usage.id" not in str(e) and "integrity error" not in str(e).lower():
-                 print(f"Warning: Unexpected error message: {e}")
+            if (
+                "NOT NULL constraint failed: api_usage.id" not in str(e)
+                and "integrity error" not in str(e).lower()
+            ):
+                print(f"Warning: Unexpected error message: {e}")
 
         # 3. Run migration
         # This function must be added to src/database.py
-        if not hasattr(database, 'migrate_api_usage_table'):
+        if not hasattr(database, "migrate_api_usage_table"):
             self.fail("migrate_api_usage_table not found in database module")
 
         print("Running migration...")
@@ -81,17 +86,20 @@ class TestIssue72(unittest.TestCase):
 
         # 5. Verify data preservation and new data
         with engine.connect() as conn:
-            rows = conn.execute(text("SELECT id, api_name, calls FROM api_usage ORDER BY id")).fetchall()
+            rows = conn.execute(
+                text("SELECT id, api_name, calls FROM api_usage ORDER BY id")
+            ).fetchall()
             for row in rows:
                 print(row)
 
             # We expect the 'existing_data' (id 999) and 'gemini_success' (new auto id)
             names = [r.api_name for r in rows]
-            self.assertIn('existing_data', names)
-            self.assertIn('gemini_success', names)
+            self.assertIn("existing_data", names)
+            self.assertIn("gemini_success", names)
 
             # Verify that we have 2 rows
             self.assertEqual(len(rows), 2)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

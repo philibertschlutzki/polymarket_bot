@@ -1,25 +1,27 @@
 import os
+import shutil
 import time
 import unittest
-import shutil
+
 from src.adaptive_rate_limiter import AdaptiveRateLimiter
-from src.market_queue import QueueManager
 from src.health_monitor import HealthMonitor
+from src.market_queue import QueueManager
+
 
 class TestComponents(unittest.TestCase):
     def setUp(self):
         self.test_db = "data/test_queue.db"
         if os.path.exists("data"):
-             shutil.rmtree("data") # clear data dir
+            shutil.rmtree("data")  # clear data dir
         os.makedirs("data", exist_ok=True)
 
     def tearDown(self):
         if os.path.exists("data"):
-             shutil.rmtree("data")
+            shutil.rmtree("data")
 
     def test_rate_limiter(self):
         print("\nTesting Rate Limiter...")
-        limiter = AdaptiveRateLimiter(initial_rpm=60, max_rpm=60) # 1 per second
+        limiter = AdaptiveRateLimiter(initial_rpm=60, max_rpm=60)  # 1 per second
 
         # Should get a token immediately
         self.assertTrue(limiter.acquire_token(block=False))
@@ -49,7 +51,7 @@ class TestComponents(unittest.TestCase):
 
         # Add
         self.assertTrue(qm.add_market(market, 0.8))
-        self.assertFalse(qm.add_market(market, 0.8)) # Duplicate
+        self.assertFalse(qm.add_market(market, 0.8))  # Duplicate
 
         # Pop
         popped = qm.pop_next_market()
@@ -63,7 +65,7 @@ class TestComponents(unittest.TestCase):
         # Retry logic
         market2 = {"market_slug": "test-2", "question": "Retry me"}
         qm.add_market(market2, 0.5)
-        qm.pop_next_market() # Move to processing
+        qm.pop_next_market()  # Move to processing
 
         qm.move_to_retry_queue("test-2", "ERROR", "Failed")
         stats = qm.get_queue_stats()
@@ -74,14 +76,29 @@ class TestComponents(unittest.TestCase):
         print("\nTesting Health Monitor...")
         hm = HealthMonitor(export_path="data/HEALTH.md")
 
-        api_stats = {"current_rpm": 4, "success_rate": 100, "total_requests": 10, "successful_requests": 10, "failed_requests": 0, "tokens_available": 4.0}
-        queue_stats = {"pending": 5, "processing": 1, "completed": 10, "failed": 0, "retry_queue_total": 0, "retry_exhausted": 0}
+        api_stats = {
+            "current_rpm": 4,
+            "success_rate": 100,
+            "total_requests": 10,
+            "successful_requests": 10,
+            "failed_requests": 0,
+            "tokens_available": 4.0,
+        }
+        queue_stats = {
+            "pending": 5,
+            "processing": 1,
+            "completed": 10,
+            "failed": 0,
+            "retry_queue_total": 0,
+            "retry_exhausted": 0,
+        }
 
         metrics = hm.collect_metrics(api_stats, queue_stats)
         self.assertIn("memory_mb", metrics)
 
         hm.export_health_dashboard(metrics)
         self.assertTrue(os.path.exists("data/HEALTH.md"))
+
 
 if __name__ == "__main__":
     unittest.main()

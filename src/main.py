@@ -56,6 +56,8 @@ from src.adaptive_rate_limiter import AdaptiveRateLimiter  # noqa: E402
 from src.market_queue import QueueManager  # noqa: E402
 from src.health_monitor import HealthMonitor  # noqa: E402
 from src.error_logger import log_api_error  # noqa: E402
+from src.multi_outcome_handler import MultiOutcomeHandler  # noqa: E402
+from src.config_loader import load_multi_outcome_config  # noqa: E402
 
 # ============================================================================
 # LOGGING CONFIGURATION
@@ -149,6 +151,8 @@ health_monitor = HealthMonitor(
     memory_critical_threshold_mb=MEMORY_CRITICAL_MB,
     export_path="HEALTH_STATUS.md",
 )
+multi_outcome_config = load_multi_outcome_config()
+multi_outcome_handler = MultiOutcomeHandler(database.SessionLocal, multi_outcome_config)
 
 # ============================================================================
 # MODELS
@@ -163,6 +167,9 @@ class MarketData(BaseModel):
     yes_price: float = Field(..., description="Aktueller Preis für 'Yes' (0.0-1.0)")
     volume: float = Field(..., description="Handelsvolumen in USD")
     end_date: Optional[str] = Field(None, description="Enddatum des Marktes")
+    group_item_title: Optional[str] = Field(
+        None, description="Label for multi-outcome variant"
+    )
 
 
 class AIAnalysis(BaseModel):
@@ -521,7 +528,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
         data = response.json()
         market_data_list = data if isinstance(data, list) else data.get("data", [])
         markets = []
-        rejected_buffer = []
+        rejected_buffer: List[Dict[str, Any]] = []
 
         for market in market_data_list:
             volume_raw = market.get("volume")
@@ -554,20 +561,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
                     elif isinstance(outcome_prices_raw, list):
                         outcome_prices = outcome_prices_raw
 
-                if len(outcome_prices) > 2:
-                    rejected_buffer.append(
-                        {
-                            "market_slug": market.get("id"),
-                            "url_slug": market.get("slug"),
-                            "question": market.get("question"),
-                            "market_price": 0.5,
-                            "volume": volume,
-                            "rejection_reason": "MULTI_OUTCOME_NOT_SUPPORTED",
-                            "ai_reasoning": "Multi-outcome market",
-                            "end_date": end_date_str,
-                        }
-                    )
-                    continue
+                # Multi-outcome markets are now supported and grouped later
                 yes_price = float(outcome_prices[0]) if len(outcome_prices) > 0 else 0.5
             except Exception:
                 yes_price = 0.5
@@ -585,6 +579,7 @@ def fetch_active_markets(limit: int = 20) -> List[MarketData]:  # noqa: C901
                     yes_price=yes_price,
                     volume=volume,
                     end_date=end_date_str,
+                    group_item_title=market.get("groupItemTitle"),
                 )
             )
 
@@ -766,7 +761,7 @@ def process_resolution_for_bets(bets: List[Dict], is_archived: bool):  # noqa: C
 # ============================================================================
 
 
-def market_discovery_worker():
+def market_discovery_worker():  # noqa: C901
     """Fetches markets periodically and adds them to the queue."""
     logger.info("✅ Started thread: MarketDiscovery")
 
@@ -785,18 +780,43 @@ def market_discovery_worker():
             # 3. Filter Active Bets
             active_slugs = database.get_active_bet_slugs()
 
+            # 4. Group Markets
+            groups = multi_outcome_handler.group_markets(markets)
+
             added_count = 0
-            for market in markets:
+
+            # Process Singles
+            for market in groups["single_markets"]:
                 if market.market_slug in active_slugs:
                     continue
 
-                # Calculate priority
                 priority = calculate_quick_edge(market)
-
-                # Convert to dict for queue
                 market_dict = market.dict()
 
                 if queue_manager.add_market(market_dict, priority):
+                    added_count += 1
+
+            # Process Multi-Outcome
+            for parent_slug, outcomes in groups["multi_outcome_events"].items():
+                # Check conflicts
+                conflict = multi_outcome_handler.check_existing_bets(parent_slug)
+                if conflict:
+                    logger.info(f"Skipping multi-outcome {parent_slug}: {conflict}")
+                    continue
+
+                # Prepare queue item
+                queue_item = {
+                    "market_slug": parent_slug,
+                    "is_multi_outcome": True,
+                    "parent_slug": parent_slug,
+                    "outcomes": [m.dict() for m in outcomes],
+                    "question": f"Multi-Outcome: {outcomes[0].question} ...",
+                }
+
+                # Calculate priority
+                priority = max(calculate_quick_edge(m) for m in outcomes)
+
+                if queue_manager.add_market(queue_item, priority):
                     added_count += 1
 
             logger.info(
@@ -819,7 +839,7 @@ def market_discovery_worker():
             time.sleep(60)
 
 
-def queue_processing_worker():
+def queue_processing_worker():  # noqa: C901
     """Continuously processes the market queue."""
     logger.info("✅ Started thread: QueueProcessor")
 
@@ -835,54 +855,119 @@ def queue_processing_worker():
 
             logger.info(f"📤 Popped from queue: {market_data.get('question')[:50]}")
 
-            # 2. Reconstruct Object
-            market = MarketData(**market_data)
+            # 2. Check if Multi-Outcome
+            if market_data.get("is_multi_outcome"):
+                parent_slug = market_data.get("parent_slug")
+                outcomes = [MarketData(**m) for m in market_data.get("outcomes")]
 
-            # 3. Acquire Token (Blocks)
-            logger.debug("⏳ Acquiring rate limit token...")
-            if not rate_limiter.acquire_token(block=True):
-                # Should not happen with block=True unless interrupted
-                continue
+                # Acquire Token
+                logger.debug("⏳ Acquiring rate limit token for multi-outcome...")
+                if not rate_limiter.acquire_token(block=True):
+                    continue
 
-            # 4. Analyze
-            capital = database.get_current_capital()
-            rec, rejection = analyze_and_recommend(market, capital)
-
-            # 5. Process Result
-            if rejection:
-                database.insert_rejected_markets_batch([rejection])
-                queue_manager.mark_completed(
-                    market.market_slug, f"REJECTED: {rejection['rejection_reason']}"
+                client = genai.Client(api_key=GEMINI_API_KEY)
+                analysis = multi_outcome_handler.analyze_multi_outcome_event(
+                    parent_slug, outcomes, client
                 )
 
-            elif rec:
-                if rec.action != "PASS":
-                    bet_data = {
-                        "market_slug": market.market_slug,
-                        "url_slug": market.url_slug,
-                        "question": market.question,
-                        "action": rec.action,
-                        "stake_usdc": rec.stake_usdc,
-                        "entry_price": market.yes_price,
-                        "ai_probability": rec.ai_probability,
-                        "confidence_score": rec.confidence_score,
-                        "expected_value": rec.expected_value,
-                        "edge": rec.edge,
-                        "ai_reasoning": rec.ai_reasoning,
-                        "end_date": market.end_date,
-                    }
-                    database.insert_active_bets_batch([bet_data])
-                    queue_manager.mark_completed(
-                        market.market_slug, f"BET: {rec.action} ${rec.stake_usdc}"
+                if analysis:
+                    market_map = {m.market_slug: m for m in outcomes}
+                    best = multi_outcome_handler.select_best_outcome(
+                        analysis, market_map
                     )
+
+                    if best:
+                        m = best["market"]
+                        capital = database.get_current_capital()
+
+                        rec = calculate_kelly_stake(
+                            best["ai_probability"],
+                            m.yes_price,
+                            best["confidence"],
+                            capital,
+                        )
+
+                        if rec.action != "PASS":
+                            bet_data = {
+                                "market_slug": m.market_slug,
+                                "parent_event_slug": parent_slug,
+                                "outcome_variant_id": m.market_slug,
+                                "is_multi_outcome": True,
+                                "url_slug": m.url_slug,
+                                "question": m.question,
+                                "action": best["action"],
+                                "stake_usdc": rec.stake_usdc,
+                                "entry_price": m.yes_price,
+                                "ai_probability": best["ai_probability"],
+                                "confidence_score": best["confidence"],
+                                "expected_value": rec.expected_value,
+                                "edge": best["edge"],
+                                "ai_reasoning": best["reasoning"],
+                                "end_date": m.end_date,
+                            }
+                            database.insert_active_bets_batch([bet_data])
+                            queue_manager.mark_completed(
+                                parent_slug,
+                                f"BET: {rec.action} on {m.market_slug} (${rec.stake_usdc})",
+                            )
+                        else:
+                            queue_manager.mark_completed(
+                                parent_slug, "PASS: Kelly too low or Edge too small"
+                            )
+                    else:
+                        queue_manager.mark_completed(
+                            parent_slug, "PASS: No profitable outcome found"
+                        )
                 else:
-                    # Should be caught by rejection usually, but just in case
-                    queue_manager.mark_completed(market.market_slug, "PASS")
+                    # Analysis failed
+                    queue_manager.move_to_retry_queue(
+                        parent_slug, "ANALYSIS_FAILED", "Null response"
+                    )
+
             else:
-                # None returned (error handling done in analyze)
-                # Ensure we don't hang in processing if analyze returned None but didn't queue retry
-                # But analyze_market_with_ai should handle queue moves.
-                pass
+                # Single Market Logic
+                market = MarketData(**market_data)
+
+                # 3. Acquire Token (Blocks)
+                logger.debug("⏳ Acquiring rate limit token...")
+                if not rate_limiter.acquire_token(block=True):
+                    continue
+
+                # 4. Analyze
+                capital = database.get_current_capital()
+                rec, rejection = analyze_and_recommend(market, capital)
+
+                # 5. Process Result
+                if rejection:
+                    database.insert_rejected_markets_batch([rejection])
+                    queue_manager.mark_completed(
+                        market.market_slug, f"REJECTED: {rejection['rejection_reason']}"
+                    )
+
+                elif rec:
+                    if rec.action != "PASS":
+                        bet_data = {
+                            "market_slug": market.market_slug,
+                            "url_slug": market.url_slug,
+                            "question": market.question,
+                            "action": rec.action,
+                            "stake_usdc": rec.stake_usdc,
+                            "entry_price": market.yes_price,
+                            "ai_probability": rec.ai_probability,
+                            "confidence_score": rec.confidence_score,
+                            "expected_value": rec.expected_value,
+                            "edge": rec.edge,
+                            "ai_reasoning": rec.ai_reasoning,
+                            "end_date": market.end_date,
+                        }
+                        database.insert_active_bets_batch([bet_data])
+                        queue_manager.mark_completed(
+                            market.market_slug, f"BET: {rec.action} ${rec.stake_usdc}"
+                        )
+                    else:
+                        queue_manager.mark_completed(market.market_slug, "PASS")
+                else:
+                    pass
 
         except Exception as e:
             logger.error(f"❌ Error in QueueProcessor: {e}")
