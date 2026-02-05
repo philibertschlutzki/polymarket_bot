@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-05 02:47:45 CET
+**Last Updated:** 2026-02-05 03:47:50 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,25 +15,61 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Sharks vs. Avalanche](https://polymarket.com/event/nhl-sj-col-2026-02-04)
-*Analyzed: 2026-02-05 02:37 CET*
+### Bet #1: [Will the price of Ethereum be above $2,500 on February 5?](https://polymarket.com/market/ethereum-above-2500-on-february-5)
+*Analyzed: 2026-02-05 03:42 CET*
 
-**Decision:** NO @ 0.50 (Stake: $101.41)
-**[View Market →](https://polymarket.com/event/nhl-sj-col-2026-02-04)**
+**Decision:** NO @ 0.50 (Stake: $104.58)
+**[View Market →](https://polymarket.com/market/ethereum-above-2500-on-february-5)**
 
 **AI Analysis:**
-- **Estimated Probability:** 28.0% (vs Market: 50.0%)
-- **Confidence Score:** 85.0%
-- **Edge:** -22.0%
-- **Expected Value:** $+44.62
-- **End Date:** 2026-02-05 03:00 CET
+- **Estimated Probability:** 25.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -25.0%
+- **Expected Value:** $+52.29
+- **End Date:** 2026-02-05 18:00 CET
 
 **AI Reasoning:**
-> Obwohl die Avalanche in letzter Zeit etwas geschwächelt hat, sind sie immer noch ein deutlich besseres Team als die Sharks, was sich auch in den Quoten widerspiegelt. Die Head-to-Head Statistik spricht ebenfalls klar für Colorado. Ich korrigiere die implizite Wahrscheinlichkeit der Quoten leicht nach unten, da die Avalanche eine kleine Schwächephase hat und die Sharks theoretisch gewinnen *könnten*, aber die Wahrscheinlichkeit für einen Sieg der Sharks ist relativ gering. Die Polymarket Aktueller Marktpreis (Yes) von 50% ist deutlich zu hoch.
+> Derzeit notiert ETH bei rund 2.238 $-2.314 $. Trotz einiger positiver Prognosen für die nächsten Tage ist der allgemeine Trend eher abwärts gerichtet, und das Marktsentiment ist bärisch. Es ist unwahrscheinlich, dass ETH innerhalb eines Tages einen so deutlichen Anstieg von über 200 $ verzeichnen wird, um die 2.500 $-Marke zu überschreiten. Einige Quellen weisen auf die Möglichkeit weiterer Verluste hin. Es gibt jedoch eine gewisse Unsicherheit, daher ist die Wahrscheinlichkeit nicht Null.
 
 ---
 
-### Bet #2: [Will the price of Bitcoin be less than $76,000 on February 5...](https://polymarket.com/market/will-the-price-of-bitcoin-be-less-than-76000-on-february-5)
+### Bet #2: [Will Baidu have the best AI model at the end of February 202...](https://polymarket.com/market/will-baidu-have-the-best-ai-model-at-the-end-of-february-2026)
+*Analyzed: 2026-02-05 02:57 CET*
+
+**Decision:** NO @ 0.50 (Stake: $125.50)
+**[View Market →](https://polymarket.com/market/will-baidu-have-the-best-ai-model-at-the-end-of-february-2026)**
+
+**AI Analysis:**
+- **Estimated Probability:** 20.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -30.0%
+- **Expected Value:** $+75.30
+- **End Date:** 2026-02-28 01:00 CET
+
+**AI Reasoning:**
+> Baidu investiert stark in KI und hat das Ernie-Modell entwickelt. Allerdings ist die Konkurrenz durch Google, OpenAI und andere gross. Aktuelle Leaderboards zeigen, dass Baidu's Modelle nicht an der Spitze liegen. Obwohl sich die KI-Landschaft schnell ändert, deutet die aktuelle Position von Baidu darauf hin, dass es unwahrscheinlich ist, dass sie Ende Februar 2026 das beste KI-Modell haben werden. Es ist wichtig zu beachten, dass sich diese Einschätzung ändern kann, wenn Baidu in den kommenden Wochen einen bedeutenden Durchbruch erzielt.
+
+---
+
+### Bet #3: [Will António José Seguro win the second round by 40–50%?](https://polymarket.com/market/will-antnio-jos-seguro-win-the-second-round-by-3035)
+*Analyzed: 2026-02-05 02:52 CET*
+
+**Decision:** NO @ 0.50 (Stake: $146.42)
+**[View Market →](https://polymarket.com/market/will-antnio-jos-seguro-win-the-second-round-by-3035)**
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -35.0%
+- **Expected Value:** $+102.49
+- **End Date:** 2026-02-08 01:00 CET
+
+**AI Reasoning:**
+> Basierend auf den aktuellen Umfragedaten und der Analyse von Público führt António José Seguro in der Stichwahl deutlich. Es ist jedoch unwahrscheinlich, dass er mit einem Vorsprung von 40-50% gewinnt, da dies ein außergewöhnlich hoher Wert wäre. Viele Wähler könnten sich im letzten Moment anders entscheiden. Die Stichwahl erhöht die Variabilität des Wahlausgangs. Daher ist eine Wahrscheinlichkeit von 15 % angemessen.
+
+---
+
+### Bet #4: [Will the price of Bitcoin be less than $76,000 on February 5...](https://polymarket.com/market/will-the-price-of-bitcoin-be-less-than-76000-on-february-5)
 *Analyzed: 2026-02-05 02:32 CET*
 
 **Decision:** YES @ 0.50 (Stake: $80.62)
@@ -51,7 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will "Tití Me Preguntó" be played first at the Super Bowl ha...](https://polymarket.com/market/will-tit-me-pregunt-be-played-first-at-the-super-bowl-halftime-show)
+### Bet #5: [Will "Tití Me Preguntó" be played first at the Super Bowl ha...](https://polymarket.com/market/will-tit-me-pregunt-be-played-first-at-the-super-bowl-halftime-show)
 *Analyzed: 2026-02-05 02:22 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -69,25 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Thunder vs. Spurs](https://polymarket.com/event/nba-okc-sas-2026-02-04)
-*Analyzed: 2026-02-05 01:53 CET*
-
-**Decision:** YES @ 0.50 (Stake: $64.95)
-**[View Market →](https://polymarket.com/event/nba-okc-sas-2026-02-04)**
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 50.0%)
-- **Confidence Score:** 75.0%
-- **Edge:** +15.0%
-- **Expected Value:** $+19.49
-- **End Date:** 2026-02-05 03:30 CET
-
-**AI Reasoning:**
-> Basierend auf den aktuellen Team-Bilanzen und Vorhersagen scheint der Thunder der Favorit in diesem Spiel zu sein. Oklahoma City hat eine Bilanz von 40-11 und liegt damit auf dem ersten Platz in der Western Conference. San Antonio hingegen hat eine Bilanz von 33-16. Mehrere Quellen deuten darauf hin, dass der Thunder der Favorit ist, obwohl eine Quelle die Spurs leicht favorisiert. Es wird auch erwähnt, dass die Thunder in diesem Spiel möglicherweise einige wichtige Spieler verletzungsbedingt ausfallen, und dass sie am zweiten Abend eines Back-to-Back spielen. Dies könnte die Gewinnchancen des Thunder etwas verringern.  Angesichts der genannten Faktoren schätze ich die Wahrscheinlichkeit, dass der Thunder gewinnt, auf etwa 65 %. Dies berücksichtigt ihren insgesamt besseren Saisonverlauf, berücksichtigt aber auch die potenziellen Nachteile durch Verletzungen und den Spielplan.
-
----
-
-### Bet #5: [Will the price of Bitcoin be above $90,000 on February 6?](https://polymarket.com/market/bitcoin-above-90k-on-february-6)
+### Bet #6: [Will the price of Bitcoin be above $90,000 on February 6?](https://polymarket.com/market/bitcoin-above-90k-on-february-6)
 *Analyzed: 2026-02-05 01:27 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -105,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will the price of Bitcoin be above $82,000 on February 6?](https://polymarket.com/market/bitcoin-above-82k-on-february-6)
+### Bet #7: [Will the price of Bitcoin be above $82,000 on February 6?](https://polymarket.com/market/bitcoin-above-82k-on-february-6)
 *Analyzed: 2026-02-05 00:42 CET*
 
 **Decision:** NO @ 0.50 (Stake: $77.46)
@@ -123,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will Glenn Youngkin win the 2028 US Presidential Election?](https://polymarket.com/market/will-glenn-youngkin-win-the-2028-us-presidential-election)
+### Bet #8: [Will Glenn Youngkin win the 2028 US Presidential Election?](https://polymarket.com/market/will-glenn-youngkin-win-the-2028-us-presidential-election)
 *Analyzed: 2026-02-05 00:42 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -141,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #8: [Will John Fetterman win the 2028 Democratic presidential nom...](https://polymarket.com/market/will-john-fetterman-win-the-2028-democratic-presidential-nomination-941)
+### Bet #9: [Will John Fetterman win the 2028 Democratic presidential nom...](https://polymarket.com/market/will-john-fetterman-win-the-2028-democratic-presidential-nomination-941)
 *Analyzed: 2026-02-05 00:42 CET*
 
 **Decision:** NO @ 0.50 (Stake: $123.74)
@@ -156,24 +174,6 @@ This file contains detailed AI reasoning for all market analyses.
 
 **AI Reasoning:**
 > John Fetterman faces numerous challenges in securing the 2028 Democratic presidential nomination, including potential primary challenges, health concerns, and a crowded field of contenders. His recent shift towards more moderate positions may alienate some within the Democratic party, while his ability to connect with a broad range of voters remains uncertain. Although he possesses name recognition and has achieved past electoral success, the various obstacles he faces significantly reduce his chances of winning the nomination. Therefore, a probability of 15% reflects a realistic assessment of his prospects.
-
----
-
-### Bet #9: [Blues vs. Stars](https://polymarket.com/event/nhl-stl-dal-2026-02-04)
-*Analyzed: 2026-02-04 23:47 CET*
-
-**Decision:** YES @ 0.50 (Stake: $82.98)
-**[View Market →](https://polymarket.com/event/nhl-stl-dal-2026-02-04)**
-
-**AI Analysis:**
-- **Estimated Probability:** 68.0% (vs Market: 50.0%)
-- **Confidence Score:** 85.0%
-- **Edge:** +18.0%
-- **Expected Value:** $+29.87
-- **End Date:** 2026-02-05 03:30 CET
-
-**AI Reasoning:**
-> Basierend auf den aktuellen Wettquoten und Analysen der Stärken beider Teams, scheinen die Dallas Stars der klare Favorit für das Spiel am 4. Februar 2026 zu sein. Mehrere Quellen geben den Stars eine Siegwahrscheinlichkeit von etwa 68%. Die St. Louis Blues haben in letzter Zeit mit Inkonsistenzen zu kämpfen, insbesondere in der Verteidigung und im Torwartspiel. Obwohl die Blues in ihren letzten Spielen einige Tore erzielt haben, stehen sie vor einer schwierigen Herausforderung gegen ein starkes Stars-Team. Daher erscheint eine Wahrscheinlichkeit von 68 % für einen Sieg der Stars eine faire Einschätzung. Die hohe Konfidenzbewertung spiegelt die Übereinstimmung verschiedener Quellen hinsichtlich der Favoritenrolle der Stars wider.
 
 ---
 
@@ -931,6 +931,15 @@ Angesichts dieser Faktoren schätze ich die Wahrscheinlichkeit, dass die USA als
 
 ### Insufficient Edge (50)
 
+**[Will the price of Ethereum be above $2,200 on February 6?](https://polymarket.com/market/ethereum-above-2200-on-february-6)**
+*Analyzed: 2026-02-05 03:42 CET*
+Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 60%
+**[View Market →](https://polymarket.com/market/ethereum-above-2200-on-february-6)**
+
+**Reasoning:** Der aktuelle Preis liegt nahe der Marke von 2.200 $. Einige Prognosen sind positiv, aber die hohe Volatilität und die gemischte Marktstimmung machen die Vorhersage unsicher. Ein leichter Vorteil wird der Wahrscheinlichkeit gegeben, dass der Preis über 2.200 $ liegt, da einige Quellen einen Anstieg prognostizieren, aber die Unsicherheit bleibt hoch.
+
+---
+
 **[Bruins vs. Panthers: O/U 6.5](https://polymarket.com/market/nhl-bos-fla-2026-02-04-total-6pt5)**
 *Analyzed: 2026-02-05 01:32 CET*
 Market: 0.50 | AI: 0.48 | Edge: -2.0% | Conf: 75%
@@ -1369,15 +1378,6 @@ Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 70%
 **[View Market →](https://polymarket.com/event/cbb-ncst-smu-2026-02-03-total-160pt5)**
 
 **Reasoning:** NC State hat eine starke Offensive und eine bessere Defensive als SMU. Obwohl der aktuelle Marktpreis bei 50 % liegt, deutet die Analyse der Teamstatistiken und der jüngsten Leistungen darauf hin, dass die Wahrscheinlichkeit für 'Over 160.5' etwas höher ist. Die Vertrauensbewertung ist moderat, da es immer Unsicherheiten im Basketball gibt und Verletzungen eine Rolle spielen könnten. Da aber die offensive Leistung von NC State sehr stark ist, wird das 'Over' wahrscheinlicher.
-
----
-
-**[Hawks vs. Heat: O/U 237.5](https://polymarket.com/market/nba-atl-mia-2026-02-03-total-237pt5)**
-*Analyzed: 2026-02-04 01:19 CET*
-Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 70%
-**[View Market →](https://polymarket.com/market/nba-atl-mia-2026-02-03-total-237pt5)**
-
-**Reasoning:** Die Heat erzielen im Schnitt 120.6 Punkte in ihren letzten 5 Spielen, während die Hawks in ihren letzten Spielen sehr unterschiedliche Punktzahlen erreicht haben. Schlüsselspieler sind verletzt, was sich auf die Gesamtpunktzahl auswirken könnte. Die Vorhersage von Dimers.com liegt unter dem Wert von 237.5. Viele andere Quellen gehen von einem höheren Wert aus. Alles in allem deutet es leicht auf 'Under' hin, aber es ist knapp, da andere Quellen einen höheren Wert angeben.
 
 ---
 
