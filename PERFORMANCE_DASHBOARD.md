@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-05 18:04:19 CET
+**Last Updated:** 2026-02-05 19:04:29 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
-| Today (RPD) | 132 | 1,500 | 8.8% | 🟢 |
+| Today (RPD) | 148 | 1,500 | 9.9% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-22,251.45 |
-| Locked in Active Bets | $17,594.26 |
+| Available Capital | $-22,658.40 |
+| Locked in Active Bets | $18,001.21 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $17594.26 (1759.4% of capital) |
-| Avg Position Size | $107.94 |
+| Total Exposure | $18001.21 (1800.1% of capital) |
+| Avg Position Size | $108.44 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.008) |
 
 ---
-## 🎯 Active Bets (225)
+## 🎯 Active Bets (228)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -224,6 +224,9 @@
 | [Will Bitcoin reach $84,000 February 2-8?](https://polymarket.com/event/will-bitcoin-reach-84k-february-2-8) | NO | $120.93 | 0.50 | 0.20 | -30% 🔴 | 65% | $+72.56 | 2026-02-09 | 3d | 🟡 |
 | [Will Oliver Bearman be the 2026 F1 Drive...](https://polymarket.com/event/will-oliver-bearman-be-the-2026-f1-drivers-champion) | NO | $207.78 | 0.50 | 0.00 | -50% 🔴 | 70% | $+206.41 | 2026-12-06 | 303d | 🟢 |
 | [Will Israel strike Lebanon on February 5...](https://polymarket.com/event/will-israel-strike-lebanon-on-february-5-2026) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-28 | 22d | 🟢 |
+| [Will the price of Bitcoin be above $84,0...](https://polymarket.com/event/bitcoin-above-84k-on-february-6) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+77.94 | 2026-02-06 | 0d | 🔴 |
+| [Will Solana reach $160 in February?](https://polymarket.com/event/will-solana-reach-160-in-february-2026) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-03-01 | 23d | 🟢 |
+| [Will Elon Musk post 260-279 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-260-279) | YES | $151.55 | 0.50 | 0.85 | +35% 🟢 | 75% | $+106.09 | 2026-02-06 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -3d | ⏳ Pending Resolution |
@@ -378,7 +381,10 @@
 - 🔴 **High Exposure**: "Over $1M committed to the Huru..." is 20.7% of capital
 - 🔴 **High Exposure**: "Will Bitcoin reach $84,000 Feb..." is 12.1% of capital
 - 🔴 **High Exposure**: "Will Oliver Bearman be the 202..." is 20.8% of capital
-- 🟡 **Expiring Soon**: 43 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 13.0% of capital
+- 🔴 **High Exposure**: "Will Solana reach $160 in Febr..." is 12.6% of capital
+- 🔴 **High Exposure**: "Will Elon Musk post 260-279 tw..." is 15.2% of capital
+- 🟡 **Expiring Soon**: 45 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -386,7 +392,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 225 |
+| Markets with Active Bets | 228 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
