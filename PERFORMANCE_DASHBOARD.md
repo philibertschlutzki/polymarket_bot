@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-05 07:03:10 CET
+**Last Updated:** 2026-02-05 08:03:17 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 37 | 1,500 | 2.5% | 🟢 |
+| Today (RPD) | 42 | 1,500 | 2.8% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-18,941.82 |
-| Locked in Active Bets | $15,341.89 |
+| Available Capital | $-19,282.82 |
+| Locked in Active Bets | $15,682.89 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $15341.89 (1534.2% of capital) |
-| Avg Position Size | $103.66 |
+| Total Exposure | $15682.89 (1568.3% of capital) |
+| Avg Position Size | $104.55 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.009) |
 
 ---
-## 🎯 Active Bets (200)
+## 🎯 Active Bets (202)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -209,6 +209,8 @@
 | [Will Jaxon Smith-Njigba win the Super Bo...](https://polymarket.com/event/will-jaxon-smith-njigba-win-the-super-bowl-lx-mvp) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+77.94 | 2026-02-09 | 3d | 🟡 |
 | [Will SpaceX's public ticker be $SPC?](https://polymarket.com/event/will-spacexs-public-ticker-be-spc-937) | NO | $174.28 | 0.50 | 0.05 | -45% 🔴 | 60% | $+156.86 | 2027-12-31 | 693d | 🟢 |
 | [Will Jean Castex win the 2027 French pre...](https://polymarket.com/event/will-jean-castex-win-the-2027-french-presidential-election) | NO | $120.93 | 0.50 | 0.20 | -30% 🔴 | 65% | $+72.56 | 2027-04-30 | 448d | 🟢 |
+| [Will Kenneth Walker III win the Super Bo...](https://polymarket.com/event/will-kenneth-walker-iii-win-the-super-bowl-lx-mvp) | NO | $158.97 | 0.50 | 0.12 | -38% 🔴 | 70% | $+120.81 | 2026-02-09 | 3d | 🟡 |
+| [Will SpaceX's public ticker be $MARS?](https://polymarket.com/event/will-spacexs-public-ticker-be-mars-627) | NO | $182.03 | 0.50 | 0.03 | -47% 🔴 | 60% | $+171.11 | 2027-12-31 | 693d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -3d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -3d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -3d | ⏳ Pending Resolution |
@@ -340,7 +342,9 @@
 - 🔴 **High Exposure**: "Will Jaxon Smith-Njigba win th..." is 13.0% of capital
 - 🔴 **High Exposure**: "Will SpaceX's public ticker be..." is 17.4% of capital
 - 🔴 **High Exposure**: "Will Jean Castex win the 2027 ..." is 12.1% of capital
-- 🟡 **Expiring Soon**: 41 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Kenneth Walker III win th..." is 15.9% of capital
+- 🔴 **High Exposure**: "Will SpaceX's public ticker be..." is 18.2% of capital
+- 🟡 **Expiring Soon**: 42 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -348,7 +352,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 200 |
+| Markets with Active Bets | 202 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
