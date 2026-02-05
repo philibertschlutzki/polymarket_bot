@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-05 04:48:00 CET
+**Last Updated:** 2026-02-05 05:48:06 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 30 | 1,500 | 2.0% | 🟢 |
+| Today (RPD) | 34 | 1,500 | 2.3% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-18,516.71 |
-| Locked in Active Bets | $14,916.78 |
+| Available Capital | $-18,820.89 |
+| Locked in Active Bets | $15,220.96 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $14916.78 (1491.7% of capital) |
-| Avg Position Size | $102.87 |
+| Total Exposure | $15220.96 (1522.1% of capital) |
+| Avg Position Size | $103.54 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.009) |
 
 ---
-## 🎯 Active Bets (197)
+## 🎯 Active Bets (199)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -206,6 +206,8 @@
 | [Will the price of Ethereum be above $2,5...](https://polymarket.com/event/ethereum-above-2500-on-february-5) | NO | $104.58 | 0.50 | 0.25 | -25% 🔴 | 70% | $+52.29 | 2026-02-05 | 0d | 🔴 |
 | [Will Benjamin Netanyahu win the Nobel Pe...](https://polymarket.com/event/will-benjamin-netanyahu-win-the-nobel-peace-prize-in-2026) | NO | $204.98 | 0.50 | 0.01 | -49% 🔴 | 70% | $+200.88 | 2026-10-10 | 246d | 🟢 |
 | [Will Shinjirō Koizumi be the Prime Minis...](https://polymarket.com/event/will-shinjir-koizumi-be-the-prime-minister-of-japan-as-a-result-of-the-2026-snap-election) | NO | $120.93 | 0.50 | 0.20 | -30% 🔴 | 65% | $+72.56 | 2026-04-30 | 83d | 🟢 |
+| [Will Jaxon Smith-Njigba win the Super Bo...](https://polymarket.com/event/will-jaxon-smith-njigba-win-the-super-bowl-lx-mvp) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+77.94 | 2026-02-09 | 3d | 🟡 |
+| [Will SpaceX's public ticker be $SPC?](https://polymarket.com/event/will-spacexs-public-ticker-be-spc-937) | NO | $174.28 | 0.50 | 0.05 | -45% 🔴 | 60% | $+156.86 | 2027-12-31 | 693d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -3d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -3d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -3d | ⏳ Pending Resolution |
@@ -334,7 +336,9 @@
 - 🔴 **High Exposure**: "Will the price of Ethereum be ..." is 10.5% of capital
 - 🔴 **High Exposure**: "Will Benjamin Netanyahu win th..." is 20.5% of capital
 - 🔴 **High Exposure**: "Will Shinjirō Koizumi be the P..." is 12.1% of capital
-- 🟡 **Expiring Soon**: 40 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Jaxon Smith-Njigba win th..." is 13.0% of capital
+- 🔴 **High Exposure**: "Will SpaceX's public ticker be..." is 17.4% of capital
+- 🟡 **Expiring Soon**: 41 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -342,7 +346,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 197 |
+| Markets with Active Bets | 199 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
