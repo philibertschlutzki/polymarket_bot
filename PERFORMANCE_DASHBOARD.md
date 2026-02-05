@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-05 20:04:41 CET
+**Last Updated:** 2026-02-05 21:04:47 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
-| Today (RPD) | 165 | 1,500 | 11.0% | 🟢 |
-| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
+| Current Minute (RPM) | 3 | 15 | 20% | 🟢 |
+| Today (RPD) | 180 | 1,500 | 12.0% | 🟢 |
+| Current Minute (TPM) | 1,656 | 1,000,000 | 0.17% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-23,206.08 |
-| Locked in Active Bets | $18,548.89 |
+| Available Capital | $-23,391.96 |
+| Locked in Active Bets | $18,734.77 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $18548.89 (1854.9% of capital) |
-| Avg Position Size | $108.47 |
+| Total Exposure | $18734.77 (1873.5% of capital) |
+| Avg Position Size | $108.29 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.007) |
 
 ---
-## 🎯 Active Bets (233)
+## 🎯 Active Bets (235)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -232,6 +232,8 @@
 | [International T20 Series: New Zealand vs...](https://polymarket.com/event/crint-nzl-usa-2026-02-05) | YES | $104.58 | 0.50 | 0.75 | +25% 🟢 | 70% | $+52.29 | 2026-02-12 | 6d | 🟡 |
 | [Will Ethereum reach $5,000 in February?](https://polymarket.com/event/will-ethereum-reach-5000-in-february-2026) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-03-01 | 23d | 🟢 |
 | [Will the price of Bitcoin be above $74,0...](https://polymarket.com/event/bitcoin-above-74k-on-february-7) | NO | $83.67 | 0.50 | 0.30 | -20% 🔴 | 70% | $+33.47 | 2026-02-07 | 1d | 🔴 |
+| [Dota 2: Team Liquid vs Heroic (BO1) - BL...](https://polymarket.com/event/dota2-liquid-heroic-2026-02-05) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-06 | 0d | 🔴 |
+| [Will Bitcoin dip to $50,000 in February?](https://polymarket.com/event/will-bitcoin-dip-to-50k-in-february-2026) | NO | $120.93 | 0.50 | 0.20 | -30% 🔴 | 65% | $+72.56 | 2026-03-01 | 23d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -3d | ⏳ Pending Resolution |
@@ -392,7 +394,8 @@
 - 🔴 **High Exposure**: "Will Laurent Wauquiez win the ..." is 13.6% of capital
 - 🔴 **High Exposure**: "International T20 Series: New ..." is 10.5% of capital
 - 🔴 **High Exposure**: "Will Ethereum reach $5,000 in ..." is 14.6% of capital
-- 🟡 **Expiring Soon**: 47 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Bitcoin dip to $50,000 in..." is 12.1% of capital
+- 🟡 **Expiring Soon**: 48 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -400,7 +403,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 233 |
+| Markets with Active Bets | 235 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
