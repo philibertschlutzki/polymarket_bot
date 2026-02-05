@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-05 23:05:07 CET
+**Last Updated:** 2026-02-06 00:05:21 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 2 | 15 | 13% | 🟢 |
-| Today (RPD) | 219 | 1,500 | 14.6% | 🟢 |
-| Current Minute (TPM) | 843 | 1,000,000 | 0.08% | 🟢 |
+| Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
+| Today (RPD) | 239 | 1,500 | 15.9% | 🟢 |
+| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-23,999.15 |
-| Locked in Active Bets | $19,279.21 |
+| Available Capital | $-24,914.67 |
+| Locked in Active Bets | $20,194.73 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $19279.21 (1927.9% of capital) |
-| Avg Position Size | $108.92 |
+| Total Exposure | $20194.73 (2019.5% of capital) |
+| Avg Position Size | $109.16 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.007) |
 
 ---
-## 🎯 Active Bets (240)
+## 🎯 Active Bets (248)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -238,6 +238,14 @@
 | [Will China win the most gold medals in t...](https://polymarket.com/event/will-china-win-the-most-gold-medals-in-the-2026-winter-olympics) | NO | $175.70 | 0.50 | 0.08 | -42% 🔴 | 70% | $+147.59 | 2026-02-22 | 16d | 🟢 |
 | [Will Ethereum dip to $800 by December 31...](https://polymarket.com/event/will-ethereum-dip-to-800-by-december-31-2026) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2027-01-01 | 329d | 🟢 |
 | [Will the price of Ethereum be above $2,6...](https://polymarket.com/event/ethereum-above-2600-on-february-6) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-06 | 0d | 🔴 |
+| [Will Silver (SI) hit (HIGH) $180 by end ...](https://polymarket.com/event/will-silver-si-hit-high-180-by-end-of-february-127-147) | NO | $154.92 | 0.50 | 0.10 | -40% 🔴 | 60% | $+123.94 | 2026-02-28 | 22d | 🟢 |
+| [Will Tesla deliver less than 350000 vehi...](https://polymarket.com/event/will-tesla-deliver-less-than-350000-vehicles-in-q1-2026) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-03-31 | 53d | 🟢 |
+| [Will no qualifying US-Iran meeting occur...](https://polymarket.com/event/will-no-qualifying-us-iran-meeting-occur-by-february-13-2026) | YES | $104.58 | 0.50 | 0.75 | +25% 🟢 | 70% | $+52.29 | 2026-02-13 | 7d | 🟢 |
+| [Will Bitcoin dip to $65,000 in February?](https://polymarket.com/event/will-bitcoin-dip-to-65k-in-february-2026) | NO | $80.62 | 0.50 | 0.30 | -20% 🔴 | 65% | $+32.25 | 2026-03-01 | 23d | 🟢 |
+| [Will Kayshon Boutte win the Super Bowl L...](https://polymarket.com/event/will-kayshon-boutte-win-the-super-bowl-lx-mvp) | NO | $189.78 | 0.50 | 0.01 | -49% 🔴 | 60% | $+185.98 | 2026-02-09 | 3d | 🟡 |
+| [Will Oscar Piastri be the 2026 F1 Driver...](https://polymarket.com/event/will-oscar-piastri-be-the-2026-f1-drivers-champion) | NO | $158.97 | 0.50 | 0.12 | -38% 🔴 | 70% | $+120.81 | 2026-12-06 | 303d | 🟢 |
+| [Will Bitcoin dip to $35,000 by December ...](https://polymarket.com/event/will-bitcoin-dip-to-35000-by-december-31-2026-744-877-748-219-467-465-646-211-122-947-537-552) | NO | $96.82 | 0.50 | 0.25 | -25% 🔴 | 60% | $+48.41 | 2027-01-01 | 329d | 🟢 |
+| [Panthers vs. Lightning](https://polymarket.com/event/nhl-fla-tb-2026-02-05) | NO | $67.08 | 0.50 | 0.35 | -15% 🔴 | 80% | $+20.12 | 2026-02-06 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
@@ -403,7 +411,11 @@
 - 🔴 **High Exposure**: "Will China win the most gold m..." is 17.6% of capital
 - 🔴 **High Exposure**: "Will Ethereum dip to $800 by D..." is 14.6% of capital
 - 🔴 **High Exposure**: "Will the price of Ethereum be ..." is 12.6% of capital
-- 🟡 **Expiring Soon**: 50 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Silver (SI) hit (HIGH) $1..." is 15.5% of capital
+- 🔴 **High Exposure**: "Will no qualifying US-Iran mee..." is 10.5% of capital
+- 🔴 **High Exposure**: "Will Kayshon Boutte win the Su..." is 19.0% of capital
+- 🔴 **High Exposure**: "Will Oscar Piastri be the 2026..." is 15.9% of capital
+- 🟡 **Expiring Soon**: 53 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -411,7 +423,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 240 |
+| Markets with Active Bets | 248 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
