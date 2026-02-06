@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-06 16:22:30 CET
+**Last Updated:** 2026-02-06 17:22:40 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -19,8 +19,8 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 105 | 1,500 | 7.0% | 🟢 |
+| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
+| Today (RPD) | 118 | 1,500 | 7.9% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-31,574.67 |
-| Locked in Active Bets | $26,413.97 |
+| Available Capital | $-31,911.09 |
+| Locked in Active Bets | $26,685.44 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $26413.97 (2641.4% of capital) |
-| Avg Position Size | $111.45 |
+| Total Exposure | $26685.44 (2668.5% of capital) |
+| Avg Position Size | $110.73 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.005) |
 
 ---
-## 🎯 Active Bets (306)
+## 🎯 Active Bets (311)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -279,7 +279,6 @@
 | [Jeffrey Epstein confirmed to be alive be...](https://polymarket.com/event/is-jeffrey-epstein-alive-498) | NO | $232.43 | 0.50 | 0.01 | -49% 🔴 | 90% | $+227.78 | 2026-12-31 | 327d | 🟢 |
 | [Will Jesus Christ return before 2027?](https://polymarket.com/event/will-jesus-christ-return-before-2027) | NO | $79.06 | 0.50 | 0.00 | -50% 🔴 | 10% | $+79.05 | 2026-12-31 | 327d | 🟢 |
 | [Will Russia strike Kyiv on February 5, 2...](https://polymarket.com/event/will-russia-strike-kyiv-on-february-5-2026) | YES | $67.08 | 0.50 | 0.65 | +15% 🟡 | 80% | $+20.12 | 2026-02-28 | 21d | 🟢 |
-| [LoL: KT Rolster vs DN Freecs (BO3) - LCK...](https://polymarket.com/event/lol-kt-dnf-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-06 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $76...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-76000-78000-on-february-6) | NO | $186.20 | 0.50 | 0.07 | -43% 🔴 | 75% | $+160.13 | 2026-02-06 | 0d | 🔴 |
 | [Pelicans vs. Timberwolves](https://polymarket.com/event/nba-nop-min-2026-02-06) | NO | $147.51 | 0.50 | 0.18 | -32% 🔴 | 85% | $+94.41 | 2026-02-07 | 0d | 🔴 |
 | [Will the price of Solana be above $80 on...](https://polymarket.com/event/solana-above-80-on-february-6) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-06 | 0d | 🔴 |
@@ -298,6 +297,11 @@
 | [Will the Los Angeles Kings win the 2026 ...](https://polymarket.com/event/will-the-los-angeles-kings-win-the-2026-nhl-stanley-cup) | NO | $158.97 | 0.50 | 0.12 | -38% 🔴 | 70% | $+120.81 | 2026-06-30 | 143d | 🟢 |
 | [Will Sergio Pérez be the 2026 F1 Drivers...](https://polymarket.com/event/will-sergio-prez-be-the-2026-f1-drivers-champion) | NO | $166.54 | 0.50 | 0.07 | -43% 🔴 | 60% | $+143.22 | 2026-12-06 | 302d | 🟢 |
 | [Will Elon Musk post 240+ tweets from Feb...](https://polymarket.com/event/elon-musk-of-tweets-february-5-february-7-240plus) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-07 | 1d | 🔴 |
+| [Will the price of Ethereum be above $1,9...](https://polymarket.com/event/ethereum-above-1900-on-february-8) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-08 | 2d | 🔴 |
+| [Will Charlton Athletic FC win on 2026-02...](https://polymarket.com/event/elc-cha-qpr-2026-02-06-cha) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-06 | 0d | 🔴 |
+| [Will Ethereum dip to $1,700 February 2-8...](https://polymarket.com/event/will-ethereum-dip-to-1700-february-2-8) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-09 | 2d | 🔴 |
+| [Will Elon Musk post 80-99 tweets from Fe...](https://polymarket.com/event/elon-musk-of-tweets-february-6-february-13-80-99) | NO | $77.46 | 0.50 | 0.30 | -20% 🔴 | 60% | $+30.98 | 2026-02-13 | 7d | 🟢 |
+| [Variational FDV above $500M one day afte...](https://polymarket.com/event/variational-fdv-above-500m-one-day-after-launch) | NO | $70.71 | 0.50 | 0.30 | -20% 🔴 | 50% | $+28.28 | 2028-01-01 | 693d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
@@ -367,6 +371,7 @@
 | [Bitcoin Up or Down - February 5, 8PM ET](https://polymarket.com/event/bitcoin-up-or-down-february-5-8pm-et) | NO | $64.95 | 0.50 | 0.35 | -15% 🔴 | 75% | $+0.00 | 2026-02-06 | -1d | ⏳ Pending Resolution |
 | [LoL: Team Secret Whales vs MVK Esports (...](https://polymarket.com/event/lol-tsw-mvk-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -1d | ⏳ Pending Resolution |
 | [LoL: Invictus Gaming vs Weibo Gaming (BO...](https://polymarket.com/event/lol-ig1-wb-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -1d | ⏳ Pending Resolution |
+| [LoL: KT Rolster vs DN Freecs (BO3) - LCK...](https://polymarket.com/event/lol-kt-dnf-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -1d | ⏳ Pending Resolution |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -504,7 +509,7 @@
 - 🔴 **High Exposure**: "Will the US next strike Iran o..." is 14.6% of capital
 - 🔴 **High Exposure**: "Will the Los Angeles Kings win..." is 15.9% of capital
 - 🔴 **High Exposure**: "Will Sergio Pérez be the 2026 ..." is 16.7% of capital
-- 🟡 **Expiring Soon**: 75 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 78 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -512,7 +517,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 306 |
+| Markets with Active Bets | 311 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
