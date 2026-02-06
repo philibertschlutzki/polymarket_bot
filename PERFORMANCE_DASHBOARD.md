@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-06 23:23:41 CET
+**Last Updated:** 2026-02-07 00:23:54 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 244 | 1,500 | 16.3% | 🟢 |
+| Today (RPD) | 254 | 1,500 | 16.9% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-34,715.61 |
-| Locked in Active Bets | $26,739.18 |
+| Available Capital | $-35,374.96 |
+| Locked in Active Bets | $27,398.53 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $26739.18 (2673.9% of capital) |
-| Avg Position Size | $110.95 |
+| Total Exposure | $27398.53 (2739.9% of capital) |
+| Avg Position Size | $111.38 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.005) |
 
 ---
-## 🎯 Active Bets (338)
+## 🎯 Active Bets (343)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -302,6 +302,11 @@
 | [Will One Battle After Another win Best P...](https://polymarket.com/event/will-one-battle-after-another-win-best-picture-at-the-98th-academy-awards) | YES | $69.15 | 0.50 | 0.65 | +15% 🟡 | 85% | $+20.74 | 2026-03-15 | 36d | 🟢 |
 | [Flying Tulip FDV above $800M one day aft...](https://polymarket.com/event/flying-tulip-fdv-above-800m-one-day-after-launch-715-248-888-779) | NO | $96.82 | 0.50 | 0.25 | -25% 🔴 | 60% | $+48.41 | 2027-01-01 | 328d | 🟢 |
 | [US x Iran meeting by February 6, 2026?](https://polymarket.com/event/us-x-iran-meeting-by-february-6-2026) | YES | $111.80 | 0.50 | 0.75 | +25% 🟢 | 80% | $+55.90 | 2026-02-13 | 6d | 🟡 |
+| [Opinion FDV above $500M one day after la...](https://polymarket.com/event/opinion-fdv-above-500m-one-day-after-launch) | YES | $142.90 | 0.50 | 0.81 | +31% 🟢 | 85% | $+88.60 | 2027-01-01 | 328d | 🟢 |
+| [Will the Milwaukee Brewers win the 2026 ...](https://polymarket.com/event/will-the-milwaukee-brewers-win-the-2026-world-series) | NO | $188.25 | 0.50 | 0.05 | -45% 🔴 | 70% | $+169.42 | 2026-11-01 | 267d | 🟢 |
+| [Will Alphabet be the second-largest comp...](https://polymarket.com/event/will-alphabet-be-the-second-largest-company-in-the-world-by-market-cap-on-february-28) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-28 | 21d | 🟢 |
+| [Will Claude 5 be released by February 14...](https://polymarket.com/event/will-claude-5-be-released-by-february-14-2026-449) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+77.94 | Unknown | N/A | 🔵 |
+| [Will Bitcoin reach $250,000 by December ...](https://polymarket.com/event/will-bitcoin-reach-250000-by-december-31-2026) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2027-01-01 | 328d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
@@ -535,6 +540,10 @@
 - 🔴 **High Exposure**: "Will Alexander Albon be the 20..." is 17.8% of capital
 - 🔴 **High Exposure**: "Will Bitcoin reach $88,000 Feb..." is 13.0% of capital
 - 🔴 **High Exposure**: "US x Iran meeting by February ..." is 11.2% of capital
+- 🔴 **High Exposure**: "Opinion FDV above $500M one da..." is 14.3% of capital
+- 🔴 **High Exposure**: "Will the Milwaukee Brewers win..." is 18.8% of capital
+- 🔴 **High Exposure**: "Will Claude 5 be released by F..." is 13.0% of capital
+- 🔴 **High Exposure**: "Will Bitcoin reach $250,000 by..." is 13.6% of capital
 - 🟡 **Expiring Soon**: 69 bet(s) expire within 7 days
 
 ---
@@ -543,7 +552,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 338 |
+| Markets with Active Bets | 343 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
