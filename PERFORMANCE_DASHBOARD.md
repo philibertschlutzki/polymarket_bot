@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-06 08:21:35 CET
+**Last Updated:** 2026-02-06 09:21:40 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 37 | 1,500 | 2.5% | 🟢 |
+| Today (RPD) | 42 | 1,500 | 2.8% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-28,224.39 |
-| Locked in Active Bets | $23,193.59 |
+| Available Capital | $-28,321.21 |
+| Locked in Active Bets | $23,290.41 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $23193.59 (2319.4% of capital) |
-| Avg Position Size | $109.40 |
+| Total Exposure | $23290.41 (2329.0% of capital) |
+| Avg Position Size | $109.34 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.006) |
 
 ---
-## 🎯 Active Bets (279)
+## 🎯 Active Bets (280)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -172,7 +172,7 @@
 | [Will Gold (GC) hit (HIGH) $5,800 by end ...](https://polymarket.com/event/will-gold-gc-hit-high-5800-by-end-of-february-759-378-429-713-662-579) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-02-28 | 21d | 🟢 |
 | [Will Claude 5 be released by February 28...](https://polymarket.com/event/will-claude-5-be-released-by-february-28-2026-352) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | Unknown | N/A | 🔵 |
 | [Will Elon Musk post 220-239 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-3-february-10-220-239) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-10 | 4d | 🟡 |
-| [U19 World Cup: India Under-19s vs Afghan...](https://polymarket.com/event/cru19wc-ind19-afg19-2026-02-04) | YES | $166.02 | 0.50 | 0.85 | +35% 🟢 | 90% | $+116.21 | 2026-02-11 | 5d | 🟡 |
+| [U19 World Cup: India Under-19s vs Afghan...](https://polymarket.com/event/cru19wc-ind19-afg19-2026-02-04) | YES | $166.02 | 0.50 | 0.85 | +35% 🟢 | 90% | $+116.21 | 2026-02-11 | 4d | 🟡 |
 | [Will Moonshot have the best AI model at ...](https://polymarket.com/event/will-moonshot-have-the-best-ai-model-at-the-end-of-february-2026) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-28 | 21d | 🟢 |
 | [Will the price of Bitcoin be above $70,0...](https://polymarket.com/event/bitcoin-above-70k-on-february-7) | YES | $58.09 | 0.50 | 0.65 | +15% 🟡 | 60% | $+17.43 | 2026-02-07 | 1d | 🔴 |
 | [Will Solana reach $200 in February?](https://polymarket.com/event/will-solana-reach-200-in-february-2026) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-03-01 | 22d | 🟢 |
@@ -273,6 +273,7 @@
 | [Will Ethereum reach $2,400 February 2-8?](https://polymarket.com/event/will-ethereum-reach-2400-february-2-8) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-09 | 2d | 🔴 |
 | [Will Microsoft be the second-largest com...](https://polymarket.com/event/will-microsoft-be-the-second-largest-company-in-the-world-by-market-cap-on-february-28) | NO | $104.58 | 0.50 | 0.25 | -25% 🔴 | 70% | $+52.29 | 2026-02-28 | 21d | 🟢 |
 | [LoL: Invictus Gaming vs Weibo Gaming (BO...](https://polymarket.com/event/lol-ig1-wb-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-06 | 0d | 🔴 |
+| [Will Bitcoin dip to $45,000 in February?](https://polymarket.com/event/will-bitcoin-dip-to-45k-in-february-2026) | NO | $96.82 | 0.50 | 0.25 | -25% 🔴 | 60% | $+48.41 | 2026-03-01 | 22d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
@@ -469,7 +470,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 279 |
+| Markets with Active Bets | 280 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
