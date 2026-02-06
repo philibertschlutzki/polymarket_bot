@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-06 07:21:29 CET
+**Last Updated:** 2026-02-06 08:21:35 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 35 | 1,500 | 2.3% | 🟢 |
+| Today (RPD) | 37 | 1,500 | 2.5% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-28,159.44 |
-| Locked in Active Bets | $23,128.64 |
+| Available Capital | $-28,224.39 |
+| Locked in Active Bets | $23,193.59 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $23128.64 (2312.9% of capital) |
-| Avg Position Size | $109.61 |
+| Total Exposure | $23193.59 (2319.4% of capital) |
+| Avg Position Size | $109.40 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.006) |
 
 ---
-## 🎯 Active Bets (278)
+## 🎯 Active Bets (279)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -272,6 +272,7 @@
 | [Will Elon Musk post 480-499 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-3-february-10-480-499) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-10 | 4d | 🟡 |
 | [Will Ethereum reach $2,400 February 2-8?](https://polymarket.com/event/will-ethereum-reach-2400-february-2-8) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-09 | 2d | 🔴 |
 | [Will Microsoft be the second-largest com...](https://polymarket.com/event/will-microsoft-be-the-second-largest-company-in-the-world-by-market-cap-on-february-28) | NO | $104.58 | 0.50 | 0.25 | -25% 🔴 | 70% | $+52.29 | 2026-02-28 | 21d | 🟢 |
+| [LoL: Invictus Gaming vs Weibo Gaming (BO...](https://polymarket.com/event/lol-ig1-wb-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-06 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
@@ -460,7 +461,7 @@
 - 🔴 **High Exposure**: "Will the Detroit Tigers win th..." is 19.7% of capital
 - 🔴 **High Exposure**: "Will Ethereum reach $2,400 Feb..." is 12.6% of capital
 - 🔴 **High Exposure**: "Will Microsoft be the second-l..." is 10.5% of capital
-- 🟡 **Expiring Soon**: 63 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 64 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -468,7 +469,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 278 |
+| Markets with Active Bets | 279 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
