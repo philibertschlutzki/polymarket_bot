@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-06 10:21:46 CET
+**Last Updated:** 2026-02-06 11:21:55 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 49 | 1,500 | 3.3% | 🟢 |
+| Today (RPD) | 59 | 1,500 | 3.9% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-28,655.88 |
-| Locked in Active Bets | $23,625.08 |
+| Available Capital | $-29,560.81 |
+| Locked in Active Bets | $24,530.01 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $23625.08 (2362.5% of capital) |
-| Avg Position Size | $109.38 |
+| Total Exposure | $24530.01 (2453.0% of capital) |
+| Avg Position Size | $109.51 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.006) |
 
 ---
-## 🎯 Active Bets (283)
+## 🎯 Active Bets (291)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -277,6 +277,14 @@
 | [Will Elon Musk post 440-459 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-3-february-10-440-459) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-10 | 4d | 🟡 |
 | [Will Elon Musk post 300-319 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-300-319) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-06 | 0d | 🔴 |
 | [Will Yoshihiko Noda be the Prime Ministe...](https://polymarket.com/event/will-yoshihiko-noda-be-the-prime-minister-of-japan-as-a-result-of-the-2026-snap-election) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-04-30 | 82d | 🟢 |
+| [Jeffrey Epstein confirmed to be alive be...](https://polymarket.com/event/is-jeffrey-epstein-alive-498) | NO | $232.43 | 0.50 | 0.01 | -49% 🔴 | 90% | $+227.78 | 2026-12-31 | 327d | 🟢 |
+| [LoL: Team Secret Whales vs MVK Esports (...](https://polymarket.com/event/lol-tsw-mvk-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-06 | 0d | 🔴 |
+| [Will Jesus Christ return before 2027?](https://polymarket.com/event/will-jesus-christ-return-before-2027) | NO | $79.06 | 0.50 | 0.00 | -50% 🔴 | 10% | $+79.05 | 2026-12-31 | 327d | 🟢 |
+| [Will Russia strike Kyiv on February 5, 2...](https://polymarket.com/event/will-russia-strike-kyiv-on-february-5-2026) | YES | $67.08 | 0.50 | 0.65 | +15% 🟡 | 80% | $+20.12 | 2026-02-28 | 21d | 🟢 |
+| [LoL: KT Rolster vs DN Freecs (BO3) - LCK...](https://polymarket.com/event/lol-kt-dnf-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-06 | 0d | 🔴 |
+| [Will the price of Bitcoin be between $76...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-76000-78000-on-february-6) | NO | $186.20 | 0.50 | 0.07 | -43% 🔴 | 75% | $+160.13 | 2026-02-06 | 0d | 🔴 |
+| [Pelicans vs. Timberwolves](https://polymarket.com/event/nba-nop-min-2026-02-06) | NO | $147.51 | 0.50 | 0.18 | -32% 🔴 | 85% | $+94.41 | 2026-02-07 | 0d | 🔴 |
+| [Will the price of Solana be above $80 on...](https://polymarket.com/event/solana-above-80-on-february-6) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-06 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -4d | ⏳ Pending Resolution |
@@ -467,7 +475,10 @@
 - 🔴 **High Exposure**: "Will Microsoft be the second-l..." is 10.5% of capital
 - 🔴 **High Exposure**: "Will Elon Musk post 440-459 tw..." is 12.6% of capital
 - 🔴 **High Exposure**: "Will Yoshihiko Noda be the Pri..." is 14.6% of capital
-- 🟡 **Expiring Soon**: 66 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Jeffrey Epstein confirmed to b..." is 23.2% of capital
+- 🔴 **High Exposure**: "Will the price of Bitcoin be b..." is 18.6% of capital
+- 🔴 **High Exposure**: "Pelicans vs. Timberwolves..." is 14.8% of capital
+- 🟡 **Expiring Soon**: 71 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -475,7 +486,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 283 |
+| Markets with Active Bets | 291 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
