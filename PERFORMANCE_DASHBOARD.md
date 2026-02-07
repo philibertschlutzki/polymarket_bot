@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-07 08:39:54 CET
+**Last Updated:** 2026-02-07 09:40:03 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 39 | 1,500 | 2.6% | 🟢 |
+| Today (RPD) | 44 | 1,500 | 2.9% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-37,682.32 |
-| Locked in Active Bets | $28,974.06 |
+| Available Capital | $-38,161.27 |
+| Locked in Active Bets | $29,453.01 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $28974.06 (2897.4% of capital) |
-| Avg Position Size | $110.59 |
+| Total Exposure | $29453.01 (2945.3% of capital) |
+| Avg Position Size | $111.14 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.005) |
 
 ---
-## 🎯 Active Bets (365)
+## 🎯 Active Bets (368)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -323,6 +323,9 @@
 | [Will Tottenham Hotspur FC win on 2026-02...](https://polymarket.com/event/epl-mun-tot-2026-02-07-tot) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+77.94 | 2026-02-07 | 0d | 🔴 |
 | [Will Norway win the most medals in the 2...](https://polymarket.com/event/will-norway-win-the-most-medals-in-the-2026-winter-olympics) | YES | $69.15 | 0.50 | 0.65 | +15% 🟡 | 85% | $+20.74 | 2026-02-22 | 14d | 🟢 |
 | [Mavericks vs. Spurs](https://polymarket.com/event/nba-dal-sas-2026-02-07) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+109.57 | 2026-02-08 | 0d | 🔴 |
+| [Will Vicky Dávila win the 2026 Colombian...](https://polymarket.com/event/will-vicky-dvila-win-the-2026-colombian-presidential-election) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-06-21 | 134d | 🟢 |
+| [Will the price of Bitcoin be between $86...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-86000-88000-on-february-7) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-02-07 | 0d | 🔴 |
+| [Will Athletic Bilbao win the 2025–26 La ...](https://polymarket.com/event/will-athletic-bilbao-win-the-202526-la-liga) | NO | $207.85 | 0.50 | 0.02 | -48% 🔴 | 75% | $+199.53 | 2026-05-30 | 111d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
@@ -572,7 +575,10 @@
 - 🔴 **High Exposure**: "Will Taylor Swift perform duri..." is 16.7% of capital
 - 🔴 **High Exposure**: "Will Tottenham Hotspur FC win ..." is 13.0% of capital
 - 🔴 **High Exposure**: "Mavericks vs. Spurs..." is 15.7% of capital
-- 🟡 **Expiring Soon**: 78 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Vicky Dávila win the 2026..." is 13.6% of capital
+- 🔴 **High Exposure**: "Will the price of Bitcoin be b..." is 13.6% of capital
+- 🔴 **High Exposure**: "Will Athletic Bilbao win the 2..." is 20.8% of capital
+- 🟡 **Expiring Soon**: 79 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -580,7 +586,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 365 |
+| Markets with Active Bets | 368 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
