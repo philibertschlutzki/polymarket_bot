@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-07 21:41:30 CET
+**Last Updated:** 2026-02-07 22:41:38 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,25 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will Rhamondre Stevenson win the Super Bowl LX MVP?](https://polymarket.com/market/will-rhamondre-stevenson-win-the-super-bowl-lx-mvp)
+### Bet #1: [Will Lady Gaga perform during the Super Bowl LX halftime sho...](https://polymarket.com/market/will-lady-gaga-perform-during-the-super-bowl-lx-halftime-show)
+*Analyzed: 2026-02-07 22:12 CET*
+
+**Decision:** NO @ 0.50 (Stake: $173.21)
+**[View Market →](https://polymarket.com/market/will-lady-gaga-perform-during-the-super-bowl-lx-halftime-show)**
+
+**AI Analysis:**
+- **Estimated Probability:** 10.0% (vs Market: 50.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** -40.0%
+- **Expected Value:** $+138.56
+- **End Date:** 2026-02-09 01:00 CET
+
+**AI Reasoning:**
+> Basierend auf den Suchergebnissen wurde bereits bestätigt, dass Bad Bunny der Headliner der Halbzeitshow des Super Bowl LX am 8. Februar 2026 sein wird. Obwohl in früheren Gerüchten Lady Gaga als mögliche Headlinerin genannt wurde, hat sich dies nicht bewahrheitet. Es ist unwahrscheinlich, dass es zwei Headliner gibt, obwohl Gastauftritte möglich sind. Lady Gaga hat ab Mitte Februar eine Reihe von Tourterminen in den USA, was einen Gastauftritt erschweren könnte. Angesichts der Bestätigung von Bad Bunny als Headliner und Lady Gagas Tourplan ist die Wahrscheinlichkeit, dass Lady Gaga während der Halbzeitshow des Super Bowl LX auftritt, gering.
+
+---
+
+### Bet #2: [Will Rhamondre Stevenson win the Super Bowl LX MVP?](https://polymarket.com/market/will-rhamondre-stevenson-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-07 20:57 CET*
 
 **Decision:** NO @ 0.50 (Stake: $189.46)
@@ -33,7 +51,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Will Travis Scott perform during the Super Bowl LX halftime ...](https://polymarket.com/market/will-travis-scott-perform-during-the-super-bowl-lx-halftime-show)
+### Bet #3: [Will Travis Scott perform during the Super Bowl LX halftime ...](https://polymarket.com/market/will-travis-scott-perform-during-the-super-bowl-lx-halftime-show)
 *Analyzed: 2026-02-07 20:32 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -51,7 +69,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will Yodchanan Wongsawat be the next prime minister of Thail...](https://polymarket.com/market/will-yodchanan-wongsawat-be-the-next-prime-minister-of-thailand)
+### Bet #4: [Will Yodchanan Wongsawat be the next prime minister of Thail...](https://polymarket.com/market/will-yodchanan-wongsawat-be-the-next-prime-minister-of-thailand)
 *Analyzed: 2026-02-07 20:27 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -69,7 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Will Coby Bryant win the Super Bowl LX MVP?](https://polymarket.com/market/will-coby-bryant-win-the-super-bowl-lx-mvp)
+### Bet #5: [Will Coby Bryant win the Super Bowl LX MVP?](https://polymarket.com/market/will-coby-bryant-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-07 20:27 CET*
 
 **Decision:** NO @ 0.50 (Stake: $196.62)
@@ -87,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [Over $2M committed to the Hurupay public sale?](https://polymarket.com/market/over-2m-committed-to-the-hurupay-public-sale-226-884-112-563)
+### Bet #6: [Over $2M committed to the Hurupay public sale?](https://polymarket.com/market/over-2m-committed-to-the-hurupay-public-sale-226-884-112-563)
 *Analyzed: 2026-02-07 19:57 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -105,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will Julian Assange win the Nobel Peace Prize in 2026?](https://polymarket.com/event/will-julian-assange-win-the-nobel-peace-prize-in-2026-899)
+### Bet #7: [Will Julian Assange win the Nobel Peace Prize in 2026?](https://polymarket.com/event/will-julian-assange-win-the-nobel-peace-prize-in-2026-899)
 *Analyzed: 2026-02-07 18:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $188.25)
@@ -123,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will Elon Musk post <40 tweets from February 7 to February 9...](https://polymarket.com/market/elon-musk-of-tweets-february-7-february-9-0-39)
+### Bet #8: [Will Elon Musk post <40 tweets from February 7 to February 9...](https://polymarket.com/market/elon-musk-of-tweets-february-7-february-9-0-39)
 *Analyzed: 2026-02-07 18:17 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -141,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #8: [LoL: SK Gaming vs Los Ratones (BO1) - LEC Versus Regular Sea...](https://polymarket.com/event/lol-sk-lr-2026-02-07)
+### Bet #9: [LoL: SK Gaming vs Los Ratones (BO1) - LEC Versus Regular Sea...](https://polymarket.com/event/lol-sk-lr-2026-02-07)
 *Analyzed: 2026-02-07 17:46 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -159,7 +177,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #9: [EdgeX FDV above $1B one day after launch?](https://polymarket.com/market/edgex-fdv-above-1b-one-day-after-launch)
+### Bet #10: [EdgeX FDV above $1B one day after launch?](https://polymarket.com/market/edgex-fdv-above-1b-one-day-after-launch)
 *Analyzed: 2026-02-07 16:56 CET*
 
 **Decision:** NO @ 0.50 (Stake: $60.47)
@@ -177,7 +195,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #10: [Will Israel strike Lebanon on February 6, 2026?](https://polymarket.com/market/will-israel-strike-lebanon-on-february-6-2026)
+### Bet #11: [Will Israel strike Lebanon on February 6, 2026?](https://polymarket.com/market/will-israel-strike-lebanon-on-february-6-2026)
 *Analyzed: 2026-02-07 16:47 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -192,24 +210,6 @@ This file contains detailed AI reasoning for all market analyses.
 
 **AI Reasoning:**
 > Die Wahrscheinlichkeit eines israelischen Angriffs am 6. Februar 2026 wird als gering bis moderat eingeschätzt (35%). Es gibt einen Waffenstillstand, aber die Spannungen sind hoch und Israel führt regelmäßige Angriffe durch. Die spezifische Definition des Marktes (Drohnen-, Raketen- oder Luftangriff) reduziert die Wahrscheinlichkeit im Vergleich zu allgemeineren militärischen Aktionen. Die Eskalation der Konflikte in Januar 2026 deutet darauf hin, dass die Situation fragil ist. Es ist wichtig zu beachten, dass sich die Situation schnell ändern kann.
-
----
-
-### Bet #11: [Counter-Strike: Spirit vs FURIA (BO3) - IEM Krakow Playoffs](https://polymarket.com/event/cs2-ts7-furia-2026-02-07)
-*Analyzed: 2026-02-07 16:31 CET*
-
-**Decision:** YES @ 0.50 (Stake: $64.95)
-**[View Market →](https://polymarket.com/event/cs2-ts7-furia-2026-02-07)**
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 50.0%)
-- **Confidence Score:** 75.0%
-- **Edge:** +15.0%
-- **Expected Value:** $+19.49
-- **End Date:** 2026-02-07 21:45 CET
-
-**AI Reasoning:**
-> Team Spirit is favored based on recent analysis and structural advantages, although FURIA is a strong opponent. The market price seems to undervalue Spirit's chances. Donk's performance is also a key factor.
 
 ---
 
@@ -921,6 +921,15 @@ This file contains detailed AI reasoning for all market analyses.
 
 ### Insufficient Edge (50)
 
+**[UFC Fight Night: Muin Gafurov vs. Jakub Wiklacz (Bantamweight, Prelims)](https://polymarket.com/event/ufc-mui-jak10-2026-02-07)**
+*Analyzed: 2026-02-07 22:27 CET*
+Market: 0.50 | AI: 0.53 | Edge: +3.0% | Conf: 70%
+**[View Market →](https://polymarket.com/event/ufc-mui-jak10-2026-02-07)**
+
+**Reasoning:** Der Marktpreis von 50% spiegelt die hohe Unsicherheit wider. Wiklacz hat Vorteile im Striking (Reichweite, Präzision), aber Gafurov ist ein solider Allrounder mit Wrestling-Fähigkeiten. Die Wettquoten sind sehr knapp, was auf einen ausgeglichenen Kampf hindeutet. Ich erhöhe die Wahrscheinlichkeit leicht über 50% um Wiklacz' Vorteile Rechnung zu tragen.
+
+---
+
 **[Hornets vs. Hawks](https://polymarket.com/event/nba-cha-atl-2026-02-07)**
 *Analyzed: 2026-02-07 20:37 CET*
 Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 75%
@@ -1359,15 +1368,6 @@ Market: 0.50 | AI: 0.58 | Edge: +8.0% | Conf: 75%
 **[View Market →](https://polymarket.com/event/nba-phi-lal-2026-02-05)**
 
 **Reasoning:** Die Lakers sind laut Sportwetten-Anbietern Favorit mit einem Spread von -4 bis -4.5 Punkten. Das bedeutet, dass die Wahrscheinlichkeit für einen Sieg der Lakers höher eingeschätzt wird als für die 76ers. Allerdings gibt es auch Faktoren, die für die 76ers sprechen: Sie haben eine Siegesserie von fünf Spielen, und die Verletzungssituation von Joel Embiid ist unklar. Er ist als fraglich gelistet, was seine Leistung oder sogar seine Teilnahme am Spiel beeinträchtigen könnte. Andererseits fehlen auch den Lakers wichtige Spieler. In Anbetracht dieser Faktoren und der Tatsache, dass die 76ers in dieser Saison eine gute Bilanz als Underdog haben, schätze ich die Wahrscheinlichkeit für einen Sieg der 76ers auf etwa 58%. Ich bin mir jedoch nicht ganz sicher, da die Embiid-Situation ein Unsicherheitsfaktor ist, daher ein Confidence Score von 0.75.
-
----
-
-**[Will the price of Ethereum be above $2,000 on February 7?](https://polymarket.com/market/ethereum-above-2000-on-february-7)**
-*Analyzed: 2026-02-06 02:14 CET*
-Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 60%
-**[View Market →](https://polymarket.com/market/ethereum-above-2000-on-february-7)**
-
-**Reasoning:** The current market price is around $2,274.15, but there's significant volatility and recent downward trends. Some sources predict further decline, while others foresee stabilization or slight recovery. MLQ.ai gives 84% probability of ETH being above $2,000 on February 7, but given the contradicting signals, I'm adjusting the probability to 55% with moderate confidence. I'm placing more weight on the recent price drops and general market uncertainty. The 50% starting price suggests that this is more or less a coin flip given all the volatility.
 
 ---
 
