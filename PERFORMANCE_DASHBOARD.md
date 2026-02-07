@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-07 10:40:12 CET
+**Last Updated:** 2026-02-07 11:40:23 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 52 | 1,500 | 3.5% | 🟢 |
+| Today (RPD) | 57 | 1,500 | 3.8% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-39,122.30 |
-| Locked in Active Bets | $30,414.04 |
+| Available Capital | $-39,611.16 |
+| Locked in Active Bets | $30,902.90 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $30414.04 (3041.4% of capital) |
-| Avg Position Size | $111.41 |
+| Total Exposure | $30902.90 (3090.3% of capital) |
+| Avg Position Size | $111.56 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.005) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.004) |
 
 ---
-## 🎯 Active Bets (376)
+## 🎯 Active Bets (380)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -334,6 +334,10 @@
 | [Over $50M committed to the Hurupay publi...](https://polymarket.com/event/over-50m-committed-to-the-hurupay-public-sale-569-772-915-493-946-347-974) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-05-01 | 82d | 🟢 |
 | [Will Coinbase run an Ad during Super Bow...](https://polymarket.com/event/will-coinbase-run-an-ad-during-super-bowl-lx) | YES | $111.80 | 0.50 | 0.75 | +25% 🟢 | 80% | $+55.90 | 2026-02-08 | 0d | 🔴 |
 | [Will Andres Borregales win the Super Bow...](https://polymarket.com/event/will-andres-borregales-win-the-super-bowl-lx-mvp) | NO | $208.75 | 0.50 | 0.00 | -50% 🔴 | 70% | $+208.33 | 2026-02-09 | 1d | 🔴 |
+| [Will the price of Ethereum be above $2,2...](https://polymarket.com/event/ethereum-above-2200-on-february-7) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-07 | 0d | 🔴 |
+| [Will Ernest Jones win the Super Bowl LX ...](https://polymarket.com/event/will-ernest-jones-win-the-super-bowl-lx-mvp) | NO | $196.62 | 0.50 | 0.03 | -47% 🔴 | 70% | $+184.82 | 2026-02-09 | 1d | 🔴 |
+| [Will the New York Islanders win the 2026...](https://polymarket.com/event/will-the-new-york-islanders-win-the-2026-nhl-stanley-cup) | NO | $164.54 | 0.50 | 0.12 | -38% 🔴 | 75% | $+125.05 | 2026-06-30 | 142d | 🟢 |
+| [Will Real Madrid CF win on 2026-02-08?](https://polymarket.com/event/lal-val-rea-2026-02-08-rea) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-08 | 1d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
@@ -591,7 +595,9 @@
 - 🔴 **High Exposure**: "Will the price of XRP be above..." is 12.6% of capital
 - 🔴 **High Exposure**: "Will Coinbase run an Ad during..." is 11.2% of capital
 - 🔴 **High Exposure**: "Will Andres Borregales win the..." is 20.9% of capital
-- 🟡 **Expiring Soon**: 83 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Ernest Jones win the Supe..." is 19.7% of capital
+- 🔴 **High Exposure**: "Will the New York Islanders wi..." is 16.5% of capital
+- 🟡 **Expiring Soon**: 86 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -599,7 +605,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 376 |
+| Markets with Active Bets | 380 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
