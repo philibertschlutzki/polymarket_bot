@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-07 04:24:26 CET
+**Last Updated:** 2026-02-07 05:24:35 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,43 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will the price of Ethereum be above $1,900 on February 9?](https://polymarket.com/market/ethereum-above-1900-on-february-9)
+### Bet #1: [Will the price of Bitcoin be between $84,000 and $86,000 on ...](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-84000-86000-on-february-7)
+*Analyzed: 2026-02-07 05:00 CET*
+
+**Decision:** NO @ 0.50 (Stake: $175.70)
+**[View Market →](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-84000-86000-on-february-7)**
+
+**AI Analysis:**
+- **Estimated Probability:** 8.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -42.0%
+- **Expected Value:** $+147.59
+- **End Date:** 2026-02-07 18:00 CET
+
+**AI Reasoning:**
+> Die Bitcoin-Preise sind volatil, und die jüngsten Daten deuten auf einen Abwärtstrend hin. Obwohl einige Prognosen höhere Werte andeuten, ist die Spanne von 84.000 bis 86.000 US-Dollar eng, was die Wahrscheinlichkeit verringert. Eine andere Polymarket-Wettfrage schätzt, dass die Wahrscheinlichkeit, dass der Bitcoin-Preis unter 72.000 US-Dollar liegt, bei 94 % liegt.
+
+---
+
+### Bet #2: [Will the price of Bitcoin be above $78,000 on February 8?](https://polymarket.com/market/bitcoin-above-78k-on-february-8)
+*Analyzed: 2026-02-07 04:50 CET*
+
+**Decision:** NO @ 0.50 (Stake: $80.62)
+**[View Market →](https://polymarket.com/market/bitcoin-above-78k-on-february-8)**
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 50.0%)
+- **Confidence Score:** 65.0%
+- **Edge:** -20.0%
+- **Expected Value:** $+32.25
+- **End Date:** 2026-02-08 18:00 CET
+
+**AI Reasoning:**
+> Bitcoin hat in den letzten Tagen an Wert verloren und ist sehr volatil. Obwohl langfristige Prognosen positiv sind, ist ein Anstieg über 78.000 US-Dollar bis zum 8. Februar unwahrscheinlich. Die aktuelle Marktstimmung ist eher vorsichtig, und es gibt Anzeichen für eine mögliche Stabilisierung nach dem jüngsten Ausverkauf, aber kein starkes Aufwärtspotenzial.
+
+---
+
+### Bet #3: [Will the price of Ethereum be above $1,900 on February 9?](https://polymarket.com/market/ethereum-above-1900-on-february-9)
 *Analyzed: 2026-02-07 04:20 CET*
 
 **Decision:** NO @ 0.50 (Stake: $80.62)
@@ -33,7 +69,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Will Logan Paul’s PSA 10 Pokémon Illustrator Sale Price be o...](https://polymarket.com/market/will-logan-pauls-psa-10-pokmon-illustrator-sale-price-be-over-16-million-278)
+### Bet #4: [Will Logan Paul’s PSA 10 Pokémon Illustrator Sale Price be o...](https://polymarket.com/market/will-logan-pauls-psa-10-pokmon-illustrator-sale-price-be-over-16-million-278)
 *Analyzed: 2026-02-07 04:15 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -51,7 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will Sergio Fajardo win the 2026 Colombian presidential elec...](https://polymarket.com/market/will-sergio-fajardo-win-the-2026-colombian-presidential-election)
+### Bet #5: [Will Sergio Fajardo win the 2026 Colombian presidential elec...](https://polymarket.com/market/will-sergio-fajardo-win-the-2026-colombian-presidential-election)
 *Analyzed: 2026-02-07 02:50 CET*
 
 **Decision:** NO @ 0.50 (Stake: $77.46)
@@ -69,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Will the price of Bitcoin be above $90,000 on February 7?](https://polymarket.com/market/bitcoin-above-90k-on-february-7)
+### Bet #6: [Will the price of Bitcoin be above $90,000 on February 7?](https://polymarket.com/market/bitcoin-above-90k-on-february-7)
 *Analyzed: 2026-02-07 02:45 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -87,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [Will Bitcoin reach $80,000 in February?](https://polymarket.com/market/will-bitcoin-reach-80000-in-february-298)
+### Bet #7: [Will Bitcoin reach $80,000 in February?](https://polymarket.com/market/will-bitcoin-reach-80000-in-february-298)
 *Analyzed: 2026-02-07 02:05 CET*
 
 **Decision:** NO @ 0.50 (Stake: $80.62)
@@ -105,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will the price of Bitcoin be above $76,000 on February 8?](https://polymarket.com/market/bitcoin-above-76k-on-february-8)
+### Bet #8: [Will the price of Bitcoin be above $76,000 on February 8?](https://polymarket.com/market/bitcoin-above-76k-on-february-8)
 *Analyzed: 2026-02-07 01:30 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -123,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will the price of Bitcoin be above $74,000 on February 8?](https://polymarket.com/market/bitcoin-above-74k-on-february-8)
+### Bet #9: [Will the price of Bitcoin be above $74,000 on February 8?](https://polymarket.com/market/bitcoin-above-74k-on-february-8)
 *Analyzed: 2026-02-07 01:20 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -141,7 +177,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #8: [Will Bitcoin reach $95,000 in February?](https://polymarket.com/market/will-bitcoin-reach-95k-in-february-2026)
+### Bet #10: [Will Bitcoin reach $95,000 in February?](https://polymarket.com/market/will-bitcoin-reach-95k-in-february-2026)
 *Analyzed: 2026-02-07 01:15 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -159,7 +195,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #9: [Will Elon Musk post 115-139 tweets from February 5 to Februa...](https://polymarket.com/event/elon-musk-of-tweets-february-5-february-7-115-139)
+### Bet #11: [Will Elon Musk post 115-139 tweets from February 5 to Februa...](https://polymarket.com/event/elon-musk-of-tweets-february-5-february-7-115-139)
 *Analyzed: 2026-02-07 00:55 CET*
 
 **Decision:** YES @ 0.50 (Stake: $53.03)
@@ -177,7 +213,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #10: [Will Alibaba have the best AI model at the end of March 2026...](https://polymarket.com/event/will-alibaba-have-the-best-ai-model-at-the-end-of-march-2026-712)
+### Bet #12: [Will Alibaba have the best AI model at the end of March 2026...](https://polymarket.com/event/will-alibaba-have-the-best-ai-model-at-the-end-of-march-2026-712)
 *Analyzed: 2026-02-07 00:55 CET*
 
 **Decision:** NO @ 0.50 (Stake: $116.19)
@@ -195,7 +231,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #11: [Will the price of Bitcoin be above $82,000 on February 7?](https://polymarket.com/market/bitcoin-above-82k-on-february-7)
+### Bet #13: [Will the price of Bitcoin be above $82,000 on February 7?](https://polymarket.com/market/bitcoin-above-82k-on-february-7)
 *Analyzed: 2026-02-07 00:45 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -213,7 +249,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #12: [Will Bitcoin reach $250,000 by December 31, 2026?](https://polymarket.com/market/will-bitcoin-reach-250000-by-december-31-2026)
+### Bet #14: [Will Bitcoin reach $250,000 by December 31, 2026?](https://polymarket.com/market/will-bitcoin-reach-250000-by-december-31-2026)
 *Analyzed: 2026-02-07 00:20 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -231,7 +267,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #13: [Will Claude 5 be released by February 14, 2026?](https://polymarket.com/market/will-claude-5-be-released-by-february-14-2026-449)
+### Bet #15: [Will Claude 5 be released by February 14, 2026?](https://polymarket.com/market/will-claude-5-be-released-by-february-14-2026-449)
 *Analyzed: 2026-02-06 23:52 CET*
 
 **Decision:** NO @ 0.50 (Stake: $129.90)
@@ -249,7 +285,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #14: [Will Alphabet be the second-largest company in the world by ...](https://polymarket.com/market/will-alphabet-be-the-second-largest-company-in-the-world-by-market-cap-on-february-28)
+### Bet #16: [Will Alphabet be the second-largest company in the world by ...](https://polymarket.com/market/will-alphabet-be-the-second-largest-company-in-the-world-by-market-cap-on-february-28)
 *Analyzed: 2026-02-06 23:45 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -267,7 +303,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #15: [Will the Milwaukee Brewers win the 2026 World Series?](https://polymarket.com/event/will-the-milwaukee-brewers-win-the-2026-world-series)
+### Bet #17: [Will the Milwaukee Brewers win the 2026 World Series?](https://polymarket.com/event/will-the-milwaukee-brewers-win-the-2026-world-series)
 *Analyzed: 2026-02-06 23:45 CET*
 
 **Decision:** NO @ 0.50 (Stake: $188.25)
@@ -285,7 +321,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #16: [Opinion FDV above $500M one day after launch?](https://polymarket.com/market/opinion-fdv-above-500m-one-day-after-launch)
+### Bet #18: [Opinion FDV above $500M one day after launch?](https://polymarket.com/market/opinion-fdv-above-500m-one-day-after-launch)
 *Analyzed: 2026-02-06 23:25 CET*
 
 **Decision:** YES @ 0.50 (Stake: $142.90)
@@ -303,7 +339,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #17: [US x Iran meeting by February 6, 2026?](https://polymarket.com/market/us-x-iran-meeting-by-february-6-2026)
+### Bet #19: [US x Iran meeting by February 6, 2026?](https://polymarket.com/market/us-x-iran-meeting-by-february-6-2026)
 *Analyzed: 2026-02-06 23:20 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -321,7 +357,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #18: [Flying Tulip FDV above $800M one day after launch?](https://polymarket.com/market/flying-tulip-fdv-above-800m-one-day-after-launch-715-248-888-779)
+### Bet #20: [Flying Tulip FDV above $800M one day after launch?](https://polymarket.com/market/flying-tulip-fdv-above-800m-one-day-after-launch-715-248-888-779)
 *Analyzed: 2026-02-06 23:10 CET*
 
 **Decision:** NO @ 0.50 (Stake: $96.82)
@@ -339,7 +375,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #19: [Will One Battle After Another win Best Picture at the 98th A...](https://polymarket.com/event/will-one-battle-after-another-win-best-picture-at-the-98th-academy-awards)
+### Bet #21: [Will One Battle After Another win Best Picture at the 98th A...](https://polymarket.com/event/will-one-battle-after-another-win-best-picture-at-the-98th-academy-awards)
 *Analyzed: 2026-02-06 22:55 CET*
 
 **Decision:** YES @ 0.50 (Stake: $69.15)
@@ -357,7 +393,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #20: [Will the price of Bitcoin be less than $72,000 on February 7...](https://polymarket.com/market/will-the-price-of-bitcoin-be-less-than-72000-on-february-7)
+### Bet #22: [Will the price of Bitcoin be less than $72,000 on February 7...](https://polymarket.com/market/will-the-price-of-bitcoin-be-less-than-72000-on-february-7)
 *Analyzed: 2026-02-06 22:50 CET*
 
 **Decision:** NO @ 0.50 (Stake: $96.82)
@@ -375,7 +411,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #21: [Will Bitcoin reach $88,000 February 2-8?](https://polymarket.com/market/will-bitcoin-reach-88k-february-2-8)
+### Bet #23: [Will Bitcoin reach $88,000 February 2-8?](https://polymarket.com/market/will-bitcoin-reach-88k-february-2-8)
 *Analyzed: 2026-02-06 22:47 CET*
 
 **Decision:** NO @ 0.50 (Stake: $129.90)
@@ -393,7 +429,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #22: [Will the price of Ethereum be above $2,000 on February 8?](https://polymarket.com/market/ethereum-above-2000-on-february-8)
+### Bet #24: [Will the price of Ethereum be above $2,000 on February 8?](https://polymarket.com/market/ethereum-above-2000-on-february-8)
 *Analyzed: 2026-02-06 22:22 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -411,7 +447,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #23: [Will the price of Bitcoin be above $74,000 on February 9?](https://polymarket.com/event/bitcoin-above-74k-on-february-9)
+### Bet #25: [Will the price of Bitcoin be above $74,000 on February 9?](https://polymarket.com/event/bitcoin-above-74k-on-february-9)
 *Analyzed: 2026-02-06 22:05 CET*
 
 **Decision:** NO @ 0.50 (Stake: $77.46)
@@ -429,7 +465,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #24: [Will Alexander Albon be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-alexander-albon-be-the-2026-f1-drivers-champion)
+### Bet #26: [Will Alexander Albon be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-alexander-albon-be-the-2026-f1-drivers-champion)
 *Analyzed: 2026-02-06 21:52 CET*
 
 **Decision:** NO @ 0.50 (Stake: $178.16)
@@ -447,7 +483,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #25: [Will Milton Williams win the Super Bowl LX MVP?](https://polymarket.com/market/will-milton-williams-win-the-super-bowl-lx-mvp)
+### Bet #27: [Will Milton Williams win the Super Bowl LX MVP?](https://polymarket.com/market/will-milton-williams-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-06 21:35 CET*
 
 **Decision:** NO @ 0.50 (Stake: $221.37)
@@ -465,7 +501,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #26: [Will 2026 be the third-hottest year on record?](https://polymarket.com/market/will-2026-be-the-third-hottest-year-on-record)
+### Bet #28: [Will 2026 be the third-hottest year on record?](https://polymarket.com/market/will-2026-be-the-third-hottest-year-on-record)
 *Analyzed: 2026-02-06 21:25 CET*
 
 **Decision:** NO @ 0.50 (Stake: $104.58)
@@ -483,7 +519,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #27: [Open Sud de France: Tallon Griekspoor vs Titouan Droguet](https://polymarket.com/event/atp-grieksp-droguet-2026-02-06)
+### Bet #29: [Open Sud de France: Tallon Griekspoor vs Titouan Droguet](https://polymarket.com/event/atp-grieksp-droguet-2026-02-06)
 *Analyzed: 2026-02-06 21:20 CET*
 
 **Decision:** YES @ 0.50 (Stake: $61.92)
@@ -501,7 +537,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #28: [Will Germany win the most gold medals in the 2026 Winter Oly...](https://polymarket.com/market/will-germany-win-the-most-gold-medals-in-the-2026-winter-olympics)
+### Bet #30: [Will Germany win the most gold medals in the 2026 Winter Oly...](https://polymarket.com/market/will-germany-win-the-most-gold-medals-in-the-2026-winter-olympics)
 *Analyzed: 2026-02-06 21:15 CET*
 
 **Decision:** NO @ 0.50 (Stake: $83.67)
@@ -519,7 +555,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #29: [Will xAI have the best AI model at the end of March 2026?](https://polymarket.com/market/will-xai-have-the-best-ai-model-at-the-end-of-march-2026-497)
+### Bet #31: [Will xAI have the best AI model at the end of March 2026?](https://polymarket.com/market/will-xai-have-the-best-ai-model-at-the-end-of-march-2026-497)
 *Analyzed: 2026-02-06 20:55 CET*
 
 **Decision:** NO @ 0.50 (Stake: $120.93)
@@ -537,7 +573,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #30: [Will Elon Musk post 140-164 tweets from February 5 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-5-february-7-140-164)
+### Bet #32: [Will Elon Musk post 140-164 tweets from February 5 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-5-february-7-140-164)
 *Analyzed: 2026-02-06 20:55 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -555,7 +591,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #31: [Will the price of Bitcoin be above $68,000 on February 9?](https://polymarket.com/market/bitcoin-above-68k-on-february-9)
+### Bet #33: [Will the price of Bitcoin be above $68,000 on February 9?](https://polymarket.com/market/bitcoin-above-68k-on-february-9)
 *Analyzed: 2026-02-06 20:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -573,7 +609,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #32: [Will Silver (SI) hit (LOW) $70 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-70-by-end-of-february-712-779-958-335-231)
+### Bet #34: [Will Silver (SI) hit (LOW) $70 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-70-by-end-of-february-712-779-958-335-231)
 *Analyzed: 2026-02-06 20:20 CET*
 
 **Decision:** NO @ 0.50 (Stake: $60.47)
@@ -591,7 +627,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #33: [Will Alireza Firouzja win the 2025–2026 Speed Chess Champion...](https://polymarket.com/event/will-alireza-firouzja-win-the-20252026-speed-chess-championship)
+### Bet #35: [Will Alireza Firouzja win the 2025–2026 Speed Chess Champion...](https://polymarket.com/event/will-alireza-firouzja-win-the-20252026-speed-chess-championship)
 *Analyzed: 2026-02-06 20:17 CET*
 
 **Decision:** NO @ 0.50 (Stake: $86.60)
@@ -609,7 +645,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #34: [Will the price of Bitcoin be above $78,000 on February 7?](https://polymarket.com/market/bitcoin-above-78k-on-february-7)
+### Bet #36: [Will the price of Bitcoin be above $78,000 on February 7?](https://polymarket.com/market/bitcoin-above-78k-on-february-7)
 *Analyzed: 2026-02-06 19:36 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -627,7 +663,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #35: [Will the price of Bitcoin be above $72,000 on February 9?](https://polymarket.com/market/bitcoin-above-72k-on-february-9)
+### Bet #37: [Will the price of Bitcoin be above $72,000 on February 9?](https://polymarket.com/market/bitcoin-above-72k-on-february-9)
 *Analyzed: 2026-02-06 19:36 CET*
 
 **Decision:** NO @ 0.50 (Stake: $60.47)
@@ -645,7 +681,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #36: [Will the United States win the most medals in the 2026 Winte...](https://polymarket.com/market/will-the-united-states-win-the-most-medals-in-the-2026-winter-olympics)
+### Bet #38: [Will the United States win the most medals in the 2026 Winte...](https://polymarket.com/market/will-the-united-states-win-the-most-medals-in-the-2026-winter-olympics)
 *Analyzed: 2026-02-06 18:45 CET*
 
 **Decision:** NO @ 0.50 (Stake: $104.58)
@@ -663,7 +699,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #37: [Will Arvid Lindblad be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-arvid-lindblad-be-the-2026-f1-drivers-champion)
+### Bet #39: [Will Arvid Lindblad be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-arvid-lindblad-be-the-2026-f1-drivers-champion)
 *Analyzed: 2026-02-06 18:42 CET*
 
 **Decision:** NO @ 0.50 (Stake: $189.78)
@@ -681,7 +717,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #38: [Will Elon Musk post 100-119 tweets from February 6 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-100-119)
+### Bet #40: [Will Elon Musk post 100-119 tweets from February 6 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-100-119)
 *Analyzed: 2026-02-06 17:47 CET*
 
 **Decision:** NO @ 0.50 (Stake: $125.50)
@@ -699,7 +735,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #39: [Variational FDV above $500M one day after launch?](https://polymarket.com/market/variational-fdv-above-500m-one-day-after-launch)
+### Bet #41: [Variational FDV above $500M one day after launch?](https://polymarket.com/market/variational-fdv-above-500m-one-day-after-launch)
 *Analyzed: 2026-02-06 17:10 CET*
 
 **Decision:** NO @ 0.50 (Stake: $70.71)
@@ -717,7 +753,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #40: [Will Elon Musk post 80-99 tweets from February 6 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-80-99)
+### Bet #42: [Will Elon Musk post 80-99 tweets from February 6 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-80-99)
 *Analyzed: 2026-02-06 17:04 CET*
 
 **Decision:** NO @ 0.50 (Stake: $77.46)
@@ -735,7 +771,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #41: [Will Ethereum dip to $1,700 February 2-8?](https://polymarket.com/market/will-ethereum-dip-to-1700-february-2-8)
+### Bet #43: [Will Ethereum dip to $1,700 February 2-8?](https://polymarket.com/market/will-ethereum-dip-to-1700-february-2-8)
 *Analyzed: 2026-02-06 17:00 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -753,7 +789,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #42: [Will the price of Ethereum be above $1,900 on February 8?](https://polymarket.com/market/ethereum-above-1900-on-february-8)
+### Bet #44: [Will the price of Ethereum be above $1,900 on February 8?](https://polymarket.com/market/ethereum-above-1900-on-february-8)
 *Analyzed: 2026-02-06 16:25 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -771,7 +807,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #43: [Will Elon Musk post 240+ tweets from February 5 to February ...](https://polymarket.com/market/elon-musk-of-tweets-february-5-february-7-240plus)
+### Bet #45: [Will Elon Musk post 240+ tweets from February 5 to February ...](https://polymarket.com/market/elon-musk-of-tweets-february-5-february-7-240plus)
 *Analyzed: 2026-02-06 15:36 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -789,7 +825,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #44: [Will Sergio Pérez be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-sergio-prez-be-the-2026-f1-drivers-champion)
+### Bet #46: [Will Sergio Pérez be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-sergio-prez-be-the-2026-f1-drivers-champion)
 *Analyzed: 2026-02-06 15:00 CET*
 
 **Decision:** NO @ 0.50 (Stake: $166.54)
@@ -807,7 +843,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #45: [Will the Los Angeles Kings win the 2026 NHL Stanley Cup?](https://polymarket.com/market/will-the-los-angeles-kings-win-the-2026-nhl-stanley-cup)
+### Bet #47: [Will the Los Angeles Kings win the 2026 NHL Stanley Cup?](https://polymarket.com/market/will-the-los-angeles-kings-win-the-2026-nhl-stanley-cup)
 *Analyzed: 2026-02-06 14:54 CET*
 
 **Decision:** NO @ 0.50 (Stake: $158.97)
@@ -825,7 +861,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #46: [Will the US next strike Iran on February 4, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-4-2026-et)
+### Bet #48: [Will the US next strike Iran on February 4, 2026 (ET)?](https://polymarket.com/market/will-the-us-next-strike-iran-on-february-4-2026-et)
 *Analyzed: 2026-02-06 14:40 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -843,7 +879,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #47: [Will Solana reach $190 in February?](https://polymarket.com/market/will-solana-reach-190-in-february-2026)
+### Bet #49: [Will Solana reach $190 in February?](https://polymarket.com/market/will-solana-reach-190-in-february-2026)
 *Analyzed: 2026-02-06 14:15 CET*
 
 **Decision:** NO @ 0.50 (Stake: $188.25)
@@ -861,7 +897,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #48: [Will the U.S. collect between $500b and $1t in revenue in 20...](https://polymarket.com/market/will-the-us-collect-between-500b-and-1t-in-revenue-in-2025)
+### Bet #50: [Will the U.S. collect between $500b and $1t in revenue in 20...](https://polymarket.com/market/will-the-us-collect-between-500b-and-1t-in-revenue-in-2025)
 *Analyzed: 2026-02-06 14:07 CET*
 
 **Decision:** YES @ 0.50 (Stake: $207.44)
@@ -879,47 +915,29 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #49: [Will Esteban Ocon be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-esteban-ocon-be-the-2026-f1-drivers-champion)
-*Analyzed: 2026-02-06 14:05 CET*
-
-**Decision:** NO @ 0.50 (Stake: $185.90)
-**[View Market →](https://polymarket.com/market/will-esteban-ocon-be-the-2026-f1-drivers-champion)**
-
-**AI Analysis:**
-- **Estimated Probability:** 2.0% (vs Market: 50.0%)
-- **Confidence Score:** 60.0%
-- **Edge:** -48.0%
-- **Expected Value:** $+178.47
-- **End Date:** 2026-12-06 01:00 CET
-
-**AI Reasoning:**
-> Haas ist kein Spitzenteam, Ocon ist kein Top-Fahrer, und die Konkurrenz ist hart. Obwohl die Regeländerungen eine Chance für Haas darstellen, gibt es keine Garantie für Erfolg. Die Wahrscheinlichkeit ist gering, aber nicht Null, da unerwartete Ereignisse im Motorsport immer möglich sind.
-
----
-
-### Bet #50: [Will the price of Bitcoin be above $72,000 on February 8?](https://polymarket.com/market/bitcoin-above-72k-on-february-8)
-*Analyzed: 2026-02-06 13:50 CET*
-
-**Decision:** NO @ 0.50 (Stake: $104.58)
-**[View Market →](https://polymarket.com/market/bitcoin-above-72k-on-february-8)**
-
-**AI Analysis:**
-- **Estimated Probability:** 25.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -25.0%
-- **Expected Value:** $+52.29
-- **End Date:** 2026-02-08 18:00 CET
-
-**AI Reasoning:**
-> Der aktuelle Abwärtstrend von Bitcoin, die vorherrschende pessimistische Marktstimmung und die hohe Volatilität lassen es unwahrscheinlich erscheinen, dass der Preis bis zum 8. Februar auf über 72.000 US-Dollar steigt. Obwohl es einige Vorhersagen für einen Anstieg gibt, überwiegen die Indikatoren, die auf einen kurzfristigen Preisrückgang hindeuten. Ein Confidence Score von 0.7 spiegelt die Unsicherheit wider, die mit Krypto-Preisvorhersagen verbunden ist.
-
----
-
 ## ❌ Rejected Markets
 
 *Showing last 50 rejected analyses*
 
 ### Insufficient Edge (50)
+
+**[Will RC Celta de Vigo win on 2026-02-06?](https://polymarket.com/market/lal-cel-osa-2026-02-06-cel)**
+*Analyzed: 2026-02-07 04:40 CET*
+Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 75%
+**[View Market →](https://polymarket.com/market/lal-cel-osa-2026-02-06-cel)**
+
+**Reasoning:** Basierend auf den Suchergebnissen scheint RC Celta de Vigo in ihrem Spiel am 6. Februar 2026 gegen CA Osasuna leicht favorisiert zu sein. Mehrere Quellen geben Celta de Vigo eine höhere Wahrscheinlichkeit für einen Sieg, wobei einige Wettanbieter Quoten anbieten, die eine Wahrscheinlichkeit von etwa 52 % implizieren. Die Analyse deutet darauf hin, dass Celta de Vigo aufgrund ihrer Liga-Position, ihrer aktuellen Form und ihrer positiven Bilanz im direkten Vergleich gegen CA Osasuna im Vorteil ist. Außerdem hat Osasuna in Auswärtsspielen zu kämpfen, was Celta de Vigo zusätzlich begünstigt. Angesichts dieser Faktoren wird die Wahrscheinlichkeit, dass RC Celta de Vigo gewinnt, auf 55 % geschätzt. Das Vertrauen in diese Schätzung ist moderat (75 %), da es sich um eine Prognose handelt und unvorhergesehene Ereignisse das Ergebnis eines Fußballspiels beeinflussen können.
+
+---
+
+**[Will Elon Musk post 165-189 tweets from February 5 to February 7, 2026?](https://polymarket.com/market/elon-musk-of-tweets-february-5-february-7-165-189)**
+*Analyzed: 2026-02-07 04:25 CET*
+Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 60%
+**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-5-february-7-165-189)**
+
+**Reasoning:** Basierend auf den aktuellen Tweet-Zahlen von XTracker liegt Elon Musk aktuell unter der benötigten Anzahl an Tweets für den genannten Zeitraum. Jedoch ist es durchaus im Bereich des Möglichen, dass er seine Aktivität auf X (Twitter) in den kommenden Tagen deutlich erhöht, was die Wahrscheinlichkeit, dass er die 165-189 Tweets erreicht, erhöht. Der aktuelle Marktpreis von 50% deutet auf eine gewisse Unsicherheit hin. Die Confidence Score ist moderat, da die zukünftige Twitter-Aktivität von Elon Musk schwer vorherzusagen ist.
+
+---
 
 **[Qatar Total Open, Qualification: Rebeka Masarova vs Alycia Parks](https://polymarket.com/event/wta-masarov-parks-2026-02-06)**
 *Analyzed: 2026-02-06 23:45 CET*
@@ -1350,24 +1368,6 @@ Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 50%
 **[View Market →](https://polymarket.com/market/ethereum-above-2400-on-february-6)**
 
 **Reasoning:** Der aktuelle Preis liegt unter 2.400 USD. Einige Prognosen überschreiten diese Marke, andere liegen jedoch deutlich darunter. Die allgemeine Marktvolatilität macht eine präzise Vorhersage schwierig. Daher schätze ich die Wahrscheinlichkeit auf 40% mit einem mittleren Konfidenzwert.
-
----
-
-**[Dota 2: Team Falcons vs Team Spirit (BO1) - BLAST Slam Group Stage](https://polymarket.com/event/dota2-flc-ts8-2026-02-05)**
-*Analyzed: 2026-02-05 18:05 CET*
-Market: 0.50 | AI: 0.58 | Edge: +8.0% | Conf: 75%
-**[View Market →](https://polymarket.com/event/dota2-flc-ts8-2026-02-05)**
-
-**Reasoning:** Team Falcons is generally considered a top team, but Team Spirit is also strong. It's a BO1 match, increasing the chance of upset.  Market price is at 50%, but most sources favor Falcons slightly.
-
----
-
-**[Will Elon Musk post 360-379 tweets from February 3 to February 10, 2026?](https://polymarket.com/market/elon-musk-of-tweets-february-3-february-10-360-379)**
-*Analyzed: 2026-02-05 17:54 CET*
-Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 65%
-**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-3-february-10-360-379)**
-
-**Reasoning:** Elon Musk müsste seine aktuelle Twitter-Aktivität deutlich steigern, um in den verbleibenden 7 Tagen 360-379 Tweets zu erreichen. Seine historische Aktivität zeigt jedoch, dass er zu solchen Spitzenleistungen fähig ist. Der Marktpreis von 50% spiegelt bereits eine gewisse Wahrscheinlichkeit wider, die ich jedoch aufgrund der notwendigen Steigerung und der Unvorhersehbarkeit von Musks Verhalten etwas reduziere. Das Confidence Score ist moderat, da die Vorhersage stark von Musks Laune abhängt.
 
 ---
 
