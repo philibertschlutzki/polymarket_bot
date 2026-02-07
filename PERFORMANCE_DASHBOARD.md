@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-07 11:40:23 CET
+**Last Updated:** 2026-02-07 12:40:30 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 57 | 1,500 | 3.8% | 🟢 |
+| Today (RPD) | 63 | 1,500 | 4.2% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-39,611.16 |
-| Locked in Active Bets | $30,902.90 |
+| Available Capital | $-40,255.25 |
+| Locked in Active Bets | $31,546.99 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $30902.90 (3090.3% of capital) |
-| Avg Position Size | $111.56 |
+| Total Exposure | $31546.99 (3154.7% of capital) |
+| Avg Position Size | $111.87 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.004) |
 
 ---
-## 🎯 Active Bets (380)
+## 🎯 Active Bets (385)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -338,6 +338,11 @@
 | [Will Ernest Jones win the Super Bowl LX ...](https://polymarket.com/event/will-ernest-jones-win-the-super-bowl-lx-mvp) | NO | $196.62 | 0.50 | 0.03 | -47% 🔴 | 70% | $+184.82 | 2026-02-09 | 1d | 🔴 |
 | [Will the New York Islanders win the 2026...](https://polymarket.com/event/will-the-new-york-islanders-win-the-2026-nhl-stanley-cup) | NO | $164.54 | 0.50 | 0.12 | -38% 🔴 | 75% | $+125.05 | 2026-06-30 | 142d | 🟢 |
 | [Will Real Madrid CF win on 2026-02-08?](https://polymarket.com/event/lal-val-rea-2026-02-08-rea) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-08 | 1d | 🔴 |
+| [Will Vladimir Putin win the Nobel Peace ...](https://polymarket.com/event/will-vladimir-putin-win-the-nobel-peace-prize-in-2026-126) | NO | $193.26 | 0.50 | 0.00 | -50% 🔴 | 60% | $+192.88 | 2026-10-10 | 244d | 🟢 |
+| [Will Gold (GC) hit (HIGH) $6,200 by end ...](https://polymarket.com/event/will-gold-gc-hit-high-6200-by-end-of-february-882-138-877-117-343-764-976) | NO | $189.78 | 0.50 | 0.01 | -49% 🔴 | 60% | $+185.98 | 2026-02-28 | 20d | 🟢 |
+| [Will Base launch a token by December 31,...](https://polymarket.com/event/will-base-launch-a-token-by-december-31-2026-154) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | Unknown | N/A | 🔵 |
+| [Will "LA MUDANZA" be played first at the...](https://polymarket.com/event/will-la-mudanza-be-played-first-at-the-super-bowl-halftime-show) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-08 | 0d | 🔴 |
+| [Will Bitcoin dip to $40,000 in February?](https://polymarket.com/event/will-bitcoin-dip-to-40k-in-february-2026-785-212-222) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-03-01 | 21d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -5d | ⏳ Pending Resolution |
@@ -597,7 +602,10 @@
 - 🔴 **High Exposure**: "Will Andres Borregales win the..." is 20.9% of capital
 - 🔴 **High Exposure**: "Will Ernest Jones win the Supe..." is 19.7% of capital
 - 🔴 **High Exposure**: "Will the New York Islanders wi..." is 16.5% of capital
-- 🟡 **Expiring Soon**: 86 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Vladimir Putin win the No..." is 19.3% of capital
+- 🔴 **High Exposure**: "Will Gold (GC) hit (HIGH) $6,2..." is 19.0% of capital
+- 🔴 **High Exposure**: "Will Bitcoin dip to $40,000 in..." is 13.6% of capital
+- 🟡 **Expiring Soon**: 87 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -605,7 +613,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 380 |
+| Markets with Active Bets | 385 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
