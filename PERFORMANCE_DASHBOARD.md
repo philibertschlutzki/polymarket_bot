@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-08 04:42:25 CET
+**Last Updated:** 2026-02-08 05:42:36 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 15 | 1,500 | 1.0% | 🟢 |
+| Today (RPD) | 23 | 1,500 | 1.5% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-45,218.17 |
-| Locked in Active Bets | $32,605.19 |
+| Available Capital | $-45,552.83 |
+| Locked in Active Bets | $32,939.85 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $32605.19 (3260.5% of capital) |
-| Avg Position Size | $114.81 |
+| Total Exposure | $32939.85 (3294.0% of capital) |
+| Avg Position Size | $114.77 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.004) |
 
 ---
-## 🎯 Active Bets (426)
+## 🎯 Active Bets (429)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -345,6 +345,9 @@
 | [Will Bitcoin reach $110,000 in February?](https://polymarket.com/event/will-bitcoin-reach-110k-in-february-2026) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-03-01 | 21d | 🟢 |
 | [Will the price of Bitcoin be above $82,0...](https://polymarket.com/event/bitcoin-above-82k-on-february-8) | NO | $96.82 | 0.50 | 0.25 | -25% 🔴 | 60% | $+48.41 | 2026-02-08 | 0d | 🔴 |
 | [Will Kate Hudson win Best Actress at the...](https://polymarket.com/event/will-kate-hudson-win-best-actress-at-the-98th-academy-awards) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+77.94 | 2026-03-15 | 34d | 🟢 |
+| [Will Ethereum reach $2,800 February 2-8?](https://polymarket.com/event/will-ethereum-reach-2800-february-2-8) | NO | $104.58 | 0.50 | 0.25 | -25% 🔴 | 70% | $+52.29 | 2026-02-09 | 1d | 🔴 |
+| [Will Natthaphong Ruengpanyawut be the ne...](https://polymarket.com/event/will-natthaphong-ruengpanyawut-be-the-next-prime-minister-of-thailand-after-the-election) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-12-31 | 325d | 🟢 |
+| [Will Devon Witherspoon win the Super Bow...](https://polymarket.com/event/will-devon-witherspoon-win-the-super-bowl-lx-mvp) | NO | $167.33 | 0.50 | 0.10 | -40% 🔴 | 70% | $+133.87 | 2026-02-09 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -6d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -6d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -6d | ⏳ Pending Resolution |
@@ -653,7 +656,9 @@
 - 🔴 **High Exposure**: "UFC Fight Night: Michal Oleksi..." is 11.2% of capital
 - 🔴 **High Exposure**: "Will Bitcoin reach $110,000 in..." is 14.6% of capital
 - 🔴 **High Exposure**: "Will Kate Hudson win Best Actr..." is 13.0% of capital
-- 🟡 **Expiring Soon**: 76 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Ethereum reach $2,800 Feb..." is 10.5% of capital
+- 🔴 **High Exposure**: "Will Devon Witherspoon win the..." is 16.7% of capital
+- 🟡 **Expiring Soon**: 78 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -661,7 +666,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 426 |
+| Markets with Active Bets | 429 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
