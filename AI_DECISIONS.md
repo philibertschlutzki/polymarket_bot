@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-08 05:42:36 CET
+**Last Updated:** 2026-02-08 06:42:45 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,43 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will Devon Witherspoon win the Super Bowl LX MVP?](https://polymarket.com/market/will-devon-witherspoon-win-the-super-bowl-lx-mvp)
+### Bet #1: [Will Christian Gonzalez win the Super Bowl LX MVP?](https://polymarket.com/market/will-christian-gonzalez-win-the-super-bowl-lx-mvp)
+*Analyzed: 2026-02-08 06:38 CET*
+
+**Decision:** NO @ 0.50 (Stake: $182.03)
+**[View Market →](https://polymarket.com/market/will-christian-gonzalez-win-the-super-bowl-lx-mvp)**
+
+**AI Analysis:**
+- **Estimated Probability:** 3.0% (vs Market: 50.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** -47.0%
+- **Expected Value:** $+171.11
+- **End Date:** 2026-02-09 00:55 CET
+
+**AI Reasoning:**
+> Cornerbacks rarely win Super Bowl MVP. Gonzalez would need a dominant performance, and other players are more likely to win the award (e.g., the team's quarterback). The game flow must allow Gonzalez to have a significant impact. Quarterbacks usually win the MVP.
+
+---
+
+### Bet #2: [Will MrBeast's next video get between 25 and 30 million view...](https://polymarket.com/market/will-mrbeasts-next-video-get-between-25-and-30-million-views-on-day-1-699)
+*Analyzed: 2026-02-08 06:03 CET*
+
+**Decision:** NO @ 0.50 (Stake: $146.42)
+**[View Market →](https://polymarket.com/market/will-mrbeasts-next-video-get-between-25-and-30-million-views-on-day-1-699)**
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -35.0%
+- **Expected Value:** $+102.49
+- **End Date:** 2026-05-31 02:00 CEST
+
+**AI Reasoning:**
+> MrBeast videos typically get far more than 30 million views on day 1. While there is always a chance of a lower-performing video, his large subscriber base and consistent high-quality content make it unlikely. The current Polymarket price of 50% seems too high given the available information.
+
+---
+
+### Bet #3: [Will Devon Witherspoon win the Super Bowl LX MVP?](https://polymarket.com/market/will-devon-witherspoon-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-08 05:38 CET*
 
 **Decision:** NO @ 0.50 (Stake: $167.33)
@@ -33,7 +69,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Will Natthaphong Ruengpanyawut be the next prime minister of...](https://polymarket.com/market/will-natthaphong-ruengpanyawut-be-the-next-prime-minister-of-thailand-after-the-election)
+### Bet #4: [Will Natthaphong Ruengpanyawut be the next prime minister of...](https://polymarket.com/market/will-natthaphong-ruengpanyawut-be-the-next-prime-minister-of-thailand-after-the-election)
 *Analyzed: 2026-02-08 04:53 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -51,7 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will Ethereum reach $2,800 February 2-8?](https://polymarket.com/market/will-ethereum-reach-2800-february-2-8)
+### Bet #5: [Will Ethereum reach $2,800 February 2-8?](https://polymarket.com/market/will-ethereum-reach-2800-february-2-8)
 *Analyzed: 2026-02-08 04:48 CET*
 
 **Decision:** NO @ 0.50 (Stake: $104.58)
@@ -69,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Will Kate Hudson win Best Actress at the 98th Academy Awards...](https://polymarket.com/market/will-kate-hudson-win-best-actress-at-the-98th-academy-awards)
+### Bet #6: [Will Kate Hudson win Best Actress at the 98th Academy Awards...](https://polymarket.com/market/will-kate-hudson-win-best-actress-at-the-98th-academy-awards)
 *Analyzed: 2026-02-08 04:13 CET*
 
 **Decision:** NO @ 0.50 (Stake: $129.90)
@@ -87,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [Will the price of Bitcoin be above $82,000 on February 8?](https://polymarket.com/market/bitcoin-above-82k-on-february-8)
+### Bet #7: [Will the price of Bitcoin be above $82,000 on February 8?](https://polymarket.com/market/bitcoin-above-82k-on-february-8)
 *Analyzed: 2026-02-08 03:23 CET*
 
 **Decision:** NO @ 0.50 (Stake: $96.82)
@@ -105,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will Bitcoin reach $110,000 in February?](https://polymarket.com/market/will-bitcoin-reach-110k-in-february-2026)
+### Bet #8: [Will Bitcoin reach $110,000 in February?](https://polymarket.com/market/will-bitcoin-reach-110k-in-february-2026)
 *Analyzed: 2026-02-08 02:37 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -123,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will Paris Saint-Germain FC win on 2026-02-08?](https://polymarket.com/market/fl1-psg-olm-2026-02-08-psg)
+### Bet #9: [Will Paris Saint-Germain FC win on 2026-02-08?](https://polymarket.com/market/fl1-psg-olm-2026-02-08-psg)
 *Analyzed: 2026-02-08 02:27 CET*
 
 **Decision:** YES @ 0.50 (Stake: $86.60)
@@ -141,25 +177,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #8: [UFC Fight Night: Michal Oleksiejczuk vs. Marc-Andre Barriaul...](https://polymarket.com/event/ufc-mic1-mar14-2026-02-07)
-*Analyzed: 2026-02-08 02:13 CET*
-
-**Decision:** YES @ 0.50 (Stake: $111.80)
-**[View Market →](https://polymarket.com/event/ufc-mic1-mar14-2026-02-07)**
-
-**AI Analysis:**
-- **Estimated Probability:** 75.0% (vs Market: 50.0%)
-- **Confidence Score:** 80.0%
-- **Edge:** +25.0%
-- **Expected Value:** $+55.90
-- **End Date:** 2026-02-08 05:59 CET
-
-**AI Reasoning:**
-> Michal Oleksiejczuk wird von Buchmachern und Analysten stark favorisiert. Er ist ein gefährlicher Striker, während Marc-Andre Barriault in letzter Zeit anfälliger für KOs war. Die Wahrscheinlichkeit eines Unentschiedens oder No Contests ist gering, daher wird ein klarer Gewinner erwartet. Die Wahrscheinlichkeit, dass Oleksiejczuk gewinnt, liegt bei 75%.
-
----
-
-### Bet #9: [Will Stefon Diggs win the Super Bowl LX MVP?](https://polymarket.com/market/will-stefon-diggs-win-the-super-bowl-lx-mvp)
+### Bet #10: [Will Stefon Diggs win the Super Bowl LX MVP?](https://polymarket.com/market/will-stefon-diggs-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-08 01:27 CET*
 
 **Decision:** NO @ 0.50 (Stake: $200.80)
@@ -177,7 +195,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #10: [Will Crystal Palace win the 2025–26 English Premier League?](https://polymarket.com/market/will-crystal-palace-win-the-202526-english-premier-league)
+### Bet #11: [Will Crystal Palace win the 2025–26 English Premier League?](https://polymarket.com/market/will-crystal-palace-win-the-202526-english-premier-league)
 *Analyzed: 2026-02-08 01:13 CET*
 
 **Decision:** NO @ 0.50 (Stake: $208.33)
@@ -192,24 +210,6 @@ This file contains detailed AI reasoning for all market analyses.
 
 **AI Reasoning:**
 > Crystal Palace ist kein Favorit für den Gewinn der Premier League 2025–26. Historisch gesehen gehören sie nicht zu den Top-Mannschaften, die regelmäßig um den Titel kämpfen. Die Wettquoten spiegeln dies wider, wobei die meisten Buchmacher Crystal Palace mit sehr geringen Chancen auf den Gewinn der Liga bewerten. Zum Beispiel werden sie bei einigen Buchmachern mit 499/1 geführt. Andere Teams wie Arsenal und Manchester City haben viel höhere Gewinnchancen. Obwohl Crystal Palace im FA Cup 2025 einen grossen Erfolg erzielte und auch den Community Shield gewann, deutet dies nicht unbedingt auf ihre Fähigkeit hin, die Premier League zu dominieren. Ein Supercomputer sagt voraus, dass sie in der Saison 2025-26 den 15. Platz belegen werden. Es ist jedoch wichtig zu erwähnen, dass es sich um eine Vorhersage handelt und sich ändern kann.
-
----
-
-### Bet #11: [UFC Fight Night: Priscila Cachoeira vs. Klaudia Sygula (Wome...](https://polymarket.com/event/ufc-pri-kla-2026-02-07)
-*Analyzed: 2026-02-08 01:02 CET*
-
-**Decision:** NO @ 0.50 (Stake: $250.00)
-**[View Market →](https://polymarket.com/event/ufc-pri-kla-2026-02-07)**
-
-**AI Analysis:**
-- **Estimated Probability:** 0.0% (vs Market: 50.0%)
-- **Confidence Score:** 100.0%
-- **Edge:** -50.0%
-- **Expected Value:** $+250.00
-- **End Date:** 2026-02-08 05:59 CET
-
-**AI Reasoning:**
-> Klaudia Sygula hat den Kampf gegen Priscila Cachoeira am 7. Februar 2026 durch einstimmige Entscheidung gewonnen. Daher ist die Wahrscheinlichkeit, dass Priscila Cachoeira gewinnt, gleich Null.
 
 ---
 
@@ -921,6 +921,24 @@ This file contains detailed AI reasoning for all market analyses.
 
 ### Insufficient Edge (50)
 
+**[Bitcoin Up or Down - February 7, 11PM ET](https://polymarket.com/event/bitcoin-up-or-down-february-7-11pm-et)**
+*Analyzed: 2026-02-08 05:58 CET*
+Market: 0.50 | AI: 0.60 | Edge: +10.0% | Conf: 70%
+**[View Market →](https://polymarket.com/event/bitcoin-up-or-down-february-7-11pm-et)**
+
+**Reasoning:** Based on the current market sentiment, downward trend, and recent volatility, I estimate a 60% probability that the closing price of the 1-hour candle on February 7th at 11 PM ET will be lower than the opening price. The overall market fear and negative technical indicators support this assessment. However, the inherent volatility of Bitcoin and the potential for unexpected events introduce uncertainty, resulting in a confidence score of 0.7.
+
+---
+
+**[Bitcoin Up or Down - February 7, 8:00PM-12:00AM ET](https://polymarket.com/event/btc-updown-4h-1770512400)**
+*Analyzed: 2026-02-08 05:43 CET*
+Market: 0.50 | AI: 0.50 | Edge: +0.0% | Conf: 40%
+**[View Market →](https://polymarket.com/event/btc-updown-4h-1770512400)**
+
+**Reasoning:** Die verfügbaren Daten sind lückenhaft und der Bitcoin-Preis war am 7. Februar 2026 sehr volatil.  Die Preise, die um die relevante Zeit herum gefunden wurden, deuten auf erhebliche Schwankungen hin. Daher ist eine genaue Vorhersage schwierig, und eine Wahrscheinlichkeit von 50 % spiegelt die Unsicherheit wider. Der aktuelle Marktpreis von 50% stützt diese Einschätzung ebenfalls.
+
+---
+
 **[Will Hannover 96 win on 2026-02-08?](https://polymarket.com/market/bl2-h96-ksv-2026-02-08-h96)**
 *Analyzed: 2026-02-08 05:13 CET*
 Market: 0.50 | AI: 0.58 | Edge: +8.0% | Conf: 75%
@@ -1350,24 +1368,6 @@ Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 65%
 **[View Market →](https://polymarket.com/market/elon-musk-of-tweets-january-30-february-6-340-359)**
 
 **Reasoning:** Um die Wahrscheinlichkeit zu beurteilen, dass Elon Musk zwischen dem 30. Januar und dem 6. Februar 2026 340-359 Tweets veröffentlicht, habe ich verschiedene Faktoren berücksichtigt. Erstens zeigt der aktuelle Marktpreis von 'Yes' bei Polymarket, dass der Markt diese Möglichkeit mit 50 % bewertet.  Zweitens deuten Daten vom 5. Februar 2026 von XTracker darauf hin, dass Elon Musk in den ersten 6 Tagen des Zeitraums bereits 254 Tweets veröffentlicht hat, was einem Tagesdurchschnitt von 42 Tweets entspricht. Wenn er dieses Tempo beibehält, würde er am 6. Februar wahrscheinlich etwa 42 zusätzliche Tweets veröffentlichen, was eine Gesamtzahl von etwa 296 Tweets ergibt. Es ist jedoch wichtig zu beachten, dass die Tweet-Frequenz von Elon Musk sehr unterschiedlich sein kann.  Einige Quellen deuten darauf hin, dass er im Jahr 2022 durchschnittlich etwa 29 Tweets pro Tag veröffentlichte. Andere Quellen deuten darauf hin, dass er durchschnittlich 67,8 Tweets pro Tag veröffentlichte, mit Spitzenwerten von über 150 Tweets an einigen Tagen. Jüngste Daten von XTracker zeigen einen niedrigeren Tagesdurchschnitt von etwa 34 Tweets. Angesichts dieser Variabilität und der Tatsache, dass er bereits deutlich über dem Durchschnitt liegt, halte ich es für weniger wahrscheinlich, dass er die erforderlichen 340-359 Tweets erreicht. Allerdings ist es nicht ausgeschlossen, da er in der Vergangenheit sehr hohe Tweet-Frequenzen gezeigt hat. Basierend auf diesen Informationen schätze ich die Wahrscheinlichkeit, dass er 340-359 Tweets postet, auf 40 %. Ich habe ein mäßiges Vertrauen in diese Schätzung, da die Tweet-Frequenz von Elon Musk sehr unberechenbar ist.
-
----
-
-**[Will the price of Bitcoin be above $70,000 on February 10?](https://polymarket.com/market/bitcoin-above-70k-on-february-10)**
-*Analyzed: 2026-02-06 15:00 CET*
-Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 60%
-**[View Market →](https://polymarket.com/market/bitcoin-above-70k-on-february-10)**
-
-**Reasoning:** Bitcoin ist volatil und hat kürzlich einen Rückgang erlebt. Die technische Analyse ist überwiegend negativ, deutet aber auf eine mögliche Aufwärtskorrektur aufgrund überverkaufter Bedingungen hin. Preisprognosen sind gemischt. Unter Berücksichtigung des aktuellen Marktpreises und der Nachrichtenlage schätze ich die Wahrscheinlichkeit vorsichtig auf 40 %.
-
----
-
-**[Will the price of Bitcoin be above $66,000 on February 10?](https://polymarket.com/market/bitcoin-above-66k-on-february-10)**
-*Analyzed: 2026-02-06 14:34 CET*
-Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 60%
-**[View Market →](https://polymarket.com/market/bitcoin-above-66k-on-february-10)**
-
-**Reasoning:** Obwohl es kurzfristige Abwärtsrisiken gibt, deuten viele längerfristige Prognosen darauf hin, dass Bitcoin bis zum 10. Februar über 66.000 US-Dollar liegen könnte. Die aktuelle Stimmung ist jedoch vorsichtig, und technische Indikatoren sind gemischt, daher ist die Wahrscheinlichkeit nicht sehr hoch und das Konfidenzniveau moderat.
 
 ---
 
