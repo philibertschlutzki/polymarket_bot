@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-08 10:43:18 CET
+**Last Updated:** 2026-02-08 11:43:24 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,61 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will DeepSeek have the best AI model at the end of March 202...](https://polymarket.com/market/will-deepseek-have-the-best-ai-model-at-the-end-of-march-2026-113)
+### Bet #1: [Will Elon Musk post 180-199 tweets from February 6 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-180-199)
+*Analyzed: 2026-02-08 11:29 CET*
+
+**Decision:** NO @ 0.50 (Stake: $80.62)
+**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-180-199)**
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 50.0%)
+- **Confidence Score:** 65.0%
+- **Edge:** -20.0%
+- **Expected Value:** $+32.25
+- **End Date:** 2026-02-13 18:00 CET
+
+**AI Reasoning:**
+> Elon Musk's tweet frequency is highly variable. While recent data from Feb 3-6, 2026, indicates a higher daily average, the target range requires a lower average (25.7 - 28.4 tweets/day). The weekend slowdown, as noted in Polymarket comments, could contribute to him falling within the 180-199 range. However, given his overall high activity, the probability of him landing in this specific, relatively narrow range is moderate. The confidence score reflects the uncertainty due to the volatile nature of his Twitter activity.
+
+---
+
+### Bet #2: [Will Elon Musk post 160-179 tweets from February 6 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-160-179)
+*Analyzed: 2026-02-08 10:58 CET*
+
+**Decision:** NO @ 0.50 (Stake: $77.46)
+**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-160-179)**
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 50.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** -20.0%
+- **Expected Value:** $+30.98
+- **End Date:** 2026-02-13 18:00 CET
+
+**AI Reasoning:**
+> Elon Musks Tweet-Verhalten ist notorisch unberechenbar. Historische Daten deuten darauf hin, dass er an manchen Tagen sehr aktiv sein kann und an anderen weniger.  Ein Artikel aus dem Jahr 2024 deutete darauf hin, dass Musk durchschnittlich etwa 68 Tweets pro Tag verfasst hat. Das würde in einer Woche etwa 476 Tweets ergeben.  Allerdings ist dies nur ein Durchschnittswert, und seine Aktivität kann stark variieren. Um die Frage zu beantworten, müssen es zwischen dem 6. und 13. Februar 2026 zwischen 160 und 179 Tweets sein. Der aktuelle Marktpreis deutet auf eine Wahrscheinlichkeit von 50 % hin.  Die Tatsache, dass der Marktpreis nicht viel höher ist, deutet darauf hin, dass die Leute sich der Unvorhersehbarkeit von Musks Tweet-Verhalten bewusst sind. Es gibt auch andere Polymarket-Vorhersagemärkte, die sich auf Elon Musks Tweet-Verhalten konzentrieren. Zum Beispiel gab es einen Markt für die Anzahl der Tweets zwischen dem 10. und 17. Februar 2026. Es gab auch einen Markt für die Anzahl der Tweets zwischen dem 9. und 11. Februar 2026. Angesichts der Volatilität seines Verhaltens und der relativ geringen Bandbreite der in der Frage genannten Anzahl schätze ich die Wahrscheinlichkeit, dass er zwischen dem 6. und 13. Februar 2026 zwischen 160 und 179 Tweets postet, auf etwa 30 %. Mein Vertrauensgrad ist moderat, da Musks Verhalten schwer vorherzusagen ist, aber die enge Spanne macht es unwahrscheinlicher.
+
+---
+
+### Bet #3: [Jesus Christ return before 2027 Odds >5% February 17, 12-1 A...](https://polymarket.com/event/jesus-christ-return-before-2027-odds-5-monday-night-12-1-am)
+*Analyzed: 2026-02-08 10:43 CET*
+
+**Decision:** NO @ 0.50 (Stake: $207.85)
+**[View Market →](https://polymarket.com/event/jesus-christ-return-before-2027-odds-5-monday-night-12-1-am)**
+
+**AI Analysis:**
+- **Estimated Probability:** 2.0% (vs Market: 50.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** -48.0%
+- **Expected Value:** $+199.53
+- **End Date:** 2026-02-10 01:00 CET
+
+**AI Reasoning:**
+> Die aktuelle Marktwahrscheinlichkeit für die Rückkehr Jesu vor 2027 liegt bei etwa 2-4%. Die spezifische Frage, ob der Preis für 'Ja' während eines bestimmten einstündigen Fensters über 5% liegt, ist unwahrscheinlich, da der allgemeine Glaube an die Rückkehr Jesu vor 2027 sehr gering ist. Die aktuelle Marktpreis von 50% bezieht sich vermutlich auf die Derivative Frage, ob der Preis über 5% steigt, nicht auf die eigentliche Rückkehr Jesu. Da es sich um ein kurzes Zeitfenster handelt und ein 'Tie' als 'Nein' gewertet wird, ist die Wahrscheinlichkeit gering. Ich bin relativ zuversichtlich, da ich mehrere Quellen habe, die die geringe Wahrscheinlichkeit der Rückkehr Jesu belegen, und der Marktpreis der spezifischen Frage berücksichtigt.
+
+---
+
+### Bet #4: [Will DeepSeek have the best AI model at the end of March 202...](https://polymarket.com/market/will-deepseek-have-the-best-ai-model-at-the-end-of-march-2026-113)
 *Analyzed: 2026-02-08 09:13 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -33,7 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Will MrBeast's next video get 55 million or more views on da...](https://polymarket.com/market/will-mrbeasts-next-video-get-55-million-or-more-views-on-day-1-555)
+### Bet #5: [Will MrBeast's next video get 55 million or more views on da...](https://polymarket.com/market/will-mrbeasts-next-video-get-55-million-or-more-views-on-day-1-555)
 *Analyzed: 2026-02-08 08:53 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -51,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will the price of Ethereum be above $2,300 on February 8?](https://polymarket.com/market/ethereum-above-2300-on-february-8)
+### Bet #6: [Will the price of Ethereum be above $2,300 on February 8?](https://polymarket.com/market/ethereum-above-2300-on-february-8)
 *Analyzed: 2026-02-08 08:23 CET*
 
 **Decision:** NO @ 0.50 (Stake: $96.82)
@@ -69,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Will Ethereum dip to $1,600 February 2-8?](https://polymarket.com/market/will-ethereum-dip-to-1600-february-2-8)
+### Bet #7: [Will Ethereum dip to $1,600 February 2-8?](https://polymarket.com/market/will-ethereum-dip-to-1600-february-2-8)
 *Analyzed: 2026-02-08 08:09 CET*
 
 **Decision:** YES @ 0.50 (Stake: $58.09)
@@ -87,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [U.S. strike on Somalia by February 28?](https://polymarket.com/event/us-strike-on-somalia-by-february-28)
+### Bet #8: [U.S. strike on Somalia by February 28?](https://polymarket.com/event/us-strike-on-somalia-by-february-28)
 *Analyzed: 2026-02-08 07:58 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -105,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will Elon Musk post 40-59 tweets from February 6 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-40-59)
+### Bet #9: [Will Elon Musk post 40-59 tweets from February 6 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-40-59)
 *Analyzed: 2026-02-08 07:28 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -123,7 +177,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will FC Bayern München win on 2026-02-08?](https://polymarket.com/market/bun-bay-hof-2026-02-08-bay)
+### Bet #10: [Will FC Bayern München win on 2026-02-08?](https://polymarket.com/market/bun-bay-hof-2026-02-08-bay)
 *Analyzed: 2026-02-08 07:23 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -141,7 +195,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #8: [Will Byron Murphy win the Super Bowl LX MVP?](https://polymarket.com/market/will-byron-murphy-win-the-super-bowl-lx-mvp)
+### Bet #11: [Will Byron Murphy win the Super Bowl LX MVP?](https://polymarket.com/market/will-byron-murphy-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-08 06:53 CET*
 
 **Decision:** NO @ 0.50 (Stake: $245.00)
@@ -159,7 +213,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #9: [Will Christian Gonzalez win the Super Bowl LX MVP?](https://polymarket.com/market/will-christian-gonzalez-win-the-super-bowl-lx-mvp)
+### Bet #12: [Will Christian Gonzalez win the Super Bowl LX MVP?](https://polymarket.com/market/will-christian-gonzalez-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-08 06:38 CET*
 
 **Decision:** NO @ 0.50 (Stake: $182.03)
@@ -177,7 +231,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #10: [Will MrBeast's next video get between 25 and 30 million view...](https://polymarket.com/market/will-mrbeasts-next-video-get-between-25-and-30-million-views-on-day-1-699)
+### Bet #13: [Will MrBeast's next video get between 25 and 30 million view...](https://polymarket.com/market/will-mrbeasts-next-video-get-between-25-and-30-million-views-on-day-1-699)
 *Analyzed: 2026-02-08 06:03 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -195,7 +249,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #11: [Will Devon Witherspoon win the Super Bowl LX MVP?](https://polymarket.com/market/will-devon-witherspoon-win-the-super-bowl-lx-mvp)
+### Bet #14: [Will Devon Witherspoon win the Super Bowl LX MVP?](https://polymarket.com/market/will-devon-witherspoon-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-08 05:38 CET*
 
 **Decision:** NO @ 0.50 (Stake: $167.33)
@@ -213,7 +267,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #12: [Will Natthaphong Ruengpanyawut be the next prime minister of...](https://polymarket.com/market/will-natthaphong-ruengpanyawut-be-the-next-prime-minister-of-thailand-after-the-election)
+### Bet #15: [Will Natthaphong Ruengpanyawut be the next prime minister of...](https://polymarket.com/market/will-natthaphong-ruengpanyawut-be-the-next-prime-minister-of-thailand-after-the-election)
 *Analyzed: 2026-02-08 04:53 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -231,7 +285,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #13: [Will Ethereum reach $2,800 February 2-8?](https://polymarket.com/market/will-ethereum-reach-2800-february-2-8)
+### Bet #16: [Will Ethereum reach $2,800 February 2-8?](https://polymarket.com/market/will-ethereum-reach-2800-february-2-8)
 *Analyzed: 2026-02-08 04:48 CET*
 
 **Decision:** NO @ 0.50 (Stake: $104.58)
@@ -249,7 +303,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #14: [Will Kate Hudson win Best Actress at the 98th Academy Awards...](https://polymarket.com/market/will-kate-hudson-win-best-actress-at-the-98th-academy-awards)
+### Bet #17: [Will Kate Hudson win Best Actress at the 98th Academy Awards...](https://polymarket.com/market/will-kate-hudson-win-best-actress-at-the-98th-academy-awards)
 *Analyzed: 2026-02-08 04:13 CET*
 
 **Decision:** NO @ 0.50 (Stake: $129.90)
@@ -267,7 +321,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #15: [Will the price of Bitcoin be above $82,000 on February 8?](https://polymarket.com/market/bitcoin-above-82k-on-february-8)
+### Bet #18: [Will the price of Bitcoin be above $82,000 on February 8?](https://polymarket.com/market/bitcoin-above-82k-on-february-8)
 *Analyzed: 2026-02-08 03:23 CET*
 
 **Decision:** NO @ 0.50 (Stake: $96.82)
@@ -285,7 +339,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #16: [Will Bitcoin reach $110,000 in February?](https://polymarket.com/market/will-bitcoin-reach-110k-in-february-2026)
+### Bet #19: [Will Bitcoin reach $110,000 in February?](https://polymarket.com/market/will-bitcoin-reach-110k-in-february-2026)
 *Analyzed: 2026-02-08 02:37 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -303,7 +357,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #17: [Will Paris Saint-Germain FC win on 2026-02-08?](https://polymarket.com/market/fl1-psg-olm-2026-02-08-psg)
+### Bet #20: [Will Paris Saint-Germain FC win on 2026-02-08?](https://polymarket.com/market/fl1-psg-olm-2026-02-08-psg)
 *Analyzed: 2026-02-08 02:27 CET*
 
 **Decision:** YES @ 0.50 (Stake: $86.60)
@@ -321,7 +375,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #18: [Will Stefon Diggs win the Super Bowl LX MVP?](https://polymarket.com/market/will-stefon-diggs-win-the-super-bowl-lx-mvp)
+### Bet #21: [Will Stefon Diggs win the Super Bowl LX MVP?](https://polymarket.com/market/will-stefon-diggs-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-08 01:27 CET*
 
 **Decision:** NO @ 0.50 (Stake: $200.80)
@@ -339,7 +393,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #19: [Will Crystal Palace win the 2025–26 English Premier League?](https://polymarket.com/market/will-crystal-palace-win-the-202526-english-premier-league)
+### Bet #22: [Will Crystal Palace win the 2025–26 English Premier League?](https://polymarket.com/market/will-crystal-palace-win-the-202526-english-premier-league)
 *Analyzed: 2026-02-08 01:13 CET*
 
 **Decision:** NO @ 0.50 (Stake: $208.33)
@@ -357,7 +411,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #20: [Will Elon Musk post 140-159 tweets from February 6 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-140-159)
+### Bet #23: [Will Elon Musk post 140-159 tweets from February 6 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-140-159)
 *Analyzed: 2026-02-08 00:57 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -375,7 +429,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #21: [Will DeMarcus Lawrence win the Super Bowl LX MVP?](https://polymarket.com/market/will-demarcus-lawrence-win-the-super-bowl-lx-mvp)
+### Bet #24: [Will DeMarcus Lawrence win the Super Bowl LX MVP?](https://polymarket.com/market/will-demarcus-lawrence-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-08 00:22 CET*
 
 **Decision:** NO @ 0.50 (Stake: $212.18)
@@ -393,7 +447,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #22: [Will Canada win the Men's Ice Hockey gold medal at the 2026 ...](https://polymarket.com/market/will-canada-win-the-mens-ice-hockey-gold-medal-at-the-2026-winter-olympics)
+### Bet #25: [Will Canada win the Men's Ice Hockey gold medal at the 2026 ...](https://polymarket.com/market/will-canada-win-the-mens-ice-hockey-gold-medal-at-the-2026-winter-olympics)
 *Analyzed: 2026-02-08 00:12 CET*
 
 **Decision:** YES @ 0.50 (Stake: $69.15)
@@ -411,7 +465,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #23: [Will Marcus Jones win the Super Bowl LX MVP?](https://polymarket.com/market/will-marcus-jones-win-the-super-bowl-lx-mvp)
+### Bet #26: [Will Marcus Jones win the Super Bowl LX MVP?](https://polymarket.com/market/will-marcus-jones-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-07 23:37 CET*
 
 **Decision:** NO @ 0.50 (Stake: $166.54)
@@ -429,7 +483,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #24: [Will Bitcoin reach $86,000 February 2-8?](https://polymarket.com/market/will-bitcoin-reach-86k-february-2-8)
+### Bet #27: [Will Bitcoin reach $86,000 February 2-8?](https://polymarket.com/market/will-bitcoin-reach-86k-february-2-8)
 *Analyzed: 2026-02-07 23:27 CET*
 
 **Decision:** NO @ 0.50 (Stake: $141.09)
@@ -447,7 +501,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #25: [Will MrBeast's next video get between 40 and 45 million view...](https://polymarket.com/market/will-mrbeasts-next-video-get-between-40-and-45-million-views-on-day-1-782)
+### Bet #28: [Will MrBeast's next video get between 40 and 45 million view...](https://polymarket.com/market/will-mrbeasts-next-video-get-between-40-and-45-million-views-on-day-1-782)
 *Analyzed: 2026-02-07 23:27 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -465,7 +519,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #26: [Will Magnus Carlsen win the 2025–2026 Speed Chess Championsh...](https://polymarket.com/market/will-magnus-carlsen-win-the-20252026-speed-chess-championship)
+### Bet #29: [Will Magnus Carlsen win the 2025–2026 Speed Chess Championsh...](https://polymarket.com/market/will-magnus-carlsen-win-the-20252026-speed-chess-championship)
 *Analyzed: 2026-02-07 22:52 CET*
 
 **Decision:** YES @ 0.50 (Stake: $69.15)
@@ -483,7 +537,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #27: [Will MrBeast's next video get less than 25 million views on ...](https://polymarket.com/market/will-mrbeasts-next-video-get-less-than-25-million-views-on-day-1-582)
+### Bet #30: [Will MrBeast's next video get less than 25 million views on ...](https://polymarket.com/market/will-mrbeasts-next-video-get-less-than-25-million-views-on-day-1-582)
 *Analyzed: 2026-02-07 22:42 CET*
 
 **Decision:** NO @ 0.50 (Stake: $129.90)
@@ -501,7 +555,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #28: [Will Lady Gaga perform during the Super Bowl LX halftime sho...](https://polymarket.com/market/will-lady-gaga-perform-during-the-super-bowl-lx-halftime-show)
+### Bet #31: [Will Lady Gaga perform during the Super Bowl LX halftime sho...](https://polymarket.com/market/will-lady-gaga-perform-during-the-super-bowl-lx-halftime-show)
 *Analyzed: 2026-02-07 22:12 CET*
 
 **Decision:** NO @ 0.50 (Stake: $173.21)
@@ -519,7 +573,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #29: [Will Rhamondre Stevenson win the Super Bowl LX MVP?](https://polymarket.com/market/will-rhamondre-stevenson-win-the-super-bowl-lx-mvp)
+### Bet #32: [Will Rhamondre Stevenson win the Super Bowl LX MVP?](https://polymarket.com/market/will-rhamondre-stevenson-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-07 20:57 CET*
 
 **Decision:** NO @ 0.50 (Stake: $189.46)
@@ -537,7 +591,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #30: [Will Travis Scott perform during the Super Bowl LX halftime ...](https://polymarket.com/market/will-travis-scott-perform-during-the-super-bowl-lx-halftime-show)
+### Bet #33: [Will Travis Scott perform during the Super Bowl LX halftime ...](https://polymarket.com/market/will-travis-scott-perform-during-the-super-bowl-lx-halftime-show)
 *Analyzed: 2026-02-07 20:32 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -555,7 +609,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #31: [Will Yodchanan Wongsawat be the next prime minister of Thail...](https://polymarket.com/market/will-yodchanan-wongsawat-be-the-next-prime-minister-of-thailand)
+### Bet #34: [Will Yodchanan Wongsawat be the next prime minister of Thail...](https://polymarket.com/market/will-yodchanan-wongsawat-be-the-next-prime-minister-of-thailand)
 *Analyzed: 2026-02-07 20:27 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -573,7 +627,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #32: [Will Coby Bryant win the Super Bowl LX MVP?](https://polymarket.com/market/will-coby-bryant-win-the-super-bowl-lx-mvp)
+### Bet #35: [Will Coby Bryant win the Super Bowl LX MVP?](https://polymarket.com/market/will-coby-bryant-win-the-super-bowl-lx-mvp)
 *Analyzed: 2026-02-07 20:27 CET*
 
 **Decision:** NO @ 0.50 (Stake: $196.62)
@@ -591,7 +645,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #33: [Over $2M committed to the Hurupay public sale?](https://polymarket.com/market/over-2m-committed-to-the-hurupay-public-sale-226-884-112-563)
+### Bet #36: [Over $2M committed to the Hurupay public sale?](https://polymarket.com/market/over-2m-committed-to-the-hurupay-public-sale-226-884-112-563)
 *Analyzed: 2026-02-07 19:57 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -609,7 +663,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #34: [Will Julian Assange win the Nobel Peace Prize in 2026?](https://polymarket.com/event/will-julian-assange-win-the-nobel-peace-prize-in-2026-899)
+### Bet #37: [Will Julian Assange win the Nobel Peace Prize in 2026?](https://polymarket.com/event/will-julian-assange-win-the-nobel-peace-prize-in-2026-899)
 *Analyzed: 2026-02-07 18:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $188.25)
@@ -627,7 +681,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #35: [Will Elon Musk post <40 tweets from February 7 to February 9...](https://polymarket.com/market/elon-musk-of-tweets-february-7-february-9-0-39)
+### Bet #38: [Will Elon Musk post <40 tweets from February 7 to February 9...](https://polymarket.com/market/elon-musk-of-tweets-february-7-february-9-0-39)
 *Analyzed: 2026-02-07 18:17 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -645,7 +699,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #36: [EdgeX FDV above $1B one day after launch?](https://polymarket.com/market/edgex-fdv-above-1b-one-day-after-launch)
+### Bet #39: [EdgeX FDV above $1B one day after launch?](https://polymarket.com/market/edgex-fdv-above-1b-one-day-after-launch)
 *Analyzed: 2026-02-07 16:56 CET*
 
 **Decision:** NO @ 0.50 (Stake: $60.47)
@@ -663,7 +717,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #37: [Will Israel strike Lebanon on February 6, 2026?](https://polymarket.com/market/will-israel-strike-lebanon-on-february-6-2026)
+### Bet #40: [Will Israel strike Lebanon on February 6, 2026?](https://polymarket.com/market/will-israel-strike-lebanon-on-february-6-2026)
 *Analyzed: 2026-02-07 16:47 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -681,7 +735,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #38: [U.S. agrees to give Ukraine security guarantee by June 30? ](https://polymarket.com/event/us-agrees-to-give-ukraine-security-guarantee-by-june-30)
+### Bet #41: [U.S. agrees to give Ukraine security guarantee by June 30? ](https://polymarket.com/event/us-agrees-to-give-ukraine-security-guarantee-by-june-30)
 *Analyzed: 2026-02-07 16:21 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -699,7 +753,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #39: [Will François Bayrou win the 2027 French presidential electi...](https://polymarket.com/market/will-franois-bayrou-win-the-2027-french-presidential-election)
+### Bet #42: [Will François Bayrou win the 2027 French presidential electi...](https://polymarket.com/market/will-franois-bayrou-win-the-2027-french-presidential-election)
 *Analyzed: 2026-02-07 15:43 CET*
 
 **Decision:** NO @ 0.50 (Stake: $188.25)
@@ -717,7 +771,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #40: [Qatar Total Open, Qualification: Tereza Valentova vs Ella Se...](https://polymarket.com/event/wta-valento-seidel-2026-02-07)
+### Bet #43: [Qatar Total Open, Qualification: Tereza Valentova vs Ella Se...](https://polymarket.com/event/wta-valento-seidel-2026-02-07)
 *Analyzed: 2026-02-07 14:16 CET*
 
 **Decision:** YES @ 0.50 (Stake: $89.44)
@@ -735,7 +789,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #41: [T20 World Cup: Scotland vs West Indies (Game 1)](https://polymarket.com/event/crint-sco-wst-2026-02-07)
+### Bet #44: [T20 World Cup: Scotland vs West Indies (Game 1)](https://polymarket.com/event/crint-sco-wst-2026-02-07)
 *Analyzed: 2026-02-07 13:11 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -753,7 +807,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #42: [Will Bitcoin dip to $40,000 in February?](https://polymarket.com/market/will-bitcoin-dip-to-40k-in-february-2026-785-212-222)
+### Bet #45: [Will Bitcoin dip to $40,000 in February?](https://polymarket.com/market/will-bitcoin-dip-to-40k-in-february-2026-785-212-222)
 *Analyzed: 2026-02-07 12:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -771,7 +825,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #43: [Will Base launch a token by December 31, 2026?](https://polymarket.com/market/will-base-launch-a-token-by-december-31-2026-154)
+### Bet #46: [Will Base launch a token by December 31, 2026?](https://polymarket.com/market/will-base-launch-a-token-by-december-31-2026-154)
 *Analyzed: 2026-02-07 12:01 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -789,7 +843,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #44: [Will Gold (GC) hit (HIGH) $6,200 by end of February?](https://polymarket.com/market/will-gold-gc-hit-high-6200-by-end-of-february-882-138-877-117-343-764-976)
+### Bet #47: [Will Gold (GC) hit (HIGH) $6,200 by end of February?](https://polymarket.com/market/will-gold-gc-hit-high-6200-by-end-of-february-882-138-877-117-343-764-976)
 *Analyzed: 2026-02-07 11:46 CET*
 
 **Decision:** NO @ 0.50 (Stake: $189.78)
@@ -807,7 +861,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #45: [Will Vladimir Putin win the Nobel Peace Prize in 2026?](https://polymarket.com/market/will-vladimir-putin-win-the-nobel-peace-prize-in-2026-126)
+### Bet #48: [Will Vladimir Putin win the Nobel Peace Prize in 2026?](https://polymarket.com/market/will-vladimir-putin-win-the-nobel-peace-prize-in-2026-126)
 *Analyzed: 2026-02-07 11:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $193.26)
@@ -825,7 +879,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #46: [Will Real Madrid CF win on 2026-02-08?](https://polymarket.com/market/lal-val-rea-2026-02-08-rea)
+### Bet #49: [Will Real Madrid CF win on 2026-02-08?](https://polymarket.com/market/lal-val-rea-2026-02-08-rea)
 *Analyzed: 2026-02-07 11:06 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -843,7 +897,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #47: [Will the New York Islanders win the 2026 NHL Stanley Cup?](https://polymarket.com/market/will-the-new-york-islanders-win-the-2026-nhl-stanley-cup)
+### Bet #50: [Will the New York Islanders win the 2026 NHL Stanley Cup?](https://polymarket.com/market/will-the-new-york-islanders-win-the-2026-nhl-stanley-cup)
 *Analyzed: 2026-02-07 10:56 CET*
 
 **Decision:** NO @ 0.50 (Stake: $164.54)
@@ -861,65 +915,20 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #48: [Will Ernest Jones win the Super Bowl LX MVP?](https://polymarket.com/market/will-ernest-jones-win-the-super-bowl-lx-mvp)
-*Analyzed: 2026-02-07 10:51 CET*
-
-**Decision:** NO @ 0.50 (Stake: $196.62)
-**[View Market →](https://polymarket.com/market/will-ernest-jones-win-the-super-bowl-lx-mvp)**
-
-**AI Analysis:**
-- **Estimated Probability:** 3.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -47.0%
-- **Expected Value:** $+184.82
-- **End Date:** 2026-02-09 00:55 CET
-
-**AI Reasoning:**
-> Während Ernest Jones ein wichtiger Teil der Seahawks-Verteidigung ist, gewinnen Defensivspieler selten den Super Bowl MVP. Die Auszeichnung wird in der Regel an Quarterbacks oder Offensivspieler vergeben. Die aktuellen Marktpreise spiegeln dies wider. Für Jones wäre eine spielentscheidende Leistung erforderlich, und selbst dann ist es unwahrscheinlich, dass er Spieler wie Sam Darnold oder Jaxon Smith-Njigba übertrifft, wenn diese eine starke Leistung erbringen.
-
----
-
-### Bet #49: [Will Andres Borregales win the Super Bowl LX MVP?](https://polymarket.com/market/will-andres-borregales-win-the-super-bowl-lx-mvp)
-*Analyzed: 2026-02-07 10:36 CET*
-
-**Decision:** NO @ 0.50 (Stake: $208.75)
-**[View Market →](https://polymarket.com/market/will-andres-borregales-win-the-super-bowl-lx-mvp)**
-
-**AI Analysis:**
-- **Estimated Probability:** 0.1% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -49.9%
-- **Expected Value:** $+208.33
-- **End Date:** 2026-02-09 00:55 CET
-
-**AI Reasoning:**
-> Die Wahrscheinlichkeit, dass ein Kicker den Super Bowl MVP gewinnt, ist historisch gesehen extrem gering. Nur ein Kicker hat jemals den NFL MVP Award gewonnen. Obwohl der Super Bowl MVP Award etwas anders ist, geht er in der Regel an den Quarterback oder einen anderen wichtigen Offensivspieler des Gewinnerteams. Andres Borregales ist ein Kicker, und obwohl er eine gute Saison hat, ist es sehr unwahrscheinlich, dass er der wertvollste Spieler wird. Super Bowl LX findet am 8. Februar 2026 im Levi's Stadium in Santa Clara, Kalifornien, statt. Die Tatsache, dass die aktuelle Wettquote bei 50 % liegt, deutet darauf hin, dass der Markt ineffizient ist. Daher schätze ich die Wahrscheinlichkeit auf 0,1 %.
-
----
-
-### Bet #50: [Over $50M committed to the Hurupay public sale?](https://polymarket.com/market/over-50m-committed-to-the-hurupay-public-sale-569-772-915-493-946-347-974)
-*Analyzed: 2026-02-07 10:26 CET*
-
-**Decision:** NO @ 0.50 (Stake: $62.75)
-**[View Market →](https://polymarket.com/market/over-50m-committed-to-the-hurupay-public-sale-569-772-915-493-946-347-974)**
-
-**AI Analysis:**
-- **Estimated Probability:** 35.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -15.0%
-- **Expected Value:** $+18.82
-- **End Date:** 2026-05-01 07:00 CEST
-
-**AI Reasoning:**
-> Hurupay fundraising on MetaDAO has a target of $50M by February 10, 2026. As of February 7, 2026, the market price for 'Yes' is 50%. While there's momentum with over $1M already committed, reaching $50M in the remaining time is a high bar given the volatility in crypto markets. Therefore, a probability of 0.35 reflects the challenge in achieving such a substantial raise in a short timeframe. Confidence score of 0.7 indicates moderate confidence due to the inherent unpredictability of crypto fundraising.
-
----
-
 ## ❌ Rejected Markets
 
 *Showing last 50 rejected analyses*
 
 ### Insufficient Edge (50)
+
+**[Will Elon Musk post 115-139 tweets from February 7 to February 9, 2026?](https://polymarket.com/market/elon-musk-of-tweets-february-7-february-9-115-139)**
+*Analyzed: 2026-02-08 11:13 CET*
+Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 70%
+**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-7-february-9-115-139)**
+
+**Reasoning:** Elon Musk's historical tweeting activity suggests he often exceeds 30 tweets per day, sometimes significantly more. The target range of 115-139 tweets over two days requires a sustained higher-than-average output, which is possible but not guaranteed. Given his known volatility and the possibility of unforeseen events affecting his activity, the probability is estimated at 45% with a confidence score of 0.7. The XTracker data indicates that recent daily averages have been around 36, which would not be sufficient to meet the condition. However, it's possible for him to increase his activity for a short period.
+
+---
 
 **[Will the price of Ethereum be above $2,200 on February 8?](https://polymarket.com/market/ethereum-above-2200-on-february-8)**
 *Analyzed: 2026-02-08 09:58 CET*
@@ -1359,15 +1368,6 @@ Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 65%
 **[View Market →](https://polymarket.com/market/solana-above-90-on-february-6)**
 
 **Reasoning:** Solana hat in den letzten Tagen einen deutlichen Rückgang erlebt, zeigt aber Anzeichen einer kurzfristigen Erholung. Technische Indikatoren sind gemischt. Es gibt erhebliche Abwärtsrisiken. Daher liegt die Wahrscheinlichkeit, dass der Preis über 90 $ liegt, knapp unter 50%.
-
----
-
-**[MegaETH market cap (FDV) >$3B one day after launch?](https://polymarket.com/market/megaeth-market-cap-fdv-2b-one-day-after-launch-392-656-565)**
-*Analyzed: 2026-02-06 19:05 CET*
-Market: 0.50 | AI: 0.60 | Edge: +10.0% | Conf: 75%
-**[View Market →](https://polymarket.com/market/megaeth-market-cap-fdv-2b-one-day-after-launch-392-656-565)**
-
-**Reasoning:** MegaETH has significant hype, a strong team, and backing from industry leaders, as evidenced by the oversubscribed ICO and support from figures like Vitalik Buterin. The project's innovative technology aims for high transaction speeds and Ethereum compatibility. However, over 80% of tokens launched in 2025 are trading underwater, and MegaETH experienced a technical issue that forced a $1B raise to be scrapped. Considering these factors, a 60% probability reflects both the project's strengths and the risks associated with new token launches.
 
 ---
 

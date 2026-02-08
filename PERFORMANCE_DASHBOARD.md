@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-08 10:43:18 CET
+**Last Updated:** 2026-02-08 11:43:24 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 43 | 1,500 | 2.9% | 🟢 |
+| Today (RPD) | 47 | 1,500 | 3.1% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-46,844.49 |
-| Locked in Active Bets | $33,754.47 |
+| Available Capital | $-47,210.42 |
+| Locked in Active Bets | $34,120.40 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $33754.47 (3375.4% of capital) |
-| Avg Position Size | $114.81 |
+| Total Exposure | $34120.40 (3412.0% of capital) |
+| Avg Position Size | $114.88 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.004) |
 
 ---
-## 🎯 Active Bets (439)
+## 🎯 Active Bets (442)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -355,6 +355,9 @@
 | [Will the price of Ethereum be above $2,3...](https://polymarket.com/event/ethereum-above-2300-on-february-8) | NO | $96.82 | 0.50 | 0.25 | -25% 🔴 | 60% | $+48.41 | 2026-02-08 | 0d | 🔴 |
 | [Will MrBeast's next video get 55 million...](https://polymarket.com/event/will-mrbeasts-next-video-get-55-million-or-more-views-on-day-1-555) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-05-31 | 111d | 🟢 |
 | [Will DeepSeek have the best AI model at ...](https://polymarket.com/event/will-deepseek-have-the-best-ai-model-at-the-end-of-march-2026-113) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-03-31 | 50d | 🟢 |
+| [Jesus Christ return before 2027 Odds >5%...](https://polymarket.com/event/jesus-christ-return-before-2027-odds-5-monday-night-12-1-am) | NO | $207.85 | 0.50 | 0.02 | -48% 🔴 | 75% | $+199.53 | 2026-02-10 | 1d | 🔴 |
+| [Will Elon Musk post 160-179 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-6-february-13-160-179) | NO | $77.46 | 0.50 | 0.30 | -20% 🔴 | 60% | $+30.98 | 2026-02-13 | 5d | 🟡 |
+| [Will Elon Musk post 180-199 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-6-february-13-180-199) | NO | $80.62 | 0.50 | 0.30 | -20% 🔴 | 65% | $+32.25 | 2026-02-13 | 5d | 🟡 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -6d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -6d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -6d | ⏳ Pending Resolution |
@@ -672,7 +675,8 @@
 - 🔴 **High Exposure**: "Will Elon Musk post 40-59 twee..." is 14.6% of capital
 - 🔴 **High Exposure**: "U.S. strike on Somalia by Febr..." is 10.5% of capital
 - 🔴 **High Exposure**: "Will DeepSeek have the best AI..." is 13.6% of capital
-- 🟡 **Expiring Soon**: 81 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Jesus Christ return before 202..." is 20.8% of capital
+- 🟡 **Expiring Soon**: 84 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -680,7 +684,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 439 |
+| Markets with Active Bets | 442 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
