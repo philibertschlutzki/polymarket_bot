@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-08 23:44:58 CET
+**Last Updated:** 2026-02-09 00:45:04 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 114 | 1,500 | 7.6% | 🟢 |
+| Today (RPD) | 116 | 1,500 | 7.7% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-51,074.70 |
-| Locked in Active Bets | $36,821.56 |
+| Available Capital | $-51,190.89 |
+| Locked in Active Bets | $36,937.75 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $36821.56 (3682.2% of capital) |
-| Avg Position Size | $117.27 |
+| Total Exposure | $36937.75 (3693.8% of capital) |
+| Avg Position Size | $117.26 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.004) |
 
 ---
-## 🎯 Active Bets (474)
+## 🎯 Active Bets (475)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -375,6 +375,7 @@
 | [Will the Super Bowl national anthem last...](https://polymarket.com/event/will-the-super-bowl-national-anthem-last-between-100-and-110-seconds-852) | NO | $104.58 | 0.50 | 0.25 | -25% 🔴 | 70% | $+52.29 | 2026-02-09 | 0d | 🔴 |
 | [Will the Super Bowl national anthem last...](https://polymarket.com/event/will-the-super-bowl-national-anthem-last-between-80-and-90-seconds-659) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-09 | 0d | 🔴 |
 | [Will the Miami Heat win the NBA Eastern ...](https://polymarket.com/event/will-the-miami-heat-win-the-nba-eastern-conference-finals) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-06-13 | 124d | 🟢 |
+| [Will the Super Bowl national anthem last...](https://polymarket.com/event/will-the-super-bowl-national-anthem-last-between-140-and-150-seconds-569) | NO | $116.19 | 0.50 | 0.20 | -30% 🔴 | 60% | $+69.71 | 2026-02-09 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
@@ -393,7 +394,7 @@
 | [Counter-Strike: 3DMAX vs Team Falcons (B...](https://polymarket.com/event/cs2-3dmax-fal2-2026-02-03) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-03 | -6d | ⏳ Pending Resolution |
 | [Will Elon Musk post 360-379 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-27-february-3-360-379) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-03 | -6d | ⏳ Pending Resolution |
 | [Dota 2: Team Falcons vs Heroic (BO1) - B...](https://polymarket.com/event/dota2-flc-heroic-2026-02-03) | YES | $129.07 | 0.50 | 0.78 | +28% 🟢 | 85% | $+0.00 | 2026-02-03 | -6d | ⏳ Pending Resolution |
-| [Miami (OH) RedHawks vs. Buffalo Bulls: O...](https://polymarket.com/event/cbb-miaoh-buf-2026-02-03-total-163pt5) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-04 | -5d | ⏳ Pending Resolution |
+| [Miami (OH) RedHawks vs. Buffalo Bulls: O...](https://polymarket.com/event/cbb-miaoh-buf-2026-02-03-total-163pt5) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-04 | -6d | ⏳ Pending Resolution |
 | [Knicks vs. Wizards](https://polymarket.com/event/nba-nyk-was-2026-02-03) | YES | $118.59 | 0.50 | 0.75 | +25% 🟢 | 90% | $+0.00 | 2026-02-04 | -5d | ⏳ Pending Resolution |
 | [US strikes Iran by February 4, 2026?](https://polymarket.com/event/us-strikes-iran-by-february-4-2026) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+0.00 | 2026-02-04 | -5d | ⏳ Pending Resolution |
 | [Penguins vs. Islanders](https://polymarket.com/event/nhl-pit-nyi-2026-02-03) | YES | $212.18 | 0.50 | 0.99 | +49% 🟢 | 75% | $+0.00 | 2026-02-04 | -5d | ⏳ Pending Resolution |
@@ -472,7 +473,7 @@
 | [Will Hellas Verona FC win on 2026-02-06?](https://polymarket.com/event/sea-ver-pis-2026-02-06-ver) | NO | $64.95 | 0.50 | 0.35 | -15% 🔴 | 75% | $+0.00 | 2026-02-06 | -3d | ⏳ Pending Resolution |
 | [Will Charlton Athletic FC win on 2026-02...](https://polymarket.com/event/elc-cha-qpr-2026-02-06-cha) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+0.00 | 2026-02-06 | -3d | ⏳ Pending Resolution |
 | [Counter-Strike: Aurora Gaming vs FURIA (...](https://polymarket.com/event/cs2-aur1-furia-2026-02-06) | NO | $250.00 | 0.50 | 0.00 | -50% 🔴 | 100% | $+0.00 | 2026-02-06 | -3d | ⏳ Pending Resolution |
-| [Counter-Strike: BetBoom Team vs magic (B...](https://polymarket.com/event/cs2-bb3-mgc-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-07 | -2d | ⏳ Pending Resolution |
+| [Counter-Strike: BetBoom Team vs magic (B...](https://polymarket.com/event/cs2-bb3-mgc-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-07 | -3d | ⏳ Pending Resolution |
 | [US strikes Iran by February 7, 2026?](https://polymarket.com/event/us-strikes-iran-by-february-7-2026) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+0.00 | 2026-02-07 | -2d | ⏳ Pending Resolution |
 | [Pelicans vs. Timberwolves](https://polymarket.com/event/nba-nop-min-2026-02-06) | NO | $147.51 | 0.50 | 0.18 | -32% 🔴 | 85% | $+0.00 | 2026-02-07 | -2d | ⏳ Pending Resolution |
 | [Bitcoin Up or Down - February 6, 12PM ET](https://polymarket.com/event/bitcoin-up-or-down-february-6-12pm-et) | YES | $238.80 | 0.50 | 0.99 | +49% 🟢 | 95% | $+0.00 | 2026-02-06 | -3d | ⏳ Pending Resolution |
@@ -500,8 +501,8 @@
 | [Will VfB Stuttgart win on 2026-02-07?](https://polymarket.com/event/bun-pau-stu-2026-02-07-stu) | YES | $67.08 | 0.50 | 0.65 | +15% 🟡 | 80% | $+0.00 | 2026-02-07 | -2d | ⏳ Pending Resolution |
 | [Will AFC Bournemouth win on 2026-02-07?](https://polymarket.com/event/epl-bou-ast-2026-02-07-bou) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+0.00 | 2026-02-07 | -2d | ⏳ Pending Resolution |
 | [Counter-Strike: Spirit vs FURIA (BO3) - ...](https://polymarket.com/event/cs2-ts7-furia-2026-02-07) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-07 | -2d | ⏳ Pending Resolution |
-| [Mavericks vs. Spurs](https://polymarket.com/event/nba-dal-sas-2026-02-07) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+0.00 | 2026-02-08 | -1d | ⏳ Pending Resolution |
-| [LoL: SK Gaming vs Los Ratones (BO1) - LE...](https://polymarket.com/event/lol-sk-lr-2026-02-07) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-08 | -1d | ⏳ Pending Resolution |
+| [Mavericks vs. Spurs](https://polymarket.com/event/nba-dal-sas-2026-02-07) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+0.00 | 2026-02-08 | -2d | ⏳ Pending Resolution |
+| [LoL: SK Gaming vs Los Ratones (BO1) - LE...](https://polymarket.com/event/lol-sk-lr-2026-02-07) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-08 | -2d | ⏳ Pending Resolution |
 | [Will António José Seguro win the second ...](https://polymarket.com/event/will-antnio-jos-seguro-win-the-second-round-by-at-least-35) | NO | $232.43 | 0.50 | 0.01 | -49% 🔴 | 90% | $+0.00 | 2026-02-08 | -1d | ⏳ Pending Resolution |
 | [Will the People’s Party (PPLE) win 180 o...](https://polymarket.com/event/will-the-peoples-party-pple-win-180-or-more-seats-in-the-2026-thai-legislative-election) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+0.00 | 2026-02-08 | -1d | ⏳ Pending Resolution |
 | [Will LDP win a majority in the 2026 Japa...](https://polymarket.com/event/will-ldp-win-a-majority-in-the-2026-japanese-snap-election) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+0.00 | 2026-02-08 | -1d | ⏳ Pending Resolution |
@@ -723,7 +724,8 @@
 - 🔴 **High Exposure**: "Will the Super Bowl national a..." is 15.2% of capital
 - 🔴 **High Exposure**: "Will the Super Bowl national a..." is 10.5% of capital
 - 🔴 **High Exposure**: "Will the Super Bowl national a..." is 14.6% of capital
-- 🟡 **Expiring Soon**: 98 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the Super Bowl national a..." is 11.6% of capital
+- 🟡 **Expiring Soon**: 99 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -731,7 +733,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 474 |
+| Markets with Active Bets | 475 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
