@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-09 04:45:26 CET
+**Last Updated:** 2026-02-09 05:45:37 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 12 | 1,500 | 0.8% | 🟢 |
+| Today (RPD) | 19 | 1,500 | 1.3% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-51,532.49 |
-| Locked in Active Bets | $32,084.19 |
+| Available Capital | $-52,592.91 |
+| Locked in Active Bets | $33,144.61 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $32084.19 (3208.4% of capital) |
-| Avg Position Size | $111.40 |
+| Total Exposure | $33144.61 (3314.5% of capital) |
+| Avg Position Size | $112.35 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.004) |
 
 ---
-## 🎯 Active Bets (480)
+## 🎯 Active Bets (487)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -349,6 +349,13 @@
 | [Will the price of Ethereum be above $2,1...](https://polymarket.com/event/ethereum-above-2100-on-february-9) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-09 | 0d | 🔴 |
 | [Will the Houston Rockets win the NBA Wes...](https://polymarket.com/event/will-the-houston-rockets-win-the-nba-western-conference-finals) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-06-16 | 126d | 🟢 |
 | [LoL: Team Liquid vs Dignitas (BO1) - LCS...](https://polymarket.com/event/lol-tl2-dig-2026-02-09) | YES | $104.58 | 0.50 | 0.75 | +25% 🟢 | 70% | $+52.29 | 2026-02-09 | 0d | 🔴 |
+| [Jazz vs. Heat](https://polymarket.com/event/nba-uta-mia-2026-02-09) | NO | $98.39 | 0.50 | 0.28 | -22% 🔴 | 80% | $+43.29 | 2026-02-10 | 0d | 🔴 |
+| [Will Gold (GC) hit (LOW) $3,600 by end o...](https://polymarket.com/event/will-gold-gc-hit-low-3600-by-end-of-february-767-713-548-338-651-365-876-463) | NO | $238.80 | 0.50 | 0.01 | -49% 🔴 | 95% | $+234.02 | 2026-02-28 | 18d | 🟢 |
+| [Will the Dallas Stars win the 2026 NHL S...](https://polymarket.com/event/will-the-dallas-stars-win-the-2026-nhl-stanley-cup) | NO | $164.54 | 0.50 | 0.12 | -38% 🔴 | 75% | $+125.05 | 2026-06-30 | 140d | 🟢 |
+| [Will Belgium win Eurovision 2026?](https://polymarket.com/event/will-belgium-win-eurovision-2026) | NO | $189.46 | 0.50 | 0.03 | -47% 🔴 | 65% | $+178.10 | 2026-05-16 | 95d | 🟢 |
+| [Will Elon Musk post 340-359 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-6-february-13-340-359) | NO | $60.47 | 0.50 | 0.35 | -15% 🔴 | 65% | $+18.14 | 2026-02-13 | 4d | 🟡 |
+| [Will Satoshi move any Bitcoin in 2026?](https://polymarket.com/event/will-satoshi-move-any-bitcoin-in-2026) | NO | $173.21 | 0.50 | 0.10 | -40% 🔴 | 75% | $+138.56 | 2027-01-01 | 326d | 🟢 |
+| [Will Gold (GC) hit (HIGH) $6,600 by end ...](https://polymarket.com/event/will-gold-gc-hit-high-6600-by-end-of-february-828-163-164-179-126-514) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-02-28 | 18d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
@@ -704,7 +711,12 @@
 - 🔴 **High Exposure**: "Will Elon Musk post 0-19 tweet..." is 19.5% of capital
 - 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 12.6% of capital
 - 🔴 **High Exposure**: "LoL: Team Liquid vs Dignitas (..." is 10.5% of capital
-- 🟡 **Expiring Soon**: 70 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Gold (GC) hit (LOW) $3,60..." is 23.9% of capital
+- 🔴 **High Exposure**: "Will the Dallas Stars win the ..." is 16.5% of capital
+- 🔴 **High Exposure**: "Will Belgium win Eurovision 20..." is 18.9% of capital
+- 🔴 **High Exposure**: "Will Satoshi move any Bitcoin ..." is 17.3% of capital
+- 🔴 **High Exposure**: "Will Gold (GC) hit (HIGH) $6,6..." is 13.6% of capital
+- 🟡 **Expiring Soon**: 72 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -712,7 +724,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 480 |
+| Markets with Active Bets | 487 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
