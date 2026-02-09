@@ -261,7 +261,7 @@ def _generate_active_bets_section(all_active_display, now_cet):
 
     return f"""## 🎯 Active Bets ({len(all_active_display)})
 
-| Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
+| Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | Order ID | End Date | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
 {active_table}
 
@@ -279,10 +279,16 @@ def _build_active_rows(all_active_display, now_cet):
         edge_ind = _get_edge_indicator(edge)
         end_date_display, days_display, status = _get_bet_status(bet, now_cet)
 
+        # Order Info
+        order_id = bet.get("order_id")
+        order_display = f"`{order_id[:8]}...`" if order_id else "-"
+        fill_price = bet.get("fill_price")
+        price_display = f"{fill_price:.2f}" if fill_price else f"{price:.2f}"
+
         active_rows.append(
-            f"| {q_display} | {bet['action']} | ${stake:.2f} | {price:.2f} | "
+            f"| {q_display} | {bet['action']} | ${stake:.2f} | {price_display} | "
             f"{ai_prob:.2f} | {edge:+.0%} {edge_ind} | {conf:.0%} | ${ev:+.2f} | "
-            f"{end_date_display} | {days_display} | {status} |"
+            f"{order_display} | {end_date_display} ({days_display}) | {status} |"
         )
     return active_rows
 

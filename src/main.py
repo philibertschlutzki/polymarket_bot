@@ -58,6 +58,7 @@ from src.health_monitor import HealthMonitor  # noqa: E402
 from src.error_logger import log_api_error  # noqa: E402
 from src.multi_outcome_handler import MultiOutcomeHandler  # noqa: E402
 from src.config_loader import load_multi_outcome_config  # noqa: E402
+from src.order_executor import OrderExecutor  # noqa: E402
 
 # ============================================================================
 # LOGGING CONFIGURATION
@@ -153,6 +154,7 @@ health_monitor = HealthMonitor(
 )
 multi_outcome_config = load_multi_outcome_config()
 multi_outcome_handler = MultiOutcomeHandler(database.SessionLocal, multi_outcome_config)
+order_executor = OrderExecutor()
 
 # ============================================================================
 # MODELS
@@ -920,7 +922,7 @@ def queue_processing_worker():  # noqa: C901
 
                     if profitable_outcomes:
                         capital = database.get_current_capital()
-                        bets_placed = []
+                        bets_to_place = []
 
                         is_multi = len(profitable_outcomes) > 1
 
@@ -961,17 +963,33 @@ def queue_processing_worker():  # noqa: C901
                                     "ai_reasoning": analysis.get("reasoning", ""),
                                     "end_date": m.end_date,
                                 }
-                                bets_placed.append(bet_data)
+                                bets_to_place.append(bet_data)
                                 capital -= rec.stake_usdc
 
-                        if bets_placed:
-                            database.insert_active_bets_batch(bets_placed)
+                        # Execute all profitable bets
+                        executed_bets = []
+                        for bet in bets_to_place:
+                            exec_res = order_executor.execute_bet(bet)
+                            if exec_res["success"]:
+                                bet["order_id"] = exec_res.get("order_id")
+                                bet["fill_price"] = exec_res.get("price")
+                                executed_bets.append(bet)
+                            else:
+                                logger.error(f"❌ Execution failed for {bet['market_slug']}: {exec_res.get('error')}")
+
+                        if executed_bets:
+                            database.insert_active_bets_batch(executed_bets)
                             queue_manager.mark_completed(
                                 parent_slug,
-                                f"PLACED {len(bets_placed)} BETS: {[b['action'] for b in bets_placed]}",
+                                f"PLACED {len(executed_bets)} BETS: {[b['action'] for b in executed_bets]}",
                             )
                             logger.info(
-                                f"✅ Placed {len(bets_placed)} bets on {parent_slug}"
+                                f"✅ Placed {len(executed_bets)} bets on {parent_slug}"
+                            )
+                        elif bets_to_place:
+                             # We had recommendations but execution failed for all
+                             queue_manager.move_to_retry_queue(
+                                parent_slug, "EXECUTION_FAILED", "Order execution failed"
                             )
                         else:
                             queue_manager.mark_completed(
@@ -1023,10 +1041,25 @@ def queue_processing_worker():  # noqa: C901
                             "ai_reasoning": rec.ai_reasoning,
                             "end_date": market.end_date,
                         }
-                        database.insert_active_bets_batch([bet_data])
-                        queue_manager.mark_completed(
-                            market.market_slug, f"BET: {rec.action} ${rec.stake_usdc}"
-                        )
+
+                        # EXECUTE BET
+                        exec_res = order_executor.execute_bet(bet_data)
+
+                        if exec_res["success"]:
+                            bet_data["order_id"] = exec_res.get("order_id")
+                            bet_data["fill_price"] = exec_res.get("price")
+
+                            database.insert_active_bets_batch([bet_data])
+                            queue_manager.mark_completed(
+                                market.market_slug, f"BET: {rec.action} ${rec.stake_usdc} (Order: {exec_res.get('order_id')})"
+                            )
+                        else:
+                            # Failed
+                            logger.error(f"❌ Execution failed: {exec_res.get('error')}")
+                            queue_manager.move_to_retry_queue(
+                                market.market_slug, "EXECUTION_FAILED", exec_res.get("error")
+                            )
+
                     else:
                         queue_manager.mark_completed(market.market_slug, "PASS")
                 else:

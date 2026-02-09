@@ -94,6 +94,9 @@ def init_database():
         # Migrate active_bets for multi_outcome (NEW)
         migrate_active_bets_multi_outcome()
 
+        # Migrate active_bets schema (execution fields)
+        migrate_active_bets_schema()
+
         # Migrate archived_bets table if needed
         migrate_archived_bets_table()
 
@@ -288,6 +291,29 @@ def migrate_active_bets_multi_outcome():
             conn.commit()
     except Exception as e:
         logger.error(f"Error migrating active_bets multi_outcome: {e}")
+
+
+def migrate_active_bets_schema():
+    """Adds execution fields (order_id, fill_price) to active_bets."""
+    try:
+        with engine.connect() as conn:
+            # Check if columns exist
+            table_info = conn.execute(text("PRAGMA table_info(active_bets)")).fetchall()
+            columns = [c[1] for c in table_info]
+
+            if "order_id" not in columns:
+                conn.execute(text("ALTER TABLE active_bets ADD COLUMN order_id TEXT"))
+                logger.info("Added order_id to active_bets")
+
+            if "fill_price" not in columns:
+                conn.execute(
+                    text("ALTER TABLE active_bets ADD COLUMN fill_price NUMERIC(5, 4)")
+                )
+                logger.info("Added fill_price to active_bets")
+
+            conn.commit()
+    except Exception as e:
+        logger.error(f"Error migrating active_bets schema: {e}")
 
 
 def migrate_archived_bets_table():
