@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-09 11:01:24 CET
+**Last Updated:** 2026-02-09 12:01:32 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 49 | 1,500 | 3.3% | 🟢 |
-| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
+| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
+| Today (RPD) | 55 | 1,500 | 3.7% | 🟢 |
+| Current Minute (TPM) | 1,016 | 1,000,000 | 0.10% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-54,389.85 |
-| Locked in Active Bets | $33,567.37 |
+| Available Capital | $-54,820.58 |
+| Locked in Active Bets | $33,998.10 |
 | Pending Resolution (>7d) | $0.00 |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $33567.37 (3356.7% of capital) |
-| Avg Position Size | $113.40 |
+| Total Exposure | $33998.10 (3399.8% of capital) |
+| Avg Position Size | $113.33 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.004) |
 
 ---
-## 🎯 Active Bets (503)
+## 🎯 Active Bets (507)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -357,6 +357,10 @@
 | [Over $500K committed to the Foresee publ...](https://polymarket.com/event/over-500k-committed-to-the-foresee-public-sale) | NO | $86.60 | 0.50 | 0.30 | -20% 🔴 | 75% | $+34.64 | 2027-01-01 | 325d | 🟢 |
 | [Will Italy win the most medals in the 20...](https://polymarket.com/event/will-italy-win-the-most-medals-in-the-2026-winter-olympics) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-22 | 12d | 🟢 |
 | [Will XRP dip to $0.80 in February?](https://polymarket.com/event/will-xrp-dip-to-0pt8-in-february-2026) | NO | $141.09 | 0.50 | 0.15 | -35% 🔴 | 65% | $+98.76 | 2026-03-01 | 19d | 🟢 |
+| [Will Elon Musk post 560-579 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-6-february-13-560-579) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-13 | 4d | 🟡 |
+| [Will Bitcoin dip to $50,000 by December ...](https://polymarket.com/event/will-bitcoin-dip-to-50000-by-december-31-2026-454-325-222-878-949) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2027-01-01 | 325d | 🟢 |
+| [T20 World Cup: Canada vs South Africa (G...](https://polymarket.com/event/crint-can-zaf-2026-02-09) | YES | $184.39 | 0.50 | 0.90 | +40% 🟢 | 85% | $+147.51 | 2026-02-16 | 7d | 🟢 |
+| [Will Amazon be the largest company in th...](https://polymarket.com/event/will-amazon-be-the-largest-company-in-the-world-by-market-cap-on-february-28) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-28 | 18d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
@@ -734,7 +738,9 @@
 - 🔴 **High Exposure**: "Will Opinion launch a token by..." is 11.2% of capital
 - 🔴 **High Exposure**: "Will Italy win the most medals..." is 14.6% of capital
 - 🔴 **High Exposure**: "Will XRP dip to $0.80 in Febru..." is 14.1% of capital
-- 🟡 **Expiring Soon**: 64 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "T20 World Cup: Canada vs South..." is 18.4% of capital
+- 🔴 **High Exposure**: "Will Amazon be the largest com..." is 12.6% of capital
+- 🟡 **Expiring Soon**: 66 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -742,7 +748,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 503 |
+| Markets with Active Bets | 507 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
