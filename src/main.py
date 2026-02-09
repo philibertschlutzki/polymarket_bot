@@ -975,7 +975,9 @@ def queue_processing_worker():  # noqa: C901
                                 bet["fill_price"] = exec_res.get("price")
                                 executed_bets.append(bet)
                             else:
-                                logger.error(f"❌ Execution failed for {bet['market_slug']}: {exec_res.get('error')}")
+                                logger.error(
+                                    f"❌ Execution failed for {bet['market_slug']}: {exec_res.get('error')}"
+                                )
 
                         if executed_bets:
                             database.insert_active_bets_batch(executed_bets)
@@ -989,7 +991,9 @@ def queue_processing_worker():  # noqa: C901
                         elif bets_to_place:
                             # We had recommendations but execution failed for all
                             queue_manager.move_to_retry_queue(
-                                parent_slug, "EXECUTION_FAILED", "Order execution failed"
+                                parent_slug,
+                                "EXECUTION_FAILED",
+                                "Order execution failed",
                             )
                         else:
                             queue_manager.mark_completed(
@@ -1052,13 +1056,17 @@ def queue_processing_worker():  # noqa: C901
                             database.insert_active_bets_batch([bet_data])
                             queue_manager.mark_completed(
                                 market.market_slug,
-                                f"BET: {rec.action} ${rec.stake_usdc} (Order: {exec_res.get('order_id')})"
+                                f"BET: {rec.action} ${rec.stake_usdc} (Order: {exec_res.get('order_id')})",
                             )
                         else:
                             # Failed
-                            logger.error(f"❌ Execution failed: {exec_res.get('error')}")
+                            logger.error(
+                                f"❌ Execution failed: {exec_res.get('error')}"
+                            )
                             queue_manager.move_to_retry_queue(
-                                market.market_slug, "EXECUTION_FAILED", exec_res.get("error")
+                                market.market_slug,
+                                "EXECUTION_FAILED",
+                                exec_res.get("error"),
                             )
 
                     else:

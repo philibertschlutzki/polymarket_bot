@@ -36,7 +36,9 @@ class OrderExecutor:
         start_time = time.time()
         while time.time() - start_time < max_wait_seconds:
             market = self.client.get_market(market_slug)
-            if market and market.get("active", False):  # Check 'active' or 'closed' status
+            if market and market.get(
+                "active", False
+            ):  # Check 'active' or 'closed' status
                 # Gamma API returns 'closed': boolean. If closed=False, it is active.
                 # Let's check the schema. Usually 'closed' is the field.
                 if not market.get("closed", True):
@@ -89,9 +91,7 @@ class OrderExecutor:
 
                 # 2. Post Order with postOnly=True
                 resp = self.client.post_order(
-                    order,
-                    order_type=self.client.OrderType.GTC,
-                    post_only=True
+                    order, order_type=self.client.OrderType.GTC, post_only=True
                 )
 
                 if resp.get("success") or resp.get("orderID"):
@@ -101,7 +101,7 @@ class OrderExecutor:
                         "order_id": resp.get("orderID"),
                         "filled_size": 0,  # Maker orders sit on book
                         "status": "OPEN",
-                        "price": limit_price
+                        "price": limit_price,
                     }
 
                 # Handle Errors
@@ -109,7 +109,9 @@ class OrderExecutor:
                 if "post only" in error_msg.lower():
                     # Order would cross the book (become taker)
                     # Adjust price slightly to be passive
-                    logger.info("⚠️ Post-Only rejected (would cross). Adjusting price...")
+                    logger.info(
+                        "⚠️ Post-Only rejected (would cross). Adjusting price..."
+                    )
                     if side == "BUY":
                         limit_price -= 0.01
                     else:
@@ -158,13 +160,15 @@ class OrderExecutor:
     def execute_bet(
         self,
         bet_data: Dict,
-        token_id: str = None  # Need to resolve token_id from market_slug if not provided
+        token_id: str = None,  # Need to resolve token_id from market_slug if not provided
     ) -> Dict:
         """
         Main entry point to execute a strategy recommendation.
         """
         market_slug = bet_data.get("market_slug")
-        side = "BUY" if bet_data.get("action") == "YES" else "SELL"  # Simplified, actually depends on Outcome Token
+        side = (
+            "BUY" if bet_data.get("action") == "YES" else "SELL"
+        )  # Simplified, actually depends on Outcome Token
         # NOTE: In Polymarket CTF, "YES" usually means buying the "YES" token.
         # "NO" usually means buying the "NO" token (which is a separate token_id).
         # We need the correct token_id for the outcome.
@@ -180,7 +184,9 @@ class OrderExecutor:
             if self.client.simulation_mode:
                 token_id = "0x_mock_token_id"
             else:
-                token_id = self._resolve_token_id(market_slug, bet_data.get("action", ""))
+                token_id = self._resolve_token_id(
+                    market_slug, bet_data.get("action", "")
+                )
                 if not token_id:
                     return {"success": False, "error": "Failed to resolve Token ID"}
 
