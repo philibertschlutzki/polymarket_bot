@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-09 22:02:50 CET
+**Last Updated:** 2026-02-09 23:02:56 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,8 +20,8 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
-| Today (RPD) | 141 | 1,500 | 9.4% | 🟢 |
-| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
+| Today (RPD) | 154 | 1,500 | 10.3% | 🟢 |
+| Current Minute (TPM) | 461 | 1,000,000 | 0.05% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,9 +41,9 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-57,774.84 |
-| Locked in Active Bets | $35,666.44 |
-| Pending Resolution (>7d) | $88.29 ⚠️ |
+| Available Capital | $-58,015.58 |
+| Locked in Active Bets | $35,907.18 |
+| Pending Resolution (>7d) | $214.83 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
 ***
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $35666.44 (3566.6% of capital) |
-| Avg Position Size | $115.43 |
+| Total Exposure | $35907.18 (3590.7% of capital) |
+| Avg Position Size | $115.46 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.004) |
 
 ---
-## 🎯 Active Bets (532)
+## 🎯 Active Bets (534)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -370,10 +370,12 @@
 | [Will Elon Musk post <40 tweets from Febr...](https://polymarket.com/event/elon-musk-of-tweets-february-9-february-11-0-39) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-11 | 1d | 🔴 |
 | [Will the price of Ethereum be above $2,2...](https://polymarket.com/event/ethereum-above-2200-on-february-10) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-10 | 0d | 🔴 |
 | [Will Robinhood say "Summit" during earni...](https://polymarket.com/event/will-robinhood-say-summit-during-earnings-call) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-02-10 | 0d | 🔴 |
+| [Will Germany win the most medals in the ...](https://polymarket.com/event/will-germany-win-the-most-medals-in-the-2026-winter-olympics) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-22 | 12d | 🟢 |
+| [Will Manchester City FC win on 2026-02-1...](https://polymarket.com/event/epl-mac-ful-2026-02-11-mac) | YES | $115.24 | 0.50 | 0.75 | +25% 🟢 | 85% | $+57.62 | 2026-02-11 | 1d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -8d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -8d | ⏳ Pending Resolution |
-| [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
-| [Bitcoin Up or Down - February 2, 4:45PM-...](https://polymarket.com/event/btc-updown-15m-1770068700) | NO | $39.57 | 0.56 | 0.45 | -10% 🔴 | 70% | $+0.00 | 2026-02-02 | -7d | ⏳ Pending Resolution |
+| [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -8d | ⏳ Pending Resolution |
+| [Bitcoin Up or Down - February 2, 4:45PM-...](https://polymarket.com/event/btc-updown-15m-1770068700) | NO | $39.57 | 0.56 | 0.45 | -10% 🔴 | 70% | $+0.00 | 2026-02-02 | -8d | ⏳ Pending Resolution |
 | [Spread: Timberwolves (-7.5)](https://polymarket.com/event/nba-min-mem-2026-02-02-spread-away-7pt5) | YES | $63.42 | 0.51 | 0.65 | +14% 🟡 | 75% | $+0.00 | 2026-02-03 | -7d | ⏳ Pending Resolution |
 | [Spread: Timberwolves (-6.5)](https://polymarket.com/event/nba-min-mem-2026-02-02-spread-away-6pt5) | YES | $51.77 | 0.54 | 0.65 | +11% 🟡 | 75% | $+0.00 | 2026-02-03 | -7d | ⏳ Pending Resolution |
 | [Jets vs. Stars](https://polymarket.com/event/nhl-wpg-dal-2026-02-02) | YES | $89.15 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-03 | -7d | ⏳ Pending Resolution |
@@ -387,7 +389,7 @@
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-3) | NO | $123.74 | 0.50 | 0.15 | -35% 🔴 | 50% | $+0.00 | 2026-02-03 | -7d | ⏳ Pending Resolution |
 | [Counter-Strike: 3DMAX vs Team Falcons (B...](https://polymarket.com/event/cs2-3dmax-fal2-2026-02-03) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-03 | -7d | ⏳ Pending Resolution |
 | [Will Elon Musk post 360-379 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-27-february-3-360-379) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-03 | -7d | ⏳ Pending Resolution |
-| [Dota 2: Team Falcons vs Heroic (BO1) - B...](https://polymarket.com/event/dota2-flc-heroic-2026-02-03) | YES | $129.07 | 0.50 | 0.78 | +28% 🟢 | 85% | $+0.00 | 2026-02-03 | -6d | ⏳ Pending Resolution |
+| [Dota 2: Team Falcons vs Heroic (BO1) - B...](https://polymarket.com/event/dota2-flc-heroic-2026-02-03) | YES | $129.07 | 0.50 | 0.78 | +28% 🟢 | 85% | $+0.00 | 2026-02-03 | -7d | ⏳ Pending Resolution |
 | [Miami (OH) RedHawks vs. Buffalo Bulls: O...](https://polymarket.com/event/cbb-miaoh-buf-2026-02-03-total-163pt5) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-04 | -6d | ⏳ Pending Resolution |
 | [Knicks vs. Wizards](https://polymarket.com/event/nba-nyk-was-2026-02-03) | YES | $118.59 | 0.50 | 0.75 | +25% 🟢 | 90% | $+0.00 | 2026-02-04 | -6d | ⏳ Pending Resolution |
 | [US strikes Iran by February 4, 2026?](https://polymarket.com/event/us-strikes-iran-by-february-4-2026) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+0.00 | 2026-02-04 | -6d | ⏳ Pending Resolution |
@@ -412,7 +414,7 @@
 | [Will Elon Musk post 90-114 tweets from F...](https://polymarket.com/event/elon-musk-of-tweets-february-2-february-4-90-114) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+0.00 | 2026-02-04 | -6d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $90 on...](https://polymarket.com/event/solana-above-90-on-february-4) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+0.00 | 2026-02-04 | -6d | ⏳ Pending Resolution |
 | [S&P 500 (SPX) Up or Down on February 4?](https://polymarket.com/event/spx-up-or-down-on-february-4-2026) | YES | $250.00 | 0.50 | 1.00 | +50% 🟢 | 100% | $+0.00 | 2026-02-04 | -6d | ⏳ Pending Resolution |
-| [Will Alphabet (GOOGL) beat quarterly ear...](https://polymarket.com/event/googl-quarterly-earnings-gaap-eps-02-04-2026-2pt64) | NO | $71.87 | 0.97 | 0.65 | -32% 🔴 | 75% | $+0.00 | 2026-02-04 | -5d | ⏳ Pending Resolution |
+| [Will Alphabet (GOOGL) beat quarterly ear...](https://polymarket.com/event/googl-quarterly-earnings-gaap-eps-02-04-2026-2pt64) | NO | $71.87 | 0.97 | 0.65 | -32% 🔴 | 75% | $+0.00 | 2026-02-04 | -6d | ⏳ Pending Resolution |
 | [Will Ja Morant be traded this season?](https://polymarket.com/event/will-ja-morant-be-traded-this-season) | YES | $59.82 | 0.24 | 0.45 | +21% 🟢 | 75% | $+0.00 | 2026-02-05 | -5d | ⏳ Pending Resolution |
 | [US strikes Iran by February 5, 2026?](https://polymarket.com/event/us-strikes-iran-by-february-5-2026) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+0.00 | 2026-02-05 | -5d | ⏳ Pending Resolution |
 | [Timberwolves vs. Raptors](https://polymarket.com/event/nba-min-tor-2026-02-04) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+0.00 | 2026-02-05 | -5d | ⏳ Pending Resolution |
@@ -778,7 +780,9 @@
 - 🔴 **High Exposure**: "Will Elon Musk post 420-439 tw..." is 16.3% of capital
 - 🔴 **High Exposure**: "Will Elon Musk post <40 tweets..." is 14.6% of capital
 - 🔴 **High Exposure**: "Will Robinhood say "Summit" du..." is 13.6% of capital
-- 🟡 **Expiring Soon**: 67 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Germany win the most meda..." is 12.6% of capital
+- 🔴 **High Exposure**: "Will Manchester City FC win on..." is 11.5% of capital
+- 🟡 **Expiring Soon**: 68 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -786,7 +790,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 532 |
+| Markets with Active Bets | 534 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
