@@ -160,7 +160,7 @@ class OrderExecutor:
     def execute_bet(
         self,
         bet_data: Dict,
-        token_id: str = None,  # Need to resolve token_id from market_slug if not provided
+        token_id: Optional[str] = None,  # Need to resolve token_id from market_slug if not provided
     ) -> Dict:
         """
         Main entry point to execute a strategy recommendation.
@@ -184,17 +184,18 @@ class OrderExecutor:
             if self.client.simulation_mode:
                 token_id = "0x_mock_token_id"
             else:
-                token_id = self._resolve_token_id(
-                    market_slug, bet_data.get("action", "")
+                resolved_token = self._resolve_token_id(
+                    str(market_slug), str(bet_data.get("action", ""))
                 )
-                if not token_id:
+                if not resolved_token:
                     return {"success": False, "error": "Failed to resolve Token ID"}
+                token_id = resolved_token
 
         limit_price = float(bet_data.get("entry_price", 0.50))
         stake = float(bet_data.get("stake_usdc", 10.0))
 
         # 1. Check Market Ready
-        if not self.wait_for_market_ready(market_slug):
+        if not self.wait_for_market_ready(str(market_slug)):
             return {"success": False, "error": "Market Not Ready"}
 
         # 2. Check Price (Slippage protection)
