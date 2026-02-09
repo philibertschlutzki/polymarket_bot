@@ -1,7 +1,6 @@
-import asyncio
 import logging
 import time
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 
 from src.clob_client import ClobClient
 
@@ -38,10 +37,10 @@ class OrderExecutor:
         while time.time() - start_time < max_wait_seconds:
             market = self.client.get_market(market_slug)
             if market and market.get("active", False):  # Check 'active' or 'closed' status
-                 # Gamma API returns 'closed': boolean. If closed=False, it is active.
-                 # Let's check the schema. Usually 'closed' is the field.
-                 if not market.get("closed", True):
-                     return True
+                # Gamma API returns 'closed': boolean. If closed=False, it is active.
+                # Let's check the schema. Usually 'closed' is the field.
+                if not market.get("closed", True):
+                    return True
 
             # Also check if orderbook has liquidity
             # (Optional enhancement)
@@ -100,7 +99,7 @@ class OrderExecutor:
                     return {
                         "success": True,
                         "order_id": resp.get("orderID"),
-                        "filled_size": 0, # Maker orders sit on book
+                        "filled_size": 0,  # Maker orders sit on book
                         "status": "OPEN",
                         "price": limit_price
                     }
@@ -130,16 +129,42 @@ class OrderExecutor:
 
         return {"success": False, "error": "Max retries exceeded"}
 
+    def _resolve_token_id(self, market_slug: str, action: str) -> Optional[str]:
+        """Resolves token ID from market slug and action."""
+        market = self.client.get_market(market_slug)
+        if not market:
+            logger.error(f"Market not found: {market_slug}")
+            return None
+
+        clob_ids = market.get("clobTokenIds")
+        if not clob_ids:
+            # Fallback to tokens list
+            tokens = market.get("tokens")
+            if tokens and isinstance(tokens, list):
+                clob_ids = [t.get("tokenId") for t in tokens]
+
+        if not clob_ids or len(clob_ids) < 2:
+            logger.error("Token IDs not found in market data")
+            return None
+
+        # Assume Binary: 0=NO, 1=YES
+        is_yes = action.upper() == "YES"
+        try:
+            return clob_ids[1] if is_yes else clob_ids[0]
+        except IndexError:
+            logger.error("Token ID index out of range")
+            return None
+
     def execute_bet(
         self,
         bet_data: Dict,
-        token_id: str = None # Need to resolve token_id from market_slug if not provided
+        token_id: str = None  # Need to resolve token_id from market_slug if not provided
     ) -> Dict:
         """
         Main entry point to execute a strategy recommendation.
         """
         market_slug = bet_data.get("market_slug")
-        side = "BUY" if bet_data.get("action") == "YES" else "SELL" # Simplified, actually depends on Outcome Token
+        side = "BUY" if bet_data.get("action") == "YES" else "SELL"  # Simplified, actually depends on Outcome Token
         # NOTE: In Polymarket CTF, "YES" usually means buying the "YES" token.
         # "NO" usually means buying the "NO" token (which is a separate token_id).
         # We need the correct token_id for the outcome.
@@ -155,27 +180,9 @@ class OrderExecutor:
             if self.client.simulation_mode:
                 token_id = "0x_mock_token_id"
             else:
-                market = self.client.get_market(market_slug)
-                if not market:
-                    return {"success": False, "error": f"Market not found: {market_slug}"}
-
-                clob_ids = market.get("clobTokenIds")
-                if not clob_ids:
-                    # Fallback to tokens list
-                    tokens = market.get("tokens")
-                    if tokens and isinstance(tokens, list):
-                        clob_ids = [t.get("tokenId") for t in tokens]
-
-                if not clob_ids or len(clob_ids) < 2:
-                     return {"success": False, "error": "Token IDs not found in market data"}
-
-                # Assume Binary: 0=NO, 1=YES
-                # This is standard for Polymarket binary events
-                is_yes = bet_data.get("action", "").upper() == "YES"
-                try:
-                    token_id = clob_ids[1] if is_yes else clob_ids[0]
-                except IndexError:
-                    return {"success": False, "error": "Token ID index out of range"}
+                token_id = self._resolve_token_id(market_slug, bet_data.get("action", ""))
+                if not token_id:
+                    return {"success": False, "error": "Failed to resolve Token ID"}
 
         limit_price = float(bet_data.get("entry_price", 0.50))
         stake = float(bet_data.get("stake_usdc", 10.0))

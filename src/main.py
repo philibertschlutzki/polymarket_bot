@@ -987,8 +987,8 @@ def queue_processing_worker():  # noqa: C901
                                 f"✅ Placed {len(executed_bets)} bets on {parent_slug}"
                             )
                         elif bets_to_place:
-                             # We had recommendations but execution failed for all
-                             queue_manager.move_to_retry_queue(
+                            # We had recommendations but execution failed for all
+                            queue_manager.move_to_retry_queue(
                                 parent_slug, "EXECUTION_FAILED", "Order execution failed"
                             )
                         else:
@@ -1051,7 +1051,8 @@ def queue_processing_worker():  # noqa: C901
 
                             database.insert_active_bets_batch([bet_data])
                             queue_manager.mark_completed(
-                                market.market_slug, f"BET: {rec.action} ${rec.stake_usdc} (Order: {exec_res.get('order_id')})"
+                                market.market_slug,
+                                f"BET: {rec.action} ${rec.stake_usdc} (Order: {exec_res.get('order_id')})"
                             )
                         else:
                             # Failed

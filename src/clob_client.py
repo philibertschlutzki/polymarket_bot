@@ -1,7 +1,7 @@
 import logging
 import os
 import time
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 import requests
 
@@ -64,6 +64,7 @@ class ClobClient:
                 "⚠️ py-clob-client not installed. Running in SIMULATION MODE."
             )
             # Define Mock constants
+
             class MockConstants:
                 GTC = "GTC"
                 FOK = "FOK"
@@ -158,7 +159,8 @@ class ClobClient:
         """Posts the order to the CLOB."""
         if self.simulation_mode or not self.client:
             logger.info(
-                f"🧪 [SIMULATION] Posting Order: {order.get('side')} {order.get('size')} @ {order.get('price')} (Type: {order_type}, PostOnly: {post_only})"
+                f"🧪 [SIMULATION] Posting Order: {order.get('side')} {order.get('size')} @ {order.get('price')} "
+                f"(Type: {order_type}, PostOnly: {post_only})"
             )
             time.sleep(0.5)  # Simulate network delay
             return {
