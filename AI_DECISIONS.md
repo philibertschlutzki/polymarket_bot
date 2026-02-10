@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-10 04:03:50 CET
+**Last Updated:** 2026-02-10 05:03:56 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,25 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will Tesla be the largest company in the world by market cap...](https://polymarket.com/market/will-tesla-be-the-largest-company-in-the-world-by-market-cap-on-february-28)
+### Bet #1: [Will Slovakia win the Men's Ice Hockey gold medal at the 202...](https://polymarket.com/market/will-slovakia-win-the-mens-ice-hockey-gold-medal-at-the-2026-winter-olympics)
+*Analyzed: 2026-02-10 04:17 CET*
+
+**Decision:** NO @ 0.50 (Stake: $146.42)
+**[View Market →](https://polymarket.com/market/will-slovakia-win-the-mens-ice-hockey-gold-medal-at-the-2026-winter-olympics)**
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -35.0%
+- **Expected Value:** $+102.49
+- **End Date:** 2026-02-22 01:00 CET
+
+**AI Reasoning:**
+> Die Slowakei ist eine solide Eishockeynation, aber nicht konstant an der Weltspitze. Der Gewinn der Bronzemedaille 2022 war eine Überraschung. Kanada und die USA gelten als größere Favoriten. Die aktuelle Weltranglistenposition (Platz 9) deutet darauf hin, dass die Slowakei wahrscheinlich nicht zu den Top 4 gehören wird.
+
+---
+
+### Bet #2: [Will Tesla be the largest company in the world by market cap...](https://polymarket.com/market/will-tesla-be-the-largest-company-in-the-world-by-market-cap-on-february-28)
 *Analyzed: 2026-02-10 04:03 CET*
 
 **Decision:** NO @ 0.50 (Stake: $188.25)
@@ -33,7 +51,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Will Bruno Mars have the greatest number of monthly Spotify ...](https://polymarket.com/market/will-bruno-mars-have-the-greatest-number-of-monthly-spotify-listeners-this-month)
+### Bet #3: [Will Bruno Mars have the greatest number of monthly Spotify ...](https://polymarket.com/market/will-bruno-mars-have-the-greatest-number-of-monthly-spotify-listeners-this-month)
 *Analyzed: 2026-02-10 03:42 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -51,7 +69,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will the Houston Astros win the 2026 World Series?](https://polymarket.com/market/will-the-houston-astros-win-the-2026-world-series)
+### Bet #4: [Will the Houston Astros win the 2026 World Series?](https://polymarket.com/market/will-the-houston-astros-win-the-2026-world-series)
 *Analyzed: 2026-02-10 02:07 CET*
 
 **Decision:** NO @ 0.50 (Stake: $186.20)
@@ -69,7 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Will Player 173 win Beast Games: Season 2?](https://polymarket.com/event/will-player-173-win-beast-games-season-2-816)
+### Bet #5: [Will Player 173 win Beast Games: Season 2?](https://polymarket.com/event/will-player-173-win-beast-games-season-2-816)
 *Analyzed: 2026-02-10 02:02 CET*
 
 **Decision:** NO @ 0.50 (Stake: $116.19)
@@ -87,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [Will Sweden win the Men's Ice Hockey gold medal at the 2026 ...](https://polymarket.com/event/will-sweden-win-the-mens-ice-hockey-gold-medal-at-the-2026-winter-olympics)
+### Bet #6: [Will Sweden win the Men's Ice Hockey gold medal at the 2026 ...](https://polymarket.com/event/will-sweden-win-the-mens-ice-hockey-gold-medal-at-the-2026-winter-olympics)
 *Analyzed: 2026-02-10 01:52 CET*
 
 **Decision:** NO @ 0.50 (Stake: $64.95)
@@ -105,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will Latvia win the Men's Ice Hockey gold medal at the 2026 ...](https://polymarket.com/market/will-latvia-win-the-mens-ice-hockey-gold-medal-at-the-2026-winter-olympics)
+### Bet #7: [Will Latvia win the Men's Ice Hockey gold medal at the 2026 ...](https://polymarket.com/market/will-latvia-win-the-mens-ice-hockey-gold-medal-at-the-2026-winter-olympics)
 *Analyzed: 2026-02-10 01:48 CET*
 
 **Decision:** NO @ 0.50 (Stake: $196.62)
@@ -123,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will the price of Ethereum be above $1,700 on February 10?](https://polymarket.com/market/ethereum-above-1700-on-february-10)
+### Bet #8: [Will the price of Ethereum be above $1,700 on February 10?](https://polymarket.com/market/ethereum-above-1700-on-february-10)
 *Analyzed: 2026-02-10 01:42 CET*
 
 **Decision:** YES @ 0.50 (Stake: $201.25)
@@ -141,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #8: [Will Greg Abbott win the 2028 Republican presidential nomina...](https://polymarket.com/market/will-greg-abbott-win-the-2028-republican-presidential-nomination)
+### Bet #9: [Will Greg Abbott win the 2028 Republican presidential nomina...](https://polymarket.com/market/will-greg-abbott-win-the-2028-republican-presidential-nomination)
 *Analyzed: 2026-02-10 01:38 CET*
 
 **Decision:** NO @ 0.50 (Stake: $96.82)
@@ -159,7 +177,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #9: [Will Sweden win the most medals in the 2026 Winter Olympics?](https://polymarket.com/market/will-sweden-win-the-most-medals-in-the-2026-winter-olympics)
+### Bet #10: [Will Sweden win the most medals in the 2026 Winter Olympics?](https://polymarket.com/market/will-sweden-win-the-most-medals-in-the-2026-winter-olympics)
 *Analyzed: 2026-02-10 01:12 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -177,7 +195,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #10: [Will Bulgaria win Eurovision 2026?](https://polymarket.com/event/will-bulgaria-win-eurovision-2026)
+### Bet #11: [Will Bulgaria win Eurovision 2026?](https://polymarket.com/event/will-bulgaria-win-eurovision-2026)
 *Analyzed: 2026-02-10 00:49 CET*
 
 **Decision:** NO @ 0.50 (Stake: $166.54)
@@ -195,7 +213,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #11: [Will Israel strike Gaza on February 9, 2026?](https://polymarket.com/market/will-israel-strike-gaza-on-february-9-2026)
+### Bet #12: [Will Israel strike Gaza on February 9, 2026?](https://polymarket.com/market/will-israel-strike-gaza-on-february-9-2026)
 *Analyzed: 2026-02-10 00:49 CET*
 
 **Decision:** YES @ 0.50 (Stake: $151.55)
@@ -213,7 +231,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #12: [Rotterdam Open: Nicolai Budkov Kjaer vs Jaume Munar](https://polymarket.com/event/atp-kjaer-munar-2026-02-09)
+### Bet #13: [Rotterdam Open: Nicolai Budkov Kjaer vs Jaume Munar](https://polymarket.com/event/atp-kjaer-munar-2026-02-09)
 *Analyzed: 2026-02-10 00:46 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -231,7 +249,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #13: [Will Russia test a nuclear weapon by March 31 2026?](https://polymarket.com/market/will-russia-test-a-nuclear-weapon-by-march-31-2026)
+### Bet #14: [Will Russia test a nuclear weapon by March 31 2026?](https://polymarket.com/market/will-russia-test-a-nuclear-weapon-by-march-31-2026)
 *Analyzed: 2026-02-10 00:45 CET*
 
 **Decision:** NO @ 0.50 (Stake: $120.93)
@@ -249,7 +267,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #14: [Will Israel strike Gaza on February 7, 2026?](https://polymarket.com/market/will-israel-strike-gaza-on-february-7-2026)
+### Bet #15: [Will Israel strike Gaza on February 7, 2026?](https://polymarket.com/market/will-israel-strike-gaza-on-february-7-2026)
 *Analyzed: 2026-02-09 23:29 CET*
 
 **Decision:** NO @ 0.50 (Stake: $125.50)
@@ -264,24 +282,6 @@ This file contains detailed AI reasoning for all market analyses.
 
 **AI Reasoning:**
 > Based on the current fragile ceasefire, ongoing tensions, and political factors, I estimate a 20% probability of an Israeli strike on Gaza on February 7, 2026, as defined by the market conditions. While the situation remains volatile, efforts towards a transitional government and recent military actions suggest a lower likelihood of a major offensive. The confidence score is 0.7 due to the mixed signals from available information.
-
----
-
-### Bet #15: [Spread: Warriors (-9.5)](https://polymarket.com/market/nba-mem-gsw-2026-02-09-spread-home-9pt5)
-*Analyzed: 2026-02-09 23:12 CET*
-
-**Decision:** NO @ 0.50 (Stake: $62.75)
-**[View Market →](https://polymarket.com/market/nba-mem-gsw-2026-02-09-spread-home-9pt5)**
-
-**AI Analysis:**
-- **Estimated Probability:** 35.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -15.0%
-- **Expected Value:** $+18.82
-- **End Date:** 2026-02-10 04:00 CET
-
-**AI Reasoning:**
-> Angesichts der bedeutenden Verletzungen bei den Warriors, insbesondere dem Ausfall von Stephen Curry und Kristaps Porzingis, halte ich es für unwahrscheinlich, dass sie die Grizzlies mit 10 oder mehr Punkten schlagen. Die Grizzlies haben zwar auch Verletzungen, aber es wird erwartet, dass sie das Spiel eng gestalten. Obwohl die Warriors das erste Spiel gewannen, sind beide Kader inzwischen deutlich verändert. Daher schätze ich die Wahrscheinlichkeit, dass die Warriors die Punktverteilung von -9,5 übertreffen, auf 35 %.
 
 ---
 

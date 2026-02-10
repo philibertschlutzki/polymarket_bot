@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-10 04:03:50 CET
+**Last Updated:** 2026-02-10 05:03:55 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -19,9 +19,9 @@
 
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
-| Current Minute (RPM) | 1 | 15 | 7% | 🟢 |
-| Today (RPD) | 25 | 1,500 | 1.7% | 🟢 |
-| Current Minute (TPM) | 732 | 1,000,000 | 0.07% | 🟢 |
+| Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
+| Today (RPD) | 31 | 1,500 | 2.1% | 🟢 |
+| Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
 ## 📈 Performance Metrics
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-59,883.58 |
-| Locked in Active Bets | $36,929.83 |
+| Available Capital | $-60,030.00 |
+| Locked in Active Bets | $37,013.50 |
 | Pending Resolution (>7d) | $481.03 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $36929.83 (3693.0% of capital) |
-| Avg Position Size | $115.77 |
+| Total Exposure | $37013.50 (3701.3% of capital) |
+| Avg Position Size | $116.03 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.004) |
 
 ---
-## 🎯 Active Bets (549)
+## 🎯 Active Bets (550)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -365,7 +365,6 @@
 | [Will the price of Ethereum be above $2,2...](https://polymarket.com/event/ethereum-above-2200-on-february-10) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-10 | 0d | 🔴 |
 | [Will Germany win the most medals in the ...](https://polymarket.com/event/will-germany-win-the-most-medals-in-the-2026-winter-olympics) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-22 | 11d | 🟢 |
 | [Will Manchester City FC win on 2026-02-1...](https://polymarket.com/event/epl-mac-ful-2026-02-11-mac) | YES | $115.24 | 0.50 | 0.75 | +25% 🟢 | 85% | $+57.62 | 2026-02-11 | 1d | 🔴 |
-| [Spread: Warriors (-9.5)](https://polymarket.com/event/nba-mem-gsw-2026-02-09-spread-home-9pt5) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-10 | -1d | ⏰ Expired |
 | [Will Israel strike Gaza on February 7, 2...](https://polymarket.com/event/will-israel-strike-gaza-on-february-7-2026) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-28 | 17d | 🟢 |
 | [Will Russia test a nuclear weapon by Mar...](https://polymarket.com/event/will-russia-test-a-nuclear-weapon-by-march-31-2026) | NO | $120.93 | 0.50 | 0.20 | -30% 🔴 | 65% | $+72.56 | Unknown | N/A | 🔵 |
 | [Rotterdam Open: Nicolai Budkov Kjaer vs ...](https://polymarket.com/event/atp-kjaer-munar-2026-02-09) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-16 | 6d | 🟡 |
@@ -380,6 +379,7 @@
 | [Will the Houston Astros win the 2026 Wor...](https://polymarket.com/event/will-the-houston-astros-win-the-2026-world-series) | NO | $186.20 | 0.50 | 0.07 | -43% 🔴 | 75% | $+160.13 | 2026-11-01 | 263d | 🟢 |
 | [Will Bruno Mars have the greatest number...](https://polymarket.com/event/will-bruno-mars-have-the-greatest-number-of-monthly-spotify-listeners-this-month) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-28 | 17d | 🟢 |
 | [Will Tesla be the largest company in the...](https://polymarket.com/event/will-tesla-be-the-largest-company-in-the-world-by-market-cap-on-february-28) | NO | $188.25 | 0.50 | 0.05 | -45% 🔴 | 70% | $+169.42 | 2026-02-28 | 17d | 🟢 |
+| [Will Slovakia win the Men's Ice Hockey g...](https://polymarket.com/event/will-slovakia-win-the-mens-ice-hockey-gold-medal-at-the-2026-winter-olympics) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-22 | 11d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -8d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -8d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -8d | ⏳ Pending Resolution |
@@ -431,7 +431,7 @@
 | [Sharks vs. Avalanche](https://polymarket.com/event/nhl-sj-col-2026-02-04) | NO | $101.41 | 0.50 | 0.28 | -22% 🔴 | 85% | $+0.00 | 2026-02-05 | -6d | ⏳ Pending Resolution |
 | [Blues vs. Stars](https://polymarket.com/event/nhl-stl-dal-2026-02-04) | YES | $82.98 | 0.50 | 0.68 | +18% 🟡 | 85% | $+0.00 | 2026-02-05 | -6d | ⏳ Pending Resolution |
 | [Thunder vs. Spurs](https://polymarket.com/event/nba-okc-sas-2026-02-04) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-05 | -6d | ⏳ Pending Resolution |
-| [Dota 2: Team Liquid vs Xtreme Gaming (BO...](https://polymarket.com/event/dota2-liquid-xtreme-2026-02-04) | YES | $115.24 | 0.50 | 0.75 | +25% 🟢 | 85% | $+0.00 | 2026-02-05 | -5d | ⏳ Pending Resolution |
+| [Dota 2: Team Liquid vs Xtreme Gaming (BO...](https://polymarket.com/event/dota2-liquid-xtreme-2026-02-04) | YES | $115.24 | 0.50 | 0.75 | +25% 🟢 | 85% | $+0.00 | 2026-02-05 | -6d | ⏳ Pending Resolution |
 | [Valorant: Team Secret vs ZETA DIVISION (...](https://polymarket.com/event/val-ts3-zeta2-2026-02-05) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-05 | -5d | ⏳ Pending Resolution |
 | [LoL: Ninjas in Pyjamas vs ThunderTalk Ga...](https://polymarket.com/event/lol-nip-tt-2026-02-05) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+0.00 | 2026-02-05 | -5d | ⏳ Pending Resolution |
 | [Bitcoin Up or Down - February 5, 11:15AM...](https://polymarket.com/event/btc-updown-15m-1770308100) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+0.00 | 2026-02-05 | -5d | ⏳ Pending Resolution |
@@ -610,6 +610,7 @@
 | [Jazz vs. Heat](https://polymarket.com/event/nba-uta-mia-2026-02-09) | NO | $98.39 | 0.50 | 0.28 | -22% 🔴 | 80% | $+0.00 | 2026-02-10 | -1d | ⏳ Pending Resolution |
 | [Bucks vs. Magic](https://polymarket.com/event/nba-mil-orl-2026-02-09) | YES | $111.80 | 0.50 | 0.75 | +25% 🟢 | 80% | $+0.00 | 2026-02-10 | -1d | ⏳ Pending Resolution |
 | [Bulls vs. Nets](https://polymarket.com/event/nba-chi-bkn-2026-02-09) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+0.00 | 2026-02-10 | -1d | ⏳ Pending Resolution |
+| [Spread: Warriors (-9.5)](https://polymarket.com/event/nba-mem-gsw-2026-02-09-spread-home-9pt5) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+0.00 | 2026-02-10 | -1d | ⏳ Pending Resolution |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -802,6 +803,7 @@
 - 🔴 **High Exposure**: "Will Player 173 win Beast Game..." is 11.6% of capital
 - 🔴 **High Exposure**: "Will the Houston Astros win th..." is 18.6% of capital
 - 🔴 **High Exposure**: "Will Tesla be the largest comp..." is 18.8% of capital
+- 🔴 **High Exposure**: "Will Slovakia win the Men's Ic..." is 14.6% of capital
 - 🟡 **Expiring Soon**: 65 bet(s) expire within 7 days
 
 ---
@@ -810,7 +812,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 549 |
+| Markets with Active Bets | 550 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
