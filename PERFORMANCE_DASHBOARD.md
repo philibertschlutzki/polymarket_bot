@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-11 11:08:13 CET
+**Last Updated:** 2026-02-11 12:08:20 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 39 | 1,500 | 2.6% | 🟢 |
+| Today (RPD) | 45 | 1,500 | 3.0% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-68,861.37 |
-| Locked in Active Bets | $42,644.68 |
+| Available Capital | $-69,148.64 |
+| Locked in Active Bets | $42,931.95 |
 | Pending Resolution (>7d) | $2,218.52 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $42644.68 (4264.5% of capital) |
-| Avg Position Size | $116.20 |
+| Total Exposure | $42931.95 (4293.2% of capital) |
+| Avg Position Size | $116.03 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.003) |
 
 ---
-## 🎯 Active Bets (627)
+## 🎯 Active Bets (630)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -428,6 +428,9 @@
 | [Will the highest temperature in London b...](https://polymarket.com/event/highest-temperature-in-london-on-february-11-2026-10c) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-11 | 0d | 🔴 |
 | [Will Elon Musk post 580+ tweets from Feb...](https://polymarket.com/event/elon-musk-of-tweets-february-10-february-17-580plus) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-17 | 6d | 🟡 |
 | [T20 World Cup: Afghanistan vs South Afri...](https://polymarket.com/event/crint-afg-zaf-2026-02-11) | YES | $104.58 | 0.50 | 0.75 | +25% 🟢 | 70% | $+52.29 | 2026-02-18 | 6d | 🟡 |
+| [Will the price of XRP be above $1.00 on ...](https://polymarket.com/event/xrp-above-1-on-february-11) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-11 | 0d | 🔴 |
+| [Qatar Total Open: Varvara Gracheva vs Ma...](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-18 | 6d | 🟡 |
+| [Will the price of Ethereum be above $1,7...](https://polymarket.com/event/ethereum-above-1700-on-february-11) | YES | $96.82 | 0.50 | 0.75 | +25% 🟢 | 60% | $+48.41 | 2026-02-11 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -9d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -9d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -9d | ⏳ Pending Resolution |
@@ -909,7 +912,8 @@
 - 🔴 **High Exposure**: "Bucks vs. Magic..." is 11.2% of capital
 - 🔴 **High Exposure**: "Will the highest temperature i..." is 10.5% of capital
 - 🔴 **High Exposure**: "T20 World Cup: Afghanistan vs ..." is 10.5% of capital
-- 🟡 **Expiring Soon**: 76 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the price of XRP be above..." is 12.6% of capital
+- 🟡 **Expiring Soon**: 79 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -917,7 +921,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 627 |
+| Markets with Active Bets | 630 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
