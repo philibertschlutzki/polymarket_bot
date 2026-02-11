@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-11 23:10:08 CET
+**Last Updated:** 2026-02-12 00:10:14 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -231,25 +231,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #13: [Counter-Strike: fnatic vs 33 (BO3) - IEM Atlanta: Global Qua...](https://polymarket.com/event/cs2-fnc-33-2026-02-11)
-*Analyzed: 2026-02-11 18:41 CET*
-
-**Decision:** YES @ 0.50 (Stake: $151.55)
-**[View Market →](https://polymarket.com/event/cs2-fnc-33-2026-02-11)**
-
-**AI Analysis:**
-- **Estimated Probability:** 85.0% (vs Market: 50.0%)
-- **Confidence Score:** 75.0%
-- **Edge:** +35.0%
-- **Expected Value:** $+106.09
-- **End Date:** 2026-02-11 23:00 CET
-
-**AI Reasoning:**
-> Fnatic ist ein etabliertes Team mit einer guten Rangliste und aktueller Besetzung, während Team 33 derzeit keine aktive Aufstellung hat. Daher ist die Wahrscheinlichkeit, dass Fnatic gewinnt, deutlich höher.
-
----
-
-### Bet #14: [Will Bitcoin reach $80,000 February 9-15?](https://polymarket.com/market/will-bitcoin-reach-80k-february-9-15)
+### Bet #13: [Will Bitcoin reach $80,000 February 9-15?](https://polymarket.com/market/will-bitcoin-reach-80k-february-9-15)
 *Analyzed: 2026-02-11 18:16 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -267,7 +249,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #15: [Argentina Open: Roman Andres Burruchaga vs Tomas Etcheverry](https://polymarket.com/event/atp-burruch-etcheve-2026-02-11)
+### Bet #14: [Argentina Open: Roman Andres Burruchaga vs Tomas Etcheverry](https://polymarket.com/event/atp-burruch-etcheve-2026-02-11)
 *Analyzed: 2026-02-11 18:16 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -285,7 +267,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #16: [Will XRP reach $3.20 in February?](https://polymarket.com/market/will-xrp-reach-3pt2-in-february-2026)
+### Bet #15: [Will XRP reach $3.20 in February?](https://polymarket.com/market/will-xrp-reach-3pt2-in-february-2026)
 *Analyzed: 2026-02-11 16:26 CET*
 
 **Decision:** NO @ 0.50 (Stake: $188.25)
@@ -303,7 +285,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #17: [Will Ethereum dip to $1,200 in February?](https://polymarket.com/market/will-ethereum-dip-to-1200-in-february-2026)
+### Bet #16: [Will Ethereum dip to $1,200 in February?](https://polymarket.com/market/will-ethereum-dip-to-1200-in-february-2026)
 *Analyzed: 2026-02-11 16:16 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -331,7 +313,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #18: [Qatar Total Open: Iga Swiatek vs Daria Kasatkina](https://polymarket.com/event/wta-swiatek-kasatki-2026-02-11)
+### Bet #17: [Qatar Total Open: Iga Swiatek vs Daria Kasatkina](https://polymarket.com/event/wta-swiatek-kasatki-2026-02-11)
 *Analyzed: 2026-02-11 16:11 CET*
 
 **Decision:** YES @ 0.50 (Stake: $156.52)
@@ -349,7 +331,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #19: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-125m-and-150m-views-in-its-first-7-days)
+### Bet #18: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-125m-and-150m-views-in-its-first-7-days)
 *Analyzed: 2026-02-11 14:26 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -367,7 +349,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #20: [Will Jaylen Brown win the 2025–2026 NBA MVP?](https://polymarket.com/market/will-jaylen-brown-win-the-20252026-nba-mvp)
+### Bet #19: [Will Jaylen Brown win the 2025–2026 NBA MVP?](https://polymarket.com/market/will-jaylen-brown-win-the-20252026-nba-mvp)
 *Analyzed: 2026-02-11 14:21 CET*
 
 **Decision:** NO @ 0.50 (Stake: $198.71)
@@ -385,7 +367,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #21: [Will the price of Bitcoin be above $58,000 on February 12?](https://polymarket.com/market/bitcoin-above-58k-on-february-12)
+### Bet #20: [Will the price of Bitcoin be above $58,000 on February 12?](https://polymarket.com/market/bitcoin-above-58k-on-february-12)
 *Analyzed: 2026-02-11 14:16 CET*
 
 **Decision:** YES @ 0.50 (Stake: $146.42)
@@ -403,7 +385,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #22: [Qatar Total Open: Mirra Andreeva vs Victoria Mboko](https://polymarket.com/event/wta-andreev-mboko-2026-02-11)
+### Bet #21: [Qatar Total Open: Mirra Andreeva vs Victoria Mboko](https://polymarket.com/event/wta-andreev-mboko-2026-02-11)
 *Analyzed: 2026-02-11 14:11 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -421,7 +403,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #23: [Will Norway win the most gold medals in the 2026 Winter Olym...](https://polymarket.com/market/will-norway-win-the-most-gold-medals-in-the-2026-winter-olympics)
+### Bet #22: [Will Norway win the most gold medals in the 2026 Winter Olym...](https://polymarket.com/market/will-norway-win-the-most-gold-medals-in-the-2026-winter-olympics)
 *Analyzed: 2026-02-11 13:56 CET*
 
 **Decision:** YES @ 0.50 (Stake: $92.20)
@@ -439,7 +421,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #24: [Will Bitcoin dip to $66,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-66k-february-9-15)
+### Bet #23: [Will Bitcoin dip to $66,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-66k-february-9-15)
 *Analyzed: 2026-02-11 13:16 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -457,7 +439,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #25: [Will Silver (SI) hit (LOW) $55 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-55-by-end-of-february-998-393-222-319-616)
+### Bet #24: [Will Silver (SI) hit (LOW) $55 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-55-by-end-of-february-998-393-222-319-616)
 *Analyzed: 2026-02-11 13:06 CET*
 
 **Decision:** NO @ 0.50 (Stake: $151.55)
@@ -475,7 +457,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #26: [Will the price of Bitcoin be above $66,000 on February 12?](https://polymarket.com/market/bitcoin-above-66k-on-february-12)
+### Bet #25: [Will the price of Bitcoin be above $66,000 on February 12?](https://polymarket.com/market/bitcoin-above-66k-on-february-12)
 *Analyzed: 2026-02-11 12:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -493,7 +475,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #27: [Rotterdam Open: Guy Den Ouden vs Marton Fucsovics](https://polymarket.com/event/atp-ouden-fucsovi-2026-02-09)
+### Bet #26: [Rotterdam Open: Guy Den Ouden vs Marton Fucsovics](https://polymarket.com/event/atp-ouden-fucsovi-2026-02-09)
 *Analyzed: 2026-02-11 12:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $120.75)
@@ -511,7 +493,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #28: [Qatar Total Open: Varvara Gracheva vs Maria Sakkari](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11)
+### Bet #27: [Qatar Total Open: Varvara Gracheva vs Maria Sakkari](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11)
 *Analyzed: 2026-02-11 11:36 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -529,7 +511,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #29: [T20 World Cup: Afghanistan vs South Africa (Game 1)](https://polymarket.com/event/crint-afg-zaf-2026-02-11)
+### Bet #28: [T20 World Cup: Afghanistan vs South Africa (Game 1)](https://polymarket.com/event/crint-afg-zaf-2026-02-11)
 *Analyzed: 2026-02-11 10:21 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -547,7 +529,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #30: [Will Elon Musk post 580+ tweets from February 10 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-580plus)
+### Bet #29: [Will Elon Musk post 580+ tweets from February 10 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-580plus)
 *Analyzed: 2026-02-11 09:36 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -565,7 +547,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #31: [Will the price of Bitcoin be above $74,000 on February 12?](https://polymarket.com/market/bitcoin-above-74k-on-february-12)
+### Bet #30: [Will the price of Bitcoin be above $74,000 on February 12?](https://polymarket.com/market/bitcoin-above-74k-on-february-12)
 *Analyzed: 2026-02-11 08:06 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -583,7 +565,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #32: [Will the US strike another country first?](https://polymarket.com/market/will-the-us-strike-another-country-first-645)
+### Bet #31: [Will the US strike another country first?](https://polymarket.com/market/will-the-us-strike-another-country-first-645)
 *Analyzed: 2026-02-11 07:51 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -601,7 +583,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #33: [Bucks vs. Magic](https://polymarket.com/event/nba-mil-orl-2026-02-11)
+### Bet #32: [Bucks vs. Magic](https://polymarket.com/event/nba-mil-orl-2026-02-11)
 *Analyzed: 2026-02-11 07:46 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -619,7 +601,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #34: [Will Elon Musk post 0-19 tweets from February 13 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-13-february-20-0-19)
+### Bet #33: [Will Elon Musk post 0-19 tweets from February 13 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-13-february-20-0-19)
 *Analyzed: 2026-02-11 07:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -637,7 +619,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #35: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-75m-and-100m-views-in-its-first-7-days)
+### Bet #34: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-75m-and-100m-views-in-its-first-7-days)
 *Analyzed: 2026-02-11 07:36 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -655,7 +637,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #36: [Pacers vs. Nets](https://polymarket.com/event/nba-ind-bkn-2026-02-11)
+### Bet #35: [Pacers vs. Nets](https://polymarket.com/event/nba-ind-bkn-2026-02-11)
 *Analyzed: 2026-02-11 06:56 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -673,7 +655,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #37: [Will Bitcoin dip to $64,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-64k-february-9-15)
+### Bet #36: [Will Bitcoin dip to $64,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-64k-february-9-15)
 *Analyzed: 2026-02-11 05:56 CET*
 
 **Decision:** NO @ 0.50 (Stake: $80.62)
@@ -691,7 +673,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #38: [Will Italy win Eurovision 2026?](https://polymarket.com/event/will-italy-win-eurovision-2026)
+### Bet #37: [Will Italy win Eurovision 2026?](https://polymarket.com/event/will-italy-win-eurovision-2026)
 *Analyzed: 2026-02-11 05:25 CET*
 
 **Decision:** NO @ 0.50 (Stake: $179.88)
@@ -709,7 +691,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #39: [Will Norway win Eurovision 2026?](https://polymarket.com/market/will-norway-win-eurovision-2026)
+### Bet #38: [Will Norway win Eurovision 2026?](https://polymarket.com/market/will-norway-win-eurovision-2026)
 *Analyzed: 2026-02-11 04:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $83.67)
@@ -727,7 +709,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #40: [Will Elon Musk post 140-159 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-140-159)
+### Bet #39: [Will Elon Musk post 140-159 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-140-159)
 *Analyzed: 2026-02-11 04:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -745,7 +727,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #41: [Will Manchester United win the 2025–26 English Premier Leagu...](https://polymarket.com/market/will-manchester-united-win-the-202526-english-premier-league)
+### Bet #40: [Will Manchester United win the 2025–26 English Premier Leagu...](https://polymarket.com/market/will-manchester-united-win-the-202526-english-premier-league)
 *Analyzed: 2026-02-11 03:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $203.94)
@@ -763,7 +745,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #42: [Abstract FDV above $3B one day after launch?](https://polymarket.com/event/abstract-fdv-above-3b-one-day-after-launch)
+### Bet #41: [Abstract FDV above $3B one day after launch?](https://polymarket.com/event/abstract-fdv-above-3b-one-day-after-launch)
 *Analyzed: 2026-02-11 03:40 CET*
 
 **Decision:** NO @ 0.50 (Stake: $166.54)
@@ -781,7 +763,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #43: [Will Arsenal FC win on 2026-02-12?](https://polymarket.com/market/epl-bre-ars-2026-02-12-ars)
+### Bet #42: [Will Arsenal FC win on 2026-02-12?](https://polymarket.com/market/epl-bre-ars-2026-02-12-ars)
 *Analyzed: 2026-02-11 02:50 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -799,7 +781,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #44: [Will a contestant numbered 151 - 175 win Beast Games: Season...](https://polymarket.com/market/will-a-contestant-numbered-151-175-win-beast-games-season-2)
+### Bet #43: [Will a contestant numbered 151 - 175 win Beast Games: Season...](https://polymarket.com/market/will-a-contestant-numbered-151-175-win-beast-games-season-2)
 *Analyzed: 2026-02-11 02:26 CET*
 
 **Decision:** NO @ 0.50 (Stake: $77.46)
@@ -817,7 +799,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #45: [Will the US strike Cuba next?](https://polymarket.com/market/will-the-us-strike-cuba-next-721)
+### Bet #44: [Will the US strike Cuba next?](https://polymarket.com/market/will-the-us-strike-cuba-next-721)
 *Analyzed: 2026-02-11 02:25 CET*
 
 **Decision:** NO @ 0.50 (Stake: $125.50)
@@ -835,7 +817,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #46: [Will The Hunger Games: Sunrise on the Reaping be the top gro...](https://polymarket.com/event/will-the-hunger-games-sunrise-on-the-reaping-be-the-top-grossing-movie-of-2026)
+### Bet #45: [Will The Hunger Games: Sunrise on the Reaping be the top gro...](https://polymarket.com/event/will-the-hunger-games-sunrise-on-the-reaping-be-the-top-grossing-movie-of-2026)
 *Analyzed: 2026-02-11 02:15 CET*
 
 **Decision:** NO @ 0.50 (Stake: $83.67)
@@ -853,7 +835,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #47: [Will Taro Kono be the Prime Minister of Japan as a result of...](https://polymarket.com/market/will-taro-kono-be-the-prime-minister-of-japan-as-a-result-of-the-2026-snap-election)
+### Bet #46: [Will Taro Kono be the Prime Minister of Japan as a result of...](https://polymarket.com/market/will-taro-kono-be-the-prime-minister-of-japan-as-a-result-of-the-2026-snap-election)
 *Analyzed: 2026-02-11 01:50 CET*
 
 **Decision:** NO @ 0.50 (Stake: $201.25)
@@ -871,7 +853,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #48: [Will Switzerland win the most medals in the 2026 Winter Olym...](https://polymarket.com/market/will-switzerland-win-the-most-medals-in-the-2026-winter-olympics)
+### Bet #47: [Will Switzerland win the most medals in the 2026 Winter Olym...](https://polymarket.com/market/will-switzerland-win-the-most-medals-in-the-2026-winter-olympics)
 *Analyzed: 2026-02-11 01:30 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -889,7 +871,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #49: [Argentina Open: Federico Coria vs Matteo Berrettini](https://polymarket.com/event/atp-coria-berrett-2026-02-09)
+### Bet #48: [Argentina Open: Federico Coria vs Matteo Berrettini](https://polymarket.com/event/atp-coria-berrett-2026-02-09)
 *Analyzed: 2026-02-11 01:00 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -907,7 +889,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #50: [Will Putin meet with Zelenskyy by March 31, 2026?](https://polymarket.com/event/will-putin-meet-with-zelenskyy-by-march-31-2026)
+### Bet #49: [Will Putin meet with Zelenskyy by March 31, 2026?](https://polymarket.com/event/will-putin-meet-with-zelenskyy-by-march-31-2026)
 *Analyzed: 2026-02-11 00:30 CET*
 
 **Decision:** NO @ 0.50 (Stake: $77.46)
@@ -925,11 +907,38 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
+### Bet #50: [Will Henri Bontenbal become the next Prime Minister of the N...](https://polymarket.com/market/will-henri-bontenbal-become-the-next-prime-minister-of-the-netherlands)
+*Analyzed: 2026-02-11 00:27 CET*
+
+**Decision:** NO @ 0.50 (Stake: $83.67)
+**[View Market →](https://polymarket.com/market/will-henri-bontenbal-become-the-next-prime-minister-of-the-netherlands)**
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -20.0%
+- **Expected Value:** $+33.47
+- **End Date:** 2026-12-31 01:00 CET
+
+**AI Reasoning:**
+> Henri Bontenbal ist zwar ein beliebter Kandidat und Vorsitzender der CDA, aber die fragmentierte politische Landschaft in den Niederlanden und die Notwendigkeit einer Koalitionsregierung reduzieren seine Wahrscheinlichkeit, Premierminister zu werden. Die CDA ist nicht der klare Wahlgewinner, und die Koalitionsverhandlungen werden wahrscheinlich komplex sein. Der aktuelle Marktpreis von 50% scheint etwas zu optimistisch.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 50 rejected analyses*
 
 ### Insufficient Edge (50)
+
+**[Hawks vs. Hornets: O/U 234.5](https://polymarket.com/market/nba-atl-cha-2026-02-11-total-234pt5)**
+*Analyzed: 2026-02-12 00:02 CET*
+Market: 0.50 | AI: 0.48 | Edge: -2.0% | Conf: 70%
+**[View Market →](https://polymarket.com/market/nba-atl-cha-2026-02-11-total-234pt5)**
+
+**Reasoning:** Die durchschnittliche kombinierte Punktzahl beider Teams liegt leicht unter dem Wert von 234.5. Allerdings könnten die Ausfälle von Schlüsselspielern die tatsächliche Punktzahl beeinflussen. Die Hawks haben eine Tendenz zu Over in Auswärtsspielen, aber die jüngste Form der Hornets deutet auf eine niedrigere Punktzahl hin. Daher schätze ich die Wahrscheinlichkeit für 'Over' auf 48% mit einem Confidence Score von 0.7.
+
+---
 
 **[Will Elon Musk post 60-79 tweets from February 13 to February 20, 2026?](https://polymarket.com/market/elon-musk-of-tweets-february-13-february-20-60-79)**
 *Analyzed: 2026-02-11 23:02 CET*
@@ -1369,15 +1378,6 @@ Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 65%
 **[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-400-419)**
 
 **Reasoning:** Elon Musk ist im Allgemeinen sehr aktiv auf Twitter, aber seine Aktivität variiert. Basierend auf historischen Daten und aktuellen Ereignissen schätze ich, dass er durchschnittlich über 50 Tweets pro Tag absetzen wird. Die Polymarket-Daten für ähnliche Zeiträume zeigen eine gewisse Unsicherheit, aber der aktuelle Marktpreis von 50% deutet darauf hin, dass der Markt die Wahrscheinlichkeit in der Nähe von 50% sieht. Da die Tweets vom 6. Februar bereits gezählt werden, ist das Ergebnis schon etwas klarer als es am 6. Februar selbst gewesen wäre. Ich reduziere die Wahrscheinlichkeit leicht unter 50%, um der inhärenten Volatilität und der Tatsache Rechnung zu tragen, dass 400 Tweets in 8 Tagen ein relativ enges Fenster darstellen.
-
----
-
-**[Will Birmingham City FC win on 2026-02-10?](https://polymarket.com/market/elc-bir-wba-2026-02-10-bir)**
-*Analyzed: 2026-02-10 21:40 CET*
-Market: 0.50 | AI: 0.60 | Edge: +10.0% | Conf: 75%
-**[View Market →](https://polymarket.com/market/elc-bir-wba-2026-02-10-bir)**
-
-**Reasoning:** Birmingham City spielt am 10. Februar 2026 gegen West Bromwich Albion. Birmingham City befindet sich in guter Form mit 12 Siegen, 9 Unentschieden und 10 Niederlagen in der laufenden Saison. Ihre Heimform ist besonders stark mit 8 Siegen, 6 Unentschieden und nur einer Niederlage. Das nächste Spiel ist gegen West Bromwich Albion. West Bromwich Albion hingegen hat eine schlechte Auswärtsbilanz. Birmingham hat 4 der letzten 6 Spiele gegen West Brom gewonnen. Einige Quellen prognostizieren einen Sieg für Birmingham. Eine Quelle gibt eine Wahrscheinlichkeit von 53.12% für einen Sieg von Birmingham an. Forebet prognostiziert eine 67%ige Siegchance für Birmingham. Bet365 gibt Quoten von 81/100 für einen Sieg von Birmingham, was impliziert, dass sie als Favorit gelten. Soccer-Rating.com gibt jedoch den Tipp, auf X2 (Doppelte Chance für West Brom) zu wetten, was gegen einen Sieg von Birmingham spricht. Insgesamt deuten die Heimstärke von Birmingham, die schlechte Auswärtsform von West Brom und die direkten Vergleiche auf eine höhere Wahrscheinlichkeit für einen Sieg von Birmingham hin. Die verschiedenen Prognosen schwanken, aber der Gesamteindruck ist positiv für Birmingham.
 
 ---
 

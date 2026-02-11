@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-11 23:10:08 CET
+**Last Updated:** 2026-02-12 00:10:13 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 113 | 1,500 | 7.5% | 🟢 |
+| Today (RPD) | 116 | 1,500 | 7.7% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -42,7 +42,7 @@
 | Category | Amount |
 |----------|--------|
 | Available Capital | $-72,511.50 |
-| Locked in Active Bets | $43,560.06 |
+| Locked in Active Bets | $43,408.51 |
 | Pending Resolution (>7d) | $3,843.32 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,8 +51,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $43560.06 (4356.0% of capital) |
-| Avg Position Size | $115.24 |
+| Total Exposure | $43408.51 (4340.9% of capital) |
+| Avg Position Size | $115.14 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.003) |
 
@@ -426,7 +426,6 @@
 | [Will XRP reach $3.20 in February?](https://polymarket.com/event/will-xrp-reach-3pt2-in-february-2026) | NO | $188.25 | 0.50 | 0.05 | -45% 🔴 | 70% | $+169.42 | 2026-03-01 | 17d | 🟢 |
 | [Argentina Open: Roman Andres Burruchaga ...](https://polymarket.com/event/atp-burruch-etcheve-2026-02-11) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-18 | 6d | 🟡 |
 | [Will Bitcoin reach $80,000 February 9-15...](https://polymarket.com/event/will-bitcoin-reach-80k-february-9-15) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-16 | 4d | 🟡 |
-| [Counter-Strike: fnatic vs 33 (BO3) - IEM...](https://polymarket.com/event/cs2-fnc-33-2026-02-11) | YES | $151.55 | 0.50 | 0.85 | +35% 🟢 | 75% | $+106.09 | 2026-02-11 | -1d | ⏰ Expired |
 | [Will the price of Bitcoin be above $70,0...](https://polymarket.com/event/bitcoin-above-70k-on-february-13) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-13 | 1d | 🔴 |
 | [Spurs vs. Warriors](https://polymarket.com/event/nba-sas-gsw-2026-02-11) | YES | $111.80 | 0.50 | 0.75 | +25% 🟢 | 80% | $+55.90 | 2026-02-12 | 0d | 🔴 |
 | [Odds of Khamenei being out as Supreme Le...](https://polymarket.com/event/odds-of-khamenei-being-out-as-supreme-leader-by-march-31-over-20-in-february-158) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-28 | 16d | 🟢 |
@@ -564,7 +563,7 @@
 | [Will VfB Stuttgart win on 2026-02-07?](https://polymarket.com/event/bun-pau-stu-2026-02-07-stu) | YES | $67.08 | 0.50 | 0.65 | +15% 🟡 | 80% | $+0.00 | 2026-02-07 | -5d | ⏳ Pending Resolution |
 | [Will AFC Bournemouth win on 2026-02-07?](https://polymarket.com/event/epl-bou-ast-2026-02-07-bou) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+0.00 | 2026-02-07 | -5d | ⏳ Pending Resolution |
 | [Counter-Strike: Spirit vs FURIA (BO3) - ...](https://polymarket.com/event/cs2-ts7-furia-2026-02-07) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-07 | -5d | ⏳ Pending Resolution |
-| [Mavericks vs. Spurs](https://polymarket.com/event/nba-dal-sas-2026-02-07) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+0.00 | 2026-02-08 | -4d | ⏳ Pending Resolution |
+| [Mavericks vs. Spurs](https://polymarket.com/event/nba-dal-sas-2026-02-07) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+0.00 | 2026-02-08 | -5d | ⏳ Pending Resolution |
 | [LoL: SK Gaming vs Los Ratones (BO1) - LE...](https://polymarket.com/event/lol-sk-lr-2026-02-07) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-08 | -4d | ⏳ Pending Resolution |
 | [Will António José Seguro win the second ...](https://polymarket.com/event/will-antnio-jos-seguro-win-the-second-round-by-at-least-35) | NO | $232.43 | 0.50 | 0.01 | -49% 🔴 | 90% | $+0.00 | 2026-02-08 | -4d | ⏳ Pending Resolution |
 | [Will the People’s Party (PPLE) win 180 o...](https://polymarket.com/event/will-the-peoples-party-pple-win-180-or-more-seats-in-the-2026-thai-legislative-election) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+0.00 | 2026-02-08 | -4d | ⏳ Pending Resolution |
@@ -724,6 +723,7 @@
 | [Will Manchester City FC win on 2026-02-1...](https://polymarket.com/event/epl-mac-ful-2026-02-11-mac) | YES | $115.24 | 0.50 | 0.75 | +25% 🟢 | 85% | $+0.00 | 2026-02-11 | -1d | ⏳ Pending Resolution |
 | [Will Fulham FC win on 2026-02-11?](https://polymarket.com/event/epl-mac-ful-2026-02-11-ful) | NO | $104.58 | 0.50 | 0.25 | -25% 🔴 | 70% | $+0.00 | 2026-02-11 | -1d | ⏳ Pending Resolution |
 | [Will Crystal Palace FC win on 2026-02-11...](https://polymarket.com/event/epl-cry-bur-2026-02-11-cry) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-11 | -1d | ⏳ Pending Resolution |
+| [Counter-Strike: fnatic vs 33 (BO3) - IEM...](https://polymarket.com/event/cs2-fnc-33-2026-02-11) | YES | $151.55 | 0.50 | 0.85 | +35% 🟢 | 75% | $+0.00 | 2026-02-11 | -1d | ⏳ Pending Resolution |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -943,7 +943,6 @@
 - 🔴 **High Exposure**: "Will the 2026 Bad Bunny Super ..." is 10.5% of capital
 - 🔴 **High Exposure**: "Qatar Total Open: Iga Swiatek ..." is 15.7% of capital
 - 🔴 **High Exposure**: "Will XRP reach $3.20 in Februa..." is 18.8% of capital
-- 🔴 **High Exposure**: "Counter-Strike: fnatic vs 33 (..." is 15.2% of capital
 - 🔴 **High Exposure**: "Spurs vs. Warriors..." is 11.2% of capital
 - 🔴 **High Exposure**: "Wizards vs. Cavaliers..." is 18.4% of capital
 - 🟡 **Expiring Soon**: 77 bet(s) expire within 7 days
