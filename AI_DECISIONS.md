@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-11 18:09:16 CET
+**Last Updated:** 2026-02-11 19:09:27 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,115 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will Fulham FC win on 2026-02-11?](https://polymarket.com/market/epl-mac-ful-2026-02-11-ful)
+### Bet #1: [Spurs vs. Warriors](https://polymarket.com/event/nba-sas-gsw-2026-02-11)
+*Analyzed: 2026-02-11 19:01 CET*
+
+**Decision:** YES @ 0.50 (Stake: $111.80)
+**[View Market →](https://polymarket.com/event/nba-sas-gsw-2026-02-11)**
+
+**AI Analysis:**
+- **Estimated Probability:** 75.0% (vs Market: 50.0%)
+- **Confidence Score:** 80.0%
+- **Edge:** +25.0%
+- **Expected Value:** $+55.90
+- **End Date:** 2026-02-12 04:00 CET
+
+**AI Reasoning:**
+> Die San Antonio Spurs spielen gegen die Golden State Warriors am 11. Februar 2026. Die Spurs sind mit 37-16 derzeit Zweiter in der Western Conference, während die Warriors mit 29-25 auf dem achten Platz liegen. Die Spurs haben ihr letztes Spiel gegen die Lakers mit 136:108 gewonnen. Die Warriors haben in dieser Saison bereits zweimal gegen die Spurs gewonnen, aber Stephen Curry und Jimmy Butler werden verletzungsbedingt ausfallen. Darüber hinaus sind für die Warriors De'Anthony Melton und Will Richard fraglich. Für die Spurs ist Stephon Castle fraglich. Victor Wembanyama spielt sehr gut für die Spurs. DraftKings listet die Spurs als 7,5-Punkte-Favoriten. Unter Berücksichtigung der Verletzungen der Warriors und der aktuellen Form der Spurs schätze ich die Wahrscheinlichkeit, dass die Spurs gewinnen, auf 75 %.
+
+---
+
+### Bet #2: [Will the price of Bitcoin be above $70,000 on February 13?](https://polymarket.com/market/bitcoin-above-70k-on-february-13)
+*Analyzed: 2026-02-11 18:47 CET*
+
+**Decision:** NO @ 0.50 (Stake: $58.09)
+**[View Market →](https://polymarket.com/market/bitcoin-above-70k-on-february-13)**
+
+**AI Analysis:**
+- **Estimated Probability:** 35.0% (vs Market: 50.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** -15.0%
+- **Expected Value:** $+17.43
+- **End Date:** 2026-02-13 18:00 CET
+
+**AI Reasoning:**
+> Angesichts der aktuellen Volatilität, des aktuellen Preises von Bitcoin (ca. 66.000 - 67.000 $) und der Spanne der Vorhersagen, scheint die Wahrscheinlichkeit, dass Bitcoin bis zum 13. Februar über 70.000 $ liegt, geringer als 50 %. Es ist ein Aufwärtstrend erforderlich, der angesichts des jüngsten Abwärtsdrucks und der bestehenden Unsicherheiten auf dem Markt unwahrscheinlich ist. Es ist jedoch nicht unmöglich, da Bitcoin bekanntermaßen volatil ist, was zu dieser Schätzung von 0,35 führt. Das Konfidenzniveau ist moderat (0,6), da der Markt unvorhersehbar ist und unerwartete Ereignisse den Preis beeinflussen könnten.
+
+---
+
+### Bet #3: [Counter-Strike: fnatic vs 33 (BO3) - IEM Atlanta: Global Qua...](https://polymarket.com/event/cs2-fnc-33-2026-02-11)
+*Analyzed: 2026-02-11 18:41 CET*
+
+**Decision:** YES @ 0.50 (Stake: $151.55)
+**[View Market →](https://polymarket.com/event/cs2-fnc-33-2026-02-11)**
+
+**AI Analysis:**
+- **Estimated Probability:** 85.0% (vs Market: 50.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** +35.0%
+- **Expected Value:** $+106.09
+- **End Date:** 2026-02-11 23:00 CET
+
+**AI Reasoning:**
+> Fnatic ist ein etabliertes Team mit einer guten Rangliste und aktueller Besetzung, während Team 33 derzeit keine aktive Aufstellung hat. Daher ist die Wahrscheinlichkeit, dass Fnatic gewinnt, deutlich höher.
+
+---
+
+### Bet #4: [Will Bitcoin reach $80,000 February 9-15?](https://polymarket.com/market/will-bitcoin-reach-80k-february-9-15)
+*Analyzed: 2026-02-11 18:16 CET*
+
+**Decision:** NO @ 0.50 (Stake: $58.09)
+**[View Market →](https://polymarket.com/market/will-bitcoin-reach-80k-february-9-15)**
+
+**AI Analysis:**
+- **Estimated Probability:** 35.0% (vs Market: 50.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** -15.0%
+- **Expected Value:** $+17.43
+- **End Date:** 2026-02-16 06:00 CET
+
+**AI Reasoning:**
+> Die Wahrscheinlichkeit, dass Bitcoin zwischen dem 9. und 15. Februar 2026 80.000 US-Dollar erreicht, wird auf 35 % geschätzt.  Mehrere Quellen deuten auf eine kurzfristige Konsolidierung oder sogar einen leichten Abwärtstrend hin. Aktuell notiert Bitcoin bei etwa 67.000 US-Dollar. Um 80.000 US-Dollar zu erreichen, wäre also ein deutlicher Anstieg innerhalb weniger Tage erforderlich.  Einige Analysten prognostizieren zwar höhere Ziele für Februar 2026, aber die jüngste Volatilität und die derzeitige Konsolidierungsphase machen ein so schnelles Wachstum unwahrscheinlich.  Es ist wichtig zu beachten, dass es sich um eine Schätzung handelt, die auf der Grundlage der aktuellen Marktlage und Expertenmeinungen vorgenommen wurde und keine Garantie darstellt. Ein 'Confidence Score' von 0.6 spiegelt diese Unsicherheit wider.
+
+---
+
+### Bet #5: [Will Crystal Palace FC win on 2026-02-11?](https://polymarket.com/market/epl-cry-bur-2026-02-11-cry)
+*Analyzed: 2026-02-11 18:16 CET*
+
+**Decision:** YES @ 0.50 (Stake: $64.95)
+**[View Market →](https://polymarket.com/market/epl-cry-bur-2026-02-11-cry)**
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 50.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** +15.0%
+- **Expected Value:** $+19.49
+- **End Date:** 2026-02-11 20:30 CET
+
+**AI Reasoning:**
+> Crystal Palace spielt zu Hause gegen ein auswärtsschwaches Burnley und hat die letzten direkten Duelle gewonnen. Die aktuelle Form und die Wettquoten deuten ebenfalls auf einen Sieg von Crystal Palace hin. Allerdings sollte die Volatilität des Fußballs berücksichtigt werden, daher eine Wahrscheinlichkeit von 65%.
+
+---
+
+### Bet #6: [Argentina Open: Roman Andres Burruchaga vs Tomas Etcheverry](https://polymarket.com/event/atp-burruch-etcheve-2026-02-11)
+*Analyzed: 2026-02-11 18:16 CET*
+
+**Decision:** YES @ 0.50 (Stake: $64.95)
+**[View Market →](https://polymarket.com/event/atp-burruch-etcheve-2026-02-11)**
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 50.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** +15.0%
+- **Expected Value:** $+19.49
+- **End Date:** 2026-02-18 14:00 CET
+
+**AI Reasoning:**
+> Tomas Etcheverry hat ein deutlich höheres Ranking als Roman Andres Burruchaga und wird von Experten und Wettquoten favorisiert. Obwohl Burruchaga in guter Form ist und bereits einen Sieg in diesem Turnier errungen hat, scheint Etcheverrys Erfahrung und sein Können auf Sandplätzen ihm einen Vorteil zu verschaffen. Die Simulationen geben Etcheverry eine Gewinnwahrscheinlichkeit von 58%, aber angesichts der Gesamtumstände und der Tatsache, dass er ein Favorit ist, erhöhe ich die Wahrscheinlichkeit leicht auf 65%. Es gibt jedoch auch Ergebnisse, die darauf hindeuten, dass Burruchaga in der Lage sein kann, Etcheverry herauszufordern.
+
+---
+
+### Bet #7: [Will Fulham FC win on 2026-02-11?](https://polymarket.com/market/epl-mac-ful-2026-02-11-ful)
 *Analyzed: 2026-02-11 17:16 CET*
 
 **Decision:** NO @ 0.50 (Stake: $104.58)
@@ -33,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Will XRP reach $3.20 in February?](https://polymarket.com/market/will-xrp-reach-3pt2-in-february-2026)
+### Bet #8: [Will XRP reach $3.20 in February?](https://polymarket.com/market/will-xrp-reach-3pt2-in-february-2026)
 *Analyzed: 2026-02-11 16:26 CET*
 
 **Decision:** NO @ 0.50 (Stake: $188.25)
@@ -51,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will Ethereum dip to $1,200 in February?](https://polymarket.com/market/will-ethereum-dip-to-1200-in-february-2026)
+### Bet #9: [Will Ethereum dip to $1,200 in February?](https://polymarket.com/market/will-ethereum-dip-to-1200-in-february-2026)
 *Analyzed: 2026-02-11 16:16 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -79,7 +187,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #4: [Qatar Total Open: Iga Swiatek vs Daria Kasatkina](https://polymarket.com/event/wta-swiatek-kasatki-2026-02-11)
+### Bet #10: [Qatar Total Open: Iga Swiatek vs Daria Kasatkina](https://polymarket.com/event/wta-swiatek-kasatki-2026-02-11)
 *Analyzed: 2026-02-11 16:11 CET*
 
 **Decision:** YES @ 0.50 (Stake: $156.52)
@@ -97,25 +205,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #5: [Will the price of Ethereum be above $1,800 on February 11?](https://polymarket.com/market/ethereum-above-1800-on-february-11)
-*Analyzed: 2026-02-11 15:51 CET*
-
-**Decision:** YES @ 0.50 (Stake: $178.89)
-**[View Market →](https://polymarket.com/market/ethereum-above-1800-on-february-11)**
-
-**AI Analysis:**
-- **Estimated Probability:** 90.0% (vs Market: 50.0%)
-- **Confidence Score:** 80.0%
-- **Edge:** +40.0%
-- **Expected Value:** $+143.11
-- **End Date:** 2026-02-11 18:00 CET
-
-**AI Reasoning:**
-> Der aktuelle Preis von Ethereum liegt laut mehreren Quellen deutlich über 1.800 USD. Obwohl Volatilität und einige pessimistische Prognosen existieren, ist die Wahrscheinlichkeit, dass der Preis über 1.800 USD bleibt, hoch, da der aktuelle Preis einen beträchtlichen Puffer bietet. Die Daten von Binance selbst bestätigen, dass Ethereum diesen Wert überschritten hat.
-
----
-
-### Bet #6: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-125m-and-150m-views-in-its-first-7-days)
+### Bet #11: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-125m-and-150m-views-in-its-first-7-days)
 *Analyzed: 2026-02-11 14:26 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -133,25 +223,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #7: [Will the price of Bitcoin be between $64,000 and $66,000 on ...](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-64000-66000-on-february-11)
-*Analyzed: 2026-02-11 14:21 CET*
-
-**Decision:** NO @ 0.50 (Stake: $125.50)
-**[View Market →](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-64000-66000-on-february-11)**
-
-**AI Analysis:**
-- **Estimated Probability:** 20.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -30.0%
-- **Expected Value:** $+75.30
-- **End Date:** 2026-02-11 18:00 CET
-
-**AI Reasoning:**
-> The current price is near the upper bound of the specified range. Volatility suggests a move out of this range is more probable than remaining within it. Technical analysis is mixed, increasing uncertainty, but the current trend indicates a higher price.
-
----
-
-### Bet #8: [Will Jaylen Brown win the 2025–2026 NBA MVP?](https://polymarket.com/market/will-jaylen-brown-win-the-20252026-nba-mvp)
+### Bet #12: [Will Jaylen Brown win the 2025–2026 NBA MVP?](https://polymarket.com/market/will-jaylen-brown-win-the-20252026-nba-mvp)
 *Analyzed: 2026-02-11 14:21 CET*
 
 **Decision:** NO @ 0.50 (Stake: $198.71)
@@ -169,7 +241,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #9: [Will the price of Bitcoin be above $58,000 on February 12?](https://polymarket.com/market/bitcoin-above-58k-on-february-12)
+### Bet #13: [Will the price of Bitcoin be above $58,000 on February 12?](https://polymarket.com/market/bitcoin-above-58k-on-february-12)
 *Analyzed: 2026-02-11 14:16 CET*
 
 **Decision:** YES @ 0.50 (Stake: $146.42)
@@ -187,7 +259,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #10: [Qatar Total Open: Mirra Andreeva vs Victoria Mboko](https://polymarket.com/event/wta-andreev-mboko-2026-02-11)
+### Bet #14: [Qatar Total Open: Mirra Andreeva vs Victoria Mboko](https://polymarket.com/event/wta-andreev-mboko-2026-02-11)
 *Analyzed: 2026-02-11 14:11 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -205,7 +277,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #11: [Will Norway win the most gold medals in the 2026 Winter Olym...](https://polymarket.com/market/will-norway-win-the-most-gold-medals-in-the-2026-winter-olympics)
+### Bet #15: [Will Norway win the most gold medals in the 2026 Winter Olym...](https://polymarket.com/market/will-norway-win-the-most-gold-medals-in-the-2026-winter-olympics)
 *Analyzed: 2026-02-11 13:56 CET*
 
 **Decision:** YES @ 0.50 (Stake: $92.20)
@@ -223,25 +295,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #12: [Will the price of Bitcoin be between $72,000 and $74,000 on ...](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-72000-74000-on-february-11)
-*Analyzed: 2026-02-11 13:26 CET*
-
-**Decision:** NO @ 0.50 (Stake: $188.25)
-**[View Market →](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-72000-74000-on-february-11)**
-
-**AI Analysis:**
-- **Estimated Probability:** 5.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -45.0%
-- **Expected Value:** $+169.42
-- **End Date:** 2026-02-11 18:00 CET
-
-**AI Reasoning:**
-> Der aktuelle Bitcoin-Preis liegt deutlich unter der genannten Spanne von 72.000 bis 74.000 US-Dollar. Obwohl Bitcoin volatil ist, ist ein Anstieg in dieser Größenordnung innerhalb weniger Stunden unwahrscheinlich. Die allgemeine Tendenz ist fallend. Daher wird die Wahrscheinlichkeit als sehr gering eingeschätzt.
-
----
-
-### Bet #13: [Will Bitcoin dip to $66,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-66k-february-9-15)
+### Bet #16: [Will Bitcoin dip to $66,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-66k-february-9-15)
 *Analyzed: 2026-02-11 13:16 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -259,7 +313,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #14: [Will Silver (SI) hit (LOW) $55 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-55-by-end-of-february-998-393-222-319-616)
+### Bet #17: [Will Silver (SI) hit (LOW) $55 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-55-by-end-of-february-998-393-222-319-616)
 *Analyzed: 2026-02-11 13:06 CET*
 
 **Decision:** NO @ 0.50 (Stake: $151.55)
@@ -277,7 +331,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #15: [Will the price of Bitcoin be above $66,000 on February 12?](https://polymarket.com/market/bitcoin-above-66k-on-february-12)
+### Bet #18: [Will the price of Bitcoin be above $66,000 on February 12?](https://polymarket.com/market/bitcoin-above-66k-on-february-12)
 *Analyzed: 2026-02-11 12:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -295,7 +349,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #16: [Rotterdam Open: Guy Den Ouden vs Marton Fucsovics](https://polymarket.com/event/atp-ouden-fucsovi-2026-02-09)
+### Bet #19: [Rotterdam Open: Guy Den Ouden vs Marton Fucsovics](https://polymarket.com/event/atp-ouden-fucsovi-2026-02-09)
 *Analyzed: 2026-02-11 12:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $120.75)
@@ -313,25 +367,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #17: [Will the price of Ethereum be above $1,700 on February 11?](https://polymarket.com/market/ethereum-above-1700-on-february-11)
-*Analyzed: 2026-02-11 11:56 CET*
-
-**Decision:** YES @ 0.50 (Stake: $96.82)
-**[View Market →](https://polymarket.com/market/ethereum-above-1700-on-february-11)**
-
-**AI Analysis:**
-- **Estimated Probability:** 75.0% (vs Market: 50.0%)
-- **Confidence Score:** 60.0%
-- **Edge:** +25.0%
-- **Expected Value:** $+48.41
-- **End Date:** 2026-02-11 18:00 CET
-
-**AI Reasoning:**
-> Der aktuelle Ethereum-Preis liegt um die 2000 $. Einige Prognosen deuten auf einen Anstieg im Jahr 2026 hin, während andere Unsicherheiten andeuten. Die Volatilität von Kryptowährungen macht eine genaue Vorhersage schwierig, aber da der aktuelle Preis deutlich über 1700 $ liegt, ist die Wahrscheinlichkeit, dass er über diesem Wert bleibt, relativ hoch. Die Konfidenzbewertung ist moderat, da unvorhergesehene Marktbewegungen den Preis beeinflussen könnten.
-
----
-
-### Bet #18: [Qatar Total Open: Varvara Gracheva vs Maria Sakkari](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11)
+### Bet #20: [Qatar Total Open: Varvara Gracheva vs Maria Sakkari](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11)
 *Analyzed: 2026-02-11 11:36 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -349,25 +385,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #19: [Will the price of XRP be above $1.00 on February 11?](https://polymarket.com/market/xrp-above-1-on-february-11)
-*Analyzed: 2026-02-11 11:26 CET*
-
-**Decision:** NO @ 0.50 (Stake: $125.50)
-**[View Market →](https://polymarket.com/market/xrp-above-1-on-february-11)**
-
-**AI Analysis:**
-- **Estimated Probability:** 20.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -30.0%
-- **Expected Value:** $+75.30
-- **End Date:** 2026-02-11 18:00 CET
-
-**AI Reasoning:**
-> Mehrere Faktoren deuten darauf hin, dass es unwahrscheinlich ist, dass XRP am 11. Februar 2026 über 1,00 $ liegen wird. Erstens zeigt die aktuelle Marktsentiment eine allgemeine Vorsicht und sogar 'extreme Angst'. Zweitens deutet die technische Analyse darauf hin, dass XRP unter seinen 50-Tage- und 200-Tage-EMAs liegt, was auf einen bärischen Moment hindeutet. Obwohl es mittelfristig optimistische Prognosen gibt, insbesondere im Hinblick auf die Verabschiedung des Market Structure Bill, wird kurzfristig ein Kursziel von 1,00 $ erwartet. Derzeit liegt der XRP-Kurs bei etwa 1,40 $, aber ein Scheitern der Gespräche im Weißen Haus über Stablecoins hat die Stimmung gedämpft. Darüber hinaus zeigen Optionsdaten eine geringe Chance, dass XRP die 2 $-Marke zurückerobern wird. Der Markt wird als stark volatil eingeschätzt.
-
----
-
-### Bet #20: [T20 World Cup: Afghanistan vs South Africa (Game 1)](https://polymarket.com/event/crint-afg-zaf-2026-02-11)
+### Bet #21: [T20 World Cup: Afghanistan vs South Africa (Game 1)](https://polymarket.com/event/crint-afg-zaf-2026-02-11)
 *Analyzed: 2026-02-11 10:21 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -385,7 +403,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #21: [Will Elon Musk post 580+ tweets from February 10 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-580plus)
+### Bet #22: [Will Elon Musk post 580+ tweets from February 10 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-580plus)
 *Analyzed: 2026-02-11 09:36 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -403,7 +421,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #22: [Will the price of Bitcoin be above $74,000 on February 12?](https://polymarket.com/market/bitcoin-above-74k-on-february-12)
+### Bet #23: [Will the price of Bitcoin be above $74,000 on February 12?](https://polymarket.com/market/bitcoin-above-74k-on-february-12)
 *Analyzed: 2026-02-11 08:06 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -421,7 +439,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #23: [Will the US strike another country first?](https://polymarket.com/market/will-the-us-strike-another-country-first-645)
+### Bet #24: [Will the US strike another country first?](https://polymarket.com/market/will-the-us-strike-another-country-first-645)
 *Analyzed: 2026-02-11 07:51 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -439,7 +457,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #24: [Bucks vs. Magic](https://polymarket.com/event/nba-mil-orl-2026-02-11)
+### Bet #25: [Bucks vs. Magic](https://polymarket.com/event/nba-mil-orl-2026-02-11)
 *Analyzed: 2026-02-11 07:46 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -457,7 +475,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #25: [Will Elon Musk post 0-19 tweets from February 13 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-13-february-20-0-19)
+### Bet #26: [Will Elon Musk post 0-19 tweets from February 13 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-13-february-20-0-19)
 *Analyzed: 2026-02-11 07:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -475,7 +493,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #26: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-75m-and-100m-views-in-its-first-7-days)
+### Bet #27: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-75m-and-100m-views-in-its-first-7-days)
 *Analyzed: 2026-02-11 07:36 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -493,7 +511,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #27: [Pacers vs. Nets](https://polymarket.com/event/nba-ind-bkn-2026-02-11)
+### Bet #28: [Pacers vs. Nets](https://polymarket.com/event/nba-ind-bkn-2026-02-11)
 *Analyzed: 2026-02-11 06:56 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -511,7 +529,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #28: [Will Bitcoin dip to $64,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-64k-february-9-15)
+### Bet #29: [Will Bitcoin dip to $64,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-64k-february-9-15)
 *Analyzed: 2026-02-11 05:56 CET*
 
 **Decision:** NO @ 0.50 (Stake: $80.62)
@@ -526,24 +544,6 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 **AI Reasoning:**
 > Mehrere Faktoren beeinflussen diese Schätzung. Zum einen ist Bitcoin sehr volatil.  Ein plötzlicher Ausverkauf ist immer möglich, aber nach einem deutlichen Rückgang in den letzten Tagen ist es vielleicht weniger wahrscheinlich, dass er sofort weiter sinkt.  Der aktuelle Marktpreis der Polymarket-Wette deutet auf eine implizite Wahrscheinlichkeit von 50 % hin, aber ich glaube, dass dies die Volatilität von Bitcoin überbewertet. Die technische Analyse deutet auf eine mögliche Erholung hin, wenn BTC über 65.000 $ bleibt.  Darüber hinaus deuten historische Daten für Februar auf eine leicht positive Tendenz hin.  Angesichts dieser Faktoren erscheint eine Wahrscheinlichkeit von 30 % angemessen, wobei die Möglichkeit eines 'Dips' berücksichtigt wird, die jüngste Widerstandsfähigkeit aber auch die Wahrscheinlichkeit eines Durchbruchs nach unten begrenzt.
-
----
-
-### Bet #29: [Will the price of Bitcoin be above $84,000 on February 11?](https://polymarket.com/market/bitcoin-above-84k-on-february-11)
-*Analyzed: 2026-02-11 05:40 CET*
-
-**Decision:** NO @ 0.50 (Stake: $58.09)
-**[View Market →](https://polymarket.com/market/bitcoin-above-84k-on-february-11)**
-
-**AI Analysis:**
-- **Estimated Probability:** 35.0% (vs Market: 50.0%)
-- **Confidence Score:** 60.0%
-- **Edge:** -15.0%
-- **Expected Value:** $+17.43
-- **End Date:** 2026-02-11 18:00 CET
-
-**AI Reasoning:**
-> Die Bitcoin-Preisvorhersagen für Februar 2026 sind sehr unterschiedlich, aber viele liegen unter 84.000 $. Die hohe Volatilität bedeutet, dass ein Anstieg über diesen Wert möglich ist, aber die aktuelle Marktstimmung und die technischen Indikatoren deuten eher auf eine geringere Wahrscheinlichkeit hin. Der Confidence Score ist moderat, da die Zukunft schwer vorherzusagen ist.
 
 ---
 
@@ -745,25 +745,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #41: [Will the price of Ethereum be above $1,900 on February 11?](https://polymarket.com/market/ethereum-above-1900-on-february-11)
-*Analyzed: 2026-02-11 01:15 CET*
-
-**Decision:** YES @ 0.50 (Stake: $104.58)
-**[View Market →](https://polymarket.com/market/ethereum-above-1900-on-february-11)**
-
-**AI Analysis:**
-- **Estimated Probability:** 75.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** +25.0%
-- **Expected Value:** $+52.29
-- **End Date:** 2026-02-11 18:00 CET
-
-**AI Reasoning:**
-> Der aktuelle Preis von Ethereum liegt zwischen 2.000 und 2.100 USD. Obwohl es einen Abwärtstrend gab, liegt der aktuelle Preis über dem Schwellenwert von 1.900 USD. Analysten betrachten ETH als unterbewertet, was auf eine mögliche Erholung hindeutet. Es gibt jedoch auch Abwärtsrisiken und die Möglichkeit weiterer Rückgänge. Insgesamt ist die Wahrscheinlichkeit, dass der Preis über 1.900 USD liegt, höher als die Wahrscheinlichkeit, dass er darunter liegt.
-
----
-
-### Bet #42: [Argentina Open: Federico Coria vs Matteo Berrettini](https://polymarket.com/event/atp-coria-berrett-2026-02-09)
+### Bet #41: [Argentina Open: Federico Coria vs Matteo Berrettini](https://polymarket.com/event/atp-coria-berrett-2026-02-09)
 *Analyzed: 2026-02-11 01:00 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -781,7 +763,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #43: [Will Putin meet with Zelenskyy by March 31, 2026?](https://polymarket.com/event/will-putin-meet-with-zelenskyy-by-march-31-2026)
+### Bet #42: [Will Putin meet with Zelenskyy by March 31, 2026?](https://polymarket.com/event/will-putin-meet-with-zelenskyy-by-march-31-2026)
 *Analyzed: 2026-02-11 00:30 CET*
 
 **Decision:** NO @ 0.50 (Stake: $77.46)
@@ -799,7 +781,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #44: [Will Henri Bontenbal become the next Prime Minister of the N...](https://polymarket.com/market/will-henri-bontenbal-become-the-next-prime-minister-of-the-netherlands)
+### Bet #43: [Will Henri Bontenbal become the next Prime Minister of the N...](https://polymarket.com/market/will-henri-bontenbal-become-the-next-prime-minister-of-the-netherlands)
 *Analyzed: 2026-02-11 00:27 CET*
 
 **Decision:** NO @ 0.50 (Stake: $83.67)
@@ -817,7 +799,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #45: [Will Lando Norris be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-lando-norris-be-the-2026-f1-drivers-champion)
+### Bet #44: [Will Lando Norris be the 2026 F1 Drivers' Champion?](https://polymarket.com/market/will-lando-norris-be-the-2026-f1-drivers-champion)
 *Analyzed: 2026-02-11 00:00 CET*
 
 **Decision:** NO @ 0.50 (Stake: $83.67)
@@ -835,43 +817,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #46: [Will Elon Musk post 165-189 tweets from February 9 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-9-february-11-165-189)
-*Analyzed: 2026-02-10 23:55 CET*
-
-**Decision:** NO @ 0.50 (Stake: $62.75)
-**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-9-february-11-165-189)**
-
-**AI Analysis:**
-- **Estimated Probability:** 35.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -15.0%
-- **Expected Value:** $+18.82
-- **End Date:** 2026-02-11 18:00 CET
-
-**AI Reasoning:**
-> Um eine fundierte Vorhersage treffen zu können, benötige ich Daten über Elon Musks jüngste Twitter-Aktivitäten. Ich kann derzeit keine Echtzeit-Daten von X abrufen oder historische Tweet-Frequenzen direkt analysieren. Allerdings ist es unwahrscheinlich, dass Elon Musk regelmäßig über 80 Tweets pro Tag (160 Tweets in zwei Tagen) veröffentlicht. Angesichts des aktuellen Marktpreises von 50% und der Tatsache, dass dies eine relativ hohe Tweet-Frequenz erfordert, schätze ich die Wahrscheinlichkeit auf 35%. Das Confidence Score ist 0.7, da die Schätzung auf allgemeinen Annahmen und dem Marktpreis basiert und nicht auf spezifischen Echtzeit-Daten.
-
----
-
-### Bet #47: [Will Elon Musk post 190-214 tweets from February 9 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-9-february-11-190-214)
-*Analyzed: 2026-02-10 23:50 CET*
-
-**Decision:** NO @ 0.50 (Stake: $146.42)
-**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-9-february-11-190-214)**
-
-**AI Analysis:**
-- **Estimated Probability:** 15.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -35.0%
-- **Expected Value:** $+102.49
-- **End Date:** 2026-02-11 18:00 CET
-
-**AI Reasoning:**
-> Basierend auf den aktuellen Daten von XTracker liegt Elon Musk weit unter der erforderlichen Tweet-Frequenz, um die Wette zu gewinnen. Selbst unter Berücksichtigung historischer Höchstwerte ist es unwahrscheinlich, dass er in den verbleibenden zwei Tagen genügend Tweets absetzen wird. Die historische Volatilität seiner Tweet-Frequenz lässt jedoch eine geringe Wahrscheinlichkeit zu.
-
----
-
-### Bet #48: [GTA VI released before June 2026?](https://polymarket.com/event/gta-vi-released-before-june-2026)
+### Bet #45: [GTA VI released before June 2026?](https://polymarket.com/event/gta-vi-released-before-june-2026)
 *Analyzed: 2026-02-10 23:36 CET*
 
 **Decision:** NO @ 0.50 (Stake: $189.74)
@@ -889,7 +835,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #49: [Will there be at least 1,000 measles cases in the U.S. by Fe...](https://polymarket.com/market/will-there-be-at-least-1000-measles-cases-in-the-us-by-february-28-2026-239)
+### Bet #46: [Will there be at least 1,000 measles cases in the U.S. by Fe...](https://polymarket.com/market/will-there-be-at-least-1000-measles-cases-in-the-us-by-february-28-2026-239)
 *Analyzed: 2026-02-10 23:35 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -907,7 +853,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #50: [US x Iran meeting by February 13, 2026?](https://polymarket.com/market/us-x-iran-meeting-by-february-13-2026-452)
+### Bet #47: [US x Iran meeting by February 13, 2026?](https://polymarket.com/market/us-x-iran-meeting-by-february-13-2026-452)
 *Analyzed: 2026-02-10 23:32 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -925,11 +871,83 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
+### Bet #48: [Will Israel strike Gaza on February 10, 2026?](https://polymarket.com/market/will-israel-strike-gaza-on-february-10-2026)
+*Analyzed: 2026-02-10 23:30 CET*
+
+**Decision:** YES @ 0.50 (Stake: $111.80)
+**[View Market →](https://polymarket.com/market/will-israel-strike-gaza-on-february-10-2026)**
+
+**AI Analysis:**
+- **Estimated Probability:** 75.0% (vs Market: 50.0%)
+- **Confidence Score:** 80.0%
+- **Edge:** +25.0%
+- **Expected Value:** $+55.90
+- **End Date:** 2026-02-28 01:00 CET
+
+**AI Reasoning:**
+> Die Nachrichtenlage am 10. Februar 2026 deutet auf eine hohe Wahrscheinlichkeit eines israelischen Angriffs auf Gaza hin. Mehrere Quellen berichten über israelische Luftangriffe und Beschuss in Gaza, selbst während einer Waffenruhe. Einige Berichte deuten darauf hin, dass diese Angriffe als Reaktion auf Aktionen von Hamas-Mitgliedern erfolgen. Darüber hinaus deuten Berichte darauf hin, dass Israel Pläne für eine umfassendere Offensive vorbereitet. Angesichts dieser Faktoren, trotz des bestehenden Waffenstillstands, scheint die Wahrscheinlichkeit eines israelischen Angriffs am 10. Februar 2026 relativ hoch zu sein. Der aktuelle Marktpreis von 50% scheint die Realität vor Ort nicht vollständig widerzuspiegeln, wenn man die Nachrichtenberichte berücksichtigt, die von fortgesetzten israelischen Militäroperationen in Gaza berichten.
+
+---
+
+### Bet #49: [Will Croatia win Eurovision 2026?](https://polymarket.com/event/will-croatia-win-eurovision-2026)
+*Analyzed: 2026-02-10 23:10 CET*
+
+**Decision:** NO @ 0.50 (Stake: $200.80)
+**[View Market →](https://polymarket.com/event/will-croatia-win-eurovision-2026)**
+
+**AI Analysis:**
+- **Estimated Probability:** 2.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -48.0%
+- **Expected Value:** $+192.77
+- **End Date:** 2026-05-16 02:00 CEST
+
+**AI Reasoning:**
+> Die aktuellen Wettquoten sehen Kroatien nicht als Favoriten für den Sieg beim Eurovision Song Contest 2026. Einige Wettseiten führen Kroatien mit Quoten von 66/1, was einer impliziten Wahrscheinlichkeit von etwa 1.5% entspricht. Andere Seiten zeigen ähnliche Werte. Zwar ist es noch früh und die Chancen können sich ändern, sobald der kroatische Beitrag feststeht, aber derzeit deutet nichts auf einen wahrscheinlichen Sieg hin. Dora 2026, der kroatische Vorentscheid, findet am 15. Februar 2026 statt. Die Vorhersagen auf ESCXTRA.com können sich auf die Quoten auswirken. Die EBU hat bedeutende Änderungen an den Abstimmungsregeln für 2026 angekündigt, darunter die Rückkehr der Jurys in den Halbfinals und Änderungen bei der Zusammensetzung der Jurys. Dies könnte sich auf die Gewinnchancen auswirken, aber es ist im Moment schwierig, die Auswirkungen genau vorherzusagen. Frühe Favoriten sind Israel, Schweden und die Ukraine. Die Tatsache, dass der aktuelle Marktpreis bei Polymarket bei 50% liegt, erscheint im Vergleich zu den allgemeinen Wettquoten sehr hoch. Ich schätze die Wahrscheinlichkeit daher deutlich niedriger ein. Die neuen Regeln bezüglich Promotion könnten auch einen Einfluss haben.
+
+---
+
+### Bet #50: [Will Elon Musk post 380-399 tweets from February 6 to Februa...](https://polymarket.com/event/elon-musk-of-tweets-february-6-february-13-380-399)
+*Analyzed: 2026-02-10 23:10 CET*
+
+**Decision:** NO @ 0.50 (Stake: $146.42)
+**[View Market →](https://polymarket.com/event/elon-musk-of-tweets-february-6-february-13-380-399)**
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -35.0%
+- **Expected Value:** $+102.49
+- **End Date:** 2026-02-13 18:00 CET
+
+**AI Reasoning:**
+> Basierend auf den aktuellen Daten von XTracker vom 10. Februar 2026 und der Analyse seiner Tweet-Frequenz ist es unwahrscheinlich, dass Elon Musk zwischen dem 6. und 13. Februar 2026 380-399 Tweets veröffentlichen wird. Er müsste seine aktuelle Tweet-Frequenz deutlich erhöhen, um dieses Ziel zu erreichen.
+
+---
+
 ## ❌ Rejected Markets
 
 *Showing last 50 rejected analyses*
 
 ### Insufficient Edge (50)
+
+**[Will Elon Musk post 160-179 tweets from February 10 to February 17, 2026?](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-160-179)**
+*Analyzed: 2026-02-11 18:31 CET*
+Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 70%
+**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-160-179)**
+
+**Reasoning:** Elon Musk's tweeting habits are highly variable, but recent data suggests a higher average tweet frequency than in the past. While a previous Polymarket market showed traders overestimated Musk's activity, the current market price of 50% suggests considerable uncertainty. The estimate reflects that the range of 160-179 tweets in 8 days may be slightly low given Musk's recent activity, but the narrow range also makes the event less certain.
+
+---
+
+**[Superform FDV above $50M one day after launch?](https://polymarket.com/market/superform-fdv-above-50m-one-day-after-launch)**
+*Analyzed: 2026-02-11 18:11 CET*
+Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 65%
+**[View Market →](https://polymarket.com/market/superform-fdv-above-50m-one-day-after-launch)**
+
+**Reasoning:** Die Frage dreht sich darum, ob die Fully Diluted Valuation (FDV) von Superform's Governance Token einen Tag nach dem Launch über 50 Millionen Dollar liegen wird. Der aktuelle Marktpreis deutet auf eine 50%ige Wahrscheinlichkeit hin. Um diese Wahrscheinlichkeit besser einzuschätzen, sind mehrere Faktoren zu berücksichtigen:  *   **Allgemeine Marktbewertung:** Die FDV von Superform (UP) betrug am 11. Februar 2026 etwa 49,15 Millionen Dollar. Die Volatilität des Kryptomarktes macht eine präzise Vorhersage schwierig.  *   **Token-Performance nach dem Launch:** Krypto-Token können nach dem Start erhebliche Preisschwankungen aufweisen. Der Erfolg hängt von der Marktstimmung, der Akzeptanz und dem allgemeinen Interesse an Kryptowährungen ab.  *   **Tokenomics:** Superform hat eine feste Obergrenze von 1 Milliarde Token. Das Token-Design scheint darauf ausgerichtet zu sein, anfängliche Aufblähungen zu verhindern.  *   **Fundamentale Daten:** Superform zielt darauf ab, das Management von On-Chain-Geld benutzerfreundlicher zu gestalten. Es bietet Zugang zu Renditemöglichkeiten mit Multi-Protokoll-Vaults. Das Protokoll hat Mittel von Investoren wie Polychain Capital und VanEck erhalten.  *   **Zeit bis zum Launch:** Der Markt hat bis zum 31. Dezember 2026 Zeit, sich zu entwickeln.  *   **Aktueller Kontext:** Laut CoinGecko beträgt die FDV von Superform (UP) am 11. Februar 2026 47.521.572 USD.  Angesichts der Tatsache, dass die aktuelle FDV nahe an der 50-Millionen-Dollar-Marke liegt, der inhärenten Volatilität von Krypto-Token und der Zeit bis zum möglichen Start halte ich eine Wahrscheinlichkeit von 40 % für angemessen. Ein Confidence Score von 0.65 spiegelt die Unsicherheiten in der Vorhersage von Token-Launches und der damit verbundenen Marktperformance wider. Die Informationen deuten darauf hin, dass der Ausgang ungewiss ist, aber nicht völlig unwahrscheinlich. Die 50-Millionen-Dollar-Marke liegt in Reichweite, aber es gibt keine Garantie, dass sie erreicht wird.
+
+---
 
 **[Hawks vs. Hornets: O/U 232.5](https://polymarket.com/market/nba-atl-cha-2026-02-11-total-232pt5)**
 *Analyzed: 2026-02-11 17:36 CET*
@@ -1360,24 +1378,6 @@ Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 70%
 **[View Market →](https://polymarket.com/event/cs2-ntr-sin2-2026-02-10)**
 
 **Reasoning:** Die Teams sind in der Weltrangliste nah beieinander. Frühere Ergebnisse sind widersprüchlich, was die Vorhersage erschwert. Die HLTV Community Voting deutet auf eine leichte Favorisierung von Sinners hin. Daher schätze ich Sinners' Gewinnwahrscheinlichkeit auf 55%.
-
----
-
-**[Counter-Strike: ENCE vs CYBERSHOKE Esports (BO3) - IEM Atlanta: Global Qualifier Playoffs](https://polymarket.com/event/cs2-ence-cs1-2026-02-10)**
-*Analyzed: 2026-02-10 14:24 CET*
-Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 65%
-**[View Market →](https://polymarket.com/event/cs2-ence-cs1-2026-02-10)**
-
-**Reasoning:** ENCE hat leicht bessere Rankings und einen Sieg in der Vergangenheit gegen CYBERSHOKE. Allerdings sind die jüngsten Ergebnisse gemischt, und CYBERSHOKE scheint konkurrenzfähig zu sein. Die Map-Auswahl könnte entscheidend sein, aber ohne spezifische Map-Performance-Daten ist eine genauere Vorhersage schwierig. Die Tipps deuten auf ein enges Match hin.
-
----
-
-**[Spurs vs. Lakers](https://polymarket.com/event/nba-sas-lal-2026-02-10)**
-*Analyzed: 2026-02-10 05:53 CET*
-Market: 0.50 | AI: 0.60 | Edge: +10.0% | Conf: 75%
-**[View Market →](https://polymarket.com/event/nba-sas-lal-2026-02-10)**
-
-**Reasoning:** Die Lakers spielen zu Hause, aber der Ausfall von Luka Doncic aufgrund einer Verletzung könnte ihre Gewinnchancen schmälern. Die Spurs haben eine bessere Saisonbilanz (36-16 gegenüber 32-19 der Lakers), aber die Lakers haben in ihren letzten Spielen gut abgeschnitten (4-1). Die Wettquoten favorisieren leicht die Lakers, was darauf hindeutet, dass sie trotzdem favorisiert werden.
 
 ---
 
