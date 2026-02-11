@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-11 13:08:28 CET
+**Last Updated:** 2026-02-11 14:08:37 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,61 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will Silver (SI) hit (LOW) $55 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-55-by-end-of-february-998-393-222-319-616)
+### Bet #1: [Will Norway win the most gold medals in the 2026 Winter Olym...](https://polymarket.com/market/will-norway-win-the-most-gold-medals-in-the-2026-winter-olympics)
+*Analyzed: 2026-02-11 13:56 CET*
+
+**Decision:** YES @ 0.50 (Stake: $92.20)
+**[View Market →](https://polymarket.com/market/will-norway-win-the-most-gold-medals-in-the-2026-winter-olympics)**
+
+**AI Analysis:**
+- **Estimated Probability:** 70.0% (vs Market: 50.0%)
+- **Confidence Score:** 85.0%
+- **Edge:** +20.0%
+- **Expected Value:** $+36.88
+- **End Date:** 2026-02-22 01:00 CET
+
+**AI Reasoning:**
+> Norway has a strong historical record and recent performance in Winter Olympics, consistently winning the most gold medals. While other nations are competitive, Norway's dominance in key sports gives them a significant advantage. Market predictions and expert analyses support a higher probability than the current market price.
+
+---
+
+### Bet #2: [Will the price of Bitcoin be between $72,000 and $74,000 on ...](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-72000-74000-on-february-11)
+*Analyzed: 2026-02-11 13:26 CET*
+
+**Decision:** NO @ 0.50 (Stake: $188.25)
+**[View Market →](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-72000-74000-on-february-11)**
+
+**AI Analysis:**
+- **Estimated Probability:** 5.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -45.0%
+- **Expected Value:** $+169.42
+- **End Date:** 2026-02-11 18:00 CET
+
+**AI Reasoning:**
+> Der aktuelle Bitcoin-Preis liegt deutlich unter der genannten Spanne von 72.000 bis 74.000 US-Dollar. Obwohl Bitcoin volatil ist, ist ein Anstieg in dieser Größenordnung innerhalb weniger Stunden unwahrscheinlich. Die allgemeine Tendenz ist fallend. Daher wird die Wahrscheinlichkeit als sehr gering eingeschätzt.
+
+---
+
+### Bet #3: [Will Bitcoin dip to $66,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-66k-february-9-15)
+*Analyzed: 2026-02-11 13:16 CET*
+
+**Decision:** YES @ 0.50 (Stake: $62.75)
+**[View Market →](https://polymarket.com/market/will-bitcoin-dip-to-66k-february-9-15)**
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** +15.0%
+- **Expected Value:** $+18.82
+- **End Date:** 2026-02-16 06:00 CET
+
+**AI Reasoning:**
+> Bitcoin is currently experiencing high volatility and bearish market sentiment. Recent price drops and technical analyses suggest further downside potential. Although support levels exist, the likelihood of a dip below $66,000 between February 9-15 is higher than the current Polymarket price of 50% suggests, due to market volatility and negative sentiment. The confidence score reflects the inherent uncertainty in predicting cryptocurrency prices.
+
+---
+
+### Bet #4: [Will Silver (SI) hit (LOW) $55 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-55-by-end-of-february-998-393-222-319-616)
 *Analyzed: 2026-02-11 13:06 CET*
 
 **Decision:** NO @ 0.50 (Stake: $151.55)
@@ -33,7 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Will the price of Bitcoin be above $66,000 on February 12?](https://polymarket.com/market/bitcoin-above-66k-on-february-12)
+### Bet #5: [Will the price of Bitcoin be above $66,000 on February 12?](https://polymarket.com/market/bitcoin-above-66k-on-february-12)
 *Analyzed: 2026-02-11 12:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -51,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Rotterdam Open: Guy Den Ouden vs Marton Fucsovics](https://polymarket.com/event/atp-ouden-fucsovi-2026-02-09)
+### Bet #6: [Rotterdam Open: Guy Den Ouden vs Marton Fucsovics](https://polymarket.com/event/atp-ouden-fucsovi-2026-02-09)
 *Analyzed: 2026-02-11 12:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $120.75)
@@ -69,25 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Will the highest temperature in Seoul be 6°C or higher on Fe...](https://polymarket.com/market/highest-temperature-in-seoul-on-february-11-2026-6corhigher)
-*Analyzed: 2026-02-11 12:16 CET*
-
-**Decision:** NO @ 0.50 (Stake: $58.09)
-**[View Market →](https://polymarket.com/market/highest-temperature-in-seoul-on-february-11-2026-6corhigher)**
-
-**AI Analysis:**
-- **Estimated Probability:** 35.0% (vs Market: 50.0%)
-- **Confidence Score:** 60.0%
-- **Edge:** -15.0%
-- **Expected Value:** $+17.43
-- **End Date:** 2026-02-11 13:00 CET
-
-**AI Reasoning:**
-> Die aktuelle Wettervorhersage für den 11. Februar 2026 in Incheon Intl Airport prognostiziert Höchsttemperaturen zwischen 1°C und 5°C. Historische Daten aus dem Februar zeigen eine gewisse Variabilität, jedoch liegen die Durchschnittswerte meist darunter. Daher wird die Wahrscheinlichkeit, dass die Temperatur 6°C oder höher erreicht, als geringer eingeschätzt. Die Confidence Score reflektiert die Unsicherheit, die mit Wettervorhersagen verbunden ist.
-
----
-
-### Bet #5: [Will the price of Ethereum be above $1,700 on February 11?](https://polymarket.com/market/ethereum-above-1700-on-february-11)
+### Bet #7: [Will the price of Ethereum be above $1,700 on February 11?](https://polymarket.com/market/ethereum-above-1700-on-february-11)
 *Analyzed: 2026-02-11 11:56 CET*
 
 **Decision:** YES @ 0.50 (Stake: $96.82)
@@ -105,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Qatar Total Open: Varvara Gracheva vs Maria Sakkari](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11)
+### Bet #8: [Qatar Total Open: Varvara Gracheva vs Maria Sakkari](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11)
 *Analyzed: 2026-02-11 11:36 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -123,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will the price of XRP be above $1.00 on February 11?](https://polymarket.com/market/xrp-above-1-on-february-11)
+### Bet #9: [Will the price of XRP be above $1.00 on February 11?](https://polymarket.com/market/xrp-above-1-on-february-11)
 *Analyzed: 2026-02-11 11:26 CET*
 
 **Decision:** NO @ 0.50 (Stake: $125.50)
@@ -141,7 +177,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #8: [T20 World Cup: Afghanistan vs South Africa (Game 1)](https://polymarket.com/event/crint-afg-zaf-2026-02-11)
+### Bet #10: [T20 World Cup: Afghanistan vs South Africa (Game 1)](https://polymarket.com/event/crint-afg-zaf-2026-02-11)
 *Analyzed: 2026-02-11 10:21 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -159,7 +195,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #9: [Will Elon Musk post 580+ tweets from February 10 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-580plus)
+### Bet #11: [Will Elon Musk post 580+ tweets from February 10 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-580plus)
 *Analyzed: 2026-02-11 09:36 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -174,42 +210,6 @@ This file contains detailed AI reasoning for all market analyses.
 
 **AI Reasoning:**
 > Elon Musks Tweet-Frequenz ist sehr volatil und hängt von vielen externen Faktoren ab. Historische Daten zeigen, dass er an manchen Tagen sehr aktiv sein kann (bis zu 68 Tweets pro Tag im Durchschnitt, mit Spitzen über 150), während er an anderen Tagen weniger aktiv ist. Der aktuelle Marktpreis von 50% scheint etwas hoch, da frühere Märkte seine Aktivität überschätzt haben. Es gibt Hinweise darauf, dass er sich auf andere Projekte wie SpaceX und den Mond konzentriert. Die Polymarket-Tracker sind nicht immer 100% akkurat, was ein zusätzliches Risiko darstellt. Die Genauigkeit von Polymarket liegt jedoch im Allgemeinen bei über 90 %. Angesichts dieser Faktoren und der Tatsache, dass 580 Tweets in 7 Tagen einen Durchschnitt von über 82 Tweets pro Tag erfordern würden, schätze ich die Wahrscheinlichkeit, dass er dieses Ziel erreicht, auf 35%. Meine 'Confidence Score' ist 0.7, da die Datenlage zwar gut ist, aber die Vorhersage aufgrund von Elon Musks unberechenbarem Verhalten schwierig bleibt.
-
----
-
-### Bet #10: [Will the highest temperature in London be 10°C on February 1...](https://polymarket.com/market/highest-temperature-in-london-on-february-11-2026-10c)
-*Analyzed: 2026-02-11 09:21 CET*
-
-**Decision:** YES @ 0.50 (Stake: $62.75)
-**[View Market →](https://polymarket.com/market/highest-temperature-in-london-on-february-11-2026-10c)**
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** +15.0%
-- **Expected Value:** $+18.82
-- **End Date:** 2026-02-11 13:00 CET
-
-**AI Reasoning:**
-> Die aktuelle Temperatur in London beträgt bereits 10°C, und die Vorhersagen deuten darauf hin, dass die Temperatur im Laufe des Tages möglicherweise noch steigen könnte. Obwohl es auch Vorhersagen gibt, die niedrigere Temperaturen voraussagen, scheint es wahrscheinlich, dass die Höchsttemperatur mindestens 10°C erreichen wird. Die Unsicherheit in den Wettervorhersagen rechtfertigt jedoch keinen extrem hohen Wahrscheinlichkeitswert.
-
----
-
-### Bet #11: [Will the highest temperature in Atlanta be between 56-57°F o...](https://polymarket.com/market/highest-temperature-in-atlanta-on-february-11-2026-56-57f)
-*Analyzed: 2026-02-11 09:21 CET*
-
-**Decision:** NO @ 0.50 (Stake: $104.58)
-**[View Market →](https://polymarket.com/market/highest-temperature-in-atlanta-on-february-11-2026-56-57f)**
-
-**AI Analysis:**
-- **Estimated Probability:** 25.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -25.0%
-- **Expected Value:** $+52.29
-- **End Date:** 2026-02-11 13:00 CET
-
-**AI Reasoning:**
-> Die durchschnittliche Höchsttemperatur für den 11. Februar in Atlanta liegt bei etwa 57.3°F. Allerdings sagen die aktuellen Wettervorhersagen für Atlanta am 11. Februar 2026 eine Höchsttemperatur von etwa 63°F voraus. Angesichts dieser Diskrepanz und der Tatsache, dass Vorhersagen nicht immer genau sind, schätze ich die Wahrscheinlichkeit, dass die Temperatur zwischen 56-57°F liegt, auf 25%. Ich bin mir zu 70% sicher, dass diese Schätzung richtig ist.
 
 ---
 
@@ -921,6 +921,42 @@ This file contains detailed AI reasoning for all market analyses.
 
 ### Insufficient Edge (50)
 
+**[Rotterdam Open: Stefanos Tsitsipas vs Arthur Rinderknech](https://polymarket.com/event/atp-tsitsip-rinderk-2026-02-09)**
+*Analyzed: 2026-02-11 14:01 CET*
+Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 70%
+**[View Market →](https://polymarket.com/event/atp-tsitsip-rinderk-2026-02-09)**
+
+**Reasoning:** Obwohl Tsitsipas historisch höher eingestuft war, ist Rinderknech aktuell in guter Form und hat laut einigen Quellen einen Vorteil auf dem schnellen Hallenplatz in Rotterdam. Die Vorhersagen sind gemischt, aber die jüngsten Leistungen und die aktuelle Rangliste deuten auf ein enges Match hin, wobei Rinderknech leichte Vorteile hat. Einige Quellen gehen davon aus, dass Rinderknech dieses Match gewinnen wird.
+
+---
+
+**[Heat vs. Pelicans](https://polymarket.com/event/nba-mia-nop-2026-02-11)**
+*Analyzed: 2026-02-11 13:56 CET*
+Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 75%
+**[View Market →](https://polymarket.com/event/nba-mia-nop-2026-02-11)**
+
+**Reasoning:** Die Miami Heat haben eine bessere Bilanz (28-27) als die New Orleans Pelicans (15-40). Trotz Verletzungen bei den Heat und Heimvorteil für die Pelicans, deutet die Analyse der verfügbaren Informationen darauf hin, dass die Heat eine leicht höhere Gewinnwahrscheinlichkeit haben. Einige Quellen prognostizieren einen Sieg für die Heat. Die geschätzte Wahrscheinlichkeit berücksichtigt diese Faktoren.
+
+---
+
+**[Will T-Mobile (TMUS) beat quarterly earnings?](https://polymarket.com/event/tmus-quarterly-earnings-gaap-eps-02-11-2026-2pt07)**
+*Analyzed: 2026-02-11 13:46 CET*
+Market: 0.50 | AI: 0.48 | Edge: -2.0% | Conf: 75%
+**[View Market →](https://polymarket.com/event/tmus-quarterly-earnings-gaap-eps-02-11-2026-2pt07)**
+
+**Reasoning:** Die Analystenerwartungen für den GAAP EPS liegen zwischen 2,00 und 2,11 USD, wobei der Schwellenwert für die Wettfrage bei 2,07 USD liegt. T-Mobile hat in der Vergangenheit die Erwartungen übertroffen, aber es gab in den letzten Monaten Abwärtsrevisionen der Gewinnschätzungen. Das Unternehmen hat ein starkes Kundenwachstum, aber auch einen zunehmenden Wettbewerb. Der aktuelle Marktpreis liegt bei 50%, daher schätze ich die Wahrscheinlichkeit, dass T-Mobile die Erwartungen übertrifft, auf leicht unter 50%.
+
+---
+
+**[Will Nottingham Forest FC win on 2026-02-11?](https://polymarket.com/market/epl-not-wol-2026-02-11-not)**
+*Analyzed: 2026-02-11 13:41 CET*
+Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 75%
+**[View Market →](https://polymarket.com/market/epl-not-wol-2026-02-11-not)**
+
+**Reasoning:** Basierend auf den verfügbaren Informationen, insbesondere den Vorhersagen und Wettquoten, scheint Nottingham Forest eine leichte Favoritenrolle in ihrem Spiel gegen Wolverhampton Wanderers am 11. Februar 2026 zu haben.  Mehrere Quellen deuten auf einen möglichen Sieg von Nottingham Forest hin, auch wenn ihre jüngste Form gemischt war.  Die Tatsache, dass sie zu Hause spielen, könnte ihnen ebenfalls einen Vorteil verschaffen.  Einige Vorhersagen deuten auf ein enges Spiel hin, und die aktuellen Marktpreise von Polymarket spiegeln diese Unsicherheit wider. Andere Vorhersagen geben Nottingham Forest eine Gewinnwahrscheinlichkeit von etwa 59.5%. Insgesamt deuten die Informationen darauf hin, dass Nottingham Forest wahrscheinlich eher gewinnen wird als verlieren, aber es ist kein sicherer Ausgang.
+
+---
+
 **[Qatar Total Open: Ann Li vs Elisabetta Cocciaretto](https://polymarket.com/event/wta-annli-cocciar-2026-02-11)**
 *Analyzed: 2026-02-11 13:01 CET*
 Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 75%
@@ -1332,42 +1368,6 @@ Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 70%
 **[View Market →](https://polymarket.com/event/spx-up-or-down-on-february-9-2026)**
 
 **Reasoning:** Obwohl historische Daten und technische Analysen leicht positiv sind, deutet der aktuelle Marktpreis von 50% auf eine erhebliche Unsicherheit hin. Die Wahrscheinlichkeit von 'Up' wird daher leicht über 50% geschätzt, wobei die Unsicherheit durch einen Confidence Score von 0.7 berücksichtigt wird. Es gibt auch Hinweise auf mögliche Volatilität und eine Korrektur, die in die Schätzung einfließen.
-
----
-
-**[Will Ken Paxton win the 2026 Texas Republican Primary?](https://polymarket.com/market/will-ken-paxton-win-the-2026-republican-primary)**
-*Analyzed: 2026-02-09 22:52 CET*
-Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 75%
-**[View Market →](https://polymarket.com/market/will-ken-paxton-win-the-2026-republican-primary)**
-
-**Reasoning:** Ken Paxton ist ein umstrittener, aber einflussreicher Politiker in Texas. Trotz der Anklage wegen Amtsmissbrauchs und Korruption sowie einer kürzlichen Scheidung, deuten aktuelle Umfragen darauf hin, dass er bei den republikanischen Wählern immer noch beliebt ist. Eine aktuelle Umfrage zeigt, dass Paxton mit 38 % der Stimmen vor John Cornyn (31 %) und Wesley Hunt (17 %) liegt. Darüber hinaus deutet die Umfrage darauf hin, dass Paxton in einer Stichwahl gegen Cornyn mit 51 % zu 40 % und gegen Hunt mit 56 % zu 33 % gewinnen würde. Es ist erwähnenswert, dass 12 % der republikanischen Wähler noch unentschlossen sind. Angesichts von Paxtons Führung in den Umfragen und seiner starken Unterstützung durch die republikanische Basis schätze ich die Wahrscheinlichkeit, dass er die republikanische Vorwahl in Texas 2026 gewinnt, auf 55 %. Die Unsicherheit in Bezug auf seine laufenden rechtlichen Probleme und die Möglichkeit eines Gegenkandidaten mit hoher Popularität schmälern das Vertrauen in diese Schätzung.
-
----
-
-**[Will OpenAI have the best AI model at the end of March 2026?](https://polymarket.com/market/will-openai-have-the-best-ai-model-at-the-end-of-march-2026-562)**
-*Analyzed: 2026-02-09 22:09 CET*
-Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 70%
-**[View Market →](https://polymarket.com/market/will-openai-have-the-best-ai-model-at-the-end-of-march-2026-562)**
-
-**Reasoning:** Der KI-Markt ist hart umkämpft, und OpenAI steht vor starker Konkurrenz durch Google, Anthropic und andere. Während OpenAI in der Vergangenheit eine führende Rolle gespielt hat, deuten aktuelle Marktbewegungen darauf hin, dass andere Unternehmen Marktanteile gewinnen. OpenAI konzentriert sich zwar auf Innovationen (z. B. GPT-5.3), aber es ist ungewiss, ob dies ausreichen wird, um bis Ende März 2026 die Führungsposition auf der Chatbot Arena LLM Leaderboard zu behaupten. Die aktuelle Dynamik und die starke Konkurrenz rechtfertigen eine konservativere Wahrscheinlichkeitsschätzung als den aktuellen Marktpreis von 50%.
-
----
-
-**[Bitcoin Up or Down on February 10?](https://polymarket.com/event/bitcoin-up-or-down-on-february-10)**
-*Analyzed: 2026-02-09 21:57 CET*
-Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 70%
-**[View Market →](https://polymarket.com/event/bitcoin-up-or-down-on-february-10)**
-
-**Reasoning:** Der aktuelle Marktpreis von 50 % für 'Up' deutet auf eine gewisse Unsicherheit hin. Bitcoin hat in letzter Zeit eine hohe Volatilität gezeigt. Einige Analysten prognostizieren einen Aufwärtstrend, während andere eine weitere Konsolidierung erwarten. Polymarket-Händler scheinen eine gewisse Erholung zu erwarten. Da der Markt sehr volatil ist, erhöhe ich die Wahrscheinlichkeit für 'Up' leicht auf 55 %, da Bitcoin nach dem jüngsten Rückgang eine gewisse Aufwärtsbewegung gezeigt hat. Die Unsicherheit über die kurzfristige Preisentwicklung von Bitcoin führt zu einer Konfidenzbewertung von 0.7.
-
----
-
-**[Grizzlies vs. Warriors](https://polymarket.com/event/nba-mem-gsw-2026-02-09)**
-*Analyzed: 2026-02-09 21:12 CET*
-Market: 0.50 | AI: 0.58 | Edge: +8.0% | Conf: 70%
-**[View Market →](https://polymarket.com/event/nba-mem-gsw-2026-02-09)**
-
-**Reasoning:** Die Warriors haben trotz eigener Verletzungsprobleme den Vorteil des Heimspiels und eine leicht bessere Saisonbilanz. Die Grizzlies haben jedoch mit deutlicheren Ausfällen wichtiger Spieler zu kämpfen. Der Punktvorsprung von 7 Punkten deutet darauf hin, dass die Warriors favorisiert sind, aber die hohe Anzahl an Verletzungen macht die Vorhersage unsicher. Die geschätzte Wahrscheinlichkeit berücksichtigt die Verletzungsprobleme und den Heimvorteil, der Confidence Score reflektiert die verbleibende Unsicherheit.
 
 ---
 
