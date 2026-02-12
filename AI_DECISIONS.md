@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-12 00:10:14 CET
+**Last Updated:** 2026-02-12 01:10:29 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,133 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Argentina Open: Vit Kopriva vs Matteo Berrettini](https://polymarket.com/event/atp-kopriva-berrett-2026-02-11)
+### Bet #1: [Trail Blazers vs. Timberwolves](https://polymarket.com/event/nba-por-min-2026-02-11)
+*Analyzed: 2026-02-12 01:06 CET*
+
+**Decision:** YES @ 0.50 (Stake: $64.95)
+**[View Market →](https://polymarket.com/event/nba-por-min-2026-02-11)**
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 50.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** +15.0%
+- **Expected Value:** $+19.49
+- **End Date:** 2026-02-12 02:00 CET
+
+**AI Reasoning:**
+> Die Timberwolves sind das stärkere Team und spielen zu Hause, aber die Verletzung von Anthony Edwards und die Fähigkeit der Trail Blazers, als Underdog zu performen, machen das Spiel weniger sicher. Die Quoten favorisieren Minnesota deutlich, was sich in meiner Schätzung widerspiegelt, aber es gibt genügend Unsicherheit, um die Wahrscheinlichkeit nicht zu hoch anzusetzen.
+
+---
+
+### Bet #2: [Spread: Nuggets (-13.5)](https://polymarket.com/market/nba-mem-den-2026-02-11-spread-home-13pt5)
+*Analyzed: 2026-02-12 00:52 CET*
+
+**Decision:** YES @ 0.50 (Stake: $64.95)
+**[View Market →](https://polymarket.com/market/nba-mem-den-2026-02-11-spread-home-13pt5)**
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 50.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** +15.0%
+- **Expected Value:** $+19.49
+- **End Date:** 2026-02-12 03:00 CET
+
+**AI Reasoning:**
+> Die Denver Nuggets sind favorisiert, besonders da bei den Memphis Grizzlies mehrere Schlüsselspieler verletzungsbedingt ausfallen. Denver ist offensiv stark und spielt zu Hause. Allerdings haben die Nuggets in letzter Zeit Schwierigkeiten, hohe Spreads zu decken, und einige Experten raten dazu, auf die Grizzlies zu setzen. Ich habe die Wahrscheinlichkeit, dass Denver den Spread deckt, unter Berücksichtigung dieser Faktoren auf 65% geschätzt. Meine Konfidenz ist relativ hoch, da viele Informationen verfügbar sind, aber die Variabilität von NBA-Spielen und die jüngste Spread-Performance der Nuggets machen eine perfekte Vorhersage schwierig.
+
+---
+
+### Bet #3: [Will Elon Musk post 500-519 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-500-519)
+*Analyzed: 2026-02-12 00:36 CET*
+
+**Decision:** NO @ 0.50 (Stake: $80.62)
+**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-500-519)**
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 50.0%)
+- **Confidence Score:** 65.0%
+- **Edge:** -20.0%
+- **Expected Value:** $+32.25
+- **End Date:** 2026-02-17 18:00 CET
+
+**AI Reasoning:**
+> Obwohl Elon Musk in der Vergangenheit eine hohe Tweet-Frequenz gezeigt hat, deutet die aktuelle Markteinschätzung auf Polymarket, die Tendenz zur Überschätzung in Prediction Markets und die Notwendigkeit von durchschnittlich 62.5 bis 64.875 Tweets pro Tag darauf hin, dass die Wahrscheinlichkeit für 500-519 Tweets in dem 8-Tage-Zeitraum relativ gering ist. Ich berücksichtige auch, dass sich Musks Verhalten ändern kann, aber die aktuelle Datenlage spricht eher gegen dieses Ergebnis.
+
+---
+
+### Bet #4: [Superform FDV above $100M one day after launch?](https://polymarket.com/market/superform-fdv-above-100m-one-day-after-launch)
+*Analyzed: 2026-02-12 00:32 CET*
+
+**Decision:** NO @ 0.50 (Stake: $58.09)
+**[View Market →](https://polymarket.com/market/superform-fdv-above-100m-one-day-after-launch)**
+
+**AI Analysis:**
+- **Estimated Probability:** 35.0% (vs Market: 50.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** -15.0%
+- **Expected Value:** $+17.43
+- **End Date:** 2027-01-01 06:00 CET
+
+**AI Reasoning:**
+> Superform ist ein vielversprechendes DeFi-Projekt mit Unterstützung von bekannten Investoren wie Polychain Capital, VanEck und Circle Ventures. Sie haben bereits eine beträchtliche Summe an Finanzierung erhalten.  Die FDV wird berechnet als Token-Preis multipliziert mit dem Gesamtangebot.  Um eine FDV von über 100 Millionen Dollar zu erreichen, müsste der Token-Preis ausreichend hoch sein, abhängig vom Gesamtangebot an Token. Angesichts der aktuellen Marktbedingungen und der Tatsache, dass der Token gerade erst auf den Markt kommt (mit der Möglichkeit von 'dumping' durch Spekulanten), ist es riskant, eine hohe Wahrscheinlichkeit anzunehmen. Der aktuelle Marktpreis (Yes) von 50 % deutet darauf hin, dass die Marktteilnehmer die Situation als unsicher einschätzen.  Die 'confidence_score' ist moderat, da die zukünftige Performance von Krypto-Assets sehr volatil und schwer vorherzusagen ist.
+
+---
+
+### Bet #5: [Will F1: The Movie win Best Film Editing at the 98th Academy...](https://polymarket.com/market/will-f1-the-movie-win-best-film-editing-at-the-98th-academy-awards)
+*Analyzed: 2026-02-12 00:22 CET*
+
+**Decision:** NO @ 0.50 (Stake: $104.58)
+**[View Market →](https://polymarket.com/market/will-f1-the-movie-win-best-film-editing-at-the-98th-academy-awards)**
+
+**AI Analysis:**
+- **Estimated Probability:** 25.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -25.0%
+- **Expected Value:** $+52.29
+- **End Date:** 2026-03-15 01:00 CET
+
+**AI Reasoning:**
+> F1: The Movie has a 24.1% chance based on Polymarket data. While it won a Critics' Choice Award for Best Editing, it is competing against strong contenders like 'One Battle After Another' and 'Sinners'. The fact that it is nominated for Best Picture could improve its chances, but it is not the frontrunner. The confidence score reflects the uncertainty in predicting the winner.
+
+---
+
+### Bet #6: [Will MrBeast's latest video get between 55 and 60 million vi...](https://polymarket.com/market/will-mrbeasts-latest-video-get-between-55-and-60-million-views-on-week-1)
+*Analyzed: 2026-02-12 00:21 CET*
+
+**Decision:** NO @ 0.50 (Stake: $125.50)
+**[View Market →](https://polymarket.com/market/will-mrbeasts-latest-video-get-between-55-and-60-million-views-on-week-1)**
+
+**AI Analysis:**
+- **Estimated Probability:** 20.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -30.0%
+- **Expected Value:** $+75.30
+- **End Date:** 2026-02-14 01:00 CET
+
+**AI Reasoning:**
+> MrBeast videos often achieve high view counts, but the specific range of 55-60 million in the first week is relatively narrow.  While some videos exceed this, others might fall short. Previous Polymarket data suggests a low probability for this specific range.  Considering the typical view counts and the market sentiment, a 20% probability is a reasonable estimate.
+
+---
+
+### Bet #7: [Spread: Nuggets (-14.5)](https://polymarket.com/market/nba-mem-den-2026-02-11-spread-home-14pt5)
+*Analyzed: 2026-02-12 00:21 CET*
+
+**Decision:** NO @ 0.50 (Stake: $83.67)
+**[View Market →](https://polymarket.com/market/nba-mem-den-2026-02-11-spread-home-14pt5)**
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -20.0%
+- **Expected Value:** $+33.47
+- **End Date:** 2026-02-12 03:00 CET
+
+**AI Reasoning:**
+> Die Nuggets sind klare Favoriten gegen die stark geschwächten Grizzlies. Allerdings ist ein Spread von -13.5 sehr hoch. Memphis reboundet gut und Ty Jerome punktet zuverlässig. Es gibt zudem Anzeichen, dass Denver das Spiel eventuell nicht mit höchster Intensität angeht (All-Star Break). Daher schätze ich die Wahrscheinlichkeit, dass die Nuggets mit 14 oder mehr Punkten gewinnen, auf 30%. Mein Vertrauen in diese Einschätzung ist relativ hoch (70%), da die Teamstärke und die Ausfällelage klar für Denver sprechen, der hohe Spread jedoch ein Unsicherheitsfaktor ist.
+
+---
+
+### Bet #8: [Argentina Open: Vit Kopriva vs Matteo Berrettini](https://polymarket.com/event/atp-kopriva-berrett-2026-02-11)
 *Analyzed: 2026-02-11 22:41 CET*
 
 **Decision:** YES @ 0.50 (Stake: $86.60)
@@ -33,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Wizards vs. Cavaliers](https://polymarket.com/event/nba-was-cle-2026-02-11)
+### Bet #9: [Wizards vs. Cavaliers](https://polymarket.com/event/nba-was-cle-2026-02-11)
 *Analyzed: 2026-02-11 22:41 CET*
 
 **Decision:** YES @ 0.50 (Stake: $184.39)
@@ -51,7 +177,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-100m-and-125m-views-in-its-first-7-days)
+### Bet #10: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-100m-and-125m-views-in-its-first-7-days)
 *Analyzed: 2026-02-11 22:32 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -69,7 +195,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [U.S. x Iran Military Engagement by March 31, 2026?](https://polymarket.com/market/us-x-iran-military-engagement-by-march-31)
+### Bet #11: [U.S. x Iran Military Engagement by March 31, 2026?](https://polymarket.com/market/us-x-iran-military-engagement-by-march-31)
 *Analyzed: 2026-02-11 22:21 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -87,7 +213,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [Dallas Open: Alex Michelsen vs Alejandro Davidovich Fokina](https://polymarket.com/event/atp-michels-fokina-2026-02-11)
+### Bet #12: [Dallas Open: Alex Michelsen vs Alejandro Davidovich Fokina](https://polymarket.com/event/atp-michels-fokina-2026-02-11)
 *Analyzed: 2026-02-11 21:32 CET*
 
 **Decision:** NO @ 0.50 (Stake: $64.95)
@@ -105,7 +231,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will Elon Musk post 220-239 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-220-239)
+### Bet #13: [Will Elon Musk post 220-239 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-220-239)
 *Analyzed: 2026-02-11 20:36 CET*
 
 **Decision:** NO @ 0.50 (Stake: $80.62)
@@ -123,7 +249,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will OpenAI’s market cap be between $750B and $1T at market ...](https://polymarket.com/market/will-openais-market-cap-be-between-750b-and-1t-at-market-close-on-ipo-day)
+### Bet #14: [Will OpenAI’s market cap be between $750B and $1T at market ...](https://polymarket.com/market/will-openais-market-cap-be-between-750b-and-1t-at-market-close-on-ipo-day)
 *Analyzed: 2026-02-11 20:36 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -141,7 +267,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #8: [Espresso FDV above $100M one day after launch?](https://polymarket.com/market/espresso-fdv-above-100m-one-day-after-launch)
+### Bet #15: [Espresso FDV above $100M one day after launch?](https://polymarket.com/market/espresso-fdv-above-100m-one-day-after-launch)
 *Analyzed: 2026-02-11 20:22 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -159,7 +285,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #9: [Will Elon Musk post 260-279 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-260-279)
+### Bet #16: [Will Elon Musk post 260-279 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-260-279)
 *Analyzed: 2026-02-11 19:52 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -177,7 +303,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #10: [Odds of Khamenei being out as Supreme Leader by March 31 ove...](https://polymarket.com/market/odds-of-khamenei-being-out-as-supreme-leader-by-march-31-over-20-in-february-158)
+### Bet #17: [Odds of Khamenei being out as Supreme Leader by March 31 ove...](https://polymarket.com/market/odds-of-khamenei-being-out-as-supreme-leader-by-march-31-over-20-in-february-158)
 *Analyzed: 2026-02-11 19:17 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -195,7 +321,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #11: [Spurs vs. Warriors](https://polymarket.com/event/nba-sas-gsw-2026-02-11)
+### Bet #18: [Spurs vs. Warriors](https://polymarket.com/event/nba-sas-gsw-2026-02-11)
 *Analyzed: 2026-02-11 19:01 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -213,7 +339,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #12: [Will the price of Bitcoin be above $70,000 on February 13?](https://polymarket.com/market/bitcoin-above-70k-on-february-13)
+### Bet #19: [Will the price of Bitcoin be above $70,000 on February 13?](https://polymarket.com/market/bitcoin-above-70k-on-february-13)
 *Analyzed: 2026-02-11 18:47 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -231,7 +357,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #13: [Will Bitcoin reach $80,000 February 9-15?](https://polymarket.com/market/will-bitcoin-reach-80k-february-9-15)
+### Bet #20: [Will Bitcoin reach $80,000 February 9-15?](https://polymarket.com/market/will-bitcoin-reach-80k-february-9-15)
 *Analyzed: 2026-02-11 18:16 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -249,7 +375,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #14: [Argentina Open: Roman Andres Burruchaga vs Tomas Etcheverry](https://polymarket.com/event/atp-burruch-etcheve-2026-02-11)
+### Bet #21: [Argentina Open: Roman Andres Burruchaga vs Tomas Etcheverry](https://polymarket.com/event/atp-burruch-etcheve-2026-02-11)
 *Analyzed: 2026-02-11 18:16 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -267,7 +393,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #15: [Will XRP reach $3.20 in February?](https://polymarket.com/market/will-xrp-reach-3pt2-in-february-2026)
+### Bet #22: [Will XRP reach $3.20 in February?](https://polymarket.com/market/will-xrp-reach-3pt2-in-february-2026)
 *Analyzed: 2026-02-11 16:26 CET*
 
 **Decision:** NO @ 0.50 (Stake: $188.25)
@@ -285,7 +411,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #16: [Will Ethereum dip to $1,200 in February?](https://polymarket.com/market/will-ethereum-dip-to-1200-in-february-2026)
+### Bet #23: [Will Ethereum dip to $1,200 in February?](https://polymarket.com/market/will-ethereum-dip-to-1200-in-february-2026)
 *Analyzed: 2026-02-11 16:16 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -313,7 +439,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #17: [Qatar Total Open: Iga Swiatek vs Daria Kasatkina](https://polymarket.com/event/wta-swiatek-kasatki-2026-02-11)
+### Bet #24: [Qatar Total Open: Iga Swiatek vs Daria Kasatkina](https://polymarket.com/event/wta-swiatek-kasatki-2026-02-11)
 *Analyzed: 2026-02-11 16:11 CET*
 
 **Decision:** YES @ 0.50 (Stake: $156.52)
@@ -331,7 +457,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #18: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-125m-and-150m-views-in-its-first-7-days)
+### Bet #25: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-125m-and-150m-views-in-its-first-7-days)
 *Analyzed: 2026-02-11 14:26 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -349,7 +475,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #19: [Will Jaylen Brown win the 2025–2026 NBA MVP?](https://polymarket.com/market/will-jaylen-brown-win-the-20252026-nba-mvp)
+### Bet #26: [Will Jaylen Brown win the 2025–2026 NBA MVP?](https://polymarket.com/market/will-jaylen-brown-win-the-20252026-nba-mvp)
 *Analyzed: 2026-02-11 14:21 CET*
 
 **Decision:** NO @ 0.50 (Stake: $198.71)
@@ -367,7 +493,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #20: [Will the price of Bitcoin be above $58,000 on February 12?](https://polymarket.com/market/bitcoin-above-58k-on-february-12)
+### Bet #27: [Will the price of Bitcoin be above $58,000 on February 12?](https://polymarket.com/market/bitcoin-above-58k-on-february-12)
 *Analyzed: 2026-02-11 14:16 CET*
 
 **Decision:** YES @ 0.50 (Stake: $146.42)
@@ -385,7 +511,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #21: [Qatar Total Open: Mirra Andreeva vs Victoria Mboko](https://polymarket.com/event/wta-andreev-mboko-2026-02-11)
+### Bet #28: [Qatar Total Open: Mirra Andreeva vs Victoria Mboko](https://polymarket.com/event/wta-andreev-mboko-2026-02-11)
 *Analyzed: 2026-02-11 14:11 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -403,7 +529,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #22: [Will Norway win the most gold medals in the 2026 Winter Olym...](https://polymarket.com/market/will-norway-win-the-most-gold-medals-in-the-2026-winter-olympics)
+### Bet #29: [Will Norway win the most gold medals in the 2026 Winter Olym...](https://polymarket.com/market/will-norway-win-the-most-gold-medals-in-the-2026-winter-olympics)
 *Analyzed: 2026-02-11 13:56 CET*
 
 **Decision:** YES @ 0.50 (Stake: $92.20)
@@ -421,7 +547,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #23: [Will Bitcoin dip to $66,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-66k-february-9-15)
+### Bet #30: [Will Bitcoin dip to $66,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-66k-february-9-15)
 *Analyzed: 2026-02-11 13:16 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -439,7 +565,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #24: [Will Silver (SI) hit (LOW) $55 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-55-by-end-of-february-998-393-222-319-616)
+### Bet #31: [Will Silver (SI) hit (LOW) $55 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-55-by-end-of-february-998-393-222-319-616)
 *Analyzed: 2026-02-11 13:06 CET*
 
 **Decision:** NO @ 0.50 (Stake: $151.55)
@@ -457,7 +583,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #25: [Will the price of Bitcoin be above $66,000 on February 12?](https://polymarket.com/market/bitcoin-above-66k-on-february-12)
+### Bet #32: [Will the price of Bitcoin be above $66,000 on February 12?](https://polymarket.com/market/bitcoin-above-66k-on-february-12)
 *Analyzed: 2026-02-11 12:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -475,7 +601,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #26: [Rotterdam Open: Guy Den Ouden vs Marton Fucsovics](https://polymarket.com/event/atp-ouden-fucsovi-2026-02-09)
+### Bet #33: [Rotterdam Open: Guy Den Ouden vs Marton Fucsovics](https://polymarket.com/event/atp-ouden-fucsovi-2026-02-09)
 *Analyzed: 2026-02-11 12:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $120.75)
@@ -493,7 +619,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #27: [Qatar Total Open: Varvara Gracheva vs Maria Sakkari](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11)
+### Bet #34: [Qatar Total Open: Varvara Gracheva vs Maria Sakkari](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11)
 *Analyzed: 2026-02-11 11:36 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -511,7 +637,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #28: [T20 World Cup: Afghanistan vs South Africa (Game 1)](https://polymarket.com/event/crint-afg-zaf-2026-02-11)
+### Bet #35: [T20 World Cup: Afghanistan vs South Africa (Game 1)](https://polymarket.com/event/crint-afg-zaf-2026-02-11)
 *Analyzed: 2026-02-11 10:21 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -529,7 +655,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #29: [Will Elon Musk post 580+ tweets from February 10 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-580plus)
+### Bet #36: [Will Elon Musk post 580+ tweets from February 10 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-580plus)
 *Analyzed: 2026-02-11 09:36 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -547,7 +673,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #30: [Will the price of Bitcoin be above $74,000 on February 12?](https://polymarket.com/market/bitcoin-above-74k-on-february-12)
+### Bet #37: [Will the price of Bitcoin be above $74,000 on February 12?](https://polymarket.com/market/bitcoin-above-74k-on-february-12)
 *Analyzed: 2026-02-11 08:06 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -565,7 +691,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #31: [Will the US strike another country first?](https://polymarket.com/market/will-the-us-strike-another-country-first-645)
+### Bet #38: [Will the US strike another country first?](https://polymarket.com/market/will-the-us-strike-another-country-first-645)
 *Analyzed: 2026-02-11 07:51 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -583,7 +709,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #32: [Bucks vs. Magic](https://polymarket.com/event/nba-mil-orl-2026-02-11)
+### Bet #39: [Bucks vs. Magic](https://polymarket.com/event/nba-mil-orl-2026-02-11)
 *Analyzed: 2026-02-11 07:46 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -601,7 +727,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #33: [Will Elon Musk post 0-19 tweets from February 13 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-13-february-20-0-19)
+### Bet #40: [Will Elon Musk post 0-19 tweets from February 13 to February...](https://polymarket.com/market/elon-musk-of-tweets-february-13-february-20-0-19)
 *Analyzed: 2026-02-11 07:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -619,7 +745,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #34: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-75m-and-100m-views-in-its-first-7-days)
+### Bet #41: [Will the 2026 Bad Bunny Super Bowl halftime show video get b...](https://polymarket.com/market/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-75m-and-100m-views-in-its-first-7-days)
 *Analyzed: 2026-02-11 07:36 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -637,7 +763,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #35: [Pacers vs. Nets](https://polymarket.com/event/nba-ind-bkn-2026-02-11)
+### Bet #42: [Pacers vs. Nets](https://polymarket.com/event/nba-ind-bkn-2026-02-11)
 *Analyzed: 2026-02-11 06:56 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -655,7 +781,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #36: [Will Bitcoin dip to $64,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-64k-february-9-15)
+### Bet #43: [Will Bitcoin dip to $64,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-64k-february-9-15)
 *Analyzed: 2026-02-11 05:56 CET*
 
 **Decision:** NO @ 0.50 (Stake: $80.62)
@@ -673,7 +799,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #37: [Will Italy win Eurovision 2026?](https://polymarket.com/event/will-italy-win-eurovision-2026)
+### Bet #44: [Will Italy win Eurovision 2026?](https://polymarket.com/event/will-italy-win-eurovision-2026)
 *Analyzed: 2026-02-11 05:25 CET*
 
 **Decision:** NO @ 0.50 (Stake: $179.88)
@@ -691,7 +817,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #38: [Will Norway win Eurovision 2026?](https://polymarket.com/market/will-norway-win-eurovision-2026)
+### Bet #45: [Will Norway win Eurovision 2026?](https://polymarket.com/market/will-norway-win-eurovision-2026)
 *Analyzed: 2026-02-11 04:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $83.67)
@@ -709,7 +835,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #39: [Will Elon Musk post 140-159 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-140-159)
+### Bet #46: [Will Elon Musk post 140-159 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-140-159)
 *Analyzed: 2026-02-11 04:31 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -727,7 +853,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #40: [Will Manchester United win the 2025–26 English Premier Leagu...](https://polymarket.com/market/will-manchester-united-win-the-202526-english-premier-league)
+### Bet #47: [Will Manchester United win the 2025–26 English Premier Leagu...](https://polymarket.com/market/will-manchester-united-win-the-202526-english-premier-league)
 *Analyzed: 2026-02-11 03:41 CET*
 
 **Decision:** NO @ 0.50 (Stake: $203.94)
@@ -745,7 +871,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #41: [Abstract FDV above $3B one day after launch?](https://polymarket.com/event/abstract-fdv-above-3b-one-day-after-launch)
+### Bet #48: [Abstract FDV above $3B one day after launch?](https://polymarket.com/event/abstract-fdv-above-3b-one-day-after-launch)
 *Analyzed: 2026-02-11 03:40 CET*
 
 **Decision:** NO @ 0.50 (Stake: $166.54)
@@ -763,7 +889,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #42: [Will Arsenal FC win on 2026-02-12?](https://polymarket.com/market/epl-bre-ars-2026-02-12-ars)
+### Bet #49: [Will Arsenal FC win on 2026-02-12?](https://polymarket.com/market/epl-bre-ars-2026-02-12-ars)
 *Analyzed: 2026-02-11 02:50 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -781,7 +907,7 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #43: [Will a contestant numbered 151 - 175 win Beast Games: Season...](https://polymarket.com/market/will-a-contestant-numbered-151-175-win-beast-games-season-2)
+### Bet #50: [Will a contestant numbered 151 - 175 win Beast Games: Season...](https://polymarket.com/market/will-a-contestant-numbered-151-175-win-beast-games-season-2)
 *Analyzed: 2026-02-11 02:26 CET*
 
 **Decision:** NO @ 0.50 (Stake: $77.46)
@@ -799,137 +925,20 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ---
 
-### Bet #44: [Will the US strike Cuba next?](https://polymarket.com/market/will-the-us-strike-cuba-next-721)
-*Analyzed: 2026-02-11 02:25 CET*
-
-**Decision:** NO @ 0.50 (Stake: $125.50)
-**[View Market →](https://polymarket.com/market/will-the-us-strike-cuba-next-721)**
-
-**AI Analysis:**
-- **Estimated Probability:** 20.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -30.0%
-- **Expected Value:** $+75.30
-- **End Date:** 2026-12-31 01:00 CET
-
-**AI Reasoning:**
-> Die Wahrscheinlichkeit eines US-Angriffs auf Kuba ist gering, aber nicht Null. Die verschlechterten Beziehungen, die wirtschaftliche Notlage in Kuba und die aggressive Rhetorik der Trump-Administration erhöhen das Risiko. Allerdings gibt es auch Faktoren, die gegen einen Angriff sprechen: hohe politische Kosten, Fokus auf andere Konflikte, mangelnde militärische Bedrohung durch Kuba, die spezifische Definition des Angriffs in der Frage, mögliche diplomatische Lösungen und innenpolitische Überlegungen. Die US-Militärpräsenz in der Region und die Operation Southern Spear könnten jedoch das Risiko erhöhen.
-
----
-
-### Bet #45: [Will The Hunger Games: Sunrise on the Reaping be the top gro...](https://polymarket.com/event/will-the-hunger-games-sunrise-on-the-reaping-be-the-top-grossing-movie-of-2026)
-*Analyzed: 2026-02-11 02:15 CET*
-
-**Decision:** NO @ 0.50 (Stake: $83.67)
-**[View Market →](https://polymarket.com/event/will-the-hunger-games-sunrise-on-the-reaping-be-the-top-grossing-movie-of-2026)**
-
-**AI Analysis:**
-- **Estimated Probability:** 30.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -20.0%
-- **Expected Value:** $+33.47
-- **End Date:** 2026-12-31 01:00 CET
-
-**AI Reasoning:**
-> Die 'Hunger Games'-Filme sind eine etablierte Marke mit einer treuen Fangemeinde. 'Sunrise on the Reaping' hat das Potenzial, ein großer Erfolg zu werden, da es sich um eine Adaption eines neuen Buches von Suzanne Collins handelt, die Serie sehr beliebt ist und der Film im November 2026 in die Kinos kommen soll. Allerdings wird es im Jahr 2026 eine Reihe weiterer potenzieller Blockbuster geben, darunter mehrere Superheldenfilme ('Avengers: Doomsday', 'Spider-Man: Brand New Day', 'Supergirl'), Animationsfilme ('Toy Story 5', 'Minions 3', 'The Super Mario Galaxy Movie', 'Moana'), und andere große Franchise-Filme ('Dune: Part Three', 'The Odyssey'). 'Avengers: Doomsday' und 'Spider-Man: Brand New Day' werden von vielen als Favoriten gehandelt. Angesichts der starken Konkurrenz und der Tatsache, dass es sich um einen Film handelt, der noch in der Postproduktion ist, schätze ich die Wahrscheinlichkeit, dass 'The Hunger Games: Sunrise on the Reaping' der umsatzstärkste Film des Jahres 2026 wird, auf etwa 30 %. Ich bin mir meiner Schätzung zu 70 % sicher, da es viele Variablen gibt, die den Erfolg eines Films beeinflussen können, darunter Kritiken, Mundpropaganda und unvorhergesehene Ereignisse.
-
----
-
-### Bet #46: [Will Taro Kono be the Prime Minister of Japan as a result of...](https://polymarket.com/market/will-taro-kono-be-the-prime-minister-of-japan-as-a-result-of-the-2026-snap-election)
-*Analyzed: 2026-02-11 01:50 CET*
-
-**Decision:** NO @ 0.50 (Stake: $201.25)
-**[View Market →](https://polymarket.com/market/will-taro-kono-be-the-prime-minister-of-japan-as-a-result-of-the-2026-snap-election)**
-
-**AI Analysis:**
-- **Estimated Probability:** 5.0% (vs Market: 50.0%)
-- **Confidence Score:** 80.0%
-- **Edge:** -45.0%
-- **Expected Value:** $+181.12
-- **End Date:** 2026-04-30 02:00 CEST
-
-**AI Reasoning:**
-> Sanae Takaichi's LDP won the 2026 snap election with a significant majority. This outcome makes it very unlikely that Taro Kono will become Prime Minister *as a result* of this specific election. While future political developments could change this, the current context strongly favors Takaichi remaining in power.
-
----
-
-### Bet #47: [Will Switzerland win the most medals in the 2026 Winter Olym...](https://polymarket.com/market/will-switzerland-win-the-most-medals-in-the-2026-winter-olympics)
-*Analyzed: 2026-02-11 01:30 CET*
-
-**Decision:** NO @ 0.50 (Stake: $146.42)
-**[View Market →](https://polymarket.com/market/will-switzerland-win-the-most-medals-in-the-2026-winter-olympics)**
-
-**AI Analysis:**
-- **Estimated Probability:** 15.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -35.0%
-- **Expected Value:** $+102.49
-- **End Date:** 2026-02-22 01:00 CET
-
-**AI Reasoning:**
-> Die Schweiz ist traditionell stark im alpinen Skisport, was eine gute Grundlage für den Gewinn von Medaillen darstellt. Allerdings dominieren andere Nationen wie Norwegen und Deutschland die Winterspiele insgesamt. Die Schweiz hat bei den Olympischen Winterspielen insgesamt 168 Medaillen gewonnen, während Norwegen 406 Medaillen gewonnen hat. Die Schweiz hat zwar in einigen Disziplinen Erfolge zu verzeichnen, aber es ist unwahrscheinlich, dass sie die Dominanz von Norwegen oder anderen Top-Nationen erreichen wird. Der aktuelle Marktpreis von 50 % scheint überbewertet zu sein, wenn man die historische Leistung und die allgemeine Konkurrenz berücksichtigt. SportsLine-Experte Mike Tierney prognostiziert, dass Norwegen die meisten olympischen Goldmedaillen gewinnen wird. Die Schweiz hat am 10. Februar 2026 bereits einige Medaillen gewonnen. Franjo von Allmen gewann das erste Gold der Winterspiele 2026. Berücksichtigt man die Konkurrenz durch andere Nationen und die historische Leistung der Schweiz, scheint eine Wahrscheinlichkeit von 15 % ein realistischerer Wert für die Schweiz zu sein, um die meisten Medaillen bei den Olympischen Winterspielen 2026 zu gewinnen.
-
----
-
-### Bet #48: [Argentina Open: Federico Coria vs Matteo Berrettini](https://polymarket.com/event/atp-coria-berrett-2026-02-09)
-*Analyzed: 2026-02-11 01:00 CET*
-
-**Decision:** YES @ 0.50 (Stake: $62.75)
-**[View Market →](https://polymarket.com/event/atp-coria-berrett-2026-02-09)**
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** +15.0%
-- **Expected Value:** $+18.82
-- **End Date:** 2026-02-16 14:00 CET
-
-**AI Reasoning:**
-> Matteo Berrettini is the higher-ranked player (ATP #58) compared to Federico Coria (ATP #312). Berrettini has a higher career peak and has won more titles. While Coria has the advantage of playing in his home country, Berrettini's overall skill level gives him a significant edge. The probability takes into account Berrettini's past injuries and comeback progress.
-
----
-
-### Bet #49: [Will Putin meet with Zelenskyy by March 31, 2026?](https://polymarket.com/event/will-putin-meet-with-zelenskyy-by-march-31-2026)
-*Analyzed: 2026-02-11 00:30 CET*
-
-**Decision:** NO @ 0.50 (Stake: $77.46)
-**[View Market →](https://polymarket.com/event/will-putin-meet-with-zelenskyy-by-march-31-2026)**
-
-**AI Analysis:**
-- **Estimated Probability:** 30.0% (vs Market: 50.0%)
-- **Confidence Score:** 60.0%
-- **Edge:** -20.0%
-- **Expected Value:** $+30.98
-- **End Date:** 2026-03-31 02:00 CEST
-
-**AI Reasoning:**
-> Die Beziehungen zwischen Russland und der Ukraine sind angespannt, und es gibt derzeit keine aktiven Friedensverhandlungen auf höchster Ebene. Obwohl ein Treffen nicht ausgeschlossen werden kann, halte ich es angesichts der aktuellen Situation für unwahrscheinlich. Die Unsicherheit über den Verlauf des Krieges und die innenpolitischen Faktoren in beiden Ländern tragen zu dieser Einschätzung bei. Ein Confidence Score von 0.6 spiegelt die vorhandene Unsicherheit und die Möglichkeit unvorhergesehener diplomatischer Initiativen wider.
-
----
-
-### Bet #50: [Will Henri Bontenbal become the next Prime Minister of the N...](https://polymarket.com/market/will-henri-bontenbal-become-the-next-prime-minister-of-the-netherlands)
-*Analyzed: 2026-02-11 00:27 CET*
-
-**Decision:** NO @ 0.50 (Stake: $83.67)
-**[View Market →](https://polymarket.com/market/will-henri-bontenbal-become-the-next-prime-minister-of-the-netherlands)**
-
-**AI Analysis:**
-- **Estimated Probability:** 30.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -20.0%
-- **Expected Value:** $+33.47
-- **End Date:** 2026-12-31 01:00 CET
-
-**AI Reasoning:**
-> Henri Bontenbal ist zwar ein beliebter Kandidat und Vorsitzender der CDA, aber die fragmentierte politische Landschaft in den Niederlanden und die Notwendigkeit einer Koalitionsregierung reduzieren seine Wahrscheinlichkeit, Premierminister zu werden. Die CDA ist nicht der klare Wahlgewinner, und die Koalitionsverhandlungen werden wahrscheinlich komplex sein. Der aktuelle Marktpreis von 50% scheint etwas zu optimistisch.
-
----
-
 ## ❌ Rejected Markets
 
 *Showing last 50 rejected analyses*
 
 ### Insufficient Edge (50)
+
+**[Pacers vs. Nets: O/U 214.5](https://polymarket.com/market/nba-ind-bkn-2026-02-11-total-214pt5)**
+*Analyzed: 2026-02-12 00:47 CET*
+Market: 0.50 | AI: 0.58 | Edge: +8.0% | Conf: 75%
+**[View Market →](https://polymarket.com/market/nba-ind-bkn-2026-02-11-total-214pt5)**
+
+**Reasoning:** Die Pacers und Nets haben eine Under-Tendenz, wichtige Spieler fehlen verletzungsbedingt und einige Vorhersagen deuten auf ein Spiel mit niedriger Punktzahl hin. Die Over/Under Linie liegt bei den meisten Buchmachern bei etwa 216.5 oder 215.5. Das Spiel vom 5. November 2025 endete mit genau 215 Punkten (112-103 für die Nets).
+
+---
 
 **[Hawks vs. Hornets: O/U 234.5](https://polymarket.com/market/nba-atl-cha-2026-02-11-total-234pt5)**
 *Analyzed: 2026-02-12 00:02 CET*
@@ -1369,15 +1378,6 @@ Market: 0.50 | AI: 0.48 | Edge: -2.0% | Conf: 70%
 **[View Market →](https://polymarket.com/market/cbb-eill-will-2026-02-10-total-132pt5)**
 
 **Reasoning:** Die Over/Under-Linie ist sehr nah am kombinierten Punktedurchschnitt der Teams, aber die jüngsten Ergebnisse und die direkten Duelle deuten auf ein eher punktearmes Spiel hin. Daher schätze ich die Wahrscheinlichkeit für 'Over' auf leicht unter 50%.
-
----
-
-**[Will Elon Musk post 400-419 tweets from February 6 to February 13, 2026?](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-400-419)**
-*Analyzed: 2026-02-10 21:55 CET*
-Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 65%
-**[View Market →](https://polymarket.com/market/elon-musk-of-tweets-february-6-february-13-400-419)**
-
-**Reasoning:** Elon Musk ist im Allgemeinen sehr aktiv auf Twitter, aber seine Aktivität variiert. Basierend auf historischen Daten und aktuellen Ereignissen schätze ich, dass er durchschnittlich über 50 Tweets pro Tag absetzen wird. Die Polymarket-Daten für ähnliche Zeiträume zeigen eine gewisse Unsicherheit, aber der aktuelle Marktpreis von 50% deutet darauf hin, dass der Markt die Wahrscheinlichkeit in der Nähe von 50% sieht. Da die Tweets vom 6. Februar bereits gezählt werden, ist das Ergebnis schon etwas klarer als es am 6. Februar selbst gewesen wäre. Ich reduziere die Wahrscheinlichkeit leicht unter 50%, um der inhärenten Volatilität und der Tatsache Rechnung zu tragen, dass 400 Tweets in 8 Tagen ein relativ enges Fenster darstellen.
 
 ---
 
