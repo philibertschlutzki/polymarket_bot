@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-12 16:27:55 CET
+**Last Updated:** 2026-02-12 17:28:04 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 81 | 1,500 | 5.4% | 🟢 |
+| Today (RPD) | 87 | 1,500 | 5.8% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-78,234.76 |
-| Locked in Active Bets | $48,041.25 |
+| Available Capital | $-78,655.14 |
+| Locked in Active Bets | $48,461.63 |
 | Pending Resolution (>7d) | $4,821.40 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $48041.25 (4804.1% of capital) |
-| Avg Position Size | $115.21 |
+| Total Exposure | $48461.63 (4846.2% of capital) |
+| Avg Position Size | $115.66 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.003) |
 
 ---
-## 🎯 Active Bets (715)
+## 🎯 Active Bets (717)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -372,7 +372,7 @@
 | [Will Teyana Taylor win Best Supporting A...](https://polymarket.com/event/will-teyana-taylor-win-best-supporting-actress-at-the-98th-academy-awards) | YES | $67.08 | 0.50 | 0.65 | +15% 🟡 | 80% | $+20.12 | 2026-03-15 | 30d | 🟢 |
 | [Will Israel strike Lebanon on February 8...](https://polymarket.com/event/will-israel-strike-lebanon-on-february-8-2026) | NO | $238.80 | 0.50 | 0.01 | -49% 🔴 | 95% | $+234.02 | 2026-02-28 | 15d | 🟢 |
 | [Will Russia enter Kurylivka by February ...](https://polymarket.com/event/will-russia-enter-kurylivka-by-february-28) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-28 | 15d | 🟢 |
-| [Dallas Open: Grigor Dimitrov vs Alex Mic...](https://polymarket.com/event/atp-dimitro-michels-2026-02-09) | YES | $58.09 | 0.50 | 0.65 | +15% 🟡 | 60% | $+17.43 | 2026-02-16 | 4d | 🟡 |
+| [Dallas Open: Grigor Dimitrov vs Alex Mic...](https://polymarket.com/event/atp-dimitro-michels-2026-02-09) | YES | $58.09 | 0.50 | 0.65 | +15% 🟡 | 60% | $+17.43 | 2026-02-16 | 3d | 🟡 |
 | [Will Daniel Quintero win the 2026 Colomb...](https://polymarket.com/event/will-daniel-quintero-win-the-2026-colombian-presidential-election) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-06-21 | 128d | 🟢 |
 | [Will the Texas Rangers win the 2026 Worl...](https://polymarket.com/event/will-the-texas-rangers-win-the-2026-world-series) | NO | $198.71 | 0.50 | 0.03 | -48% 🔴 | 70% | $+188.77 | 2026-11-01 | 261d | 🟢 |
 | [Will the next Prime Minister of Hungary ...](https://polymarket.com/event/will-the-next-prime-minister-of-hungary-be-istvn-kapitny) | NO | $154.92 | 0.50 | 0.10 | -40% 🔴 | 60% | $+123.94 | 2026-04-12 | 58d | 🟢 |
@@ -478,6 +478,8 @@
 | [Will the price of Bitcoin be between $68...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-68000-70000-on-february-12) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-12 | 0d | 🔴 |
 | [T20 World Cup: India vs Namibia (Game 1)](https://polymarket.com/event/crint-ind-nam-2026-02-12) | YES | $184.39 | 0.50 | 0.90 | +40% 🟢 | 85% | $+147.51 | 2026-02-19 | 6d | 🟡 |
 | [Will Player 172 win Beast Games: Season ...](https://polymarket.com/event/will-player-172-win-beast-games-season-2-457) | NO | $186.20 | 0.50 | 0.07 | -43% 🔴 | 75% | $+160.13 | 2026-02-25 | 12d | 🟢 |
+| [Will the price of Ethereum be above $1,8...](https://polymarket.com/event/ethereum-above-1800-on-february-12) | YES | $201.25 | 0.50 | 0.95 | +45% 🟢 | 80% | $+181.12 | 2026-02-12 | 0d | 🔴 |
+| [Will Silver (SI) hit (LOW) $25 by end of...](https://polymarket.com/event/will-silver-si-hit-low-25-by-end-of-february-859-949-933-273-811) | NO | $219.13 | 0.50 | 0.01 | -49% 🔴 | 80% | $+214.75 | 2026-02-28 | 15d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -10d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -10d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -10d | ⏳ Pending Resolution |
@@ -547,7 +549,7 @@
 | [Bitcoin Up or Down - February 5, 8PM ET](https://polymarket.com/event/bitcoin-up-or-down-february-5-8pm-et) | NO | $64.95 | 0.50 | 0.35 | -15% 🔴 | 75% | $+0.00 | 2026-02-06 | -7d | ⏳ Pending Resolution |
 | [LoL: Team Secret Whales vs MVK Esports (...](https://polymarket.com/event/lol-tsw-mvk-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -7d | ⏳ Pending Resolution |
 | [LoL: Invictus Gaming vs Weibo Gaming (BO...](https://polymarket.com/event/lol-ig1-wb-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -7d | ⏳ Pending Resolution |
-| [LoL: KT Rolster vs DN Freecs (BO3) - LCK...](https://polymarket.com/event/lol-kt-dnf-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -6d | ⏳ Pending Resolution |
+| [LoL: KT Rolster vs DN Freecs (BO3) - LCK...](https://polymarket.com/event/lol-kt-dnf-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -7d | ⏳ Pending Resolution |
 | [Will Elon Musk post 520-539 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-520-539) | YES | $47.83 | 0.00 | 0.25 | +25% 🟢 | 60% | $+0.00 | 2026-02-06 | -6d | ⏳ Pending Resolution |
 | [Will Elon Musk post 360-379 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-360-379) | YES | $49.96 | 0.15 | 0.35 | +20% 🟡 | 75% | $+0.00 | 2026-02-06 | -6d | ⏳ Pending Resolution |
 | [Will Elon Musk post 220-239 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-220-239) | YES | $27.38 | 0.01 | 0.15 | +14% 🟡 | 60% | $+0.00 | 2026-02-06 | -6d | ⏳ Pending Resolution |
@@ -1019,7 +1021,9 @@
 - 🔴 **High Exposure**: "Ukraine joins NATO before 2027..." is 13.0% of capital
 - 🔴 **High Exposure**: "T20 World Cup: India vs Namibi..." is 18.4% of capital
 - 🔴 **High Exposure**: "Will Player 172 win Beast Game..." is 18.6% of capital
-- 🟡 **Expiring Soon**: 97 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the price of Ethereum be ..." is 20.1% of capital
+- 🔴 **High Exposure**: "Will Silver (SI) hit (LOW) $25..." is 21.9% of capital
+- 🟡 **Expiring Soon**: 98 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -1027,7 +1031,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 715 |
+| Markets with Active Bets | 717 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
