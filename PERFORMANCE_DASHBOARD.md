@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-12 11:27:11 CET
+**Last Updated:** 2026-02-12 12:27:19 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 48 | 1,500 | 3.2% | 🟢 |
+| Today (RPD) | 54 | 1,500 | 3.6% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-75,693.22 |
-| Locked in Active Bets | $45,838.77 |
+| Available Capital | $-76,230.64 |
+| Locked in Active Bets | $46,376.19 |
 | Pending Resolution (>7d) | $4,599.93 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $45838.77 (4583.9% of capital) |
-| Avg Position Size | $114.31 |
+| Total Exposure | $46376.19 (4637.6% of capital) |
+| Avg Position Size | $114.23 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.003) |
 
 ---
-## 🎯 Active Bets (695)
+## 🎯 Active Bets (700)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -462,6 +462,11 @@
 | [Will the price of Bitcoin be above $76,0...](https://polymarket.com/event/bitcoin-above-76k-on-february-13) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-13 | 1d | 🔴 |
 | [Will India strike Pakistan by December 3...](https://polymarket.com/event/will-india-strike-pakistan-by-december-31-2026) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-12-31 | 321d | 🟢 |
 | [Will the price of Bitcoin be above $72,0...](https://polymarket.com/event/bitcoin-above-72k-on-february-13) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-13 | 1d | 🔴 |
+| [Game Handicap: BFX (-1.5) vs DN Freecs (...](https://polymarket.com/event/lol-fox1-dnf-2026-02-12-game-handicap-away-1pt5) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-12 | 0d | 🔴 |
+| [Will the price of Bitcoin be above $60,0...](https://polymarket.com/event/bitcoin-above-60k-on-february-13) | YES | $104.58 | 0.50 | 0.75 | +25% 🟢 | 70% | $+52.29 | 2026-02-13 | 1d | 🔴 |
+| [Rotterdam Open: Karen Khachanov vs Jaume...](https://polymarket.com/event/atp-khachan-munar-2026-02-12) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-19 | 6d | 🟡 |
+| [Rotterdam Open: Ugo Humbert vs Guy Den O...](https://polymarket.com/event/atp-humbert-ouden-2026-02-12) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+109.57 | 2026-02-19 | 6d | 🟡 |
+| [Will the price of Ethereum be above $2,5...](https://polymarket.com/event/ethereum-above-2500-on-february-12) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-12 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -10d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -10d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -10d | ⏳ Pending Resolution |
@@ -987,7 +992,10 @@
 - 🔴 **High Exposure**: "Will the price of Ethereum be ..." is 10.5% of capital
 - 🔴 **High Exposure**: "LoL: GAM Esports vs Fukuoka So..." is 10.5% of capital
 - 🔴 **High Exposure**: "Will Jasmine Crockett win the ..." is 13.6% of capital
-- 🟡 **Expiring Soon**: 89 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 10.5% of capital
+- 🔴 **High Exposure**: "Rotterdam Open: Ugo Humbert vs..." is 15.7% of capital
+- 🔴 **High Exposure**: "Will the price of Ethereum be ..." is 14.6% of capital
+- 🟡 **Expiring Soon**: 94 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -995,7 +1003,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 695 |
+| Markets with Active Bets | 700 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
