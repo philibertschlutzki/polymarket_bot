@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-12 12:27:20 CET
+**Last Updated:** 2026-02-12 13:27:29 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,43 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will the price of Ethereum be above $2,500 on February 12?](https://polymarket.com/market/ethereum-above-2500-on-february-12)
+### Bet #1: [Will Japan’s January 2026 unemployment rate be ≤2.1%?](https://polymarket.com/market/will-japans-january-2026-unemployment-rate-be-2pt1)
+*Analyzed: 2026-02-12 12:38 CET*
+
+**Decision:** NO @ 0.50 (Stake: $146.42)
+**[View Market →](https://polymarket.com/market/will-japans-january-2026-unemployment-rate-be-2pt1)**
+
+**AI Analysis:**
+- **Estimated Probability:** 15.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -35.0%
+- **Expected Value:** $+102.49
+- **End Date:** 2026-03-03 01:00 CET
+
+**AI Reasoning:**
+> Japan's unemployment rate has recently been stable at 2.6%. Historically, it has been low, but a drop to ≤2.1% by January 2026 seems unlikely given current trends and forecasts. The current market price seems too optimistic.
+
+---
+
+### Bet #2: [Will Cade Cunningham win the 2025–2026 NBA MVP?](https://polymarket.com/market/will-cade-cunningham-win-the-20252026-nba-mvp)
+*Analyzed: 2026-02-12 12:33 CET*
+
+**Decision:** NO @ 0.50 (Stake: $179.88)
+**[View Market →](https://polymarket.com/market/will-cade-cunningham-win-the-20252026-nba-mvp)**
+
+**AI Analysis:**
+- **Estimated Probability:** 7.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** -43.0%
+- **Expected Value:** $+154.70
+- **End Date:** 2026-06-10 02:00 CEST
+
+**AI Reasoning:**
+> Cade Cunningham is a talented player, but his MVP chances are low. His current stats are good, but not MVP-caliber compared to other players in the league. While the Pistons are currently leading the Eastern Conference, it's uncertain if they will maintain that position throughout the season. NBA MVP awards generally go to players on teams with very high winning percentages. Current betting odds put his implied probability much lower than the current market price. The market price appears to be significantly inflated.
+
+---
+
+### Bet #3: [Will the price of Ethereum be above $2,500 on February 12?](https://polymarket.com/market/ethereum-above-2500-on-february-12)
 *Analyzed: 2026-02-12 12:18 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -33,7 +69,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Rotterdam Open: Ugo Humbert vs Guy Den Ouden](https://polymarket.com/event/atp-humbert-ouden-2026-02-12)
+### Bet #4: [Rotterdam Open: Ugo Humbert vs Guy Den Ouden](https://polymarket.com/event/atp-humbert-ouden-2026-02-12)
 *Analyzed: 2026-02-12 12:08 CET*
 
 **Decision:** YES @ 0.50 (Stake: $156.52)
@@ -51,7 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Rotterdam Open: Karen Khachanov vs Jaume Munar](https://polymarket.com/event/atp-khachan-munar-2026-02-12)
+### Bet #5: [Rotterdam Open: Karen Khachanov vs Jaume Munar](https://polymarket.com/event/atp-khachan-munar-2026-02-12)
 *Analyzed: 2026-02-12 12:08 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -69,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Will the price of Bitcoin be above $60,000 on February 13?](https://polymarket.com/market/bitcoin-above-60k-on-february-13)
+### Bet #6: [Will the price of Bitcoin be above $60,000 on February 13?](https://polymarket.com/market/bitcoin-above-60k-on-february-13)
 *Analyzed: 2026-02-12 11:53 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -87,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [Game Handicap: BFX (-1.5) vs DN Freecs (+1.5)](https://polymarket.com/market/lol-fox1-dnf-2026-02-12-game-handicap-away-1pt5)
+### Bet #7: [Game Handicap: BFX (-1.5) vs DN Freecs (+1.5)](https://polymarket.com/market/lol-fox1-dnf-2026-02-12-game-handicap-away-1pt5)
 *Analyzed: 2026-02-12 11:42 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -105,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will the price of Bitcoin be above $72,000 on February 13?](https://polymarket.com/market/bitcoin-above-72k-on-february-13)
+### Bet #8: [Will the price of Bitcoin be above $72,000 on February 13?](https://polymarket.com/market/bitcoin-above-72k-on-february-13)
 *Analyzed: 2026-02-12 11:23 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -123,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will India strike Pakistan by December 31, 2026?](https://polymarket.com/market/will-india-strike-pakistan-by-december-31-2026)
+### Bet #9: [Will India strike Pakistan by December 31, 2026?](https://polymarket.com/market/will-india-strike-pakistan-by-december-31-2026)
 *Analyzed: 2026-02-12 10:28 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -141,7 +177,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #8: [Will the price of Bitcoin be above $76,000 on February 13?](https://polymarket.com/market/bitcoin-above-76k-on-february-13)
+### Bet #10: [Will the price of Bitcoin be above $76,000 on February 13?](https://polymarket.com/market/bitcoin-above-76k-on-february-13)
 *Analyzed: 2026-02-12 10:23 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -159,7 +195,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #9: [Will Trump and Netanyahu only be photographed together by Fe...](https://polymarket.com/market/will-trump-and-netanyahu-only-be-photographed-together-by-february-13-2026)
+### Bet #11: [Will Trump and Netanyahu only be photographed together by Fe...](https://polymarket.com/market/will-trump-and-netanyahu-only-be-photographed-together-by-february-13-2026)
 *Analyzed: 2026-02-12 10:02 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -177,7 +213,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #10: [Aztec FDV above $150M one day after launch?](https://polymarket.com/market/aztec-fdv-above-150m-one-day-after-launch-456)
+### Bet #12: [Aztec FDV above $150M one day after launch?](https://polymarket.com/market/aztec-fdv-above-150m-one-day-after-launch-456)
 *Analyzed: 2026-02-12 09:53 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -195,7 +231,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #11: [Will Jasmine Crockett win the 2028 Democratic presidential n...](https://polymarket.com/market/will-jasmine-crockett-win-the-2028-democratic-presidential-nomination)
+### Bet #13: [Will Jasmine Crockett win the 2028 Democratic presidential n...](https://polymarket.com/market/will-jasmine-crockett-win-the-2028-democratic-presidential-nomination)
 *Analyzed: 2026-02-12 09:53 CET*
 
 **Decision:** NO @ 0.50 (Stake: $135.55)
@@ -210,42 +246,6 @@ This file contains detailed AI reasoning for all market analyses.
 
 **AI Reasoning:**
 > Jasmine Crockett is a rising star in the Democratic Party, but faces significant hurdles in securing the 2028 presidential nomination. Her strengths include her fundraising ability, strong communication skills, and ability to excite voters. However, she is relatively new to the national stage, faces potential headwinds due to the preference for a 'safer' candidate within the party, and has a history of controversial statements. Strong competition from more established candidates also lowers her probability. A 0.15 probability reflects the combination of these positive and negative factors.
-
----
-
-### Bet #12: [LoL: GAM Esports vs Fukuoka SoftBank Hawks Gaming - Game 3 W...](https://polymarket.com/market/lol-gam-shg-2026-02-12-game3)
-*Analyzed: 2026-02-12 09:37 CET*
-
-**Decision:** YES @ 0.50 (Stake: $104.58)
-**[View Market →](https://polymarket.com/market/lol-gam-shg-2026-02-12-game3)**
-
-**AI Analysis:**
-- **Estimated Probability:** 75.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** +25.0%
-- **Expected Value:** $+52.29
-- **End Date:** 2026-02-12 13:05 CET
-
-**AI Reasoning:**
-> GAM Esports hat eine höhere Weltranglistenposition, eine bessere Gewinnrate und wird von Buchmachern favorisiert. Obwohl Fukuoka SoftBank Hawks Gaming in der Lage ist zu gewinnen, deutet die Gesamtanalyse darauf hin, dass GAM Esports eine höhere Wahrscheinlichkeit hat, Spiel 3 zu gewinnen. Es gibt jedoch auch Ergebnisse aus vorherigen Spielen, in denen SHG gewonnen hat, was meine Confidence reduziert.
-
----
-
-### Bet #13: [LoL: GAM Esports vs Fukuoka SoftBank Hawks Gaming - Game 1 W...](https://polymarket.com/market/lol-gam-shg-2026-02-12-game1)
-*Analyzed: 2026-02-12 09:12 CET*
-
-**Decision:** YES @ 0.50 (Stake: $64.95)
-**[View Market →](https://polymarket.com/market/lol-gam-shg-2026-02-12-game1)**
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 50.0%)
-- **Confidence Score:** 75.0%
-- **Edge:** +15.0%
-- **Expected Value:** $+19.49
-- **End Date:** 2026-02-12 13:05 CET
-
-**AI Reasoning:**
-> GAM Esports hat eine höhere Weltrangliste und eine bessere aktuelle Form als Fukuoka SoftBank Hawks Gaming, einschließlich eines kürzlichen Sieges gegeneinander. Daher schätze ich die Wahrscheinlichkeit, dass GAM Esports Game 1 gewinnt, auf 65 %. Das Confidence Score ist 0.75, da es sich um eine relativ klare Einschätzung handelt, basierend auf den verfügbaren Daten.
 
 ---
 
@@ -931,6 +931,15 @@ Mein Confidence Score ist 0.7, da meine Einschätzung auf einer Kombination aus 
 
 ### Insufficient Edge (50)
 
+**[Will the price of Bitcoin be between $66,000 and $68,000 on February 12?](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-66000-68000-on-february-12)**
+*Analyzed: 2026-02-12 13:08 CET*
+Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 60%
+**[View Market →](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-66000-68000-on-february-12)**
+
+**Reasoning:** Der aktuelle Bitcoin-Preis liegt nahe dem Zielbereich, aber Bitcoin ist volatil. Da ich keinen Zugriff auf historische 1-Minuten-Daten habe, ist dies eine Schätzung, die auf dem aktuellen Preis und der allgemeinen Marktvolatilität basiert. Es ist eine hohe Unsicherheit.
+
+---
+
 **[Will MrBeast's latest video get 60 million or more views on week 1?](https://polymarket.com/market/will-mrbeasts-latest-video-get-60-million-or-more-views-on-week-1)**
 *Analyzed: 2026-02-12 10:13 CET*
 Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 70%
@@ -1369,15 +1378,6 @@ Market: 0.50 | AI: 0.52 | Edge: +2.0% | Conf: 60%
 **[View Market →](https://polymarket.com/event/bitcoin-up-or-down-february-10-9pm-et)**
 
 **Reasoning:** Der aktuelle Marktpreis liegt bei 50%, was auf Unsicherheit hindeutet. Angesichts der Volatilität von Bitcoin und leicht positiven Anzeichen für eine mögliche Erholung, schätze ich die Wahrscheinlichkeit für 'Up' auf 52%. Das Confidence Score ist moderat, da die Vorhersage von sehr kurzfristigen Bitcoin-Bewegungen schwierig ist.
-
----
-
-**[Will the price of Ethereum be above $2,000 on February 11?](https://polymarket.com/market/ethereum-above-2000-on-february-11)**
-*Analyzed: 2026-02-11 02:11 CET*
-Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 70%
-**[View Market →](https://polymarket.com/market/ethereum-above-2000-on-february-11)**
-
-**Reasoning:** Der Preis liegt aktuell um die 2.000 USD, aber mit leichter Abwärtsdynamik. Es gibt sowohl Unterstützung in diesem Bereich als auch Widerstand knapp darüber. Die kurzfristige Unsicherheit überwiegt die langfristigen bullischen Prognosen. Die Tatsache, dass 'Whales' gekauft haben, ist positiv, reicht aber nicht aus, um eine höhere Wahrscheinlichkeit zu rechtfertigen. Die technische Analyse deutet auf eine Konsolidierungsphase hin, was die Wahrscheinlichkeit eines signifikanten Ausbruchs nach oben oder unten verringert.
 
 ---
 
