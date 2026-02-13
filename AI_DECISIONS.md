@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-13 17:31:33 CET
+**Last Updated:** 2026-02-13 18:31:43 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,79 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will Bitcoin reach $76,000 February 9-15?](https://polymarket.com/market/will-bitcoin-reach-76k-february-9-15)
+### Bet #1: [Will the United States win the second most gold medals in th...](https://polymarket.com/market/will-the-united-states-win-the-second-most-gold-medals-in-the-2026-winter-olympics)
+*Analyzed: 2026-02-13 18:30 CET*
+
+**Decision:** NO @ 0.50 (Stake: $77.46)
+**[View Market →](https://polymarket.com/market/will-the-united-states-win-the-second-most-gold-medals-in-the-2026-winter-olympics)**
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 50.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** -20.0%
+- **Expected Value:** $+30.98
+- **End Date:** 2026-02-22 01:00 CET
+
+**AI Reasoning:**
+> Medaillenprognosen sind unsicher, aber die USA haben starke Konkurrenz von Nationen wie Norwegen, Deutschland und Russland. Der aktuelle Marktpreis von 50 % erscheint etwas hoch, da keine klaren Hinweise auf eine Prognose für den zweiten Platz der USA gefunden wurden.
+
+---
+
+### Bet #2: [Espresso FDV above $200M one day after launch?](https://polymarket.com/market/espresso-fdv-above-200m-one-day-after-launch-424)
+*Analyzed: 2026-02-13 17:55 CET*
+
+**Decision:** NO @ 0.50 (Stake: $58.09)
+**[View Market →](https://polymarket.com/market/espresso-fdv-above-200m-one-day-after-launch-424)**
+
+**AI Analysis:**
+- **Estimated Probability:** 35.0% (vs Market: 50.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** -15.0%
+- **Expected Value:** $+17.43
+- **End Date:** 2028-01-01 06:00 CET
+
+**AI Reasoning:**
+> Die aktuelle Marktpreis von 50% spiegelt eine hohe Unsicherheit wider.  Espresso ist zwar ein vielversprechendes Projekt, aber es ist schwierig, die FDV eines Governance Tokens so lange im Voraus genau vorherzusagen. Die allgemeine Marktlage und die konkreten Tokenomics zum Zeitpunkt des Launches werden eine entscheidende Rolle spielen. Es gibt keine garantierten Informationen, dass der FDV über 200 Millionen Dollar steigen wird. Daher schätze ich die Wahrscheinlichkeit auf 35%. Die Confidence ist nicht höher, da viele unbekannte Faktoren existieren.
+
+---
+
+### Bet #3: [Will Bitcoin dip to $58,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-58k-february-9-15)
+*Analyzed: 2026-02-13 17:45 CET*
+
+**Decision:** YES @ 0.50 (Stake: $62.75)
+**[View Market →](https://polymarket.com/market/will-bitcoin-dip-to-58k-february-9-15)**
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** +15.0%
+- **Expected Value:** $+18.82
+- **End Date:** 2026-02-16 06:00 CET
+
+**AI Reasoning:**
+> Bitcoin has been highly volatile recently, with a negative market sentiment reflected in the Fear and Greed Index. Analysts are divided, but some predict further declines. The $58,000 level is seen as a key support, and a break below it could trigger more selling pressure. While a rebound is possible, the current conditions suggest a significant chance of Bitcoin dipping to $58,000 between February 9-15.
+
+---
+
+### Bet #4: [Will Ethereum dip to $1,600 in February?](https://polymarket.com/market/will-ethereum-dip-to-1600-in-february-2026)
+*Analyzed: 2026-02-13 17:45 CET*
+
+**Decision:** NO @ 0.50 (Stake: $77.46)
+**[View Market →](https://polymarket.com/market/will-ethereum-dip-to-1600-in-february-2026)**
+
+**AI Analysis:**
+- **Estimated Probability:** 30.0% (vs Market: 50.0%)
+- **Confidence Score:** 60.0%
+- **Edge:** -20.0%
+- **Expected Value:** $+30.98
+- **End Date:** 2026-03-01 06:00 CET
+
+**AI Reasoning:**
+> Ethereum handelt derzeit um die 2.000 $. Es gibt Anzeichen für eine Stabilisierung, aber auch erhebliche Abwärtsrisiken aufgrund der Marktvolatilität, der gemischten Marktstimmung und des bevorstehenden Optionsablaufs. Technische Analysen zeigen unterschiedliche Unterstützungsniveaus, und ein Unterschreiten von 1.890 $ könnte einen stärkeren Rückgang auslösen. Historisch gesehen gab es im Februar sowohl Gewinne als auch Verluste. Die Polymarket-Wahrscheinlichkeit vom 11. Februar lag bei 29 %, hat sich aber möglicherweise geändert.
+
+---
+
+### Bet #5: [Will Bitcoin reach $76,000 February 9-15?](https://polymarket.com/market/will-bitcoin-reach-76k-february-9-15)
 *Analyzed: 2026-02-13 17:00 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -33,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Men's Group A - France vs. Czechia](https://polymarket.com/event/mwoh-fra-cze-2026-02-13)
+### Bet #6: [Men's Group A - France vs. Czechia](https://polymarket.com/event/mwoh-fra-cze-2026-02-13)
 *Analyzed: 2026-02-13 16:35 CET*
 
 **Decision:** YES @ 0.50 (Stake: $156.52)
@@ -51,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will Bitcoin dip to $60,000 in February?](https://polymarket.com/market/will-bitcoin-dip-to-60000-in-february-694)
+### Bet #7: [Will Bitcoin dip to $60,000 in February?](https://polymarket.com/market/will-bitcoin-dip-to-60000-in-february-694)
 *Analyzed: 2026-02-13 16:30 CET*
 
 **Decision:** NO @ 0.50 (Stake: $83.67)
@@ -69,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Will there be at least 800 measles cases in the U.S. by Febr...](https://polymarket.com/market/will-there-be-at-least-800-measles-cases-in-the-us-by-february-28-2026)
+### Bet #8: [Will there be at least 800 measles cases in the U.S. by Febr...](https://polymarket.com/market/will-there-be-at-least-800-measles-cases-in-the-us-by-february-28-2026)
 *Analyzed: 2026-02-13 16:20 CET*
 
 **Decision:** YES @ 0.50 (Stake: $156.52)
@@ -87,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [BV Borussia 09 Dortmund vs. 1. FSV Mainz 05: O/U 2.5](https://polymarket.com/market/bun-dor-mai-2026-02-13-total-2pt5)
+### Bet #9: [BV Borussia 09 Dortmund vs. 1. FSV Mainz 05: O/U 2.5](https://polymarket.com/market/bun-dor-mai-2026-02-13-total-2pt5)
 *Analyzed: 2026-02-13 15:25 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -105,7 +177,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will Silver (SI) hit (LOW) $65 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-65-by-end-of-february-598-917-186-187-154)
+### Bet #10: [Will Silver (SI) hit (LOW) $65 by end of February?](https://polymarket.com/market/will-silver-si-hit-low-65-by-end-of-february-598-917-186-187-154)
 *Analyzed: 2026-02-13 15:05 CET*
 
 **Decision:** YES @ 0.50 (Stake: $58.09)
@@ -123,25 +195,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will the price of Ethereum be above $2,100 on February 13?](https://polymarket.com/market/ethereum-above-2100-on-february-13)
-*Analyzed: 2026-02-13 14:00 CET*
-
-**Decision:** NO @ 0.50 (Stake: $58.09)
-**[View Market →](https://polymarket.com/market/ethereum-above-2100-on-february-13)**
-
-**AI Analysis:**
-- **Estimated Probability:** 35.0% (vs Market: 50.0%)
-- **Confidence Score:** 60.0%
-- **Edge:** -15.0%
-- **Expected Value:** $+17.43
-- **End Date:** 2026-02-13 18:00 CET
-
-**AI Reasoning:**
-> Der aktuelle Ethereum-Preis liegt um die 1.960 USD. Mehrere Quellen deuten darauf hin, dass Ethereum kurzfristig Schwierigkeiten haben könnte, die 2.100 $-Marke zu überschreiten. Einige Analysen sehen einen Widerstand um die 2.100 $-Marke. Es gibt auch Berichte über eine bärische Stimmung in Bezug auf Ethereum. Andere Quellen weisen auf die Möglichkeit einer Erholung hin, falls die Marke von 2.100 US-Dollar überschritten wird. Angesichts des aktuellen Preises, des Widerstands bei 2.100 USD und der gemischten Marktstimmung schätze ich die Wahrscheinlichkeit, dass Ethereum am 13. Februar um 12:00 Uhr ET über 2.100 USD liegt, auf 35 %. Das Confidence Score beträgt 0.6, da die Marktvolatilität die Vorhersage erschwert und die verfügbaren Daten gemischt sind.
-
----
-
-### Bet #8: [Will there be at least 1,200 measles cases in the U.S. by Fe...](https://polymarket.com/market/will-there-be-at-least-1200-measles-cases-in-the-us-by-february-28-2026-152-495-466)
+### Bet #11: [Will there be at least 1,200 measles cases in the U.S. by Fe...](https://polymarket.com/market/will-there-be-at-least-1200-measles-cases-in-the-us-by-february-28-2026-152-495-466)
 *Analyzed: 2026-02-13 13:25 CET*
 
 **Decision:** YES @ 0.50 (Stake: $104.58)
@@ -159,7 +213,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #9: [Dubai Duty Free Tennis Championships, Qualification: Tereza ...](https://polymarket.com/event/wta-valento-birrell-2026-02-13)
+### Bet #12: [Dubai Duty Free Tennis Championships, Qualification: Tereza ...](https://polymarket.com/event/wta-valento-birrell-2026-02-13)
 *Analyzed: 2026-02-13 13:09 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -177,7 +231,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #10: [Will there be 5 or fewer US strikes on Somalia in February 2...](https://polymarket.com/market/will-there-be-5-or-fewer-us-strikes-on-somalia-in-february-2026)
+### Bet #13: [Will there be 5 or fewer US strikes on Somalia in February 2...](https://polymarket.com/market/will-there-be-5-or-fewer-us-strikes-on-somalia-in-february-2026)
 *Analyzed: 2026-02-13 12:44 CET*
 
 **Decision:** NO @ 0.50 (Stake: $194.86)
@@ -195,25 +249,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #11: [Will the price of Bitcoin be between $72,000 and $74,000 on ...](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-72000-74000-on-february-13)
-*Analyzed: 2026-02-13 12:24 CET*
-
-**Decision:** NO @ 0.50 (Stake: $146.42)
-**[View Market →](https://polymarket.com/market/will-the-price-of-bitcoin-be-between-72000-74000-on-february-13)**
-
-**AI Analysis:**
-- **Estimated Probability:** 15.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -35.0%
-- **Expected Value:** $+102.49
-- **End Date:** 2026-02-13 18:00 CET
-
-**AI Reasoning:**
-> Der aktuelle Bitcoin-Preis liegt deutlich unter der Zielspanne von 72.000 bis 74.000 USD. Obwohl Bitcoin volatil ist, deutet nichts darauf hin, dass es innerhalb des gegebenen Zeitraums einen so grossen Preisanstieg geben wird. Die Marktstimmung ist gemischt, und es gibt sowohl positive als auch negative Nachrichten, die den Preis beeinflussen könnten. Daher schätze ich die Wahrscheinlichkeit als relativ gering ein.
-
----
-
-### Bet #12: [Will MrBeast's next video get 51.0 million or more views on ...](https://polymarket.com/market/will-mrbeasts-next-video-get-51pt0-million-or-more-views-on-day-6)
+### Bet #14: [Will MrBeast's next video get 51.0 million or more views on ...](https://polymarket.com/market/will-mrbeasts-next-video-get-51pt0-million-or-more-views-on-day-6)
 *Analyzed: 2026-02-13 12:14 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -231,7 +267,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #13: [Will Real Madrid CF win on 2026-02-14?](https://polymarket.com/market/lal-rea-rso-2026-02-14-rea)
+### Bet #15: [Will Real Madrid CF win on 2026-02-14?](https://polymarket.com/market/lal-rea-rso-2026-02-14-rea)
 *Analyzed: 2026-02-13 12:04 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -249,7 +285,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #14: [Will XRP dip to $0.60 in February?](https://polymarket.com/market/will-xrp-dip-to-0pt6-in-february-2026)
+### Bet #16: [Will XRP dip to $0.60 in February?](https://polymarket.com/market/will-xrp-dip-to-0pt6-in-february-2026)
 *Analyzed: 2026-02-13 11:15 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -267,7 +303,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #15: [Dubai Duty Free Tennis Championships, Qualification: Ella Se...](https://polymarket.com/event/wta-seidel-potapov-2026-02-13)
+### Bet #17: [Dubai Duty Free Tennis Championships, Qualification: Ella Se...](https://polymarket.com/event/wta-seidel-potapov-2026-02-13)
 *Analyzed: 2026-02-13 10:44 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -285,25 +321,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #16: [Will the price of Ethereum be between $2,200 and $2,300 on F...](https://polymarket.com/market/will-the-price-of-ethereum-be-between-2200-2300-on-february-13)
-*Analyzed: 2026-02-13 10:19 CET*
-
-**Decision:** NO @ 0.50 (Stake: $154.92)
-**[View Market →](https://polymarket.com/market/will-the-price-of-ethereum-be-between-2200-2300-on-february-13)**
-
-**AI Analysis:**
-- **Estimated Probability:** 10.0% (vs Market: 50.0%)
-- **Confidence Score:** 60.0%
-- **Edge:** -40.0%
-- **Expected Value:** $+123.94
-- **End Date:** 2026-02-13 18:00 CET
-
-**AI Reasoning:**
-> Der aktuelle Preis von Ethereum liegt bei etwa 1950 USD. Um die Spanne von 2200 bis 2300 USD bis 17:00 Uhr UTC zu erreichen, wäre ein erheblicher Preisanstieg innerhalb kurzer Zeit erforderlich. Die aktuelle Marktvolatilität und die leicht bärischen Tendenzen deuten darauf hin, dass dies unwahrscheinlich ist. Obwohl langfristige Prognosen höhere Preise erwarten lassen, ist die kurzfristige Unsicherheit hoch.
-
----
-
-### Bet #17: [Will Bitcoin dip to $62,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-62k-february-9-15)
+### Bet #18: [Will Bitcoin dip to $62,000 February 9-15?](https://polymarket.com/market/will-bitcoin-dip-to-62k-february-9-15)
 *Analyzed: 2026-02-13 09:29 CET*
 
 **Decision:** NO @ 0.50 (Stake: $96.82)
@@ -321,7 +339,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #18: [Will Bitcoin reach $82,000 February 9-15?](https://polymarket.com/market/will-bitcoin-reach-82k-february-9-15)
+### Bet #19: [Will Bitcoin reach $82,000 February 9-15?](https://polymarket.com/market/will-bitcoin-reach-82k-february-9-15)
 *Analyzed: 2026-02-13 09:29 CET*
 
 **Decision:** NO @ 0.50 (Stake: $77.46)
@@ -339,7 +357,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #19: [Will Italy win the most gold medals in the 2026 Winter Olymp...](https://polymarket.com/market/will-italy-win-the-most-gold-medals-in-the-2026-winter-olympics)
+### Bet #20: [Will Italy win the most gold medals in the 2026 Winter Olymp...](https://polymarket.com/market/will-italy-win-the-most-gold-medals-in-the-2026-winter-olympics)
 *Analyzed: 2026-02-13 09:29 CET*
 
 **Decision:** NO @ 0.50 (Stake: $129.90)
@@ -357,7 +375,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #20: [Will Hamnet win Best Picture at the 98th Academy Awards?](https://polymarket.com/market/will-hamnet-win-best-picture-at-the-98th-academy-awards)
+### Bet #21: [Will Hamnet win Best Picture at the 98th Academy Awards?](https://polymarket.com/market/will-hamnet-win-best-picture-at-the-98th-academy-awards)
 *Analyzed: 2026-02-13 08:24 CET*
 
 **Decision:** NO @ 0.50 (Stake: $96.82)
@@ -375,7 +393,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #21: [Will Elon Musk post 300-319 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-300-319)
+### Bet #22: [Will Elon Musk post 300-319 tweets from February 10 to Febru...](https://polymarket.com/market/elon-musk-of-tweets-february-10-february-17-300-319)
 *Analyzed: 2026-02-13 07:34 CET*
 
 **Decision:** NO @ 0.50 (Stake: $146.42)
@@ -393,7 +411,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #22: [S&P 500 (SPX) Opens Up or Down on February 13?](https://polymarket.com/event/spx-opens-up-or-down-on-february-13-2026)
+### Bet #23: [S&P 500 (SPX) Opens Up or Down on February 13?](https://polymarket.com/event/spx-opens-up-or-down-on-february-13-2026)
 *Analyzed: 2026-02-13 07:24 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -411,7 +429,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #23: [Will the Boston Celtics win the NBA Eastern Conference Final...](https://polymarket.com/market/will-the-boston-celtics-win-the-nba-eastern-conference-finals)
+### Bet #24: [Will the Boston Celtics win the NBA Eastern Conference Final...](https://polymarket.com/market/will-the-boston-celtics-win-the-nba-eastern-conference-finals)
 *Analyzed: 2026-02-13 07:19 CET*
 
 **Decision:** NO @ 0.50 (Stake: $129.90)
@@ -429,7 +447,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #24: [Will Consensys IPO by September 30 2026?](https://polymarket.com/market/will-consensys-ipo-by-september-30-2026)
+### Bet #25: [Will Consensys IPO by September 30 2026?](https://polymarket.com/market/will-consensys-ipo-by-september-30-2026)
 *Analyzed: 2026-02-13 06:59 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -447,7 +465,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #25: [Will the Golden State Warriors win the NBA Western Conferenc...](https://polymarket.com/market/will-the-golden-state-warriors-win-the-nba-western-conference-finals)
+### Bet #26: [Will the Golden State Warriors win the NBA Western Conferenc...](https://polymarket.com/market/will-the-golden-state-warriors-win-the-nba-western-conference-finals)
 *Analyzed: 2026-02-13 06:44 CET*
 
 **Decision:** NO @ 0.50 (Stake: $120.93)
@@ -465,7 +483,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #26: [T20 World Cup: Australia vs Zimbabwe (Game 1)](https://polymarket.com/event/crint-aus-zwe-2026-02-13)
+### Bet #27: [T20 World Cup: Australia vs Zimbabwe (Game 1)](https://polymarket.com/event/crint-aus-zwe-2026-02-13)
 *Analyzed: 2026-02-13 06:29 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -480,24 +498,6 @@ This file contains detailed AI reasoning for all market analyses.
 
 **AI Reasoning:**
 > Australien ist das stärkere Team und hat eine gute Bilanz gegen Zimbabwe. Allerdings gibt es Verletzungen und eine Regenwahrscheinlichkeit, die das Ergebnis beeinflussen könnten. Daher schätze ich die Wahrscheinlichkeit für einen australischen Sieg auf 75%. Das Confidence Score ist hoch, da Australien als Favorit ins Spiel geht, aber die Unsicherheiten aufgrund von Verletzungen und Wetterbedingungen reduzieren das Score etwas.
-
----
-
-### Bet #27: [Will the price of Ethereum be above $2,200 on February 13?](https://polymarket.com/market/ethereum-above-2200-on-february-13)
-*Analyzed: 2026-02-13 06:14 CET*
-
-**Decision:** NO @ 0.50 (Stake: $104.58)
-**[View Market →](https://polymarket.com/market/ethereum-above-2200-on-february-13)**
-
-**AI Analysis:**
-- **Estimated Probability:** 25.0% (vs Market: 50.0%)
-- **Confidence Score:** 70.0%
-- **Edge:** -25.0%
-- **Expected Value:** $+52.29
-- **End Date:** 2026-02-13 18:00 CET
-
-**AI Reasoning:**
-> Der aktuelle Preis von Ethereum liegt deutlich unter 2.200 US-Dollar. Es gibt einen starken Widerstand in diesem Bereich, und die meisten Analysen deuten auf eine Konsolidierung oder einen leichten Aufwärtstrend hin, jedoch keinen deutlichen Ausbruch über 2.200 US-Dollar an diesem Tag. Obwohl einige Analysten ein potenzielles Aufwärtspotenzial sehen, erscheint ein Anstieg über 2.200 US-Dollar bis 12:00 Uhr ET unwahrscheinlich.
 
 ---
 
@@ -928,6 +928,15 @@ Ich habe ein Confidence Score von 0.7 gegeben, da die Schätzung auf einigen Ann
 *Showing last 50 rejected analyses*
 
 ### Insufficient Edge (50)
+
+**[Set Handicap: Valentova (-1.5) vs Birrell (+1.5)](https://polymarket.com/market/wta-valento-birrell-2026-02-13-set-handicap-home-1pt5)**
+*Analyzed: 2026-02-13 17:45 CET*
+Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 70%
+**[View Market →](https://polymarket.com/market/wta-valento-birrell-2026-02-13-set-handicap-home-1pt5)**
+
+**Reasoning:** Basierend auf den verfügbaren Informationen scheint es sich um ein relativ ausgeglichenes Match zu handeln. Tereza Valentova ist auf Platz 48 der WTA, während Kimberly Birrell auf Platz 96 liegt. Ein früheres Spiel zwischen den beiden am 12. Februar 2026 endete jedoch mit einem 1-2 Sieg für Birrell. Angesichts des Set-Handicaps von -1.5 für Valentova müsste sie mit 2 Sätzen Vorsprung gewinnen, was angesichts des knappen vorherigen Ergebnisses unwahrscheinlich erscheint. Der aktuelle Marktpreis von 50% deutet ebenfalls auf eine gewisse Unsicherheit hin. Daher schätze ich die Wahrscheinlichkeit, dass Valentova das Set-Handicap gewinnt, auf 45%. Mein Confidence Score beträgt 0.7, da das Ergebnis eines Tennisspiels von vielen Faktoren abhängt und das vorherige Spiel auf ein knappes Match schließen lässt.
+
+---
 
 **[Will the price of Bitcoin be above $72,000 on February 14?](https://polymarket.com/market/bitcoin-above-72k-on-february-14)**
 *Analyzed: 2026-02-13 16:35 CET*
@@ -1367,15 +1376,6 @@ Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 60%
 **[View Market →](https://polymarket.com/event/bitcoin-up-or-down-february-11-7pm-et)**
 
 **Reasoning:** Bitcoin has been volatile recently, with a mix of downward pressure and signs of recovery. Considering the current price level and the mixed market sentiment, I estimate a 55% probability that the closing price will be greater than or equal to the opening price at 7 PM ET on February 11.
-
----
-
-**[Spread: Pelicans (-1.5)](https://polymarket.com/market/nba-mia-nop-2026-02-11-spread-home-1pt5)**
-*Analyzed: 2026-02-12 01:31 CET*
-Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 70%
-**[View Market →](https://polymarket.com/market/nba-mia-nop-2026-02-11-spread-home-1pt5)**
-
-**Reasoning:** Die Pelicans haben Heimvorteil und die Heat haben mit Verletzungen zu kämpfen, was die Wahrscheinlichkeit eines Pelicans-Siegs erhöht. Allerdings ist die Bilanz der Pelicans deutlich schlechter als die der Heat. Der Spread ist gering (-1.5), daher ist ein knapper Ausgang wahrscheinlich. Ich schätze, dass die Wahrscheinlichkeit, dass die Pelicans mit 2 oder mehr Punkten gewinnen, etwas geringer ist als der aktuelle Marktpreis von 50 %, aufgrund ihrer inkonsistenten Leistung und der Auswärtsstärke der Heat.
 
 ---
 
