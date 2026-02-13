@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-13 04:29:42 CET
+**Last Updated:** 2026-02-13 05:29:49 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 18 | 1,500 | 1.2% | 🟢 |
+| Today (RPD) | 26 | 1,500 | 1.7% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-81,433.44 |
-| Locked in Active Bets | $48,784.36 |
+| Available Capital | $-81,794.90 |
+| Locked in Active Bets | $49,145.82 |
 | Pending Resolution (>7d) | $6,030.80 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $48784.36 (4878.4% of capital) |
-| Avg Position Size | $116.71 |
+| Total Exposure | $49145.82 (4914.6% of capital) |
+| Avg Position Size | $116.46 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.003) |
 
 ---
-## 🎯 Active Bets (741)
+## 🎯 Active Bets (745)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -479,6 +479,10 @@
 | [Will Bitcoin reach $78,000 February 9-15...](https://polymarket.com/event/will-bitcoin-reach-78k-february-9-15) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+75.30 | 2026-02-16 | 3d | 🟡 |
 | [Espresso FDV above $300M one day after l...](https://polymarket.com/event/espresso-fdv-above-300m-one-day-after-launch-493-948) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2028-01-01 | 687d | 🟢 |
 | [Will Player 191 win Beast Games: Season ...](https://polymarket.com/event/will-player-191-win-beast-games-season-2-619) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-25 | 11d | 🟢 |
+| [Will Lens win the 2025–26 French Ligue 1...](https://polymarket.com/event/will-lens-win-the-202526-french-ligue-1) | NO | $173.21 | 0.50 | 0.10 | -40% 🔴 | 75% | $+138.56 | 2026-05-30 | 105d | 🟢 |
+| [Will Moonshot have the best AI model at ...](https://polymarket.com/event/will-moonshot-have-the-best-ai-model-at-the-end-of-march-2026-924) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-03-31 | 45d | 🟢 |
+| [Aztec FDV above $1.5B one day after laun...](https://polymarket.com/event/aztec-fdv-above-1pt5b-one-day-after-launch-214-724) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2027-01-01 | 322d | 🟢 |
+| [Stade Rennais FC 1901 vs. Paris Saint-Ge...](https://polymarket.com/event/fl1-ren-psg-2026-02-13-total-3pt5) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-13 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -11d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -11d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -11d | ⏳ Pending Resolution |
@@ -1050,7 +1054,8 @@
 - 🔴 **High Exposure**: "Will Michelle Obama win the 20..." is 12.6% of capital
 - 🔴 **High Exposure**: "Will Bitcoin reach $78,000 Feb..." is 12.6% of capital
 - 🔴 **High Exposure**: "Will Player 191 win Beast Game..." is 14.6% of capital
-- 🟡 **Expiring Soon**: 87 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Lens win the 2025–26 Fren..." is 17.3% of capital
+- 🟡 **Expiring Soon**: 88 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -1058,7 +1063,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 741 |
+| Markets with Active Bets | 745 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
