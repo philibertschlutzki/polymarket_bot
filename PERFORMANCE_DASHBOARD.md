@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-14 07:03:20 CET
+**Last Updated:** 2026-02-14 08:03:29 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 16 | 1,500 | 1.1% | 🟢 |
+| Today (RPD) | 19 | 1,500 | 1.3% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-87,429.52 |
-| Locked in Active Bets | $50,754.35 |
+| Available Capital | $-87,724.33 |
+| Locked in Active Bets | $51,049.16 |
 | Pending Resolution (>7d) | $9,708.26 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $50754.35 (5075.4% of capital) |
-| Avg Position Size | $116.68 |
+| Total Exposure | $51049.16 (5104.9% of capital) |
+| Avg Position Size | $116.55 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.003) |
 
 ---
-## 🎯 Active Bets (798)
+## 🎯 Active Bets (801)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -308,8 +308,8 @@
 | [Will Gold (GC) hit (LOW) $4,000 by end o...](https://polymarket.com/event/will-gold-gc-hit-low-4000-by-end-of-february-542-564-882-215-825-637-559-654-593) | NO | $188.25 | 0.50 | 0.05 | -45% 🔴 | 70% | $+169.42 | 2026-02-28 | 13d | 🟢 |
 | [Will Switzerland win the Men's Ice Hocke...](https://polymarket.com/event/will-switzerland-win-the-mens-ice-hockey-gold-medal-at-the-2026-winter-olympics) | NO | $167.33 | 0.50 | 0.10 | -40% 🔴 | 70% | $+133.87 | 2026-02-22 | 7d | 🟢 |
 | [Will Gold (GC) hit (LOW) $4,450 by end o...](https://polymarket.com/event/will-gold-gc-hit-low-4450-by-end-of-february-844-276-171-389-959-616-957-814) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-28 | 13d | 🟢 |
-| [Qatar Total Open: Xinyu Wang vs Emiliana...](https://polymarket.com/event/wta-wa-arango-2026-02-08) | YES | $104.58 | 0.50 | 0.75 | +25% 🟢 | 70% | $+52.29 | 2026-02-15 | 1d | 🔴 |
-| [Qatar Total Open: Maria Sakkari vs Zeyne...](https://polymarket.com/event/wta-sakkari-sonmez-2026-02-08) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-15 | 1d | 🔴 |
+| [Qatar Total Open: Xinyu Wang vs Emiliana...](https://polymarket.com/event/wta-wa-arango-2026-02-08) | YES | $104.58 | 0.50 | 0.75 | +25% 🟢 | 70% | $+52.29 | 2026-02-15 | 0d | 🔴 |
+| [Qatar Total Open: Maria Sakkari vs Zeyne...](https://polymarket.com/event/wta-sakkari-sonmez-2026-02-08) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-15 | 0d | 🔴 |
 | [Will Russia capture all of Huliaipole by...](https://polymarket.com/event/will-russia-capture-all-of-huliaipole-by-february-28) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-28 | 13d | 🟢 |
 | [Will Greta Thunberg win the Nobel Peace ...](https://polymarket.com/event/will-greta-thunberg-win-the-nobel-peace-prize-in-2026-767) | NO | $162.67 | 0.50 | 0.08 | -42% 🔴 | 60% | $+136.64 | 2026-10-10 | 237d | 🟢 |
 | [Will the US not strike another country b...](https://polymarket.com/event/will-the-us-not-strike-another-country-before-2027-625) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-12-31 | 319d | 🟢 |
@@ -341,7 +341,7 @@
 | [Will the US strike Somalia next?](https://polymarket.com/event/will-the-us-strike-somalia-next-699) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-12-31 | 319d | 🟢 |
 | [Will Saudi Aramco be the largest company...](https://polymarket.com/event/will-saudi-aramco-be-the-largest-company-in-the-world-by-market-cap-on-december-31-584) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-12-31 | 319d | 🟢 |
 | [Will the Iranian regime survive U.S. mil...](https://polymarket.com/event/will-the-iranian-regime-survive-us-military-strikes-741) | NO | $158.97 | 0.50 | 0.12 | -38% 🔴 | 70% | $+120.81 | 2026-06-30 | 135d | 🟢 |
-| [Qatar Total Open: Xinyu Wang vs Elena Ry...](https://polymarket.com/event/wta-wa-rybakin-2026-02-10) | YES | $166.02 | 0.50 | 0.85 | +35% 🟢 | 90% | $+116.21 | 2026-02-17 | 3d | 🟡 |
+| [Qatar Total Open: Xinyu Wang vs Elena Ry...](https://polymarket.com/event/wta-wa-rybakin-2026-02-10) | YES | $166.02 | 0.50 | 0.85 | +35% 🟢 | 90% | $+116.21 | 2026-02-17 | 2d | 🔴 |
 | [Will France win the most medals in the 2...](https://polymarket.com/event/will-france-win-the-most-medals-in-the-2026-winter-olympics) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-02-22 | 7d | 🟢 |
 | [Will the US strike Syria next?](https://polymarket.com/event/will-the-us-strike-syria-next-652) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-12-31 | 319d | 🟢 |
 | [Will France win Eurovision 2026?](https://polymarket.com/event/will-france-win-eurovision-2026) | NO | $153.18 | 0.50 | 0.12 | -38% 🔴 | 65% | $+116.42 | 2026-05-16 | 90d | 🟢 |
@@ -380,15 +380,15 @@
 | [Will the US strike another country first...](https://polymarket.com/event/will-the-us-strike-another-country-first-645) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-12-31 | 319d | 🟢 |
 | [Will Elon Musk post 580+ tweets from Feb...](https://polymarket.com/event/elon-musk-of-tweets-february-10-february-17-580plus) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-17 | 3d | 🟡 |
 | [T20 World Cup: Afghanistan vs South Afri...](https://polymarket.com/event/crint-afg-zaf-2026-02-11) | YES | $104.58 | 0.50 | 0.75 | +25% 🟢 | 70% | $+52.29 | 2026-02-18 | 3d | 🟡 |
-| [Qatar Total Open: Varvara Gracheva vs Ma...](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-18 | 4d | 🟡 |
+| [Qatar Total Open: Varvara Gracheva vs Ma...](https://polymarket.com/event/wta-grachev-sakkari-2026-02-11) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-18 | 3d | 🟡 |
 | [Rotterdam Open: Guy Den Ouden vs Marton ...](https://polymarket.com/event/atp-ouden-fucsovi-2026-02-09) | NO | $120.75 | 0.50 | 0.23 | -27% 🔴 | 80% | $+65.20 | 2026-02-16 | 2d | 🔴 |
 | [Will Silver (SI) hit (LOW) $55 by end of...](https://polymarket.com/event/will-silver-si-hit-low-55-by-end-of-february-998-393-222-319-616) | NO | $151.55 | 0.50 | 0.15 | -35% 🔴 | 75% | $+106.09 | 2026-02-28 | 13d | 🟢 |
 | [Will Bitcoin dip to $66,000 February 9-1...](https://polymarket.com/event/will-bitcoin-dip-to-66k-february-9-15) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-16 | 1d | 🔴 |
 | [Will Norway win the most gold medals in ...](https://polymarket.com/event/will-norway-win-the-most-gold-medals-in-the-2026-winter-olympics) | YES | $92.20 | 0.50 | 0.70 | +20% 🟢 | 85% | $+36.88 | 2026-02-22 | 7d | 🟢 |
-| [Qatar Total Open: Mirra Andreeva vs Vict...](https://polymarket.com/event/wta-andreev-mboko-2026-02-11) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-18 | 4d | 🟡 |
+| [Qatar Total Open: Mirra Andreeva vs Vict...](https://polymarket.com/event/wta-andreev-mboko-2026-02-11) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-18 | 3d | 🟡 |
 | [Will Jaylen Brown win the 2025–2026 NBA ...](https://polymarket.com/event/will-jaylen-brown-win-the-20252026-nba-mvp) | NO | $198.71 | 0.50 | 0.03 | -48% 🔴 | 70% | $+188.77 | 2026-06-10 | 115d | 🟢 |
 | [Will the 2026 Bad Bunny Super Bowl halft...](https://polymarket.com/event/will-the-2026-bad-bunny-super-bowl-halftime-show-video-get-between-125m-and-150m-views-in-its-first-7-days) | YES | $104.58 | 0.50 | 0.75 | +25% 🟢 | 70% | $+52.29 | 2026-02-15 | 0d | 🔴 |
-| [Qatar Total Open: Iga Swiatek vs Daria K...](https://polymarket.com/event/wta-swiatek-kasatki-2026-02-11) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+109.57 | 2026-02-18 | 4d | 🟡 |
+| [Qatar Total Open: Iga Swiatek vs Daria K...](https://polymarket.com/event/wta-swiatek-kasatki-2026-02-11) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+109.57 | 2026-02-18 | 3d | 🟡 |
 | [Will Ethereum dip to $1,200 in February?](https://polymarket.com/event/will-ethereum-dip-to-1200-in-february-2026) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-03-01 | 14d | 🟢 |
 | [Will XRP reach $3.20 in February?](https://polymarket.com/event/will-xrp-reach-3pt2-in-february-2026) | NO | $188.25 | 0.50 | 0.05 | -45% 🔴 | 70% | $+169.42 | 2026-03-01 | 14d | 🟢 |
 | [Argentina Open: Roman Andres Burruchaga ...](https://polymarket.com/event/atp-burruch-etcheve-2026-02-11) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-18 | 4d | 🟡 |
@@ -496,6 +496,9 @@
 | [Will the government shutdown last 14 day...](https://polymarket.com/event/will-the-government-shutdown-last-14-days-or-more-222-434-555-498-766) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-03-14 | 27d | 🟢 |
 | [Will Yōko Kamikawa be the Prime Minister...](https://polymarket.com/event/will-yko-kamikawa-be-the-prime-minister-of-japan-as-a-result-of-the-2026-snap-election) | NO | $232.43 | 0.50 | 0.01 | -49% 🔴 | 90% | $+227.78 | 2026-04-30 | 74d | 🟢 |
 | [Will Elon Musk post 115-139 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-12-february-14-115-139) | NO | $167.33 | 0.50 | 0.10 | -40% 🔴 | 70% | $+133.87 | 2026-02-14 | 0d | 🔴 |
+| [Will the Los Angeles Clippers win the NB...](https://polymarket.com/event/will-the-los-angeles-clippers-win-the-nba-western-conference-finals) | NO | $169.31 | 0.50 | 0.08 | -42% 🔴 | 65% | $+142.22 | 2026-06-16 | 121d | 🟢 |
+| [Will the government shutdown last 5 days...](https://polymarket.com/event/will-the-government-shutdown-last-5-days-or-more-234-558-393-861) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-03-14 | 27d | 🟢 |
+| [Will the highest temperature in Seoul be...](https://polymarket.com/event/highest-temperature-in-seoul-on-february-14-2026-11corhigher) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-14 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -12d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -12d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -12d | ⏳ Pending Resolution |
@@ -1115,7 +1118,8 @@
 - 🔴 **High Exposure**: "Will FC Bayern München win on ..." is 11.2% of capital
 - 🔴 **High Exposure**: "Will Yōko Kamikawa be the Prim..." is 23.2% of capital
 - 🔴 **High Exposure**: "Will Elon Musk post 115-139 tw..." is 16.7% of capital
-- 🟡 **Expiring Soon**: 102 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will the Los Angeles Clippers ..." is 16.9% of capital
+- 🟡 **Expiring Soon**: 103 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -1123,7 +1127,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 798 |
+| Markets with Active Bets | 801 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
