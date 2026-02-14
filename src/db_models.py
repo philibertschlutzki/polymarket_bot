@@ -94,6 +94,10 @@ class ActiveBet(Base):
     action = Column(Text, nullable=False)
     stake_usdc = Column(Numeric(10, 2), nullable=False)
     entry_price = Column(Numeric(5, 4), nullable=False)
+    # Execution fields
+    order_id = Column(Text, nullable=True)
+    fill_price = Column(Numeric(5, 4), nullable=True)
+
     ai_probability = Column(Numeric(5, 4), nullable=False)
     confidence_score = Column(Numeric(5, 4), nullable=False)
     expected_value = Column(Numeric(10, 2), nullable=False)
