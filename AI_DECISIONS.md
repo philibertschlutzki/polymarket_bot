@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-14 13:04:13 CET
+**Last Updated:** 2026-02-14 14:04:19 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,43 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [UFC Fight Night: Sean Strickland vs. Anthony Hernandez (Midd...](https://polymarket.com/event/ufc-sea2-ant-2026-02-21)
+### Bet #1: [Dubai Duty Free Tennis Championships, Qualification: Elisabe...](https://polymarket.com/event/wta-cocciar-zakharo-2026-02-14)
+*Analyzed: 2026-02-14 13:17 CET*
+
+**Decision:** YES @ 0.50 (Stake: $64.95)
+**[View Market →](https://polymarket.com/event/wta-cocciar-zakharo-2026-02-14)**
+
+**AI Analysis:**
+- **Estimated Probability:** 65.0% (vs Market: 50.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** +15.0%
+- **Expected Value:** $+19.49
+- **End Date:** 2026-02-21 10:00 CET
+
+**AI Reasoning:**
+> Elisabetta Cocciaretto hat eine deutlich höhere WTA-Rangliste (57 gegenüber 105) und scheint in guter Form zu sein. Während Anastasia Zakharova eine talentierte Spielerin ist, deutet Cocciarettos höhere Rangliste und jüngste Leistung auf eine höhere Wahrscheinlichkeit für einen Sieg hin. Es gibt keine H2H-Daten, was die Vorhersage etwas erschwert, aber die Gesamtindikatoren deuten auf Cocciaretto als Favoritin hin. Buchmacher sehen Cocciaretto ebenfalls als Favoritin.
+
+---
+
+### Bet #2: [Men's Group B - Sweden vs. Slovakia](https://polymarket.com/event/mwoh-swe-slo-2026-02-14)
+*Analyzed: 2026-02-14 13:07 CET*
+
+**Decision:** YES @ 0.50 (Stake: $104.58)
+**[View Market →](https://polymarket.com/event/mwoh-swe-slo-2026-02-14)**
+
+**AI Analysis:**
+- **Estimated Probability:** 75.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** +25.0%
+- **Expected Value:** $+52.29
+- **End Date:** 2026-02-14 23:59 CET
+
+**AI Reasoning:**
+> Schweden ist traditionell eine stärkere Eishockeynation als die Slowakei, was sich in der Weltrangliste widerspiegelt. Obwohl die Slowakei bei den letzten Olympischen Spielen eine Medaille gewonnen hat und Schweden geschlagen hat, deutet alles darauf hin, dass Schweden in diesem Spiel der Favorit ist. Eine Wahrscheinlichkeit von 75% wird Schweden zugesprochen, aber mit einem Confidence Score von 0.7, da Überraschungen immer möglich sind.
+
+---
+
+### Bet #3: [UFC Fight Night: Sean Strickland vs. Anthony Hernandez (Midd...](https://polymarket.com/event/ufc-sea2-ant-2026-02-21)
 *Analyzed: 2026-02-14 11:17 CET*
 
 **Decision:** NO @ 0.50 (Stake: $64.95)
@@ -33,7 +69,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [US x Iran meeting by February 28, 2026?](https://polymarket.com/market/us-x-iran-meeting-by-february-28-2026)
+### Bet #4: [US x Iran meeting by February 28, 2026?](https://polymarket.com/market/us-x-iran-meeting-by-february-28-2026)
 *Analyzed: 2026-02-14 10:42 CET*
 
 **Decision:** YES @ 0.50 (Stake: $62.75)
@@ -51,7 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [Will the price of Ethereum be above $1,700 on February 14?](https://polymarket.com/market/ethereum-above-1700-on-february-14)
+### Bet #5: [Will the price of Ethereum be above $1,700 on February 14?](https://polymarket.com/market/ethereum-above-1700-on-february-14)
 *Analyzed: 2026-02-14 10:22 CET*
 
 **Decision:** YES @ 0.50 (Stake: $58.09)
@@ -69,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #4: [Will the price of Ethereum be above $1,800 on February 14?](https://polymarket.com/market/ethereum-above-1800-on-february-14)
+### Bet #6: [Will the price of Ethereum be above $1,800 on February 14?](https://polymarket.com/market/ethereum-above-1800-on-february-14)
 *Analyzed: 2026-02-14 10:12 CET*
 
 **Decision:** YES @ 0.50 (Stake: $100.78)
@@ -87,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [Will Ro Khanna win the 2028 US Presidential Election?](https://polymarket.com/market/will-ro-khanna-win-the-2028-us-presidential-election)
+### Bet #7: [Will Ro Khanna win the 2028 US Presidential Election?](https://polymarket.com/market/will-ro-khanna-win-the-2028-us-presidential-election)
 *Analyzed: 2026-02-14 10:07 CET*
 
 **Decision:** NO @ 0.50 (Stake: $166.54)
@@ -102,42 +138,6 @@ This file contains detailed AI reasoning for all market analyses.
 
 **AI Reasoning:**
 > Ro Khanna ist ein aufstrebender Politiker mit Stärken in Bezug auf Fundraising und progressive Ideen. Er hat jedoch mit etablierten Namen und der Notwendigkeit zu kämpfen, eine breitere Basis anzusprechen. Angesichts der Konkurrenz und der aktuellen Marktpreise scheint eine Wahrscheinlichkeit von 7 % eine faire Schätzung zu sein. Der Confidence Score von 0.6 reflektiert die hohe Unsicherheit, die mit Vorhersagen so weit im Voraus verbunden ist.
-
----
-
-### Bet #6: [LoL: Fukuoka SoftBank Hawks Gaming vs Team Secret Whales - G...](https://polymarket.com/market/lol-shg-tsw-2026-02-14-game2)
-*Analyzed: 2026-02-14 09:17 CET*
-
-**Decision:** YES @ 0.50 (Stake: $64.95)
-**[View Market →](https://polymarket.com/market/lol-shg-tsw-2026-02-14-game2)**
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 50.0%)
-- **Confidence Score:** 75.0%
-- **Edge:** +15.0%
-- **Expected Value:** $+19.49
-- **End Date:** 2026-02-14 13:10 CET
-
-**AI Reasoning:**
-> Team Secret Whales (TSW) scheint in besserer Form zu sein als Fukuoka SoftBank Hawks Gaming (SHG). TSW hat eine höhere Gewinnrate in den letzten 30 Tagen (86% vs. 50%) und hat kürzlich gegen SHG gewonnen. Die Head-to-Head-Bilanz deutet ebenfalls auf einen Vorteil für TSW hin, auch wenn widersprüchliche Informationen vorliegen. Insgesamt überwiegen die Indikatoren, die für einen Sieg von Team Secret Whales sprechen.
-
----
-
-### Bet #7: [LoL: Fukuoka SoftBank Hawks Gaming vs Team Secret Whales (BO...](https://polymarket.com/event/lol-shg-tsw-2026-02-14)
-*Analyzed: 2026-02-14 08:57 CET*
-
-**Decision:** YES @ 0.50 (Stake: $64.95)
-**[View Market →](https://polymarket.com/event/lol-shg-tsw-2026-02-14)**
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 50.0%)
-- **Confidence Score:** 75.0%
-- **Edge:** +15.0%
-- **Expected Value:** $+19.49
-- **End Date:** 2026-02-14 13:10 CET
-
-**AI Reasoning:**
-> Team Secret Whales (TSW) appears to be the stronger team based on current rankings, recent form, and head-to-head records. TSW is ranked higher globally and has a better recent win rate and streak.  The match is a BO5 which favors the stronger team.
 
 ---
 
@@ -921,6 +921,15 @@ This file contains detailed AI reasoning for all market analyses.
 
 ### Insufficient Edge (50)
 
+**[Will the price of Bitcoin be above $74,000 on February 15?](https://polymarket.com/market/bitcoin-above-74k-on-february-15)**
+*Analyzed: 2026-02-14 13:22 CET*
+Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 60%
+**[View Market →](https://polymarket.com/market/bitcoin-above-74k-on-february-15)**
+
+**Reasoning:** Der aktuelle Bitcoin-Preis liegt unter 74.000 USD, aber die Volatilität ist hoch. Es gibt positive und negative Preisprognosen, die die Unsicherheit widerspiegeln. Der Marktpreis von 50% deutet auf eine gewisse Ausgeglichenheit hin. Ich schätze die Wahrscheinlichkeit auf 40%, da ein signifikanter Preisanstieg erforderlich wäre, aber nicht unmöglich ist.
+
+---
+
 **[Will Jeon Hyun-heui win the 2026 Seoul Mayoral Election](https://polymarket.com/market/will-jeon-hyun-heui-win-the-2026-seoul-mayoral-election)**
 *Analyzed: 2026-02-14 12:27 CET*
 Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 60%
@@ -1359,15 +1368,6 @@ Market: 0.50 | AI: 0.55 | Edge: +5.0% | Conf: 70%
 **[View Market →](https://polymarket.com/event/dota2-ngx-z10-2026-02-12)**
 
 **Reasoning:** Nigma Galaxy is the higher-ranked team and is considered the favorite. However, Zero Tenacity is a strong contender and has a reasonable chance of winning. Recent roster changes in Nigma Galaxy introduce some uncertainty. The match is in the playoffs of DreamLeague Division 2 Season 3.
-
----
-
-**[Will Ethereum dip to $1,900 February 9-15?](https://polymarket.com/market/will-ethereum-dip-to-1900-february-9-15)**
-*Analyzed: 2026-02-12 17:28 CET*
-Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 70%
-**[View Market →](https://polymarket.com/market/will-ethereum-dip-to-1900-february-9-15)**
-
-**Reasoning:** Der aktuelle Preis von Ethereum liegt nahe an 2.000 USD. Die Volatilität ist gegeben, aber ein Dip auf 1.900 USD erfordert einen deutlichen Rückgang. Die Marktstimmung ist negativ, was einen zusätzlichen Abwärtsdruck erzeugen könnte. Wichtige Wirtschaftsdaten aus den USA könnten die Märkte bewegen. Technische Analysen deuten auf eine mögliche Fortsetzung des Abwärtstrends hin. Alle Faktoren wurden berücksichtigt, aber der Kryptomarkt ist unberechenbar.
 
 ---
 
