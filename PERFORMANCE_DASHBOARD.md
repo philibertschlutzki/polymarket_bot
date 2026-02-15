@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-15 11:07:21 CET
+**Last Updated:** 2026-02-15 12:07:32 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 38 | 1,500 | 2.5% | 🟢 |
+| Today (RPD) | 45 | 1,500 | 3.0% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-94,270.31 |
-| Locked in Active Bets | $53,831.77 |
+| Available Capital | $-94,589.45 |
+| Locked in Active Bets | $54,150.91 |
 | Pending Resolution (>7d) | $14,090.02 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $53831.77 (5383.2% of capital) |
-| Avg Position Size | $116.52 |
+| Total Exposure | $54150.91 (5415.1% of capital) |
+| Avg Position Size | $116.20 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.003) |
 
 ---
-## 🎯 Active Bets (864)
+## 🎯 Active Bets (868)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -483,7 +483,7 @@
 | [US x Iran meeting by February 28, 2026?](https://polymarket.com/event/us-x-iran-meeting-by-february-28-2026) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-28 | 12d | 🟢 |
 | [UFC Fight Night: Sean Strickland vs. Ant...](https://polymarket.com/event/ufc-sea2-ant-2026-02-21) | NO | $64.95 | 0.50 | 0.35 | -15% 🔴 | 75% | $+19.49 | 2026-02-22 | 6d | 🟡 |
 | [Dubai Duty Free Tennis Championships, Qu...](https://polymarket.com/event/wta-cocciar-zakharo-2026-02-14) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-21 | 5d | 🟡 |
-| [Rotterdam Open: Alex de Minaur vs Ugo Hu...](https://polymarket.com/event/atp-minaur-humbert-2026-02-14) | YES | $67.08 | 0.50 | 0.65 | +15% 🟡 | 80% | $+20.12 | 2026-02-21 | 6d | 🟡 |
+| [Rotterdam Open: Alex de Minaur vs Ugo Hu...](https://polymarket.com/event/atp-minaur-humbert-2026-02-14) | YES | $67.08 | 0.50 | 0.65 | +15% 🟡 | 80% | $+20.12 | 2026-02-21 | 5d | 🟡 |
 | [Will Elon Musk post 0-19 tweets from Feb...](https://polymarket.com/event/elon-musk-of-tweets-february-17-february-24-0-19) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-24 | 9d | 🟢 |
 | [Will Rachida Dati win the Paris mayor el...](https://polymarket.com/event/will-rachida-dati-win-the-paris-mayor-election) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | Unknown | N/A | 🔵 |
 | [Will the Phoenix Suns win the NBA Wester...](https://polymarket.com/event/will-the-phoenix-suns-win-the-nba-western-conference-finals) | NO | $104.58 | 0.50 | 0.25 | -25% 🔴 | 70% | $+52.29 | 2026-06-16 | 120d | 🟢 |
@@ -523,6 +523,10 @@
 | [Will the price of Solana be between $110...](https://polymarket.com/event/will-the-price-of-solana-be-between-110-120-on-february-15) | NO | $96.82 | 0.50 | 0.25 | -25% 🔴 | 60% | $+48.41 | 2026-02-15 | 0d | 🔴 |
 | [Will the US next strike Iran before Marc...](https://polymarket.com/event/will-the-us-next-strike-iran-before-march-2026-et) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-03-31 | 43d | 🟢 |
 | [LoL: Ground Zero Gaming vs Deep Cross Ga...](https://polymarket.com/event/lol-gz-dcg-2026-02-15-game4) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-15 | 0d | 🔴 |
+| [Will xAI have the best AI model at the e...](https://polymarket.com/event/will-xai-have-the-best-ai-model-at-the-end-of-february-2026) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-28 | 12d | 🟢 |
+| [Will Elon Musk post 40-64 tweets from Fe...](https://polymarket.com/event/elon-musk-of-tweets-february-14-february-16-40-64) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-16 | 1d | 🔴 |
+| [Valorant: Rex Regum Qeon vs Paper Rex (B...](https://polymarket.com/event/val-rrq1-pr1-2026-02-15) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-15 | 0d | 🔴 |
+| [Will XRP reach $2.80 in February?](https://polymarket.com/event/will-xrp-reach-2pt8-in-february-2026) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-03-01 | 13d | 🟢 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -13d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -13d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -13d | ⏳ Pending Resolution |
@@ -1191,7 +1195,8 @@
 - 🔴 **High Exposure**: "Will Ethereum reach $4,200 in ..." is 16.7% of capital
 - 🔴 **High Exposure**: "Will XRP reach $2.40 in Februa..." is 13.6% of capital
 - 🔴 **High Exposure**: "LoL: T1 vs BNK FEARX (BO5) - L..." is 11.5% of capital
-- 🟡 **Expiring Soon**: 103 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will XRP reach $2.80 in Februa..." is 13.6% of capital
+- 🟡 **Expiring Soon**: 105 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -1199,7 +1204,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 864 |
+| Markets with Active Bets | 868 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
