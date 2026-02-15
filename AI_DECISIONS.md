@@ -1,6 +1,6 @@
 # 🧠 AI Decision Log
 
-**Last Updated:** 2026-02-15 20:08:48 CET
+**Last Updated:** 2026-02-15 21:08:57 CET
 
 This file contains detailed AI reasoning for all market analyses.
 
@@ -15,7 +15,43 @@ This file contains detailed AI reasoning for all market analyses.
 
 ## 🎯 Active Bets (50)
 
-### Bet #1: [Will Metz win the 2025–26 French Ligue 1?](https://polymarket.com/market/will-metz-win-the-202526-french-ligue-1)
+### Bet #1: [Counter-Strike: Vitality vs TheMongolz (BO3) - PGL Cluj-Napo...](https://polymarket.com/event/cs2-vit-mglz-2026-02-15)
+*Analyzed: 2026-02-15 21:06 CET*
+
+**Decision:** YES @ 0.50 (Stake: $104.58)
+**[View Market →](https://polymarket.com/event/cs2-vit-mglz-2026-02-15)**
+
+**AI Analysis:**
+- **Estimated Probability:** 75.0% (vs Market: 50.0%)
+- **Confidence Score:** 70.0%
+- **Edge:** +25.0%
+- **Expected Value:** $+52.29
+- **End Date:** 2026-02-16 00:45 CET
+
+**AI Reasoning:**
+> Vitality ist die Nummer 1 der Welt und hat kürzlich die IEM Kraków 2026 gewonnen, was auf eine starke aktuelle Form hindeutet. TheMongolz ist zwar ein respektables Team (Top 10/15), aber es scheint, dass Vitality im Moment einen Vorteil hat.
+
+---
+
+### Bet #2: [Will Kevin Warsh be formally nominated to be Chair of the Fe...](https://polymarket.com/market/will-kevin-warsh-be-formally-nominated-to-be-chair-of-the-federal-reserve-by-february-28-2026-369)
+*Analyzed: 2026-02-15 20:26 CET*
+
+**Decision:** YES @ 0.50 (Stake: $151.55)
+**[View Market →](https://polymarket.com/market/will-kevin-warsh-be-formally-nominated-to-be-chair-of-the-federal-reserve-by-february-28-2026-369)**
+
+**AI Analysis:**
+- **Estimated Probability:** 85.0% (vs Market: 50.0%)
+- **Confidence Score:** 75.0%
+- **Edge:** +35.0%
+- **Expected Value:** $+106.09
+- **End Date:** 2026-02-28 01:00 CET
+
+**AI Reasoning:**
+> Die Vorhersagemärkte zeigen eine sehr hohe Wahrscheinlichkeit (96 %) für eine Nominierung. Allerdings besteht aufgrund des Widerstands von Senator Tillis eine Unsicherheit, die eine leichte Reduzierung der Wahrscheinlichkeit rechtfertigt. Die Deadline am 28. Februar erhöht den Druck. Wenn die Nominierung bis dahin nicht erfolgt ist, sinkt die Wahrscheinlichkeit deutlich.
+
+---
+
+### Bet #3: [Will Metz win the 2025–26 French Ligue 1?](https://polymarket.com/market/will-metz-win-the-202526-french-ligue-1)
 *Analyzed: 2026-02-15 19:15 CET*
 
 **Decision:** NO @ 0.50 (Stake: $212.18)
@@ -33,7 +69,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #2: [Will Elon Musk post 65-89 tweets from February 14 to Februar...](https://polymarket.com/market/elon-musk-of-tweets-february-14-february-16-65-89)
+### Bet #4: [Will Elon Musk post 65-89 tweets from February 14 to Februar...](https://polymarket.com/market/elon-musk-of-tweets-february-14-february-16-65-89)
 *Analyzed: 2026-02-15 18:51 CET*
 
 **Decision:** NO @ 0.50 (Stake: $47.43)
@@ -51,25 +87,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #3: [LoL: FURIA Esports vs Leviatan Esports - Game 1 Winner](https://polymarket.com/market/lol-fur-lev-2026-02-15-game1)
-*Analyzed: 2026-02-15 17:50 CET*
-
-**Decision:** YES @ 0.50 (Stake: $156.52)
-**[View Market →](https://polymarket.com/market/lol-fur-lev-2026-02-15-game1)**
-
-**AI Analysis:**
-- **Estimated Probability:** 85.0% (vs Market: 50.0%)
-- **Confidence Score:** 80.0%
-- **Edge:** +35.0%
-- **Expected Value:** $+109.57
-- **End Date:** 2026-02-15 21:00 CET
-
-**AI Reasoning:**
-> FURIA Esports wird von Buchmachern, Community-Vorhersagen und der jüngsten Teamleistung stark favorisiert. Obwohl Leviatan in der Vergangenheit Spiele gegen FURIA gewonnen hat, deutet die aktuelle Form und die Quoten darauf hin, dass FURIA eine höhere Wahrscheinlichkeit hat, Spiel 1 zu gewinnen.
-
----
-
-### Bet #4: [Will the Dallas Cowboys win the 2027 NFL league championship...](https://polymarket.com/market/will-the-dallas-cowboys-win-the-2027-nfl-league-championship)
+### Bet #5: [Will the Dallas Cowboys win the 2027 NFL league championship...](https://polymarket.com/market/will-the-dallas-cowboys-win-the-2027-nfl-league-championship)
 *Analyzed: 2026-02-15 17:01 CET*
 
 **Decision:** NO @ 0.50 (Stake: $197.45)
@@ -87,7 +105,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #5: [Dubai Duty Free Tennis Championships: Lulu Sun vs Magda Line...](https://polymarket.com/event/wta-sun-linette-2026-02-15)
+### Bet #6: [Dubai Duty Free Tennis Championships: Lulu Sun vs Magda Line...](https://polymarket.com/event/wta-sun-linette-2026-02-15)
 *Analyzed: 2026-02-15 16:30 CET*
 
 **Decision:** YES @ 0.50 (Stake: $111.80)
@@ -105,7 +123,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #6: [Will Logan Paul’s PSA 10 Pokémon Illustrator Sale Price be o...](https://polymarket.com/market/will-logan-pauls-psa-10-pokmon-illustrator-sale-price-be-over-5-million)
+### Bet #7: [Will Logan Paul’s PSA 10 Pokémon Illustrator Sale Price be o...](https://polymarket.com/market/will-logan-pauls-psa-10-pokmon-illustrator-sale-price-be-over-5-million)
 *Analyzed: 2026-02-15 16:15 CET*
 
 **Decision:** YES @ 0.50 (Stake: $156.52)
@@ -123,7 +141,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #7: [Will the price of Bitcoin be above $72,000 on February 16?](https://polymarket.com/market/bitcoin-above-72k-on-february-16)
+### Bet #8: [Will the price of Bitcoin be above $72,000 on February 16?](https://polymarket.com/market/bitcoin-above-72k-on-february-16)
 *Analyzed: 2026-02-15 15:35 CET*
 
 **Decision:** NO @ 0.50 (Stake: $58.09)
@@ -141,7 +159,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #8: [Will Elon Musk post 90-114 tweets from February 14 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-14-february-16-90-114)
+### Bet #9: [Will Elon Musk post 90-114 tweets from February 14 to Februa...](https://polymarket.com/market/elon-musk-of-tweets-february-14-february-16-90-114)
 *Analyzed: 2026-02-15 15:35 CET*
 
 **Decision:** NO @ 0.50 (Stake: $62.75)
@@ -159,7 +177,7 @@ This file contains detailed AI reasoning for all market analyses.
 
 ---
 
-### Bet #9: [Will Microstrategy announce a Bitcoin purchase February 10-1...](https://polymarket.com/event/will-microstrategy-announce-a-bitcoin-purchase-february-10-16)
+### Bet #10: [Will Microstrategy announce a Bitcoin purchase February 10-1...](https://polymarket.com/event/will-microstrategy-announce-a-bitcoin-purchase-february-10-16)
 *Analyzed: 2026-02-15 15:05 CET*
 
 **Decision:** YES @ 0.50 (Stake: $64.95)
@@ -174,24 +192,6 @@ This file contains detailed AI reasoning for all market analyses.
 
 **AI Reasoning:**
 > MicroStrategy und Michael Saylor haben sich öffentlich dazu verpflichtet, weiterhin Bitcoin zu kaufen. Sie haben in der Vergangenheit regelmäßig Käufe getätigt und nutzen verschiedene Finanzierungsmethoden, um dies zu ermöglichen. Da der Zeitraum der Wette kurz ist und das Unternehmen bereits zwischen dem 2. und 8. Februar gekauft hat, ist es wahrscheinlich, dass sie dies innerhalb des genannten Zeitraums ankündigen werden. Die jüngsten Käufe und das öffentliche Engagement von Saylor untermauern diese Einschätzung. Obwohl die Börsenlage und Aktienverwässerung diese Einschätzung verringern, sollte sich Microstrategy an seine Aussage halten.
-
----
-
-### Bet #10: [Counter-Strike: FURIA vs FUT Esports (BO3) - PGL Cluj-Napoca...](https://polymarket.com/event/cs2-furia-fut-2026-02-15)
-*Analyzed: 2026-02-15 14:55 CET*
-
-**Decision:** YES @ 0.50 (Stake: $64.95)
-**[View Market →](https://polymarket.com/event/cs2-furia-fut-2026-02-15)**
-
-**AI Analysis:**
-- **Estimated Probability:** 65.0% (vs Market: 50.0%)
-- **Confidence Score:** 75.0%
-- **Edge:** +15.0%
-- **Expected Value:** $+19.49
-- **End Date:** 2026-02-15 21:00 CET
-
-**AI Reasoning:**
-> FURIA ist höher eingestuft und hat eine bessere aktuelle Form, aber FUT Esports hat bereits bewiesen, dass sie in der Lage sind, FURIA zu schlagen. Die Head-to-Head-Ergebnisse sind ausgeglichen, was darauf hindeutet, dass das Match umkämpft sein könnte. Ich gebe FURIA aufgrund ihres höheren Rankings und ihrer konstanteren Leistungen einen leichten Vorteil.
 
 ---
 
@@ -921,6 +921,15 @@ This file contains detailed AI reasoning for all market analyses.
 
 ### Insufficient Edge (50)
 
+**[Will Logan Paul’s PSA 10 Pokémon Illustrator Sale Price be over $10 million?](https://polymarket.com/market/will-logan-pauls-psa-10-pokmon-illustrator-sale-price-be-over-10-million)**
+*Analyzed: 2026-02-15 20:41 CET*
+Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 75%
+**[View Market →](https://polymarket.com/market/will-logan-pauls-psa-10-pokmon-illustrator-sale-price-be-over-10-million)**
+
+**Reasoning:** Die Wahrscheinlichkeit, dass Logan Pauls PSA 10 Pikachu Illustrator für über 10 Millionen Dollar verkauft wird, schätze ich auf 45%. Diese Einschätzung basiert auf der aktuellen Marktbewertung (50% auf Polymarket), dem jüngsten Auktionsstand (über 6 Millionen Dollar), dem Hype um das 30-jährige Jubiläum von Pokémon, der Seltenheit und dem Zustand der Karte sowie der Bekanntheit des Verkäufers. Allerdings gibt es auch Unsicherheiten, wie die allgemeine Wirtschaftslage und ob es zu einem Bieterkrieg kommt. Daher liegt meine Konfidenz bei 75%.
+
+---
+
 **[LoL: Natus Vincere vs Fnatic (BO3) - LEC Versus Playoffs](https://polymarket.com/event/lol-navi-fnc-2026-02-16)**
 *Analyzed: 2026-02-15 19:21 CET*
 Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 70%
@@ -1359,15 +1368,6 @@ Market: 0.50 | AI: 0.45 | Edge: -5.0% | Conf: 70%
 **[View Market →](https://polymarket.com/market/wta-valento-birrell-2026-02-13-set-handicap-home-1pt5)**
 
 **Reasoning:** Basierend auf den verfügbaren Informationen scheint es sich um ein relativ ausgeglichenes Match zu handeln. Tereza Valentova ist auf Platz 48 der WTA, während Kimberly Birrell auf Platz 96 liegt. Ein früheres Spiel zwischen den beiden am 12. Februar 2026 endete jedoch mit einem 1-2 Sieg für Birrell. Angesichts des Set-Handicaps von -1.5 für Valentova müsste sie mit 2 Sätzen Vorsprung gewinnen, was angesichts des knappen vorherigen Ergebnisses unwahrscheinlich erscheint. Der aktuelle Marktpreis von 50% deutet ebenfalls auf eine gewisse Unsicherheit hin. Daher schätze ich die Wahrscheinlichkeit, dass Valentova das Set-Handicap gewinnt, auf 45%. Mein Confidence Score beträgt 0.7, da das Ergebnis eines Tennisspiels von vielen Faktoren abhängt und das vorherige Spiel auf ein knappes Match schließen lässt.
-
----
-
-**[Will the price of Bitcoin be above $72,000 on February 14?](https://polymarket.com/market/bitcoin-above-72k-on-february-14)**
-*Analyzed: 2026-02-13 16:35 CET*
-Market: 0.50 | AI: 0.40 | Edge: -10.0% | Conf: 60%
-**[View Market →](https://polymarket.com/market/bitcoin-above-72k-on-february-14)**
-
-**Reasoning:** Der aktuelle Bitcoin-Preis liegt bei etwa 67.000 USD, ein deutlicher Anstieg auf über 72.000 USD bis zum 14. Februar ist zwar möglich, aber aufgrund der Volatilität und der gemischten Marktstimmung nicht sehr wahrscheinlich. Kurzfristige Prognosen deuten auf einen möglichen leichten Anstieg hin, jedoch nicht unbedingt bis zur Zielmarke von 72.000 USD. Die kurze verbleibende Zeitspanne reduziert die Wahrscheinlichkeit einer signifikanten Preisänderung. Der aktuelle Marktpreis von 50% deutet auf eine ähnliche Unsicherheit hin.
 
 ---
 
