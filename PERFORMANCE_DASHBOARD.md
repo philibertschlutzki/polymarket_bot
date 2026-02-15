@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-15 13:07:38 CET
+**Last Updated:** 2026-02-15 14:07:52 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 49 | 1,500 | 3.3% | 🟢 |
+| Today (RPD) | 58 | 1,500 | 3.9% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-94,798.07 |
-| Locked in Active Bets | $54,229.63 |
+| Available Capital | $-95,733.59 |
+| Locked in Active Bets | $54,889.57 |
 | Pending Resolution (>7d) | $14,090.02 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $54229.63 (5423.0% of capital) |
-| Avg Position Size | $116.37 |
+| Total Exposure | $54889.57 (5489.0% of capital) |
+| Avg Position Size | $116.29 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.003) |
 
 ---
-## 🎯 Active Bets (870)
+## 🎯 Active Bets (879)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -176,7 +176,7 @@
 | [Will Bitcoin dip to $45,000 by December ...](https://polymarket.com/event/will-bitcoin-dip-to-45000-by-december-31-2026-674) | NO | $120.93 | 0.50 | 0.20 | -30% 🔴 | 65% | $+72.56 | 2027-01-01 | 319d | 🟢 |
 | [Will the Minnesota Wild win the 2026 NHL...](https://polymarket.com/event/will-the-minnesota-wild-win-the-2026-nhl-stanley-cup) | NO | $129.00 | 0.50 | 0.18 | -32% 🔴 | 65% | $+82.56 | 2026-06-30 | 134d | 🟢 |
 | [Will Solana reach $150 in February?](https://polymarket.com/event/will-solana-reach-150-in-february-2026) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-03-01 | 13d | 🟢 |
-| [Starmer out by February 28, 2026?](https://polymarket.com/event/starmer-out-by-february-28-2026-352) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-06-30 | 135d | 🟢 |
+| [Starmer out by February 28, 2026?](https://polymarket.com/event/starmer-out-by-february-28-2026-352) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-06-30 | 134d | 🟢 |
 | [Over $1M committed to the Hurupay public...](https://polymarket.com/event/over-1m-committed-to-the-hurupay-public-sale-763) | YES | $207.44 | 0.50 | 0.95 | +45% 🟢 | 85% | $+186.70 | 2026-05-01 | 74d | 🟢 |
 | [Will Oliver Bearman be the 2026 F1 Drive...](https://polymarket.com/event/will-oliver-bearman-be-the-2026-f1-drivers-champion) | NO | $207.78 | 0.50 | 0.00 | -50% 🔴 | 70% | $+206.41 | 2026-12-06 | 293d | 🟢 |
 | [Will Israel strike Lebanon on February 5...](https://polymarket.com/event/will-israel-strike-lebanon-on-february-5-2026) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-28 | 12d | 🟢 |
@@ -351,11 +351,11 @@
 | [Will Israel strike Gaza on February 10, ...](https://polymarket.com/event/will-israel-strike-gaza-on-february-10-2026) | YES | $111.80 | 0.50 | 0.75 | +25% 🟢 | 80% | $+55.90 | 2026-02-28 | 12d | 🟢 |
 | [US x Iran meeting by February 13, 2026?](https://polymarket.com/event/us-x-iran-meeting-by-february-13-2026-452) | YES | $111.80 | 0.50 | 0.75 | +25% 🟢 | 80% | $+55.90 | 2026-02-28 | 12d | 🟢 |
 | [Will there be at least 1,000 measles cas...](https://polymarket.com/event/will-there-be-at-least-1000-measles-cases-in-the-us-by-february-28-2026-239) | YES | $111.80 | 0.50 | 0.75 | +25% 🟢 | 80% | $+55.90 | 2026-02-28 | 12d | 🟢 |
-| [GTA VI released before June 2026?](https://polymarket.com/event/gta-vi-released-before-june-2026) | NO | $189.74 | 0.50 | 0.10 | -40% 🔴 | 90% | $+151.79 | 2026-05-31 | 105d | 🟢 |
+| [GTA VI released before June 2026?](https://polymarket.com/event/gta-vi-released-before-june-2026) | NO | $189.74 | 0.50 | 0.10 | -40% 🔴 | 90% | $+151.79 | 2026-05-31 | 104d | 🟢 |
 | [Will Lando Norris be the 2026 F1 Drivers...](https://polymarket.com/event/will-lando-norris-be-the-2026-f1-drivers-champion) | NO | $83.67 | 0.50 | 0.30 | -20% 🔴 | 70% | $+33.47 | 2026-12-06 | 293d | 🟢 |
 | [Will Henri Bontenbal become the next Pri...](https://polymarket.com/event/will-henri-bontenbal-become-the-next-prime-minister-of-the-netherlands) | NO | $83.67 | 0.50 | 0.30 | -20% 🔴 | 70% | $+33.47 | 2026-12-31 | 318d | 🟢 |
 | [Will Putin meet with Zelenskyy by March ...](https://polymarket.com/event/will-putin-meet-with-zelenskyy-by-march-31-2026) | NO | $77.46 | 0.50 | 0.30 | -20% 🔴 | 60% | $+30.98 | 2026-03-31 | 43d | 🟢 |
-| [Argentina Open: Federico Coria vs Matteo...](https://polymarket.com/event/atp-coria-berrett-2026-02-09) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-16 | 1d | 🔴 |
+| [Argentina Open: Federico Coria vs Matteo...](https://polymarket.com/event/atp-coria-berrett-2026-02-09) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-16 | 0d | 🔴 |
 | [Will Switzerland win the most medals in ...](https://polymarket.com/event/will-switzerland-win-the-most-medals-in-the-2026-winter-olympics) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-22 | 6d | 🟡 |
 | [Will Taro Kono be the Prime Minister of ...](https://polymarket.com/event/will-taro-kono-be-the-prime-minister-of-japan-as-a-result-of-the-2026-snap-election) | NO | $201.25 | 0.50 | 0.05 | -45% 🔴 | 80% | $+181.12 | 2026-04-30 | 73d | 🟢 |
 | [Will The Hunger Games: Sunrise on the Re...](https://polymarket.com/event/will-the-hunger-games-sunrise-on-the-reaping-be-the-top-grossing-movie-of-2026) | NO | $83.67 | 0.50 | 0.30 | -20% 🔴 | 70% | $+33.47 | 2026-12-31 | 318d | 🟢 |
@@ -381,7 +381,7 @@
 | [Qatar Total Open: Iga Swiatek vs Daria K...](https://polymarket.com/event/wta-swiatek-kasatki-2026-02-11) | YES | $156.52 | 0.50 | 0.85 | +35% 🟢 | 80% | $+109.57 | 2026-02-18 | 2d | 🔴 |
 | [Will Ethereum dip to $1,200 in February?](https://polymarket.com/event/will-ethereum-dip-to-1200-in-february-2026) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-03-01 | 13d | 🟢 |
 | [Will XRP reach $3.20 in February?](https://polymarket.com/event/will-xrp-reach-3pt2-in-february-2026) | NO | $188.25 | 0.50 | 0.05 | -45% 🔴 | 70% | $+169.42 | 2026-03-01 | 13d | 🟢 |
-| [Argentina Open: Roman Andres Burruchaga ...](https://polymarket.com/event/atp-burruch-etcheve-2026-02-11) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-18 | 3d | 🟡 |
+| [Argentina Open: Roman Andres Burruchaga ...](https://polymarket.com/event/atp-burruch-etcheve-2026-02-11) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-18 | 2d | 🔴 |
 | [Will Bitcoin reach $80,000 February 9-15...](https://polymarket.com/event/will-bitcoin-reach-80k-february-9-15) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-16 | 0d | 🔴 |
 | [Odds of Khamenei being out as Supreme Le...](https://polymarket.com/event/odds-of-khamenei-being-out-as-supreme-leader-by-march-31-over-20-in-february-158) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-28 | 12d | 🟢 |
 | [Will Elon Musk post 260-279 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-10-february-17-260-279) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-17 | 2d | 🔴 |
@@ -523,10 +523,16 @@
 | [Will the US next strike Iran before Marc...](https://polymarket.com/event/will-the-us-next-strike-iran-before-march-2026-et) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-03-31 | 43d | 🟢 |
 | [Will xAI have the best AI model at the e...](https://polymarket.com/event/will-xai-have-the-best-ai-model-at-the-end-of-february-2026) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | 2026-02-28 | 12d | 🟢 |
 | [Will Elon Musk post 40-64 tweets from Fe...](https://polymarket.com/event/elon-musk-of-tweets-february-14-february-16-40-64) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-02-16 | 1d | 🔴 |
-| [Valorant: Rex Regum Qeon vs Paper Rex (B...](https://polymarket.com/event/val-rrq1-pr1-2026-02-15) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-15 | 0d | 🔴 |
 | [Will XRP reach $2.80 in February?](https://polymarket.com/event/will-xrp-reach-2pt8-in-february-2026) | NO | $135.55 | 0.50 | 0.15 | -35% 🔴 | 60% | $+94.89 | 2026-03-01 | 13d | 🟢 |
 | [Dubai Duty Free Tennis Championships: Ta...](https://polymarket.com/event/wta-maria-birrell-2026-02-15) | YES | $111.80 | 0.50 | 0.75 | +25% 🟢 | 80% | $+55.90 | 2026-02-22 | 6d | 🟡 |
 | [Will Elon Musk post 80-99 tweets from Fe...](https://polymarket.com/event/elon-musk-of-tweets-february-17-february-24-80-99) | NO | $96.82 | 0.50 | 0.25 | -25% 🔴 | 60% | $+48.41 | 2026-02-24 | 9d | 🟢 |
+| [Will FC Barcelona win on 2026-02-16?](https://polymarket.com/event/lal-gir-bar-2026-02-16-bar) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-16 | 1d | 🔴 |
+| [Will the next Dutch government be VVD + ...](https://polymarket.com/event/will-the-next-dutch-government-be-vvd-cda-ja21) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+17.43 | Unknown | N/A | 🔵 |
+| [Will XRP reach $2.00 in February?](https://polymarket.com/event/will-xrp-reach-2-in-february-2026) | NO | $120.93 | 0.50 | 0.20 | -30% 🔴 | 65% | $+72.56 | 2026-03-01 | 13d | 🟢 |
+| [Will the Carolina Hurricanes win the 202...](https://polymarket.com/event/will-the-carolina-hurricanes-win-the-2026-nhl-stanley-cup) | NO | $158.97 | 0.50 | 0.12 | -38% 🔴 | 70% | $+120.81 | 2026-06-30 | 134d | 🟢 |
+| [Will RB Leipzig win on 2026-02-15?](https://polymarket.com/event/bun-lei-wol-2026-02-15-lei) | YES | $115.24 | 0.50 | 0.75 | +25% 🟢 | 85% | $+57.62 | 2026-02-15 | 0d | 🔴 |
+| [Will the price of Bitcoin be between $64...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-64000-66000-on-february-15) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-15 | 0d | 🔴 |
+| [Will the price of Bitcoin be above $68,0...](https://polymarket.com/event/bitcoin-above-68k-on-february-16) | YES | $58.09 | 0.50 | 0.65 | +15% 🟡 | 60% | $+17.43 | 2026-02-16 | 1d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -13d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -13d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -13d | ⏳ Pending Resolution |
@@ -554,7 +560,7 @@
 | [Celtics vs. Mavericks](https://polymarket.com/event/nba-bos-dal-2026-02-03) | YES | $92.20 | 0.50 | 0.70 | +20% 🟢 | 85% | $+0.00 | 2026-02-04 | -12d | ⏳ Pending Resolution |
 | [Magic vs. Thunder](https://polymarket.com/event/nba-orl-okc-2026-02-03) | NO | $86.60 | 0.50 | 0.30 | -20% 🔴 | 75% | $+0.00 | 2026-02-04 | -12d | ⏳ Pending Resolution |
 | [Maple Leafs vs. Oilers](https://polymarket.com/event/nhl-tor-edm-2026-02-03) | YES | $59.93 | 0.50 | 0.63 | +13% 🟡 | 85% | $+0.00 | 2026-02-04 | -12d | ⏳ Pending Resolution |
-| [LoL: EDward Gaming vs Team WE - Game 2 W...](https://polymarket.com/event/lol-edg-we-2026-02-04-game2) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-04 | -11d | ⏳ Pending Resolution |
+| [LoL: EDward Gaming vs Team WE - Game 2 W...](https://polymarket.com/event/lol-edg-we-2026-02-04-game2) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-04 | -12d | ⏳ Pending Resolution |
 | [Will Elon Musk post 40-64 tweets from Fe...](https://polymarket.com/event/elon-musk-of-tweets-february-2-february-4-40-64) | YES | $32.00 | 0.05 | 0.20 | +15% 🟡 | 65% | $+0.00 | 2026-02-04 | -11d | ⏳ Pending Resolution |
 | [Will the price of Bitcoin be above $82,0...](https://polymarket.com/event/bitcoin-above-82k-on-february-4) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+0.00 | 2026-02-04 | -11d | ⏳ Pending Resolution |
 | [Will Elon Musk post 215-239 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-2-february-4-215-239) | NO | $116.19 | 0.50 | 0.20 | -30% 🔴 | 60% | $+0.00 | 2026-02-04 | -11d | ⏳ Pending Resolution |
@@ -594,8 +600,8 @@
 | [Panthers vs. Lightning](https://polymarket.com/event/nhl-fla-tb-2026-02-05) | NO | $67.08 | 0.50 | 0.35 | -15% 🔴 | 80% | $+0.00 | 2026-02-06 | -10d | ⏳ Pending Resolution |
 | [Jazz vs. Hawks](https://polymarket.com/event/nba-uta-atl-2026-02-05) | NO | $113.88 | 0.50 | 0.24 | -26% 🔴 | 75% | $+0.00 | 2026-02-06 | -10d | ⏳ Pending Resolution |
 | [Bitcoin Up or Down - February 5, 8PM ET](https://polymarket.com/event/bitcoin-up-or-down-february-5-8pm-et) | NO | $64.95 | 0.50 | 0.35 | -15% 🔴 | 75% | $+0.00 | 2026-02-06 | -10d | ⏳ Pending Resolution |
-| [LoL: Team Secret Whales vs MVK Esports (...](https://polymarket.com/event/lol-tsw-mvk-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -9d | ⏳ Pending Resolution |
-| [LoL: Invictus Gaming vs Weibo Gaming (BO...](https://polymarket.com/event/lol-ig1-wb-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -9d | ⏳ Pending Resolution |
+| [LoL: Team Secret Whales vs MVK Esports (...](https://polymarket.com/event/lol-tsw-mvk-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -10d | ⏳ Pending Resolution |
+| [LoL: Invictus Gaming vs Weibo Gaming (BO...](https://polymarket.com/event/lol-ig1-wb-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -10d | ⏳ Pending Resolution |
 | [LoL: KT Rolster vs DN Freecs (BO3) - LCK...](https://polymarket.com/event/lol-kt-dnf-2026-02-06) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-06 | -9d | ⏳ Pending Resolution |
 | [Will Elon Musk post 520-539 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-520-539) | YES | $47.83 | 0.00 | 0.25 | +25% 🟢 | 60% | $+0.00 | 2026-02-06 | -9d | ⏳ Pending Resolution |
 | [Will Elon Musk post 360-379 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-january-30-february-6-360-379) | YES | $49.96 | 0.15 | 0.35 | +20% 🟡 | 75% | $+0.00 | 2026-02-06 | -9d | ⏳ Pending Resolution |
@@ -631,7 +637,7 @@
 | [Spread: Clippers (-3.5)](https://polymarket.com/event/nba-lac-sac-2026-02-06-spread-away-3pt5) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-07 | -9d | ⏳ Pending Resolution |
 | [Heat vs. Celtics](https://polymarket.com/event/nba-mia-bos-2026-02-06) | NO | $90.12 | 0.50 | 0.31 | -19% 🔴 | 90% | $+0.00 | 2026-02-07 | -9d | ⏳ Pending Resolution |
 | [Will Abdul Carter be the 2025-2026 NFL D...](https://polymarket.com/event/will-abdul-carter-be-the-2025-2026-nfl-defensive-rookie-of-the-year) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+0.00 | 2026-02-07 | -9d | ⏳ Pending Resolution |
-| [Will Tottenham Hotspur FC win on 2026-02...](https://polymarket.com/event/epl-mun-tot-2026-02-07-tot) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+0.00 | 2026-02-07 | -8d | ⏳ Pending Resolution |
+| [Will Tottenham Hotspur FC win on 2026-02...](https://polymarket.com/event/epl-mun-tot-2026-02-07-tot) | NO | $129.90 | 0.50 | 0.20 | -30% 🔴 | 75% | $+0.00 | 2026-02-07 | -9d | ⏳ Pending Resolution |
 | [Will BV Borussia 09 Dortmund win on 2026...](https://polymarket.com/event/bun-wol-dor-2026-02-07-dor) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-07 | -8d | ⏳ Pending Resolution |
 | [Will the price of Bitcoin be above $70,0...](https://polymarket.com/event/bitcoin-above-70k-on-february-7) | YES | $58.09 | 0.50 | 0.65 | +15% 🟡 | 60% | $+0.00 | 2026-02-07 | -8d | ⏳ Pending Resolution |
 | [Will Elon Musk post <40 tweets from Febr...](https://polymarket.com/event/elon-musk-of-tweets-february-5-february-7-0-39) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+0.00 | 2026-02-07 | -8d | ⏳ Pending Resolution |
@@ -779,7 +785,7 @@
 | [Will the price of Ethereum be above $1,7...](https://polymarket.com/event/ethereum-above-1700-on-february-10) | YES | $201.25 | 0.50 | 0.95 | +45% 🟢 | 80% | $+0.00 | 2026-02-10 | -5d | ⏳ Pending Resolution |
 | [Will the price of Ethereum be above $2,3...](https://polymarket.com/event/ethereum-above-2300-on-february-10) | NO | $58.09 | 0.50 | 0.35 | -15% 🔴 | 60% | $+0.00 | 2026-02-10 | -5d | ⏳ Pending Resolution |
 | [Will the price of Bitcoin be less than $...](https://polymarket.com/event/will-the-price-of-bitcoin-be-less-than-68000-on-february-10) | NO | $86.60 | 0.50 | 0.30 | -20% 🔴 | 75% | $+0.00 | 2026-02-10 | -5d | ⏳ Pending Resolution |
-| [LoL: ThunderTalk Gaming vs LNG Esports (...](https://polymarket.com/event/lol-tt-lng-2026-02-11) | NO | $156.52 | 0.50 | 0.15 | -35% 🔴 | 80% | $+0.00 | 2026-02-10 | -5d | ⏳ Pending Resolution |
+| [LoL: ThunderTalk Gaming vs LNG Esports (...](https://polymarket.com/event/lol-tt-lng-2026-02-11) | NO | $156.52 | 0.50 | 0.15 | -35% 🔴 | 80% | $+0.00 | 2026-02-10 | -6d | ⏳ Pending Resolution |
 | [Will Leeds United FC win on 2026-02-10?](https://polymarket.com/event/epl-che-lee-2026-02-10-lee) | NO | $125.50 | 0.50 | 0.20 | -30% 🔴 | 70% | $+0.00 | 2026-02-10 | -5d | ⏳ Pending Resolution |
 | [LoL: EDward Gaming vs Oh My God (BO5) - ...](https://polymarket.com/event/lol-edg-omg-2026-02-11) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-10 | -5d | ⏳ Pending Resolution |
 | [Will Tottenham Hotspur FC win on 2026-02...](https://polymarket.com/event/epl-tot-new-2026-02-10-tot) | NO | $250.00 | 0.50 | 0.00 | -50% 🔴 | 100% | $+0.00 | 2026-02-10 | -5d | ⏳ Pending Resolution |
@@ -893,8 +899,8 @@
 | [T20 World Cup: Scotland vs West Indies (...](https://polymarket.com/event/crint-sco-wst-2026-02-07) | YES | $104.58 | 0.50 | 0.75 | +25% 🟢 | 70% | $+0.00 | 2026-02-14 | -2d | ⏳ Pending Resolution |
 | [Qatar Total Open, Qualification: Tereza ...](https://polymarket.com/event/wta-valento-seidel-2026-02-07) | YES | $89.44 | 0.50 | 0.70 | +20% 🟢 | 80% | $+0.00 | 2026-02-14 | -2d | ⏳ Pending Resolution |
 | [Will the highest temperature in Seoul be...](https://polymarket.com/event/highest-temperature-in-seoul-on-february-14-2026-11corhigher) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+0.00 | 2026-02-14 | -2d | ⏳ Pending Resolution |
-| [LoL: Fukuoka SoftBank Hawks Gaming vs Te...](https://polymarket.com/event/lol-shg-tsw-2026-02-14) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-14 | -1d | ⏳ Pending Resolution |
-| [LoL: Fukuoka SoftBank Hawks Gaming vs Te...](https://polymarket.com/event/lol-shg-tsw-2026-02-14-game2) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-14 | -1d | ⏳ Pending Resolution |
+| [LoL: Fukuoka SoftBank Hawks Gaming vs Te...](https://polymarket.com/event/lol-shg-tsw-2026-02-14) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-14 | -2d | ⏳ Pending Resolution |
+| [LoL: Fukuoka SoftBank Hawks Gaming vs Te...](https://polymarket.com/event/lol-shg-tsw-2026-02-14-game2) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-14 | -2d | ⏳ Pending Resolution |
 | [LoL: Gen.G vs Dplus KIA (BO5) - LCK Cup ...](https://polymarket.com/event/lol-gen-dk-2026-02-14) | YES | $166.02 | 0.50 | 0.85 | +35% 🟢 | 90% | $+0.00 | 2026-02-14 | -1d | ⏳ Pending Resolution |
 | [Will Como 1907 win on 2026-02-14?](https://polymarket.com/event/sea-com-fio-2026-02-14-com) | YES | $67.08 | 0.50 | 0.65 | +15% 🟡 | 80% | $+0.00 | 2026-02-14 | -1d | ⏳ Pending Resolution |
 | [Game Handicap: GEN (-2.5) vs Dplus KIA (...](https://polymarket.com/event/lol-gen-dk-2026-02-14-game-handicap-away-2pt5) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-14 | -1d | ⏳ Pending Resolution |
@@ -931,6 +937,9 @@
 | [LoL: Ground Zero Gaming vs Deep Cross Ga...](https://polymarket.com/event/lol-gz-dcg-2026-02-15-game1) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-15 | -1d | ⏳ Pending Resolution |
 | [Qatar Total Open: Diana Shnaider vs Alyc...](https://polymarket.com/event/wta-shnaide-parks-2026-02-08) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-15 | -1d | ⏳ Pending Resolution |
 | [LoL: Ground Zero Gaming vs Deep Cross Ga...](https://polymarket.com/event/lol-gz-dcg-2026-02-15-game4) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+0.00 | 2026-02-15 | -1d | ⏳ Pending Resolution |
+| [Valorant: Rex Regum Qeon vs Paper Rex (B...](https://polymarket.com/event/val-rrq1-pr1-2026-02-15) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+0.00 | 2026-02-15 | -1d | ⏳ Pending Resolution |
+| [Will Real Oviedo win on 2026-02-15?](https://polymarket.com/event/lal-ovi-bil-2026-02-15-ovi) | NO | $108.25 | 0.50 | 0.25 | -25% 🔴 | 75% | $+0.00 | 2026-02-15 | -1d | ⏳ Pending Resolution |
+| [Will Real Oviedo vs. Athletic Club end i...](https://polymarket.com/event/lal-ovi-bil-2026-02-15-draw) | NO | $104.58 | 0.50 | 0.25 | -25% 🔴 | 70% | $+0.00 | 2026-02-15 | -1d | ⏳ Pending Resolution |
 
 📊 **[View Detailed AI Analysis →](AI_DECISIONS.md)**
 
@@ -1199,7 +1208,11 @@
 - 🔴 **High Exposure**: "LoL: T1 vs BNK FEARX (BO5) - L..." is 11.5% of capital
 - 🔴 **High Exposure**: "Will XRP reach $2.80 in Februa..." is 13.6% of capital
 - 🔴 **High Exposure**: "Dubai Duty Free Tennis Champio..." is 11.2% of capital
-- 🟡 **Expiring Soon**: 104 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will XRP reach $2.00 in Februa..." is 12.1% of capital
+- 🔴 **High Exposure**: "Will the Carolina Hurricanes w..." is 15.9% of capital
+- 🔴 **High Exposure**: "Will RB Leipzig win on 2026-02..." is 11.5% of capital
+- 🔴 **High Exposure**: "Will the price of Bitcoin be b..." is 14.6% of capital
+- 🟡 **Expiring Soon**: 107 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -1207,7 +1220,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 870 |
+| Markets with Active Bets | 879 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
