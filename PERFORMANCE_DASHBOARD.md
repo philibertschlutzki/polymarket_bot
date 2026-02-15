@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-15 04:51:27 CET
+**Last Updated:** 2026-02-15 05:51:40 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 11 | 1,500 | 0.7% | 🟢 |
+| Today (RPD) | 15 | 1,500 | 1.0% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-92,469.98 |
-| Locked in Active Bets | $52,523.85 |
+| Available Capital | $-92,886.33 |
+| Locked in Active Bets | $52,940.20 |
 | Pending Resolution (>7d) | $13,612.98 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $52523.85 (5252.4% of capital) |
-| Avg Position Size | $116.20 |
+| Total Exposure | $52940.20 (5294.0% of capital) |
+| Avg Position Size | $116.35 |
 | Largest Position | $250.00 (25.0%) |
 | Portfolio Concentration | Low 🟢 (HHI: 0.003) |
 
 ---
-## 🎯 Active Bets (849)
+## 🎯 Active Bets (852)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -513,6 +513,9 @@
 | [US strikes Iran by March 15, 2026?](https://polymarket.com/event/us-strikes-iran-by-march-15-2026) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-06-30 | 134d | 🟢 |
 | [Will Trump create a tariff dividend by M...](https://polymarket.com/event/will-trump-create-a-tariff-dividend-by-march-31) | NO | $62.75 | 0.50 | 0.35 | -15% 🔴 | 70% | $+18.82 | 2026-03-31 | 43d | 🟢 |
 | [Will Damian Lillard win the 2026 NBA 3-p...](https://polymarket.com/event/will-damian-lillard-win-the-2026-nba-3-point-contest) | YES | $250.00 | 0.50 | 1.00 | +50% 🟢 | 100% | $+250.00 | Unknown | N/A | 🔵 |
+| [Game Handicap: T1 (-2.5) vs BNK FEARX (+...](https://polymarket.com/event/lol-t1-fox1-2026-02-15-game-handicap-away-2pt5) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | 2026-02-15 | 0d | 🔴 |
+| [Will Zohran Mamdani win the 2028 US Pres...](https://polymarket.com/event/will-zohran-mamdani-win-the-2028-us-presidential-election) | NO | $204.98 | 0.50 | 0.01 | -49% 🔴 | 70% | $+200.88 | 2028-11-07 | 995d | 🟢 |
+| [Will the price of Bitcoin be above $78,0...](https://polymarket.com/event/bitcoin-above-78k-on-february-16) | NO | $146.42 | 0.50 | 0.15 | -35% 🔴 | 70% | $+102.49 | 2026-02-16 | 1d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -13d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -13d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -13d | ⏳ Pending Resolution |
@@ -1171,7 +1174,9 @@
 - 🔴 **High Exposure**: "Will Cadillac be the 2026 F1 C..." is 19.0% of capital
 - 🔴 **High Exposure**: "US strikes Iran by March 15, 2..." is 14.6% of capital
 - 🔴 **High Exposure**: "Will Damian Lillard win the 20..." is 25.0% of capital
-- 🟡 **Expiring Soon**: 101 bet(s) expire within 7 days
+- 🔴 **High Exposure**: "Will Zohran Mamdani win the 20..." is 20.5% of capital
+- 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 14.6% of capital
+- 🟡 **Expiring Soon**: 103 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -1179,7 +1184,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 849 |
+| Markets with Active Bets | 852 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
