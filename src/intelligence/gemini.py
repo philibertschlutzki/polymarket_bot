@@ -1,3 +1,4 @@
+import asyncio
 import json
 import logging
 import os
@@ -61,7 +62,7 @@ class GeminiClient:
             logger.error(f"Failed to initialize Gemini model: {e}")
             self.model = None
 
-    def analyze_market(
+    async def analyze_market(
         self,
         question: str,
         description: str,
@@ -70,6 +71,7 @@ class GeminiClient:
     ) -> dict[str, Any]:
         """
         Analyze a market using Gemini 2.0 with Search Grounding.
+        Async version to avoid blocking the event loop.
         """
         if not self.model:
             logger.error("Gemini model not initialized.")
@@ -96,17 +98,13 @@ class GeminiClient:
         """
 
         try:
-            # Generate content
-            response = self.model.generate_content(prompt)
+            # Generate content in a separate thread
+            response = await asyncio.to_thread(self.model.generate_content, prompt)
 
             # Parse JSON
-            # Gemini 2.0 with response_mime_type="application/json" usually
-            # returns pure JSON
             try:
                 result = json.loads(response.text)
             except json.JSONDecodeError:
-                # Fallback: try to find JSON block if mixed content (unlikely
-                # with strict mode)
                 logger.warning(
                     "Gemini response was not valid JSON, attempting to extract."
                 )
@@ -116,11 +114,6 @@ class GeminiClient:
                     result = json.loads(response.text[start:end])
                 else:
                     raise ValueError("No JSON found in response")
-
-            # Validate target_outcome
-            # Fuzzy match validation or correction could go here,
-            # but for now we rely on the prompt instructions and handle
-            # mismatches in strategy.
 
             return result
         except Exception as e:
