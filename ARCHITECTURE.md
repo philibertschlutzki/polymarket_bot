@@ -9,6 +9,6 @@
 
 ## Structure
 - `legacy_v1/`: Archived code.
-- `nautilus_v2/`: New trading engine.
+- `src/`: New trading engine.
   - `strategies/`: Python logic (Gemini integration).
   - `config/`: TOML configuration.

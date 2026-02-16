@@ -7,12 +7,12 @@ import json
 # Add project root to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from nautilus_v2.intelligence.gemini import GeminiSentiment
+from src.intelligence.gemini import GeminiSentiment
 
 class TestGeminiSentiment(unittest.TestCase):
     def setUp(self):
         # Patch the genai module
-        self.genai_patcher = patch('nautilus_v2.intelligence.gemini.genai')
+        self.genai_patcher = patch('src.intelligence.gemini.genai')
         self.mock_genai = self.genai_patcher.start()
 
         # Mock the GenerativeModel

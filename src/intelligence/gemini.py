@@ -27,21 +27,24 @@ class GeminiSentiment:
                     google_search_retrieval=genai.protos.GoogleSearchRetrieval(
                         dynamic_retrieval_config=genai.protos.DynamicRetrievalConfig(
                             mode=genai.protos.DynamicRetrievalConfig.Mode.MODE_DYNAMIC,
-                            dynamic_threshold=0.3
+                            dynamic_threshold=0.3,
                         )
                     )
                 )
             ]
             self.model = genai.GenerativeModel(
-                model_name=self.model_name,
-                tools=self.tools
+                model_name=self.model_name, tools=self.tools
             )
         except Exception as e:
-            logger.error(f"Failed to initialize model with Google Search Grounding: {e}. Falling back to no tools.")
+            logger.error(
+                f"Failed to initialize model with Google Search Grounding: {e}. Falling back to no tools."
+            )
             # Fallback to model without tools, but log an error.
             self.model = genai.GenerativeModel(model_name=self.model_name)
 
-    def analyze_market(self, question: str, description: str, prices: Dict[str, float]) -> Dict[str, Any]:
+    def analyze_market(
+        self, question: str, description: str, prices: Dict[str, float]
+    ) -> Dict[str, Any]:
         """
         Analyzes the market sentiment using Gemini with Search Grounding.
 
@@ -77,13 +80,11 @@ class GeminiSentiment:
         try:
             # Enforce JSON output using response_mime_type
             generation_config = genai.types.GenerationConfig(
-                response_mime_type="application/json",
-                temperature=0.1
+                response_mime_type="application/json", temperature=0.1
             )
 
             response = self.model.generate_content(
-                prompt,
-                generation_config=generation_config
+                prompt, generation_config=generation_config
             )
 
             # Parse the response
@@ -91,12 +92,28 @@ class GeminiSentiment:
                 result = json.loads(response.text)
                 return result
             except json.JSONDecodeError as e:
-                logger.error(f"Failed to parse JSON response: {e}. Response text: {response.text}")
-                return {"sentiment": "neutral", "confidence": 0.0, "reasoning": "JSON parse error"}
-            except ValueError as e:  # Handle cases where response.text might be empty or invalid
+                logger.error(
+                    f"Failed to parse JSON response: {e}. Response text: {response.text}"
+                )
+                return {
+                    "sentiment": "neutral",
+                    "confidence": 0.0,
+                    "reasoning": "JSON parse error",
+                }
+            except (
+                ValueError
+            ) as e:  # Handle cases where response.text might be empty or invalid
                 logger.error(f"Value error accessing response text: {e}")
-                return {"sentiment": "neutral", "confidence": 0.0, "reasoning": f"Response error: {str(e)}"}
+                return {
+                    "sentiment": "neutral",
+                    "confidence": 0.0,
+                    "reasoning": f"Response error: {str(e)}",
+                }
 
         except Exception as e:
             logger.error(f"Gemini API error: {e}")
-            return {"sentiment": "neutral", "confidence": 0.0, "reasoning": f"API error: {str(e)}"}
+            return {
+                "sentiment": "neutral",
+                "confidence": 0.0,
+                "reasoning": f"API error: {str(e)}",
+            }
