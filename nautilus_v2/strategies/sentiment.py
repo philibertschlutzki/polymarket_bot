@@ -1,7 +1,8 @@
-from nautilus_trader.trading.strategy import Strategy
-from nautilus_trader.config import StrategyConfig
-import google.generativeai as genai
 import os
+
+import google.generativeai as genai
+from nautilus_trader.config import StrategyConfig
+from nautilus_trader.trading.strategy import Strategy
 
 
 class GeminiSentimentConfig(StrategyConfig):
@@ -29,6 +30,6 @@ class GeminiSentimentStrategy(Strategy):
         # Uses Google Search Grounding
         response = self.model.generate_content(
             contents=f"Analyze current news for: {query}. Market implies X% probability.",
-            tools='google_search_retrieval'
+            tools="google_search_retrieval",
         )
         return response.text
