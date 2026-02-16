@@ -14,6 +14,7 @@ class GeminiSentimentConfig(StrategyConfig, frozen=True):
         instrument_id (str): The ID of the instrument to trade.
         gemini_model (str): The name of the Gemini model to use. Defaults to "gemini-2.0-flash".
     """
+
     instrument_id: str
     gemini_model: str = "gemini-2.0-flash"
 
