@@ -4,11 +4,12 @@ import os
 import tomllib
 
 from dotenv import load_dotenv
-
-from nautilus_trader.adapters.polymarket import PolymarketLiveDataClientFactory
-from nautilus_trader.adapters.polymarket import PolymarketLiveExecClientFactory
-from nautilus_trader.adapters.polymarket import PolymarketDataClientConfig
-from nautilus_trader.adapters.polymarket import PolymarketExecClientConfig
+from nautilus_trader.adapters.polymarket import (
+    PolymarketDataClientConfig,
+    PolymarketExecClientConfig,
+    PolymarketLiveDataClientFactory,
+    PolymarketLiveExecClientFactory,
+)
 from nautilus_trader.config import (
     LiveExecEngineConfig,
     LoggingConfig,
@@ -17,7 +18,7 @@ from nautilus_trader.config import (
 from nautilus_trader.live.node import TradingNode
 
 from src.scanner.polymarket import PolymarketScanner
-from src.strategies.sentiment import GeminiSentimentStrategy, GeminiSentimentConfig
+from src.strategies.sentiment import GeminiSentimentConfig, GeminiSentimentStrategy
 
 # Load env
 load_dotenv()
