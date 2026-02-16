@@ -6,17 +6,22 @@ from typing import Any
 
 from dotenv import load_dotenv
 from nautilus_trader.adapters.polymarket import (
-    PolymarketDataClientConfig, PolymarketExecClientConfig,
-    PolymarketLiveDataClientFactory, PolymarketLiveExecClientFactory)
-from nautilus_trader.config import (LiveExecEngineConfig, LoggingConfig,
-                                    TradingNodeConfig)
+    PolymarketDataClientConfig,
+    PolymarketExecClientConfig,
+    PolymarketLiveDataClientFactory,
+    PolymarketLiveExecClientFactory,
+)
+from nautilus_trader.config import (
+    LiveExecEngineConfig,
+    LoggingConfig,
+    TradingNodeConfig,
+)
 from nautilus_trader.live.node import TradingNode
 
 from src.data.recorder import RecorderConfig, RecorderStrategy
 from src.scanner.polymarket import PolymarketScanner
 from src.scanner.service import PeriodicScannerService
-from src.strategies.sentiment import (GeminiSentimentConfig,
-                                      GeminiSentimentStrategy)
+from src.strategies.sentiment import GeminiSentimentConfig, GeminiSentimentStrategy
 
 # Load env
 load_dotenv()

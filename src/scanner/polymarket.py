@@ -5,8 +5,9 @@ import aiohttp
 import msgspec
 import pandas as pd
 from nautilus_trader.adapters.polymarket import parse_polymarket_instrument
-from nautilus_trader.adapters.polymarket.common.gamma_markets import \
-    normalize_gamma_market_to_clob_format
+from nautilus_trader.adapters.polymarket.common.gamma_markets import (
+    normalize_gamma_market_to_clob_format,
+)
 from nautilus_trader.model.instruments import Instrument
 
 logger = logging.getLogger(__name__)
