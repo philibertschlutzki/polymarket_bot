@@ -12,12 +12,12 @@ from nautilus_trader.adapters.polymarket import (
     PolymarketLiveExecClientFactory,
 )
 from nautilus_trader.config import (
-    LiveExecEngineConfig,
-    LiveExecClientConfig,
     LiveDataClientConfig,
+    LiveExecClientConfig,
+    LiveExecEngineConfig,
     LoggingConfig,
-    TradingNodeConfig,
     OrderEmulatorConfig,
+    TradingNodeConfig,
 )
 from nautilus_trader.live.node import TradingNode
 
