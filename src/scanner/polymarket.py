@@ -6,7 +6,7 @@ import aiohttp
 import msgspec
 import pandas as pd
 from nautilus_trader.adapters.polymarket import (
-    parse_polymarket_instrument,
+    parse_polymarket_instrument,  # type: ignore[attr-defined]
 )
 from nautilus_trader.adapters.polymarket.common.gamma_markets import (
     normalize_gamma_market_to_clob_format,
