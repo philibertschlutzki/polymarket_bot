@@ -1,0 +1,33 @@
+name: Deploy to Cloud Node
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/polymarket_bot
+            git pull origin main
+
+            # Create/Update .env from secrets
+            echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" > .env
+            echo "POLYGON_PRIVATE_KEY=${{ secrets.POLYGON_PRIVATE_KEY }}" >> .env
+
+            # Update dependencies if requirements changed
+            if [ -f "requirements.txt" ]; then
+                source .venv/bin/activate
+                uv pip install -r requirements.txt
+            fi
+
+            # Restart Service
+            # sudo systemctl restart nautilus-bot
+            echo "Deployment successful."

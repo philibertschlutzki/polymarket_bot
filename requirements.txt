@@ -1,21 +1,8 @@
-# --- Core Trading Engine ---
-# Installiert Nautilus Trader mit den spezifischen Abhängigkeiten für Polymarket
 nautilus_trader[polymarket]
-
-# --- Artificial Intelligence ---
-# Das offizielle SDK für Google Gemini (benötigt für Search Grounding)
 google-generativeai>=0.4.0
-
-# --- Blockchain & Web3 ---
-# Wird für Signierung und direkte Chain-Interaktionen benötigt (falls Nautilus-Adapter nicht reicht)
 web3>=7.0.0
 eth-account>=0.8.0
-
-# --- Utilities ---
-# Zum Laden von .env Dateien (API Keys)
 python-dotenv
-# Datenmanipulation (wird von Nautilus genutzt, hier explizit für Analysen)
 pandas
 numpy
-# Für asynchrone Tasks (falls wir eigene Loops bauen)
 aiohttp
