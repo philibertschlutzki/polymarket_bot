@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-16 08:40:39 CET
+**Last Updated:** 2026-02-16 09:40:49 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 22 | 1,500 | 1.5% | 🟢 |
+| Today (RPD) | 29 | 1,500 | 1.9% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-100,441.36 |
-| Locked in Active Bets | $56,762.09 |
+| Available Capital | $-100,635.00 |
+| Locked in Active Bets | $56,955.73 |
 | Pending Resolution (>7d) | $21,757.53 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $56762.09 (5676.2% of capital) |
-| Avg Position Size | $118.01 |
+| Total Exposure | $56955.73 (5695.6% of capital) |
+| Avg Position Size | $117.92 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.003) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.002) |
 
 ---
-## 🎯 Active Bets (922)
+## 🎯 Active Bets (924)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -542,6 +542,8 @@
 | [Will Elon Musk post 560-579 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-13-february-20-560-579) | NO | $83.67 | 0.50 | 0.30 | -20% 🔴 | 70% | $+33.47 | 2026-02-20 | 4d | 🟡 |
 | [Will Na Kyung-won win the 2026 Seoul May...](https://polymarket.com/event/will-na-kyung-won-win-the-2026-seoul-mayoral-election) | NO | $154.92 | 0.50 | 0.10 | -40% 🔴 | 60% | $+123.94 | 2026-06-03 | 106d | 🟢 |
 | [Will the price of Bitcoin be above $64,0...](https://polymarket.com/event/bitcoin-above-64k-on-february-16) | YES | $120.93 | 0.50 | 0.80 | +30% 🟢 | 65% | $+72.56 | 2026-02-16 | 0d | 🔴 |
+| [Will Elon Musk post 190-214 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-14-february-16-190-214) | NO | $96.82 | 0.50 | 0.25 | -25% 🔴 | 60% | $+48.41 | 2026-02-16 | 0d | 🔴 |
+| [Will the price of Bitcoin be between $68...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-68000-70000-on-february-16) | NO | $96.82 | 0.50 | 0.25 | -25% 🔴 | 60% | $+48.41 | 2026-02-16 | 0d | 🔴 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -14d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -14d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -14d | ⏳ Pending Resolution |
@@ -1272,7 +1274,7 @@
 - 🔴 **High Exposure**: "Will Elon Musk post 140-159 tw..." is 13.6% of capital
 - 🔴 **High Exposure**: "Will Na Kyung-won win the 2026..." is 15.5% of capital
 - 🔴 **High Exposure**: "Will the price of Bitcoin be a..." is 12.1% of capital
-- 🟡 **Expiring Soon**: 97 bet(s) expire within 7 days
+- 🟡 **Expiring Soon**: 99 bet(s) expire within 7 days
 
 ---
 ## 📊 Market Insights
@@ -1280,7 +1282,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 922 |
+| Markets with Active Bets | 924 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
