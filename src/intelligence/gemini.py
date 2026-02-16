@@ -121,7 +121,9 @@ class GeminiClient:
                 return result
 
             except Exception as e:
-                logger.warning(f"Gemini analysis attempt {attempt + 1}/{retries} failed: {e}")
+                logger.warning(
+                    f"Gemini analysis attempt {attempt + 1}/{retries} failed: {e}"
+                )
                 if attempt < retries - 1:
                     await asyncio.sleep(delay)
                     delay *= 2

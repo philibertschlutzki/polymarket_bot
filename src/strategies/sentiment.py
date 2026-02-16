@@ -48,7 +48,9 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         """
         Actions to be performed on strategy start.
         """
-        self.log.info(f"GeminiSentimentStrategy started in {self.config.trading_mode.upper()} mode.")
+        self.log.info(
+            f"GeminiSentimentStrategy started in {self.config.trading_mode.upper()} mode."
+        )
         mode_prefix = "[PAPER] " if self.config.trading_mode == "paper" else ""
         self.notifier.send_message(
             f"{mode_prefix}🚀 Bot V2 Started. Strategy: Gemini Sentiment Analysis."

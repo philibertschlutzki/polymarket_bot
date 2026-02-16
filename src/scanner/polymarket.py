@@ -64,9 +64,7 @@ class PolymarketScanner:
 
                 instruments: list[Instrument] = []
                 now = pd.Timestamp.now(tz="UTC")
-                max_expiration_date = now + pd.Timedelta(
-                    days=self.days_to_expiration
-                )
+                max_expiration_date = now + pd.Timedelta(days=self.days_to_expiration)
 
                 for market in markets:
                     instruments.extend(
@@ -85,12 +83,16 @@ class PolymarketScanner:
         logger.error("All scan attempts failed.")
         return []
 
-    async def _fetch_markets(self, url: str, params: dict[str, Any]) -> list[Any] | None:
+    async def _fetch_markets(
+        self, url: str, params: dict[str, Any]
+    ) -> list[Any] | None:
         """Helper to fetch markets from API."""
         async with aiohttp.ClientSession() as session:
             async with session.get(url, params=params) as response:
                 if response.status != 200:
-                    logger.warning(f"Failed to fetch markets (Status {response.status})")
+                    logger.warning(
+                        f"Failed to fetch markets (Status {response.status})"
+                    )
                     return None
 
                 data = await response.read()

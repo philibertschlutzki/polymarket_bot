@@ -64,7 +64,9 @@ def setup_node(config: dict[str, Any]) -> TradingNode:
         passphrase=passphrase,
     )
 
-    data_clients: dict[str, LiveDataClientConfig] = {"POLYMARKET": polymarket_data_config}
+    data_clients: dict[str, LiveDataClientConfig] = {
+        "POLYMARKET": polymarket_data_config
+    }
     exec_clients: dict[str, LiveExecClientConfig] = {}
     emulator_config = None
 

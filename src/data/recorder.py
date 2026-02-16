@@ -105,9 +105,7 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
 
         # Robust connection handling
         try:
-            conn = sqlite3.connect(
-                self.config.db_path, check_same_thread=False
-            )
+            conn = sqlite3.connect(self.config.db_path, check_same_thread=False)
         except Exception as e:
             logger.error(f"Failed to open DB connection for writer: {e}")
             return
@@ -173,7 +171,10 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
         return last_flush
 
     def _execute_batch_insert(
-        self, conn: sqlite3.Connection, quotes: List[Tuple[Any, ...]], trades: List[Tuple[Any, ...]]
+        self,
+        conn: sqlite3.Connection,
+        quotes: List[Tuple[Any, ...]],
+        trades: List[Tuple[Any, ...]],
     ) -> None:
         try:
             with conn:  # Transaction context
