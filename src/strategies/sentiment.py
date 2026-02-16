@@ -1,20 +1,12 @@
 
 import difflib
 from datetime import timedelta
-from decimal import Decimal
-from typing import cast
-
-import pandas as pd
-from msgspec import Struct
 
 from nautilus_trader.config import StrategyConfig
-from nautilus_trader.model.book import OrderBook
 from nautilus_trader.model.data import Bar
 from nautilus_trader.model.enums import OrderSide
 from nautilus_trader.model.enums import TimeInForce
 from nautilus_trader.model.instruments import Instrument
-from nautilus_trader.model.identifiers import InstrumentId
-from nautilus_trader.model.objects import Price, Quantity
 from nautilus_trader.trading.strategy import Strategy
 
 from src.intelligence.gemini import GeminiClient
@@ -36,10 +28,15 @@ class GeminiSentimentStrategy(Strategy):
 
         # Initialize components
         # We can pass specific config parts if needed, or just let them read env/defaults
-        self.gemini = GeminiClient(config={"gemini": {"model": self.config.gemini_model, "temperature": self.config.gemini_temperature}})
+        self.gemini = GeminiClient(config={
+            "gemini": {
+                "model": self.config.gemini_model,
+                "temperature": self.config.gemini_temperature
+            }
+        })
         self.notifier = TelegramNotifier()
 
-        self.analyzed_markets: set[str] = set() # Track analyzed questions to avoid duplicate calls per cycle
+        self.analyzed_markets: set[str] = set()  # Track analyzed questions to avoid duplicate calls per cycle
 
     def on_start(self) -> None:
         """
@@ -102,7 +99,7 @@ class GeminiSentimentStrategy(Strategy):
         prices = {}
 
         for instr in instruments:
-            outcome = instr.info.get("outcome") or instr.outcome # Fallback to property
+            outcome = instr.info.get("outcome") or instr.outcome  # Fallback to property
             available_outcomes.append(outcome)
 
             # Get latest price (mid or last)
@@ -113,11 +110,11 @@ class GeminiSentimentStrategy(Strategy):
                 # Use mid price if available, else last trade, else 0.5
                 price = (quote.bid_price.as_double() + quote.ask_price.as_double()) / 2
                 if price == 0:
-                     # try last trade
-                     trade = self.cache.trade(instr.id)
-                     price = trade.price.as_double() if trade else 0.5
+                    # try last trade
+                    trade = self.cache.trade(instr.id)
+                    price = trade.price.as_double() if trade else 0.5
             else:
-                 price = 0.5 # Default if no data
+                price = 0.5  # Default if no data
 
             prices[outcome] = price
 
@@ -143,21 +140,26 @@ class GeminiSentimentStrategy(Strategy):
             # Use fuzzy matching as requested
             matches = difflib.get_close_matches(target_outcome, available_outcomes, n=1, cutoff=0.6)
             if not matches:
-                self.log.warning(f"Could not map target outcome '{target_outcome}' to available outcomes {available_outcomes}")
+                self.log.warning(
+                    f"Could not map target outcome '{target_outcome}' to available outcomes {available_outcomes}"
+                )
                 return
 
             matched_outcome = matches[0]
 
             # Find instrument for this outcome
-            target_instr = next((i for i in instruments if (i.info.get("outcome") == matched_outcome or i.outcome == matched_outcome)), None)
+            target_instr = next(
+                (i for i in instruments if (i.info.get("outcome") == matched_outcome or i.outcome == matched_outcome)),
+                None
+            )
 
             if target_instr:
                 self._execute_buy(target_instr, analysis.get("reasoning", ""))
 
         elif action == "sell":
-             # Exit all positions for this market
-             for instr in instruments:
-                 self._close_position(instr, analysis.get("reasoning", ""))
+            # Exit all positions for this market
+            for instr in instruments:
+                self._close_position(instr, analysis.get("reasoning", ""))
 
     def _execute_buy(self, instrument: Instrument, reason: str) -> None:
         """
@@ -205,7 +207,7 @@ class GeminiSentimentStrategy(Strategy):
             order_side=OrderSide.BUY,
             quantity=qty,
             price=price,
-            time_in_force=TimeInForce.GTC, # Good Till Cancel
+            time_in_force=TimeInForce.GTC,  # Good Till Cancel
         )
 
         self.submit_order(order)
@@ -222,7 +224,8 @@ class GeminiSentimentStrategy(Strategy):
 
         self.close_position(instrument.id)
         self.log.info(f"Closed position for {instrument.id}")
-        self.notifier.send_trade_update("SELL", str(instrument.id), 0.0, float(position.quantity), reason) # Price unknown at submission
+        # Price unknown at submission
+        self.notifier.send_trade_update("SELL", str(instrument.id), 0.0, float(position.quantity), reason)
 
     def on_bar(self, bar: Bar) -> None:
         # We use timer for evaluation, but we process bars for data updates

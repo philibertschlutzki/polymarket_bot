@@ -17,7 +17,8 @@ class GeminiClient:
 
         self.api_key = os.getenv("GOOGLE_API_KEY")
         if not self.api_key:
-            logger.warning("GOOGLE_API_KEY not found in environment variables.")
+            logger.warning(
+                "GOOGLE_API_KEY not found in environment variables.")
         else:
             genai.configure(api_key=self.api_key)
 
@@ -103,12 +104,15 @@ class GeminiClient:
             response = self.model.generate_content(prompt)
 
             # Parse JSON
-            # Gemini 2.0 with response_mime_type="application/json" usually returns pure JSON
+            # Gemini 2.0 with response_mime_type="application/json" usually
+            # returns pure JSON
             try:
                 result = json.loads(response.text)
             except json.JSONDecodeError:
-                # Fallback: try to find JSON block if mixed content (unlikely with strict mode)
-                logger.warning("Gemini response was not valid JSON, attempting to extract.")
+                # Fallback: try to find JSON block if mixed content (unlikely
+                # with strict mode)
+                logger.warning(
+                    "Gemini response was not valid JSON, attempting to extract.")
                 start = response.text.find('{')
                 end = response.text.rfind('}') + 1
                 if start != -1 and end != -1:
@@ -117,9 +121,9 @@ class GeminiClient:
                     raise ValueError("No JSON found in response")
 
             # Validate target_outcome
-            target = result.get("target_outcome")
             # Fuzzy match validation or correction could go here,
-            # but for now we rely on the prompt instructions and handle mismatches in strategy.
+            # but for now we rely on the prompt instructions and handle
+            # mismatches in strategy.
 
             return result
         except Exception as e:

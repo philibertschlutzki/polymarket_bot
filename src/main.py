@@ -3,7 +3,6 @@ import asyncio
 import logging
 import os
 import tomllib
-from decimal import Decimal
 
 from dotenv import load_dotenv
 
@@ -27,9 +26,11 @@ logging.basicConfig(
 )
 logger = logging.getLogger("main")
 
+
 def load_config():
     with open("config/config.toml", "rb") as f:
         return tomllib.load(f)
+
 
 def main():
     try:
@@ -126,6 +127,7 @@ def main():
     finally:
         node.stop()
         node.dispose()
+
 
 if __name__ == "__main__":
     main()
