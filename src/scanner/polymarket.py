@@ -1,4 +1,3 @@
-
 import logging
 from typing import Any
 
@@ -65,16 +64,22 @@ class PolymarketScanner:
                         return []
 
                     if not isinstance(markets, list):
-                        logger.error("Unexpected response format from Gamma API (expected list)")
+                        logger.error(
+                            "Unexpected response format from Gamma API (expected list)"
+                        )
                         return []
 
                     logger.info(f"Fetched {len(markets)} markets. Filtering...")
 
                     now = pd.Timestamp.now(tz="UTC")
-                    max_expiration_date = now + pd.Timedelta(days=self.days_to_expiration)
+                    max_expiration_date = now + pd.Timedelta(
+                        days=self.days_to_expiration
+                    )
 
                     for market in markets:
-                        instruments.extend(self._process_market(market, max_expiration_date))
+                        instruments.extend(
+                            self._process_market(market, max_expiration_date)
+                        )
 
         except Exception as e:
             logger.error(f"Error during scan: {e}")
@@ -83,7 +88,9 @@ class PolymarketScanner:
         logger.info(f"Scan complete. Found {len(instruments)} instruments.")
         return instruments
 
-    def _process_market(self, market: dict[str, Any], max_expiration_date: pd.Timestamp) -> list[Instrument]:
+    def _process_market(
+        self, market: dict[str, Any], max_expiration_date: pd.Timestamp
+    ) -> list[Instrument]:
         """
         Process a single market and return valid instruments.
         """

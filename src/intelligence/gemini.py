@@ -1,4 +1,3 @@
-
 import os
 import json
 import logging
@@ -17,8 +16,7 @@ class GeminiClient:
 
         self.api_key = os.getenv("GOOGLE_API_KEY")
         if not self.api_key:
-            logger.warning(
-                "GOOGLE_API_KEY not found in environment variables.")
+            logger.warning("GOOGLE_API_KEY not found in environment variables.")
         else:
             genai.configure(api_key=self.api_key)
 
@@ -33,16 +31,14 @@ class GeminiClient:
                 "action": {"type": "string", "enum": ["buy", "sell", "hold"]},
                 "target_outcome": {"type": "string"},
                 "confidence": {"type": "number"},
-                "reasoning": {"type": "string"}
+                "reasoning": {"type": "string"},
             },
-            "required": ["action", "target_outcome", "confidence", "reasoning"]
+            "required": ["action", "target_outcome", "confidence", "reasoning"],
         }
 
         # Tools configuration for Search Grounding
         # Using dictionary format for compatibility
-        tools = [
-            {"google_search_retrieval": {}}
-        ]
+        tools = [{"google_search_retrieval": {}}]
 
         try:
             self.model = genai.GenerativeModel(
@@ -50,7 +46,7 @@ class GeminiClient:
                 generation_config=genai.types.GenerationConfig(
                     response_mime_type="application/json",
                     response_schema=self.response_schema,
-                    temperature=self.temperature
+                    temperature=self.temperature,
                 ),
                 tools=tools,
                 # Safety settings to avoid blocking analysis
@@ -59,7 +55,7 @@ class GeminiClient:
                     HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
                     HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
                     HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
-                }
+                },
             )
         except Exception as e:
             logger.error(f"Failed to initialize Gemini model: {e}")
@@ -70,7 +66,7 @@ class GeminiClient:
         question: str,
         description: str,
         prices: dict[str, float],
-        available_outcomes: list[str]
+        available_outcomes: list[str],
     ) -> dict[str, Any]:
         """
         Analyze a market using Gemini 2.0 with Search Grounding.
@@ -112,9 +108,10 @@ class GeminiClient:
                 # Fallback: try to find JSON block if mixed content (unlikely
                 # with strict mode)
                 logger.warning(
-                    "Gemini response was not valid JSON, attempting to extract.")
-                start = response.text.find('{')
-                end = response.text.rfind('}') + 1
+                    "Gemini response was not valid JSON, attempting to extract."
+                )
+                start = response.text.find("{")
+                end = response.text.rfind("}") + 1
                 if start != -1 and end != -1:
                     result = json.loads(response.text[start:end])
                 else:
@@ -135,5 +132,5 @@ class GeminiClient:
             "action": "hold",
             "target_outcome": "",
             "confidence": 0.0,
-            "reasoning": reason
+            "reasoning": reason,
         }

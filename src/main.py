@@ -1,4 +1,3 @@
-
 import asyncio
 import logging
 import os
@@ -10,7 +9,11 @@ from nautilus_trader.adapters.polymarket import PolymarketLiveDataClientFactory
 from nautilus_trader.adapters.polymarket import PolymarketLiveExecClientFactory
 from nautilus_trader.adapters.polymarket import PolymarketDataClientConfig
 from nautilus_trader.adapters.polymarket import PolymarketExecClientConfig
-from nautilus_trader.config import LiveExecEngineConfig, LoggingConfig, TradingNodeConfig
+from nautilus_trader.config import (
+    LiveExecEngineConfig,
+    LoggingConfig,
+    TradingNodeConfig,
+)
 from nautilus_trader.live.node import TradingNode
 
 from src.scanner.polymarket import PolymarketScanner
@@ -22,7 +25,7 @@ load_dotenv()
 # Setup Logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=os.getenv("LOG_LEVEL", "INFO")
+    level=os.getenv("LOG_LEVEL", "INFO"),
 )
 logger = logging.getLogger("main")
 

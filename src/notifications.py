@@ -1,4 +1,3 @@
-
 import asyncio
 import logging
 import os
@@ -10,35 +9,27 @@ logger = logging.getLogger(__name__)
 
 
 class TelegramNotifier:
-    def __init__(
-            self,
-            bot_token: str | None = None,
-            chat_id: str | None = None):
+    def __init__(self, bot_token: str | None = None, chat_id: str | None = None):
         self.bot_token = bot_token or os.getenv("TELEGRAM_BOT_TOKEN")
         self.chat_id = chat_id or os.getenv("TELEGRAM_CHAT_ID")
         self.base_url = f"https://api.telegram.org/bot{self.bot_token}"
 
         if not self.bot_token or not self.chat_id:
-            logger.warning(
-                "Telegram credentials not found. Notifications disabled.")
+            logger.warning("Telegram credentials not found. Notifications disabled.")
 
     async def _send(self, text: str) -> None:
         if not self.bot_token or not self.chat_id:
             return
 
         url = f"{self.base_url}/sendMessage"
-        payload = {
-            "chat_id": self.chat_id,
-            "text": text,
-            "parse_mode": "Markdown"}
+        payload = {"chat_id": self.chat_id, "text": text, "parse_mode": "Markdown"}
 
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.post(url, json=payload) as response:
                     if response.status != 200:
                         error_text = await response.text()
-                        logger.error(
-                            f"Failed to send Telegram message: {error_text}")
+                        logger.error(f"Failed to send Telegram message: {error_text}")
                     else:
                         logger.debug(f"Telegram message sent: {text[:50]}...")
         except Exception as e:
@@ -55,12 +46,8 @@ class TelegramNotifier:
         asyncio.create_task(self._send(text))
 
     def send_trade_update(
-            self,
-            action: str,
-            symbol: str,
-            price: float,
-            quantity: float,
-            reason: str = "") -> None:
+        self, action: str, symbol: str, price: float, quantity: float, reason: str = ""
+    ) -> None:
         """
         Send a formatted trade update.
         """
@@ -88,8 +75,7 @@ class TelegramNotifier:
         )
         self.send_message(text)
 
-    def send_analysis_update(
-            self, question: str, result: dict[str, Any]) -> None:
+    def send_analysis_update(self, question: str, result: dict[str, Any]) -> None:
         """
         Send analysis result.
         """

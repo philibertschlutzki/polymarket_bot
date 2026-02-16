@@ -1,4 +1,3 @@
-
 import difflib
 from datetime import timedelta
 
@@ -28,22 +27,28 @@ class GeminiSentimentStrategy(Strategy):
 
         # Initialize components
         # We can pass specific config parts if needed, or just let them read env/defaults
-        self.gemini = GeminiClient(config={
-            "gemini": {
-                "model": self.config.gemini_model,
-                "temperature": self.config.gemini_temperature
+        self.gemini = GeminiClient(
+            config={
+                "gemini": {
+                    "model": self.config.gemini_model,
+                    "temperature": self.config.gemini_temperature,
+                }
             }
-        })
+        )
         self.notifier = TelegramNotifier()
 
-        self.analyzed_markets: set[str] = set()  # Track analyzed questions to avoid duplicate calls per cycle
+        self.analyzed_markets: set[str] = (
+            set()
+        )  # Track analyzed questions to avoid duplicate calls per cycle
 
     def on_start(self) -> None:
         """
         Actions to be performed on strategy start.
         """
         self.log.info("GeminiSentimentStrategy started.")
-        self.notifier.send_message("🚀 Bot V2 Started. Strategy: Gemini Sentiment Analysis.")
+        self.notifier.send_message(
+            "🚀 Bot V2 Started. Strategy: Gemini Sentiment Analysis."
+        )
 
         # Subscribe to data for all registered instruments
         for instrument in self.cache.instruments():
@@ -55,7 +60,10 @@ class GeminiSentimentStrategy(Strategy):
         self.clock.schedule(self.evaluate_markets, interval=timedelta(seconds=10))
 
         # Then schedule regular interval
-        self.clock.schedule(self.evaluate_markets, interval=timedelta(hours=self.config.analysis_interval_hours))
+        self.clock.schedule(
+            self.evaluate_markets,
+            interval=timedelta(hours=self.config.analysis_interval_hours),
+        )
 
     def evaluate_markets(self, event_time=None) -> None:
         """
@@ -124,7 +132,7 @@ class GeminiSentimentStrategy(Strategy):
             question=question,
             description=description,
             prices=prices,
-            available_outcomes=available_outcomes
+            available_outcomes=available_outcomes,
         )
 
         # Send update
@@ -138,7 +146,9 @@ class GeminiSentimentStrategy(Strategy):
         if action == "buy" and confidence > 0.7:
             # Find matching instrument
             # Use fuzzy matching as requested
-            matches = difflib.get_close_matches(target_outcome, available_outcomes, n=1, cutoff=0.6)
+            matches = difflib.get_close_matches(
+                target_outcome, available_outcomes, n=1, cutoff=0.6
+            )
             if not matches:
                 self.log.warning(
                     f"Could not map target outcome '{target_outcome}' to available outcomes {available_outcomes}"
@@ -149,8 +159,15 @@ class GeminiSentimentStrategy(Strategy):
 
             # Find instrument for this outcome
             target_instr = next(
-                (i for i in instruments if (i.info.get("outcome") == matched_outcome or i.outcome == matched_outcome)),
-                None
+                (
+                    i
+                    for i in instruments
+                    if (
+                        i.info.get("outcome") == matched_outcome
+                        or i.outcome == matched_outcome
+                    )
+                ),
+                None,
             )
 
             if target_instr:
@@ -168,7 +185,9 @@ class GeminiSentimentStrategy(Strategy):
         # Check current position
         position = self.cache.position(instrument.id)
         if position and position.quantity > 0:
-            self.log.info(f"Already holding position for {instrument.id}, skipping buy.")
+            self.log.info(
+                f"Already holding position for {instrument.id}, skipping buy."
+            )
             return
 
         # Calculate quantity based on risk (USDC)
@@ -212,7 +231,9 @@ class GeminiSentimentStrategy(Strategy):
 
         self.submit_order(order)
         self.log.info(f"Submitted BUY order for {instrument.id}: {qty} @ {price}")
-        self.notifier.send_trade_update("BUY", str(instrument.id), float(price), float(qty), reason)
+        self.notifier.send_trade_update(
+            "BUY", str(instrument.id), float(price), float(qty), reason
+        )
 
     def _close_position(self, instrument: Instrument, reason: str) -> None:
         """
@@ -225,7 +246,9 @@ class GeminiSentimentStrategy(Strategy):
         self.close_position(instrument.id)
         self.log.info(f"Closed position for {instrument.id}")
         # Price unknown at submission
-        self.notifier.send_trade_update("SELL", str(instrument.id), 0.0, float(position.quantity), reason)
+        self.notifier.send_trade_update(
+            "SELL", str(instrument.id), 0.0, float(position.quantity), reason
+        )
 
     def on_bar(self, bar: Bar) -> None:
         # We use timer for evaluation, but we process bars for data updates
