@@ -13,3 +13,15 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+
+  polymarket-bot:
+    build: .
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./config:/app/config
+      - ./src:/app/src
