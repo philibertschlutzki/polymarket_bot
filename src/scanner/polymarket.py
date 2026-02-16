@@ -1,13 +1,14 @@
+import asyncio
 import logging
 from typing import Any
 
 import aiohttp
 import msgspec
 import pandas as pd
-from nautilus_trader.adapters.polymarket import (  # type: ignore
+from nautilus_trader.adapters.polymarket import (
     parse_polymarket_instrument,
 )
-from nautilus_trader.adapters.polymarket.common.gamma_markets import (  # type: ignore
+from nautilus_trader.adapters.polymarket.common.gamma_markets import (
     normalize_gamma_market_to_clob_format,
 )
 from nautilus_trader.model.instruments import Instrument
@@ -28,6 +29,7 @@ class PolymarketScanner:
     async def scan(self) -> list[Instrument]:
         """
         Scan Polymarket for opportunities.
+        Retries with exponential backoff on failure.
         """
         logger.info("Starting market scan...")
 
@@ -45,50 +47,67 @@ class PolymarketScanner:
 
         url = f"{self.base_url}/markets"
 
-        instruments: list[Instrument] = []
+        retries = 3
+        delay = 2.0
 
-        try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(url, params=params) as response:
-                    if response.status != 200:
-                        logger.error(f"Failed to fetch markets: {response.status}")
-                        return []
+        for attempt in range(retries):
+            try:
+                markets = await self._fetch_markets(url, params)
+                if markets is None:
+                    # Failed but handled, retry
+                    if attempt < retries - 1:
+                        await asyncio.sleep(delay)
+                        delay *= 2
+                    continue
 
-                    data = await response.read()
-                    # Gamma API returns a list of markets for /markets endpoint
-                    # Or check for 'data' key just in case wrapper changes
-                    try:
-                        markets = msgspec.json.decode(data)
-                        if isinstance(markets, dict) and "data" in markets:
-                            markets = markets["data"]
-                    except Exception:
-                        logger.error("Failed to decode Gamma API response")
-                        return []
+                logger.info(f"Fetched {len(markets)} markets. Filtering...")
 
-                    if not isinstance(markets, list):
-                        logger.error(
-                            "Unexpected response format from Gamma API (expected list)"
-                        )
-                        return []
+                instruments: list[Instrument] = []
+                now = pd.Timestamp.now(tz="UTC")
+                max_expiration_date = now + pd.Timedelta(
+                    days=self.days_to_expiration
+                )
 
-                    logger.info(f"Fetched {len(markets)} markets. Filtering...")
-
-                    now = pd.Timestamp.now(tz="UTC")
-                    max_expiration_date = now + pd.Timedelta(
-                        days=self.days_to_expiration
+                for market in markets:
+                    instruments.extend(
+                        self._process_market(market, max_expiration_date)
                     )
 
-                    for market in markets:
-                        instruments.extend(
-                            self._process_market(market, max_expiration_date)
-                        )
+                logger.info(f"Scan complete. Found {len(instruments)} instruments.")
+                return instruments
 
-        except Exception as e:
-            logger.error(f"Error during scan: {e}")
-            return []
+            except Exception as e:
+                logger.warning(f"Error during scan attempt {attempt+1}/{retries}: {e}")
+                if attempt < retries - 1:
+                    await asyncio.sleep(delay)
+                    delay *= 2
 
-        logger.info(f"Scan complete. Found {len(instruments)} instruments.")
-        return instruments
+        logger.error("All scan attempts failed.")
+        return []
+
+    async def _fetch_markets(self, url: str, params: dict[str, Any]) -> list[Any] | None:
+        """Helper to fetch markets from API."""
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, params=params) as response:
+                if response.status != 200:
+                    logger.warning(f"Failed to fetch markets (Status {response.status})")
+                    return None
+
+                data = await response.read()
+                try:
+                    markets_data = msgspec.json.decode(data)
+                    markets = []
+                    if isinstance(markets_data, dict) and "data" in markets_data:
+                        markets = markets_data["data"]
+                    elif isinstance(markets_data, list):
+                        markets = markets_data
+                    else:
+                        logger.error("Unexpected response format from Gamma API")
+                        return None
+                    return markets
+                except Exception as e:
+                    logger.error(f"Failed to decode Gamma API response: {e}")
+                    raise e
 
     def _process_market(
         self, market: dict[str, Any], max_expiration_date: pd.Timestamp
@@ -104,8 +123,6 @@ class PolymarketScanner:
             # Filter by Spread
             # Note: Gamma API 'spread' field might be missing or 0.0 if not calculated
             # We check if it exists and filter if > max_spread.
-            # If missing, we might skip or allow. Let's assume missing = pass or check order book.
-            # But we only have summary data here.
             spread = clob_market.get("spread")
             if spread is not None and spread > self.max_spread:
                 return []

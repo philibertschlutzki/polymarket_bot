@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import sqlite3
-from typing import Callable, List, Optional, Tuple
+from typing import Any, Callable, List, Optional, Tuple
 
 from nautilus_trader.config import StrategyConfig
 from nautilus_trader.model.data import QuoteTick, TradeTick
@@ -16,7 +16,7 @@ class RecorderConfig(StrategyConfig, frozen=True):
     flush_interval_seconds: float = 5.0
 
 
-class RecorderStrategy(Strategy):
+class RecorderStrategy(Strategy):  # type: ignore[misc]
     """
     A strategy that acts as a data recorder, saving ticks to SQLite.
     Optimized for low memory usage via batching and transactions.
@@ -25,8 +25,8 @@ class RecorderStrategy(Strategy):
     def __init__(self, config: RecorderConfig):
         super().__init__(config)
         self.config = config
-        self.queue: asyncio.Queue = asyncio.Queue(maxsize=10000)
-        self.writer_task: Optional[asyncio.Task] = None
+        self.queue: asyncio.Queue[Tuple[str, Any]] = asyncio.Queue(maxsize=10000)
+        self.writer_task: Optional[asyncio.Task[None]] = None
         self._running = False
 
         # Initialize DB synchronously
@@ -34,7 +34,13 @@ class RecorderStrategy(Strategy):
 
     def _init_db(self) -> None:
         try:
+            # Connect using context manager for automatic close (if specific wrapper used)
+            # or just for transaction safety.
+            # Here we use it to ensure closure after init.
             with sqlite3.connect(self.config.db_path) as conn:
+                # Enable WAL Mode
+                conn.execute("PRAGMA journal_mode=WAL;")
+
                 conn.execute("""
                     CREATE TABLE IF NOT EXISTS quotes (
                         timestamp INTEGER,
@@ -55,6 +61,7 @@ class RecorderStrategy(Strategy):
                     )
                 """)
                 conn.commit()
+            logger.info(f"Database initialized at {self.config.db_path} (WAL Mode)")
         except Exception as e:
             self.log.error(f"Failed to initialize DB: {e}")
 
@@ -92,20 +99,23 @@ class RecorderStrategy(Strategy):
         """
         Background task to write data to SQLite in batches.
         """
-        buffer_quotes: List[Tuple] = []
-        buffer_trades: List[Tuple] = []
+        buffer_quotes: List[Tuple[Any, ...]] = []
+        buffer_trades: List[Tuple[Any, ...]] = []
         last_flush = asyncio.get_running_loop().time()
 
-        conn = sqlite3.connect(
-            self.config.db_path, check_same_thread=False
-        )  # Safe as only this task writes
+        # Robust connection handling
+        try:
+            conn = sqlite3.connect(
+                self.config.db_path, check_same_thread=False
+            )
+        except Exception as e:
+            logger.error(f"Failed to open DB connection for writer: {e}")
+            return
 
-        def _commit_batch(quotes: list, trades: list) -> None:
-            if quotes:
-                conn.executemany("INSERT INTO quotes VALUES (?,?,?,?,?,?)", quotes)
-            if trades:
-                conn.executemany("INSERT INTO trades VALUES (?,?,?,?,?)", trades)
-            conn.commit()
+        def _commit_batch(
+            quotes: List[Tuple[Any, ...]], trades: List[Tuple[Any, ...]]
+        ) -> None:
+            self._execute_batch_insert(conn, quotes, trades)
 
         try:
             while self._running:
@@ -113,6 +123,10 @@ class RecorderStrategy(Strategy):
                     buffer_quotes, buffer_trades, last_flush, _commit_batch
                 )
 
+        except asyncio.CancelledError:
+            logger.info("Writer loop cancelled.")
+        except Exception as e:
+            logger.error(f"Writer loop unexpected error: {e}")
         finally:
             # Flush remaining data on exit
             try:
@@ -122,13 +136,14 @@ class RecorderStrategy(Strategy):
                 logger.error(f"Final DB flush failed: {e}")
             finally:
                 conn.close()
+                logger.info("DB connection closed.")
 
     async def _process_loop_iteration(
         self,
-        buffer_quotes: list,
-        buffer_trades: list,
+        buffer_quotes: List[Tuple[Any, ...]],
+        buffer_trades: List[Tuple[Any, ...]],
         last_flush: float,
-        commit_func: Callable[[list, list], None],
+        commit_func: Callable[[List[Tuple[Any, ...]], List[Tuple[Any, ...]]], None],
     ) -> float:
         try:
             # Try to get an item with a timeout
@@ -151,13 +166,30 @@ class RecorderStrategy(Strategy):
         except asyncio.CancelledError:
             raise
         except Exception as e:
-            logger.error(f"DB Write error: {e}")
+            logger.error(f"DB Write error in loop iteration: {e}")
             # Prevent spin loop on error
             await asyncio.sleep(1.0)
 
         return last_flush
 
-    def _process_item(self, item: tuple, buffer_quotes: list, buffer_trades: list):
+    def _execute_batch_insert(
+        self, conn: sqlite3.Connection, quotes: List[Tuple[Any, ...]], trades: List[Tuple[Any, ...]]
+    ) -> None:
+        try:
+            with conn:  # Transaction context
+                if quotes:
+                    conn.executemany("INSERT INTO quotes VALUES (?,?,?,?,?,?)", quotes)
+                if trades:
+                    conn.executemany("INSERT INTO trades VALUES (?,?,?,?,?)", trades)
+        except Exception as e:
+            logger.error(f"Batch commit failed: {e}")
+
+    def _process_item(
+        self,
+        item: Tuple[str, Any],
+        buffer_quotes: List[Tuple[Any, ...]],
+        buffer_trades: List[Tuple[Any, ...]],
+    ) -> None:
         if item[0] == "quote":
             qt: QuoteTick = item[1]
             buffer_quotes.append(

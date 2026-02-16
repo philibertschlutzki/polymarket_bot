@@ -8,3 +8,4 @@ numpy
 aiohttp
 redis
 python-telegram-bot
+msgspec
