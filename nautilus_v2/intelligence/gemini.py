@@ -1,12 +1,12 @@
 import os
 import json
 import logging
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 
 import google.generativeai as genai
-from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
 logger = logging.getLogger(__name__)
+
 
 class GeminiSentiment:
     def __init__(self, model_name: str = "gemini-2.0-flash-exp"):
@@ -18,18 +18,27 @@ class GeminiSentiment:
 
         self.model_name = model_name
 
-        # Configure the model with tools.
-        # Note: The specific syntax for search grounding might vary by SDK version.
-        # We attempt to use the string alias or object if available.
-        self.tools = 'google_search_retrieval'
-
+        # Configure the model with Google Search Grounding.
+        # Using the Tool object for robustness and configurability.
+        # This requires the google-generativeai SDK.
         try:
-             self.model = genai.GenerativeModel(
+            self.tools = [
+                genai.protos.Tool(
+                    google_search_retrieval=genai.protos.GoogleSearchRetrieval(
+                        dynamic_retrieval_config=genai.protos.DynamicRetrievalConfig(
+                            mode=genai.protos.DynamicRetrievalConfig.Mode.MODE_DYNAMIC,
+                            dynamic_threshold=0.3
+                        )
+                    )
+                )
+            ]
+            self.model = genai.GenerativeModel(
                 model_name=self.model_name,
                 tools=self.tools
             )
         except Exception as e:
-            logger.warning(f"Failed to initialize model with tools='{self.tools}': {e}. Falling back to no tools.")
+            logger.error(f"Failed to initialize model with Google Search Grounding: {e}. Falling back to no tools.")
+            # Fallback to model without tools, but log an error.
             self.model = genai.GenerativeModel(model_name=self.model_name)
 
     def analyze_market(self, question: str, description: str, prices: Dict[str, float]) -> Dict[str, Any]:
@@ -84,9 +93,9 @@ class GeminiSentiment:
             except json.JSONDecodeError as e:
                 logger.error(f"Failed to parse JSON response: {e}. Response text: {response.text}")
                 return {"sentiment": "neutral", "confidence": 0.0, "reasoning": "JSON parse error"}
-            except ValueError as e: # Handle cases where response.text might be empty or invalid
-                 logger.error(f"Value error accessing response text: {e}")
-                 return {"sentiment": "neutral", "confidence": 0.0, "reasoning": f"Response error: {str(e)}"}
+            except ValueError as e:  # Handle cases where response.text might be empty or invalid
+                logger.error(f"Value error accessing response text: {e}")
+                return {"sentiment": "neutral", "confidence": 0.0, "reasoning": f"Response error: {str(e)}"}
 
         except Exception as e:
             logger.error(f"Gemini API error: {e}")
