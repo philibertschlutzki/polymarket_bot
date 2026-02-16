@@ -1,37 +1,64 @@
-# 🧠 Polymarket AI Trader (Nautilus & Gemini)
+---
 
-![Status](https://img.shields.io/badge/Status-Alpha-red)
-![Python](https://img.shields.io/badge/Python-3.11%2B-blue)
-![Framework](https://img.shields.io/badge/Nautilus_Trader-Production-green)
-![AI](https://img.shields.io/badge/Google-Gemini_2.0-purple)
+# 🧠 Polymarket AI Trader (Nautilus & Gemini V2)
 
-Ein hocheffizienter, KI-gesteuerter Trading-Bot für **Polymarket** (Polygon Blockchain).
-Der Bot nutzt das **Nautilus Trader Framework** für professionelles Order-Management und **Google Gemini 2.0 (mit Search Grounding)** für die Sentiment-Analyse von Nachrichten und Ereignissen.
-
-> ⚠️ **WICHTIGER HINWEIS:**
-> Dieses Repository befindet sich in einer **harten Migration** von V1 (Legacy Scripts) zu V2 (Nautilus Trader).
-> Die V2-Architektur ist **Work-in-Progress (WIP)**.
->
-> 👉 **Legacy Code:** Wer die alte, stabile Version sucht, findet diese im Ordner [`legacy_v1/`](legacy_v1/).
+Ein professioneller, Event-Driven Trading-Bot für **Polymarket** (Polygon Blockchain).
+Dieses System nutzt das **Nautilus Trader Framework** für robustes Order-Management und **Google Gemini 2.0** (mit Search Grounding) für fundamentale Sentiment-Analyse von Echtzeit-Nachrichten.
 
 ---
 
-## 🏗 Architektur (V2 - In Development)
+## ✨ Hauptfunktionen
 
-Das System besteht aus zwei Hauptkomponenten, die lose gekoppelt sind, um Speicher zu sparen:
+Das System ist modular aufgebaut und bietet folgende Kernfeatures:
 
-1.  **Market Scanner (The Funnel):** Scannt periodisch die Polymarket API nach liquiden Märkten.
-2.  **Trading Engine (Nautilus):** Führt die Handelslogik für die ausgewählten Märkte aus.
+* **🔍 Intelligenter Markt-Scanner:**
+* Durchsucht die Polymarket Gamma API automatisch nach handelbaren Märkten.
+* **Filterkriterien:** Minimales tägliches Volumen, maximaler Spread und Zeit bis zum Ablauf (konfigurierbar).
+* Filtert illiquide oder uninteressante Märkte automatisch aus.
 
-Detaillierte Infos findest du in [`ARCHITECTURE.md`](ARCHITECTURE.md).
+
+* **🤖 KI-gestützte Analyse (Gemini 2.0):**
+* Nutzt **Google Gemini 2.0 Flash** für die Entscheidungsfindung.
+* **Search Grounding:** Die KI führt live Google-Suchen durch, um aktuelle News zum Event zu finden (keine Halluzinationen bei neuen Ereignissen).
+* **Structured Output:** Die KI liefert Entscheidungen im strikten JSON-Format (`buy`, `sell`, `hold`, `confidence`, `reasoning`).
+
+
+* **⚡ Nautilus Trading Engine:**
+* Verwendet den offiziellen Polymarket-Adapter für zuverlässige Execution.
+* **Smart Orders:** Platziert Limit-Orders am Ask-Preis (plus Slippage-Toleranz), um Taker-Gebühren zu minimieren und Ausführung zu garantieren.
+* **Risiko-Management:** Konfigurierbare maximale Positionsgröße (in USDC) und Slippage-Schutz.
+
+
+* **📱 Echtzeit-Benachrichtigungen:**
+* Asynchrone Telegram-Integration.
+* Sendet Updates zu Scanner-Funden, KI-Analysen und ausgeführten Trades (Entry/Exit).
+
+
+* **🐳 Container-First:**
+* Vollständige Docker & Docker Compose Unterstützung inkl. Redis für Caching.
+
+
 
 ---
 
-## ✨ Features (Planned V2)
+## 🏗 Architektur
 
-* **KI-Entscheidungen:** Nutzt Google Gemini 2.0 Flash mit Zugriff auf aktuelle Google-Suchergebnisse (keine Halluzinationen bei aktuellen News).
-* **Smart Execution:** Nutzt *Marketable Limit Orders*, um Slippage zu vermeiden.
-* **Ressourcenschonend:** Nutzt Redis als reinen In-Memory Cache.
+Das System folgt einer klaren Trennung der Verantwortlichkeiten:
+
+1. **Initialization (`src/main.py`):** Lädt Konfiguration, initialisiert die Nautilus Node und startet den Scanner.
+2. **Scanning (`src/scanner/`):** Identifiziert Märkte basierend auf Liquidität und Spread via Gamma API und registriert sie als Instrumente im System.
+3. **Strategy Loop (`src/strategies/`):**
+* Abonniert Live-Daten für registrierte Märkte.
+* Führt periodische Analysen durch (z.B. alle 24h).
+
+
+4. **Intelligence Layer (`src/intelligence/`):**
+* Erhält Kontext (Frage, Preise, Outcomes).
+* Fragt Gemini mit Web-Search-Tools ab.
+* Mapped die KI-Antwort (z.B. "Trump") auf das korrekte `InstrumentID` mittels Fuzzy-Matching.
+
+
+5. **Execution:** Sendet signierte Transaktionen an die Polygon Blockchain via Nautilus Adapter.
 
 ---
 
@@ -39,39 +66,93 @@ Detaillierte Infos findest du in [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
 ### Voraussetzungen
 
-Du benötigst folgende Accounts und Keys:
+* **Python 3.11** oder **Docker**
+* **Google Cloud API Key** (für Gemini)
+* **Polygon Wallet** (Private Key & Address) mit POL (Gas) und USDC.e (Collateral).
+* **Polymarket API Credentials** (API Key, Secret, Passphrase).
+* **Telegram Bot Token** (optional).
 
-1. **Google Cloud:** API Key für Gemini (mit Vertex AI / AI Studio Zugriff).
-2. **Polygon Wallet:** Private Key einer Wallet mit etwas POL (für Gas) und USDC.e (für Einsätze).
-3. **Polymarket API:** API Key, Secret und Passphrase (erstellbar via Polymarket Profil).
-4. **Telegram:** Bot Token (via @BotFather) und deine Chat ID.
+### Option A: Docker (Empfohlen)
 
-### 1. Repository klonen
-
+1. **Repository klonen:**
 ```bash
 git clone https://github.com/philibertschlutzki/polymarket_bot.git
 cd polymarket_bot
+
 ```
 
-### 2. Konfiguration (.env)
 
-Erstelle eine Datei `.env` im Hauptverzeichnis. **Diese Datei darf niemals auf GitHub hochgeladen werden!**
-
+2. **Umgebungsvariablen setzen:**
+Erstelle eine `.env` Datei basierend auf der Vorlage:
 ```bash
 cp .env.example .env
 nano .env
+
 ```
 
-Stelle sicher, dass alle Variablen gefüllt sind (siehe `.env.example`), insbesondere `GOOGLE_API_KEY`, `POLYGON_PRIVATE_KEY` und die `POLYMARKET_API_` Keys.
 
-### 3. Abhängigkeiten installieren
-
-Für V2 sind `nautilus_trader` und `google-generativeai` zwingend erforderlich.
-
+*Fülle alle erforderlichen Keys aus.*
+3. **Starten:**
+Startet Redis und den Bot-Container.
 ```bash
-uv pip install -r requirements.txt
-# oder
+docker-compose up -d --build
+
+```
+
+
+
+### Option B: Lokale Installation
+
+1. **Dependencies installieren:**
+```bash
 pip install -r requirements.txt
+
+```
+
+
+2. **Konfiguration prüfen:**
+Passe bei Bedarf `config/config.toml` an.
+3. **Bot starten:**
+```bash
+export PYTHONPATH=$PYTHONPATH:.
+python src/main.py
+
+```
+
+
+
+---
+
+## ⚙️ Konfiguration
+
+Die Steuerung erfolgt über zwei Dateien:
+
+### 1. Secrets (`.env`)
+
+Hier liegen sensible Daten. Siehe `.env.example` für Details.
+
+* `GOOGLE_API_KEY`: Zugriff auf Gemini.
+* `POLYGON_PRIVATE_KEY`: Signieren von Transaktionen.
+* `POLYMARKET_API_*`: Authentifizierung bei Polymarket.
+
+### 2. Parameter (`config/config.toml`)
+
+Hier wird das Verhalten des Bots gesteuert:
+
+```toml
+[risk]
+max_position_size_usdc = 50.0  # Max Invest pro Trade
+slippage_tolerance_ticks = 2   # Erlaubter Preisrutsch
+
+[scanner]
+min_daily_volume = 1000.0      # Nur liquide Märkte
+max_spread = 0.05              # Max 5 Cent Spread
+days_to_expiration = 7         # Zeithorizont
+
+[gemini]
+model = "gemini-2.0-flash-exp"
+temperature = 0.1              # Deterministische Antworten
+
 ```
 
 ---
@@ -81,38 +162,57 @@ pip install -r requirements.txt
 ```text
 polymarket_bot/
 ├── config/
-│   ├── config.toml          # Strategie-Parameter
-│   └── catalog.json         # Nautilus Instrument Katalog
-├── legacy_v1/               # 🏛️ Archivierte Legacy Skripte (Stable)
+│   ├── config.toml            # Trading- und Risikoparameter
+│   └── catalog.json           # Nautilus Instrument Katalog (generiert)
 ├── src/
-│   ├── data/                # 🚧 WIP: Loader für historische Daten
-│   ├── intelligence/        # ✅ Implemented: Gemini API Wrapper & Prompts
-│   ├── scanner/             # 🚧 WIP: Polymarket API Filter (Der Trichter)
-│   ├── strategies/          # ✅ Implemented: Nautilus Strategy Klassen
-│   └── main.py              # 🚧 WIP: Entry Point
-├── docker-compose.yml       # Docker Orchestrierung
-├── Dockerfile               # Image Definition
-├── requirements.txt         # Python Libraries
-├── ARCHITECTURE.md          # Architektur-Details
-└── CONTRIBUTING.md          # Migrations-Guide
+│   ├── data/                  # (WIP) Loader für historische Daten
+│   ├── intelligence/
+│   │   └── gemini.py          # KI-Wrapper, Prompts & JSON-Schema
+│   ├── scanner/
+│   │   └── polymarket.py      # API Client für Marktsuche
+│   ├── strategies/
+│   │   └── sentiment.py       # Trading-Logik & Event-Loop
+│   ├── main.py                # Entry Point & Node Setup
+│   └── notifications.py       # Telegram Bot
+├── .env.example               # Template für Secrets
+├── docker-compose.yml         # Container Orchestrierung
+├── Dockerfile                 # Image Definition
+└── requirements.txt           # Python Abhängigkeiten
+
 ```
 
 ---
 
-## 🤝 Contributing
+## 🛡 Qualitätssicherung & Entwicklung
 
-Wir suchen Hilfe bei der Migration! Siehe [`CONTRIBUTING.md`](CONTRIBUTING.md) für Details, wie du beim Portieren der Scanner-Logik helfen kannst.
+Das Projekt nutzt strenge Code-Quality-Tools, die via GitHub Actions oder lokal ausgeführt werden können:
+
+* **Linting:** `flake8` (Syntax & Style)
+* **Formatting:** `black` (Code-Formatierung)
+* **Imports:** `isort` (Sortierung der Imports)
+* **Typing:** `mypy` (Statische Typenprüfung)
+
+Befehl zum lokalen Testen:
+
+```bash
+# Linting
+flake8 src/
+# Formatting Check
+black --check src/
+# Type Check
+mypy src/ --ignore-missing-imports
+
+```
 
 ---
 
-## ⚠️ Disclaimer & Risiko
+## ⚠️ Risiko-Hinweis
 
-Dieser Bot handelt mit echtem Geld (Kryptowährungen).
+Dieser Bot handelt mit **echten Kryptowährungen** auf der Polygon Blockchain.
 
-* **Benutzung auf eigene Gefahr.**
-* Die KI (Gemini) kann Fehler machen oder Nachrichten falsch interpretieren.
-* Vergangene Performance im Backtest garantiert keine zukünftigen Gewinne.
-* Stelle sicher, dass du die `max_trade_usdc` Limits entsprechend deiner Risikotoleranz setzt.
+* Die KI-Analyse (Gemini) ist nicht unfehlbar und kann Nachrichten falsch interpretieren.
+* Vergangene Performance garantiert keine zukünftigen Ergebnisse.
+* Benutzung auf eigene Gefahr. Stelle sicher, dass die Limits in der `config.toml` deinem Risikoprofil entsprechen.
 
 ---
 
