@@ -109,7 +109,7 @@ class PeriodicScannerService:
         return data
 
     def _update_catalog_data(
-        self, data: List[Any], existing_ids: set, instruments: List[Instrument]
+        self, data: List[Any], existing_ids: set[str], instruments: List[Instrument]
     ) -> bool:
         updated = False
         for instr in instruments:

@@ -2,17 +2,17 @@ import asyncio
 import json
 import logging
 import os
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 
 import google.generativeai as genai
-from google.generativeai import GenerativeModel
+from google.generativeai import GenerativeModel  # type: ignore[attr-defined]
 from google.generativeai.types import HarmBlockThreshold, HarmCategory
 
 logger = logging.getLogger(__name__)
 
 
 class GeminiClient:
-    def __init__(self, config: dict[str, Any] | None = None):
+    def __init__(self, config: Optional[Dict[str, Any]] = None):
         self.config = config or {}
         gemini_config = self.config.get("gemini", {})
 
@@ -20,13 +20,12 @@ class GeminiClient:
         if not self.api_key:
             logger.warning("GOOGLE_API_KEY not found in environment variables.")
         else:
-            genai.configure(api_key=self.api_key)
+            genai.configure(api_key=self.api_key)  # type: ignore[attr-defined]
 
-        self.model_name = gemini_config.get("model", "gemini-2.0-flash-exp")
+        self.model_name = str(gemini_config.get("model", "gemini-2.0-flash-exp"))
         self.temperature = float(gemini_config.get("temperature", 0.1))
 
         # JSON Schema for structured output
-        # Note: 'number' type in schema maps to float in Python
         self.response_schema = {
             "type": "object",
             "properties": {
@@ -39,12 +38,11 @@ class GeminiClient:
         }
 
         # Tools configuration for Search Grounding
-        # Using dictionary format for compatibility
-        tools: list[dict[str, Any]] = [{"google_search_retrieval": {}}]
+        tools: List[Dict[str, Any]] = [{"google_search_retrieval": {}}]
 
         self.model: Optional[GenerativeModel] = None
         try:
-            self.model = genai.GenerativeModel(
+            self.model = genai.GenerativeModel(  # type: ignore[attr-defined]
                 model_name=self.model_name,
                 generation_config=genai.types.GenerationConfig(
                     response_mime_type="application/json",
@@ -52,7 +50,6 @@ class GeminiClient:
                     temperature=self.temperature,
                 ),
                 tools=tools,
-                # Safety settings to avoid blocking analysis
                 safety_settings={
                     HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
                     HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
@@ -68,12 +65,12 @@ class GeminiClient:
         self,
         question: str,
         description: str,
-        prices: dict[str, float],
-        available_outcomes: list[str],
-    ) -> dict[str, Any]:
+        prices: Dict[str, float],
+        available_outcomes: List[str],
+    ) -> Dict[str, Any]:
         """
         Analyze a market using Gemini 2.0 with Search Grounding.
-        Async version to avoid blocking the event loop.
+        Includes retries with exponential backoff.
         """
         if not self.model:
             logger.error("Gemini model not initialized.")
@@ -99,30 +96,44 @@ class GeminiClient:
         Return the result in strict JSON format.
         """
 
-        try:
-            # Generate content in a separate thread
-            response = await asyncio.to_thread(self.model.generate_content, prompt)
+        retries = 3
+        delay = 2.0
 
-            # Parse JSON
+        for attempt in range(retries):
             try:
-                result = json.loads(response.text)
-            except json.JSONDecodeError:
+                # Generate content in a separate thread
+                response = await asyncio.to_thread(self.model.generate_content, prompt)
+
+                # Parse JSON
+                try:
+                    result: Dict[str, Any] = json.loads(response.text)
+                except json.JSONDecodeError:
+                    logger.warning(
+                        "Gemini response was not valid JSON, attempting to extract."
+                    )
+                    start = response.text.find("{")
+                    end = response.text.rfind("}") + 1
+                    if start != -1 and end != -1:
+                        result = json.loads(response.text[start:end])
+                    else:
+                        raise ValueError("No JSON found in response")
+
+                return result
+
+            except Exception as e:
                 logger.warning(
-                    "Gemini response was not valid JSON, attempting to extract."
+                    f"Gemini analysis attempt {attempt + 1}/{retries} failed: {e}"
                 )
-                start = response.text.find("{")
-                end = response.text.rfind("}") + 1
-                if start != -1 and end != -1:
-                    result = json.loads(response.text[start:end])
+                if attempt < retries - 1:
+                    await asyncio.sleep(delay)
+                    delay *= 2
                 else:
-                    raise ValueError("No JSON found in response")
+                    logger.error("All Gemini analysis attempts failed.")
+                    return self._error_result(f"Analysis failed: {str(e)}")
 
-            return result
-        except Exception as e:
-            logger.error(f"Gemini analysis failed: {e}")
-            return self._error_result(f"Analysis failed: {str(e)}")
+        return self._error_result("Unexpected flow end")
 
-    def _error_result(self, reason: str) -> dict[str, Any]:
+    def _error_result(self, reason: str) -> Dict[str, Any]:
         return {
             "action": "hold",
             "target_outcome": "",

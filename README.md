@@ -120,6 +120,25 @@ python src/main.py
 ```
 
 
+### Paper Trading Mode (Simulation)
+
+Der Bot unterstützt einen Paper Trading Modus, der Live-Daten von Polymarket nutzt, aber die Order-Ausführung simuliert (kein echtes Geld/Gas).
+
+Um Paper Trading zu aktivieren:
+1. Setze `mode = "paper"` in `config/config.toml` (Standard).
+2. Starte den Bot wie gewohnt.
+
+### Lokale Docker Simulation
+
+Um das Deployment lokal exakt wie auf dem Server zu simulieren:
+
+1. Stelle sicher, dass `.env` konfiguriert ist.
+2. Führe das Simulations-Skript aus:
+   ```bash
+   ./simulate_deploy.sh
+   ```
+Dies baut den Docker-Container und startet den Bot im konfigurierten Modus.
+
 
 ---
 
