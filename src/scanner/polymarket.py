@@ -4,8 +4,10 @@ from typing import Any
 import aiohttp
 import msgspec
 import pandas as pd
-from nautilus_trader.adapters.polymarket import parse_polymarket_instrument
-from nautilus_trader.adapters.polymarket.common.gamma_markets import (
+from nautilus_trader.adapters.polymarket import (  # type: ignore
+    parse_polymarket_instrument,
+)
+from nautilus_trader.adapters.polymarket.common.gamma_markets import (  # type: ignore
     normalize_gamma_market_to_clob_format,
 )
 from nautilus_trader.model.instruments import Instrument

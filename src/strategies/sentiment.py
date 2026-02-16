@@ -1,3 +1,4 @@
+import asyncio
 import difflib
 from datetime import timedelta
 
@@ -25,7 +26,6 @@ class GeminiSentimentStrategy(Strategy):
         self.config = config
 
         # Initialize components
-        # We can pass specific config parts if needed, or just let them read env/defaults
         self.gemini = GeminiClient(
             config={
                 "gemini": {
@@ -55,10 +55,6 @@ class GeminiSentimentStrategy(Strategy):
             self.log.info(f"Subscribed to {instrument.id}")
 
         # Schedule periodic analysis
-        # First run in 10 seconds to allow data to load
-        self.clock.schedule(self.evaluate_markets, interval=timedelta(seconds=10))
-
-        # Then schedule regular interval
         self.clock.schedule(
             self.evaluate_markets,
             interval=timedelta(hours=self.config.analysis_interval_hours),
@@ -90,11 +86,14 @@ class GeminiSentimentStrategy(Strategy):
         self.log.info(f"Evaluating {len(markets)} markets.")
 
         for question, instruments in markets.items():
-            self._process_market(question, instruments)
+            # Schedule async task for analysis
+            asyncio.create_task(self._process_market_async(question, instruments))
 
-    def _process_market(self, question: str, instruments: list[Instrument]) -> None:
+    async def _process_market_async(
+        self, question: str, instruments: list[Instrument]
+    ) -> None:
         """
-        Process a single market (group of outcomes).
+        Process a single market asynchronously.
         """
         if question in self.analyzed_markets:
             return
@@ -106,7 +105,9 @@ class GeminiSentimentStrategy(Strategy):
         prices = {}
 
         for instr in instruments:
-            outcome = instr.info.get("outcome") or instr.outcome  # Fallback to property
+            # Ensure outcome is a string for difflib
+            outcome_val = instr.info.get("outcome") or instr.outcome
+            outcome = str(outcome_val) if outcome_val else ""
             available_outcomes.append(outcome)
 
             # Get latest price (mid or last)
@@ -125,21 +126,34 @@ class GeminiSentimentStrategy(Strategy):
 
             prices[outcome] = price
 
-        # Call Gemini
+        # Call Gemini (Async)
         self.log.info(f"Analyzing market: {question}")
-        analysis = self.gemini.analyze_market(
+        analysis = await self.gemini.analyze_market(
             question=question,
             description=description,
             prices=prices,
             available_outcomes=available_outcomes,
         )
 
+        # Apply results
+        self._apply_analysis(question, instruments, analysis, available_outcomes)
+
+    def _apply_analysis(
+        self,
+        question: str,
+        instruments: list[Instrument],
+        analysis: dict,
+        available_outcomes: list[str],
+    ) -> None:
+        """
+        Apply the analysis result (Trading Logic).
+        """
         # Send update
         self.notifier.send_analysis_update(question, analysis)
 
         # Action Logic
         action = analysis.get("action")
-        target_outcome = analysis.get("target_outcome")
+        target_outcome = str(analysis.get("target_outcome", ""))
         confidence = analysis.get("confidence", 0.0)
 
         if action == "buy" and confidence > 0.7:

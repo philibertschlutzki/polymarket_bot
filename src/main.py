@@ -2,9 +2,10 @@ import asyncio
 import logging
 import os
 import tomllib
+from typing import Any
 
 from dotenv import load_dotenv
-from nautilus_trader.adapters.polymarket import (
+from nautilus_trader.adapters.polymarket import (  # type: ignore
     PolymarketDataClientConfig,
     PolymarketExecClientConfig,
     PolymarketLiveDataClientFactory,
@@ -17,7 +18,9 @@ from nautilus_trader.config import (
 )
 from nautilus_trader.live.node import TradingNode
 
+from src.data.recorder import RecorderConfig, RecorderStrategy
 from src.scanner.polymarket import PolymarketScanner
+from src.scanner.service import PeriodicScannerService
 from src.strategies.sentiment import GeminiSentimentConfig, GeminiSentimentStrategy
 
 # Load env
@@ -31,20 +34,12 @@ logging.basicConfig(
 logger = logging.getLogger("main")
 
 
-def load_config():
+def load_config() -> dict[str, Any]:
     with open("config/config.toml", "rb") as f:
         return tomllib.load(f)
 
 
-def main():
-    try:
-        config = load_config()
-    except Exception as e:
-        logger.error(f"Failed to load config: {e}")
-        return
-
-    # 2. Configure Polymarket Clients
-    # Map Env Vars
+def setup_node(config: dict[str, Any]) -> TradingNode:
     private_key = os.getenv("POLYGON_PRIVATE_KEY")
     funder = os.getenv("POLYGON_ADDRESS")
     api_key = os.getenv("POLYMARKET_API_KEY")
@@ -54,7 +49,6 @@ def main():
     if not private_key:
         logger.warning("POLYGON_PRIVATE_KEY not set. Execution might fail.")
 
-    # Client Configs
     polymarket_data_config = PolymarketDataClientConfig(
         private_key=private_key,
         funder=funder,
@@ -71,7 +65,6 @@ def main():
         passphrase=passphrase,
     )
 
-    # 1. Initialize Node with Client Configs
     node = TradingNode(
         config=TradingNodeConfig(
             trader_id="POLYMARKET-BOT-V2",
@@ -85,30 +78,62 @@ def main():
         )
     )
 
-    # 2. Register Client Factories
     node.add_data_client_factory("POLYMARKET", PolymarketLiveDataClientFactory)
     node.add_exec_client_factory("POLYMARKET", PolymarketLiveExecClientFactory)
-
-    # Initialize components
     node.build()
+    return node
 
-    # 3. Run Scanner
-    logger.info("Running Market Scanner...")
-    scanner = PolymarketScanner(config)
 
-    instruments = asyncio.run(scanner.scan())
+def run_node(
+    node: TradingNode,
+    scanner_service: PeriodicScannerService,
+    loop: asyncio.AbstractEventLoop,
+):
+    logger.info("Starting Trading Node...")
+    try:
+        node.run()
+    except KeyboardInterrupt:
+        logger.info("Node stopped by user.")
+    except Exception as e:
+        logger.error(f"Node error: {e}")
+    finally:
+        node.stop()
+        node.dispose()
+        scanner_service.stop()
+        loop.close()
 
-    if not instruments:
-        logger.warning("No instruments found by scanner. Exiting.")
+
+def main():
+    try:
+        config = load_config()
+    except Exception as e:
+        logger.error(f"Failed to load config: {e}")
         return
 
-    logger.info(f"Scanner found {len(instruments)} instruments. Registering...")
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
 
-    # 4. Register Instruments
+    node = setup_node(config)
+
+    logger.info("Running Market Scanner (Initial)...")
+    scanner = PolymarketScanner(config)
+
+    try:
+        instruments = loop.run_until_complete(scanner.scan())
+    except Exception as e:
+        logger.error(f"Initial scan failed: {e}")
+        instruments = []
+
+    if not instruments:
+        logger.warning(
+            "No instruments found by scanner. Starting anyway (will retry in periodic scan)."
+        )
+    else:
+        logger.info(f"Scanner found {len(instruments)} instruments. Registering...")
+
     for instrument in instruments:
         node.instrument_provider.add(instrument)
 
-    # 5. Add Strategy
     strat_config = GeminiSentimentConfig(
         instrument_id=None,
         risk_max_position_size_usdc=float(config["risk"]["max_position_size_usdc"]),
@@ -120,17 +145,26 @@ def main():
     strategy = GeminiSentimentStrategy(config=strat_config)
     node.trader.add_strategy(strategy)
 
-    # 6. Run
-    logger.info("Starting Trading Node...")
-    try:
-        node.run()
-    except KeyboardInterrupt:
-        logger.info("Node stopped by user.")
-    except Exception as e:
-        logger.error(f"Node error: {e}")
-    finally:
-        node.stop()
-        node.dispose()
+    logger.info("Adding SQLite Data Recorder...")
+    recorder_config = RecorderConfig(
+        instrument_id=None,
+        db_path="src/data/market_data.db",
+        batch_size=100,
+        flush_interval_seconds=5.0,
+    )
+    recorder = RecorderStrategy(config=recorder_config)
+    node.trader.add_strategy(recorder)
+
+    scanner_interval = int(config.get("scanner", {}).get("interval_hours", 1))
+    scanner_service = PeriodicScannerService(
+        scanner=scanner,
+        instrument_provider=node.instrument_provider,
+        interval_hours=scanner_interval,
+    )
+
+    loop.create_task(scanner_service.run())
+
+    run_node(node, scanner_service, loop)
 
 
 if __name__ == "__main__":
