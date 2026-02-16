@@ -30,7 +30,12 @@ class SQLiteDataLoader:
                     return []
 
                 cursor = conn.execute(
-                    "SELECT timestamp, bid_price, ask_price, bid_size, ask_size FROM quotes WHERE instrument_id = ? ORDER BY timestamp ASC",
+                    """
+                    SELECT timestamp, bid_price, ask_price, bid_size, ask_size
+                    FROM quotes
+                    WHERE instrument_id = ?
+                    ORDER BY timestamp ASC
+                    """,
                     (instrument_id,),
                 )
                 instr_id_obj = InstrumentId.from_str(instrument_id)
@@ -74,7 +79,12 @@ class SQLiteDataLoader:
                     return []
 
                 cursor = conn.execute(
-                    "SELECT timestamp, price, size, side FROM trades WHERE instrument_id = ? ORDER BY timestamp ASC",
+                    """
+                    SELECT timestamp, price, size, side
+                    FROM trades
+                    WHERE instrument_id = ?
+                    ORDER BY timestamp ASC
+                    """,
                     (instrument_id,),
                 )
                 instr_id_obj = InstrumentId.from_str(instrument_id)

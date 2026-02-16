@@ -1,11 +1,10 @@
 import asyncio
 import logging
 import sqlite3
-from typing import Optional
+from typing import Callable, List, Optional, Tuple
 
 from nautilus_trader.config import StrategyConfig
 from nautilus_trader.model.data import QuoteTick, TradeTick
-from nautilus_trader.model.enums import OrderSide
 from nautilus_trader.trading.strategy import Strategy
 
 logger = logging.getLogger(__name__)
@@ -26,7 +25,7 @@ class RecorderStrategy(Strategy):
     def __init__(self, config: RecorderConfig):
         super().__init__(config)
         self.config = config
-        self.queue = asyncio.Queue(maxsize=10000)
+        self.queue: asyncio.Queue = asyncio.Queue(maxsize=10000)
         self.writer_task: Optional[asyncio.Task] = None
         self._running = False
 
@@ -93,8 +92,8 @@ class RecorderStrategy(Strategy):
         """
         Background task to write data to SQLite in batches.
         """
-        buffer_quotes = []
-        buffer_trades = []
+        buffer_quotes: List[Tuple] = []
+        buffer_trades: List[Tuple] = []
         last_flush = asyncio.get_running_loop().time()
 
         conn = sqlite3.connect(
@@ -110,68 +109,9 @@ class RecorderStrategy(Strategy):
 
         try:
             while self._running:
-                try:
-                    # Try to get an item with a timeout
-                    try:
-                        item = await asyncio.wait_for(self.queue.get(), timeout=1.0)
-
-                        if item[0] == "quote":
-                            qt: QuoteTick = item[1]
-                            buffer_quotes.append(
-                                (
-                                    qt.ts_event,
-                                    qt.instrument_id.value,
-                                    qt.bid_price.as_double(),
-                                    qt.ask_price.as_double(),
-                                    qt.bid_size.as_double(),
-                                    qt.ask_size.as_double(),
-                                )
-                            )
-                        elif item[0] == "trade":
-                            tt: TradeTick = item[1]
-                            side_str = (
-                                tt.side.name
-                                if hasattr(tt.side, "name")
-                                else str(tt.side)
-                            )
-                            buffer_trades.append(
-                                (
-                                    tt.ts_event,
-                                    tt.instrument_id.value,
-                                    tt.price.as_double(),
-                                    tt.size.as_double(),
-                                    side_str,
-                                )
-                            )
-                    except asyncio.TimeoutError:
-                        pass  # Continue to check flush conditions
-
-                    now = asyncio.get_running_loop().time()
-
-                    # Check flush conditions
-                    should_flush = (
-                        len(buffer_quotes) >= self.config.batch_size
-                        or len(buffer_trades) >= self.config.batch_size
-                        or (
-                            now - last_flush > self.config.flush_interval_seconds
-                            and (buffer_quotes or buffer_trades)
-                        )
-                    )
-
-                    if should_flush:
-                        await asyncio.to_thread(
-                            _commit_batch, buffer_quotes, buffer_trades
-                        )
-                        buffer_quotes = []
-                        buffer_trades = []
-                        last_flush = now
-
-                except asyncio.CancelledError:
-                    break
-                except Exception as e:
-                    logger.error(f"DB Write error: {e}")
-                    # Prevent spin loop on error
-                    await asyncio.sleep(1.0)
+                last_flush = await self._process_loop_iteration(
+                    buffer_quotes, buffer_trades, last_flush, _commit_batch
+                )
 
         finally:
             # Flush remaining data on exit
@@ -182,3 +122,75 @@ class RecorderStrategy(Strategy):
                 logger.error(f"Final DB flush failed: {e}")
             finally:
                 conn.close()
+
+    async def _process_loop_iteration(
+        self,
+        buffer_quotes: list,
+        buffer_trades: list,
+        last_flush: float,
+        commit_func: Callable[[list, list], None],
+    ) -> float:
+        try:
+            # Try to get an item with a timeout
+            try:
+                item = await asyncio.wait_for(self.queue.get(), timeout=1.0)
+                self._process_item(item, buffer_quotes, buffer_trades)
+            except asyncio.TimeoutError:
+                pass  # Continue to check flush conditions
+
+            now = asyncio.get_running_loop().time()
+
+            if self._should_flush(
+                len(buffer_quotes), len(buffer_trades), now, last_flush
+            ):
+                await asyncio.to_thread(commit_func, buffer_quotes, buffer_trades)
+                buffer_quotes.clear()
+                buffer_trades.clear()
+                return now
+
+        except asyncio.CancelledError:
+            raise
+        except Exception as e:
+            logger.error(f"DB Write error: {e}")
+            # Prevent spin loop on error
+            await asyncio.sleep(1.0)
+
+        return last_flush
+
+    def _process_item(self, item: tuple, buffer_quotes: list, buffer_trades: list):
+        if item[0] == "quote":
+            qt: QuoteTick = item[1]
+            buffer_quotes.append(
+                (
+                    qt.ts_event,
+                    qt.instrument_id.value,
+                    qt.bid_price.as_double(),
+                    qt.ask_price.as_double(),
+                    qt.bid_size.as_double(),
+                    qt.ask_size.as_double(),
+                )
+            )
+        elif item[0] == "trade":
+            tt: TradeTick = item[1]
+            side_str = tt.side.name if hasattr(tt.side, "name") else str(tt.side)
+            buffer_trades.append(
+                (
+                    tt.ts_event,
+                    tt.instrument_id.value,
+                    tt.price.as_double(),
+                    tt.size.as_double(),
+                    side_str,
+                )
+            )
+
+    def _should_flush(
+        self, quote_len: int, trade_len: int, now: float, last_flush: float
+    ) -> bool:
+        return (
+            quote_len >= self.config.batch_size
+            or trade_len >= self.config.batch_size
+            or (
+                now - last_flush > self.config.flush_interval_seconds
+                and (quote_len > 0 or trade_len > 0)
+            )
+        )
