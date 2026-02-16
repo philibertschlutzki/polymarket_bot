@@ -1,6 +1,6 @@
 # 📊 Polymarket AI Bot - Performance Dashboard
 
-**Last Updated:** 2026-02-16 04:25:02 CET
+**Last Updated:** 2026-02-16 05:25:09 CET
 **Current Capital:** $1,000.00 USDC
 **Total Return:** +0.00% ($+0.00)
 
@@ -20,7 +20,7 @@
 | Period | Calls/Tokens | Limit | Usage | Status |
 |--------|--------------|-------|-------|--------|
 | Current Minute (RPM) | 0 | 15 | 0% | 🟢 |
-| Today (RPD) | 6 | 1,500 | 0.4% | 🟢 |
+| Today (RPD) | 10 | 1,500 | 0.7% | 🟢 |
 | Current Minute (TPM) | 0 | 1,000,000 | 0.00% | 🟢 |
 
 ---
@@ -41,8 +41,8 @@
 
 | Category | Amount |
 |----------|--------|
-| Available Capital | $-99,509.65 |
-| Locked in Active Bets | $56,676.34 |
+| Available Capital | $-99,695.53 |
+| Locked in Active Bets | $56,862.22 |
 | Pending Resolution (>7d) | $20,448.30 ⚠️ |
 | **Total Portfolio Value** | **$1,000.00** |
 
@@ -51,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Exposure | $56676.34 (5667.6% of capital) |
-| Avg Position Size | $117.34 |
+| Total Exposure | $56862.22 (5686.2% of capital) |
+| Avg Position Size | $117.24 |
 | Largest Position | $250.00 (25.0%) |
-| Portfolio Concentration | Low 🟢 (HHI: 0.003) |
+| Portfolio Concentration | Low 🟢 (HHI: 0.002) |
 
 ---
-## 🎯 Active Bets (913)
+## 🎯 Active Bets (915)
 
 | Question | Action | Stake | Market | AI Prob | Edge | Conf | EV | End Date | Days Left | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -544,6 +544,8 @@
 | [Will the Kansas City Chiefs win the 2027...](https://polymarket.com/event/will-the-kansas-city-chiefs-win-the-2027-nfl-league-championship) | NO | $188.25 | 0.50 | 0.05 | -45% 🔴 | 70% | $+169.42 | 2027-04-01 | 408d | 🟢 |
 | [Will the Seattle Seahawks win the 2027 N...](https://polymarket.com/event/will-the-seattle-seahawks-win-the-2027-nfl-league-championship) | NO | $172.62 | 0.50 | 0.11 | -39% 🔴 | 80% | $+133.27 | 2027-04-01 | 408d | 🟢 |
 | [Will Elon Musk post 180-199 tweets from ...](https://polymarket.com/event/elon-musk-of-tweets-february-13-february-20-180-199) | YES | $62.75 | 0.50 | 0.65 | +15% 🟡 | 70% | $+18.82 | 2026-02-20 | 4d | 🟡 |
+| [Will Logan Paul’s PSA 10 Pokémon Illustr...](https://polymarket.com/event/will-logan-pauls-psa-10-pokmon-illustrator-sale-price-be-over-7-million) | YES | $64.95 | 0.50 | 0.65 | +15% 🟡 | 75% | $+19.49 | Unknown | N/A | 🔵 |
+| [Will Logan Paul’s PSA 10 Pokémon Illustr...](https://polymarket.com/event/will-logan-pauls-psa-10-pokmon-illustrator-sale-price-be-over-17-million-669) | NO | $120.93 | 0.50 | 0.20 | -30% 🔴 | 65% | $+72.56 | Unknown | N/A | 🔵 |
 | [Will the price of Bitcoin be between $80...](https://polymarket.com/event/will-the-price-of-bitcoin-be-between-80000-82000-on-february-2) | YES | $20.75 | 0.05 | 0.15 | +10% 🟡 | 60% | $+0.00 | 2026-02-02 | -14d | ⏳ Pending Resolution |
 | [Will the price of Solana be above $100 o...](https://polymarket.com/event/solana-above-100-on-february-2) | NO | $67.54 | 0.96 | 0.65 | -31% 🔴 | 70% | $+0.00 | 2026-02-02 | -14d | ⏳ Pending Resolution |
 | [Counter-Strike: BC.Game Esports vs FaZe ...](https://polymarket.com/event/cs2-bcg-faze-2026-02-02) | YES | $86.97 | 0.41 | 0.65 | +24% 🟢 | 75% | $+0.00 | 2026-02-02 | -14d | ⏳ Pending Resolution |
@@ -1259,6 +1261,7 @@
 - 🔴 **High Exposure**: "Rio Open: Juan Manuel Cerundol..." is 11.2% of capital
 - 🔴 **High Exposure**: "Will the Kansas City Chiefs wi..." is 18.8% of capital
 - 🔴 **High Exposure**: "Will the Seattle Seahawks win ..." is 17.3% of capital
+- 🔴 **High Exposure**: "Will Logan Paul’s PSA 10 Pokém..." is 12.1% of capital
 - 🟡 **Expiring Soon**: 104 bet(s) expire within 7 days
 
 ---
@@ -1267,7 +1270,7 @@
 | Metric | Value |
 |--------|-------|
 | Markets Analyzed per Run | 15 |
-| Markets with Active Bets | 913 |
+| Markets with Active Bets | 915 |
 | Markets Rejected (Last Run) | 20 |
 | Top Rejection Reason | INSUFFICIENT_EDGE |
 
