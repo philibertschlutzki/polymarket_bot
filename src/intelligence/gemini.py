@@ -1,142 +1,136 @@
 import json
 import logging
 import os
-from typing import Any, Dict
+from typing import Any
 
 import google.generativeai as genai
+from google.generativeai.types import HarmBlockThreshold, HarmCategory
 
 logger = logging.getLogger(__name__)
 
 
-class GeminiSentiment:
-    """
-    Wrapper for Google Gemini 2.0 API with Search Grounding capabilities.
+class GeminiClient:
+    def __init__(self, config: dict[str, Any] | None = None):
+        self.config = config or {}
+        gemini_config = self.config.get("gemini", {})
 
-    This class handles the initialization of the Gemini model, configuring it
-    to use Google Search for real-time information retrieval (Grounding),
-    and processing market analysis requests to determine market sentiment.
-    """
-
-    def __init__(self, model_name: str = "gemini-2.0-flash-exp"):
-        """
-        Initializes the GeminiSentiment analyzer.
-
-        Args:
-            model_name (str): The name of the Gemini model to use.
-                              Defaults to "gemini-2.0-flash-exp".
-        """
         self.api_key = os.getenv("GOOGLE_API_KEY")
         if not self.api_key:
             logger.warning("GOOGLE_API_KEY not found in environment variables.")
+        else:
+            genai.configure(api_key=self.api_key)
 
-        genai.configure(api_key=self.api_key)
+        self.model_name = gemini_config.get("model", "gemini-2.0-flash-exp")
+        self.temperature = float(gemini_config.get("temperature", 0.1))
 
-        self.model_name = model_name
+        # JSON Schema for structured output
+        # Note: 'number' type in schema maps to float in Python
+        self.response_schema = {
+            "type": "object",
+            "properties": {
+                "action": {"type": "string", "enum": ["buy", "sell", "hold"]},
+                "target_outcome": {"type": "string"},
+                "confidence": {"type": "number"},
+                "reasoning": {"type": "string"},
+            },
+            "required": ["action", "target_outcome", "confidence", "reasoning"],
+        }
 
-        # Configure the model with Google Search Grounding.
-        # Using the Tool object for robustness and configurability.
-        # This requires the google-generativeai SDK.
+        # Tools configuration for Search Grounding
+        # Using dictionary format for compatibility
+        tools = [{"google_search_retrieval": {}}]
+
         try:
-            # The tool configuration enables the model to perform dynamic retrieval
-            # from Google Search when the query requires external knowledge.
-            # dynamic_threshold controls how eager the model is to search (0.3 is a balanced default).
-            self.tools = [
-                genai.protos.Tool(
-                    google_search_retrieval=genai.protos.GoogleSearchRetrieval(
-                        dynamic_retrieval_config=genai.protos.DynamicRetrievalConfig(
-                            mode=genai.protos.DynamicRetrievalConfig.Mode.MODE_DYNAMIC,
-                            dynamic_threshold=0.3,
-                        )
-                    )
-                )
-            ]
             self.model = genai.GenerativeModel(
-                model_name=self.model_name, tools=self.tools
+                model_name=self.model_name,
+                generation_config=genai.types.GenerationConfig(
+                    response_mime_type="application/json",
+                    response_schema=self.response_schema,
+                    temperature=self.temperature,
+                ),
+                tools=tools,
+                # Safety settings to avoid blocking analysis
+                safety_settings={
+                    HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+                    HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+                    HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+                    HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+                },
             )
         except Exception as e:
-            logger.error(
-                f"Failed to initialize model with Google Search Grounding: {e}. Falling back to no tools."
-            )
-            # Fallback to model without tools, but log an error.
-            self.model = genai.GenerativeModel(model_name=self.model_name)
+            logger.error(f"Failed to initialize Gemini model: {e}")
+            self.model = None
 
     def analyze_market(
-        self, question: str, description: str, prices: Dict[str, float]
-    ) -> Dict[str, Any]:
+        self,
+        question: str,
+        description: str,
+        prices: dict[str, float],
+        available_outcomes: list[str],
+    ) -> dict[str, Any]:
         """
-        Analyzes the market sentiment using Gemini with Search Grounding.
-
-        Args:
-            question (str): The market question (e.g. "Will Bitcoin hit 100k?").
-            description (str): The market description providing context.
-            prices (Dict[str, float]): A dictionary of current prices (e.g. {"Yes": 0.6, "No": 0.4}).
-
-        Returns:
-            Dict[str, Any]: A dictionary containing:
-                - sentiment (str): "bullish", "bearish", or "neutral".
-                - confidence (float): Confidence score between 0.0 and 1.0.
-                - reasoning (str): Explanation of the analysis.
+        Analyze a market using Gemini 2.0 with Search Grounding.
         """
+        if not self.model:
+            logger.error("Gemini model not initialized.")
+            return self._error_result("Model not initialized")
 
         prompt = f"""
-        You are a professional quantitative trader analyzing a prediction market on Polymarket.
+        You are a professional prediction market analyst.
+        Analyze the following market and decide on a trading action.
 
-        Market Question: {question}
-        Description: {description}
-        Current Prices: {json.dumps(prices)}
+        **Market Question:** {question}
+        **Description:** {description}
+        **Current Prices:** {prices}
+        **Available Outcomes:** {available_outcomes}
 
-        Your task is to:
-        1. Use Google Search to find the latest news and information relevant to this market.
-        2. Analyze the sentiment based on the news and current market prices.
-        3. Determine if the current price offers a good risk/reward ratio for a swing trade.
+        **Instructions:**
+        1. Use Google Search to find the latest news and information related to this event.
+        2. Evaluate the probability of each outcome based on the information found.
+        3. Compare your estimated probability with the implied probability from current prices.
+        4. Decide if there is a profitable opportunity (Buy if undervalued, Sell if overvalued/holding, Hold otherwise).
+        5. Select the `target_outcome` from the **Available Outcomes** list strictly.
+        6. Provide a confidence score (0.0 to 1.0) and a short reasoning.
 
-        Output must be a valid JSON object with the following schema:
-        {{
-            "sentiment": "bullish" | "bearish" | "neutral",
-            "confidence": float (0.0 to 1.0),
-            "reasoning": "Concise explanation of your analysis, citing sources if possible."
-        }}
+        Return the result in strict JSON format.
         """
 
         try:
-            # Enforce JSON output using response_mime_type.
-            # This ensures the model returns a valid JSON string, which is crucial for
-            # programmatic parsing in the next step.
-            generation_config = genai.types.GenerationConfig(
-                response_mime_type="application/json", temperature=0.1
-            )
+            # Generate content
+            response = self.model.generate_content(prompt)
 
-            response = self.model.generate_content(
-                prompt, generation_config=generation_config
-            )
-
-            # Parse the response
+            # Parse JSON
+            # Gemini 2.0 with response_mime_type="application/json" usually
+            # returns pure JSON
             try:
                 result = json.loads(response.text)
-                return result
-            except json.JSONDecodeError as e:
-                logger.error(
-                    f"Failed to parse JSON response: {e}. Response text: {response.text}"
+            except json.JSONDecodeError:
+                # Fallback: try to find JSON block if mixed content (unlikely
+                # with strict mode)
+                logger.warning(
+                    "Gemini response was not valid JSON, attempting to extract."
                 )
-                return {
-                    "sentiment": "neutral",
-                    "confidence": 0.0,
-                    "reasoning": "JSON parse error",
-                }
-            except (
-                ValueError
-            ) as e:  # Handle cases where response.text might be empty or invalid
-                logger.error(f"Value error accessing response text: {e}")
-                return {
-                    "sentiment": "neutral",
-                    "confidence": 0.0,
-                    "reasoning": f"Response error: {str(e)}",
-                }
+                start = response.text.find("{")
+                end = response.text.rfind("}") + 1
+                if start != -1 and end != -1:
+                    result = json.loads(response.text[start:end])
+                else:
+                    raise ValueError("No JSON found in response")
 
+            # Validate target_outcome
+            # Fuzzy match validation or correction could go here,
+            # but for now we rely on the prompt instructions and handle
+            # mismatches in strategy.
+
+            return result
         except Exception as e:
-            logger.error(f"Gemini API error: {e}")
-            return {
-                "sentiment": "neutral",
-                "confidence": 0.0,
-                "reasoning": f"API error: {str(e)}",
-            }
+            logger.error(f"Gemini analysis failed: {e}")
+            return self._error_result(f"Analysis failed: {str(e)}")
+
+    def _error_result(self, reason: str) -> dict[str, Any]:
+        return {
+            "action": "hold",
+            "target_outcome": "",
+            "confidence": 0.0,
+            "reasoning": reason,
+        }
