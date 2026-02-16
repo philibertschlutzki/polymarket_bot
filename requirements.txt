@@ -6,3 +6,5 @@ python-dotenv
 pandas
 numpy
 aiohttp
+redis
+python-telegram-bot
