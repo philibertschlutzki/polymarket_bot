@@ -1,0 +1,24 @@
+[polymarket]
+# API credentials should be loaded from environment variables
+# POLYGON_ADDRESS
+# POLYGON_PRIVATE_KEY
+rpc_url = "https://polygon-rpc.com"
+
+[gemini]
+# API key should be loaded from environment variable GOOGLE_API_KEY
+model = "gemini-2.0-flash-exp"
+temperature = 0.1
+
+[telegram]
+# Bot token and chat ID should be loaded from environment variables
+# TELEGRAM_BOT_TOKEN
+# TELEGRAM_CHAT_ID
+
+[risk]
+max_position_size_usdc = 50.0
+slippage_tolerance_ticks = 2
+
+[scanner]
+min_daily_volume = 1000.0
+max_spread = 0.05
+days_to_expiration = 7

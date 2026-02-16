@@ -5,7 +5,7 @@ from nautilus_trader.config import StrategyConfig
 from nautilus_trader.trading.strategy import Strategy
 
 
-class GeminiSentimentConfig(StrategyConfig):
+class GeminiSentimentConfig(StrategyConfig, frozen=True):
     instrument_id: str
     gemini_model: str = "gemini-2.0-flash"
 

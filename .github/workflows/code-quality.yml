@@ -27,25 +27,25 @@ jobs:
     - name: Lint with flake8
       run: |
         # Stop on syntax errors or undefined names
-        flake8 nautilus_v2/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 src/ --count --select=E9,F63,F7,F82 --show-source --statistics
         # Allow warnings but fail on errors
-        flake8 nautilus_v2/ --count --max-complexity=10 --max-line-length=127 --statistics
+        flake8 src/ --count --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Check formatting with black
       run: |
-        black --check nautilus_v2/
+        black --check src/
 
     - name: Check imports with isort
       run: |
-        isort --check-only nautilus_v2/
+        isort --check-only src/
 
     - name: Type checking with mypy
       run: |
-        mypy nautilus_v2/ --ignore-missing-imports
+        mypy src/ --ignore-missing-imports
 
     # - name: Run tests
     #   run: |
-    #     # Make sure nautilus_v2 is in python path
+    #     # Make sure src is in python path
     #     export PYTHONPATH=$PYTHONPATH:$(pwd)
     #     pytest tests/ -v
     #   env:
