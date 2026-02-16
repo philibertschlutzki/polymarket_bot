@@ -1,10 +1,3 @@
-Hier ist der Entwurf für ein professionelles und vollständiges **README.md**. Es ist so strukturiert, dass es sowohl die Architektur erklärt als auch eine Schritt-für-Schritt-Anleitung für die lokale Entwicklung und das Deployment via Docker (passend zu deiner `docker-compose.yml`) bietet.
-
-Du kannst den folgenden Markdown-Code direkt in deine `README.md` Datei kopieren.
-
----
-
-```markdown
 # 🧠 Polymarket AI Trader (Nautilus & Gemini)
 
 ![Status](https://img.shields.io/badge/Status-Beta-orange)
