@@ -3,9 +3,11 @@ from nautilus_trader.config import StrategyConfig
 import google.generativeai as genai
 import os
 
+
 class GeminiSentimentConfig(StrategyConfig):
     instrument_id: str
     gemini_model: str = "gemini-2.0-flash"
+
 
 class GeminiSentimentStrategy(Strategy):
     def on_start(self):
