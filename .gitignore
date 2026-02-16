@@ -7,10 +7,11 @@ venv/
 # Environment / Secrets (WICHTIG!)
 .env
 .env.prod
-src/config/secrets.toml
+config/secrets.toml
 
 # Nautilus Data
-src/data/
+src/data/*.db
+src/data/*.sqlite
 *.catalog
 *.parquet
 

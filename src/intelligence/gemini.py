@@ -9,7 +9,22 @@ logger = logging.getLogger(__name__)
 
 
 class GeminiSentiment:
+    """
+    Wrapper for Google Gemini 2.0 API with Search Grounding capabilities.
+
+    This class handles the initialization of the Gemini model, configuring it
+    to use Google Search for real-time information retrieval (Grounding),
+    and processing market analysis requests to determine market sentiment.
+    """
+
     def __init__(self, model_name: str = "gemini-2.0-flash-exp"):
+        """
+        Initializes the GeminiSentiment analyzer.
+
+        Args:
+            model_name (str): The name of the Gemini model to use.
+                              Defaults to "gemini-2.0-flash-exp".
+        """
         self.api_key = os.getenv("GOOGLE_API_KEY")
         if not self.api_key:
             logger.warning("GOOGLE_API_KEY not found in environment variables.")
@@ -22,6 +37,9 @@ class GeminiSentiment:
         # Using the Tool object for robustness and configurability.
         # This requires the google-generativeai SDK.
         try:
+            # The tool configuration enables the model to perform dynamic retrieval
+            # from Google Search when the query requires external knowledge.
+            # dynamic_threshold controls how eager the model is to search (0.3 is a balanced default).
             self.tools = [
                 genai.protos.Tool(
                     google_search_retrieval=genai.protos.GoogleSearchRetrieval(
@@ -49,12 +67,15 @@ class GeminiSentiment:
         Analyzes the market sentiment using Gemini with Search Grounding.
 
         Args:
-            question: The market question (e.g. "Will Bitcoin hit 100k?").
-            description: The market description.
-            prices: A dictionary of current prices (e.g. {"Yes": 0.6, "No": 0.4}).
+            question (str): The market question (e.g. "Will Bitcoin hit 100k?").
+            description (str): The market description providing context.
+            prices (Dict[str, float]): A dictionary of current prices (e.g. {"Yes": 0.6, "No": 0.4}).
 
         Returns:
-            A dictionary containing sentiment, confidence, and reasoning.
+            Dict[str, Any]: A dictionary containing:
+                - sentiment (str): "bullish", "bearish", or "neutral".
+                - confidence (float): Confidence score between 0.0 and 1.0.
+                - reasoning (str): Explanation of the analysis.
         """
 
         prompt = f"""
@@ -78,7 +99,9 @@ class GeminiSentiment:
         """
 
         try:
-            # Enforce JSON output using response_mime_type
+            # Enforce JSON output using response_mime_type.
+            # This ensures the model returns a valid JSON string, which is crucial for
+            # programmatic parsing in the next step.
             generation_config = genai.types.GenerationConfig(
                 response_mime_type="application/json", temperature=0.1
             )
