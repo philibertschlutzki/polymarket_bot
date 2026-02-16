@@ -2,9 +2,10 @@ import asyncio
 import json
 import logging
 import os
-from typing import Any
+from typing import Any, Optional
 
 import google.generativeai as genai
+from google.generativeai import GenerativeModel
 from google.generativeai.types import HarmBlockThreshold, HarmCategory
 
 logger = logging.getLogger(__name__)
@@ -39,8 +40,9 @@ class GeminiClient:
 
         # Tools configuration for Search Grounding
         # Using dictionary format for compatibility
-        tools = [{"google_search_retrieval": {}}]
+        tools: list[dict[str, Any]] = [{"google_search_retrieval": {}}]
 
+        self.model: Optional[GenerativeModel] = None
         try:
             self.model = genai.GenerativeModel(
                 model_name=self.model_name,

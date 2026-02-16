@@ -5,7 +5,7 @@ import tomllib
 from typing import Any
 
 from dotenv import load_dotenv
-from nautilus_trader.adapters.polymarket import (
+from nautilus_trader.adapters.polymarket import (  # type: ignore
     PolymarketDataClientConfig,
     PolymarketExecClientConfig,
     PolymarketLiveDataClientFactory,
