@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 RECORDER_QUEUE: asyncio.Queue[Tuple[str, Any]] = asyncio.Queue(maxsize=10000)
 
 
-class RecorderConfig(StrategyConfig):
+class RecorderConfig(StrategyConfig, frozen=True):  # type: ignore[misc]
     db_path: str = "src/data/market_data.db"
     batch_size: int = 100
     flush_interval_seconds: float = 5.0
@@ -42,8 +42,7 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                 # Enable WAL Mode
                 conn.execute("PRAGMA journal_mode=WAL;")
 
-                conn.execute(
-                    """
+                conn.execute("""
                     CREATE TABLE IF NOT EXISTS quotes (
                         timestamp INTEGER,
                         instrument_id TEXT,
@@ -52,10 +51,8 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         bid_size REAL,
                         ask_size REAL
                     )
-                """
-                )
-                conn.execute(
-                    """
+                """)
+                conn.execute("""
                     CREATE TABLE IF NOT EXISTS trades (
                         timestamp INTEGER,
                         instrument_id TEXT,
@@ -63,11 +60,9 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         size REAL,
                         side TEXT
                     )
-                """
-                )
+                """)
                 # Table for strategy trades/PnL
-                conn.execute(
-                    """
+                conn.execute("""
                     CREATE TABLE IF NOT EXISTS bot_trades (
                         timestamp INTEGER,
                         instrument_id TEXT,
@@ -76,8 +71,7 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         quantity REAL,
                         realized_pnl REAL
                     )
-                """
-                )
+                """)
                 conn.commit()
             logger.info(f"Database initialized at {self.config.db_path} (WAL Mode)")
         except Exception as e:

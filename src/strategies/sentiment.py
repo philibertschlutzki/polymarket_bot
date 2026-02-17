@@ -16,7 +16,7 @@ from src.intelligence.gemini import GeminiClient
 from src.notifications import TelegramNotifier
 
 
-class GeminiSentimentConfig(StrategyConfig):
+class GeminiSentimentConfig(StrategyConfig, frozen=True):  # type: ignore[misc]
     risk_max_position_size_usdc: float = 50.0
     risk_slippage_tolerance_ticks: int = 2
     gemini_model: str = "gemini-2.0-flash-exp"
