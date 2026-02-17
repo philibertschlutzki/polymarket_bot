@@ -6,8 +6,8 @@ from typing import Any, Dict, List, Optional, Set
 
 from nautilus_trader.config import StrategyConfig
 from nautilus_trader.model.data import Bar, QuoteTick
-from nautilus_trader.model.events import OrderFilled
 from nautilus_trader.model.enums import OrderSide, TimeInForce
+from nautilus_trader.model.events import OrderFilled
 from nautilus_trader.model.instruments import Instrument
 from nautilus_trader.trading.strategy import Strategy
 
