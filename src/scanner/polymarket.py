@@ -5,7 +5,9 @@ from typing import Any, Dict, List, Optional, TypeAlias, cast
 import aiohttp
 import msgspec
 import pandas as pd
-from nautilus_trader.adapters.polymarket.common.parsing import parse_polymarket_instrument as parse_instrument
+from nautilus_trader.adapters.polymarket.common.parsing import (
+    parse_polymarket_instrument as parse_instrument,
+)
 from nautilus_trader.model.instruments import Instrument
 
 logger = logging.getLogger(__name__)

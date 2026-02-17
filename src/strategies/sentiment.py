@@ -11,9 +11,9 @@ from nautilus_trader.model.events import OrderFilled
 from nautilus_trader.model.instruments import Instrument
 from nautilus_trader.trading.strategy import Strategy
 
+from src.data.recorder import RECORDER_QUEUE
 from src.intelligence.gemini import GeminiClient
 from src.notifications import TelegramNotifier
-from src.data.recorder import RECORDER_QUEUE
 
 
 class GeminiSentimentConfig(StrategyConfig):
