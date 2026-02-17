@@ -71,10 +71,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         )
 
         # Schedule periodic instrument check (Cold Start fix)
-        self.clock.schedule(
-            self.check_new_instruments,
-            interval=timedelta(minutes=5)
-        )
+        self.clock.schedule(self.check_new_instruments, interval=timedelta(minutes=5))
 
         # Smart Reconciliation
         self._handle_reconciliation()
@@ -171,7 +168,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
                 "side": side,
                 "price": price,
                 "quantity": qty,
-                "realized_pnl": 0.0  # Fake trade has 0 PnL
+                "realized_pnl": 0.0,  # Fake trade has 0 PnL
             }
             RECORDER_QUEUE.put_nowait(("strategy_trade", data))
 
@@ -213,7 +210,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
                 "side": side,
                 "price": price,
                 "quantity": qty,
-                "realized_pnl": realized_pnl
+                "realized_pnl": realized_pnl,
             }
             RECORDER_QUEUE.put_nowait(("strategy_trade", data))
 
