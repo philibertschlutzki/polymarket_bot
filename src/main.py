@@ -128,56 +128,23 @@ def run_node(
     except Exception as e:
         logger.error(f"Node error: {e}")
     finally:
-        node.stop()
-        node.dispose()
-        scanner_service.stop()
-        loop.close()
+        # Graceful shutdown
+        try:
+            node.stop()
+            node.dispose()
+        except Exception as e:
+            logger.error(f"Error disposing node: {e}")
+
+        try:
+            scanner_service.stop()
+        except Exception as e:
+            logger.error(f"Error stopping scanner: {e}")
 
 
-def main() -> None:
+def setup_strategies(node: TradingNode, config: Dict[str, Any]) -> None:
     """
-    Application Entry Point.
+    Configure and add strategies to the trading node.
     """
-    try:
-        config = load_config()
-    except Exception as e:
-        print(f"Failed to load config: {e}")
-        return
-
-    setup_logging(config)
-
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-
-    node = setup_node(config)
-
-    logger.info("Running Market Scanner (Initial)...")
-    scanner = PolymarketScanner(config)
-
-    instruments: List[Instrument] = []
-    try:
-        scan_result = loop.run_until_complete(scanner.scan())
-        if scan_result:
-            instruments = scan_result
-    except Exception as e:
-        logger.error(f"Initial scan failed: {e}")
-
-    if not instruments:
-        logger.warning("No instruments found by scanner. Starting anyway (will retry in periodic scan).")
-    else:
-        logger.info(f"Scanner found {len(instruments)} instruments. Registering...")
-
-    # Type casting to access instrument_provider if not directly available on type hint
-    # TradingNode usually has instrument_provider
-    instrument_provider = getattr(node, "instrument_provider", None)
-
-    if not instrument_provider:
-        logger.critical("No InstrumentProvider found on TradingNode. Exiting.")
-        sys.exit(1)
-
-    for instrument in instruments:
-        instrument_provider.add(instrument)
-
     trading_mode = config.get("trading", {}).get("mode", "paper").lower()
     gemini_config = config.get("gemini", {})
     risk_config = config.get("risk", {})
@@ -203,16 +170,89 @@ def main() -> None:
     recorder = RecorderStrategy(config=recorder_config)
     node.trader.add_strategy(recorder)
 
-    scanner_interval = int(config.get("scanner", {}).get("interval_hours", 1))
-    scanner_service = PeriodicScannerService(
-        scanner=scanner,
-        instrument_provider=instrument_provider,
-        interval_hours=scanner_interval,
-    )
 
-    loop.create_task(scanner_service.run())
+def setup_initial_instruments(loop: asyncio.AbstractEventLoop, config: Dict[str, Any], node: TradingNode) -> None:
+    """
+    Scan for initial instruments and add them to the provider.
+    """
+    logger.info("Running Market Scanner (Initial)...")
+    scanner = PolymarketScanner(config)
 
-    run_node(node, scanner_service, loop)
+    instruments: List[Instrument] = []
+    try:
+        scan_result = loop.run_until_complete(scanner.scan())
+        if scan_result:
+            instruments = scan_result
+    except Exception as e:
+        logger.error(f"Initial scan failed: {e}")
+
+    if not instruments:
+        logger.warning("No instruments found by scanner. Starting anyway (will retry in periodic scan).")
+    else:
+        logger.info(f"Scanner found {len(instruments)} instruments. Registering...")
+
+    # Type casting to access instrument_provider if not directly available on type hint
+    instrument_provider = getattr(node, "instrument_provider", None)
+
+    if not instrument_provider:
+        logger.critical("No InstrumentProvider found on TradingNode. Exiting.")
+        sys.exit(1)
+
+    for instrument in instruments:
+        instrument_provider.add(instrument)
+
+
+def main() -> None:
+    """
+    Application Entry Point.
+    """
+    try:
+        config = load_config()
+    except Exception as e:
+        print(f"Failed to load config: {e}")
+        return
+
+    setup_logging(config)
+
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
+    try:
+        node = setup_node(config)
+
+        setup_initial_instruments(loop, config, node)
+
+        setup_strategies(node, config)
+
+        scanner_interval = int(config.get("scanner", {}).get("interval_hours", 1))
+        # Need to reconstruct scanner or pass it if reused, here simpler to re-instantiate or just pass config
+        # The service creates its own scanner instance internally if we passed the class, but here it takes an instance
+        # Let's create a new one for the periodic service to avoid state issues if any
+        scanner_service = PeriodicScannerService(
+            scanner=PolymarketScanner(config),
+            instrument_provider=getattr(node, "instrument_provider", None),
+            interval_hours=scanner_interval,
+        )
+
+        loop.create_task(scanner_service.run())
+
+        run_node(node, scanner_service, loop)
+
+    except Exception as e:
+        logger.critical(f"Fatal error in main: {e}")
+    finally:
+        if not loop.is_closed():
+            try:
+                # Cancel pending tasks
+                pending = asyncio.all_tasks(loop)
+                for task in pending:
+                    task.cancel()
+                # Run loop to clear tasks
+                if pending:
+                    loop.run_until_complete(asyncio.gather(*pending, return_exceptions=True))
+                loop.close()
+            except Exception as e:
+                print(f"Error closing loop: {e}")
 
 
 if __name__ == "__main__":
