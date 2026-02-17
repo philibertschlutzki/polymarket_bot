@@ -1,20 +1,20 @@
-
-import sys
+import asyncio
+import json
 import os
+import sys
 import unittest
 from unittest.mock import MagicMock, patch
-import json
-import asyncio
 
 # Add project root to path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.intelligence.gemini import GeminiClient
+
 
 class TestGeminiClient(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         # Patch the genai module
-        self.genai_patcher = patch('src.intelligence.gemini.genai')
+        self.genai_patcher = patch("src.intelligence.gemini.genai")
         self.mock_genai = self.genai_patcher.start()
 
         # Mock the GenerativeModel
@@ -44,7 +44,7 @@ class TestGeminiClient(unittest.IsolatedAsyncioTestCase):
                 "action": "buy",
                 "target_outcome": "Yes",
                 "confidence": 0.85,
-                "reasoning": "Positive news found."
+                "reasoning": "Positive news found.",
             }
             self.mock_response.text = json.dumps(expected_result)
 
@@ -65,5 +65,6 @@ class TestGeminiClient(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(result["action"], "hold")
             self.assertIn("Analysis failed", result["reasoning"])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

@@ -22,11 +22,17 @@ jobs:
             echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" > .env
             echo "POLYGON_PRIVATE_KEY=${{ secrets.POLYGON_PRIVATE_KEY }}" >> .env
 
-            # Update dependencies if requirements changed
-            if [ -f "requirements.txt" ]; then
-                source .venv/bin/activate
-                uv pip install -r requirements.txt
+            # Install Poetry if missing
+            if ! command -v poetry &> /dev/null; then
+                curl -sSL https://install.python-poetry.org | python3 -
             fi
+            export PATH="$HOME/.local/bin:$PATH"
+
+            # Configure Poetry
+            poetry config virtualenvs.in-project true
+
+            # Install dependencies
+            poetry install --without dev
 
             # Restart Service
             # sudo systemctl restart nautilus-bot

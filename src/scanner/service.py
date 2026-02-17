@@ -54,9 +54,7 @@ class PeriodicScannerService:
             logger.info("No instruments found.")
 
     async def _process_found_instruments(self, instruments: List[Instrument]) -> None:
-        logger.info(
-            f"Scanner found {len(instruments)} instruments. Updating provider..."
-        )
+        logger.info(f"Scanner found {len(instruments)} instruments. Updating provider...")
         count = 0
         added_instruments = []
         for instrument in instruments:
@@ -108,19 +106,13 @@ class PeriodicScannerService:
                 logger.warning(f"Failed to load existing catalog: {e}")
         return data
 
-    def _update_catalog_data(
-        self, data: List[Any], existing_ids: set[str], instruments: List[Instrument]
-    ) -> bool:
+    def _update_catalog_data(self, data: List[Any], existing_ids: set[str], instruments: List[Instrument]) -> bool:
         updated = False
         for instr in instruments:
             try:
                 # Convert to dict using to_dict() if available (Nautilus standard)
                 # Fallback to msgspec.to_builtins for Structs
-                item = (
-                    instr.to_dict()
-                    if hasattr(instr, "to_dict")
-                    else msgspec.to_builtins(instr)
-                )
+                item = instr.to_dict() if hasattr(instr, "to_dict") else msgspec.to_builtins(instr)
                 if isinstance(item, dict):
                     # Ensure ID is string for comparison
                     instr_id = str(item.get("id"))

@@ -40,21 +40,15 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         )
         self.notifier = TelegramNotifier()
 
-        self.analyzed_markets: Set[str] = (
-            set()
-        )  # Track analyzed questions to avoid duplicate calls per cycle
+        self.analyzed_markets: Set[str] = set()  # Track analyzed questions to avoid duplicate calls per cycle
 
     def on_start(self) -> None:
         """
         Actions to be performed on strategy start.
         """
-        self.log.info(
-            f"GeminiSentimentStrategy started in {self.config.trading_mode.upper()} mode."
-        )
+        self.log.info(f"GeminiSentimentStrategy started in {self.config.trading_mode.upper()} mode.")
         mode_prefix = "[PAPER] " if self.config.trading_mode == "paper" else ""
-        self.notifier.send_message(
-            f"{mode_prefix}🚀 Bot V2 Started. Strategy: Gemini Sentiment Analysis."
-        )
+        self.notifier.send_message(f"{mode_prefix}🚀 Bot V2 Started. Strategy: Gemini Sentiment Analysis.")
 
         # Subscribe to data for all registered instruments
         for instrument in self.cache.instruments():
@@ -138,9 +132,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
             # Schedule async task for analysis
             asyncio.create_task(self._process_market_async(question, instruments))
 
-    async def _process_market_async(
-        self, question: str, instruments: List[Instrument]
-    ) -> None:
+    async def _process_market_async(self, question: str, instruments: List[Instrument]) -> None:
         """
         Process a single market asynchronously.
         """
@@ -206,27 +198,16 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
 
         if action == "buy" and confidence > 0.7:
             # Find matching instrument
-            matches = difflib.get_close_matches(
-                target_outcome, available_outcomes, n=1, cutoff=0.6
-            )
+            matches = difflib.get_close_matches(target_outcome, available_outcomes, n=1, cutoff=0.6)
             if not matches:
-                self.log.warning(
-                    f"Could not map target outcome '{target_outcome}' to available outcomes {available_outcomes}"
-                )
+                self.log.warning(f"Could not map target outcome '{target_outcome}' to available outcomes {available_outcomes}")
                 return
 
             matched_outcome = matches[0]
 
             # Find instrument for this outcome
             target_instr = next(
-                (
-                    i
-                    for i in instruments
-                    if (
-                        i.info.get("outcome") == matched_outcome
-                        or i.outcome == matched_outcome
-                    )
-                ),
+                (i for i in instruments if (i.info.get("outcome") == matched_outcome or i.outcome == matched_outcome)),
                 None,
             )
 
@@ -251,9 +232,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         # Check current position
         position = self.cache.position(instrument.id)
         if position and position.quantity > 0:
-            self.log.info(
-                f"Already holding position for {instrument.id}, skipping buy."
-            )
+            self.log.info(f"Already holding position for {instrument.id}, skipping buy.")
             return
 
         # Calculate quantity based on risk (USDC)
@@ -297,9 +276,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         self.log.info(f"Submitted BUY order for {instrument.id}: {qty} @ {price}")
 
         mode_prefix = "[PAPER] " if self.config.trading_mode == "paper" else ""
-        self.notifier.send_trade_update(
-            f"{mode_prefix}BUY", str(instrument.id), float(price), float(qty), reason
-        )
+        self.notifier.send_trade_update(f"{mode_prefix}BUY", str(instrument.id), float(price), float(qty), reason)
 
     def _close_position(self, instrument_id: Any, reason: str) -> None:
         """
@@ -316,9 +293,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         self.log.info(f"Closed position for {instrument_id} due to: {reason}")
 
         # Price unknown at submission, using 0.0 for notification
-        self.notifier.send_trade_update(
-            "SELL", str(instrument_id), 0.0, float(position.quantity), reason
-        )
+        self.notifier.send_trade_update("SELL", str(instrument_id), 0.0, float(position.quantity), reason)
 
     def on_bar(self, bar: Bar) -> None:
         # We use timer for evaluation, but we process bars/ticks for data updates

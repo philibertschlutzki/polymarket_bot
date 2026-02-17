@@ -1,110 +1,109 @@
-# Contributing to Polymarket Bot V2
+# Contributing to Polymarket AI Trader
 
-Vielen Dank für dein Interesse, den **Polymarket AI Trader** weiterzuentwickeln!
-Wir befinden uns in der Phase **V2 (Beta)**. Das Ziel ist ein stabiles, speichereffizientes System, das auf kostengünstiger Hardware (VPS mit 1 GB RAM) läuft, aber professionelles Backtesting auf lokaler Hardware ermöglicht.
+Thank you for your interest in contributing to the **Polymarket AI Trader** project!
+We are currently in **V2 (Beta)**, focusing on stability, memory efficiency, and robust testing.
 
-## 🏗 Architektur-Philosophie (WICHTIG)
+## 🏗 Architecture & Philosophy
 
-Bevor du Code schreibst, verinnerliche bitte unser **Hybrid-Modell**:
+Before you start coding, please understand our core principles:
 
-1.  **Live-Trading (VPS - Low Resource):**
-    * **Hardware:** 1 vCPU, **1 GB RAM**.
-    * **Priorität:** Stabilität, Non-Blocking I/O, RAM-Effizienz.
-    * **Regel:** Keine großen Pandas DataFrames im Speicher halten! Daten werden gestreamt und direkt in SQLite geschrieben.
-    * **Komponenten:** Scanner, Execution Engine, Data Recorder.
-
-2.  **Research & Backtesting (Local - High Resource):**
-    * **Hardware:** Entwickler-Laptop / Workstation (z.B. 32 GB RAM).
-    * **Priorität:** Analyse-Tiefe, Simulation.
-    * **Datenfluss:** Liest die SQLite-DB (vom VPS), die via SCP/Git synchronisiert wurde.
+1.  **Low-Resource Priority:** The bot must run efficiently on a 1GB VPS. Avoid blocking I/O and large in-memory data structures.
+2.  **Async First:** Use `asyncio` for all I/O operations (API calls, DB writes).
+3.  **Strict Typing:** All Python code must be strictly typed (`mypy --strict`).
+4.  **Test-Driven:** New features must include unit tests with mocks. Live API calls are forbidden in tests.
 
 ---
 
-## 🛠 Entwicklungsumgebung einrichten
+## 🛠 Development Setup
 
-Wir nutzen **Python 3.11+** und **Poetry** oder `pip` mit `venv`.
+We use **Python 3.11+** and **Poetry** for dependency management.
 
-1.  **Repository klonen & Umgebung:**
+1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/philibertschlutzki/polymarket_bot.git](https://github.com/philibertschlutzki/polymarket_bot.git)
+    git clone https://github.com/philibertschlutzki/polymarket_bot.git
     cd polymarket_bot
-    python -m venv .venv
-    source .venv/bin/activate  # oder .venv\Scripts\activate auf Windows
-    pip install -r requirements.txt
     ```
 
-2.  **Pre-Commit Hooks (Optional aber empfohlen):**
-    Richte dir idealerweise Pre-Commit Hooks ein, um Linter-Fehler vor dem Push zu fangen.
+2.  **Install Dependencies:**
+    ```bash
+    poetry install
+    ```
+
+3.  **Activate Virtual Environment:**
+    ```bash
+    poetry shell
+    ```
+
+4.  **Install Pre-Commit Hooks (Recommended):**
+    Install `pre-commit` locally if you want automatic checks before pushing.
 
 ---
 
 ## 🛡 Code Quality Standards
 
-Unser CI/CD-Prozess (`.github/workflows/code-quality.yml`) ist streng. PRs, die diese Checks nicht bestehen, werden abgelehnt.
+Our CI/CD pipeline enforces strict quality checks. Ensure your code passes these before submitting a PR.
 
-Führe **bevor** du pushst folgende Befehle aus:
+Run all checks locally with:
 
-1.  **Formatierung (Black):**
+1.  **Formatting (Black & Isort):**
     ```bash
-    black src/
+    poetry run black src tests
+    poetry run isort src tests
     ```
-2.  **Import-Sortierung (Isort):**
+
+2.  **Linting (Flake8):**
     ```bash
-    isort src/
+    # Check for syntax errors and undefined names
+    poetry run flake8 src tests --count --select=E9,F63,F7,F82 --show-source --statistics
+    # Check for style guide adherence (max-complexity=10)
+    poetry run flake8 src tests --count --max-complexity=10 --max-line-length=127 --statistics
     ```
-3.  **Linting (Flake8):**
+
+3.  **Type Checking (MyPy - Strict):**
     ```bash
-    # Keine Syntaxfehler oder undefined names
-    flake8 src/ --count --select=E9,F63,F7,F82 --show-source --statistics
-    # Style Guide (Max Complexity 10)
-    flake8 src/ --count --max-complexity=10 --max-line-length=127 --statistics
+    poetry run mypy src
     ```
-4.  **Type Checking (MyPy - Strict):**
+
+4.  **Testing (Pytest):**
     ```bash
-    mypy src/ --ignore-missing-imports
+    poetry run pytest
     ```
 
 ---
 
-## 🚀 Roadmap & Offene Aufgaben (Help Wanted)
+## 🚀 Roadmap & Help Wanted
 
-Hier sind Bereiche, in denen wir dringend Unterstützung suchen oder sinnvolle Weiterentwicklungen sehen:
+We welcome contributions in the following areas:
 
-### 1. Core Stability & Performance
-* **Verbesserung des Data Recorders:** Optimierung der SQLite Schreibzugriffe (WAL-Mode, Batch Inserts), um Disk-IO auf dem VPS zu minimieren.
-* **Error Recovery:** Implementierung von automatischen Reconnect-Strategien für den WebSocket-Stream bei Verbindungsabbruch.
+### 1. Core Stability
+*   **Database Optimization:** Improve SQLite performance with better batching strategies.
+*   **Reconnection Logic:** Enhance WebSocket reconnection robustness for long-running sessions.
 
-### 2. Strategie-Erweiterungen
-* **Mean Reversion:** Entwicklung einer Strategie für korrelierte Märkte (z.B. "Trump gewinnt Pennsylvania" vs. "Trump gewinnt US-Wahl").
-* **Arbitrage:** Erkennung von Preisunterschieden zwischen "Yes/No" Paaren, deren Summe < $1.00 (nach Gebühren) liegt.
+### 2. Strategy Development
+*   **Mean Reversion:** Implement strategies for correlated markets.
+*   **Arbitrage:** Detect price discrepancies between Yes/No pairs.
 
-### 3. Analyse & Dashboarding (Local)
-* **Streamlit Dashboard:** Ein Tool, das die lokale `market_data.db` visualisiert (PNL-Kurve, Win-Rate, Gemini-Entscheidungen im Zeitverlauf).
-* **Jupyter Notebooks:** Vorlagen im Ordner `notebooks/` zur Analyse der Sentiment-Performance.
-
-### 4. Scanner-Logik
-* **Whale Alert:** Erweiterung des Scanners um eine Funktion, die große Einzel-Trades auf der Blockchain erkennt und als Signal nutzt.
+### 3. Analysis Tools
+*   **Local Dashboard:** Create a Streamlit app to visualize `market_data.db`.
+*   **Jupyter Notebooks:** Add analysis templates in `notebooks/`.
 
 ---
 
-##  workflow für Pull Requests
+## 📝 Pull Request Workflow
 
-1.  **Issue:** Suche dir ein Ticket aus oder erstelle eines für deinen Vorschlag.
-2.  **Branch:** Erstelle einen Branch mit sprechendem Namen:
-    * `feat/whale-alert-scanner`
-    * `fix/sqlite-lock-error`
-    * `docs/update-readme`
-3.  **Changes:** Implementiere deine Änderungen. Achte auf **Asynchronität** (kein `time.sleep`, nutze `asyncio.sleep`)!
-4.  **Test:** Schreibe Unit-Tests in `tests/` wenn du neue Logik hinzufügst.
-5.  **Lint:** Führe die Quality-Checks aus (siehe oben).
-6.  **PR:** Erstelle den Pull Request gegen `main`. Beschreibe genau, was du geändert hast und *warum*.
+1.  **Issue:** Create an issue describing the bug or feature.
+2.  **Branch:** Create a branch with a descriptive name (e.g., `feat/whale-alert`, `fix/sqlite-lock`).
+3.  **Code:** Implement changes following the guidelines above.
+4.  **Test:** Add unit tests in `tests/`.
+5.  **Verify:** Run all code quality checks locally.
+6.  **Submit:** Open a PR against `main` with a clear description of your changes.
 
 ---
 
-## 💡 Wichtige Hinweise für Entwickler
+## 💡 Developer Tips
 
-* **Async First:** Da der Bot in einem einzigen Event-Loop läuft, dürfen API-Calls (Gemini, Polymarket REST) niemals blockieren. Nutze `async/await` oder `loop.run_in_executor`.
-* **Type Hints:** Wir nutzen striktes Typing. Jede Funktionssignatur muss typisiert sein (`def my_func(a: int) -> str:`).
-* **Secrets:** Niemals API-Keys committen! Nutze `.env`.
+*   **Async/Await:** Use `await asyncio.sleep()` instead of `time.sleep()`.
+*   **Secrets:** Never commit API keys. Use `.env`.
+*   **Logging:** Use the project's logging setup (`logger.info()`), not `print()`.
 
-Wir freuen uns auf deinen Code! Happy Trading! 📈
+Happy Coding! 🚀

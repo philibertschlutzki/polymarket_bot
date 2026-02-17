@@ -2,10 +2,10 @@ import asyncio
 import logging
 import os
 import tomllib
-from typing import Any, cast
+from typing import Any, Dict, List, Optional
 
 from dotenv import load_dotenv
-from nautilus_trader.adapters.polymarket import (
+from nautilus_trader.adapters.polymarket import (  # type: ignore
     PolymarketDataClientConfig,
     PolymarketExecClientConfig,
     PolymarketLiveDataClientFactory,
@@ -20,37 +20,41 @@ from nautilus_trader.config import (
     TradingNodeConfig,
 )
 from nautilus_trader.live.node import TradingNode
+from nautilus_trader.model.instruments import Instrument
 
 from src.data.recorder import RecorderConfig, RecorderStrategy
 from src.scanner.polymarket import PolymarketScanner
 from src.scanner.service import PeriodicScannerService
 from src.strategies.sentiment import GeminiSentimentConfig, GeminiSentimentStrategy
+from src.utils.logging import setup_logging
 
 # Load env
 load_dotenv()
 
-# Setup Logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=os.getenv("LOG_LEVEL", "INFO"),
-)
 logger = logging.getLogger("main")
 
 
-def load_config() -> dict[str, Any]:
+def load_config() -> Dict[str, Any]:
+    """
+    Load configuration from config.toml.
+    """
     with open("config/config.toml", "rb") as f:
         return tomllib.load(f)
 
 
-def setup_node(config: dict[str, Any]) -> TradingNode:
-    private_key = os.getenv("POLYGON_PRIVATE_KEY")
-    funder = os.getenv("POLYGON_ADDRESS")
-    api_key = os.getenv("POLYMARKET_API_KEY")
-    api_secret = os.getenv("POLYMARKET_API_SECRET")
-    passphrase = os.getenv("POLYMARKET_PASSPHRASE")
+def setup_node(config: Dict[str, Any]) -> TradingNode:
+    """
+    Configure and build the Nautilus TradingNode.
+    """
+    private_key: Optional[str] = os.getenv("POLYGON_PRIVATE_KEY")
+    funder: Optional[str] = os.getenv("POLYGON_ADDRESS")
+    api_key: Optional[str] = os.getenv("POLYMARKET_API_KEY")
+    api_secret: Optional[str] = os.getenv("POLYMARKET_API_SECRET")
+    passphrase: Optional[str] = os.getenv("POLYMARKET_PASSPHRASE")
 
     # Determine Trading Mode
-    trading_mode = config.get("trading", {}).get("mode", "paper").lower()
+    trading_config = config.get("trading", {})
+    trading_mode: str = trading_config.get("mode", "paper").lower()
     logger.info(f"Setting up Trading Node in {trading_mode.upper()} mode.")
 
     if trading_mode == "live" and not private_key:
@@ -64,11 +68,9 @@ def setup_node(config: dict[str, Any]) -> TradingNode:
         passphrase=passphrase,
     )
 
-    data_clients: dict[str, LiveDataClientConfig] = {
-        "POLYMARKET": polymarket_data_config
-    }
-    exec_clients: dict[str, LiveExecClientConfig] = {}
-    emulator_config = None
+    data_clients: Dict[str, LiveDataClientConfig] = {"POLYMARKET": polymarket_data_config}
+    exec_clients: Dict[str, LiveExecClientConfig] = {}
+    emulator_config: Optional[OrderEmulatorConfig] = None
 
     if trading_mode == "live":
         polymarket_exec_config = PolymarketExecClientConfig(
@@ -112,6 +114,9 @@ def run_node(
     scanner_service: PeriodicScannerService,
     loop: asyncio.AbstractEventLoop,
 ) -> None:
+    """
+    Run the trading node loop.
+    """
     logger.info("Starting Trading Node...")
     try:
         node.run()
@@ -127,11 +132,16 @@ def run_node(
 
 
 def main() -> None:
+    """
+    Application Entry Point.
+    """
     try:
         config = load_config()
     except Exception as e:
-        logger.error(f"Failed to load config: {e}")
+        print(f"Failed to load config: {e}")
         return
+
+    setup_logging(config)
 
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
@@ -141,28 +151,37 @@ def main() -> None:
     logger.info("Running Market Scanner (Initial)...")
     scanner = PolymarketScanner(config)
 
+    instruments: List[Instrument] = []
     try:
-        instruments = loop.run_until_complete(scanner.scan())
+        scan_result = loop.run_until_complete(scanner.scan())
+        if scan_result:
+            instruments = scan_result
     except Exception as e:
         logger.error(f"Initial scan failed: {e}")
-        instruments = []
 
     if not instruments:
-        logger.warning(
-            "No instruments found by scanner. Starting anyway (will retry in periodic scan)."
-        )
+        logger.warning("No instruments found by scanner. Starting anyway (will retry in periodic scan).")
     else:
         logger.info(f"Scanner found {len(instruments)} instruments. Registering...")
 
-    for instrument in instruments:
-        cast(Any, node).instrument_provider.add(instrument)
+    # Type casting to access instrument_provider if not directly available on type hint
+    # TradingNode usually has instrument_provider
+    instrument_provider = getattr(node, "instrument_provider", None)
+    if instrument_provider:
+        for instrument in instruments:
+            instrument_provider.add(instrument)
+    else:
+        logger.error("Could not find instrument_provider on TradingNode.")
 
     trading_mode = config.get("trading", {}).get("mode", "paper").lower()
+    gemini_config = config.get("gemini", {})
+    risk_config = config.get("risk", {})
+
     strat_config = GeminiSentimentConfig(
-        risk_max_position_size_usdc=float(config["risk"]["max_position_size_usdc"]),
-        risk_slippage_tolerance_ticks=int(config["risk"]["slippage_tolerance_ticks"]),
-        gemini_model=config["gemini"]["model"],
-        gemini_temperature=config["gemini"]["temperature"],
+        risk_max_position_size_usdc=float(risk_config.get("max_position_size_usdc", 50.0)),
+        risk_slippage_tolerance_ticks=int(risk_config.get("slippage_tolerance_ticks", 2)),
+        gemini_model=gemini_config.get("model", "gemini-2.0-flash-exp"),
+        gemini_temperature=float(gemini_config.get("temperature", 0.1)),
         trading_mode=trading_mode,
     )
 
@@ -181,7 +200,7 @@ def main() -> None:
     scanner_interval = int(config.get("scanner", {}).get("interval_hours", 1))
     scanner_service = PeriodicScannerService(
         scanner=scanner,
-        instrument_provider=cast(Any, node).instrument_provider,
+        instrument_provider=instrument_provider,
         interval_hours=scanner_interval,
     )
 
