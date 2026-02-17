@@ -63,8 +63,8 @@ class PeriodicScannerService:
                 count += 1
                 added_instruments.append(instrument)
             except Exception as e:
-                # Likely already exists
-                logger.debug(f"Could not add instrument {instrument.id}: {e}")
+                # Likely already exists or locked
+                logger.warning(f"Could not add instrument {instrument.id}: {e}")
 
         logger.info(f"Registered/Updated {count} instruments.")
 

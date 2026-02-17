@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import os
 import sqlite3
 from typing import Any, Callable, List, Optional, Tuple
 
@@ -14,7 +15,7 @@ RECORDER_QUEUE: asyncio.Queue[Tuple[str, Any]] = asyncio.Queue(maxsize=10000)
 
 
 class RecorderConfig(StrategyConfig):  # type: ignore[misc]
-    db_path: str = "src/data/market_data.db"
+    db_path: str = os.path.join(os.getenv("DATA_DIR", "data"), "market_data.db")
     batch_size: int = 100
     flush_interval_seconds: float = 5.0
 
@@ -38,6 +39,9 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
 
     def _init_db(self) -> None:
         try:
+            # Ensure directory exists
+            os.makedirs(os.path.dirname(self.config.db_path), exist_ok=True)
+
             with sqlite3.connect(self.config.db_path) as conn:
                 # Enable WAL Mode
                 conn.execute("PRAGMA journal_mode=WAL;")

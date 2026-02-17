@@ -5,10 +5,20 @@ import os
 from typing import Any, Dict, List, Optional
 
 import google.generativeai as genai
-from google.generativeai import GenerativeModel  # type: ignore[attr-defined]
-from google.generativeai.types import HarmBlockThreshold, HarmCategory
+from google.generativeai import GenerativeModel
+from google.generativeai.types import (
+    GenerationConfig,
+    HarmBlockThreshold,
+    HarmCategory,
+    Tool,
+)
+from google.generativeai.protos import GoogleSearchRetrieval
 
 logger = logging.getLogger(__name__)
+
+
+class CircuitBreakerError(Exception):
+    pass
 
 
 class GeminiClient:
@@ -20,10 +30,14 @@ class GeminiClient:
         if not self.api_key:
             logger.warning("GOOGLE_API_KEY not found in environment variables.")
         else:
-            genai.configure(api_key=self.api_key)  # type: ignore[attr-defined]
+            genai.configure(api_key=self.api_key)
 
         self.model_name = os.getenv("GEMINI_MODEL") or str(gemini_config.get("model", "gemini-2.0-flash"))
         self.temperature = float(gemini_config.get("temperature", 0.1))
+
+        # Circuit Breaker State
+        self.consecutive_errors = 0
+        self.max_consecutive_errors = 3
 
         # JSON Schema for structured output
         self.response_schema = {
@@ -38,18 +52,27 @@ class GeminiClient:
         }
 
         # Tools configuration for Search Grounding
-        tools: List[Dict[str, Any]] = [{"google_search_retrieval": {}}]
+        try:
+            self.tools = [
+                Tool(
+                    google_search_retrieval=GoogleSearchRetrieval()
+                )
+            ]
+        except AttributeError:
+             # Fallback if specific types aren't available (though strict mode might complain)
+            logger.warning("GoogleSearchRetrieval type not found, using dict syntax fallback.")
+            self.tools = [{"google_search_retrieval": {}}] # type: ignore
 
         self.model: Optional[GenerativeModel] = None
         try:
-            self.model = genai.GenerativeModel(  # type: ignore[attr-defined]
+            self.model = genai.GenerativeModel(
                 model_name=self.model_name,
-                generation_config=genai.types.GenerationConfig(
+                generation_config=GenerationConfig(
                     response_mime_type="application/json",
                     response_schema=self.response_schema,
                     temperature=self.temperature,
                 ),
-                tools=tools,
+                tools=self.tools,
                 safety_settings={
                     HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
                     HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
@@ -70,8 +93,12 @@ class GeminiClient:
     ) -> Dict[str, Any]:
         """
         Analyze a market using Gemini 2.0 with Search Grounding.
-        Includes retries with exponential backoff.
+        Includes retries with exponential backoff and Circuit Breaker.
         """
+        if self.consecutive_errors >= self.max_consecutive_errors:
+            logger.critical("Circuit Breaker OPEN: Too many consecutive API errors. Skipping analysis.")
+            raise CircuitBreakerError("Gemini API Circuit Breaker is OPEN.")
+
         if not self.model:
             logger.error("Gemini model not initialized.")
             return self._error_result("Model not initialized")
@@ -83,7 +110,11 @@ class GeminiClient:
         for attempt in range(retries):
             try:
                 response = await asyncio.to_thread(self.model.generate_content, prompt)
-                return self._parse_response(response.text)
+                result = self._parse_response(response.text)
+
+                # Success - Reset Circuit Breaker
+                self.consecutive_errors = 0
+                return result
 
             except Exception as e:
                 logger.warning(f"Gemini analysis attempt {attempt + 1}/{retries} failed: {e}")
@@ -91,7 +122,12 @@ class GeminiClient:
                     await asyncio.sleep(delay)
                     delay *= 2
                 else:
-                    logger.error("All Gemini analysis attempts failed.")
+                    self.consecutive_errors += 1
+                    logger.error(f"Gemini analysis failed. Consecutive errors: {self.consecutive_errors}")
+
+                    if self.consecutive_errors >= self.max_consecutive_errors:
+                         logger.critical("Circuit Breaker TRIPPED!")
+
                     return self._error_result(f"Analysis failed: {str(e)}")
 
         return self._error_result("Unexpected flow end")

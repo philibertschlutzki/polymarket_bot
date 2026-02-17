@@ -58,8 +58,8 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         mode_prefix = "[PAPER] " if self.config.trading_mode == "paper" else ""
         self.notifier.send_message(f"{mode_prefix}🚀 Bot V2 Started. Strategy: Gemini Sentiment Analysis.")
 
-        # Initialize state from DB (Sync, only on start)
-        self._init_pnl_state()
+        # Initialize state from DB (Async)
+        asyncio.create_task(self._init_pnl_state())
 
         # Subscribe to data for all registered instruments
         self.check_new_instruments()
@@ -76,8 +76,12 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         # Smart Reconciliation
         self._handle_reconciliation()
 
-    def _init_pnl_state(self) -> None:
-        """Initialize the PnL state from DB synchronously."""
+    async def _init_pnl_state(self) -> None:
+        """Initialize the PnL state from DB asynchronously."""
+        self.daily_pnl = await asyncio.to_thread(self._fetch_pnl_from_db)
+        self.log.info(f"Initialized Daily PnL: {self.daily_pnl:.2f}")
+
+    def _fetch_pnl_from_db(self) -> float:
         try:
             # UTC Midnight
             today_start = int(time.time() // 86400 * 86400)
@@ -88,15 +92,14 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
                         (today_start,),
                     )
                     result = cursor.fetchone()
-                    self.daily_pnl = result[0] if result and result[0] else 0.0
+                    return result[0] if result and result[0] else 0.0
                 except sqlite3.OperationalError:
                     # Table might not exist yet. PnL is 0.0
                     self.log.warning("bot_trades table not found during PnL init. Assuming 0.0 PnL.")
-                    self.daily_pnl = 0.0
-
-            self.log.info(f"Initialized Daily PnL: {self.daily_pnl:.2f}")
+                    return 0.0
         except Exception as e:
-            self.log.error(f"Failed to init PnL state: {e}")
+            self.log.error(f"Failed to fetch PnL state: {e}")
+            return 0.0
 
     def check_new_instruments(self, time_event: Optional[int] = None) -> None:
         """
@@ -141,17 +144,26 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         try:
             instr_id = position.instrument_id.value
 
-            # Logic: If we are reconciling, we just assume we need to set the entry price locally.
-            # We don't check DB here to avoid blocking. We just log a reconciliation event.
-
+            price = 0.0
             quote = self.cache.quote(position.instrument_id)
-            price = 0.5
             if quote:
-                price = (quote.bid_price.as_double() + quote.ask_price.as_double()) / 2.0
+                bid = quote.bid_price.as_double()
+                ask = quote.ask_price.as_double()
+                if bid > 0 and ask > 0:
+                    price = (bid + ask) / 2.0
 
             if price <= 0:
                 trade = self.cache.trade(position.instrument_id)
-                price = trade.price.as_double() if trade else 0.5
+                if trade and trade.price.as_double() > 0:
+                    price = trade.price.as_double()
+
+            # If still 0, try avg_px_open
+            if price <= 0 and position.avg_px_open.as_double() > 0:
+                price = position.avg_px_open.as_double()
+
+            if price <= 0:
+                self.log.warning(f"Reconciliation: No valid price found for {instr_id}, skipping recording.")
+                return
 
             self.local_entry_prices[instr_id] = price
 
