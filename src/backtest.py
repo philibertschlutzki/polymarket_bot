@@ -3,16 +3,11 @@ import sqlite3
 from pathlib import Path
 from typing import Any, List, Set
 
-from nautilus_trader.backtest.node import BacktestNode
-from nautilus_trader.config import (
-    BacktestEngineConfig,
-    BacktestRunConfig,
-    LoggingConfig,
-    RiskEngineConfig,
-)
+from nautilus_trader.backtest.engine import BacktestEngine, BacktestEngineConfig
+from nautilus_trader.config import LoggingConfig, RiskEngineConfig
 from nautilus_trader.model.currencies import USD
-from nautilus_trader.model.identifiers import InstrumentId
-from nautilus_trader.model.instruments import TestInstrument
+from nautilus_trader.model.identifiers import InstrumentId, Symbol, Venue
+from nautilus_trader.model.instruments import Instrument
 from nautilus_trader.model.objects import Price, Quantity
 
 from src.data.loaders import SQLiteDataLoader
@@ -48,25 +43,29 @@ def get_instrument_ids(db_path: str) -> Set[str]:
     return instrument_ids
 
 
-def create_mock_instrument(i_str: str) -> TestInstrument:
+def create_mock_instrument(i_str: str) -> Instrument:
     """Create a mock instrument with metadata."""
     instr_id = InstrumentId.from_str(i_str)
 
-    # Create TestInstrument
-    # We assume 4 decimals for price and 1 decimal for size as defaults
-    instrument = TestInstrument(
+    # Use generic Instrument
+    # Assuming standard fields are sufficient for the strategy
+    instrument = Instrument(
         instrument_id=instr_id,
-        precision=4,
-        tick_size=Price.from_str("0.0001"),
+        raw_symbol=Symbol(i_str),
+        venue=Venue("POLYMARKET"),
+        price_precision=4,
+        size_precision=1,
+        price_increment=Price.from_str("0.0001"),
+        size_increment=Quantity.from_str("0.1"),
         lot_size=Quantity.from_str("0.1"),
-        maker_fee=Price.from_str("0.0"),
-        taker_fee=Price.from_str("0.0"),
+        max_quantity=Quantity.from_str("10000"),
+        min_quantity=Quantity.from_str("0.1"),
         base_currency=USD,
         quote_currency=USD,
+        product_type="BINARY",
     )
 
     # Inject metadata for Gemini Strategy
-    # We assign a generic question derived from ID to treat them independently
     instrument.info = {
         "question": f"Question for {i_str}",
         "outcome": "Yes",
@@ -76,7 +75,7 @@ def create_mock_instrument(i_str: str) -> TestInstrument:
 
 
 def load_data(
-    node: BacktestNode,
+    engine: BacktestEngine,
     instrument_ids: Set[str],
     db_path: str,
 ) -> List[Any]:
@@ -86,7 +85,7 @@ def load_data(
 
     for i_str in instrument_ids:
         instrument = create_mock_instrument(i_str)
-        node.add_instrument(instrument)
+        engine.add_instrument(instrument)
 
         # Load and collect ticks
         q_ticks = loader.load_quotes(i_str)
@@ -106,25 +105,21 @@ def main() -> None:
         logger.error(f"Database not found at {db_path}. Please copy it from VPS.")
         return
 
-    # 1. Configure Backtest Node
-    run_config = BacktestRunConfig(
-        engine=BacktestEngineConfig(
-            strategies=[],  # Added manually later
-        ),
-        risk_engine=RiskEngineConfig(
-            bypass=True,
-        ),
-        logging=LoggingConfig(log_level="INFO"),
+    # 1. Configure Backtest Engine directly
+    engine_config = BacktestEngineConfig(
+        trader_id="BACKTESTER",
+        risk_engine=RiskEngineConfig(bypass=True),
+        logging=LoggingConfig(log_level="INFO", log_level_file="INFO"),
     )
 
-    node = BacktestNode(config=run_config)
+    engine = BacktestEngine(config=engine_config)
 
     # 2. Identify Instruments from DB
     instrument_ids = get_instrument_ids(db_path)
     logger.info(f"Found {len(instrument_ids)} instruments in DB.")
 
     # 3. Load Data & Create Mock Instruments
-    ticks = load_data(node, instrument_ids, db_path)
+    ticks = load_data(engine, instrument_ids, db_path)
 
     if not ticks:
         logger.warning("No data found in DB.")
@@ -134,7 +129,8 @@ def main() -> None:
     ticks.sort(key=lambda x: x.ts_event)
 
     logger.info(f"Loaded {len(ticks)} ticks. Adding to engine...")
-    node.add_data(ticks)
+    for tick in ticks:
+        engine.add_data(tick)
 
     # 4. Add Strategy
     strat_config = GeminiSentimentConfig(
@@ -144,17 +140,16 @@ def main() -> None:
     )
 
     strategy = GeminiSentimentStrategy(config=strat_config)
-    node.add_strategy(strategy)
+    engine.add_strategy(strategy)
 
     # 5. Run Backtest
     logger.info("Starting Backtest Run...")
-    start_time = ticks[0].ts_event
-    node.run(start=start_time)
+    engine.run()
 
     logger.info("Backtest Complete.")
 
     # Print simple results
-    account = node.portfolio.account(USD)
+    account = engine.portfolio.account(USD)
     if account:
         logger.info(f"Final Account Balance: {account.balance_total()}")
     else:
