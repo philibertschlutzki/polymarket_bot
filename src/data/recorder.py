@@ -42,7 +42,8 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                 # Enable WAL Mode
                 conn.execute("PRAGMA journal_mode=WAL;")
 
-                conn.execute("""
+                conn.execute(
+                    """
                     CREATE TABLE IF NOT EXISTS quotes (
                         timestamp INTEGER,
                         instrument_id TEXT,
@@ -51,8 +52,10 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         bid_size REAL,
                         ask_size REAL
                     )
-                """)
-                conn.execute("""
+                """
+                )
+                conn.execute(
+                    """
                     CREATE TABLE IF NOT EXISTS trades (
                         timestamp INTEGER,
                         instrument_id TEXT,
@@ -60,9 +63,11 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         size REAL,
                         side TEXT
                     )
-                """)
+                """
+                )
                 # Table for strategy trades/PnL
-                conn.execute("""
+                conn.execute(
+                    """
                     CREATE TABLE IF NOT EXISTS bot_trades (
                         timestamp INTEGER,
                         instrument_id TEXT,
@@ -71,7 +76,8 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         quantity REAL,
                         realized_pnl REAL
                     )
-                """)
+                """
+                )
                 conn.commit()
             logger.info(f"Database initialized at {self.config.db_path} (WAL Mode)")
         except Exception as e:
