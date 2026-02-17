@@ -4,7 +4,12 @@ from pathlib import Path
 from typing import Any, List, Set
 
 from nautilus_trader.backtest.node import BacktestNode
-from nautilus_trader.config import BacktestEngineConfig, BacktestRunConfig, LoggingConfig, RiskEngineConfig
+from nautilus_trader.config import (
+    BacktestEngineConfig,
+    BacktestRunConfig,
+    LoggingConfig,
+    RiskEngineConfig,
+)
 from nautilus_trader.model.currencies import USD
 from nautilus_trader.model.identifiers import InstrumentId
 from nautilus_trader.model.instruments import TestInstrument
