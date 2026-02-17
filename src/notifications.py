@@ -17,12 +17,11 @@ class TelegramNotifier:
 
         if not self.bot_token or not self.chat_id:
             logger.warning("Telegram credentials not found. Notifications disabled.")
-        else:
-            try:
-                # Attempt to create session if loop exists
-                self.session = aiohttp.ClientSession()
-            except Exception:
-                self.session = None
+
+    async def _ensure_session(self) -> aiohttp.ClientSession:
+        if self.session is None or self.session.closed:
+            self.session = aiohttp.ClientSession()
+        return self.session
 
     async def close(self) -> None:
         if self.session and not self.session.closed:
@@ -32,14 +31,12 @@ class TelegramNotifier:
         if not self.bot_token or not self.chat_id:
             return
 
-        if self.session is None or self.session.closed:
-            self.session = aiohttp.ClientSession()
-
-        url = f"{self.base_url}/sendMessage"
-        payload = {"chat_id": self.chat_id, "text": text, "parse_mode": "Markdown"}
-
         try:
-            async with self.session.post(url, json=payload) as response:
+            session = await self._ensure_session()
+            url = f"{self.base_url}/sendMessage"
+            payload = {"chat_id": self.chat_id, "text": text, "parse_mode": "Markdown"}
+
+            async with session.post(url, json=payload) as response:
                 if response.status != 200:
                     error_text = await response.text()
                     logger.error(f"Failed to send Telegram message: {error_text}")
@@ -56,7 +53,11 @@ class TelegramNotifier:
             return
 
         # Fire-and-forget task
-        asyncio.create_task(self._send(text))
+        try:
+            loop = asyncio.get_running_loop()
+            loop.create_task(self._send(text))
+        except RuntimeError:
+            logger.warning("No running event loop to send Telegram message.")
 
     def send_trade_update(self, action: str, symbol: str, price: float, quantity: float, reason: str = "") -> None:
         """

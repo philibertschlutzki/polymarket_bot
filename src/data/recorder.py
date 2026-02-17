@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import sqlite3
-from typing import Any, Callable, List, Optional, Tuple
+from typing import Any, Callable, List, Optional, Tuple, Dict
 
 from nautilus_trader.config import StrategyConfig
 from nautilus_trader.model.data import QuoteTick, TradeTick
@@ -9,8 +9,11 @@ from nautilus_trader.trading.strategy import Strategy
 
 logger = logging.getLogger(__name__)
 
+# Shared queue for strategy events (trades, pnl)
+RECORDER_QUEUE: asyncio.Queue[Tuple[str, Any]] = asyncio.Queue(maxsize=10000)
 
-class RecorderConfig(StrategyConfig, frozen=True):
+
+class RecorderConfig(StrategyConfig):
     db_path: str = "src/data/market_data.db"
     batch_size: int = 100
     flush_interval_seconds: float = 5.0
@@ -25,7 +28,8 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
     def __init__(self, config: RecorderConfig):
         super().__init__(config)
         self.config = config
-        self.queue: asyncio.Queue[Tuple[str, Any]] = asyncio.Queue(maxsize=10000)
+        # Use the shared queue
+        self.queue = RECORDER_QUEUE
         self.writer_task: Optional[asyncio.Task[None]] = None
         self._running = False
 
@@ -34,9 +38,6 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
 
     def _init_db(self) -> None:
         try:
-            # Connect using context manager for automatic close (if specific wrapper used)
-            # or just for transaction safety.
-            # Here we use it to ensure closure after init.
             with sqlite3.connect(self.config.db_path) as conn:
                 # Enable WAL Mode
                 conn.execute("PRAGMA journal_mode=WAL;")
@@ -61,6 +62,19 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         price REAL,
                         size REAL,
                         side TEXT
+                    )
+                """
+                )
+                # Table for strategy trades/PnL
+                conn.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS bot_trades (
+                        timestamp INTEGER,
+                        instrument_id TEXT,
+                        side TEXT,
+                        price REAL,
+                        quantity REAL,
+                        realized_pnl REAL
                     )
                 """
                 )
@@ -105,14 +119,25 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
         """
         buffer_quotes: List[Tuple[Any, ...]] = []
         buffer_trades: List[Tuple[Any, ...]] = []
+        buffer_bot_trades: List[Tuple[Any, ...]] = []
         last_flush = asyncio.get_running_loop().time()
 
-        def _commit_batch(quotes: List[Tuple[Any, ...]], trades: List[Tuple[Any, ...]]) -> None:
-            self._execute_batch_insert(quotes, trades)
+        def _commit_batch(
+            quotes: List[Tuple[Any, ...]],
+            trades: List[Tuple[Any, ...]],
+            bot_trades: List[Tuple[Any, ...]]
+        ) -> None:
+            self._execute_batch_insert(quotes, trades, bot_trades)
 
         try:
             while self._running:
-                last_flush = await self._process_loop_iteration(buffer_quotes, buffer_trades, last_flush, _commit_batch)
+                last_flush = await self._process_loop_iteration(
+                    buffer_quotes,
+                    buffer_trades,
+                    buffer_bot_trades,
+                    last_flush,
+                    _commit_batch
+                )
 
         except asyncio.CancelledError:
             logger.info("Writer loop cancelled.")
@@ -121,8 +146,8 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
         finally:
             # Flush remaining data on exit
             try:
-                if buffer_quotes or buffer_trades:
-                    await asyncio.to_thread(_commit_batch, buffer_quotes, buffer_trades)
+                if buffer_quotes or buffer_trades or buffer_bot_trades:
+                    await asyncio.to_thread(_commit_batch, buffer_quotes, buffer_trades, buffer_bot_trades)
             except Exception as e:
                 logger.error(f"Final DB flush failed: {e}")
 
@@ -130,23 +155,25 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
         self,
         buffer_quotes: List[Tuple[Any, ...]],
         buffer_trades: List[Tuple[Any, ...]],
+        buffer_bot_trades: List[Tuple[Any, ...]],
         last_flush: float,
-        commit_func: Callable[[List[Tuple[Any, ...]], List[Tuple[Any, ...]]], None],
+        commit_func: Callable[[List[Tuple[Any, ...]], List[Tuple[Any, ...]], List[Tuple[Any, ...]]], None],
     ) -> float:
         try:
             # Try to get an item with a timeout
             try:
                 item = await asyncio.wait_for(self.queue.get(), timeout=1.0)
-                self._process_item(item, buffer_quotes, buffer_trades)
+                self._process_item(item, buffer_quotes, buffer_trades, buffer_bot_trades)
             except asyncio.TimeoutError:
                 pass  # Continue to check flush conditions
 
             now = asyncio.get_running_loop().time()
 
-            if self._should_flush(len(buffer_quotes), len(buffer_trades), now, last_flush):
-                await asyncio.to_thread(commit_func, buffer_quotes, buffer_trades)
+            if self._should_flush(len(buffer_quotes), len(buffer_trades), len(buffer_bot_trades), now, last_flush):
+                await asyncio.to_thread(commit_func, buffer_quotes, buffer_trades, buffer_bot_trades)
                 buffer_quotes.clear()
                 buffer_trades.clear()
+                buffer_bot_trades.clear()
                 return now
 
         except asyncio.CancelledError:
@@ -162,6 +189,7 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
         self,
         quotes: List[Tuple[Any, ...]],
         trades: List[Tuple[Any, ...]],
+        bot_trades: List[Tuple[Any, ...]],
     ) -> None:
         try:
             with sqlite3.connect(self.config.db_path) as conn:
@@ -170,6 +198,11 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         conn.executemany("INSERT INTO quotes VALUES (?,?,?,?,?,?)", quotes)
                     if trades:
                         conn.executemany("INSERT INTO trades VALUES (?,?,?,?,?)", trades)
+                    if bot_trades:
+                        conn.executemany(
+                            "INSERT INTO bot_trades (timestamp, instrument_id, side, price, quantity, realized_pnl) VALUES (?,?,?,?,?,?)",
+                            bot_trades
+                        )
         except Exception as e:
             logger.error(f"Batch commit failed: {e}")
 
@@ -178,9 +211,11 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
         item: Tuple[str, Any],
         buffer_quotes: List[Tuple[Any, ...]],
         buffer_trades: List[Tuple[Any, ...]],
+        buffer_bot_trades: List[Tuple[Any, ...]],
     ) -> None:
-        if item[0] == "quote":
-            qt: QuoteTick = item[1]
+        msg_type, data = item
+        if msg_type == "quote":
+            qt: QuoteTick = data
             buffer_quotes.append(
                 (
                     qt.ts_event,
@@ -191,8 +226,8 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                     qt.ask_size.as_double(),
                 )
             )
-        elif item[0] == "trade":
-            tt: TradeTick = item[1]
+        elif msg_type == "trade":
+            tt: TradeTick = data
             side_str = tt.side.name if hasattr(tt.side, "name") else str(tt.side)
             buffer_trades.append(
                 (
@@ -203,10 +238,27 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                     side_str,
                 )
             )
+        elif msg_type == "strategy_trade":
+            # Expecting dict: {timestamp, instrument_id, side, price, quantity, realized_pnl}
+            d = data
+            buffer_bot_trades.append(
+                (
+                    d["timestamp"],
+                    d["instrument_id"],
+                    d["side"],
+                    d["price"],
+                    d["quantity"],
+                    d["realized_pnl"],
+                )
+            )
 
-    def _should_flush(self, quote_len: int, trade_len: int, now: float, last_flush: float) -> bool:
+    def _should_flush(self, quote_len: int, trade_len: int, bot_len: int, now: float, last_flush: float) -> bool:
         return (
             quote_len >= self.config.batch_size
             or trade_len >= self.config.batch_size
-            or (now - last_flush > self.config.flush_interval_seconds and (quote_len > 0 or trade_len > 0))
+            or bot_len >= self.config.batch_size
+            or (
+                now - last_flush > self.config.flush_interval_seconds
+                and (quote_len > 0 or trade_len > 0 or bot_len > 0)
+            )
         )
