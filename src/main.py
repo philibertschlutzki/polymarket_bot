@@ -1,7 +1,9 @@
 import asyncio
 import logging
 import os
+import sys
 import tomllib
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from dotenv import load_dotenv
@@ -38,7 +40,8 @@ def load_config() -> Dict[str, Any]:
     """
     Load configuration from config.toml.
     """
-    with open("config/config.toml", "rb") as f:
+    config_path = Path(__file__).parent.parent / "config" / "config.toml"
+    with open(config_path, "rb") as f:
         return tomllib.load(f)
 
 
@@ -167,11 +170,13 @@ def main() -> None:
     # Type casting to access instrument_provider if not directly available on type hint
     # TradingNode usually has instrument_provider
     instrument_provider = getattr(node, "instrument_provider", None)
-    if instrument_provider:
-        for instrument in instruments:
-            instrument_provider.add(instrument)
-    else:
-        logger.error("Could not find instrument_provider on TradingNode.")
+
+    if not instrument_provider:
+        logger.critical("No InstrumentProvider found on TradingNode. Exiting.")
+        sys.exit(1)
+
+    for instrument in instruments:
+        instrument_provider.add(instrument)
 
     trading_mode = config.get("trading", {}).get("mode", "paper").lower()
     gemini_config = config.get("gemini", {})

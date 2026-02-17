@@ -90,17 +90,22 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         if entry_price <= 0:
             return
 
-        pnl_pct = (mid_price - entry_price) / entry_price
+        # Use Bid Price for Long Exit (Conservative PnL)
+        exit_price = tick.bid_price.as_double()
+        if exit_price <= 0:
+            return
+
+        pnl_pct = (exit_price - entry_price) / entry_price
 
         # Check Stop Loss
         if pnl_pct <= -self.config.stop_loss_pct:
-            reason = f"Stop Loss triggered: PnL {pnl_pct:.2%} (Price: {mid_price:.4f}, Entry: {entry_price:.4f})"
+            reason = f"Stop Loss triggered: PnL {pnl_pct:.2%} (Price: {exit_price:.4f}, Entry: {entry_price:.4f})"
             self.log.info(reason)
             self._close_position(position.instrument_id, reason)
 
         # Check Take Profit
         elif pnl_pct >= self.config.take_profit_pct:
-            reason = f"Take Profit triggered: PnL {pnl_pct:.2%} (Price: {mid_price:.4f}, Entry: {entry_price:.4f})"
+            reason = f"Take Profit triggered: PnL {pnl_pct:.2%} (Price: {exit_price:.4f}, Entry: {entry_price:.4f})"
             self.log.info(reason)
             self._close_position(position.instrument_id, reason)
 

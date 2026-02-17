@@ -22,7 +22,7 @@ class GeminiClient:
         else:
             genai.configure(api_key=self.api_key)  # type: ignore[attr-defined]
 
-        self.model_name = str(gemini_config.get("model", "gemini-2.0-flash-exp"))
+        self.model_name = os.getenv("GEMINI_MODEL") or str(gemini_config.get("model", "gemini-2.0-flash"))
         self.temperature = float(gemini_config.get("temperature", 0.1))
 
         # JSON Schema for structured output
@@ -105,14 +105,24 @@ class GeminiClient:
                 response = await asyncio.to_thread(self.model.generate_content, prompt)
 
                 # Parse JSON
+                text = response.text.strip()
+                # Clean Markdown code blocks
+                if text.startswith("```json"):
+                    text = text[7:]
+                elif text.startswith("```"):
+                    text = text[3:]
+                if text.endswith("```"):
+                    text = text[:-3]
+                text = text.strip()
+
                 try:
-                    result: Dict[str, Any] = json.loads(response.text)
+                    result: Dict[str, Any] = json.loads(text)
                 except json.JSONDecodeError:
                     logger.warning("Gemini response was not valid JSON, attempting to extract.")
-                    start = response.text.find("{")
-                    end = response.text.rfind("}") + 1
+                    start = text.find("{")
+                    end = text.rfind("}") + 1
                     if start != -1 and end != -1:
-                        result = json.loads(response.text[start:end])
+                        result = json.loads(text[start:end])
                     else:
                         raise ValueError("No JSON found in response")
 
