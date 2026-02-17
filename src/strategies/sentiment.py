@@ -1,5 +1,4 @@
 import asyncio
-import difflib
 import sqlite3
 import time
 from datetime import timedelta
@@ -149,8 +148,9 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
 
                 self.log.info(f"Reconciliation: Inserting Fake Trade for {instr_id} @ {price}")
                 conn.execute(
-                    "INSERT INTO bot_trades (timestamp, instrument_id, side, price, quantity, realized_pnl) VALUES (?, ?, ?, ?, ?, ?)",
-                    (ts, instr_id, side, price, qty, 0.0)
+                    "INSERT INTO bot_trades (timestamp, instrument_id, side, price, quantity, realized_pnl) VALUES "
+                    "(?, ?, ?, ?, ?, ?)",
+                    (ts, instr_id, side, price, qty, 0.0),
                 )
         except Exception as e:
             self.log.error(f"Failed to reconcile position {position.instrument_id}: {e}")
@@ -180,11 +180,12 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
                         entry_price = position.avg_px_open.as_double()
 
                 if entry_price > 0:
-                     realized_pnl = (price - entry_price) * qty
+                    realized_pnl = (price - entry_price) * qty
 
             with sqlite3.connect(self.db_path) as conn:
                 conn.execute(
-                    "INSERT INTO bot_trades (timestamp, instrument_id, side, price, quantity, realized_pnl) VALUES (?, ?, ?, ?, ?, ?)",
+                    "INSERT INTO bot_trades (timestamp, instrument_id, side, price, quantity, realized_pnl) VALUES "
+                    "(?, ?, ?, ?, ?, ?)",
                     (ts, instr_id, side, price, qty, realized_pnl),
                 )
         except Exception as e:
@@ -207,7 +208,10 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
                 net_pnl = result[0] if result and result[0] else 0.0
 
             if net_pnl <= -self.config.daily_loss_limit_usdc:
-                self.log.error(f"DAILY LOSS LIMIT REACHED: {net_pnl:.2f} USDC (Limit: -{self.config.daily_loss_limit_usdc}). Stopping new entries.")
+                self.log.error(
+                    f"DAILY LOSS LIMIT REACHED: {net_pnl:.2f} USDC "
+                    f"(Limit: -{self.config.daily_loss_limit_usdc}). Stopping new entries."
+                )
                 return True
         except Exception as e:
             self.log.error(f"Failed to check daily loss: {e}")
@@ -371,7 +375,8 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
 
             if not target_instr:
                 self.log.warning(
-                    f"Could not map target outcome '{target_outcome}' to available outcomes {available_outcomes} (Strict Match)"
+                    f"Could not map target outcome '{target_outcome}' to available outcomes {available_outcomes} "
+                    "(Strict Match)"
                 )
                 return
 
@@ -444,7 +449,9 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         self.log.info(f"Submitted BUY order for {instrument.id}: {qty} @ {price}")
 
         mode_prefix = "[PAPER] " if self.config.trading_mode == "paper" else ""
-        self.notifier.send_trade_update(f"{mode_prefix}BUY", str(instrument.id), float(price), float(qty), reason)
+        self.notifier.send_trade_update(
+            f"{mode_prefix}BUY", str(instrument.id), float(price), float(qty), reason
+        )
 
     def _close_position(self, instrument_id: Any, reason: str) -> None:
         """
@@ -461,7 +468,9 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         self.log.info(f"Closed position for {instrument_id} due to: {reason}")
 
         # Price unknown at submission, using 0.0 for notification
-        self.notifier.send_trade_update("SELL", str(instrument_id), 0.0, float(position.quantity), reason)
+        self.notifier.send_trade_update(
+            "SELL", str(instrument_id), 0.0, float(position.quantity), reason
+        )
 
     def on_bar(self, bar: Bar) -> None:
         # We use timer for evaluation, but we process bars/ticks for data updates
