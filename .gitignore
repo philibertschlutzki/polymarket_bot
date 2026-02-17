@@ -18,3 +18,7 @@ src/data/*.sqlite
 # IDE
 .vscode/
 .idea/
+.mypy_cache/
+.mypy_cache
+.mypy_cache/
+.mypy_cache/

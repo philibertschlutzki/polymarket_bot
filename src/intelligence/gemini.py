@@ -22,7 +22,7 @@ class GeminiClient:
         else:
             genai.configure(api_key=self.api_key)  # type: ignore[attr-defined]
 
-        self.model_name = str(gemini_config.get("model", "gemini-2.0-flash-exp"))
+        self.model_name = os.getenv("GEMINI_MODEL") or str(gemini_config.get("model", "gemini-2.0-flash"))
         self.temperature = float(gemini_config.get("temperature", 0.1))
 
         # JSON Schema for structured output
@@ -76,7 +76,34 @@ class GeminiClient:
             logger.error("Gemini model not initialized.")
             return self._error_result("Model not initialized")
 
-        prompt = f"""
+        prompt = self._build_prompt(question, description, prices, available_outcomes)
+        retries = 3
+        delay = 2.0
+
+        for attempt in range(retries):
+            try:
+                response = await asyncio.to_thread(self.model.generate_content, prompt)
+                return self._parse_response(response.text)
+
+            except Exception as e:
+                logger.warning(f"Gemini analysis attempt {attempt + 1}/{retries} failed: {e}")
+                if attempt < retries - 1:
+                    await asyncio.sleep(delay)
+                    delay *= 2
+                else:
+                    logger.error("All Gemini analysis attempts failed.")
+                    return self._error_result(f"Analysis failed: {str(e)}")
+
+        return self._error_result("Unexpected flow end")
+
+    def _build_prompt(
+        self,
+        question: str,
+        description: str,
+        prices: Dict[str, float],
+        available_outcomes: List[str],
+    ) -> str:
+        return f"""
         You are a professional prediction market analyst.
         Analyze the following market and decide on a trading action.
 
@@ -96,38 +123,27 @@ class GeminiClient:
         Return the result in strict JSON format.
         """
 
-        retries = 3
-        delay = 2.0
+    def _parse_response(self, text: str) -> Dict[str, Any]:
+        text = text.strip()
+        # Clean Markdown code blocks
+        if text.startswith("```json"):
+            text = text[7:]
+        elif text.startswith("```"):
+            text = text[3:]
+        if text.endswith("```"):
+            text = text[:-3]
+        text = text.strip()
 
-        for attempt in range(retries):
-            try:
-                # Generate content in a separate thread
-                response = await asyncio.to_thread(self.model.generate_content, prompt)
-
-                # Parse JSON
-                try:
-                    result: Dict[str, Any] = json.loads(response.text)
-                except json.JSONDecodeError:
-                    logger.warning("Gemini response was not valid JSON, attempting to extract.")
-                    start = response.text.find("{")
-                    end = response.text.rfind("}") + 1
-                    if start != -1 and end != -1:
-                        result = json.loads(response.text[start:end])
-                    else:
-                        raise ValueError("No JSON found in response")
-
-                return result
-
-            except Exception as e:
-                logger.warning(f"Gemini analysis attempt {attempt + 1}/{retries} failed: {e}")
-                if attempt < retries - 1:
-                    await asyncio.sleep(delay)
-                    delay *= 2
-                else:
-                    logger.error("All Gemini analysis attempts failed.")
-                    return self._error_result(f"Analysis failed: {str(e)}")
-
-        return self._error_result("Unexpected flow end")
+        try:
+            return json.loads(text)  # type: ignore
+        except json.JSONDecodeError:
+            logger.warning("Gemini response was not valid JSON, attempting to extract.")
+            start = text.find("{")
+            end = text.rfind("}") + 1
+            if start != -1 and end != -1:
+                return json.loads(text[start:end])  # type: ignore
+            else:
+                raise ValueError("No JSON found in response")
 
     def _error_result(self, reason: str) -> Dict[str, Any]:
         return {

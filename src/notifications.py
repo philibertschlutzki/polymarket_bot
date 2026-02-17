@@ -13,25 +13,38 @@ class TelegramNotifier:
         self.bot_token = bot_token or os.getenv("TELEGRAM_BOT_TOKEN")
         self.chat_id = chat_id or os.getenv("TELEGRAM_CHAT_ID")
         self.base_url = f"https://api.telegram.org/bot{self.bot_token}"
+        self.session: aiohttp.ClientSession | None = None
 
         if not self.bot_token or not self.chat_id:
             logger.warning("Telegram credentials not found. Notifications disabled.")
+        else:
+            try:
+                # Attempt to create session if loop exists
+                self.session = aiohttp.ClientSession()
+            except Exception:
+                self.session = None
+
+    async def close(self) -> None:
+        if self.session and not self.session.closed:
+            await self.session.close()
 
     async def _send(self, text: str) -> None:
         if not self.bot_token or not self.chat_id:
             return
 
+        if self.session is None or self.session.closed:
+            self.session = aiohttp.ClientSession()
+
         url = f"{self.base_url}/sendMessage"
         payload = {"chat_id": self.chat_id, "text": text, "parse_mode": "Markdown"}
 
         try:
-            async with aiohttp.ClientSession() as session:
-                async with session.post(url, json=payload) as response:
-                    if response.status != 200:
-                        error_text = await response.text()
-                        logger.error(f"Failed to send Telegram message: {error_text}")
-                    else:
-                        logger.debug(f"Telegram message sent: {text[:50]}...")
+            async with self.session.post(url, json=payload) as response:
+                if response.status != 200:
+                    error_text = await response.text()
+                    logger.error(f"Failed to send Telegram message: {error_text}")
+                else:
+                    logger.debug(f"Telegram message sent: {text[:50]}...")
         except Exception as e:
             logger.error(f"Error sending Telegram message: {e}")
 

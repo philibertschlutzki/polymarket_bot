@@ -107,15 +107,8 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
         buffer_trades: List[Tuple[Any, ...]] = []
         last_flush = asyncio.get_running_loop().time()
 
-        # Robust connection handling
-        try:
-            conn = sqlite3.connect(self.config.db_path, check_same_thread=False)
-        except Exception as e:
-            logger.error(f"Failed to open DB connection for writer: {e}")
-            return
-
         def _commit_batch(quotes: List[Tuple[Any, ...]], trades: List[Tuple[Any, ...]]) -> None:
-            self._execute_batch_insert(conn, quotes, trades)
+            self._execute_batch_insert(quotes, trades)
 
         try:
             while self._running:
@@ -129,12 +122,9 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
             # Flush remaining data on exit
             try:
                 if buffer_quotes or buffer_trades:
-                    _commit_batch(buffer_quotes, buffer_trades)
+                    await asyncio.to_thread(_commit_batch, buffer_quotes, buffer_trades)
             except Exception as e:
                 logger.error(f"Final DB flush failed: {e}")
-            finally:
-                conn.close()
-                logger.info("DB connection closed.")
 
     async def _process_loop_iteration(
         self,
@@ -170,16 +160,16 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
 
     def _execute_batch_insert(
         self,
-        conn: sqlite3.Connection,
         quotes: List[Tuple[Any, ...]],
         trades: List[Tuple[Any, ...]],
     ) -> None:
         try:
-            with conn:  # Transaction context
-                if quotes:
-                    conn.executemany("INSERT INTO quotes VALUES (?,?,?,?,?,?)", quotes)
-                if trades:
-                    conn.executemany("INSERT INTO trades VALUES (?,?,?,?,?)", trades)
+            with sqlite3.connect(self.config.db_path) as conn:
+                with conn:  # Transaction context
+                    if quotes:
+                        conn.executemany("INSERT INTO quotes VALUES (?,?,?,?,?,?)", quotes)
+                    if trades:
+                        conn.executemany("INSERT INTO trades VALUES (?,?,?,?,?)", trades)
         except Exception as e:
             logger.error(f"Batch commit failed: {e}")
 

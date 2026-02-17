@@ -49,53 +49,90 @@ graph TD
 
 ---
 
-## 🚀 Getting Started
+## 🔄 Dual Deployment Workflow
 
-### Prerequisites
+This repository is designed for a dual workflow to optimize resources:
 
-*   **Python 3.11** or **Docker**
-*   **Poetry** (for local development)
-*   **Polygon Wallet** (Private Key & Address) with POL (Gas) and USDC.e (Collateral).
-*   **API Keys:**
-    *   Google Cloud (Gemini)
-    *   Polymarket (API Key, Secret, Passphrase)
-    *   Telegram Bot Token (Optional)
+1.  **VPS (Paper/Live):** The bot runs in `paper` or `live` mode on a low-resource VPS (e.g., 1GB RAM). The `RecorderStrategy` saves real-time market data (Quotes & Trades) to `src/data/market_data.db`.
+2.  **Data Transfer:** Periodically copy `market_data.db` from the VPS to your powerful local machine.
+3.  **Laptop (Backtest):** Run `src/backtest.py` locally using the recorded data to simulate and improve strategies without risking capital.
 
-### Installation (Local)
+---
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/philibertschlutzki/polymarket_bot.git
-    cd polymarket_bot
-    ```
+## 🚀 Installation & Setup
 
-2.  **Install dependencies with Poetry:**
-    ```bash
-    poetry install
-    ```
+### A. VPS Setup (1GB RAM - Live/Paper)
+*Goal: Minimal resource usage, maximum stability.*
 
-3.  **Configure Environment:**
-    ```bash
-    cp .env.example .env
-    # Edit .env with your keys
-    ```
+**1. Configure Swap (Critical)**
+Without swap, the build or runtime might fail on 1GB RAM.
+```bash
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+```
 
-4.  **Run the Bot:**
-    ```bash
-    poetry run python src/main.py
-    ```
+**2. Deployment**
+```bash
+# Install Docker & Git
+sudo apt-get update && sudo apt-get install -y docker.io docker-compose git
 
-### Installation (Docker)
+# Clone Repository
+git clone https://github.com/philibertschlutzki/polymarket_bot.git
+cd polymarket_bot
 
-1.  **Build and Run:**
-    ```bash
-    docker-compose up -d --build
-    ```
+# Configure Environment
+cp .env.example .env
+nano .env
+# -> Fill in API Keys. Set GEMINI_MODEL="gemini-2.0-flash"
 
-2.  **View Logs:**
-    ```bash
-    docker-compose logs -f bot
-    ```
+# Check Config
+nano config/config.toml
+# -> Ensure mode = "paper" for testing
+```
+
+**3. Start System**
+```bash
+docker-compose up -d --build
+# Check Logs:
+docker-compose logs -f
+```
+
+### B. Laptop Setup (32GB RAM - Backtesting/Dev)
+*Goal: Fast development and backtesting.*
+
+**1. Python Environment (Poetry)**
+```bash
+sudo apt update && sudo apt install python3.11 python3.11-dev build-essential
+curl -sSL https://install.python-poetry.org | python3 -
+
+git clone https://github.com/philibertschlutzki/polymarket_bot.git
+cd polymarket_bot
+
+# Install Dependencies
+poetry env use python3.11
+poetry install
+```
+
+**2. Transfer Data from VPS**
+```bash
+# Example (replace user@vps-ip with your details)
+scp user@vps-ip:~/polymarket_bot/src/data/market_data.db src/data/
+```
+
+**3. Run Backtest**
+```bash
+poetry run python src/backtest.py
+```
+
+**4. Local Paper Trading (Optional)**
+```bash
+cp .env.example .env
+# Configure .env
+poetry run python src/main.py
+```
 
 ---
 
@@ -115,7 +152,7 @@ max_spread = 0.05
 days_to_expiration = 7
 
 [gemini]
-model = "gemini-2.0-flash-exp"
+model = "gemini-2.0-flash"
 temperature = 0.1
 
 [logging]
@@ -136,7 +173,8 @@ polymarket_bot/
 │   ├── scanner/         # Market discovery (Gamma API)
 │   ├── strategies/      # Nautilus trading logic
 │   ├── utils/           # Logging and helpers
-│   └── main.py          # Entry point
+│   ├── backtest.py      # Backtesting entry point
+│   └── main.py          # Live/Paper entry point
 ├── tests/               # Unit tests (pytest)
 ├── .env.example         # Secrets template
 ├── Dockerfile           # Multi-stage build definition

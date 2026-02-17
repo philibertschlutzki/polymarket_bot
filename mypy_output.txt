@@ -1,0 +1,7 @@
+src/intelligence/gemini.py:8: error: Unused "type: ignore" comment  [unused-ignore]
+src/intelligence/gemini.py:23: error: Unused "type: ignore" comment  [unused-ignore]
+src/intelligence/gemini.py:45: error: Unused "type: ignore" comment  [unused-ignore]
+src/strategies/sentiment.py:16: error: Unexpected keyword argument "frozen" for "__init_subclass__" of "object"  [call-arg]
+src/strategies/sentiment.py:16: error: Class cannot subclass "StrategyConfig" (has type "Any")  [misc]
+/home/jules/.local/share/pipx/venvs/mypy/lib/python3.12/site-packages/mypy/typeshed/stdlib/builtins.pyi:139: note: "__init_subclass__" of "object" defined here
+Found 5 errors in 2 files (checked 1 source file)
