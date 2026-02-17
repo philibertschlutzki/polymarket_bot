@@ -6,6 +6,7 @@ import urllib.request
 import urllib.error
 from typing import Any, Dict
 
+
 class TelegramErrorLogHandler(logging.Handler):
     def __init__(self, bot_token: str, chat_id: str):
         super().__init__()
@@ -39,6 +40,7 @@ class TelegramErrorLogHandler(logging.Handler):
         except Exception:
             # Prevent recursive logging if Telegram fails
             pass
+
 
 def setup_logging(config: Dict[str, Any]) -> None:
     log_level_str = os.getenv("LOG_LEVEL", "INFO").upper()

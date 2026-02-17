@@ -59,9 +59,9 @@ class GeminiClient:
                 )
             ]
         except AttributeError:
-             # Fallback if specific types aren't available (though strict mode might complain)
+            # Fallback if specific types aren't available (though strict mode might complain)
             logger.warning("GoogleSearchRetrieval type not found, using dict syntax fallback.")
-            self.tools = [{"google_search_retrieval": {}}] # type: ignore
+            self.tools = [{"google_search_retrieval": {}}]  # type: ignore
 
         self.model: Optional[GenerativeModel] = None
         try:
@@ -126,7 +126,7 @@ class GeminiClient:
                     logger.error(f"Gemini analysis failed. Consecutive errors: {self.consecutive_errors}")
 
                     if self.consecutive_errors >= self.max_consecutive_errors:
-                         logger.critical("Circuit Breaker TRIPPED!")
+                        logger.critical("Circuit Breaker TRIPPED!")
 
                     return self._error_result(f"Analysis failed: {str(e)}")
 
