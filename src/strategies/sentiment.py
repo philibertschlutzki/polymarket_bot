@@ -53,7 +53,8 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         try:
             with sqlite3.connect(self.db_path) as conn:
                 conn.execute("PRAGMA journal_mode=WAL;")
-                conn.execute("""
+                conn.execute(
+                    """
                     CREATE TABLE IF NOT EXISTS bot_trades (
                         timestamp INTEGER,
                         instrument_id TEXT,
@@ -62,7 +63,8 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
                         quantity REAL,
                         realized_pnl REAL
                     )
-                """)
+                """
+                )
                 conn.commit()
         except Exception as e:
             self.log.error(f"Failed to init PnL DB: {e}")
