@@ -45,9 +45,7 @@ class TelegramNotifier:
         # Fire-and-forget task
         asyncio.create_task(self._send(text))
 
-    def send_trade_update(
-        self, action: str, symbol: str, price: float, quantity: float, reason: str = ""
-    ) -> None:
+    def send_trade_update(self, action: str, symbol: str, price: float, quantity: float, reason: str = "") -> None:
         """
         Send a formatted trade update.
         """
@@ -68,11 +66,7 @@ class TelegramNotifier:
         Send scanner results.
         """
         markets_list = "\n".join([f"- {m}" for m in top_markets[:5]])
-        text = (
-            f"🔍 *Scanner Update* 🔍\n\n"
-            f"Found {count} new opportunities.\n"
-            f"**Top Markets:**\n{markets_list}"
-        )
+        text = f"🔍 *Scanner Update* 🔍\n\n" f"Found {count} new opportunities.\n" f"**Top Markets:**\n{markets_list}"
         self.send_message(text)
 
     def send_analysis_update(self, question: str, result: dict[str, Any]) -> None:

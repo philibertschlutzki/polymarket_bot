@@ -108,9 +108,7 @@ class GeminiClient:
                 try:
                     result: Dict[str, Any] = json.loads(response.text)
                 except json.JSONDecodeError:
-                    logger.warning(
-                        "Gemini response was not valid JSON, attempting to extract."
-                    )
+                    logger.warning("Gemini response was not valid JSON, attempting to extract.")
                     start = response.text.find("{")
                     end = response.text.rfind("}") + 1
                     if start != -1 and end != -1:
@@ -121,9 +119,7 @@ class GeminiClient:
                 return result
 
             except Exception as e:
-                logger.warning(
-                    f"Gemini analysis attempt {attempt + 1}/{retries} failed: {e}"
-                )
+                logger.warning(f"Gemini analysis attempt {attempt + 1}/{retries} failed: {e}")
                 if attempt < retries - 1:
                     await asyncio.sleep(delay)
                     delay *= 2

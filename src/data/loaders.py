@@ -23,9 +23,7 @@ class SQLiteDataLoader:
         try:
             with sqlite3.connect(self.db_path) as conn:
                 # Check if table exists
-                cursor = conn.execute(
-                    "SELECT name FROM sqlite_master WHERE type='table' AND name='quotes'"
-                )
+                cursor = conn.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='quotes'")
                 if not cursor.fetchone():
                     return []
 
@@ -72,9 +70,7 @@ class SQLiteDataLoader:
         trades = []
         try:
             with sqlite3.connect(self.db_path) as conn:
-                cursor = conn.execute(
-                    "SELECT name FROM sqlite_master WHERE type='table' AND name='trades'"
-                )
+                cursor = conn.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='trades'")
                 if not cursor.fetchone():
                     return []
 

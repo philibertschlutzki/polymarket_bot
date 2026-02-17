@@ -41,7 +41,8 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                 # Enable WAL Mode
                 conn.execute("PRAGMA journal_mode=WAL;")
 
-                conn.execute("""
+                conn.execute(
+                    """
                     CREATE TABLE IF NOT EXISTS quotes (
                         timestamp INTEGER,
                         instrument_id TEXT,
@@ -50,8 +51,10 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         bid_size REAL,
                         ask_size REAL
                     )
-                """)
-                conn.execute("""
+                """
+                )
+                conn.execute(
+                    """
                     CREATE TABLE IF NOT EXISTS trades (
                         timestamp INTEGER,
                         instrument_id TEXT,
@@ -59,7 +62,8 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         size REAL,
                         side TEXT
                     )
-                """)
+                """
+                )
                 conn.commit()
             logger.info(f"Database initialized at {self.config.db_path} (WAL Mode)")
         except Exception as e:
@@ -110,16 +114,12 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
             logger.error(f"Failed to open DB connection for writer: {e}")
             return
 
-        def _commit_batch(
-            quotes: List[Tuple[Any, ...]], trades: List[Tuple[Any, ...]]
-        ) -> None:
+        def _commit_batch(quotes: List[Tuple[Any, ...]], trades: List[Tuple[Any, ...]]) -> None:
             self._execute_batch_insert(conn, quotes, trades)
 
         try:
             while self._running:
-                last_flush = await self._process_loop_iteration(
-                    buffer_quotes, buffer_trades, last_flush, _commit_batch
-                )
+                last_flush = await self._process_loop_iteration(buffer_quotes, buffer_trades, last_flush, _commit_batch)
 
         except asyncio.CancelledError:
             logger.info("Writer loop cancelled.")
@@ -153,9 +153,7 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
 
             now = asyncio.get_running_loop().time()
 
-            if self._should_flush(
-                len(buffer_quotes), len(buffer_trades), now, last_flush
-            ):
+            if self._should_flush(len(buffer_quotes), len(buffer_trades), now, last_flush):
                 await asyncio.to_thread(commit_func, buffer_quotes, buffer_trades)
                 buffer_quotes.clear()
                 buffer_trades.clear()
@@ -216,14 +214,9 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                 )
             )
 
-    def _should_flush(
-        self, quote_len: int, trade_len: int, now: float, last_flush: float
-    ) -> bool:
+    def _should_flush(self, quote_len: int, trade_len: int, now: float, last_flush: float) -> bool:
         return (
             quote_len >= self.config.batch_size
             or trade_len >= self.config.batch_size
-            or (
-                now - last_flush > self.config.flush_interval_seconds
-                and (quote_len > 0 or trade_len > 0)
-            )
+            or (now - last_flush > self.config.flush_interval_seconds and (quote_len > 0 or trade_len > 0))
         )
