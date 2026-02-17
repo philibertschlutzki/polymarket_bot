@@ -57,7 +57,7 @@ class GeminiClient:
         except AttributeError:
             # Fallback if specific types aren't available (though strict mode might complain)
             logger.warning("GoogleSearchRetrieval type not found, using dict syntax fallback.")
-            self.tools = [{"google_search_retrieval": {}}]  # type: ignore
+            self.tools = [{"google_search_retrieval": {}}]
 
         self.model: Optional[GenerativeModel] = None
         try:
@@ -86,7 +86,7 @@ class GeminiClient:
         description: str,
         prices: Dict[str, float],
         available_outcomes: List[str],
-    ) -> Dict[str, Any]:
+    ) -> Dict[str, Any]: # type: ignore[no-any-return]
         """
         Analyze a market using Gemini 2.0 with Search Grounding.
         Includes retries with exponential backoff and Circuit Breaker.
@@ -155,7 +155,7 @@ class GeminiClient:
         Return the result in strict JSON format.
         """
 
-    def _parse_response(self, text: str) -> Dict[str, Any]:
+    def _parse_response(self, text: str) -> Dict[str, Any]: # type: ignore[no-any-return]
         text = text.strip()
         # Clean Markdown code blocks
         if text.startswith("```json"):
@@ -167,17 +167,17 @@ class GeminiClient:
         text = text.strip()
 
         try:
-            return json.loads(text)  # type: ignore
+            return json.loads(text)
         except json.JSONDecodeError:
             logger.warning("Gemini response was not valid JSON, attempting to extract.")
             start = text.find("{")
             end = text.rfind("}") + 1
             if start != -1 and end != -1:
-                return json.loads(text[start:end])  # type: ignore
+                return json.loads(text[start:end])
             else:
                 raise ValueError("No JSON found in response")
 
-    def _error_result(self, reason: str) -> Dict[str, Any]:
+    def _error_result(self, reason: str) -> Dict[str, Any]: # type: ignore[no-any-return]
         return {
             "action": "hold",
             "target_outcome": "",

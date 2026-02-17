@@ -6,7 +6,7 @@ import aiohttp
 import msgspec
 import pandas as pd
 from nautilus_trader.adapters.polymarket.common.parsing import (
-    parse_polymarket_instrument as parse_instrument,  # type: ignore[attr-defined]
+    parse_instrument,
 )
 from nautilus_trader.model.instruments import Instrument
 

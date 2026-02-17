@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from dotenv import load_dotenv
-from nautilus_trader.adapters.polymarket import (  # type: ignore
+from nautilus_trader.adapters.polymarket import (
     PolymarketDataClientConfig,
     PolymarketExecClientConfig,
     PolymarketLiveDataClientFactory,
