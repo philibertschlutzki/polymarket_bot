@@ -125,7 +125,7 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
         def _commit_batch(
             quotes: List[Tuple[Any, ...]],
             trades: List[Tuple[Any, ...]],
-            bot_trades: List[Tuple[Any, ...]]
+            bot_trades: List[Tuple[Any, ...]],
         ) -> None:
             self._execute_batch_insert(quotes, trades, bot_trades)
 
@@ -136,7 +136,7 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                     buffer_trades,
                     buffer_bot_trades,
                     last_flush,
-                    _commit_batch
+                    _commit_batch,
                 )
 
         except asyncio.CancelledError:
@@ -202,7 +202,7 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         conn.executemany(
                             "INSERT INTO bot_trades (timestamp, instrument_id, side, "
                             "price, quantity, realized_pnl) VALUES (?,?,?,?,?,?)",
-                            bot_trades
+                            bot_trades,
                         )
         except Exception as e:
             logger.error(f"Batch commit failed: {e}")
