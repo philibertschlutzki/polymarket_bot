@@ -53,8 +53,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         try:
             with sqlite3.connect(self.db_path) as conn:
                 conn.execute("PRAGMA journal_mode=WAL;")
-                conn.execute(
-                    """
+                conn.execute("""
                     CREATE TABLE IF NOT EXISTS bot_trades (
                         timestamp INTEGER,
                         instrument_id TEXT,
@@ -63,8 +62,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
                         quantity REAL,
                         realized_pnl REAL
                     )
-                """
-                )
+                """)
                 conn.commit()
         except Exception as e:
             self.log.error(f"Failed to init PnL DB: {e}")
@@ -112,10 +110,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
                 question = instrument.info.get("question")
                 if question:
                     # Find related instruments for this market
-                    related = [
-                        i for i in self.cache.instruments()
-                        if i.info.get("question") == question
-                    ]
+                    related = [i for i in self.cache.instruments() if i.info.get("question") == question]
                     if related:
                         asyncio.create_task(self._process_market_async(question, related))
 
@@ -365,11 +360,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
 
             # Find instrument for this outcome
             target_instr = next(
-                (
-                    i
-                    for i in instruments
-                    if str(i.info.get("outcome") or i.outcome).strip().lower() == target_outcome_clean
-                ),
+                (i for i in instruments if str(i.info.get("outcome") or i.outcome).strip().lower() == target_outcome_clean),
                 None,
             )
 
@@ -449,9 +440,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         self.log.info(f"Submitted BUY order for {instrument.id}: {qty} @ {price}")
 
         mode_prefix = "[PAPER] " if self.config.trading_mode == "paper" else ""
-        self.notifier.send_trade_update(
-            f"{mode_prefix}BUY", str(instrument.id), float(price), float(qty), reason
-        )
+        self.notifier.send_trade_update(f"{mode_prefix}BUY", str(instrument.id), float(price), float(qty), reason)
 
     def _close_position(self, instrument_id: Any, reason: str) -> None:
         """
@@ -468,9 +457,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         self.log.info(f"Closed position for {instrument_id} due to: {reason}")
 
         # Price unknown at submission, using 0.0 for notification
-        self.notifier.send_trade_update(
-            "SELL", str(instrument_id), 0.0, float(position.quantity), reason
-        )
+        self.notifier.send_trade_update("SELL", str(instrument_id), 0.0, float(position.quantity), reason)
 
     def on_bar(self, bar: Bar) -> None:
         # We use timer for evaluation, but we process bars/ticks for data updates
