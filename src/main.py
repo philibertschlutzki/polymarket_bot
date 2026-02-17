@@ -188,6 +188,7 @@ def main() -> None:
         gemini_model=gemini_config.get("model", "gemini-2.0-flash-exp"),
         gemini_temperature=float(gemini_config.get("temperature", 0.1)),
         trading_mode=trading_mode,
+        daily_loss_limit_usdc=float(os.getenv("DAILY_LOSS_LIMIT_USDC", 100.0)),
     )
 
     strategy = GeminiSentimentStrategy(config=strat_config)

@@ -1,11 +1,13 @@
 import asyncio
-import difflib
+import sqlite3
+import time
 from datetime import timedelta
 from typing import Any, Dict, List, Optional, Set
 
 from nautilus_trader.config import StrategyConfig
 from nautilus_trader.model.data import Bar, QuoteTick
 from nautilus_trader.model.enums import OrderSide, TimeInForce
+from nautilus_trader.model.events import OrderFilled
 from nautilus_trader.model.instruments import Instrument
 from nautilus_trader.trading.strategy import Strategy
 
@@ -22,6 +24,7 @@ class GeminiSentimentConfig(StrategyConfig, frozen=True):
     stop_loss_pct: float = 0.15
     take_profit_pct: float = 0.30
     trading_mode: str = "paper"
+    daily_loss_limit_usdc: float = 100.0
 
 
 class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
@@ -41,6 +44,30 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         self.notifier = TelegramNotifier()
 
         self.analyzed_markets: Set[str] = set()  # Track analyzed questions to avoid duplicate calls per cycle
+        self.local_entry_prices: Dict[str, float] = {}
+        self.db_path = "src/data/market_data.db"
+        self._init_pnl_db()
+
+    def _init_pnl_db(self) -> None:
+        """Initialize the PnL tracking table."""
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                conn.execute("PRAGMA journal_mode=WAL;")
+                conn.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS bot_trades (
+                        timestamp INTEGER,
+                        instrument_id TEXT,
+                        side TEXT,
+                        price REAL,
+                        quantity REAL,
+                        realized_pnl REAL
+                    )
+                """
+                )
+                conn.commit()
+        except Exception as e:
+            self.log.error(f"Failed to init PnL DB: {e}")
 
     def on_start(self) -> None:
         """
@@ -61,6 +88,132 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
             interval=timedelta(hours=self.config.analysis_interval_hours),
         )
 
+        # Smart Reconciliation
+        self._handle_reconciliation()
+
+    def _handle_reconciliation(self) -> None:
+        """
+        Handle existing positions on startup.
+        1. Check/Insert in DB (Fake Trade).
+        2. Trigger immediate analysis.
+        """
+        positions = self.cache.positions()
+        if not positions:
+            return
+
+        self.log.info(f"Reconciling {len(positions)} positions...")
+
+        for position in positions:
+            self._ensure_position_in_db(position)
+
+            # Immediate Analysis
+            instrument = self.cache.instrument(position.instrument_id)
+            if instrument and instrument.info:
+                question = instrument.info.get("question")
+                if question:
+                    # Find related instruments for this market
+                    related = [i for i in self.cache.instruments() if i.info.get("question") == question]
+                    if related:
+                        asyncio.create_task(self._process_market_async(question, related))
+
+    def _ensure_position_in_db(self, position: Any) -> None:
+        """
+        Ensure position exists in DB (for PnL tracking).
+        """
+        try:
+            instr_id = position.instrument_id.value
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.execute("SELECT 1 FROM bot_trades WHERE instrument_id = ?", (instr_id,))
+                if cursor.fetchone():
+                    return
+
+                # Insert Fake Trade
+                quote = self.cache.quote(position.instrument_id)
+                price = 0.5
+                if quote:
+                    price = (quote.bid_price.as_double() + quote.ask_price.as_double()) / 2.0
+
+                if price <= 0:
+                    trade = self.cache.trade(position.instrument_id)
+                    price = trade.price.as_double() if trade else 0.5
+
+                self.local_entry_prices[instr_id] = price
+
+                ts = int(time.time())
+                qty = position.quantity.as_double()
+                side = "BUY"  # Assumption for existing long position
+
+                self.log.info(f"Reconciliation: Inserting Fake Trade for {instr_id} @ {price}")
+                conn.execute(
+                    "INSERT INTO bot_trades (timestamp, instrument_id, side, price, quantity, realized_pnl) VALUES "
+                    "(?, ?, ?, ?, ?, ?)",
+                    (ts, instr_id, side, price, qty, 0.0),
+                )
+        except Exception as e:
+            self.log.error(f"Failed to reconcile position {position.instrument_id}: {e}")
+
+    def on_order_filled(self, event: OrderFilled) -> None:
+        """
+        Record execution and calculate PnL.
+        """
+        try:
+            ts = int(time.time())
+            instr_id = event.instrument_id.value
+            side = event.order_side.name if hasattr(event.order_side, "name") else str(event.order_side)
+            price = event.last_px.as_double()
+            qty = event.last_qty.as_double()
+            realized_pnl = 0.0
+
+            if side == "BUY":
+                self.local_entry_prices[instr_id] = price
+
+            # Calculate Realized PnL if closing (SELL)
+            if side == "SELL":
+                entry_price = self.local_entry_prices.get(instr_id, 0.0)
+                # Fallback to Nautilus avg_px_open if local price missing
+                if entry_price <= 0:
+                    position = self.cache.position(event.instrument_id)
+                    if position:
+                        entry_price = position.avg_px_open.as_double()
+
+                if entry_price > 0:
+                    realized_pnl = (price - entry_price) * qty
+
+            with sqlite3.connect(self.db_path) as conn:
+                conn.execute(
+                    "INSERT INTO bot_trades (timestamp, instrument_id, side, price, quantity, realized_pnl) VALUES "
+                    "(?, ?, ?, ?, ?, ?)",
+                    (ts, instr_id, side, price, qty, realized_pnl),
+                )
+        except Exception as e:
+            self.log.error(f"Failed to record trade: {e}")
+
+    def _check_daily_loss(self) -> bool:
+        """
+        Check if daily realized loss exceeds limit.
+        Returns True if trading should stop.
+        """
+        try:
+            # UTC Midnight
+            today_start = int(time.time() // 86400 * 86400)
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.execute(
+                    "SELECT SUM(realized_pnl) FROM bot_trades WHERE timestamp >= ?",
+                    (today_start,),
+                )
+                result = cursor.fetchone()
+                net_pnl = result[0] if result and result[0] else 0.0
+
+            if net_pnl <= -self.config.daily_loss_limit_usdc:
+                self.log.error(
+                    f"DAILY LOSS LIMIT REACHED: {net_pnl:.2f} USDC "
+                    f"(Limit: -{self.config.daily_loss_limit_usdc}). Stopping new entries."
+                )
+                return True
+        except Exception as e:
+            self.log.error(f"Failed to check daily loss: {e}")
+        return False
+
     def on_quote_tick(self, tick: QuoteTick) -> None:
         """
         Monitor prices for Stop-Loss and Take-Profit.
@@ -79,14 +232,16 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         if self.cache.orders_open(tick.instrument_id):
             return
 
-        # Calculate current mid price
-        mid_price = (tick.bid_price.as_double() + tick.ask_price.as_double()) / 2.0
-        if mid_price <= 0:
+        # Check Bid Price validity (never use Mid Price for Long valuation)
+        if tick.bid_price.as_double() <= 0:
             return
 
         # Calculate PnL percentage
-        # avg_px_open is the average entry price
-        entry_price = position.avg_px_open.as_double()
+        # Use local entry price if available, else Nautilus avg_px_open
+        entry_price = self.local_entry_prices.get(tick.instrument_id.value, 0.0)
+        if entry_price <= 0:
+            entry_price = position.avg_px_open.as_double()
+
         if entry_price <= 0:
             return
 
@@ -202,19 +357,21 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         confidence = float(analysis.get("confidence", 0.0))
 
         if action == "buy" and confidence > 0.7:
-            # Find matching instrument
-            matches = difflib.get_close_matches(target_outcome, available_outcomes, n=1, cutoff=0.6)
-            if not matches:
-                self.log.warning(f"Could not map target outcome '{target_outcome}' to available outcomes {available_outcomes}")
-                return
-
-            matched_outcome = matches[0]
+            # Strict matching
+            target_outcome_clean = target_outcome.strip().lower()
 
             # Find instrument for this outcome
             target_instr = next(
-                (i for i in instruments if (i.info.get("outcome") == matched_outcome or i.outcome == matched_outcome)),
+                (i for i in instruments if str(i.info.get("outcome") or i.outcome).strip().lower() == target_outcome_clean),
                 None,
             )
+
+            if not target_instr:
+                self.log.warning(
+                    f"Could not map target outcome '{target_outcome}' to available outcomes {available_outcomes} "
+                    "(Strict Match)"
+                )
+                return
 
             if target_instr:
                 self._execute_buy(target_instr, str(analysis.get("reasoning", "")))
@@ -229,6 +386,10 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         """
         Execute a buy order with risk checks.
         """
+        # Check Daily Loss
+        if self._check_daily_loss():
+            return
+
         # Check if already working an order
         if self.cache.orders_open(instrument.id):
             self.log.info(f"Open orders exist for {instrument.id}, skipping buy.")
