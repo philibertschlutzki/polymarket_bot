@@ -141,6 +141,67 @@ def run_node(
             logger.error(f"Error stopping scanner: {e}")
 
 
+def setup_strategies(node: TradingNode, config: Dict[str, Any]) -> None:
+    """
+    Configure and add strategies to the trading node.
+    """
+    trading_mode = config.get("trading", {}).get("mode", "paper").lower()
+    gemini_config = config.get("gemini", {})
+    risk_config = config.get("risk", {})
+
+    strat_config = GeminiSentimentConfig(
+        risk_max_position_size_usdc=float(risk_config.get("max_position_size_usdc", 50.0)),
+        risk_slippage_tolerance_ticks=int(risk_config.get("slippage_tolerance_ticks", 2)),
+        gemini_model=gemini_config.get("model", "gemini-2.0-flash-exp"),
+        gemini_temperature=float(gemini_config.get("temperature", 0.1)),
+        trading_mode=trading_mode,
+        daily_loss_limit_usdc=float(os.getenv("DAILY_LOSS_LIMIT_USDC", 100.0)),
+    )
+
+    strategy = GeminiSentimentStrategy(config=strat_config)
+    node.trader.add_strategy(strategy)
+
+    logger.info("Adding SQLite Data Recorder...")
+    recorder_config = RecorderConfig(
+        db_path="src/data/market_data.db",
+        batch_size=100,
+        flush_interval_seconds=5.0,
+    )
+    recorder = RecorderStrategy(config=recorder_config)
+    node.trader.add_strategy(recorder)
+
+
+def setup_initial_instruments(loop: asyncio.AbstractEventLoop, config: Dict[str, Any], node: TradingNode) -> None:
+    """
+    Scan for initial instruments and add them to the provider.
+    """
+    logger.info("Running Market Scanner (Initial)...")
+    scanner = PolymarketScanner(config)
+
+    instruments: List[Instrument] = []
+    try:
+        scan_result = loop.run_until_complete(scanner.scan())
+        if scan_result:
+            instruments = scan_result
+    except Exception as e:
+        logger.error(f"Initial scan failed: {e}")
+
+    if not instruments:
+        logger.warning("No instruments found by scanner. Starting anyway (will retry in periodic scan).")
+    else:
+        logger.info(f"Scanner found {len(instruments)} instruments. Registering...")
+
+    # Type casting to access instrument_provider if not directly available on type hint
+    instrument_provider = getattr(node, "instrument_provider", None)
+
+    if not instrument_provider:
+        logger.critical("No InstrumentProvider found on TradingNode. Exiting.")
+        sys.exit(1)
+
+    for instrument in instruments:
+        instrument_provider.add(instrument)
+
+
 def main() -> None:
     """
     Application Entry Point.
@@ -159,61 +220,17 @@ def main() -> None:
     try:
         node = setup_node(config)
 
-        logger.info("Running Market Scanner (Initial)...")
-        scanner = PolymarketScanner(config)
+        setup_initial_instruments(loop, config, node)
 
-        instruments: List[Instrument] = []
-        try:
-            scan_result = loop.run_until_complete(scanner.scan())
-            if scan_result:
-                instruments = scan_result
-        except Exception as e:
-            logger.error(f"Initial scan failed: {e}")
-
-        if not instruments:
-            logger.warning("No instruments found by scanner. Starting anyway (will retry in periodic scan).")
-        else:
-            logger.info(f"Scanner found {len(instruments)} instruments. Registering...")
-
-        # Type casting to access instrument_provider if not directly available on type hint
-        instrument_provider = getattr(node, "instrument_provider", None)
-
-        if not instrument_provider:
-            logger.critical("No InstrumentProvider found on TradingNode. Exiting.")
-            sys.exit(1)
-
-        for instrument in instruments:
-            instrument_provider.add(instrument)
-
-        trading_mode = config.get("trading", {}).get("mode", "paper").lower()
-        gemini_config = config.get("gemini", {})
-        risk_config = config.get("risk", {})
-
-        strat_config = GeminiSentimentConfig(
-            risk_max_position_size_usdc=float(risk_config.get("max_position_size_usdc", 50.0)),
-            risk_slippage_tolerance_ticks=int(risk_config.get("slippage_tolerance_ticks", 2)),
-            gemini_model=gemini_config.get("model", "gemini-2.0-flash-exp"),
-            gemini_temperature=float(gemini_config.get("temperature", 0.1)),
-            trading_mode=trading_mode,
-            daily_loss_limit_usdc=float(os.getenv("DAILY_LOSS_LIMIT_USDC", 100.0)),
-        )
-
-        strategy = GeminiSentimentStrategy(config=strat_config)
-        node.trader.add_strategy(strategy)
-
-        logger.info("Adding SQLite Data Recorder...")
-        recorder_config = RecorderConfig(
-            db_path="src/data/market_data.db",
-            batch_size=100,
-            flush_interval_seconds=5.0,
-        )
-        recorder = RecorderStrategy(config=recorder_config)
-        node.trader.add_strategy(recorder)
+        setup_strategies(node, config)
 
         scanner_interval = int(config.get("scanner", {}).get("interval_hours", 1))
+        # Need to reconstruct scanner or pass it if reused, here simpler to re-instantiate or just pass config
+        # The service creates its own scanner instance internally if we passed the class, but here it takes an instance
+        # Let's create a new one for the periodic service to avoid state issues if any
         scanner_service = PeriodicScannerService(
-            scanner=scanner,
-            instrument_provider=instrument_provider,
+            scanner=PolymarketScanner(config),
+            instrument_provider=getattr(node, "instrument_provider", None),
             interval_hours=scanner_interval,
         )
 
@@ -236,6 +253,7 @@ def main() -> None:
                 loop.close()
             except Exception as e:
                 print(f"Error closing loop: {e}")
+
 
 if __name__ == "__main__":
     main()

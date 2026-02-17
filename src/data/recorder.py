@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import sqlite3
-from typing import Any, Callable, List, Optional, Tuple, Dict
+from typing import Any, Callable, List, Optional, Tuple
 
 from nautilus_trader.config import StrategyConfig
 from nautilus_trader.model.data import QuoteTick, TradeTick
@@ -200,7 +200,8 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
                         conn.executemany("INSERT INTO trades VALUES (?,?,?,?,?)", trades)
                     if bot_trades:
                         conn.executemany(
-                            "INSERT INTO bot_trades (timestamp, instrument_id, side, price, quantity, realized_pnl) VALUES (?,?,?,?,?,?)",
+                            "INSERT INTO bot_trades (timestamp, instrument_id, side, "
+                            "price, quantity, realized_pnl) VALUES (?,?,?,?,?,?)",
                             bot_trades
                         )
         except Exception as e:

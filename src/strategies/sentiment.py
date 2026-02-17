@@ -171,7 +171,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
                 "side": side,
                 "price": price,
                 "quantity": qty,
-                "realized_pnl": 0.0 # Fake trade has 0 PnL
+                "realized_pnl": 0.0  # Fake trade has 0 PnL
             }
             RECORDER_QUEUE.put_nowait(("strategy_trade", data))
 
