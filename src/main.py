@@ -68,9 +68,7 @@ def setup_node(config: Dict[str, Any]) -> TradingNode:
         passphrase=passphrase,
     )
 
-    data_clients: Dict[str, LiveDataClientConfig] = {
-        "POLYMARKET": polymarket_data_config
-    }
+    data_clients: Dict[str, LiveDataClientConfig] = {"POLYMARKET": polymarket_data_config}
     exec_clients: Dict[str, LiveExecClientConfig] = {}
     emulator_config: Optional[OrderEmulatorConfig] = None
 
@@ -162,9 +160,7 @@ def main() -> None:
         logger.error(f"Initial scan failed: {e}")
 
     if not instruments:
-        logger.warning(
-            "No instruments found by scanner. Starting anyway (will retry in periodic scan)."
-        )
+        logger.warning("No instruments found by scanner. Starting anyway (will retry in periodic scan).")
     else:
         logger.info(f"Scanner found {len(instruments)} instruments. Registering...")
 

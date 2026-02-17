@@ -61,9 +61,7 @@ class PolymarketScanner:
                 markets = await self._fetch_markets(url, params)
                 if markets is None:
                     if attempt < retries - 1:
-                        logger.warning(
-                            f"Scan attempt {attempt+1} failed. Retrying in {delay}s..."
-                        )
+                        logger.warning(f"Scan attempt {attempt+1} failed. Retrying in {delay}s...")
                         await asyncio.sleep(delay)
                         delay *= 2
                     continue
@@ -75,9 +73,7 @@ class PolymarketScanner:
                 max_expiration_date = now + pd.Timedelta(days=self.days_to_expiration)
 
                 for market in markets:
-                    instruments.extend(
-                        self._process_market(market, max_expiration_date)
-                    )
+                    instruments.extend(self._process_market(market, max_expiration_date))
 
                 logger.info(f"Scan complete. Found {len(instruments)} instruments.")
                 return instruments
@@ -91,9 +87,7 @@ class PolymarketScanner:
         logger.error("All scan attempts failed.")
         return []
 
-    async def _fetch_markets(
-        self, url: str, params: Dict[str, Any]
-    ) -> Optional[List[MarketData]]:
+    async def _fetch_markets(self, url: str, params: Dict[str, Any]) -> Optional[List[MarketData]]:
         """
         Helper to fetch markets from API.
 
@@ -108,9 +102,7 @@ class PolymarketScanner:
             async with aiohttp.ClientSession() as session:
                 async with session.get(url, params=params) as response:
                     if response.status != 200:
-                        logger.warning(
-                            f"Failed to fetch markets (Status {response.status})"
-                        )
+                        logger.warning(f"Failed to fetch markets (Status {response.status})")
                         return None
 
                     data = await response.read()
@@ -132,9 +124,7 @@ class PolymarketScanner:
             logger.error(f"Network error fetching markets: {e}")
             return None
 
-    def _process_market(
-        self, market: MarketData, max_expiration_date: pd.Timestamp
-    ) -> List[Instrument]:
+    def _process_market(self, market: MarketData, max_expiration_date: pd.Timestamp) -> List[Instrument]:
         """
         Process a single market and return valid instruments.
 
@@ -192,9 +182,7 @@ class PolymarketScanner:
             **gamma_market,
         }
 
-    def _validate_market_filters(
-        self, clob_market: Dict[str, Any], max_expiration_date: pd.Timestamp
-    ) -> bool:
+    def _validate_market_filters(self, clob_market: Dict[str, Any], max_expiration_date: pd.Timestamp) -> bool:
         """
         Check spread and expiration filters.
         """
