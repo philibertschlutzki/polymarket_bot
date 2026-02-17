@@ -5,12 +5,12 @@ An event-driven trading system for **Polymarket** (Polygon Blockchain) built on 
 **Key Features:**
 *   **Event-Driven Architecture:** Built on Nautilus Trader V2 for robust, low-latency execution.
 *   **AI-Powered Sentiment:** Uses Gemini 2.0 Flash to analyze market questions and news, providing structured `buy`/`sell` signals with reasoning.
-*   **Smart Scanning:** Automatically finds liquid opportunities on Polymarket via the Gamma API.
+*   **Smart Scanning:** Automatically finds liquid opportunities on Polymarket via the Gamma API (with Pagination & Adaptive Rate Limiting).
 *   **Resilient Infrastructure:**
-    *   **Dockerized:** Multi-stage build for small images.
-    *   **Poetry:** Modern dependency management.
-    *   **Logging:** Rotating file logs + Telegram error alerts.
-    *   **Database:** Non-blocking SQLite recording with WAL mode.
+    *   **Dockerized:** Multi-stage build with persistent data volumes.
+    *   **Circuit Breaker:** Automatic trading halt if daily realized loss exceeds `DAILY_LOSS_LIMIT_USDC`.
+    *   **Smart Reconciliation:** Imports existing positions on startup and immediately triggers analysis.
+    *   **Database:** SQLite (`bot_trades`) for persistent PnL tracking and market data recording (WAL mode).
 
 ---
 
@@ -54,8 +54,7 @@ graph TD
 This repository is designed for a dual workflow to optimize resources:
 
 1.  **VPS (Paper/Live):** The bot runs in `paper` or `live` mode on a low-resource VPS (e.g., 1GB RAM). The `RecorderStrategy` saves real-time market data (Quotes & Trades) to `src/data/market_data.db`.
-2.  **Data Transfer:** Periodically copy `market_data.db` from the VPS to your powerful local machine.
-3.  **Laptop (Backtest):** Run `src/backtest.py` locally using the recorded data to simulate and improve strategies without risking capital.
+2.  **Data Transfer:** Periodically copy `market_data.db` from the VPS to your powerful local machine for analysis.
 
 ---
 
@@ -122,9 +121,10 @@ poetry install
 scp user@vps-ip:~/polymarket_bot/src/data/market_data.db src/data/
 ```
 
-**3. Run Backtest**
+**3. Analyze Data**
 ```bash
-poetry run python src/backtest.py
+# Connect to SQLite to analyze trades
+sqlite3 src/data/market_data.db "SELECT * FROM bot_trades"
 ```
 
 **4. Local Paper Trading (Optional)**
@@ -173,7 +173,6 @@ polymarket_bot/
 │   ├── scanner/         # Market discovery (Gamma API)
 │   ├── strategies/      # Nautilus trading logic
 │   ├── utils/           # Logging and helpers
-│   ├── backtest.py      # Backtesting entry point
 │   └── main.py          # Live/Paper entry point
 ├── tests/               # Unit tests (pytest)
 ├── .env.example         # Secrets template

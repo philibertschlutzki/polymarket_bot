@@ -24,4 +24,4 @@ services:
         condition: service_healthy
     volumes:
       - ./config:/app/config
-      - ./src:/app/src
+      - ./src/data:/app/src/data

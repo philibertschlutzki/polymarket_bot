@@ -34,95 +34,99 @@ class PolymarketScanner:
 
     async def scan(self) -> List[Instrument]:
         """
-        Scan Polymarket for opportunities.
-        Retries with exponential backoff on failure.
+        Scan Polymarket for opportunities using pagination.
+        Handles rate limits with backoff.
 
         Returns:
             List[Instrument]: A list of filtered Nautilus Trader Instruments.
         """
         logger.info("Starting market scan...")
 
-        params = {
-            "limit": 100,
-            "active": "true",
-            "closed": "false",
-            "archived": "false",
-            "volume_num_min": self.min_daily_volume,
-            "order": "volume",
-            "ascending": "false",
-        }
+        instruments: List[Instrument] = []
+        limit = 100
+        offset = 0
+
+        # Determine strict expiration cutoff
+        now = pd.Timestamp.now(tz="UTC")
+        max_expiration_date = now + pd.Timedelta(days=self.days_to_expiration)
 
         url = f"{self.base_url}/markets"
+
+        while True:
+            params = {
+                "limit": limit,
+                "offset": offset,
+                "active": "true",
+                "closed": "false",
+                "archived": "false",
+                "volume_num_min": self.min_daily_volume,
+                "order": "volume",
+                "ascending": "false",
+            }
+
+            markets = await self._fetch_page_with_backoff(url, params)
+
+            if markets is None:
+                logger.warning(f"Failed to fetch page at offset {offset}. Stopping scan loop.")
+                break
+
+            if not markets:
+                logger.info("No more markets found.")
+                break
+
+            logger.info(f"Fetched {len(markets)} markets (offset {offset}). Processing...")
+
+            for market in markets:
+                instruments.extend(self._process_market(market, max_expiration_date))
+
+            if len(markets) < limit:
+                break
+
+            offset += limit
+            await asyncio.sleep(0.5)  # Politeness
+
+        logger.info(f"Scan complete. Found {len(instruments)} instruments total.")
+        return instruments
+
+    async def _fetch_page_with_backoff(self, url: str, params: Dict[str, Any]) -> Optional[List[MarketData]]:
         retries = 3
         delay = 2.0
 
         for attempt in range(retries):
             try:
-                markets = await self._fetch_markets(url, params)
-                if markets is None:
-                    if attempt < retries - 1:
-                        logger.warning(f"Scan attempt {attempt+1} failed. Retrying in {delay}s...")
-                        await asyncio.sleep(delay)
-                        delay *= 2
-                    continue
-
-                logger.info(f"Fetched {len(markets)} markets. Filtering...")
-
-                instruments: List[Instrument] = []
-                now = pd.Timestamp.now(tz="UTC")
-                max_expiration_date = now + pd.Timedelta(days=self.days_to_expiration)
-
-                for market in markets:
-                    instruments.extend(self._process_market(market, max_expiration_date))
-
-                logger.info(f"Scan complete. Found {len(instruments)} instruments.")
-                return instruments
-
-            except Exception as e:
-                logger.warning(f"Error during scan attempt {attempt+1}/{retries}: {e}")
-                if attempt < retries - 1:
-                    await asyncio.sleep(delay)
-                    delay *= 2
-
-        logger.error("All scan attempts failed.")
-        return []
-
-    async def _fetch_markets(self, url: str, params: Dict[str, Any]) -> Optional[List[MarketData]]:
-        """
-        Helper to fetch markets from API.
-
-        Args:
-            url: The API endpoint URL.
-            params: The query parameters.
-
-        Returns:
-            Optional[List[MarketData]]: A list of market data dicts or None if failed.
-        """
-        try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(url, params=params) as response:
-                    if response.status != 200:
-                        logger.warning(f"Failed to fetch markets (Status {response.status})")
-                        return None
-
-                    data = await response.read()
-                    try:
-                        markets_data = msgspec.json.decode(data)
-                        markets: List[MarketData] = []
-                        if isinstance(markets_data, dict) and "data" in markets_data:
-                            markets = cast(List[MarketData], markets_data["data"])
-                        elif isinstance(markets_data, list):
-                            markets = cast(List[MarketData], markets_data)
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(url, params=params) as response:
+                        if response.status == 200:
+                            data = await response.read()
+                            return self._decode_markets(data)
+                        elif response.status == 429:
+                            wait_time = delay * 2
+                            logger.warning(f"Rate Limit (429) hit. Backing off for {wait_time}s...")
+                            await asyncio.sleep(wait_time)
+                            delay *= 2
+                            continue
                         else:
-                            logger.error("Unexpected response format from Gamma API")
-                            return None
-                        return markets
-                    except Exception as e:
-                        logger.error(f"Failed to decode Gamma API response: {e}")
-                        return None
+                            logger.warning(f"Failed to fetch markets (Status {response.status})")
+            except Exception as e:
+                logger.warning(f"Network error fetching markets: {e}")
+
+            # Standard retry logic
+            if attempt < retries - 1:
+                await asyncio.sleep(delay)
+                delay *= 2
+
+        return None
+
+    def _decode_markets(self, data: bytes) -> List[MarketData]:
+        try:
+            markets_data = msgspec.json.decode(data)
+            if isinstance(markets_data, dict) and "data" in markets_data:
+                return cast(List[MarketData], markets_data["data"])
+            elif isinstance(markets_data, list):
+                return cast(List[MarketData], markets_data)
         except Exception as e:
-            logger.error(f"Network error fetching markets: {e}")
-            return None
+            logger.error(f"Failed to decode Gamma API response: {e}")
+        return []
 
     def _process_market(self, market: MarketData, max_expiration_date: pd.Timestamp) -> List[Instrument]:
         """
