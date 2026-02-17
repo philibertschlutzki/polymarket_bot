@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 RECORDER_QUEUE: asyncio.Queue[Tuple[str, Any]] = asyncio.Queue(maxsize=10000)
 
 
-class RecorderConfig(StrategyConfig, frozen=True):  # type: ignore[misc]
+class RecorderConfig(StrategyConfig):  # type: ignore[misc]
     db_path: str = "src/data/market_data.db"
     batch_size: int = 100
     flush_interval_seconds: float = 5.0
