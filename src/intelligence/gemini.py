@@ -6,13 +6,13 @@ from typing import Any, Dict, List, Optional
 
 import google.generativeai as genai
 from google.generativeai import GenerativeModel
+from google.generativeai.protos import GoogleSearchRetrieval
 from google.generativeai.types import (
     GenerationConfig,
     HarmBlockThreshold,
     HarmCategory,
     Tool,
 )
-from google.generativeai.protos import GoogleSearchRetrieval
 
 logger = logging.getLogger(__name__)
 
