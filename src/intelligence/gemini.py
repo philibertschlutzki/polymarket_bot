@@ -53,11 +53,7 @@ class GeminiClient:
 
         # Tools configuration for Search Grounding
         try:
-            self.tools = [
-                Tool(
-                    google_search_retrieval=GoogleSearchRetrieval()
-                )
-            ]
+            self.tools = [Tool(google_search_retrieval=GoogleSearchRetrieval())]
         except AttributeError:
             # Fallback if specific types aren't available (though strict mode might complain)
             logger.warning("GoogleSearchRetrieval type not found, using dict syntax fallback.")
