@@ -28,6 +28,7 @@ class StrategyWrapper(GeminiSentimentStrategy):
         self.subscribed_instruments = set()
         self.daily_pnl = 0.0
         self.db_path = "src/data/market_data.db"
+        self.semaphore = asyncio.Semaphore(3)
 
         self._mock_log = MagicMock()
         self._mock_cache = MagicMock()
