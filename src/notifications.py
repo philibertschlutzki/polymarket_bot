@@ -26,6 +26,7 @@ class TelegramNotifier:
     async def close(self) -> None:
         if self.session and not self.session.closed:
             await self.session.close()
+            logger.info("Telegram session closed.")
 
     async def _send(self, text: str) -> None:
         if not self.bot_token or not self.chat_id:

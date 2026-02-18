@@ -11,7 +11,7 @@ from nautilus_trader.trading.strategy import Strategy
 logger = logging.getLogger(__name__)
 
 # Shared queue for strategy events (trades, pnl)
-RECORDER_QUEUE: asyncio.Queue[Tuple[str, Any]] = asyncio.Queue(maxsize=10000)
+RECORDER_QUEUE: asyncio.Queue[Tuple[str, Any]] = asyncio.Queue(maxsize=50000)
 
 
 class RecorderConfig(StrategyConfig):  # type: ignore[misc]
@@ -109,13 +109,13 @@ class RecorderStrategy(Strategy):  # type: ignore[misc]
         try:
             self.queue.put_nowait(("quote", tick))
         except asyncio.QueueFull:
-            pass
+            self.log.warning("WARNING: Recorder queue full! Dropping tick data.")
 
     def on_trade_tick(self, tick: TradeTick) -> None:
         try:
             self.queue.put_nowait(("trade", tick))
         except asyncio.QueueFull:
-            pass
+            self.log.warning("WARNING: Recorder queue full! Dropping tick data.")
 
     async def _writer_loop(self) -> None:
         """

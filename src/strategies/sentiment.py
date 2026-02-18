@@ -49,6 +49,7 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
         self.subscribed_instruments: Set[Any] = set()
         self.daily_pnl: float = 0.0
         self.db_path = "src/data/market_data.db"
+        self.semaphore = asyncio.Semaphore(3)
 
     def on_start(self) -> None:
         """
@@ -328,12 +329,13 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
             prices[outcome] = price
 
         self.log.info(f"Analyzing market: {question}")
-        analysis = await self.gemini.analyze_market(
-            question=question,
-            description=description,
-            prices=prices,
-            available_outcomes=available_outcomes,
-        )
+        async with self.semaphore:
+            analysis = await self.gemini.analyze_market(
+                question=question,
+                description=description,
+                prices=prices,
+                available_outcomes=available_outcomes,
+            )
 
         self._apply_analysis(question, instruments, analysis, available_outcomes)
 
@@ -436,3 +438,11 @@ class GeminiSentimentStrategy(Strategy):  # type: ignore[misc]
 
     def on_bar(self, bar: Bar) -> None:
         pass
+
+    def on_stop(self) -> None:
+        """
+        Actions to be performed on strategy stop.
+        """
+        self.log.info("GeminiSentimentStrategy stopping...")
+        # Close the notifier session to prevent resource leaks
+        asyncio.create_task(self.notifier.close())

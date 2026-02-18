@@ -35,21 +35,44 @@ class TelegramErrorLogHandler(logging.Handler):
 
 
 def setup_logging(config: Dict[str, Any]) -> None:
-    log_level_str = os.getenv("LOG_LEVEL", "INFO").upper()
+    # Determine Log Level
+    log_level_str = os.getenv("LOG_LEVEL", config.get("logging", {}).get("level", "INFO")).upper()
     log_level = getattr(logging, log_level_str, logging.INFO)
 
-    logging.basicConfig(
-        level=log_level, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s", handlers=[logging.StreamHandler()]
-    )
+    # Create logs directory if not exists
+    os.makedirs("logs", exist_ok=True)
 
+    # Root Logger Configuration
+    root_logger = logging.getLogger()
+    root_logger.setLevel(log_level)
+
+    # Clear existing handlers
+    if root_logger.hasHandlers():
+        root_logger.handlers.clear()
+
+    # Format
+    formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+
+    # Stream Handler (Console)
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    root_logger.addHandler(stream_handler)
+
+    # File Handler
+    file_handler = logging.FileHandler("logs/bot.log")
+    file_handler.setFormatter(formatter)
+    root_logger.addHandler(file_handler)
+
+    # Telegram Error Logging
     bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
     if bot_token and chat_id:
         telegram_handler = TelegramErrorLogHandler(bot_token, chat_id)
-        formatter = logging.Formatter("%(asctime)s - %(name)s - %(message)s")
         telegram_handler.setFormatter(formatter)
-        logging.getLogger().addHandler(telegram_handler)
+        root_logger.addHandler(telegram_handler)
         logging.info("Telegram Error Logging Enabled.")
     else:
         logging.warning("Telegram credentials not found. Error logging disabled.")
+
+    logging.info(f"Logging initialized. Level: {log_level_str}")
