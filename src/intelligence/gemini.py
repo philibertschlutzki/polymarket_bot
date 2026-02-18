@@ -2,10 +2,10 @@ import asyncio
 import json
 import logging
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 import google.generativeai as genai
-from google.generativeai import GenerativeModel
+from google.generativeai import GenerativeModel  # type: ignore[attr-defined]
 from google.generativeai.protos import GoogleSearchRetrieval
 from google.generativeai.types import (
     GenerationConfig,
@@ -30,7 +30,7 @@ class GeminiClient:
         if not self.api_key:
             logger.warning("GOOGLE_API_KEY not found in environment variables.")
         else:
-            genai.configure(api_key=self.api_key)
+            genai.configure(api_key=self.api_key)  # type: ignore[attr-defined]
 
         self.model_name = os.getenv("GEMINI_MODEL") or str(gemini_config.get("model", "gemini-2.0-flash"))
         self.temperature = float(gemini_config.get("temperature", 0.1))
@@ -52,6 +52,7 @@ class GeminiClient:
         }
 
         # Tools configuration for Search Grounding
+        self.tools: List[Union[Tool, Dict[str, Any]]]
         try:
             self.tools = [Tool(google_search_retrieval=GoogleSearchRetrieval())]
         except AttributeError:
@@ -61,7 +62,7 @@ class GeminiClient:
 
         self.model: Optional[GenerativeModel] = None
         try:
-            self.model = genai.GenerativeModel(
+            self.model = genai.GenerativeModel(  # type: ignore[attr-defined]
                 model_name=self.model_name,
                 generation_config=GenerationConfig(
                     response_mime_type="application/json",
@@ -86,7 +87,7 @@ class GeminiClient:
         description: str,
         prices: Dict[str, float],
         available_outcomes: List[str],
-    ) -> Dict[str, Any]:  # type: ignore[no-any-return]
+    ) -> Dict[str, Any]:
         """
         Analyze a market using Gemini 2.0 with Search Grounding.
         Includes retries with exponential backoff and Circuit Breaker.
@@ -155,7 +156,7 @@ class GeminiClient:
         Return the result in strict JSON format.
         """
 
-    def _parse_response(self, text: str) -> Dict[str, Any]:  # type: ignore[no-any-return]
+    def _parse_response(self, text: str) -> Dict[str, Any]:
         text = text.strip()
         # Clean Markdown code blocks
         if text.startswith("```json"):
@@ -167,17 +168,19 @@ class GeminiClient:
         text = text.strip()
 
         try:
-            return json.loads(text)
+            res: Dict[str, Any] = json.loads(text)
+            return res
         except json.JSONDecodeError:
             logger.warning("Gemini response was not valid JSON, attempting to extract.")
             start = text.find("{")
             end = text.rfind("}") + 1
             if start != -1 and end != -1:
-                return json.loads(text[start:end])
+                res = json.loads(text[start:end])
+                return res
             else:
                 raise ValueError("No JSON found in response")
 
-    def _error_result(self, reason: str) -> Dict[str, Any]:  # type: ignore[no-any-return]
+    def _error_result(self, reason: str) -> Dict[str, Any]:
         return {
             "action": "hold",
             "target_outcome": "",
