@@ -86,7 +86,7 @@ class GeminiClient:
         description: str,
         prices: Dict[str, float],
         available_outcomes: List[str],
-    ) -> Dict[str, Any]: # type: ignore[no-any-return]
+    ) -> Dict[str, Any]:  # type: ignore[no-any-return]
         """
         Analyze a market using Gemini 2.0 with Search Grounding.
         Includes retries with exponential backoff and Circuit Breaker.
@@ -155,7 +155,7 @@ class GeminiClient:
         Return the result in strict JSON format.
         """
 
-    def _parse_response(self, text: str) -> Dict[str, Any]: # type: ignore[no-any-return]
+    def _parse_response(self, text: str) -> Dict[str, Any]:  # type: ignore[no-any-return]
         text = text.strip()
         # Clean Markdown code blocks
         if text.startswith("```json"):
@@ -177,7 +177,7 @@ class GeminiClient:
             else:
                 raise ValueError("No JSON found in response")
 
-    def _error_result(self, reason: str) -> Dict[str, Any]: # type: ignore[no-any-return]
+    def _error_result(self, reason: str) -> Dict[str, Any]:  # type: ignore[no-any-return]
         return {
             "action": "hold",
             "target_outcome": "",
