@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from dotenv import load_dotenv
-from nautilus_trader.adapters.polymarket import (  # type: ignore
+from nautilus_trader.adapters.polymarket import (
     PolymarketDataClientConfig,
     PolymarketExecClientConfig,
     PolymarketLiveDataClientFactory,
@@ -40,7 +40,10 @@ def load_config() -> Dict[str, Any]:
     """
     Load configuration from config.toml.
     """
-    config_path = Path(__file__).parent.parent / "config" / "config.toml"
+    default_path = Path(__file__).parent.parent / "config" / "config.toml"
+    config_file_env = os.getenv("CONFIG_FILE")
+    config_path = Path(config_file_env) if config_file_env else default_path
+
     with open(config_path, "rb") as f:
         return tomllib.load(f)
 
@@ -163,7 +166,6 @@ def setup_strategies(node: TradingNode, config: Dict[str, Any]) -> None:
 
     logger.info("Adding SQLite Data Recorder...")
     recorder_config = RecorderConfig(
-        db_path="src/data/market_data.db",
         batch_size=100,
         flush_interval_seconds=5.0,
     )
@@ -225,9 +227,7 @@ def main() -> None:
         setup_strategies(node, config)
 
         scanner_interval = int(config.get("scanner", {}).get("interval_hours", 1))
-        # Need to reconstruct scanner or pass it if reused, here simpler to re-instantiate or just pass config
-        # The service creates its own scanner instance internally if we passed the class, but here it takes an instance
-        # Let's create a new one for the periodic service to avoid state issues if any
+
         scanner_service = PeriodicScannerService(
             scanner=PolymarketScanner(config),
             instrument_provider=getattr(node, "instrument_provider", None),

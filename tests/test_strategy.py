@@ -23,6 +23,12 @@ class StrategyWrapper(GeminiSentimentStrategy):
         self.tasks = set()
         self.analyzed_markets = set()
 
+        # Manually initialize attributes that might have been skipped if super().__init__ failed
+        self.local_entry_prices = {}
+        self.subscribed_instruments = set()
+        self.daily_pnl = 0.0
+        self.db_path = "src/data/market_data.db"
+
         self._mock_log = MagicMock()
         self._mock_cache = MagicMock()
         self._mock_order_factory = MagicMock()
